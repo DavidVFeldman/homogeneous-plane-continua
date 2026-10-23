@@ -23,6 +23,19 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      # Lean builds several files at once and some need much memory; the runner has 16 GB.
+      # Without swap space a peak gets the build killed (exit code 143); with it, the peak
+      # passes, only more slowly.
+      - name: Add swap space
+        run: |
+          for spec in /mnt/hpc.swap:16G /hpc.swap:8G; do
+            f=${spec%%:*}; size=${spec##*:}
+            if sudo fallocate -l "$size" "$f" 2>/dev/null; then
+              sudo chmod 600 "$f" && sudo mkswap "$f" > /dev/null && sudo swapon "$f" && break
+            fi
+          done
+          free -h
+
       - name: Install elan
         run: |
           curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
@@ -65,6 +78,19 @@ jobs:
     timeout-minutes: 240
     steps:
       - uses: actions/checkout@v5
+
+      # Lean builds several files at once and some need much memory; the runner has 16 GB.
+      # Without swap space a peak gets the build killed (exit code 143); with it, the peak
+      # passes, only more slowly.
+      - name: Add swap space
+        run: |
+          for spec in /mnt/hpc.swap:16G /hpc.swap:8G; do
+            f=${spec%%:*}; size=${spec##*:}
+            if sudo fallocate -l "$size" "$f" 2>/dev/null; then
+              sudo chmod 600 "$f" && sudo mkswap "$f" > /dev/null && sudo swapon "$f" && break
+            fi
+          done
+          free -h
 
       - name: Install elan
         run: |
