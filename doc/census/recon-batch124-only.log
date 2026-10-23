@@ -1,0 +1,5 @@
+# recon-batch124-only (mode only): the only-clause of Theorem 3 at every covered interior basepoint
+mode=only N=8 K=5 special=0 sequences=96697 instances=263034 pairs=1408300 failures=0
+mode=only N=9 K=5 special=0 sequences=363513 instances=988614 pairs=6029410 failures=0
+mode=only N=10 K=5 special=0 sequences=1366817 instances=3713082 pairs=25411752 failures=0
+mode=only N=11 K=5 special=0 sequences=5137761 instances=13936134 pairs=105757910 failures=0

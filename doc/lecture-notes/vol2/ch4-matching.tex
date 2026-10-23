@@ -1,0 +1,201 @@
+%======================================================================
+\chapter{Matching covers}\label{ch:matching}
+%======================================================================
+
+This chapter proves a general criterion for two compact sets to be homeomorphic. It contains no
+chains: the input is two sequences of finite open covers, indexed in the same way, such that
+``meeting'' on one side forces ``closeness'' on the other. Chapter~\ref{ch:two} produces such covers
+from two descriptions. The criterion is Bing's Theorem~11 (1948), with an extra clause that tracks
+individual points.
+
+Throughout, $X_1$ and $X_2$ are metric spaces, $M_1\subseteq X_1$ and $M_2\subseteq X_2$ are compact, and
+$\varepsilon_0,\varepsilon_1,\dots$ are positive numbers with $\sum_i\varepsilon_i<\infty$.
+
+\section{The statement}
+
+\begin{definition}\label{def:matching}
+\emph{Matching covers} of $M_1$ and $M_2$ (for $\varepsilon$) consist of numbers $N_i\ge0$ and open sets
+$x^1_{i,k}\subseteq X_1$, $x^2_{i,k}\subseteq X_2$ for $i\in\N$ and $k\in[N_i]$ such that, for $c=1,2$:
+\begin{enumerate}[label=(M\arabic*)]
+\item\label{M:cover} $M_c\subseteq\bigcup_kx^c_{i,k}$ for every $i$;
+\item\label{M:meet} every $x^c_{i,k}$ meets $M_c$;
+\item\label{M:diam} every $x^c_{i,k}$ is bounded with $\diam x^c_{i,k}\le\varepsilon_i$;
+\item\label{M:match} if $x^1_{i+1,j}$ meets $x^1_{i,k}$, then some point of $x^2_{i+1,j}$ is at distance $<\varepsilon_i$ from
+some point of $x^2_{i,k}$; and the same with the sides $1$ and $2$ exchanged.
+\end{enumerate}
+A sequence of indices $a=(a_0,a_1,\dots)$ with $a_i\in[N_i]$ \emph{tracks} a point $p\in X_c$ if $p\in x^c_{i,a_i}$ for
+every $i$.
+\end{definition}
+
+\formal{\lean{HPC.MatchingCovers}, \leansub{HPC.MatchingCovers.Tracks}{1}, \leansub{HPC.MatchingCovers.Tracks}{2}.}
+
+\begin{theorem}[Matching covers; Bing 1948, Theorem~11]\label{thm:matching}
+If $M_1$ and $M_2$ are compact and carry matching covers, then there is a homeomorphism $T\colon M_1\to M_2$ such that
+$T(p)=q$ whenever $p\in M_1$, $q\in M_2$ and one index sequence tracks both $p$ and $q$.
+\end{theorem}
+
+\formal{\lean{HPC.MatchingCovers.exists_homeomorph}.}
+
+The definition is symmetric in the two sides, so every statement proved below for one side also holds for the other.
+
+\section{Fattening}
+
+Let $t_i=\sum_{l\ge0}\varepsilon_{i+l}$ (the tail sums) and define the \emph{fattening radius} and the \emph{mesh}
+\[
+\rho_i=\varepsilon_i+2t_{i+1},\qquad \mu_i=\varepsilon_i+2\rho_i .
+\]
+Since $t_i\to0$ and $\varepsilon_i\to0$, also $\rho_i\to0$ and $\mu_i\to0$. Moreover $t_{i+1}=\varepsilon_{i+1}+t_{i+2}$, which
+gives the identity
+\begin{equation}\label{eq:rad}
+\rho_{i+1}+\varepsilon_{i+1}+\varepsilon_i=\rho_i .
+\end{equation}
+For a set $S$ and $\delta>0$ let $S^\delta=\set{z: d(z,s)<\delta\text{ for some }s\in S}$, an open set containing $S$, with
+$\diam S^\delta\le\diam S+2\delta$. Put
+\[
+y^c_{i,k}=\bigl(x^c_{i,k}\bigr)^{\rho_i}.
+\]
+Then $\diam\cl{y^c_{i,k}}=\diam y^c_{i,k}\le\varepsilon_i+2\rho_i=\mu_i$: any two points of $\cl{y^c_{i,k}}$ are at distance at most
+$\mu_i$.
+
+\formal{\lean{HPC.tail}, \lean{HPC.rad}, \lean{HPC.mesh}, \lean{HPC.fat}, \leansub{HPC.MatchingCovers.y}{1},
+\leansub{HPC.MatchingCovers.y}{2}, \lean{HPC.diam_fat_le_mesh}, \lean{HPC.mesh_tendsto_zero}.}
+
+\begin{lemma}[Nesting]\label{lem:nesting}
+Let $A,B$ be sets with $B$ bounded, $\diam B\le\varepsilon_{i+1}$, and suppose some $p\in B$ and $q\in A$ have
+$d(p,q)<\varepsilon_i$. Then $\cl{B^{\rho_{i+1}}}\subseteq A^{\rho_i}$.
+\end{lemma}
+
+\begin{proof}
+Let $z\in\cl{B^{\rho_{i+1}}}$ and $\eta=\varepsilon_i-d(p,q)>0$. There is $z'\in B^{\rho_{i+1}}$ with $d(z,z')<\eta$, and
+$b'\in B$ with $d(z',b')<\rho_{i+1}$; also $d(b',p)\le\diam B\le\varepsilon_{i+1}$. Hence
+\[
+d(z,q)\le d(z,z')+d(z',b')+d(b',p)+d(p,q)<\eta+\rho_{i+1}+\varepsilon_{i+1}+d(p,q)=\rho_{i+1}+\varepsilon_{i+1}+\varepsilon_i=\rho_i
+\]
+by~\eqref{eq:rad}. So $z\in A^{\rho_i}$.
+\end{proof}
+
+\formal{\lean{HPC.closure_fat_subset_fat}.}
+
+\section{Nested fattened sets}
+
+\begin{lemma}[Step 1]\label{lem:step1}
+If $x^1_{i+1,s}$ meets $x^1_{i,r}$, then $\cl{y^2_{i+1,s}}\subseteq y^2_{i,r}$.
+\end{lemma}
+
+\begin{proof}
+By~\ref{M:match} some point of $x^2_{i+1,s}$ is within $\varepsilon_i$ of some point of $x^2_{i,r}$, and
+$\diam x^2_{i+1,s}\le\varepsilon_{i+1}$. Apply Lemma~\ref{lem:nesting}.
+\end{proof}
+
+\formal{\leansub{HPC.MatchingCovers.step1}{2}.}
+
+\begin{lemma}[Step 2]\label{lem:step2}
+Let $i<j$. If $x^1_{i,r}\cap x^1_{j,s}\cap M_1\ne\emptyset$, then $\cl{y^2_{j,s}}\subseteq y^2_{i,r}$.
+\end{lemma}
+
+\begin{proof}
+Induction on $j$. Let $c\in x^1_{i,r}\cap x^1_{j,s}\cap M_1$. If $j=i+1$ this is Lemma~\ref{lem:step1}. If $j>i+1$, by~\ref{M:cover} there is
+$t$ with $c\in x^1_{j-1,t}$. Then $x^1_{j,s}$ meets $x^1_{j-1,t}$, so $\cl{y^2_{j,s}}\subseteq y^2_{j-1,t}$ by
+Lemma~\ref{lem:step1}; and $c\in x^1_{i,r}\cap x^1_{j-1,t}\cap M_1$, so $\cl{y^2_{j-1,t}}\subseteq y^2_{i,r}$ by induction. Combine.
+\end{proof}
+
+\formal{\leansub{HPC.MatchingCovers.step2}{2}.}
+
+\section{The map}
+
+\begin{lemma}[Step 3]\label{lem:limit-point}
+Let $a$ be an index sequence with $x^1_{i+1,a_{i+1}}\cap x^1_{i,a_i}\neq\emptyset$ for all $i$. Then there is $q\in M_2$ with
+$q\in\cl{y^2_{i,a_i}}$ for every $i$.
+\end{lemma}
+
+\begin{proof}
+The sets $K_i=\cl{y^2_{i,a_i}}\cap M_2$ are compact; they decrease, because $\cl{y^2_{i+1,a_{i+1}}}\subseteq y^2_{i,a_i}$ by
+Lemma~\ref{lem:step1}; and they are nonempty, because $x^2_{i,a_i}\subseteq y^2_{i,a_i}$ meets $M_2$ by~\ref{M:meet}. By Cantor's
+intersection theorem \vone{(C3)} they have a common point.
+\end{proof}
+
+\formal{\lean{HPC.MatchingCovers.exists_limit_point}.}
+
+For $p\in M_1$ choose, for each $i$, an index $a_i(p)$ with $p\in x^1_{i,a_i(p)}$ (by~\ref{M:cover}). The sequence $a(p)$
+satisfies the hypothesis of Lemma~\ref{lem:limit-point} (consecutive sets contain $p$). Let $T(p)\in M_2$ be a point given by
+that lemma.
+
+\begin{lemma}[Step 4: independence of choices]\label{lem:T-indep}
+If $p\in M_1$ and $p\in x^1_{j,r}$, then $T(p)\in y^2_{j,r}$.
+\end{lemma}
+
+\begin{proof}
+$p\in x^1_{j+1,a_{j+1}(p)}\cap x^1_{j,r}$, so $\cl{y^2_{j+1,a_{j+1}(p)}}\subseteq y^2_{j,r}$ by Lemma~\ref{lem:step1}, and $T(p)$
+lies in the left side by construction.
+\end{proof}
+
+\formal{\lean{HPC.MatchingCovers.toFun}, \leansub{HPC.MatchingCovers.toFun_mem_y}{2}.}
+
+\begin{lemma}[Step 5]\label{lem:T-cont}
+$T\colon M_1\to M_2$ is continuous.
+\end{lemma}
+
+\begin{proof}
+Let $p\in M_1$ and $\eta>0$. Choose $j$ with $\mu_j<\eta$ and $r$ with $p\in x^1_{j,r}$. As $x^1_{j,r}$ is open there is
+$\delta>0$ such that every $p'$ with $d(p,p')<\delta$ lies in $x^1_{j,r}$. For such $p'\in M_1$, both $T(p)$ and $T(p')$ lie in
+$y^2_{j,r}$ by Lemma~\ref{lem:T-indep}, so $d(T(p),T(p'))\le\mu_j<\eta$.
+\end{proof}
+
+\formal{\lean{HPC.MatchingCovers.continuous_toMap}.}
+
+\begin{lemma}[Step 6]\label{lem:T-inj}
+$T$ is injective.
+\end{lemma}
+
+\begin{proof}
+Suppose $p_1\neq p_2$ in $M_1$ with $T(p_1)=T(p_2)=Q$. Choose $k$ with $\mu_k<d(p_1,p_2)$, and $r$ with $Q\in x^2_{k,r}$ (note
+$Q\in M_2$). As $x^2_{k,r}$ is open, there is $\eta>0$ with $B(Q,\eta)\subseteq x^2_{k,r}$. Choose $j>k$ with $\mu_j<\eta$, and $u,v$
+with $p_1\in x^1_{j,u}$, $p_2\in x^1_{j,v}$. By Lemma~\ref{lem:T-indep}, $Q\in y^2_{j,u}$ and $Q\in y^2_{j,v}$.
+
+\emph{Claim: if $Q\in y^2_{j,w}$, then $\cl{y^1_{j,w}}\subseteq y^1_{k,r}$.} By~\ref{M:meet} pick $c\in x^2_{j,w}\cap M_2$. Both $c$
+and $Q$ lie in $y^2_{j,w}$, so $d(c,Q)\le\mu_j<\eta$ and $c\in x^2_{k,r}$. Thus $x^2_{k,r}\cap x^2_{j,w}\cap M_2\neq\emptyset$, and
+Lemma~\ref{lem:step2} with the sides exchanged gives the claim.
+
+By the claim, $p_1\in x^1_{j,u}\subseteq y^1_{j,u}\subseteq y^1_{k,r}$ and likewise $p_2\in y^1_{k,r}$. Hence $d(p_1,p_2)\le\mu_k$,
+a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.MatchingCovers.injective_toMap}.}
+
+\begin{lemma}[Step 7]\label{lem:T-surj}
+$T$ is surjective.
+\end{lemma}
+
+\begin{proof}
+The image $T(M_1)$ is compact (Lemma~\ref{lem:T-cont}), hence closed in $M_2$, so it suffices to show it is dense. Let $q\in M_2$
+and $\eta>0$. Choose $j$ with $\mu_j<\eta$ and $r$ with $q\in x^2_{j,r}$, and by~\ref{M:meet} a point $p\in x^1_{j,r}\cap M_1$.
+Then $T(p)\in y^2_{j,r}$ (Lemma~\ref{lem:T-indep}) and $q\in y^2_{j,r}$, so $d(T(p),q)\le\mu_j<\eta$.
+\end{proof}
+
+\formal{\lean{HPC.MatchingCovers.surjective_toMap}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:matching}]
+$T$ is a continuous bijection from the compact space $M_1$ to the metric space $M_2$, so it is a homeomorphism (a continuous
+bijection from a compact space to a Hausdorff space maps closed sets, which are compact, to compact, hence closed, sets).
+For the tracking clause, let $a$ track $p\in M_1$ and $q\in M_2$. For every $i$, $T(p)\in y^2_{i,a_i}$ by
+Lemma~\ref{lem:T-indep}, and $q\in x^2_{i,a_i}\subseteq y^2_{i,a_i}$; so $d(T(p),q)\le\mu_i$ for all $i$. Since $\mu_i\to0$,
+$T(p)=q$.
+\end{proof}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Show that the summability of $\varepsilon$ cannot simply be replaced by $\varepsilon_i\to0$ in the proof: where is
+$t_i<\infty$ used? (It is used to make the fattened sets nest.)
+\end{exercise}
+
+\begin{exercise}
+Let $M_1=M_2=[0,1]$ and let $x^1_{i,k}=x^2_{i,k}$ be the intervals $\bigl((k-1)2^{-i},(k+1)2^{-i}\bigr)\cap(-1,2)$,
+$k\in[2^i+1]$. Find $\varepsilon$ for which these are matching covers, and identify the homeomorphism $T$.
+\end{exercise}
+
+\begin{exercise}
+Show that if one replaces \ref{M:match} by the one-sided condition (from side $1$ to side $2$ only), the map $T$ is still
+defined and continuous, but may fail to be injective.
+\end{exercise}

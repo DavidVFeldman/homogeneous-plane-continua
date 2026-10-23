@@ -1,0 +1,27 @@
+probe65: bing 0 9, 986 links, faithful (thin): 1
+  the chain attains 0 at link 0 (0) and 9 at link 985 (9)
+
+---- the basepoint 145 ----
+  rho[145] = 5;  arms 841 (forward) and 146 (backward)
+  LowAt on the arms: forward 1, backward 1
+  the backward arm begins: 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4
+  the forward arm begins: 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4
+  Mid2Floor: forward 1, backward 0
+  the backward arm descends to exactly 2 first at index 5
+  tags (1 = wb reflected (4,6,2), 2 = w8 direct (5,8,1), 4 = w3 reflected (4,6,1)):  forward 7, backward 1;  a crossing of the trichotomy: 0
+  w71 (5,7,1): forward 1, backward 0;  w72 (5,7,2): forward 1, backward 0
+  the pair folds onto the wb walk 6 -> 3 -> 7 -> 1 -> 8 (both arms, reflected): 1
+  the forward arm touches 0: 0;  reaches 9: 1;  the backward arm touches 0: 1
+
+---- every basepoint of the branch in the plain chain ----
+  basepoint  145: Mid2Floor fails on the backward arm;  tags 7 and 1;  crossing 0;  early 1
+  basepoint  149: Mid2Floor fails on the backward arm;  tags 7 and 1;  crossing 0;  early 0
+  basepoint  151: Mid2Floor fails on the backward arm;  tags 7 and 1;  crossing 0;  early 0
+  basepoint  153: Mid2Floor fails on the backward arm;  tags 7 and 1;  crossing 0;  early 0
+  basepoint  185: Mid2Floor fails on the forward arm;  tags 1 and 7;  crossing 0;  early 0
+  basepoint  187: Mid2Floor fails on the forward arm;  tags 1 and 7;  crossing 0;  early 0
+  basepoint  189: Mid2Floor fails on the forward arm;  tags 1 and 7;  crossing 0;  early 0
+  basepoint  193: Mid2Floor fails on the forward arm;  tags 1 and 7;  crossing 0;  early 1
+  basepoints of the branch: 232;  with an arm failing Mid2Floor: 52;  of those,
+  crossings of the trichotomy: 0;  with a descent to 2 or below within six arm
+  indices: 13

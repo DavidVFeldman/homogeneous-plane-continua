@@ -1,0 +1,188 @@
+census for batch 36 -- shortest serving walks; spans 6 .. 12
+
+===== 1. the gate: ExtendStepMin at every interior basepoint =====
+  trims: every band [L',H'] with L+1 <= L', H' <= H-1, L'+3 <= H', and every
+         maximal stretch whose band is exactly [L',H'].
+  serving: the member folds both arms of the stretch at the basepoint.
+  extending: the oriented extension is a member of the free family of [L,H]
+         and folds both arms of the whole chain at the basepoint.
+  span  6: 71 links, 25 interior basepoints, 5 inner trims, 10 family members swept
+           MIN   (every shortest serving member extends, at some trim): 19/25   FAILURES 6
+           SOME  (some  shortest serving member extends, at some trim): 25/25   FAILURES 0
+           EVERY (every serving member extends, at some trim): 15/25   FAILURES 10
+           basepoints passing SOME but not MIN (uniqueness needed): 6
+           basepoints with a trim whose shortest serving members split: 19
+           trims whose shortest serving members split: 32
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE MIN FORM: 5 (level 3)
+           witness: basepoint 5, band [1,4], stretch [1,28], least serving length 3, the member [2, 3, 2] serves and does not extend
+  span  7: 170 links, 104 interior basepoints, 16 inner trims, 34 family members swept
+           MIN   (every shortest serving member extends, at some trim): 90/104   FAILURES 14
+           SOME  (some  shortest serving member extends, at some trim): 104/104   FAILURES 0
+           EVERY (every serving member extends, at some trim): 70/104   FAILURES 34
+           basepoints passing SOME but not MIN (uniqueness needed): 14
+           basepoints with a trim whose shortest serving members split: 96
+           trims whose shortest serving members split: 150
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE MIN FORM: 5 (level 3)
+           witness: basepoint 5, band [1,4], stretch [1,28], least serving length 3, the member [2, 3, 2] serves and does not extend
+  span  8: 409 links, 319 interior basepoints, 44 inner trims, 98 family members swept
+           MIN   (every shortest serving member extends, at some trim): 281/319   FAILURES 38
+           SOME  (some  shortest serving member extends, at some trim): 319/319   FAILURES 0
+           EVERY (every serving member extends, at some trim): 221/319   FAILURES 98
+           basepoints passing SOME but not MIN (uniqueness needed): 38
+           basepoints with a trim whose shortest serving members split: 303
+           trims whose shortest serving members split: 458
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE MIN FORM: 5 (level 3)
+           witness: basepoint 5, band [1,4], stretch [1,28], least serving length 3, the member [2, 3, 2] serves and does not extend
+  span  9: 986 links, 868 interior basepoints, 113 inner trims, 258 family members swept
+           MIN   (every shortest serving member extends, at some trim): 794/868   FAILURES 74
+           SOME  (some  shortest serving member extends, at some trim): 868/868   FAILURES 0
+           EVERY (every serving member extends, at some trim): 624/868   FAILURES 244
+           basepoints passing SOME but not MIN (uniqueness needed): 74
+           basepoints with a trim whose shortest serving members split: 660
+           trims whose shortest serving members split: 976
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE MIN FORM: 5 (level 3)
+           witness: basepoint 5, band [1,4], stretch [1,28], least serving length 3, the member [2, 3, 2] serves and does not extend
+  span 10: 2379 links, 2229 interior basepoints, 281 inner trims, 642 family members swept
+           MIN   (every shortest serving member extends, at some trim): 2109/2229   FAILURES 120
+           SOME  (some  shortest serving member extends, at some trim): 2229/2229   FAILURES 0
+           EVERY (every serving member extends, at some trim): 1663/2229   FAILURES 566
+           basepoints passing SOME but not MIN (uniqueness needed): 120
+           basepoints with a trim whose shortest serving members split: 1242
+           trims whose shortest serving members split: 1774
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE MIN FORM: 5 (level 3)
+           witness: basepoint 5, band [1,4], stretch [1,28], least serving length 3, the member [2, 3, 2] serves and does not extend
+  span 11: 5742 links, 5556 interior basepoints, 688 inner trims, 1538 family members swept
+           MIN   (every shortest serving member extends, at some trim): 5378/5556   FAILURES 178
+           SOME  (some  shortest serving member extends, at some trim): 5554/5556   FAILURES 2
+           EVERY (every serving member extends, at some trim): 4370/5556   FAILURES 1186
+           basepoints passing SOME but not MIN (uniqueness needed): 176
+           basepoints with a trim whose shortest serving members split: 2292
+           trims whose shortest serving members split: 3116
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE MIN FORM: 5 (level 3)
+           witness: basepoint 5, band [1,4], stretch [1,28], least serving length 3, the member [2, 3, 2] serves and does not extend
+           BASEPOINTS FAILING THE SOME FORM: 891(level 5) 4850(level 6)
+  span 12: 13861 links, 13635 interior basepoints, 1672 inner trims, 3586 family members swept
+           MIN   (every shortest serving member extends, at some trim): 13373/13635   FAILURES 262
+           SOME  (some  shortest serving member extends, at some trim): 13627/13635   FAILURES 8
+           EVERY (every serving member extends, at some trim): 11229/13635   FAILURES 2406
+           basepoints passing SOME but not MIN (uniqueness needed): 254
+           basepoints with a trim whose shortest serving members split: 4344
+           trims whose shortest serving members split: 5568
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE MIN FORM: 5 (level 3)
+           witness: basepoint 5, band [1,4], stretch [1,28], least serving length 3, the member [2, 3, 2] serves and does not extend
+           BASEPOINTS FAILING THE SOME FORM: 891(level 5) 2151(level 5) 2284(level 6) 2472(level 6) 11388(level 6) 11576(level 6) 11709(level 7) 12969(level 7)
+
+===== 1c. the gate over EVERY inner trim (all stretches, not only maximal) =====
+  span  6: 71 links, 25 interior basepoints, 4874 trims examined
+           MIN over all inner trims: 19/25   FAILURES 6
+           SOME over all inner trims (lower bound, search stops at a MIN pass): 25/25
+           FIRST BASEPOINT FAILING THE MIN FORM OVER EVERY INNER TRIM: 5 (level 3)
+  span  7: 170 links, 104 interior basepoints, 65991 trims examined
+           MIN over all inner trims: 90/104   FAILURES 14
+           SOME over all inner trims (lower bound, search stops at a MIN pass): 104/104
+           FIRST BASEPOINT FAILING THE MIN FORM OVER EVERY INNER TRIM: 5 (level 3)
+  span  8: 409 links, 319 interior basepoints, 919400 trims examined
+           MIN over all inner trims: 281/319   FAILURES 38
+           SOME over all inner trims (lower bound, search stops at a MIN pass): 319/319
+           FIRST BASEPOINT FAILING THE MIN FORM OVER EVERY INNER TRIM: 5 (level 3)
+
+===== 2. the same, restricted to the full inner band [L+1,H-1] =====
+  span  6: 71 links, 25 interior basepoints, 1 inner trims, 6 family members swept
+           MIN   (every shortest serving member extends, at some trim): 19/25   FAILURES 6
+           SOME  (some  shortest serving member extends, at some trim): 23/25   FAILURES 2
+           EVERY (every serving member extends, at some trim): 13/25   FAILURES 12
+           basepoints passing SOME but not MIN (uniqueness needed): 4
+           basepoints with a trim whose shortest serving members split: 4
+           trims whose shortest serving members split: 4
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE MIN FORM: 5 (level 3)
+           witness: basepoint 5, band [1,5], stretch [1,69], least serving length 4, the member [3, 2, 4] serves and does not extend
+           BASEPOINTS FAILING THE SOME FORM: 5(level 3) 65(level 3)
+  span  7: 170 links, 104 interior basepoints, 1 inner trims, 16 family members swept
+           MIN   (every shortest serving member extends, at some trim): 84/104   FAILURES 20
+           SOME  (some  shortest serving member extends, at some trim): 84/104   FAILURES 20
+           EVERY (every serving member extends, at some trim): 64/104   FAILURES 40
+           basepoints passing SOME but not MIN (uniqueness needed): 0
+           basepoints with a trim whose shortest serving members split: 0
+           trims whose shortest serving members split: 0
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE MIN FORM: 5 (level 3)
+           witness: basepoint 5, band [1,6], stretch [1,168], least serving length 5, the member [3, 2, 5] serves and does not extend
+           BASEPOINTS FAILING THE SOME FORM: 5(level 3) 9(level 3) 11(level 3) 12(level 4) 13(level 3) 15(level 3) 27(level 3) 28(level 4) 30(level 4) 31(level 3) 138(level 4) 139(level 3) 141(level 3) 142(level 4) 154(level 4) 156(level 4) 157(level 3) 158(level 4) 160(level 4) 164(level 4)
+  span  8: 409 links, 319 interior basepoints, 1 inner trims, 40 family members swept
+           MIN   (every shortest serving member extends, at some trim): 257/319   FAILURES 62
+           SOME  (some  shortest serving member extends, at some trim): 261/319   FAILURES 58
+           EVERY (every serving member extends, at some trim): 199/319   FAILURES 120
+           basepoints passing SOME but not MIN (uniqueness needed): 4
+           basepoints with a trim whose shortest serving members split: 4
+           trims whose shortest serving members split: 4
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE MIN FORM: 5 (level 3)
+           witness: basepoint 5, band [1,7], stretch [1,407], least serving length 6, the member [3, 2, 6] serves and does not extend
+           BASEPOINTS FAILING THE SOME FORM: 5(level 3) 9(level 3) 11(level 3) 12(level 4) 13(level 3) 15(level 3) 19(level 3) 21(level 3) 22(level 4) 23(level 3) 25(level 3) 26(level 4) 27(level 3) 28(level 4) 29(level 5) 30(level 4) 31(level 3) 32(level 4) 33(level 3) 65(level 3) 66(level 4) 67(level 5) 68(level 4) 69(level 5) 71(level 5) 72(level 4) 73(level 5) 74(level 4) 75(level 3) 333(level 5) 334(level 4) 335(level 3) 336(level 4) 337(level 3) 339(level 3) 340(level 4) 341(level 3) 342(level 4) 343(level 5) 375(level 5)
+  span  9: 986 links, 868 interior basepoints, 1 inner trims, 96 family members swept
+           MIN   (every shortest serving member extends, at some trim): 700/868   FAILURES 168
+           SOME  (some  shortest serving member extends, at some trim): 708/868   FAILURES 160
+           EVERY (every serving member extends, at some trim): 586/868   FAILURES 282
+           basepoints passing SOME but not MIN (uniqueness needed): 8
+           basepoints with a trim whose shortest serving members split: 8
+           trims whose shortest serving members split: 8
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE MIN FORM: 5 (level 3)
+           witness: basepoint 5, band [1,8], stretch [1,984], least serving length 7, the member [3, 2, 7] serves and does not extend
+           BASEPOINTS FAILING THE SOME FORM: 5(level 3) 9(level 3) 11(level 3) 12(level 4) 13(level 3) 15(level 3) 19(level 3) 21(level 3) 22(level 4) 23(level 3) 25(level 3) 26(level 4) 27(level 3) 28(level 4) 29(level 5) 30(level 4) 31(level 3) 32(level 4) 33(level 3) 35(level 3) 36(level 4) 37(level 3) 39(level 3) 43(level 3) 45(level 3) 46(level 4) 47(level 3) 49(level 3) 50(level 4) 51(level 3) 52(level 4) 53(level 5) 54(level 4) 55(level 3) 56(level 4) 57(level 3) 59(level 3) 60(level 4) 61(level 3) 62(level 4)
+  span 10: 2379 links, 2229 interior basepoints, 1 inner trims, 224 family members swept
+           MIN   (every shortest serving member extends, at some trim): 1773/2229   FAILURES 456
+           SOME  (some  shortest serving member extends, at some trim): 1803/2229   FAILURES 426
+           EVERY (every serving member extends, at some trim): 1531/2229   FAILURES 698
+           basepoints passing SOME but not MIN (uniqueness needed): 30
+           basepoints with a trim whose shortest serving members split: 30
+           trims whose shortest serving members split: 30
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE MIN FORM: 5 (level 3)
+           witness: basepoint 5, band [1,9], stretch [1,2377], least serving length 8, the member [3, 2, 8] serves and does not extend
+           BASEPOINTS FAILING THE SOME FORM: 5(level 3) 9(level 3) 11(level 3) 12(level 4) 13(level 3) 15(level 3) 19(level 3) 21(level 3) 22(level 4) 23(level 3) 25(level 3) 26(level 4) 27(level 3) 28(level 4) 29(level 5) 30(level 4) 31(level 3) 32(level 4) 33(level 3) 35(level 3) 36(level 4) 37(level 3) 39(level 3) 43(level 3) 45(level 3) 46(level 4) 47(level 3) 49(level 3) 50(level 4) 51(level 3) 52(level 4) 53(level 5) 54(level 4) 55(level 3) 56(level 4) 57(level 3) 59(level 3) 60(level 4) 61(level 3) 62(level 4)
+  span 11: 5742 links, 5556 interior basepoints, 1 inner trims, 512 family members swept
+           MIN   (every shortest serving member extends, at some trim): 4410/5556   FAILURES 1146
+           SOME  (some  shortest serving member extends, at some trim): 4442/5556   FAILURES 1114
+           EVERY (every serving member extends, at some trim): 3904/5556   FAILURES 1652
+           basepoints passing SOME but not MIN (uniqueness needed): 32
+           basepoints with a trim whose shortest serving members split: 32
+           trims whose shortest serving members split: 32
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE MIN FORM: 5 (level 3)
+           witness: basepoint 5, band [1,10], stretch [1,5740], least serving length 9, the member [3, 2, 9] serves and does not extend
+           BASEPOINTS FAILING THE SOME FORM: 5(level 3) 9(level 3) 11(level 3) 12(level 4) 13(level 3) 15(level 3) 19(level 3) 21(level 3) 22(level 4) 23(level 3) 25(level 3) 26(level 4) 27(level 3) 28(level 4) 29(level 5) 30(level 4) 31(level 3) 32(level 4) 33(level 3) 35(level 3) 36(level 4) 37(level 3) 39(level 3) 43(level 3) 45(level 3) 46(level 4) 47(level 3) 49(level 3) 50(level 4) 51(level 3) 52(level 4) 53(level 5) 54(level 4) 55(level 3) 56(level 4) 57(level 3) 59(level 3) 60(level 4) 61(level 3) 62(level 4)
+  span 12: 13861 links, 13635 interior basepoints, 1 inner trims, 1152 family members swept
+           MIN   (every shortest serving member extends, at some trim): 10753/13635   FAILURES 2882
+           SOME  (some  shortest serving member extends, at some trim): 10865/13635   FAILURES 2770
+           EVERY (every serving member extends, at some trim): 9691/13635   FAILURES 3944
+           basepoints passing SOME but not MIN (uniqueness needed): 112
+           basepoints with a trim whose shortest serving members split: 112
+           trims whose shortest serving members split: 112
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE MIN FORM: 5 (level 3)
+           witness: basepoint 5, band [1,11], stretch [1,13859], least serving length 10, the member [3, 2, 10] serves and does not extend
+           BASEPOINTS FAILING THE SOME FORM: 5(level 3) 9(level 3) 11(level 3) 12(level 4) 13(level 3) 15(level 3) 19(level 3) 21(level 3) 22(level 4) 23(level 3) 25(level 3) 26(level 4) 27(level 3) 28(level 4) 29(level 5) 30(level 4) 31(level 3) 32(level 4) 33(level 3) 35(level 3) 36(level 4) 37(level 3) 39(level 3) 43(level 3) 45(level 3) 46(level 4) 47(level 3) 49(level 3) 50(level 4) 51(level 3) 52(level 4) 53(level 5) 54(level 4) 55(level 3) 56(level 4) 57(level 3) 59(level 3) 60(level 4) 61(level 3) 62(level 4)
+
+===== 3. a trace: bing 0 6, basepoint 5 (batch 34's first EVERY failure) =====
+  rho = 0 1 2 1 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6
+  basepoint 5 has level 3
+  band [1,4]: stretch [1,28] (28 links)
+    serving member [2, 3, 2] length 3 [shortest]   extension [2, 3, 2, 5, 1] member:yes folds whole arms:no
+    serving member [3, 2, 3] length 3 [shortest]   extension [3, 2, 3, 1, 5] member:yes folds whole arms:yes
+  band [1,5]: stretch [1,69] (69 links)
+    serving member [2, 4, 2] length 5   extension [2, 4, 2, 5, 1] member:yes folds whole arms:no
+    serving member [3, 2, 4] length 4 [shortest]   extension [3, 2, 4, 1, 5] member:yes folds whole arms:no
+    serving member [4, 2, 4] length 5   extension [4, 2, 4, 1, 5] member:yes folds whole arms:no
+    serving member [2, 3, 2, 4] length 5   extension [2, 3, 2, 4, 1, 5] member:yes folds whole arms:no
+  band [2,5]: stretch [4,6] has band [2,3]: not a trim
+
+done

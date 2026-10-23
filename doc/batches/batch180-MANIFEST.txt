@@ -1,0 +1,27 @@
+# Batch 180 manifest
+# git diff --name-status 68d1386 (run's initial commit) .. final commit, plus the report itself
+
+M	Axioms.lean
+M	HPC.lean
+A	HPC/Hagopian/H76Cond4.lean
+M	HPC/Hagopian/H76Thm1Setup.lean
+A	HPC/Hagopian/H76Tip.lean
+M	HPC/Hagopian/Hagopian76X.lean
+A	HPC/Hagopian/Hagopian76Y.lean
+M	LEDGER.md
+M	OPEN.md
+M	README.md
+M	axioms.txt
+R100	COMMISSION-batch180.md	doc/batches/COMMISSION-batch180.md
+A	doc/batches/REPORT-batch180.md
+A	doc/batches/audits/axioms-batch180.txt
+R100	Hagopian76Y.lean	doc/batches/skeletons/Hagopian76Y.lean
+
+# Unchanged files named in the report (included for reference)
+=	HPC/Hagopian/H76Final179.lean
+=	HPC/Hagopian/Hagopian76W.lean
+=	doc/notes/hagopian76-cases.md
+
+# This manifest
+A	doc/batches/batch180-MANIFEST.txt
+A	doc/batches/batch180-files.tar.gz (not inside itself)

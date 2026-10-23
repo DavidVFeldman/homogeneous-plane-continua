@@ -1,0 +1,40 @@
+z: z 0 = 1  z 1 = 2  z 2 = 3  z 3 = 6  z 4 = 13  z 5 = 30  z 6 = 71  z 7 = 170  z 8 = 409  
+
+== part 2: Bing's chains, index gap vs z ==
+bing 0 3: length 6 (z 3 = 6), faithful crooked: yes, pairs d>=3: 1, violations: 0
+bing 0 4: length 13 (z 4 = 13), faithful crooked: yes, pairs d>=3: 7, violations: 0
+bing 0 5: length 30 (z 5 = 30), faithful crooked: yes, pairs d>=3: 45, violations: 0
+bing 0 6: length 71 (z 6 = 71), faithful crooked: yes, pairs d>=3: 290, violations: 0
+bing 0 7: length 170 (z 7 = 170), faithful crooked: yes, pairs d>=3: 1921, violations: 0
+bing 0 8: length 409 (z 8 = 409), faithful crooked: yes, pairs d>=3: 12829, violations: 0
+
+== part 3: random contiguous subchains (restriction + gap bound) ==
+bing 0 4: 800 subchains, non-faithful stretches: 0, pairs d>=3: 279, violations: 0
+bing 0 5: 800 subchains, non-faithful stretches: 0, pairs d>=3: 2127, violations: 0
+bing 0 6: 800 subchains, non-faithful stretches: 0, pairs d>=3: 17274, violations: 0
+bing 0 7: 800 subchains, non-faithful stretches: 0, pairs d>=3: 60141, violations: 0
+bing 0 8: 800 subchains, non-faithful stretches: 0, pairs d>=3: 85940, violations: 0
+
+== part 1: shortest faithful crooked sequence of each span ==
+span 1: shortest faithful crooked sequence has 2 terms (z 1 = 2)  [matches]
+        rho = 0 1
+        sig = 0 1
+        nodes 14
+        stretches of the witness failing faithfulness: 0
+span 2: shortest faithful crooked sequence has 3 terms (z 2 = 3)  [matches]
+        rho = 0 1 2
+        sig = 0 1 2
+        nodes 71
+        stretches of the witness failing faithfulness: 0
+span 3: shortest faithful crooked sequence has 6 terms (z 3 = 6)  [matches]
+        rho = 0 1 1 1 2 3
+        sig = 0 1 2 1 2 3
+        nodes 5785
+        stretches of the witness failing faithfulness: 0
+span 4: shortest faithful crooked sequence has 13 terms (z 4 = 13)  [matches]
+        rho = 0 1 1 1 2 2 2 1 2 2 2 3 4
+        sig = 0 1 2 1 2 3 2 1 2 3 2 3 4
+        nodes 34364205
+        stretches of the witness failing faithfulness: 0
+span 5: no faithful crooked sequence with at most 20 terms (z 5 = 30), nodes 120000000  [truncated at the node budget]
+        consistent with Minimality (its bound is not reached)

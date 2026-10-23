@@ -1,0 +1,169 @@
+census-batch56: the corpus check of the two crossings, and four turns at L+5.
+rounds=40 seed=56 walk-steps=200 concat-draws=12
+the four-leg family of the wide engine: 58 walks (29 parameter sets and their reflections)
+
+==== base chain bing 0 9 (n = 986 links); IsCrookedIvF: 1 ====
+  the total mixture is faithful
+  faithful perturbation walk: 32 accepted steps
+
+==== base chain bing 9 0 (n = 986 links); IsCrookedIvF: 1 ====
+  the total mixture is faithful
+  faithful perturbation walk: 40 accepted steps
+
+  vpath 0 9 (1,2) (n = 174): NOT faithful
+
+  vpath 0 9 (2,1) (n = 174): NOT faithful
+
+  vpath 0 9 (2,2) (n = 66): NOT faithful
+
+  vpath 9 0 (2,2) (n = 66): NOT faithful
+
+==== chain outside Bing's family: bing 0 9 + bing 9 0 (n = 1971 links) ====
+
+==== chain outside Bing's family: bing 9 0 + bing 0 9 (n = 1971 links) ====
+
+chains outside Bing's family: 2 faithful of 6 tried
+
+random concatenations of Bing blocks: 4 faithful of 11 drawn
+
+================ totals ================
+
+---- the thin chains ----
+  faithful pairs 2, links 1972, non-thin 0
+  branch L+4: basepoints 364
+    valley failures 70; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 18, of them missing the Lambda-walk 0;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 92, CeilPeakResidual 88, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 110; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 464, served by a reflected walk 464, residue 0
+    of the residue: served by a walk of the four-leg family 0, by none 0
+
+---- single shavings ----
+  faithful pairs 576, links 567936, non-thin 576
+  branch L+4: basepoints 105004
+    valley failures 20194; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 5184, of them missing the Lambda-walk 18;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 26412, CeilPeakResidual 25416, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 31596; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 133462, served by a reflected walk 133462, residue 0
+    of the residue: served by a walk of the four-leg family 0, by none 0
+
+---- single fills ----
+  faithful pairs 576, links 567936, non-thin 576
+  branch L+4: basepoints 104832
+    valley failures 20160; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 5184, of them missing the Lambda-walk 0;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 26496, CeilPeakResidual 25344, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 31680; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 133632, served by a reflected walk 133632, residue 0
+    of the residue: served by a walk of the four-leg family 0, by none 0
+
+---- random mixtures (rate 1/3) ----
+  faithful pairs 80, links 78880, non-thin 15466
+  branch L+4: basepoints 16610
+    valley failures 3344; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 763, of them missing the Lambda-walk 259;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 2475, CeilPeakResidual 3807, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 3270; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 16673, served by a reflected walk 16273, residue 400
+    of the residue: served by a walk of the four-leg family 400, by none 0
+
+---- heavy mixtures (rate 1/2, and the total mixture) ----
+  faithful pairs 82, links 80852, non-thin 24202
+  branch L+4: basepoints 18863
+    valley failures 3899; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 691, of them missing the Lambda-walk 267;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 1968, CeilPeakResidual 3558, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 3395; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 15991, served by a reflected walk 15474, residue 517
+    of the residue: served by a walk of the four-leg family 517, by none 0
+
+---- random faithful perturbation walks ----
+  faithful pairs 9, links 8874, non-thin 180
+  branch L+4: basepoints 1652
+    valley failures 325; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 90, of them missing the Lambda-walk 0;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 404, CeilPeakResidual 392, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 497; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 1993, served by a reflected walk 1993, residue 0
+    of the residue: served by a walk of the four-leg family 0, by none 0
+
+---- chains outside Bing's family and concatenations ----
+  faithful pairs 3241, links 5114988, non-thin 6458
+  branch L+4: basepoints 988181
+    valley failures 198316; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 45315, of them missing the Lambda-walk 45;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 254519, CeilPeakResidual 234219, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 296349; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 1162299, served by a reflected walk 1162299, residue 0
+    of the residue: served by a walk of the four-leg family 0, by none 0
+
+---- EVERYTHING ----
+  faithful pairs 4566, links 6421438, non-thin 47458
+  branch L+4: basepoints 1235506
+    valley failures 246308; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 57245, of them missing the Lambda-walk 589;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 312366, CeilPeakResidual 292824, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 366897; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 1464514, served by a reflected walk 1463597, residue 917
+    of the residue: served by a walk of the four-leg family 917, by none 0
+
+---- the four-leg family at the residue of the branch L+5 ----
+  residual basepoints recorded: 917
+  reflected P=4 K=6 M=2 : 6 -> 3 -> 7 -> 1 -> 8  serves 528
+  reflected P=4 K=7 M=2 : 6 -> 2 -> 7 -> 1 -> 8  serves 216
+  reflected P=5 K=6 M=1 : 5 -> 3 -> 8 -> 1 -> 8  serves 27
+  reflected P=5 K=6 M=2 : 5 -> 3 -> 7 -> 1 -> 8  serves 426
+  direct   P=5 K=7 M=1 : 4 -> 7 -> 1 -> 8 -> 1  serves 701
+  direct   P=5 K=7 M=2 : 4 -> 7 -> 2 -> 8 -> 1  serves 611
+  reflected P=5 K=7 M=2 : 5 -> 2 -> 7 -> 1 -> 8  serves 171
+  direct   P=5 K=7 M=3 : 4 -> 7 -> 3 -> 8 -> 1  serves 302
+  reflected P=6 K=6 M=2 : 4 -> 3 -> 7 -> 1 -> 8  serves 218
+  direct   P=6 K=7 M=1 : 5 -> 7 -> 1 -> 8 -> 1  serves 400
+  direct   P=6 K=7 M=2 : 5 -> 7 -> 2 -> 8 -> 1  serves 435
+  reflected P=6 K=7 M=2 : 4 -> 2 -> 7 -> 1 -> 8  serves 45
+  direct   P=6 K=7 M=3 : 5 -> 7 -> 3 -> 8 -> 1  serves 302
+  direct   P=6 K=8 M=1 : 5 -> 8 -> 1 -> 8 -> 1  serves 46
+  direct   P=6 K=8 M=2 : 5 -> 8 -> 2 -> 8 -> 1  serves 43
+  direct   P=6 K=8 M=3 : 5 -> 8 -> 3 -> 8 -> 1  serves 29
+
+  greedy cover of the 917 coverable residual basepoints:
+    pick 1: direct P=5 K=7 M=1 (4 -> 7 -> 1 -> 8 -> 1) covers 701, left 216
+    pick 2: direct P=5 K=7 M=2 (4 -> 7 -> 2 -> 8 -> 1) covers 116, left 100
+    pick 3: reflected P=4 K=6 M=2 (6 -> 3 -> 7 -> 1 -> 8) covers 100, left 0
+    walks needed: 3
+
+---- the definition audit ----
+  every predicate below is evaluated by its own definition, none by a proxy:
+    IsCrookedIvF (le, width, adj, crooked with interval triggers); IsLip via the
+    adjacency clause; HighAt (L+1) (L+8); LowAt (L+1) (L+8); Leg3Valley; Leg3Ceil;
+    Valley5; TopW5; FoldsOnto (the dynamic program of HPC/Fold/Decide.lean) for the
+    Lambda-walk, the V-walk, w3, w4, w5, their reflections and every walk of the
+    four-leg family; ValleyResidual; CeilPeakResidual; CeilHighResidual.
+  the strengthened criteria (witness at index 12, Valley5 at index 5, TopW5 at
+  index 12) are the definitions with the index bound raised to the value the
+  timing law of Theorem 7 gives; they are reported as such.

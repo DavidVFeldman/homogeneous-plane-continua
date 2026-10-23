@@ -1,0 +1,115 @@
+%======================================================================
+\chapter{The homeomorphism from a zigzag}\label{ch:zigzag}
+%======================================================================
+
+The homeomorphism of Theorem~10 is the limit of a ``zigzag'': chains on the two spaces, refining each other alternately through chain maps. This chapter proves
+that such a zigzag defines a homeomorphism (Bing and Jones, pp.~188--189), independently of how it was built. It is the analogue of \vtwo{Chapter~5}, where
+two descriptions of pseudo-arcs gave a homeomorphism.
+
+\section{The data}
+
+Let $X$, $Y$ be metric spaces and $P\subseteq X$, $Q\subseteq Y$ compact. Suppose that for every $i\ge0$ we are given:
+\begin{itemize}
+\item a chain $D^i$ in $X$ covering $P$, every link meeting $P$, of mesh $<\varepsilon_i$;
+\item a BJ-chain $E^i$ in $Y$ covering $Q$, every link meeting $Q$, of mesh $<\varepsilon_i$;
+\item a chain map $H_i$ of $D^i$ onto $E^i$ and a chain map $K_i$ of $E^{i+1}$ into $D^i$;
+\end{itemize}
+where $\varepsilon_i\to0$, and the two conditions
+\begin{description}
+\item[\textnormal{(B)}] $D^{i+1}_j\subseteq D^i_{K_i(H_{i+1}(j))}$ for every link $D^{i+1}_j$;
+\item[\textnormal{(B$'$)}] $E^{i+1}_j\subseteq E^i_{H_i(K_i(j))}$ for every link $E^{i+1}_j$.
+\end{description}
+\[
+\begin{array}{ccccccc}
+D^0 & \longleftarrow & D^1 & \longleftarrow & D^2 & \longleftarrow & \cdots\\
+\downarrow{\scriptstyle H_0} & \nwarrow{\scriptstyle K_0} & \downarrow{\scriptstyle H_1} & \nwarrow{\scriptstyle K_1} & \downarrow{\scriptstyle H_2} & & \\
+E^0 & \longleftarrow & E^1 & \longleftarrow & E^2 & \longleftarrow & \cdots
+\end{array}
+\]
+For $p\in P$ let
+\[
+\st_i(p)=\bigcup\set{E^i_{H_i(j)}:\ p\in D^i_j},
+\]
+the union of the images of the links of $D^i$ containing $p$ (Bing and Jones write $H_id(p,i)$).
+
+\formal{\lean{HPC.BJ59.starImage}.}
+
+\section{The homeomorphism}
+
+\begin{lemma}\label{lem:star-props}
+For $p\in P$ and every $i$:
+\begin{enumerate}[label=(\alph*)]
+\item $\st_i(p)$ is one link of $E^i$ or the union of two adjacent ones; it is nonempty, meets $Q$, and has diameter $<2\varepsilon_i$;
+\item $\st_{i+1}(p)\subseteq\st_i(p)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Any two links of $D^i$ containing $p$ meet, so they are adjacent; three links cannot be pairwise adjacent, so $p$ lies in one or two adjacent links. Their images
+under the chain map $H_i$ are one link or two adjacent links. The links meet $Q$, and two meeting sets of diameter $<\varepsilon_i$ have a union of diameter $<2\varepsilon_i$.
+
+(b) Let $p\in D^{i+1}_j$ and $k=K_i(H_{i+1}(j))$. By (B), $p\in D^i_k$, so $E^i_{H_i(k)}\subseteq\st_i(p)$. By (B$'$) applied to the link $E^{i+1}_{H_{i+1}(j)}$,
+$E^{i+1}_{H_{i+1}(j)}\subseteq E^i_{H_i(K_i(H_{i+1}(j)))}=E^i_{H_i(k)}$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.mem_starImage}, \lean{HPC.BJ59.starImage_succ_subset}, \lean{HPC.BJ59.starImage_dist_le}.}
+
+\begin{theorem}[Bing and Jones, pp.~188--189]\label{thm:zigzag}
+Under the hypotheses above there is a homeomorphism $h\colon P\to Q$ characterized by: for $p\in P$ and $q\in Q$, $q=h(p)$ if and only if $q\in\cl{\st_i(p)}$ for every $i$.
+\end{theorem}
+
+\begin{proof}
+\emph{Definition.} By Lemma~\ref{lem:star-props} the sets $\cl{\st_i(p)}\cap Q$ are nonempty, compact and decreasing, with diameters $\le2\varepsilon_i\to0$. Their intersection is
+a single point $h(p)$, and the characterization holds by construction.
+
+\emph{Continuity.} Fix $p$ and $i$, and let $W$ be the intersection of the links of $D^i$ containing $p$, an open neighbourhood of $p$. For $p'\in W\cap P$ the sets $\st_i(p)$ and
+$\st_i(p')$ have a link in common, so $h(p)$ and $h(p')$ lie in the closure of a set of diameter $<4\varepsilon_i$.
+
+\emph{Onto.} Let $q\in Q$ and $i\ge0$, and let $E^i_k\ni q$. As $H_i$ is onto, $k=H_i(j)$ for some $j$, and $D^i_j$ contains a point $p\in P$. Then $q$ and $h(p)$ both lie in
+$\cl{\st_i(p)}$, so $\dist(q,h(p))\le2\varepsilon_i$. Hence $h(P)$ is dense in $Q$; it is compact, so $h(P)=Q$.
+
+\emph{One-to-one.} Let $h(p)=h(p')=y$ and $i\ge1$. Since $y\in\cl{\st_i(p)}\cap\cl{\st_i(p')}$ and the closure of a finite union is the union of the closures, $y\in\cl{E^i_a}\cap
+\cl{E^i_b}$ with $a=H_i(j)$, $p\in D^i_j$, and $b=H_i(j')$, $p'\in D^i_{j'}$. Since $E^i$ is a BJ-chain, $\abs{a-b}\le1$ (Lemma~\ref{lem:adj-closure}), so $\abs{K_{i-1}(a)-K_{i-1}(b)}\le1$.
+By (B), $p\in D^{i-1}_{K_{i-1}(a)}$ and $p'\in D^{i-1}_{K_{i-1}(b)}$. These two links are equal or adjacent, so $\dist(p,p')<2\varepsilon_{i-1}$. As $i$ is arbitrary, $p=p'$.
+
+A continuous bijection of a compact space onto a Hausdorff space is a homeomorphism.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.zigzag_homeomorph}. Only the chains $E^i$ need to be BJ-chains.}
+
+\begin{remark}
+Bing and Jones's injectivity argument passes through the sets $K_{i-1}\st_i(p)$, whose closures contain $p$ and $q$, and concludes $\rho(p,q)<4/2^i$; with their meshes the bound
+should be in terms of $\varepsilon_{i-1}$. In the sentence ``$e_j^{i+1}\subseteq H_iK_i(e_j^{i+1})=H_i(d^{i+1}_k)\subseteq H_id(p,i)$'' of p.~188 the map $H_i$ is applied to a link
+of $D^{i+1}$; what is meant is $H_i(K_iH_{i+1}(d^{i+1}_k))$, as in the proof of Lemma~\ref{lem:star-props}(b).
+\end{remark}
+
+\section{Fibres}
+
+\begin{proposition}\label{prop:zigzag-fibre}
+In the situation of Theorem~\ref{thm:zigzag}, let $\varphi\colon X\to T$ and $\psi\colon Y\to T$ be maps to a set $T$ such that $Q\cap\psi^{-1}(t)$ is closed for every $t$.
+Suppose that whenever $p\in P$ lies in $D^i_j$, the link $E^i_{H_i(j)}$ contains a point $q\in Q$ with $\psi(q)=\varphi(p)$. Then $\psi(h(p))=\varphi(p)$ for all $p\in P$.
+\end{proposition}
+
+\begin{proof}
+For each $i$, $h(p)$ lies in the closure of one of the finitely many links making up $\st_i(p)$, say $E^i_{H_i(j)}$ with $p\in D^i_j$. That link contains $q_i\in Q$ with
+$\psi(q_i)=\varphi(p)$, and $\dist(h(p),q_i)\le\varepsilon_i$. So $h(p)$ is a limit of points of the closed set $Q\cap\psi^{-1}(\varphi(p))$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.zigzag_fibre}.}
+
+In Theorem~10, $P=X$, $Q=Y$, $\varphi=f$, $\psi=g$: the hypothesis of Proposition~\ref{prop:zigzag-fibre} is the first half of Condition~A of Chapter~\ref{ch:thm10}, and the
+conclusion says $g\circ h=f$; as $h$ is onto, $h(p_x)=q_x$ for every $x$.
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that without Condition (B$'$) the sets $\st_i(p)$ need not decrease, and that $h$ may then fail to be well defined.
+\end{exercise}
+
+\begin{exercise}
+Show that if every $H_i$ and $K_i$ is a bijection preserving the order of the links, then $h$ maps each link-trace $D^i_j\cap P$ into $\cl{E^i_{H_i(j)}}$.
+\end{exercise}
+
+\begin{exercise}
+Where in the proof of Theorem~\ref{thm:zigzag} is the surjectivity of $H_i$ used? Construct an example with $H_i$ not onto in which $h$ is not onto.
+\end{exercise}

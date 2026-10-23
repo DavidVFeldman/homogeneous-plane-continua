@@ -1,0 +1,391 @@
+%======================================================================
+\chapter{Every pseudo-arc has a description}\label{ch:descriptions}
+%======================================================================
+
+This chapter proves Part~II of the uniqueness theorem.
+
+\begin{theorem}[Bing 1951, Theorem~1, body of the proof]\label{thm:desc-exists}
+Let $M\subseteq X$ be a pseudo-arc, and let $p,q\in M$ with $q\notin\cmp Mp$. Then:
+\begin{enumerate}[label=(\alph*)]
+\item in the compact metric space $M$ there is a description from $p$ to $q$ whose described set is all of $M$;
+\item in $X$ there is a description from $p$ to $q$ whose described set is $M$.
+\end{enumerate}
+\end{theorem}
+
+\formal{(a) is \lean{HPC.Plane.PA51.exists_description_sub}; (b) is
+\lean{HPC.Plane.exists_description_of_chainable_HI} (in \lean{HPC/Plane/PseudoArc51.lean}).}
+
+Only (a) is needed for the uniqueness theorem; (b) is proved in Section~\ref{sec:lift} for completeness. The proof of (a) takes place
+in a compact metric space $X$ which is itself the continuum, and has three steps:
+\begin{enumerate}
+\item fine chains covering $X$ are eventually crooked in a given coarse chain covering $X$ (Section~\ref{sec:crooked-eventually});
+\item hence there is a sequence of chains covering $X$, each crooked in the previous one, with nested closures and mesh tending to
+zero, but not yet going from $p$ to $q$ (Section~\ref{sec:predesc});
+\item the folding theorem turns deep levels of this sequence into chains from $p$ to $q$ (Section~\ref{sec:desc-univ}).
+\end{enumerate}
+Throughout Sections~\ref{sec:crooked-eventually}--\ref{sec:desc-univ}, $X$ is a compact metric space.
+
+\section{Crookedness eventually}\label{sec:crooked-eventually}
+
+\begin{theorem}[Bing 1951]\label{thm:eventually-crooked}
+Suppose every subcontinuum of $X$ is indecomposable. Let $C$ be a chain of length $n$ covering $X$, and for $m\in\N$ let $E^{(m)}$ be a
+chain refining $C$ whose links are bounded with diameter $\le\varepsilon_m$, where $\varepsilon_m\to0$. Then $E^{(m)}$ is crooked in $C$
+for all sufficiently large $m$.
+\end{theorem}
+
+\formal{\lean{HPC.Plane.PA51.eventually_crookedIn} (in \lean{HPC/Plane/PA51Crook.lean}).}
+
+The idea: a failure of crookedness of a fine chain $E$ at a pair $(h,k)$ produces two long pieces of $E$, one avoiding $C_{k-1}$ and
+the other avoiding $C_{h+1}$, which meet. Passing to the limit along infinitely many failures produces two subcontinua of $X$ with a
+common point, neither containing the other, and their union is a decomposable continuum.
+
+\subsection{The data of a failure}
+
+\begin{lemma}\label{lem:fail-data}
+Let $E$ be a chain refining $C$, whose links are bounded with diameter $\le\varepsilon$, and suppose $E$ is not crooked in $C$. Then
+there are $h,k$ with $k>h+2$ and sets $W,V\subseteq X$ such that
+\begin{enumerate}[label=(\alph*)]
+\item $W$ and $V$ are $\varepsilon$-chained (\vone{Definition~1.5});
+\item there are $x\in W$ and $x'\in V$ with $d(x,x')\le\varepsilon$;
+\item $W$ meets $C_h$ and $V$ meets $C_k$;
+\item $W$ is a union of links of $E$ none of which lies in $C_{k-1}$, and $V$ is a union of links of $E$ none of which lies in $C_{h+1}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Since $E$ refines $C$ but is not crooked in it, there are $h,k$ with $k>h+2$ and indices $i,j$ with $E_i$ meeting $C_h$ and $E_j$
+meeting $C_k$, such that there are no $r,s$ with $\mathrm{Btw}(i,r,s,j)$, $E_r\subseteq C_{k-1}$ and $E_s\subseteq C_{h+1}$. Let $\varphi$
+be a refinement map. Then $i\ne j$: otherwise $C_{\varphi(i)}\supseteq E_i$ would meet both $C_h$ and $C_k$, so $\abs{\varphi(i)-h}\le1$ and
+$\abs{\varphi(i)-k}\le1$, contradicting $k>h+2$. Reversing $E$ if necessary (which preserves the condition $\mathrm{Btw}$, and the
+conclusion), we may assume $i<j$.
+
+Since $C_{\varphi(i)}$ meets $C_h$ and $C_{\varphi(j)}$ meets $C_k$, we have $\varphi(i)\le h+1<k-1\le\varphi(j)$. By the discrete
+intermediate value theorem (\vone{Lemma~2.5}) there is $t$ with $i<t\le j$ and $\varphi(t)=k-1$, so $E_t\subseteq C_{k-1}$. Let $r$ be the
+least $t>i$ with $E_t\subseteq C_{k-1}$; then $i<r\le j$. Put
+\[
+W=E_i\cup\dots\cup E_{r-1},\qquad V=E_c\cup\dots\cup E_j,\quad c=\min(r+1,j).
+\]
+(a) holds by Lemma~\ref{lem:span-chained}. (b): pick $x\in E_{r-1}\cap E_r$ and $x'\in E_r\cap E_c$ (note $c\in\set{r,r+1}$); both lie in
+$E_r$, so $d(x,x')\le\varepsilon$. (c) is clear. (d): $E_i$ meets $C_h$, which is disjoint from $C_{k-1}$ (as $k-1>h+1$), so $E_i\not\subseteq
+C_{k-1}$; and $E_t\not\subseteq C_{k-1}$ for $i<t<r$ by the choice of $r$. Similarly $E_j$ meets $C_k$, which is disjoint from $C_{h+1}$. Finally,
+if $r<t<j$, then $\mathrm{Btw}(i,r,t,j)$ and $E_r\subseteq C_{k-1}$, so $E_t\not\subseteq C_{h+1}$ by the choice of $(h,k,i,j)$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.FailData} (which records the property (d) through small sets, the links, none inside $C_{k-1}$, resp.\
+$C_{h+1}$), \lean{HPC.Plane.PA51.failData_of_fail_lt} (the case $i<j$) and \lean{HPC.Plane.PA51.failData_of_not_crooked}.}
+
+\subsection{Tools for the limit}
+
+Recall the upper limit $\limsup_jA_j$ (\vone{Definition~1.6}) and that, in a compact space, the upper limit of $\delta_j$-chained sets
+with $\delta_j\to0$ which all contain a point $R$ is a continuum containing $R$ (\vone{Lemma~1.7}).
+
+\begin{lemma}\label{lem:limit-tools}
+\begin{enumerate}[label=(\alph*)]
+\item If $A$ is $\varepsilon$-chained and $a\in A$, then $A\cup\set R$ is $(\varepsilon+d(a,R))$-chained.
+\item Let $A_j\subseteq X$, let $a_j\in A_j$ with $a_j\to R$, let $\varepsilon_j\to0$, and let $O$ be open. Suppose every $u\in A_j$ lies in a
+bounded set $S$ with $\diam S\le\varepsilon_j$ and $S\not\subseteq O$. Then $\limsup_j(A_j\cup\set R)$ does not meet $O$.
+\item Let $A_j\subseteq X$, $R\in X$, and $y_j\in A_j\cap O$ for all $j$. Then there is a point $Y\in\limsup_j(A_j\cup\set R)$ every open
+neighbourhood of which meets $O$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Let $A\cup\set R\subseteq U\cup V$ with $d(u,v)>\varepsilon+d(a,R)$ for $u\in U$, $v\in V$. In particular $U,V$ are more than
+$\varepsilon$ apart, so $A\subseteq U$, say. If $R\in V$, then $d(a,R)>\varepsilon+d(a,R)$, which is absurd. So $A\cup\set R\subseteq U$.
+
+(b) Suppose $w\in\limsup_j(A_j\cup\set R)$ lies in $O$, and let $B(w,\rho)\subseteq O$. Choose $N$ with $\varepsilon_j<\rho/2$ and
+$d(a_j,R)<\rho/4$ for $j\ge N$. As $w\in\cl{\bigcup_{j\ge N}(A_j\cup\set R)}$, there are $j\ge N$ and $v\in A_j\cup\set R$ with
+$d(v,w)<\rho/4$. Let $u=v$ if $v\in A_j$ and $u=a_j$ if $v=R$; in both cases $u\in A_j$ and $d(u,w)<\rho/2$. The set $S\ni u$ given by
+the hypothesis satisfies $d(s,w)\le d(s,u)+d(u,w)<\varepsilon_j+\rho/2<\rho$ for $s\in S$, so $S\subseteq B(w,\rho)\subseteq O$, a
+contradiction.
+
+(c) By compactness some subsequence $y_{j_1},y_{j_2},\dots$ converges to a point $Y$. For each $N$, all but finitely many of its terms lie in
+$\bigcup_{j\ge N}A_j$, so $Y\in\limsup_j(A_j\cup\set R)$. Every open neighbourhood of $Y$ contains some $y_{j_l}\in O$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.chainedAt_union_singleton}, \lean{HPC.Plane.PA51.limSup_miss} (with
+\lean{HPC.Plane.PA51.approx_of_mem_limSup}), \lean{HPC.Plane.PA51.exists_limSup_near}.}
+
+\begin{lemma}\label{lem:side}
+Let $C$ be a chain covering $X$, let $S$ be a preconnected set missing the link $C_c$, and let $y\in S\cap C_l$. If $l<c$, then $S$ lies
+in the union $C_{<c}$ of the links of index $<c$; if $l>c$, then $S$ lies in the union $C_{>c}$ of the links of index $>c$.
+\end{lemma}
+
+\begin{proof}
+$C_{<c}$ and $C_{>c}$ are open, and disjoint (a link of index $<c$ and a link of index $>c$ have indices differing by at least $2$). They
+cover $S$, as every point of $S$ lies in a link other than $C_c$. Since $S$ is preconnected, it lies in one of them, and $y$ decides which.
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.subset_side_of_miss}, with \lean{HPC.Plane.PA51.lowU} and \lean{HPC.Plane.PA51.highU}.}
+
+\subsection{The limit argument}
+
+\begin{proposition}\label{prop:limit-false}
+Suppose every subcontinuum of $X$ is indecomposable, and let $C$ be a chain covering $X$. Let $k>h+2$ and $\varepsilon_j\to0$. Then it is
+impossible that for every $j$ there are a chain $E_j$ refining $C$, with links bounded of diameter $\le\varepsilon_j$, and sets $W_j,V_j$
+satisfying (a)--(d) of Lemma~\ref{lem:fail-data} for $E_j$, $(h,k)$ and $\varepsilon_j$.
+\end{proposition}
+
+\begin{proof}
+Suppose there are, with points $x_j\in W_j$, $x'_j\in V_j$, $d(x_j,x'_j)\le\varepsilon_j$, and $y_j\in W_j\cap C_h$, $z_j\in V_j\cap C_k$.
+Passing to a subsequence we may assume $x_j\to R$; then also $x'_j\to R$. Let $A_j=W_j\cup\set R$ and $B_j=V_j\cup\set R$. By
+Lemma~\ref{lem:limit-tools}(a), $A_j$ and $B_j$ are $\delta_j$-chained with $\delta_j=2\varepsilon_j+d(x_j,R)\to0$, and both contain $R$. By
+\vone{Lemma~1.7},
+\[
+\mathcal W=\limsup_jA_j\qquad\text{and}\qquad\mathcal V=\limsup_jB_j
+\]
+are continua containing $R$.
+
+\emph{$\mathcal W$ misses $C_{k-1}$ and $\mathcal V$ misses $C_{h+1}$}, by Lemma~\ref{lem:limit-tools}(b), with the links of $E_j$ (of diameter
+$\le\varepsilon_j$) as the sets $S$, and the points $x_j$, resp.\ $x'_j$, tending to $R$.
+
+\emph{Points near the ends.} By Lemma~\ref{lem:limit-tools}(c) there are $Y\in\mathcal W$ whose neighbourhoods meet $C_h$ and $Z\in\mathcal V$
+whose neighbourhoods meet $C_k$. Let $Y\in C_{l_1}$ and $Z\in C_{l_2}$. Then $C_{l_1}$ meets $C_h$, so $l_1\le h+1$, and $C_{l_2}$ meets
+$C_k$, so $l_2\ge k-1$.
+
+\emph{$\mathcal W$ meets $C_{h+1}$.} Otherwise $l_1\ne h+1$, so $l_1<h+1$, and Lemma~\ref{lem:side} gives $\mathcal W\subseteq C_{<h+1}$. Also $\mathcal
+V$ misses $C_{h+1}$ and $l_2\ge k-1>h+1$, so $\mathcal V\subseteq C_{>h+1}$. But $R$ lies in both, and $C_{<h+1}\cap C_{>h+1}=\emptyset$.
+
+\emph{$\mathcal V$ meets $C_{k-1}$.} Otherwise $l_2>k-1$ and $\mathcal V\subseteq C_{>k-1}$; and $\mathcal W$ misses $C_{k-1}$ with $l_1\le h+1<k-1$, so
+$\mathcal W\subseteq C_{<k-1}$. Again $R$ lies in both.
+
+\emph{Conclusion.} $\mathcal W\cup\mathcal V$ is a continuum (two continua with the common point $R$), so it is indecomposable. Hence
+$\mathcal W=\mathcal W\cup\mathcal V$ or $\mathcal V=\mathcal W\cup\mathcal V$. In the first case $\mathcal V\subseteq\mathcal W$; but $\mathcal V$ meets
+$C_{k-1}$ and $\mathcal W$ does not. In the second case $\mathcal W\subseteq\mathcal V$; but $\mathcal W$ meets $C_{h+1}$ and $\mathcal V$ does not.
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.limit_false}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:eventually-crooked}]
+Suppose $E^{(m)}$ is not crooked in $C$ for infinitely many $m$. For each such $m$, Lemma~\ref{lem:fail-data} gives a pair $(h,k)$ and sets
+$W,V$ for $\varepsilon_m$. There are finitely many pairs, so one pair $(h,k)$ occurs for infinitely many $m$, say $m_0<m_1<\cdots$. Then
+the data for $\varepsilon_{m_j}\to0$ contradict Proposition~\ref{prop:limit-false}.
+\end{proof}
+
+\begin{remark}
+The formal proof follows Bing's argument (1951, first paragraph of the proof of Theorem~1), with the pieces of $E$ chosen explicitly. The
+choice of $r$ as the \emph{first} index after $i$ with $E_r\subseteq C_{k-1}$ is what makes property~(d) of Lemma~\ref{lem:fail-data} hold
+for $W$, and hence makes the two limit continua visibly not nested.
+\end{remark}
+
+\section{Bing's sequence of chains}\label{sec:predesc}
+
+\begin{definition}\label{def:predesc}
+A \emph{pre-description} of $X$ is a sequence of chains $D^{(0)},D^{(1)},\dots$ in $X$, $D^{(i)}$ of length $n_i$, such that for every $i$:
+$D^{(i)}$ covers $X$; $D^{(i+1)}$ is crooked in $D^{(i)}$; the closure of each link of $D^{(i+1)}$ lies in some link of $D^{(i)}$; and
+the links of $D^{(i)}$ are bounded with diameter $\le1/(i+1)$.
+\end{definition}
+
+So a pre-description is a description (\vone{Definition~3.1}) except that the chains need not go from a fixed point to another.
+
+\formal{\lean{HPC.Plane.PA51.PreDesc}.}
+
+In the rest of this section $X$ is \emph{snake-like} (for every $\varepsilon>0$ some $\varepsilon$-chain covers $X$) and every subcontinuum
+of $X$ is indecomposable.
+
+\begin{lemma}\label{lem:crooked-next}
+Let $C$ be a chain covering $X$ and $\eta>0$. Then there is a chain $C'$ covering $X$, crooked in $C$, such that the closure of each link
+of $C'$ lies in a link of $C$ and the links of $C'$ are bounded with diameter $\le\eta$.
+\end{lemma}
+
+\begin{proof}
+By the Lebesgue number lemma there is $\lambda>0$ such that every ball $B(y,\lambda)$ lies in some link of $C$. For each $m$ choose an
+$\eta_m$-chain $E^{(m)}$ covering $X$, where $\eta_m=\min(\lambda/2,1/(m+1))$. If $L$ is a link of $E^{(m)}$ and $y\in L$, then $\cl
+L\subseteq\set{x:d(x,y)\le\diam L}\subseteq B(y,\lambda)$, which lies in a link of $C$. In particular $E^{(m)}$ refines $C$, and its mesh
+is $\le1/(m+1)\to0$. By Theorem~\ref{thm:eventually-crooked}, $E^{(m)}$ is crooked in $C$ for all large $m$; take such an $m$ with also
+$1/(m+1)\le\eta$, and $C'=E^{(m)}$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.exists_crooked_next}.}
+
+\begin{proposition}\label{prop:predesc-exists}
+$X$ has a pre-description.
+\end{proposition}
+
+\begin{proof}
+Let $D^{(0)}$ be a $1$-chain covering $X$, and given $D^{(i)}$ let $D^{(i+1)}$ be the chain $C'$ of Lemma~\ref{lem:crooked-next} for
+$C=D^{(i)}$ and $\eta=1/(i+2)$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.exists_preDesc}.}
+
+\begin{lemma}\label{lem:predesc-basic}
+Let $D^{(i)}$ be a pre-description of $X$.
+\begin{enumerate}[label=(\alph*)]
+\item If $i\le j$, then $D^{(j)}$ refines $D^{(i)}$; if $i<j$, then $D^{(j)}$ is crooked in $D^{(i)}$.
+\item If $X$ has two distinct points, then $n_m\ge5$ for all sufficiently large $m$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) The first claim is clear by induction. For the second, $D^{(j)}$ refines $D^{(i+1)}$, which is crooked in $D^{(i)}$; apply
+\vone{Lemma~2.12}. (b) Let $p\ne q$ and suppose $n_m\le4$. Since $D^{(m)}$ covers $X$, $p\in D^{(m)}_a$ and $q\in D^{(m)}_b$ with $\abs{a-b}\le3$,
+so $d(p,q)\le4/(m+1)$ by \vone{Lemma~2.9}. This fails once $4/(m+1)<d(p,q)$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.PreDesc.refines_of_le}, \lean{HPC.Plane.PA51.PreDesc.crooked_of_lt},
+\lean{HPC.Plane.PA51.PreDesc.eventually_five_le}.}
+
+\section{From a pre-description to a description}\label{sec:desc-univ}
+
+In this section $D^{(i)}$ is a pre-description of $X$, and $R\ne S$ are points of $X$ with $S\notin\cmp XR$.
+
+\begin{lemma}[Reaching both ends]\label{lem:meets-ends}
+For every $j$ there are $k>j$ and indices $a<b$ of $D^{(k)}$ such that the subchain of $D^{(k)}$ from $a$ to $b$ joins $R$ and $S$
+(Definition~\ref{def:subchain-from}), and some links $D^{(k)}_{t_1}$, $D^{(k)}_{t_2}$ with $a\le t_1,t_2\le b$ meet the first and the last link
+of $D^{(j)}$, respectively.
+\end{lemma}
+
+\begin{proof}
+Choose $k_0$ with $1/(k+1)<d(R,S)$ for $k\ge k_0$, and let $k\ge\max(k_0,j+1)$. No link of $D^{(k)}$ contains both $R$ and $S$, so by
+Lemma~\ref{lem:subchain-exists} there are $a_k<b_k$ such that the subchain from $a_k$ to $b_k$ joins $R$ and $S$; let $A_k$ be its span. If the
+lemma fails, then for each such $k$ the set $A_k$ misses $O_1=D^{(j)}_0$ or misses $O_2=D^{(j)}_{n_j-1}$: if $A_k$ met both, at points of
+links $D^{(k)}_{t_1}$ and $D^{(k)}_{t_2}$ with indices in $[a_k,b_k]$, these would be the required links. So for some $c\in\set{1,2}$ the set
+$I$ of indices $k$ with $A_k\cap O_c=\emptyset$ is infinite.
+
+Let $Z$ be the upper limit of the sets $A_k$, $k\in I$ (enumerated increasingly). Each $A_k$ is $1/(k+1)$-chained (Lemma~\ref{lem:span-chained})
+and contains $R$ and $S$, so $Z$ is a continuum containing $R$ and $S$ by \vone{Lemma~1.7}. Moreover $Z\ne X$: the nonempty open set $O_c$ misses
+$\bigcup_{k\in I}A_k$, hence also its closure, hence $Z$. So $Z$ is a proper subcontinuum of $X$ containing $R$ and $S$, and $S\in\cmp XR$, a
+contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.PreDesc.exists_subchain_meets_ends}, with the limit step
+\lean{HPC.Plane.PA51.PreDesc.false_of_disjoint_limit}.}
+
+\begin{lemma}[One step]\label{lem:desc-step}
+For every $L$ there are $k>L$ and a chain $F$ from $R$ to $S$ which is a consolidation of $D^{(k)}$, such that the closure of each link of
+$F$ lies in a link of $D^{(L)}$ and every link of $F$ has diameter $\le1/(L+1)$.
+\end{lemma}
+
+\begin{proof}
+By the Lebesgue number lemma there is $\delta>0$ such that every ball $B(x,\delta)$ lies in a link of $D^{(L)}$. Let
+$\eta=\min(\delta,1/(L+1))$, and choose $m\ge L+1$ with $1/(m+1)<\eta/3$ and $n_m\ge5$ (Lemma~\ref{lem:predesc-basic}(b)). Lemma~\ref{lem:meets-ends}
+for $j=m$ gives $k>m$, indices $a<b$, and $t_1,t_2$. By Lemma~\ref{lem:predesc-basic}(a), $D^{(k)}$ is crooked in $D^{(m)}$.
+
+If the subchain from $a$ to $b$ goes from $R$ to $S$, Corollary~\ref{cor:block-chain} gives a block map $\beta$ with small blocks such that
+$F=(D^{(k)})^\beta$ goes from $R$ to $S$. If it goes from $S$ to $R$, the corollary gives a block chain from $S$ to $R$, and we let $F$ be its
+reversal. In both cases $F$ is a consolidation of $D^{(k)}$ (Lemma~\ref{lem:block-chain}), and every link of $F$ lies in the union of three
+consecutive links of $D^{(m)}$; by \vone{Lemma~2.9}, any two of its points have distance $\le3/(m+1)<\eta$. So $\diam F_u<\eta\le1/(L+1)$,
+and if $x_0\in F_u$, then $\cl{F_u}\subseteq\set{x:d(x,x_0)\le3/(m+1)}\subseteq B(x_0,\delta)$, which lies in a link of $D^{(L)}$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.PreDesc.exists_step}; the analogous step for descriptions is \lean{HPC.Description.exists_step} (in
+\lean{HPC/PseudoArc/T13Step.lean}).}
+
+\begin{theorem}\label{thm:desc-univ}
+There is a description from $R$ to $S$ in $X$ whose described set is $X$.
+\end{theorem}
+
+\begin{proof}
+For each $L$ choose $k(L)>L$ and $F^{(L)}$ as in Lemma~\ref{lem:desc-step}. Define levels $\ell_0=0$ and $\ell_{i+1}=k(\ell_i)+1$; then
+$\ell_i\ge i$. Let $G^{(i)}=F^{(\ell_i)}$ and $\varepsilon_i=1/(i+1)$. We check \vone{Definition~3.1}.
+\begin{itemize}
+\item $G^{(i)}$ goes from $R$ to $S$.
+\item \emph{Crookedness.} Write $k=k(\ell_i)$. The chain $D^{(k+1)}$ is crooked in $D^{(k)}$, and $G^{(i)}$ is a consolidation of $D^{(k)}$,
+so $D^{(k+1)}$ is crooked in $G^{(i)}$ by Theorem~\ref{thm:bing1}. The closures of the links of $G^{(i+1)}=F^{(k+1)}$ lie in links of
+$D^{(k+1)}$, so $G^{(i+1)}$ refines $D^{(k+1)}$ and is crooked in $G^{(i)}$ by \vone{Lemma~2.12}.
+\item \emph{Closures.} For a link $G^{(i+1)}_t$: its closure lies in a link $D^{(k+1)}_{s_1}$, whose closure lies in a link $D^{(k)}_{s_2}$,
+which lies in a link of its consolidation $G^{(i)}$.
+\item \emph{Mesh.} The links of $G^{(i)}$ have diameter $\le1/(\ell_i+1)\le1/(i+1)$.
+\item \emph{Described set.} The union of a consolidation is the union of the chain consolidated, so $\bigcup G^{(i)}=\bigcup D^{(k(\ell_i))}=X$
+for every $i$, and the described set is $X$.\qedhere
+\end{itemize}
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.PreDesc.exists_description}, and with Proposition~\ref{prop:predesc-exists},
+\lean{HPC.Plane.PA51.exists_description_univ}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:desc-exists}(a)]
+Regard $M$ as a compact metric space. Every subcontinuum of the space $M$ is indecomposable, $q$ is not in the composant of $p$ in the space
+$M$ (Lemma~\ref{lem:sub-HI}), and the space $M$ is snake-like (Corollary~\ref{cor:sub-snake}). Also $p\ne q$ (Lemma~\ref{lem:ne-of-composant}).
+By Proposition~\ref{prop:predesc-exists} the space $M$ has a pre-description, and Theorem~\ref{thm:desc-univ} gives the description.
+\end{proof}
+
+\section{Back to the ambient space}\label{sec:lift}
+
+Let $M\subseteq X$ be compact. For a relatively open set $U\subseteq M$ (that is, $U=O\cap M$ with $O$ open in $X$) and $r>0$ let
+\[
+\mathrm{Ext}_r(U)=\set{x\in X: d(x,U)<d(x,M\setminus U)\text{ and }d(x,M)<r},
+\]
+with the convention $d(x,\emptyset)=\infty$. It is open in $X$, since distances to sets are continuous.
+
+\begin{lemma}\label{lem:ext}
+Let $U,V\subseteq M$ be relatively open and $r,r'>0$.
+\begin{enumerate}[label=(\alph*)]
+\item $\mathrm{Ext}_r(U)\cap M=U$.
+\item If $U\cap V=\emptyset$, then $\mathrm{Ext}_r(U)\cap\mathrm{Ext}_{r'}(V)=\emptyset$.
+\item If $U\subseteq V$ and $r\le r'$, then $\mathrm{Ext}_r(U)\subseteq\mathrm{Ext}_{r'}(V)$.
+\item Every point of $\mathrm{Ext}_r(U)$ is at distance $<r$ from $U$; so if $U$ is bounded, $\diam\mathrm{Ext}_r(U)\le\diam U+2r$.
+\item If the closure of $U$ lies in $V$ and $\rho>0$, then there is $r\in(0,\rho)$ with $\cl{\mathrm{Ext}_r(U)}\subseteq\mathrm{Ext}_\rho(V)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Note that $M\setminus U$ is closed, as $M$ is closed and $U$ is relatively open.
+(a) If $z\in M\setminus U$, then $d(z,M\setminus U)=0$, so $z\notin\mathrm{Ext}_r(U)$. If $z\in U$, then $d(z,U)=0<d(z,M\setminus U)$, as $z$ is not in
+the closed set $M\setminus U$, and $d(z,M)=0<r$.
+(b) Now $V\subseteq M\setminus U$ and $U\subseteq M\setminus V$. A common point $x$ would satisfy $d(x,U)<d(x,M\setminus U)\le d(x,V)<d(x,M\setminus
+V)\le d(x,U)$.
+(c) $d(x,V)\le d(x,U)<d(x,M\setminus U)\le d(x,M\setminus V)$, and $d(x,M)<r\le r'$.
+(d) $d(x,M)=\min(d(x,U),d(x,M\setminus U))=d(x,U)$ for $x\in\mathrm{Ext}_r(U)$.
+(e) The closure $K$ of $U$ is compact and disjoint from the closed set $M\setminus V$, so there is $\delta>0$ such that no point is at distance
+$<\delta$ from both. Let $r=\min(\delta,\rho)/2$. If $x\in\cl{\mathrm{Ext}_r(U)}$, then $d(x,U)\le r<\delta$ by (d), so $d(x,K)<\delta$ and
+$d(x,M\setminus V)\ge\delta>d(x,U)\ge d(x,V)$; and $d(x,M)\le d(x,U)\le r<\rho$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.ext}, \lean{HPC.Plane.PA51.mem_ext_iff}, \lean{HPC.Plane.PA51.ext_disjoint},
+\lean{HPC.Plane.PA51.ext_mono}, \lean{HPC.Plane.PA51.ext_subset_thickening}, \lean{HPC.Plane.PA51.diam_ext_le},
+\lean{HPC.Plane.PA51.exists_closure_ext_subset}.}
+
+By (a) and (b), if $C$ is a chain of the space $M$, then $\mathrm{Ext}_r(C)=(\mathrm{Ext}_r(C_0),\dots,\mathrm{Ext}_r(C_{n-1}))$ is a chain in $X$:
+its links are open and nonempty, and two of them meet exactly when the corresponding links of $C$ do
+(\lean{HPC.Plane.PA51.liftChain}).
+
+\begin{proof}[Proof of Theorem~\ref{thm:desc-exists}(b)]
+Let $C^{(i)}$ be the description of part~(a), in the space $M$, with constants $\varepsilon_i$. Choose radii $r_0=1$ and, inductively,
+$0<r_{i+1}<r_i$ with $r_{i+1}\le1/(i+2)$ such that for every link $C^{(i+1)}_t$, with $\cl{C^{(i+1)}_t}\subseteq C^{(i)}_{s(t)}$,
+\[
+\cl{\mathrm{Ext}_{r_{i+1}}(C^{(i+1)}_t)}\subseteq\mathrm{Ext}_{r_i}(C^{(i)}_{s(t)})
+\]
+(Lemma~\ref{lem:ext}(e) for each of the finitely many $t$, and the minimum of the radii obtained, using (c)). Let $D^{(i)}=\mathrm{Ext}_{r_i}(C^{(i)})$
+with constants $\varepsilon_i+2r_i\to0$.
+\begin{itemize}
+\item By Lemma~\ref{lem:ext}(a), $p$ and $q$ lie in the same links of $D^{(i)}$ as of $C^{(i)}$; so $D^{(i)}$ goes from $p$ to $q$.
+\item \emph{Crookedness.} If $C^{(i+1)}_a\subseteq C^{(i)}_s$, then $D^{(i+1)}_a\subseteq D^{(i)}_s$ by Lemma~\ref{lem:ext}(c), since $r_{i+1}\le r_i$; so
+$D^{(i+1)}$ refines $D^{(i)}$. If $D^{(i+1)}_a$ meets $D^{(i)}_h$, then $C^{(i+1)}_a$ meets $C^{(i)}_h$ by (b). So the hypotheses of crookedness
+for $D$ give those for $C$, and the conclusions ($C^{(i+1)}_u\subseteq C^{(i)}_{k-1}$, $C^{(i+1)}_v\subseteq C^{(i)}_{h+1}$) give the conclusions
+for $D$ by (c).
+\item Closures are nested by the choice of the radii, and $\diam D^{(i)}_t\le\varepsilon_i+2r_i$ by (d).
+\item \emph{Described set.} Every point of $M$ lies in $\bigcup C^{(i)}$ for all $i$ (the described set of $C$ is $M$), hence in $\bigcup
+D^{(i)}$. Conversely, a point in all $\bigcup D^{(i)}$ has $d(x,M)<r_i\to0$, so $x\in M$ as $M$ is closed.\qedhere
+\end{itemize}
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.lift_description}.}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Show that Theorem~\ref{thm:eventually-crooked} fails for $X=[0,1]$: find chains $E^{(m)}$ of intervals with mesh tending to zero which
+refine the chain $C=([0,0.3),(0.2,0.5),(0.4,0.7),(0.6,0.9),(0.8,1])$ and are never crooked in it. Which subcontinuum of $[0,1]$ does the proof
+produce?
+\end{exercise}
+
+\begin{exercise}
+Let $A_k\subseteq X$ for $k$ in an infinite set $I\subseteq\N$, and let $O$ be an open set meeting no $A_k$. Show that $O$ does not meet
+$\limsup_{k\in I}A_k$. Show by an example that this fails if $O$ is only assumed to be closed.
+\end{exercise}
+
+\begin{exercise}
+In the proof of Theorem~\ref{thm:desc-univ}, why is the level $\ell_{i+1}$ taken to be $k(\ell_i)+1$ rather than $k(\ell_i)$?
+\end{exercise}
+
+\begin{exercise}
+Show by an example that Lemma~\ref{lem:ext}(e) fails if $\cl U\not\subseteq V$.
+\end{exercise}
+
+\begin{exercise}
+Deduce from Theorem~\ref{thm:desc-exists} that if $M$ is a pseudo-arc and $q\notin\cmp Mp$, then for every $\varepsilon>0$ there is an
+$\varepsilon$-chain covering $M$ which goes from $p$ to $q$. (Points with this property are called \emph{opposite end points} of $M$.)
+\end{exercise}

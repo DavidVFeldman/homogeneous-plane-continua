@@ -1,0 +1,11 @@
+=== K=4 n=13
+enum n=13 K=4 shard 0/1 limit=20000000 sequences=7811008
+  T3END instances=101543104 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=101543104 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=101543104 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=101543104 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=101543104 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=101543104 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=101543104 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=121253600 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=121253600 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0

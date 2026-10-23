@@ -1,0 +1,186 @@
+%======================================================================
+\chapter{Non-cut points}\label{ch:noncut}
+%======================================================================
+
+In this chapter $X$ is a topological space, not necessarily metric. The main theorem is due to
+R.~L.~Moore; we follow Nadler (\emph{Continuum Theory}, 6.3--6.7), as the formal proof does. The
+space will be compact, connected and $T_1$ (points are closed). It is applied later not to a
+continuum but to the decomposition space of a decomposition of a continuum
+(Remark~\ref{rem:noncut-use}), which is why we do not assume a metric.
+
+\section{Separations and cut points}
+
+\begin{definition}\label{def:separation}
+Let $Y\subseteq X$. A \emph{separation} $Y=P\mid Q$ is a pair of nonempty disjoint sets $P,Q$ with
+$P\cup Q=Y$, both open in the subspace $Y$. A point $x\in X$ is a \emph{cut point} of $X$ if
+$X\setminus\set x$ is not connected; otherwise it is a \emph{non-cut point}.
+\end{definition}
+
+\formal{\lean{HPC.Plane.IsSeparation}, \lean{HPC.Plane.IsCutPoint} (in
+\lean{HPC/Plane/NonCut51Gen.lean}).}
+
+\begin{lemma}\label{lem:sep-basic}
+Let $Y=P\mid Q$ be a separation.
+\begin{enumerate}[label=(\alph*)]
+\item $P$ and $Q$ are separated: $\cl P\cap Q=\emptyset=P\cap\cl Q$.
+\item If $Y$ is open in $X$, then $P$ and $Q$ are open in $X$.
+\item A preconnected subset of $Y$ lies in $P$ or in $Q$.
+\item If $Y$ is nonempty and not connected and $c\in Y$, then $Y$ has a separation $Y=P\mid Q$ with
+$c\in Q$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Write $Q=Y\cap t$ with $t$ open in $X$. Then $t\cap P=\emptyset$, so $t\cap\cl P=\emptyset$, so
+$Q\cap\cl P=\emptyset$. Symmetrically for the other half.
+(b) $Q=Y\cap t$ is an intersection of two open sets.
+(c) is Lemma~\ref{lem:side} (whose proof uses only the topology), with (a).
+(d) As $Y$ is not preconnected there are open $u,v\subseteq X$ with $Y\subseteq u\cup v$, $Y\cap u\cap
+v=\emptyset$ and both $Y\cap u$, $Y\cap v$ nonempty. These form a separation; name them so that
+$c$ lies in the second.
+\end{proof}
+
+\formal{\lean{HPC.Plane.IsSeparation.disjoint_closure_left},
+\lean{HPC.Plane.IsSeparation.isOpen_right}, \lean{HPC.Plane.IsSeparation.subset_or_subset},
+\lean{HPC.Plane.exists_separation_of_not_isConnected}.}
+
+\begin{theorem}\label{thm:nadler63}
+Let $X$ be connected, $C\subseteq X$ connected, and $X\setminus C=A\mid B$. Then $A\cup C$ is
+connected.
+\end{theorem}
+
+\begin{proof}
+$A\cup C$ is nonempty. Let $u,v$ be open sets with $A\cup C\subseteq u\cup v$ and $(A\cup C)\cap u\cap
+v=\emptyset$; we must show $A\cup C\subseteq u$ or $A\cup C\subseteq v$. Since $C$ is connected, it lies
+in one of them, say $C\subseteq u$. Put
+\[
+P=A\cap v,\qquad W=(A\cap u)\cup C .
+\]
+Then $W\subseteq u$, and $X=P\cup W\cup B$ (a point not in $C$ lies in $A$ or $B$, and a point of $A$ lies
+in $u$ or $v$). The sets $P$ and $W\cup B$ are separated:
+\begin{itemize}
+\item $\cl P\cap W=\emptyset$: the open set $u$ misses $P$ (a point of $P\cap u$ would be in $(A\cup
+C)\cap u\cap v$), hence misses $\cl P$, and $W\subseteq u$.
+\item $\cl P\cap B\subseteq\cl A\cap B=\emptyset$ by Lemma~\ref{lem:sep-basic}(a).
+\item $P\cap\cl W=\emptyset$: the open set $v$ misses $W$ (as $W\subseteq(A\cup C)\cap u$), hence misses
+$\cl W$, and $P\subseteq v$.
+\item $P\cap\cl B\subseteq A\cap\cl B=\emptyset$.
+\end{itemize}
+$B$ is nonempty and $X$ is connected, so $P=\emptyset$ by Lemma~\ref{lem:side}. Hence $A\subseteq u$ and
+$A\cup C\subseteq u$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isConnected_union_of_separation} (Nadler 6.3).}
+
+\begin{lemma}\label{lem:nadler64}
+Let $X$ be connected, $X\setminus\set x=K\mid L$ and $X\setminus\set y=M\mid N$, with $x\in M$ and
+$y\in K$. Then $N\cup\set y\subseteq K$.
+\end{lemma}
+
+\begin{proof}
+$x\ne y$ since $x\in M\subseteq X\setminus\set y$. By Theorem~\ref{thm:nadler63} (with $C=\set y$ and the
+separation $X\setminus\set y=N\mid M$) the set $N\cup\set y$ is connected. It lies in $X\setminus\set
+x$: $x\in M$ is not in $N$, and $x\neq y$. By Lemma~\ref{lem:sep-basic}(c) it lies in $K$ or in $L$; it
+contains $y\in K$, so it lies in $K$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.nadler_6_4}.}
+
+\section{Moore's theorem}
+
+\begin{theorem}[Moore]\label{thm:noncut-side}
+Let $X$ be a compact connected $T_1$ space, $c\in X$, and $X\setminus\set c=U\mid V$. Then $U$
+contains a non-cut point of $X$, and so does $V$.
+\end{theorem}
+
+\begin{proof}
+By symmetry it suffices to treat $U$. Suppose every point of $U$ is a cut point. For each $x\in U$,
+Lemma~\ref{lem:sep-basic}(d) gives a separation $X\setminus\set x=U_x\mid V_x$ with $c\in V_x$ (note
+$c\neq x$). Put $A(x)=U_x\cup\set x$. We prove four facts.
+
+\emph{(i) $A(x)\subseteq U$.} Apply Lemma~\ref{lem:nadler64} to the separations $X\setminus\set
+c=U\mid V$ and $X\setminus\set x=V_x\mid U_x$: we have $c\in V_x$ and $x\in U$, so $U_x\cup\set x\subseteq
+U$.
+
+\emph{(ii) $A(x)$ is closed.} Its complement is $V_x$, which is open in $X$ by
+Lemma~\ref{lem:sep-basic}(b), since $X\setminus\set x$ is open ($X$ is $T_1$).
+
+\emph{(iii) If $y\in U_x$, then $A(y)\subseteq U_x$; in particular $x\notin A(y)$.} By (i), $y\in U$. Since
+$x\neq y$, $x$ lies in $U_y$ or in $V_y$. If $x\in U_y$, Lemma~\ref{lem:nadler64} applied to
+$X\setminus\set y=U_y\mid V_y$ and $X\setminus\set x=U_x\mid V_x$ (with $y\in U_x$ and $x\in U_y$) gives
+$V_x\cup\set x\subseteq U_y$; but $c\in V_x$ and $c\in V_y$, a contradiction. So $x\in V_y$, and
+Lemma~\ref{lem:nadler64} applied to $X\setminus\set x=U_x\mid V_x$ and $X\setminus\set y=V_y\mid U_y$
+(with $x\in V_y$ and $y\in U_x$) gives $U_y\cup\set y\subseteq U_x$. Finally $x\notin U_x$.
+
+\emph{(iv) The family $\set{A(x):x\in U}$ has a minimal member.} We use Zorn's lemma in the form stated before
+Lemma~\ref{lem:nested-meets}. The family is nonempty ($U\neq\emptyset$). Let $\mathcal C$ be a
+nonempty chain in it. Its members are closed and nonempty, any finitely many have nonempty
+intersection, and $X$ is compact; so there is a point $p$ in all of them. Then $p\in U$ by (i). For
+each member $A(x)$ of $\mathcal C$, either $p\in U_x$, and then $A(p)\subseteq U_x\subseteq A(x)$ by (iii),
+or $p=x$ and $A(p)=A(x)$. So $A(p)$ is a member of the family contained in $\bigcap\mathcal C$.
+
+Now let $A(x)$ be minimal, and take $q\in U_x$ (it is nonempty). By (iii) $A(q)\subseteq U_x\subseteq
+A(x)$, so $A(q)=A(x)$ by minimality, and $x\in A(x)=A(q)$, contradicting (iii).
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_nonCutPoint_left} and \lean{HPC.Plane.exists_nonCutPoint_of_cut}
+(Nadler 6.6). Nadler assumes $X$ nondegenerate; this follows from the separation and is not
+needed.}
+
+\begin{theorem}\label{thm:two-noncut}
+A compact connected $T_1$ space with at least two points has two distinct non-cut points.
+\end{theorem}
+
+\begin{proof}
+If $X$ has no cut point, any two distinct points will do. If $c$ is a cut point, take $d\ne c$ and a
+separation $X\setminus\set c=U\mid V$ (Lemma~\ref{lem:sep-basic}(d)); Theorem~\ref{thm:noncut-side}
+gives non-cut points $u\in U$ and $v\in V$, which are distinct as $U\cap V=\emptyset$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_two_nonCutPoints}.}
+
+\begin{theorem}\label{thm:noncut-not-in}
+Let $X$ be a compact connected $T_1$ space and $Z\subsetneq X$ a connected proper subset. Then some
+non-cut point of $X$ lies outside $Z$.
+\end{theorem}
+
+\begin{proof}
+Suppose all non-cut points lie in $Z$. Take $c\notin Z$; it is a cut point. Take $z\in Z$ and a
+separation $X\setminus\set c=U\mid V$. The connected set $Z\subseteq X\setminus\set c$ lies in $U$ or in
+$V$, say in $U$. By Theorem~\ref{thm:noncut-side} $V$ contains a non-cut point, which is then in
+$Z\subseteq U$; but $U\cap V=\emptyset$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.not_subset_of_nonCutPoints} (Nadler 6.7).}
+
+\begin{example}
+The non-cut points of $[0,1]$ are $0$ and $1$. Every point of a circle is a non-cut point. In the
+letter T (three segments with a common end point $o$), the non-cut points are the three free end
+points; $o$ is a cut point whose complement has three components.
+\end{example}
+
+\begin{remark}\label{rem:noncut-use}
+In the later volumes (Bing's theorem on atriodic hereditarily decomposable continua) these
+results are applied to the decomposition space of an upper semicontinuous decomposition of a
+continuum into subcontinua (Chapter~\ref{ch:decomp}): the decomposition space is compact,
+connected and $T_1$, and its non-cut points correspond to the ``end elements'' of the
+decomposition (\lean{HPC.Plane.exists_two_endElts}).
+\end{remark}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that compactness cannot be dropped from Theorem~\ref{thm:two-noncut}: every point of $\R$ is
+a cut point. Where does the proof of Theorem~\ref{thm:noncut-side} use compactness, and where
+does it use the $T_1$ property?
+\end{exercise}
+
+\begin{exercise}
+Show that a nondegenerate continuum with exactly two non-cut points is an arc. (Hard; this is a
+classical characterization of the arc. It is not used in these notes.)
+\end{exercise}
+
+\begin{exercise}
+Let $X$ be a compact connected $T_1$ space and $c$ a cut point. Show that each component of
+$X\setminus\set c$ contains a non-cut point of $X$, if $X\setminus\set c$ has finitely many components.
+\end{exercise}

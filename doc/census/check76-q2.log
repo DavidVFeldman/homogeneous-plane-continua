@@ -1,0 +1,89 @@
+== witness-batch76-q2-span10-1.txt: n=2379 i=465 band [0,10] level 5; least leg count (own search) 3, file says 3
+   ExtendsSubBand witnesses at k = 3 (literal, every sub-band): 2
+   witnesses at which both suffixes fold from some own arrival time: 0  -- NONE
+== witness-batch76-q2-span10-1.txt: n=2379 i=465 level 5; w' = 5 -> [2, 9], band [2,9], e = 1
+   whole arms fold onto w: G True, T True
+   arm G: truncated at 112 of 1914 links; arrival times [2, 3, 4]; suffix folds from: [2, 3, 4]
+   arm T: truncated at 226 of 466 links; arrival times [2, 3, 4]; suffix folds from: NONE
+      the prefix folded onto w instead (len w' = 11, len w = 19): arrival times [2, 3, 4, 16, 17, 18]; the suffix folds from [16, 17, 18]
+== witness-batch76-q2-span10-2.txt: n=2379 i=467 band [0,10] level 5; least leg count (own search) 3, file says 3
+   ExtendsSubBand witnesses at k = 3 (literal, every sub-band): 2
+   witnesses at which both suffixes fold from some own arrival time: 0  -- NONE
+== witness-batch76-q2-span10-2.txt: n=2379 i=467 level 5; w' = 5 -> [2, 9], band [2,9], e = 1
+   whole arms fold onto w: G True, T True
+   arm G: truncated at 110 of 1912 links; arrival times [2, 3, 4]; suffix folds from: [2, 3, 4]
+   arm T: truncated at 228 of 468 links; arrival times [2, 3, 4]; suffix folds from: NONE
+      the prefix folded onto w instead (len w' = 11, len w = 19): arrival times [2, 3, 4, 16, 17, 18]; the suffix folds from [16, 17, 18]
+== witness-batch76-q2-span10-3.txt: n=2379 i=469 band [0,10] level 5; least leg count (own search) 3, file says 3
+   ExtendsSubBand witnesses at k = 3 (literal, every sub-band): 2
+   witnesses at which both suffixes fold from some own arrival time: 0  -- NONE
+== witness-batch76-q2-span10-3.txt: n=2379 i=469 level 5; w' = 5 -> [2, 9], band [2,9], e = 1
+   whole arms fold onto w: G True, T True
+   arm G: truncated at 108 of 1910 links; arrival times [2, 3, 4]; suffix folds from: [2, 3, 4]
+   arm T: truncated at 230 of 470 links; arrival times [2, 3, 4]; suffix folds from: NONE
+      the prefix folded onto w instead (len w' = 11, len w = 19): arrival times [2, 3, 4, 16, 17, 18]; the suffix folds from [16, 17, 18]
+== witness-batch76-q2-span10-4.txt: n=2379 i=473 band [0,10] level 5; least leg count (own search) 3, file says 3
+   ExtendsSubBand witnesses at k = 3 (literal, every sub-band): 3
+   witnesses at which both suffixes fold from some own arrival time: 0  -- NONE
+== witness-batch76-q2-span10-4.txt: n=2379 i=473 level 5; w' = 4 -> [2, 9], band [2,9], e = 1
+   whole arms fold onto w: G True, T True
+   arm G: truncated at 104 of 1906 links; arrival times [1, 2, 3]; suffix folds from: [1, 2, 3]
+   arm T: truncated at 234 of 474 links; arrival times [1, 2, 3]; suffix folds from: NONE
+      the prefix folded onto w instead (len w' = 10, len w = 18): arrival times [1, 2, 3, 15, 16, 17]; the suffix folds from [15, 16, 17]
+== witness-batch76-q2-span10-5.txt: n=3000 i=1343 band [0,10] level 6; least leg count (own search) 4, file says 4
+   ExtendsSubBand witnesses at k = 4 (literal, every sub-band): 6
+   witnesses at which both suffixes fold from some own arrival time: 0  -- NONE
+== witness-batch76-q2-span10-5.txt: n=3000 i=1343 level 6; w' = 5 -> [3, 8, 1], band [1,8], e = 9
+   whole arms fold onto w: G True, T True
+   arm G: truncated at 65 of 1657 links; arrival times [6, 7, 8]; suffix folds from: [6, 7, 8]
+   arm T: truncated at 1089 of 1344 links; arrival times [6, 7, 8]; suffix folds from: NONE
+      the prefix folded onto w instead (len w' = 15, len w = 23): arrival times [6, 7, 8, 20, 21, 22]; the suffix folds from [20, 21, 22]
+== witness-batch76-q2-span10-6.txt: n=3000 i=1347 band [0,10] level 6; least leg count (own search) 4, file says 4
+   ExtendsSubBand witnesses at k = 4 (literal, every sub-band): 5
+   witnesses at which both suffixes fold from some own arrival time: 0  -- NONE
+== witness-batch76-q2-span10-6.txt: n=3000 i=1347 level 6; w' = 5 -> [4, 8, 1], band [1,8], e = 9
+   whole arms fold onto w: G True, T True
+   arm G: truncated at 61 of 1653 links; arrival times [4, 5, 6]; suffix folds from: [4, 5, 6]
+   arm T: truncated at 1093 of 1348 links; arrival times [4, 5, 6]; suffix folds from: NONE
+      the prefix folded onto w instead (len w' = 13, len w = 21): arrival times [4, 5, 6, 18, 19, 20]; the suffix folds from [18, 19, 20]
+== witness-batch76-q2-span11-1.txt: n=5742 i=785 band [0,11] level 5; least leg count (own search) 3, file says 3
+   ExtendsSubBand witnesses at k = 3 (literal, every sub-band): 12
+   witnesses at which both suffixes fold from some own arrival time: 0  -- NONE
+== witness-batch76-q2-span11-1.txt: n=5742 i=785 level 5; w' = 4 -> [7, 1], band [1,7], e = 10
+   whole arms fold onto w: G True, T True
+   arm G: truncated at 101 of 4957 links; arrival times [2, 3, 4]; suffix folds from: NONE
+      the prefix folded onto w instead (len w' = 10, len w = 19): arrival times [2, 3, 4, 14, 15, 16]; the suffix folds from [14, 15, 16]
+   arm T: truncated at 39 of 786 links; arrival times [2, 3, 4]; suffix folds from: [2, 3, 4]
+== witness-batch76-q2-span11-6.txt: n=5742 i=797 band [0,11] level 5; least leg count (own search) 3, file says 3
+   ExtendsSubBand witnesses at k = 3 (literal, every sub-band): 4
+   witnesses at which both suffixes fold from some own arrival time: 0  -- NONE
+== witness-batch76-q2-span11-6.txt: n=5742 i=797 level 5; w' = 4 -> [7, 1], band [1,7], e = 10
+   whole arms fold onto w: G True, T True
+   arm G: truncated at 89 of 4945 links; arrival times [2, 3, 4]; suffix folds from: NONE
+      the prefix folded onto w instead (len w' = 10, len w = 19): arrival times [2, 3, 4, 14, 15, 16]; the suffix folds from [14, 15, 16]
+   arm T: truncated at 51 of 798 links; arrival times [2, 3, 4]; suffix folds from: [2, 3, 4]
+== witness-batch76-q2-span12-1.txt: n=13861 i=785 band [0,12] level 5; least leg count (own search) 3, file says 3
+   ExtendsSubBand witnesses at k = 3 (literal, every sub-band): 12
+   witnesses at which both suffixes fold from some own arrival time: 0  -- NONE
+== witness-batch76-q2-span12-1.txt: n=13861 i=785 level 5; w' = 4 -> [7, 1], band [1,7], e = 11
+   whole arms fold onto w: G True, T True
+   arm G: truncated at 101 of 13076 links; arrival times [2, 3, 4]; suffix folds from: NONE
+      the prefix folded onto w instead (len w' = 10, len w = 20): arrival times [2, 3, 4, 14, 15, 16]; the suffix folds from [14, 15, 16]
+   arm T: truncated at 39 of 786 links; arrival times [2, 3, 4]; suffix folds from: [2, 3, 4]
+== witness-batch76-q2-span13-1.txt: n=33462 i=785 band [0,13] level 5; least leg count (own search) 3, file says 3
+   ExtendsSubBand witnesses at k = 3 (literal, every sub-band): 12
+   witnesses at which both suffixes fold from some own arrival time: 0  -- NONE
+== witness-batch76-q2-span13-1.txt: n=33462 i=785 level 5; w' = 4 -> [7, 1], band [1,7], e = 12
+   whole arms fold onto w: G True, T True
+   arm G: truncated at 101 of 32677 links; arrival times [2, 3, 4]; suffix folds from: NONE
+      the prefix folded onto w instead (len w' = 10, len w = 21): arrival times [2, 3, 4, 14, 15, 16]; the suffix folds from [14, 15, 16]
+   arm T: truncated at 39 of 786 links; arrival times [2, 3, 4]; suffix folds from: [2, 3, 4]
+DONE
+== witness-batch76-q2-span14-1.txt: n=80783 i=785 band [0,14] level 5; least leg count (own search) 3, file says 3
+   ExtendsSubBand witnesses at k = 3 (literal, every sub-band): 12
+   witnesses at which both suffixes fold from some own arrival time: 0  -- NONE
+== witness-batch76-q2-span14-1.txt: n=80783 i=785 level 5; w' = 4 -> [7, 1], band [1,7], e = 13
+   whole arms fold onto w: G True, T True
+   arm G: truncated at 101 of 79998 links; arrival times [2, 3, 4]; suffix folds from: NONE
+      the prefix folded onto w instead (len w' = 10, len w = 22): arrival times [2, 3, 4, 14, 15, 16]; the suffix folds from [14, 15, 16]
+   arm T: truncated at 39 of 786 links; arrival times [2, 3, 4]; suffix folds from: [2, 3, 4]

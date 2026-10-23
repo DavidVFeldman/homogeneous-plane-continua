@@ -1,0 +1,3 @@
+special K=5 n=11: sequences=64 instances=704 failures=0
+special K=5 n=12: sequences=960 instances=11520 failures=0
+# branch statistics: {'general/special': 4416, 'level': 7808, 'special/branch1': 1664, 'special/branch3': 1664, 'special/middle': 1088}

@@ -1,0 +1,278 @@
+%======================================================================
+\chapter{Consolidations and other tools for chains}\label{ch:consolidations}
+%======================================================================
+
+This chapter collects the operations on chains used in the rest of the volume. The most
+important is \emph{consolidation}: grouping consecutive links of a fine chain into blocks, each
+block becoming one link of a coarser chain. Pattern following (Chapter~\ref{ch:patterns}) and
+the folding theorem (Chapter~\ref{ch:folding}) both produce their chains in this way, and
+Bing's Theorem~1 (Section~\ref{sec:bing-thm1}) says that crookedness survives consolidation.
+Throughout, $X$ is a metric space, and chains are as in \vone{Definition~2.1}.
+
+\section{Consolidations and block maps}
+
+\begin{definition}\label{def:consolidation}
+A chain $D$ is a \emph{consolidation} of a chain $E$ if $E$ refines $D$ and every link of $D$ is a
+union of links of $E$.
+\end{definition}
+
+\formal{\lean{HPC.Chain.IsConsolidationOf}.}
+
+The consolidations we construct all come from grouping consecutive links.
+
+\begin{definition}\label{def:block-map}
+Let $E$ be a chain of length $m$. A \emph{block map} is a surjective function $\beta\colon[m]\to[p]$
+with unit steps: $\abs{\beta(t+1)-\beta(t)}\le1$ for $t+1<m$. The \emph{block chain} $E^\beta$ has
+the $p$ links
+\[
+E^\beta_u=\bigcup\set{E_t : \beta(t)=u}\qquad(u\in[p]).
+\]
+The set $\set{t:\beta(t)=u}$ is the \emph{block} $u$.
+\end{definition}
+
+A block need not consist of consecutive indices: $\beta$ may return to a value it has left. All
+that is required is that $\beta$ moves by at most one at each step.
+
+\begin{lemma}\label{lem:block-chain}
+If $\beta$ is a block map for $E$, then $E^\beta$ is a chain of length $p$, and it is a
+consolidation of $E$. Moreover $E_t\subseteq E^\beta_{\beta(t)}$ for every $t$.
+\end{lemma}
+
+\begin{proof}
+Each $E^\beta_u$ is open, as a union of open sets, and the last statement is clear; it shows that $E$
+refines $E^\beta$, and by definition each link of $E^\beta$ is a union of links of $E$. It remains to
+check the chain condition $E^\beta_u\cap E^\beta_{u'}\ne\emptyset\iff\abs{u-u'}\le1$.
+
+Suppose $z\in E^\beta_u\cap E^\beta_{u'}$, say $z\in E_t\cap E_{t'}$ with $\beta(t)=u$, $\beta(t')=u'$.
+As $E_t$ and $E_{t'}$ meet, $\abs{t-t'}\le1$, and unit steps give $\abs{u-u'}\le1$.
+
+Conversely let $\abs{u-u'}\le 1$. If $u=u'$, the link $E^\beta_u$ is nonempty because some $t$ has
+$\beta(t)=u$ (surjectivity) and links of a chain are nonempty. If $u'=u+1$ (the case $u=u'+1$ is
+symmetric), choose $t_1,t_2$ with $\beta(t_1)=u$, $\beta(t_2)=u+1$, and walk from $t_1$ to $t_2$. Along
+the walk $\beta$ changes by at most one at each step and goes from $u$ to $u+1$. Let $t$ be the last
+index of the walk at which $\beta$ equals $u$, and $t'$ the next index of the walk. Then $\beta(t')\ne u$;
+and $\beta(t')\neq u-1$, since otherwise $\beta$ would have to pass through $u$ again later. So
+$\beta(t')=u+1$, and since $\abs{t-t'}=1$, the links $E_t\subseteq E^\beta_u$ and $E_{t'}\subseteq
+E^\beta_{u+1}$ meet.
+\end{proof}
+
+\formal{\lean{HPC.Chain.IsBlockMap}, \lean{HPC.Chain.ofBlocks},
+\lean{HPC.Chain.blockLink_adjacent}, \lean{HPC.Chain.ofBlocks_isConsolidationOf}.}
+
+\begin{lemma}\label{lem:block-from}
+Let $\beta\colon[m]\to[p]$ be a block map for $E$, and $R,S\in X$. Then $E^\beta$ goes from $R$ to $S$
+if and only if $R$ lies in some link of $E$ and every link $E_t$ containing $R$ has $\beta(t)=0$, and $S$
+lies in some link of $E$ and every link $E_t$ containing $S$ has $\beta(t)=p-1$.
+\end{lemma}
+
+\begin{proof}
+$R\in E^\beta_u$ means that $R\in E_t$ for some $t$ with $\beta(t)=u$. So ``$R$ lies in $E^\beta_0$ and in no
+other link of $E^\beta$'' says exactly that $R$ lies in some $E_t$, and that every $E_t$ containing $R$
+has $\beta(t)=0$. The same holds for $S$ and the last link.
+\end{proof}
+
+\formal{\lean{HPC.Fold.Q78.isFrom_ofBlocks_iff}.}
+
+Often it is more natural to produce a function into $\N$ than onto some $[p]$.
+
+\begin{definition}\label{def:schedule}
+A \emph{schedule} for a chain of length $m$ is a function $\beta\colon[m]\to\N$ with unit steps
+which takes the value $0$.
+\end{definition}
+
+\begin{lemma}\label{lem:schedule}
+A schedule $\beta$ is a block map onto $[p]$, where $p=1+\max_t\beta(t)$.
+\end{lemma}
+
+\begin{proof}
+Its values lie in $[p]$. Every $v$ with $0\le v\le p-1$ lies between the value $0$ and the maximal value,
+so it is attained, by the discrete intermediate value theorem \vone{Lemma~2.5}.
+\end{proof}
+
+\formal{\lean{HPC.IsSchedule}, \lean{HPC.IsSchedule.exists_blockMap}.}
+
+\begin{lemma}\label{lem:consolidate-length}
+Let $D$ be a chain of length $n$ from $P$ to $Q$, and $2\le m\le n$. Then $D$ has a consolidation of
+length $m$ which goes from $P$ to $Q$.
+\end{lemma}
+
+\begin{proof}
+Use the block map $\beta(i)=\min(i,m-1)$: the blocks are $\set0,\set1,\dots,\set{m-2}$ and
+$\set{m-1,\dots,n-1}$. It is surjective with unit steps, so $D^\beta$ is a consolidation by
+Lemma~\ref{lem:block-chain}. The only link of $D$ containing $P$ is $D_0$, and $\beta(0)=0$; the only link
+containing $Q$ is $D_{n-1}$, and $\beta(n-1)=m-1$. Lemma~\ref{lem:block-from} shows that $D^\beta$ goes from
+$P$ to $Q$.
+\end{proof}
+
+\formal{\lean{HPC.Chain.exists_consolidation_isFrom}.}
+
+\section{Crookedness passes to consolidations}\label{sec:bing-thm1}
+
+\vone{Lemma~2.12} says that a refinement of a chain crooked in $D$ is again crooked in $D$. The next
+theorem says the same for the coarse chain: if $F$ is crooked in $E$, it is crooked in every
+consolidation of $E$.
+
+\begin{lemma}\label{lem:index-dist}
+Let $E$ refine $D$, and let $E_a\subseteq D_h$, $E_b\subseteq D_k$. If $\abs{a-b}\le2$, then
+$\abs{h-k}\le2$.
+\end{lemma}
+
+\begin{proof}
+If $\abs{a-b}\le1$, then $E_a$ and $E_b$ meet, so $D_h$ and $D_k$ meet and $\abs{h-k}\le1$. If
+$\abs{a-b}=2$, let $c$ be the index between them and $E_c\subseteq D_l$. Then $E_c$ meets $E_a$ and $E_b$,
+so $D_l$ meets $D_h$ and $D_k$, and $\abs{h-k}\le\abs{h-l}+\abs{l-k}\le2$.
+\end{proof}
+
+\formal{\lean{HPC.Chain.index_dist_le_of_subset}.}
+
+\begin{theorem}[Bing 1948, Theorem~1]\label{thm:bing1}
+Let $D$ be a consolidation of $E$, and let $F$ be crooked in $E$. Then $F$ is crooked in $D$.
+\end{theorem}
+
+\begin{proof}
+$F$ refines $E$, which refines $D$, so $F$ refines $D$. Let $k>h+2$, and let $F_i$ meet $D_h$ and $F_j$ meet
+$D_k$.
+
+\emph{Step 1: links of $E$ in between.} Let $z\in F_i\cap D_h$. Since $D_h$ is a union of links of $E$,
+there is a link $E_a\subseteq D_h$ containing $z$; so $F_i$ meets $E_a$. Similarly there is $E_b\subseteq D_k$
+which meets $F_j$. By Lemma~\ref{lem:index-dist}, $\abs{a-b}>2$, since $\abs{h-k}>2$.
+
+\emph{Step 2: crookedness in $E$.} Suppose $a<b$, so $b>a+2$. Crookedness of $F$ in $E$ gives $r,s$ with
+$\mathrm{Btw}(i,r,s,j)$, $F_r\subseteq E_{b-1}$ and $F_s\subseteq E_{a+1}$. If $b<a$, crookedness applied to
+the pair $(b,a)$ and $(j,i)$ gives $s,r$ with $\mathrm{Btw}(j,s,r,i)$, $F_s\subseteq E_{a-1}$, $F_r\subseteq
+E_{b+1}$; and $\mathrm{Btw}(j,s,r,i)$ is the same as $\mathrm{Btw}(i,r,s,j)$. In both cases we have
+$\mathrm{Btw}(i,r,s,j)$, $F_r\subseteq E_{b'}$ and $F_s\subseteq E_{a'}$ with $\abs{b'-b}\le1$ and
+$\abs{a'-a}\le1$.
+
+\emph{Step 3: back to $D$.} Let $E_{b'}\subseteq D_{k'}$ and $E_{a'}\subseteq D_{h'}$. Since $E_{b'}$ meets
+$E_b\subseteq D_k$, we get $\abs{k'-k}\le1$, so $k'\ge k-1$; similarly $h'\le h+1$. Choose a refinement map
+$\chi$ for $F$ in $D$ with $\chi(r)=k'$ and $\chi(s)=h'$ (possible, as $F_r\subseteq D_{k'}$ and $F_s\subseteq
+D_{h'}$, and $r\neq s$). By \vone{Lemma~2.4} $\chi$ has unit steps, and $\chi(r)\ge k-1>h+1\ge\chi(s)$.
+
+\emph{Step 4: interpolation.} Suppose $r<s$ (if $r>s$, run the same argument backwards). Let $y$ be the
+first index in $[r,s]$ with $\chi(y)\le h+1$. Then $y>r$, so $\chi(y-1)>h+1$, and unit steps force
+$\chi(y)=h+1$. Next let $x$ be the last index in $[r,y]$ with $\chi(x)\ge k-1$. Then $x<y$ (as $\chi(y)=h+1<k-1$),
+so $\chi(x+1)<k-1$, and unit steps force $\chi(x)=k-1$. Thus $r\le x<y\le s$, $F_x\subseteq D_{k-1}$ and
+$F_y\subseteq D_{h+1}$. Since $\mathrm{Btw}(i,r,s,j)$ and $x,y\in[r,s]$ in the same order as $r,s$, also
+$\mathrm{Btw}(i,x,y,j)$.
+\end{proof}
+
+\formal{\lean{HPC.Chain.isCrookedIn'_of_isConsolidationOf}; the interpolation of Step~4 is
+\lean{HPC.Chain.exists_value_between}.}
+
+\section{Reversal and least indices}
+
+\begin{definition}
+The \emph{reverse} of a chain $D$ of length $n$ is the chain $\overline D$ with
+$\overline D_i=D_{n-1-i}$.
+\end{definition}
+
+\begin{lemma}\label{lem:reverse}
+If $E$ is crooked in $D$, then $\overline E$ is crooked in $D$ and $E$ is crooked in $\overline D$.
+\end{lemma}
+
+\begin{proof}
+Reversing $E$ reverses the order of its indices, and the condition $\mathrm{Btw}(i,r,s,j)$ (``$r,s$ strictly
+between $i$ and $j$, with $r$ nearer to $i$'') is invariant under reversing the order. For the second
+statement, let $k>h+2$, let $E_i$ meet $\overline D_h=D_{n-1-h}$ and $E_j$ meet $\overline D_k=D_{n-1-k}$.
+Put $H=n-1-k$ and $K=n-1-h$, so $K>H+2$, $E_j$ meets $D_H$ and $E_i$ meets $D_K$. Crookedness of $E$ in $D$
+gives $r,s$ with $\mathrm{Btw}(j,r,s,i)$, $E_r\subseteq D_{K-1}=\overline D_{h+1}$ and $E_s\subseteq
+D_{H+1}=\overline D_{k-1}$. Then $\mathrm{Btw}(i,s,r,j)$, and $s,r$ are the required links.
+\end{proof}
+
+\formal{\lean{HPC.Chain.reverse}, \lean{HPC.Chain.IsCrookedIn'.reverse_left},
+\lean{HPC.Chain.IsCrookedIn'.reverse_right}.}
+
+Reversal lets us state many arguments ``from the bottom'' and obtain the version ``from the top'' for free.
+
+\begin{definition}\label{def:minidx}
+Let $E$ (of length $m$) refine $D$ (of length $n$). For $t\in[m]$ let $\lo(t)$ be the least and $\hi(t)$ the
+greatest index $j$ with $E_t\subseteq D_j$.
+\end{definition}
+
+\begin{lemma}\label{lem:minidx}
+\begin{enumerate}[label=(\alph*)]
+\item $\lo(t)\le\hi(t)\le\lo(t)+1$, and $E_t\subseteq D_j$ holds exactly for $j\in\set{\lo(t),\hi(t)}$.
+\item $\lo$ and $\hi$ have unit steps.
+\item If $E_t$ meets $D_j$, then $\abs{\lo(t)-j}\le1$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) If $E_t\subseteq D_j\cap D_{j'}$, then $D_j$ and $D_{j'}$ meet (links are nonempty), so
+$\abs{j-j'}\le1$. (b) is \vone{Lemma~2.4} for the refinement maps $\lo$ and $\hi$. (c) $E_t\subseteq
+D_{\lo(t)}$ meets $D_j$.
+\end{proof}
+
+\formal{\lean{HPC.Chain.Refines.minIdx}, \lean{HPC.Chain.Refines.maxIdx},
+\lean{HPC.Chain.subset_adjacent_of_subset}, \lean{HPC.Chain.minIdx_lip},
+\lean{HPC.Chain.maxIdx_lip}, \lean{HPC.Chain.minIdx_near_of_inter}.}
+
+\section{Spans and subchains}
+
+\begin{definition}\label{def:span}
+For a chain $D$ and indices $a\le b$, the \emph{span} $\spn Dab=D_a\cup D_{a+1}\cup\dots\cup D_b$. The
+chain $(D_a,\dots,D_b)$ is the \emph{subchain} from $a$ to $b$.
+\end{definition}
+
+\begin{lemma}\label{lem:span-chained}
+If the links of $D$ are bounded with diameter $\le\varepsilon$, then every span $\spn Dab$ is
+$\varepsilon$-chained (\vone{Definition~1.5}).
+\end{lemma}
+
+\begin{proof}
+The subchain $(D_a,\dots,D_b)$ is a chain with union $\spn Dab$; apply \vone{Lemma~2.10}.
+\end{proof}
+
+\formal{\lean{HPC.Chain.span}, \lean{HPC.Chain.chainedAt_span}.}
+
+\begin{definition}\label{def:subchain-from}
+For points $R,S$ and indices $a\le b$, we say that \emph{the subchain from $a$ to $b$ joins $R$ and $S$} if
+it goes from $R$ to $S$ or from $S$ to $R$; that is, one of the two points lies in $D_a$ and in no other
+$D_t$ with $a\le t\le b$, and the other lies in $D_b$ and in no other such link.
+\end{definition}
+
+\formal{\lean{HPC.Chain.IsSubchainFrom}.}
+
+\begin{lemma}\label{lem:subchain-exists}
+Let $D$ be a chain and $R,S\in\bigcup D$ such that no link of $D$ contains both $R$ and $S$. Then there are
+$a<b$ such that the subchain from $a$ to $b$ joins $R$ and $S$.
+\end{lemma}
+
+\begin{proof}
+Let $I_R$ (resp.\ $I_S$) be the nonempty set of indices of links containing $R$ (resp.\ $S$). Two links
+containing the same point meet, so each of $I_R$, $I_S$ consists of one index or two consecutive indices,
+and $I_R\cap I_S=\emptyset$ by hypothesis. Hence either every element of $I_R$ is smaller than every element
+of $I_S$, or the reverse. (If $r_1<s_1$ and $s_2<r_2$ with $r_1,r_2\in I_R$, $s_1,s_2\in I_S$, then
+$\abs{r_1-r_2}\le1$ and $\abs{s_1-s_2}\le1$ leave no room for four distinct indices in this order.) In the
+first case let $a=\max I_R$ and $b=\min I_S$. Then $a<b$; $R\in D_a$, and $R$ is in no $D_t$ with $a<t\le b$
+because $a$ is the largest index in $I_R$; $S\in D_b$, and $S$ is in no $D_t$ with $a\le t<b$ because $b$ is
+the smallest index in $I_S$. The second case is symmetric.
+\end{proof}
+
+\formal{\lean{HPC.Chain.exists_isSubchainFrom}.}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Show that the converse of Lemma~\ref{lem:block-chain} fails in the following sense: a consolidation in
+the sense of Definition~\ref{def:consolidation} need not be a block chain $E^\beta$. (Hint: a link of $E$
+may be used in two links of $D$.)
+\end{exercise}
+
+\begin{exercise}
+Let $\beta$ be a block map for $E$, and let $F$ be crooked in $E$. Show directly from
+Theorem~\ref{thm:bing1} that $F$ is crooked in $E^\beta$. Then show that the conclusion can fail if $\beta$ is
+only assumed surjective (without unit steps): $E^\beta$ need not even be a chain.
+\end{exercise}
+
+\begin{exercise}
+Prove the converse of Lemma~\ref{lem:index-dist} fails: give $E$ refining $D$ with $\abs{h-k}\le2$ but
+$\abs{a-b}$ arbitrarily large.
+\end{exercise}
+
+\begin{exercise}
+In Lemma~\ref{lem:subchain-exists}, show that the hypothesis ``no link contains both $R$ and $S$'' holds as
+soon as the links have diameter less than $d(R,S)$.
+\end{exercise}

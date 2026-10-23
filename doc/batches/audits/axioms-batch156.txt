@@ -1,0 +1,73 @@
+-- Batch 156: `#print axioms` for every theorem of the new files `HPC/Hagopian/H76*.lean` and
+-- `HPC/Hagopian/Hagopian76A.lean` (33 theorems; the statements kept commented out in `Hagopian76A.lean`
+-- are not declarations; `H76Defs.lean` has definitions only).
+-- Every line shows [propext, Classical.choice, Quot.sound]; `sorryAx` occurs in none.
+
+-- HPC/Hagopian/H76Lemma2.lean
+'HPC.Hagopian.lemma2_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.end_sets_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- HPC/Hagopian/H76Lemma3.lean
+'HPC.Hagopian.subset_of_meets_avoids' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.lemma3_end_case' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.lemma3_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.lemma3_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- HPC/Hagopian/H76Lemma4.lean
+'HPC.Hagopian.ext_chain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.exists_strictMono_seq_of_chain' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- HPC/Hagopian/H76Lemma4Layers.lean
+'HPC.Hagopian.lemma4_layers_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- HPC/Hagopian/H76Lemma8.lean
+'HPC.Hagopian.connected_meets_links' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.component_of_caps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.toPt_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.mem_toPt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.lemma8_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- HPC/Hagopian/H76Cons.lean
+'HPC.Hagopian.isIndecomposable_of_h1_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian76_theorem2_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian75_corollary_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.isDecomposableSpace_of_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian75_theorem2_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.isHereditarilyDecomposable_of_arc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.bing60_plane_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- HPC/Hagopian/Hagopian76A.lean
+'HPC.Hagopian.hagopian76_lemma2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian76_end_sets' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian76_lemma3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian76_lemma4_layers'' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian76_lemma4_chain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian76_lemma4_seq_of_noMax' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian76_lemma8' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian76_theorem2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian75_corollary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian75_theorem1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian75_theorem2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.bing60_plane' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian76_lemma4_of_branch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian76_lemma4_seq_of_branch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian76_lemma4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.hagopian76_lemma4_seq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.isAdmissibleMap_symm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.interior_symm_fibre' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.meets_inter_of_cover' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.ext_of_branch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.lemma4_of_branch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.lemma4_seq_of_branch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.layer_one_subset_closure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.tail_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.false_of_layer_open' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.three_continua' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.exists_image_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.ext_of_irreducible_union' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.not_subset_layer_of_open' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.ext_of_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.ext_of_side' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.exists_proper_extension' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.lemma4_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Hagopian.lemma4_seq_aux' depends on axioms: [propext, Classical.choice, Quot.sound]

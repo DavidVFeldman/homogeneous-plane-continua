@@ -1,0 +1,1080 @@
+engine-batch55: the four-leg engine of HPC/Fold/Leg4.lean, with the two floor
+announcements read at P-3 and P-4 (which is what they are when M = P-2), swept over
+every parameter set L=0, H=9, L+2 <= P <= L+6, L+1 <= M <= P-2, M+3 <= K <= H-1,
+H <= K+3, P <= K.  For each set: the arms of the corpus based within two of P that
+satisfy the three announcements, the steps at which the greedy leaves Val4, the arms
+that do not fold onto the walk at all, and the invariant of gseq4_inv.
+
+---- L=0 H=9 K=6 M=1 P=3 (walk of 24 times: 2 3 4 5 6 5 4 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  Leg4, at M-1 and M-2 (floor 0, deep -1): announced arms 407627; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 1: announced 14052, Val4 fails 0, does not fold 0
+    base 2: announced 96018, Val4 fails 0, does not fold 0
+    base 3: announced 297557, Val4 fails 0, does not fold 0
+  Leg4Wide, at P-3 and P-4 (floor 0, deep -1): announced arms 404703; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 1: announced 13944, Val4 fails 0, does not fold 0
+    base 2: announced 95330, Val4 fails 0, does not fold 0
+    base 3: announced 295429, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=7 M=1 P=3 (walk of 26 times: 2 3 4 5 6 7 6 5 4 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  Leg4, at M-1 and M-2 (floor 0, deep -1): announced arms 419798; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 1: announced 12861, Val4 fails 0, does not fold 0
+    base 2: announced 91206, Val4 fails 0, does not fold 0
+    base 3: announced 315731, Val4 fails 0, does not fold 0
+  Leg4Wide, at P-3 and P-4 (floor 0, deep -1): announced arms 418795; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 1: announced 12828, Val4 fails 0, does not fold 0
+    base 2: announced 90985, Val4 fails 0, does not fold 0
+    base 3: announced 314982, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=8 M=1 P=3 (walk of 28 times: 2 3 4 5 6 7 8 7 6 5 4 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  Leg4, at M-1 and M-2 (floor 0, deep -1): announced arms 381638; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 1: announced 11702, Val4 fails 0, does not fold 0
+    base 2: announced 80759, Val4 fails 0, does not fold 0
+    base 3: announced 289177, Val4 fails 0, does not fold 0
+  Leg4Wide, at P-3 and P-4 (floor 0, deep -1): announced arms 380856; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 1: announced 11679, Val4 fails 0, does not fold 0
+    base 2: announced 80618, Val4 fails 0, does not fold 0
+    base 3: announced 288559, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=6 M=1 P=4 (walk of 23 times: 3 4 5 6 5 4 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 2, folds = 0):
+    2 1 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 2):
+    2 1 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 2:
+    2 1 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 4, folds = 0):
+    2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 4):
+    2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 4:
+    2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 5, folds = 0):
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 5):
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 5:
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 6, folds = 0):
+    2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 6):
+    2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 6:
+    2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the greedy leaves Val4 at step 9 (arm 0 at basepoint 8, folds = 0):
+    2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 8):
+    2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 9, arm 0 at basepoint 8:
+    2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3
+  [thin 0] the greedy leaves Val4 at step 8 (arm 0 at basepoint 9, folds = 0):
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 9):
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] the INVARIANT fails (Val4) at step 8, arm 0 at basepoint 9:
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] the greedy leaves Val4 at step 7 (arm 0 at basepoint 10, folds = 0):
+    2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 10):
+    2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1
+  [thin 0] the greedy leaves Val4 at step 6 (arm 0 at basepoint 11, folds = 0):
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 11):
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  Leg4, at M-1 and M-2 (floor 0, deep -1): announced arms 859721; the greedy leaves Val4 at 136966; the arm does not fold at 136966; the invariant fails at 136966/0
+    base 2: announced 99365, Val4 fails 36285, does not fold 36285
+    base 3: announced 300610, Val4 fails 62064, does not fold 62064
+    base 4: announced 459746, Val4 fails 38617, does not fold 38617
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 1, deep 0): announced arms 526970; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 2: announced 43211, Val4 fails 0, does not fold 0
+    base 3: announced 167120, Val4 fails 0, does not fold 0
+    base 4: announced 316639, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=7 M=1 P=4 (walk of 25 times: 3 4 5 6 7 6 5 4 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 2, folds = 0):
+    2 1 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 2):
+    2 1 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 2:
+    2 1 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 4, folds = 0):
+    2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 4):
+    2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 4:
+    2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 5, folds = 0):
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 5):
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 5:
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 6, folds = 0):
+    2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 6):
+    2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 6:
+    2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the greedy leaves Val4 at step 9 (arm 0 at basepoint 8, folds = 0):
+    2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 8):
+    2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 9, arm 0 at basepoint 8:
+    2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3
+  [thin 0] the greedy leaves Val4 at step 8 (arm 0 at basepoint 9, folds = 0):
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 9):
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] the INVARIANT fails (Val4) at step 8, arm 0 at basepoint 9:
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] the greedy leaves Val4 at step 7 (arm 0 at basepoint 10, folds = 0):
+    2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 10):
+    2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1
+  [thin 0] the greedy leaves Val4 at step 6 (arm 0 at basepoint 11, folds = 0):
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 11):
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  Leg4, at M-1 and M-2 (floor 0, deep -1): announced arms 986069; the greedy leaves Val4 at 216048; the arm does not fold at 216048; the invariant fails at 216048/0
+    base 2: announced 95572, Val4 fails 43173, does not fold 43173
+    base 3: announced 322958, Val4 fails 87620, does not fold 87620
+    base 4: announced 567539, Val4 fails 85255, does not fold 85255
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 1, deep 0): announced arms 572946; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 2: announced 38649, Val4 fails 0, does not fold 0
+    base 3: announced 167573, Val4 fails 0, does not fold 0
+    base 4: announced 366724, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=8 M=1 P=4 (walk of 27 times: 3 4 5 6 7 8 7 6 5 4 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 2, folds = 0):
+    2 1 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 2):
+    2 1 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 2:
+    2 1 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 4, folds = 0):
+    2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 4):
+    2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 4:
+    2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 5, folds = 0):
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 5):
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 5:
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 6, folds = 0):
+    2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 6):
+    2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 6:
+    2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the greedy leaves Val4 at step 9 (arm 0 at basepoint 8, folds = 0):
+    2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 8):
+    2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 9, arm 0 at basepoint 8:
+    2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3
+  [thin 0] the greedy leaves Val4 at step 8 (arm 0 at basepoint 9, folds = 0):
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 9):
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] the INVARIANT fails (Val4) at step 8, arm 0 at basepoint 9:
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] the greedy leaves Val4 at step 7 (arm 0 at basepoint 10, folds = 0):
+    2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 10):
+    2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1
+  [thin 0] the greedy leaves Val4 at step 6 (arm 0 at basepoint 11, folds = 0):
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 11):
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  Leg4, at M-1 and M-2 (floor 0, deep -1): announced arms 960186; the greedy leaves Val4 at 316194; the arm does not fold at 316194; the invariant fails at 316194/0
+    base 2: announced 86220, Val4 fails 47819, does not fold 47819
+    base 3: announced 303014, Val4 fails 120199, does not fold 120199
+    base 4: announced 570952, Val4 fails 148176, does not fold 148176
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 1, deep 0): announced arms 325276; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 2: announced 22152, Val4 fails 0, does not fold 0
+    base 3: announced 94460, Val4 fails 0, does not fold 0
+    base 4: announced 208664, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=6 M=2 P=4 (walk of 21 times: 3 4 5 6 5 4 3 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  Leg4, at M-1 and M-2 (floor 1, deep 0): announced arms 735309; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 2: announced 51331, Val4 fails 0, does not fold 0
+    base 3: announced 225226, Val4 fails 0, does not fold 0
+    base 4: announced 458752, Val4 fails 0, does not fold 0
+  Leg4Wide, at P-3 and P-4 (floor 1, deep 0): announced arms 736635; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 2: announced 51421, Val4 fails 0, does not fold 0
+    base 3: announced 225617, Val4 fails 0, does not fold 0
+    base 4: announced 459597, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=7 M=2 P=4 (walk of 23 times: 3 4 5 6 7 6 5 4 3 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  Leg4, at M-1 and M-2 (floor 1, deep 0): announced arms 683001; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 2: announced 41936, Val4 fails 0, does not fold 0
+    base 3: announced 193483, Val4 fails 0, does not fold 0
+    base 4: announced 447582, Val4 fails 0, does not fold 0
+  Leg4Wide, at P-3 and P-4 (floor 1, deep 0): announced arms 681968; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 2: announced 41875, Val4 fails 0, does not fold 0
+    base 3: announced 193197, Val4 fails 0, does not fold 0
+    base 4: announced 446896, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=8 M=2 P=4 (walk of 25 times: 3 4 5 6 7 8 7 6 5 4 3 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  Leg4, at M-1 and M-2 (floor 1, deep 0): announced arms 539316; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 2: announced 32536, Val4 fails 0, does not fold 0
+    base 3: announced 148797, Val4 fails 0, does not fold 0
+    base 4: announced 357983, Val4 fails 0, does not fold 0
+  Leg4Wide, at P-3 and P-4 (floor 1, deep 0): announced arms 542212; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 2: announced 32697, Val4 fails 0, does not fold 0
+    base 3: announced 149567, Val4 fails 0, does not fold 0
+    base 4: announced 359948, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=6 M=1 P=5 (walk of 22 times: 4 5 6 5 4 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 5, folds = 0):
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 5):
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 5:
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 9, folds = 0):
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 9):
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 9:
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 11, folds = 0):
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 11):
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 11:
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 12, folds = 0):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 12):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 12:
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 13, folds = 0):
+    3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 13):
+    3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 13:
+    3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 15, folds = 0):
+    3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 15):
+    3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 15:
+    3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 19, folds = 0):
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 19):
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 21, folds = 0):
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 21):
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4
+  Leg4, at M-1 and M-2 (floor 0, deep -1): announced arms 1193746; the greedy leaves Val4 at 332587; the arm does not fold at 332587; the invariant fails at 332587/0
+    base 3: announced 309049, Val4 fails 147695, does not fold 147695
+    base 4: announced 478765, Val4 fails 144015, does not fold 144015
+    base 5: announced 405932, Val4 fails 40877, does not fold 40877
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 2, deep 1): announced arms 255970; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 3: announced 43011, Val4 fails 0, does not fold 0
+    base 4: announced 96594, Val4 fails 0, does not fold 0
+    base 5: announced 116365, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=7 M=1 P=5 (walk of 24 times: 4 5 6 7 6 5 4 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 5, folds = 0):
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 5):
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 5:
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 9, folds = 0):
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 9):
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 9:
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 11, folds = 0):
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 11):
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 11:
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 12, folds = 0):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 12):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 12:
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 13, folds = 0):
+    3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 13):
+    3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 13:
+    3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 15, folds = 0):
+    3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 15):
+    3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 15:
+    3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 19, folds = 0):
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 19):
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 21, folds = 0):
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 21):
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4
+  Leg4, at M-1 and M-2 (floor 0, deep -1): announced arms 1457516; the greedy leaves Val4 at 571745; the arm does not fold at 571745; the invariant fails at 571745/0
+    base 3: announced 327018, Val4 fails 203834, does not fold 203834
+    base 4: announced 574836, Val4 fails 244552, does not fold 244552
+    base 5: announced 555662, Val4 fails 123359, does not fold 123359
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 2, deep 1): announced arms 118865; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 3: announced 16310, Val4 fails 0, does not fold 0
+    base 4: announced 43140, Val4 fails 0, does not fold 0
+    base 5: announced 59415, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=8 M=1 P=5 (walk of 26 times: 4 5 6 7 8 7 6 5 4 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 5, folds = 0):
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 5):
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 5:
+    3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 9, folds = 0):
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 9):
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 9:
+    3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 11, folds = 0):
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 11):
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 11:
+    3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 12, folds = 0):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 12):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 12:
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 13, folds = 0):
+    3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 13):
+    3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 13:
+    3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 15, folds = 0):
+    3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 15):
+    3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 15:
+    3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 19, folds = 0):
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 19):
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 21, folds = 0):
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 21):
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4
+  Leg4, at M-1 and M-2 (floor 0, deep -1): announced arms 1499886; the greedy leaves Val4 at 803429; the arm does not fold at 803429; the invariant fails at 803429/0
+    base 3: announced 308979, Val4 fails 234225, does not fold 234225
+    base 4: announced 581624, Val4 fails 330341, does not fold 330341
+    base 5: announced 609283, Val4 fails 238863, does not fold 238863
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 2, deep 1): announced arms 189107; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 3: announced 18675, Val4 fails 0, does not fold 0
+    base 4: announced 63043, Val4 fails 0, does not fold 0
+    base 5: announced 107389, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=6 M=2 P=5 (walk of 20 times: 4 5 6 5 4 3 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 19, folds = 0):
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 19):
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 19:
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 21, folds = 0):
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 21):
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 21:
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 22, folds = 0):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 22):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 22:
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 23, folds = 0):
+    3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 23):
+    3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 23:
+    3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 43, folds = 0):
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 43):
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 43:
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 45, folds = 0):
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 45):
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 45:
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 46, folds = 0):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 46):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 47, folds = 0):
+    3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 47):
+    3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4
+  Leg4, at M-1 and M-2 (floor 1, deep 0): announced arms 1150021; the greedy leaves Val4 at 209641; the arm does not fold at 209641; the invariant fails at 209641/0
+    base 3: announced 238644, Val4 fails 81626, does not fold 81626
+    base 4: announced 464531, Val4 fails 97813, does not fold 97813
+    base 5: announced 446846, Val4 fails 30202, does not fold 30202
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 2, deep 1): announced arms 543407; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 3: announced 75824, Val4 fails 0, does not fold 0
+    base 4: announced 205351, Val4 fails 0, does not fold 0
+    base 5: announced 262232, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=7 M=2 P=5 (walk of 22 times: 4 5 6 7 6 5 4 3 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 43, folds = 0):
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 43):
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 43:
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 45, folds = 0):
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 45):
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 45:
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 46, folds = 0):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 46):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 46:
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 47, folds = 0):
+    3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 47):
+    3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 47:
+    3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4
+  [thin 0] the greedy leaves Val4 at step 9 (arm 0 at basepoint 49, folds = 0):
+    3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 49):
+    3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 9, arm 0 at basepoint 49:
+    3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4
+  [thin 0] the greedy leaves Val4 at step 8 (arm 0 at basepoint 50, folds = 0):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 50):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 8, arm 0 at basepoint 50:
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 7 (arm 0 at basepoint 51, folds = 0):
+    3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 51):
+    3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2
+  [thin 0] the greedy leaves Val4 at step 6 (arm 0 at basepoint 52, folds = 0):
+    4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 52):
+    4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3
+  Leg4, at M-1 and M-2 (floor 1, deep 0): announced arms 1202571; the greedy leaves Val4 at 318738; the arm does not fold at 318738; the invariant fails at 318738/0
+    base 3: announced 211151, Val4 fails 96936, does not fold 96936
+    base 4: announced 465542, Val4 fails 141291, does not fold 141291
+    base 5: announced 525878, Val4 fails 80511, does not fold 80511
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 2, deep 1): announced arms 530816; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 3: announced 62831, Val4 fails 0, does not fold 0
+    base 4: announced 188615, Val4 fails 0, does not fold 0
+    base 5: announced 279370, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=8 M=2 P=5 (walk of 24 times: 4 5 6 7 8 7 6 5 4 3 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 101, folds = 0):
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 101):
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 101:
+    3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 103, folds = 0):
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 103):
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 103:
+    3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 104, folds = 0):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 104):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 104:
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 105, folds = 0):
+    3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 105):
+    3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 105:
+    3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4
+  [thin 0] the greedy leaves Val4 at step 9 (arm 0 at basepoint 107, folds = 0):
+    3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 107):
+    3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 9, arm 0 at basepoint 107:
+    3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4
+  [thin 0] the greedy leaves Val4 at step 8 (arm 0 at basepoint 108, folds = 0):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 108):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 8, arm 0 at basepoint 108:
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 7 (arm 0 at basepoint 109, folds = 0):
+    3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 109):
+    3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2
+  [thin 0] the greedy leaves Val4 at step 6 (arm 0 at basepoint 110, folds = 0):
+    4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 110):
+    4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3
+  Leg4, at M-1 and M-2 (floor 1, deep 0): announced arms 1042121; the greedy leaves Val4 at 397621; the arm does not fold at 397621; the invariant fails at 397621/0
+    base 3: announced 168233, Val4 fails 98220, does not fold 98220
+    base 4: announced 392647, Val4 fails 163773, does not fold 163773
+    base 5: announced 481241, Val4 fails 135628, does not fold 135628
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 2, deep 1): announced arms 188566; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 3: announced 18620, Val4 fails 0, does not fold 0
+    base 4: announced 62873, Val4 fails 0, does not fold 0
+    base 5: announced 107073, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=6 M=3 P=5 (walk of 18 times: 4 5 6 5 4 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  Leg4, at M-1 and M-2 (floor 2, deep 1): announced arms 791809; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 3: announced 104891, Val4 fails 0, does not fold 0
+    base 4: announced 297434, Val4 fails 0, does not fold 0
+    base 5: announced 389484, Val4 fails 0, does not fold 0
+  Leg4Wide, at P-3 and P-4 (floor 2, deep 1): announced arms 791625; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 3: announced 104917, Val4 fails 0, does not fold 0
+    base 4: announced 297364, Val4 fails 0, does not fold 0
+    base 5: announced 389344, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=7 M=3 P=5 (walk of 20 times: 4 5 6 7 6 5 4 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  Leg4, at M-1 and M-2 (floor 2, deep 1): announced arms 692453; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 3: announced 77949, Val4 fails 0, does not fold 0
+    base 4: announced 239842, Val4 fails 0, does not fold 0
+    base 5: announced 374662, Val4 fails 0, does not fold 0
+  Leg4Wide, at P-3 and P-4 (floor 2, deep 1): announced arms 694219; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 3: announced 78157, Val4 fails 0, does not fold 0
+    base 4: announced 240441, Val4 fails 0, does not fold 0
+    base 5: announced 375621, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=8 M=3 P=5 (walk of 22 times: 4 5 6 7 8 7 6 5 4 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  Leg4, at M-1 and M-2 (floor 2, deep 1): announced arms 503401; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 3: announced 51253, Val4 fails 0, does not fold 0
+    base 4: announced 167829, Val4 fails 0, does not fold 0
+    base 5: announced 284319, Val4 fails 0, does not fold 0
+  Leg4Wide, at P-3 and P-4 (floor 2, deep 1): announced arms 502924; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 3: announced 51207, Val4 fails 0, does not fold 0
+    base 4: announced 167691, Val4 fails 0, does not fold 0
+    base 5: announced 284026, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=6 M=1 P=6 (walk of 21 times: 5 6 5 4 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 12, folds = 0):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 12):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 12:
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 22, folds = 0):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 22):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 22:
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 26, folds = 0):
+    4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 26):
+    4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 26:
+    4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 29, folds = 0):
+    5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 29):
+    5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 29:
+    5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 30, folds = 0):
+    4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 30):
+    4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 30:
+    4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 32, folds = 0):
+    4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 32):
+    4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 1 at basepoint 32, folds = 0):
+    4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 1 2 1 0
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 1 at basepoint 32):
+    4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 1 2 1 0
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 32:
+    4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 36, folds = 0):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 36):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  Leg4, at M-1 and M-2 (floor 0, deep -1): announced arms 1088245; the greedy leaves Val4 at 341307; the arm does not fold at 341307; the invariant fails at 341307/0
+    base 4: announced 492612, Val4 fails 223181, does not fold 223181
+    base 5: announced 412798, Val4 fails 118126, does not fold 118126
+    base 6: announced 182835, Val4 fails 0, does not fold 0
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 3, deep 2): announced arms 0; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 4: announced 0, Val4 fails 0, does not fold 0
+    base 5: announced 0, Val4 fails 0, does not fold 0
+    base 6: announced 0, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=7 M=1 P=6 (walk of 23 times: 5 6 7 6 5 4 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 12, folds = 0):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 12):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 12:
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 22, folds = 0):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 22):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 22:
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 26, folds = 0):
+    4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 26):
+    4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 26:
+    4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 28, folds = 0):
+    4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 28):
+    4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 28:
+    4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 29, folds = 0):
+    5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 29):
+    5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 29:
+    5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 30, folds = 0):
+    4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 30):
+    4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 30:
+    4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 32, folds = 0):
+    4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 32):
+    4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 36, folds = 0):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 36):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  Leg4, at M-1 and M-2 (floor 0, deep -1): announced arms 1445601; the greedy leaves Val4 at 719831; the arm does not fold at 719831; the invariant fails at 719831/0
+    base 4: announced 583102, Val4 fails 382399, does not fold 382399
+    base 5: announced 562767, Val4 fails 271012, does not fold 271012
+    base 6: announced 299732, Val4 fails 66420, does not fold 66420
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 3, deep 2): announced arms 0; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 4: announced 0, Val4 fails 0, does not fold 0
+    base 5: announced 0, Val4 fails 0, does not fold 0
+    base 6: announced 0, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=8 M=1 P=6 (walk of 25 times: 5 6 7 8 7 6 5 4 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 12, folds = 0):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 12):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 12:
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 22, folds = 0):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 22):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 22:
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 26, folds = 0):
+    4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 26):
+    4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 26:
+    4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 28, folds = 0):
+    4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 28):
+    4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 28:
+    4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 29, folds = 0):
+    5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 29):
+    5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 29:
+    5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 30, folds = 0):
+    4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 30):
+    4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 30:
+    4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 32, folds = 0):
+    4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 32):
+    4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 36, folds = 0):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 36):
+    4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  Leg4, at M-1 and M-2 (floor 0, deep -1): announced arms 1553766; the greedy leaves Val4 at 1028330; the arm does not fold at 1028330; the invariant fails at 1028330/0
+    base 4: announced 583582, Val4 fails 477570, does not fold 477570
+    base 5: announced 611233, Val4 fails 397927, does not fold 397927
+    base 6: announced 358951, Val4 fails 152833, does not fold 152833
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 3, deep 2): announced arms 101795; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 4: announced 15209, Val4 fails 0, does not fold 0
+    base 5: announced 38627, Val4 fails 0, does not fold 0
+    base 6: announced 47959, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=6 M=2 P=6 (walk of 19 times: 5 6 5 4 3 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 22, folds = 0):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 22):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 22:
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 26, folds = 0):
+    4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 26):
+    4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 26:
+    4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 46, folds = 0):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 46):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 46:
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 50, folds = 0):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 50):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 50:
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 53, folds = 0):
+    5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 53):
+    5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 53:
+    5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 54, folds = 0):
+    4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 54):
+    4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 54:
+    4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 56, folds = 0):
+    4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 56):
+    4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 60, folds = 0):
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 60):
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  Leg4, at M-1 and M-2 (floor 1, deep 0): announced arms 1179599; the greedy leaves Val4 at 302122; the arm does not fold at 302122; the invariant fails at 302122/0
+    base 4: announced 482354, Val4 fails 188902, does not fold 188902
+    base 5: announced 465729, Val4 fails 113220, does not fold 113220
+    base 6: announced 231516, Val4 fails 0, does not fold 0
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 3, deep 2): announced arms 181378; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 4: announced 51138, Val4 fails 0, does not fold 0
+    base 5: announced 74451, Val4 fails 0, does not fold 0
+    base 6: announced 55789, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=7 M=2 P=6 (walk of 21 times: 5 6 7 6 5 4 3 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 46, folds = 0):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 46):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 46:
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 50, folds = 0):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 50):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 50:
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 52, folds = 0):
+    4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 52):
+    4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 52:
+    4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 53, folds = 0):
+    5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 53):
+    5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 53:
+    5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 54, folds = 0):
+    4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 54):
+    4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 54:
+    4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 56, folds = 0):
+    4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 56):
+    4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 56:
+    4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 60, folds = 0):
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 60):
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 62, folds = 0):
+    4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 62):
+    4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5
+  Leg4, at M-1 and M-2 (floor 1, deep 0): announced arms 1327618; the greedy leaves Val4 at 564534; the arm does not fold at 564534; the invariant fails at 564534/0
+    base 4: announced 478150, Val4 fails 277799, does not fold 277799
+    base 5: announced 535054, Val4 fails 227408, does not fold 227408
+    base 6: announced 314414, Val4 fails 59327, does not fold 59327
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 3, deep 2): announced arms 60643; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 4: announced 12832, Val4 fails 0, does not fold 0
+    base 5: announced 24509, Val4 fails 0, does not fold 0
+    base 6: announced 23302, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=8 M=2 P=6 (walk of 23 times: 5 6 7 8 7 6 5 4 3 2 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 104, folds = 0):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 104):
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 104:
+    4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 108, folds = 0):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 108):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 108:
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 110, folds = 0):
+    4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 110):
+    4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 110:
+    4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 111, folds = 0):
+    5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 111):
+    5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 111:
+    5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 112, folds = 0):
+    4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 112):
+    4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 112:
+    4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 114, folds = 0):
+    4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 114):
+    4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 114:
+    4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 118, folds = 0):
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 118):
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 120, folds = 0):
+    4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 120):
+    4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5
+  Leg4, at M-1 and M-2 (floor 1, deep 0): announced arms 1221993; the greedy leaves Val4 at 713991; the arm does not fold at 713991; the invariant fails at 713991/0
+    base 4: announced 405898, Val4 fails 303412, does not fold 303412
+    base 5: announced 494421, Val4 fails 289278, does not fold 289278
+    base 6: announced 321674, Val4 fails 121301, does not fold 121301
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 3, deep 2): announced arms 101736; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 4: announced 15205, Val4 fails 0, does not fold 0
+    base 5: announced 38603, Val4 fails 0, does not fold 0
+    base 6: announced 47928, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=6 M=3 P=6 (walk of 17 times: 5 6 5 4 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 108, folds = 0):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 108):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 108:
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 118, folds = 0):
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 118):
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 118:
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 121, folds = 0):
+    5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 121):
+    5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 121:
+    5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 122, folds = 0):
+    4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 122):
+    4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 122:
+    4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 131, folds = 0):
+    5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 131):
+    5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 131:
+    5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 132, folds = 0):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 132):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 132:
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 1 (arm 1 at basepoint 206, folds = 0):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 1 at basepoint 206):
+    4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3
+  [thin 0] the greedy leaves Val4 at step 2 (arm 1 at basepoint 207, folds = 0):
+    5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 1 at basepoint 207):
+    5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4
+  Leg4, at M-1 and M-2 (floor 2, deep 1): announced arms 938155; the greedy leaves Val4 at 147342; the arm does not fold at 147342; the invariant fails at 147342/0
+    base 4: announced 319052, Val4 fails 84400, does not fold 84400
+    base 5: announced 390290, Val4 fails 62942, does not fold 62942
+    base 6: announced 228813, Val4 fails 0, does not fold 0
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 3, deep 2): announced arms 388329; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 4: announced 89534, Val4 fails 0, does not fold 0
+    base 5: announced 162846, Val4 fails 0, does not fold 0
+    base 6: announced 135949, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=7 M=3 P=6 (walk of 19 times: 5 6 7 6 5 4 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 118, folds = 0):
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 118):
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 118:
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 120, folds = 0):
+    4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 120):
+    4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 120:
+    4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 121, folds = 0):
+    5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 121):
+    5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 121:
+    5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 122, folds = 0):
+    4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 122):
+    4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 122:
+    4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 1 at basepoint 216, folds = 0):
+    4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 1 at basepoint 216):
+    4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 1 at basepoint 216:
+    4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5
+  [thin 0] the greedy leaves Val4 at step 2 (arm 1 at basepoint 217, folds = 0):
+    5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 1 at basepoint 217):
+    5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 1 at basepoint 217:
+    5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6
+  [thin 0] the greedy leaves Val4 at step 3 (arm 1 at basepoint 218, folds = 0):
+    4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 1 at basepoint 218):
+    4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5
+  [thin 0] the greedy leaves Val4 at step 1 (arm 1 at basepoint 220, folds = 0):
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 1 at basepoint 220):
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5
+  Leg4, at M-1 and M-2 (floor 2, deep 1): announced arms 941043; the greedy leaves Val4 at 256417; the arm does not fold at 256417; the invariant fails at 256417/0
+    base 4: announced 270338, Val4 fails 110835, does not fold 110835
+    base 5: announced 390248, Val4 fails 113033, does not fold 113033
+    base 6: announced 280457, Val4 fails 32549, does not fold 32549
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 3, deep 2): announced arms 372612; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 4: announced 72881, Val4 fails 0, does not fold 0
+    base 5: announced 151661, Val4 fails 0, does not fold 0
+    base 6: announced 148070, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=8 M=3 P=6 (walk of 21 times: 5 6 7 8 7 6 5 4 3 4 5 6 7 8 7 6 5 4 3 2 1)
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 282, folds = 0):
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 282):
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 282:
+    4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5
+  [thin 0] the greedy leaves Val4 at step 3 (arm 0 at basepoint 284, folds = 0):
+    4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 284):
+    4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 3, arm 0 at basepoint 284:
+    4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5
+  [thin 0] the greedy leaves Val4 at step 2 (arm 0 at basepoint 285, folds = 0):
+    5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 285):
+    5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6
+  [thin 0] the INVARIANT fails (Val4) at step 2, arm 0 at basepoint 285:
+    5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6
+  [thin 0] the greedy leaves Val4 at step 1 (arm 0 at basepoint 286, folds = 0):
+    4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 286):
+    4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5
+  [thin 0] the INVARIANT fails (Val4) at step 1, arm 0 at basepoint 286:
+    4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5
+  [thin 0] the greedy leaves Val4 at step 9 (arm 0 at basepoint 288, folds = 0):
+    4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 288):
+    4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5
+  [thin 0] the INVARIANT fails (Val4) at step 9, arm 0 at basepoint 288:
+    4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5
+  [thin 0] the greedy leaves Val4 at step 8 (arm 0 at basepoint 289, folds = 0):
+    5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 289):
+    5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4
+  [thin 0] the INVARIANT fails (Val4) at step 8, arm 0 at basepoint 289:
+    5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4
+  [thin 0] the greedy leaves Val4 at step 7 (arm 0 at basepoint 290, folds = 0):
+    4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 290):
+    4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3
+  [thin 0] the greedy leaves Val4 at step 6 (arm 0 at basepoint 291, folds = 0):
+    5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4
+  [thin 0] an arm with all three announcements does NOT fold onto 5 -> 7 -> 3 -> 8 -> 1 (arm 0 at basepoint 291):
+    5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4
+  Leg4, at M-1 and M-2 (floor 2, deep 1): announced arms 758084; the greedy leaves Val4 at 302489; the arm does not fold at 302489; the invariant fails at 302489/0
+    base 4: announced 195369, Val4 fails 107084, does not fold 107084
+    base 5: announced 311664, Val4 fails 130298, does not fold 130298
+    base 6: announced 251051, Val4 fails 65107, does not fold 65107
+  *** this reading FAILS at this parameter set ***
+  Leg4Wide, at P-3 and P-4 (floor 3, deep 2): announced arms 101494; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 4: announced 15176, Val4 fails 0, does not fold 0
+    base 5: announced 38509, Val4 fails 0, does not fold 0
+    base 6: announced 47809, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=7 M=4 P=6 (walk of 17 times: 5 6 7 6 5 4 5 6 7 8 7 6 5 4 3 2 1)
+  Leg4, at M-1 and M-2 (floor 3, deep 2): announced arms 527292; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 4: announced 104738, Val4 fails 0, does not fold 0
+    base 5: announced 209627, Val4 fails 0, does not fold 0
+    base 6: announced 212927, Val4 fails 0, does not fold 0
+  Leg4Wide, at P-3 and P-4 (floor 3, deep 2): announced arms 528439; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 4: announced 104987, Val4 fails 0, does not fold 0
+    base 5: announced 210065, Val4 fails 0, does not fold 0
+    base 6: announced 213387, Val4 fails 0, does not fold 0
+---- L=0 H=9 K=8 M=4 P=6 (walk of 19 times: 5 6 7 8 7 6 5 4 5 6 7 8 7 6 5 4 3 2 1)
+  Leg4, at M-1 and M-2 (floor 3, deep 2): announced arms 362815; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 4: announced 60485, Val4 fails 0, does not fold 0
+    base 5: announced 139612, Val4 fails 0, does not fold 0
+    base 6: announced 162718, Val4 fails 0, does not fold 0
+  Leg4Wide, at P-3 and P-4 (floor 3, deep 2): announced arms 363711; the greedy leaves Val4 at 0; the arm does not fold at 0; the invariant fails at 0/0
+    base 4: announced 60620, Val4 fails 0, does not fold 0
+    base 5: announced 139949, Val4 fails 0, does not fold 0
+    base 6: announced 163142, Val4 fails 0, does not fold 0
+
+================ 29 parameter sets; the reading of HPC/Fold/Leg4Wide.lean fails at 0 of them ================

@@ -1,0 +1,52 @@
+'HPC.Fold.Z77.greedy_fit_below' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.greedy_fit_above' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.fold_of_fit_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.fold_low_end_mode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.fold_high_end_mode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.crkOn_lowExt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.crkOn_highExt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.ok_lowExt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.evUp_reflect' depends on axioms: [propext, Quot.sound]
+'HPC.Fold.B79.okAbove_of_not_evUp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.okBelow_of_not_evDown' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.finfold_low' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.finfold_low_any' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.finfold_high' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.pair_exclusion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.meet_low_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.seq_facts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.pair_prefix_fold' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.splice_schedule_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.pair_suffix_fold' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.assemble_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.theorem4_pair_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B79.pair_windows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.theorem4_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.theorem4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Chain.inter_link_nonempty_between' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Chain.dist_le_of_mem_link' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Description.theorem10_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Description.theorem10' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Description.theorem6_shift_of_patternFollowing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Description.patternFollowing_of_theorem6Pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.theorem3_end' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+@theorem4_pair : ∀ {X : Type u_1} [inst : MetricSpace X] {n k : ℕ} (hk : 3 ≤ k) {E : HPC.Chain X n} {D : HPC.Chain X k},
+  E.IsCrookedIn' D →
+    ∀ (r r' s' s : Fin n),
+      ↑r' = ↑r + 1 →
+        ↑s = ↑s' + 1 →
+          r' ≤ s' →
+            ∀ (hlow : ∃ h, r ≤ h ∧ h ≤ s ∧ (E.link h ∩ D.link ⟨0, ⋯⟩).Nonempty),
+              (∃ h, r ≤ h ∧ h ≤ s ∧ (E.link h ∩ D.link ⟨k - 1, ⋯⟩).Nonempty) →
+                ∃ q β',
+                  ∃ (hβ' : HPC.Chain.IsBlockMap β'),
+                    ↑(β' r) = 0 ∧
+                      ↑(β' r') = 0 ∧
+                        ↑(β' s') = q - 1 ∧
+                          ↑(β' s) = q - 1 ∧ ∀ (u : Fin q), ∃ j, (E.ofBlocks β' hβ').link u ⊆ D.unionRange j 3
+@HPC.Description.theorem10 : ∀ {X : Type u_1} [inst : MetricSpace X] {P Q : X} (Δ : HPC.Description X P Q),
+  Q78.Theorem10Statement Δ
+@HPC.Description.Theorem5Statement : {X : Type u_1} → [inst : MetricSpace X] → {P Q : X} → HPC.Description X P Q → Prop
+@HPC.Description.Theorem6Statement : {X : Type u_1} → [inst : MetricSpace X] → {P Q : X} → HPC.Description X P Q → Prop
+@HPC.Description.Theorem13Statement : {X : Type u_1} → [inst : MetricSpace X] → {P Q : X} → HPC.Description X P Q → Prop

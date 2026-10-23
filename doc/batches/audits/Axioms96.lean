@@ -1,0 +1,30 @@
+import HPC.Plane.Theorem11
+
+#print axioms HPC.Plane.theorem9_1951
+#print axioms HPC.Plane.endElt_mem_bingH
+#print axioms HPC.Plane.bingH_irreducible_singleton
+#print axioms HPC.Plane.meets_between
+#print axioms HPC.Plane.chain_ivt
+#print axioms HPC.Plane.chain_two_sets
+#print axioms HPC.Plane.isPreconnected_union_of_separated
+#print axioms HPC.Plane.not_isTriod_of_isSnakeLike
+#print axioms HPC.Plane.isSnakeLike_of_subcontinuum
+#print axioms HPC.Plane.isUnicoherent_of_isSnakeLike
+#print axioms HPC.Plane.isHereditarilyUnicoherent_of_isSnakeLike
+#print axioms HPC.Plane.isAtriodic_of_isSnakeLike
+#print axioms HPC.Plane.consec_meet
+#print axioms HPC.Plane.trim_first
+#print axioms HPC.Plane.epsCoverable_amalgam_gen
+#print axioms HPC.Plane.epsCoverable_amalgam
+#print axioms HPC.Plane.isContinuum_iInter_antitone
+#print axioms HPC.Plane.exists_minimal_notCoverable
+#print axioms HPC.Plane.exists_two_sides
+#print axioms HPC.Plane.sides_continua
+#print axioms HPC.Plane.condA_side
+#print axioms HPC.Plane.separation_of_degenerate
+#print axioms HPC.Plane.not_separation_of_accumulates_false
+#print axioms HPC.Plane.not_separation_of_accumulates'
+#print axioms HPC.Plane.condA_image_val
+#print axioms HPC.Plane.theorem11_1951_of_T10
+#print axioms HPC.Plane.theorem11_1951_iff_of_T10
+#print axioms HPC.Plane.exists_degenerate_interior_elt

@@ -1,0 +1,4 @@
+== census-batch42c 300 10 1 (random members of length 300)
+length 300, trials 10, sequences built: 10, span nine: 0
+branch 4: hits 0, unserved 0, served by the fixed walk 0, histogram:
+branch 5: hits 0, unserved 0, served by the fixed walk 0, histogram:

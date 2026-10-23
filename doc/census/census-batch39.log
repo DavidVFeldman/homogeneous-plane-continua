@@ -1,0 +1,27 @@
+census-batch39.log — span eight, the leaf basepoints
+
+Program: census-batch39.c (cc -O2 -o census39 census-batch39.c)
+Model: leaf conditions HighAt (p-3) 8 and LowAt 0 (p+3) on the arm, the full crookedness
+clause family Cl(a,b)/Dl(a,b) for all 0 <= a, a+3 <= b <= 8, one dichotomy split, and
+three-leg walk shapes of length at most 18.  Positive answers are sound (the automaton
+over-approximates the class of arms); negative answers are relative to the model.
+
+$ ./census39 8 18 1 3
+######## span 8, basepoint 3 ########
+  SPLIT at (0,7):
+    LowAt  branch: [2,3,4,5,6,5,4,3,2,1,2,3,4,5,6,7]
+    HighAt branch: [2,3,4,5,4,3,2,1,2,3,4,5,6,7]
+
+$ ./census39 8 18 1 5
+######## span 8, basepoint 5 ########
+  SPLIT at (1,8):
+    LowAt  branch: [6,5,4,3,4,5,6,7,6,5,4,3,2,1,0]
+    HighAt branch: [6,5,4,3,2,3,4,5,6,7,6,5,4,3,2,1,0]
+
+$ ./census39 8 18 1 4
+######## span 8, basepoint 4 ########
+  NOT SOLVED at depth 1, maxlen 18
+
+The four walks of the two solved basepoints are exactly the ones formalised in
+HPC/Fold/Span8.lean (basepoint 5 uses the reflected walk, one time shorter: the search's
+trailing 0 is not needed).

@@ -1,0 +1,14 @@
+VIOLATION: level 2 -> 1, time 0 -> -1, flags 1
+VIOLATION: level 2 -> 1, time 0 -> -1, flags 0
+L=0 H=9 K=8 P=4 guard=0 : reachable states 164, violations 2
+VIOLATION: level 2 -> 1, time 0 -> -1, flags 1
+VIOLATION: level 2 -> 1, time 0 -> -1, flags 0
+L=0 H=9 K=8 P=4 guard=1 : reachable states 163, violations 2
+VIOLATION: level 2 -> 1, time 0 -> -1, flags 1
+L=0 H=9 K=8 P=4 guard=2 : reachable states 164, violations 1
+L=0 H=9 K=8 P=4 guard=3 : reachable states 135, violations 0
+-- control: the repository's case P = L+3, K = L+5, H = L+7
+VIOLATION: level 1 -> 0, time 0 -> -1, flags 5
+VIOLATION: level 1 -> 0, time 0 -> -1, flags 4
+L=0 H=7 K=5 P=3 guard=0 : reachable states 125, violations 2
+L=0 H=7 K=5 P=3 guard=1 : reachable states 124, violations 0

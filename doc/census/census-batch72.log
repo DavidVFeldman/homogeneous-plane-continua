@@ -1,0 +1,192 @@
+census-batch72: the valley at L + 3 -- Valley3BeforeNine on a running arm.
+seed=70 windows-per-chain=40 mixtures-per-chain=6
+the four-leg family: 64 walks (32 parameter sets and their reflections)
+
+---- the corpus, chain by chain ----
+  bing 0 9: 986 links
+  VALLEY3 FAILS [the band, LowAt asked of nothing] bing 0 9       n= 986 i= 909 side=G |X|=  77 ascent=76 (a low time, but no peak five steps before it)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8
+    stored as witness-batch72-c0.txt (class 0, the band alone)
+  VALLEY3 FAILS [the band, LowAt on the running arm] bing 0 9       n= 986 i= 909 side=G |X|=  77 ascent=76 (a low time, but no peak five steps before it)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8
+    stored as witness-batch72-c1.txt (class 1, LowAt on the arm)
+  VALLEY3 FAILS [the branch (LowAt on both arms)] bing 0 9       n= 986 i= 909 side=G |X|=  77 ascent=76 (a low time, but no peak five steps before it)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8
+    stored as witness-batch72-c2.txt (class 2, the branch)
+  VALLEY3 FAILS [the band, LowAt asked of nothing] bing 0 9       n= 986 i= 911 side=G |X|=  75 ascent=74 (a low time, but no peak five steps before it)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6
+  VALLEY3 FAILS [the band, LowAt on the running arm] bing 0 9       n= 986 i= 911 side=G |X|=  75 ascent=74 (a low time, but no peak five steps before it)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6
+  VALLEY3 FAILS [the branch (LowAt on both arms)] bing 0 9       n= 986 i= 911 side=G |X|=  75 ascent=74 (a low time, but no peak five steps before it)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6
+  VALLEY3 FAILS [the band, LowAt asked of nothing] bing 0 9       n= 986 i= 913 side=G |X|=  73 ascent=72 (a low time, but no peak five steps before it)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6
+  VALLEY3 FAILS [the band, LowAt on the running arm] bing 0 9       n= 986 i= 913 side=G |X|=  73 ascent=72 (a low time, but no peak five steps before it)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6
+  VALLEY3 FAILS [the branch (LowAt on both arms)] bing 0 9       n= 986 i= 913 side=G |X|=  73 ascent=72 (a low time, but no peak five steps before it)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6
+  VALLEY3 FAILS [the band, LowAt asked of nothing] bing 0 9       n= 986 i= 917 side=G |X|=  69 ascent=68 (no time at 3 or below early enough)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6
+  VALLEY3 FAILS [the band, LowAt on the running arm] bing 0 9       n= 986 i= 917 side=G |X|=  69 ascent=68 (no time at 3 or below early enough)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6
+  VALLEY3 FAILS [the branch (LowAt on both arms)] bing 0 9       n= 986 i= 917 side=G |X|=  69 ascent=68 (no time at 3 or below early enough)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6
+  VALLEY3 FAILS [the band, LowAt asked of nothing] bing 0 9       n= 986 i= 919 side=G |X|=  67 ascent=66 (no time at 3 or below early enough)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 7 8
+  VALLEY3 FAILS [the band, LowAt on the running arm] bing 0 9       n= 986 i= 919 side=G |X|=  67 ascent=66 (no time at 3 or below early enough)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 7 8
+  VALLEY3 FAILS [the branch (LowAt on both arms)] bing 0 9       n= 986 i= 919 side=G |X|=  67 ascent=66 (no time at 3 or below early enough)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 7 8
+  VALLEY3 FAILS [the band, LowAt asked of nothing] bing 0 9       n= 986 i= 921 side=G |X|=  65 ascent=64 (no time at 3 or below early enough)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 7 8 7 6
+  VALLEY3 FAILS [the band, LowAt on the running arm] bing 0 9       n= 986 i= 921 side=G |X|=  65 ascent=64 (no time at 3 or below early enough)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 7 8 7 6
+  VALLEY3 FAILS [the branch (LowAt on both arms)] bing 0 9       n= 986 i= 921 side=G |X|=  65 ascent=64 (no time at 3 or below early enough)
+    a walk of the four-leg family serving both arms: yes; both arms satisfy the w72 sentence: no
+    the running arm: 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 7 8 7 6
+  bing 9 0: 986 links
+  bing 0 10: 2379 links  -> windows of span nine: 10 at grid offsets, 20 at random offsets
+  bing 0 11: 5742 links  -> windows of span nine: 10 at grid offsets, 12 at random offsets
+  bing 0 12: 13861 links  -> windows of span nine: 0 at grid offsets, 0 at random offsets
+  bing 0 13: 33462 links  -> windows of span nine: 0 at grid offsets, 0 at random offsets
+  vpath 0 9 (1,2): 174 links
+  vpath 9 0 (1,2): 174 links
+  vpath 0 9 (2,1): 174 links
+  vpath 9 0 (2,1): 174 links
+  vpath 0 9 (2,2): 66 links
+  vpath 9 0 (2,2): 66 links
+  vpath 0 9 (1,3): 104 links
+  vpath 9 0 (1,3): 104 links
+  random concatenations of Bing blocks: 2 used
+
+================ the corpus ================
+  base level sequences of band [0,9] swept: 64
+  pairs tried: 7049;  faithful: 7040;  scanned: 7040 (6796 distinct)
+  links: 12392192, of which not thin: 205420
+  basepoints of the band (rho i = L+5, LowAt asked of nothing): 3151162
+  basepoints of the branch L+5 (LowAt on both arms): 2444297
+  crossings of the trichotomy: 1351 (1351 distinct by their pair of arms)
+  high-run crossings: 229; arm lengths there: 105 to 2211
+
+======== question 2.1: Valley3BeforeNine on a running arm ========
+  a running arm is an arm of a basepoint at L+5 that reaches L+9 with
+  nothing at L+2 or below before its first such time (HighRunG/HighRunT).
+  Valley3BeforeNine is read by its own definition: a peak at L+6 or above
+  at arm index three or more, a time at L+3 or below five steps later, and
+  every ascent to L+9 at least six steps after that.
+
+  class                                    arms   holds    fails  ascent range   arm lengths
+  the band, LowAt asked of nothing       478735  284659   194076  [ 12, 396]  [  13, 2353]
+  the band, LowAt on the running arm     478735  284659   194076  [ 12, 396]  [  13, 2353]
+  the branch (LowAt on both arms)        478735  284659   194076  [ 12, 396]  [  13, 2353]
+  a running arm at a crossing               229     229        0  [104, 335]  [ 105, 1917]
+  the running arm of a high-run crossing    229     229        0  [104, 335]  [ 105, 1917]
+
+  where it fails:
+  the band, LowAt asked of nothing       194076 failures: 165724 with no time at L+3 or below early enough,
+      28352 with such a time but no peak five steps before it; the first ascent
+      of a failing arm ranges over [12, 178]; a walk of the four-leg family
+      serves both arms at 194076 of them and at none at 0; both arms satisfy the
+      w72 sentence at 0
+  the band, LowAt on the running arm     194076 failures: 165724 with no time at L+3 or below early enough,
+      28352 with such a time but no peak five steps before it; the first ascent
+      of a failing arm ranges over [12, 178]; a walk of the four-leg family
+      serves both arms at 194076 of them and at none at 0; both arms satisfy the
+      w72 sentence at 0
+  the branch (LowAt on both arms)        194076 failures: 165724 with no time at L+3 or below early enough,
+      28352 with such a time but no peak five steps before it; the first ascent
+      of a failing arm ranges over [12, 178]; a walk of the four-leg family
+      serves both arms at 194076 of them and at none at 0; both arms satisfy the
+      w72 sentence at 0
+  a running arm at a crossing            never fails
+  the running arm of a high-run crossing never fails
+
+  the histogram of the first ascent of a running arm (class 0):
+    12:10767 22:10023 26:10021 27:223 28:10027 30:10020 31:230 32:10020 36:10025 46:10026 50:9276 51:216 52:9280 54:9276 55:216 56:9277 60:9277 61:221 62:9276  64+:341038
+  (the timing law forbids an ascent before arm index 12, and
+   Valley3BeforeNine is unsatisfiable when the first ascent is at 13 or less:
+   it asks for a peak at index three or more and a valley five steps later,
+   six steps before the ascent.)
+
+======== question 2.2: the reading that places the valley ========
+  at each of the 229 high-run crossings, the descending pairing from a link
+  carrying L+5 on the running arm's own side to a link carrying L+2 later in
+  chain order; its first landmark carries L+3.
+    a link carrying L+5 on the running arm's side within 400 steps: 229
+    and a link carrying L+2 on the partner's side within 2500: 229
+    a reading of that shape exists: 229; some reading of that shape puts its
+    landmark on the running arm at an arm index the clause can use: 31
+    the span of the reading ranges over [101, 101]; the L+2 link lies 56 to 65
+    steps past the basepoint; the chain gap from the L+5 link to the landmark
+    ranges over [2, 2]
+    and the landmark is exactly the Ceil72 valley of the running arm at 31
+    where a landmark is on the running arm its arm index ranges over [34, 43],
+    the L+5 link that names it sits at arm index [36, 181], and the
+    landmark sits 2 to 138 steps past that link (in arm indices);
+    readings whose landmark lands past the point the clause can use: 2769
+
+======== question 2.4: both arms running high ========
+  BothHighRunL5 (both arms reach L+9 with nothing at L+2 or below before):
+    at 16235 of the 2444297 basepoints of the branch
+    at 0 of the 1351 crossings of the trichotomy
+    at 0 of the 229 high-run crossings
+  the shape of a both-high-run basepoint of the branch: at least one arm is a
+  w8 arm at 16235; both arms are w3 arms at 0, exactly one at 0; both are wb
+  arms at 4588, exactly one at 7522; neither arm is w3 or wb at 4125
+
+======== the seeds of the construction of 2.3 ========
+  whole pairs at a basepoint of the branch whose running arm fails
+  Valley3BeforeNine, one per fresh pair: 96, written to seeds-batch72.txt
+  the failing basepoints by the walks their two arms share:  [w8]:108304 [w8wb]:85772  (194076 candidates sampled to 96 seeds)
+  seed  n     i  side  w3/w8/wb of the forward arm and of the backward arm  ascent
+     0 2378  2257   G    G:-8-  T:-8b   shared: w8   22
+     1 1665  1612   G    G:-8-  T:38b   shared: w8   52
+     2 2381  2328   T    G:-8-  T:-8-   shared: w8   46
+     3 1975  1908   G    G:-8b  T:38b   shared: w8   66
+     4 1163  1150   G    G:-8-  T:-8-   shared: w8   12
+     5 2378  2195   T    G:-8b  T:-8b   shared: w8   56
+     6 1485  1430   G    G:-8-  T:38b   shared: w8   54
+     7 1665  1636   G    G:-8-  T:-8-   shared: w8   28
+     8 2381  1742   G    G:-8b  T:38b   shared: w8   62
+     9 2378  1735   G    G:-8b  T:38b   shared: w8   66
+    10 1382  1329   G    G:-8-  T:38b   shared: w8   52
+    11 2068  2005   G    G:-8b  T:38b   shared: w8   62
+    12 1975  1924   G    G:-8-  T:38b   shared: w8   50
+    13  986    60   T    G:38b  T:-8b   shared: w8   60
+    14 2378  2169   T    G:-8-  T:-8-   shared: w8   30
+    15 1610  1573   G    G:-8b  T:-8-   shared: w8   36
+    16 2381  1860   T    G:38b  T:-8b   shared: w8   56
+    17 2055  1978   G    G:-8b  T:38b   shared: w8   76
+    18 1523  1510   G    G:-8-  T:-8-   shared: w8   12
+    19 2267  2236   G    G:-8-  T:-8-   shared: w8   30
+    20 1634  1571   G    G:-8b  T:38b   shared: w8   62
+    21 1163  1088   G    G:-8b  T:38b   shared: w8   74
+    22 2378   957   G    G:-8-  T:-8-   shared: w8   28
+    23 1485  1419   G    G:-8b  T:38b   shared: w8   65
+
+---- the audit sample ----
+  the landmark sentence read greedily against the same sentence with its
+  existentials searched literally: 4000 samples, 0 disagreements
+  every predicate of this census is evaluated by its own definition:
+    IsCrookedIvF, LowAt, Leg4Land (greedy and literal), HighRunG/HighRunT,
+    Valley3BeforeNine, and FoldsOnto by the dynamic program of
+    HPC/Fold/Decide.lean.  No criterion of the engine is used.
+  this is a census over whole pairs and whole arms, so no arm-length bound
+  applies: the arms seen at a high-run crossing run from 105 to 2211 times.

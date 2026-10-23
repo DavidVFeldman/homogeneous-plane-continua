@@ -1,0 +1,166 @@
+# Commission: batch 203 — a dependency census of the classification
+
+**Go!** This batch runs on top of the batch-202 work. One file comes with it:
+`COMMISSION-batch203.md`, this text, also pasted into the prompt. Save a copy as
+`doc/batches/COMMISSION-batch203.md` and include it in the tarball, as in batch 202.
+
+This batch proves nothing new and changes no file under `HPC/`. It measures what the
+classification uses, so that David can decide what the house cleaning removes and so that the
+exposition can follow the proof the library actually contains. It also replays the whole proof
+through the kernel from Mathlib alone (§3).
+
+**Rules.**
+* The first line of the report names the commission it read.
+* If you leave out something this commission asks for, list it in the report's §0 with the reason.
+* Edit no existing file except `README.md` (a short section "Dependency census (batch 203)"),
+  `OPEN.md` (if anything is left open) and `doc/notes/bj59.md` (append). New files go under
+  `scripts/`, `doc/depcensus/` (not `doc/census/`, which holds the `native_decide` census) and
+  `doc/batches/` (the commission copy, the report, the tarball and its manifest).
+* Nothing new is imported by `HPC.lean`, `HPCArchive.lean` or `HPCCensus.lean`, and no file under
+  `HPC/` changes. Check that `axioms.txt` is unchanged by regenerating it to a temporary file
+  (`lake env lean Axioms.lean > /tmp/axioms203.txt`) and comparing with `cmp`; do not overwrite
+  it. Report the result.
+* `#eval`, `run_cmd` and meta code are fine in `scripts/`, which no library imports. Add none to any
+  file under `HPC/`. Run scripts from the repository root; use `set_option maxHeartbeats 0` where
+  `MetaM` work is heavy.
+
+**Progress lines** as before: `STATUS: <item> done / open (<obstruction>)`.
+
+## 0. On batch 202
+
+* **Delivery.** Current: `axioms.txt` 4030 lines, equal to the tarball's; the tarball carries
+  current copies of every Lean file the download lacks (72). Thank you.
+* **Audit.** 254 new theorems (231 on the three standard axioms, 22 on `propext` and `Quot.sound`,
+  1 on `propext`); `sorryAx` in none; no `sorry`, `admit` or `axiom` in the sixteen new files.
+  Every declaration of the skeleton is textually the skeleton's.
+* **Results.** Everything: `bjPlaneExample`, and with it `ho16_classification₄` and
+  `ho16_classification_plane₄` with no named hypothesis. The classification is verified. Thank you.
+* **An independent check of the final statements** (sources only) traced every notion in the two
+  theorems down to Mathlib and found the standard notions, no `axiom` anywhere in `HPC/`, and every
+  named hypothesis on the path discharged by a theorem. It noted stale skeleton copies with
+  `sorry` at the repository root (`BJ59A(1).lean`, `BJ59B.lean`–`BJ59E.lean`, `HO16D.lean`,
+  `HO16E.lean`, `Hagopian76W.lean`–`Hagopian76AB.lean`). They are not built. Leave them for now;
+  they are listed in commission §3 (report §7).
+* **Ledger.** BJ.41–BJ.47 adopted. BJ.43 is not counted: the status vocabulary asks for an
+  identified failing step, and no chains satisfying (1)–(9) with an element of `G` that is not a
+  pseudo-arc are given. Label: not established. Counts unchanged (24 and 18).
+
+## 1. The targets
+
+* **Primary:** `HPC.BJ59.ho16_classification_plane₄` and `HPC.BJ59.ho16_classification₄`. The
+  census is of their joint closure.
+* **For comparison only**, the closure of each of these separately, in the summary table:
+  `HPC.BJ59.ho16_classification_atomic'` (Domokos–Prajs's third class), `HPC.BJ59.bjThm10`,
+  `HPC.BJ59.bjPlaneExample`, `HPC.Plane.isPseudoArc_plane`.
+
+## 2. The census (`scripts/DepCensus.lean`)
+
+A meta program, run as `lake env lean scripts/DepCensus.lean` after `lake build HPC HPCArchive
+HPCCensus`, that imports `HPC`, `HPCArchive` and `HPCCensus` (so that the archive and census
+modules are counted too) and computes the following from the environment.
+
+### 2.1 Nodes and edges
+
+* **Nodes** (`doc/depcensus/nodes.tsv`): every constant whose module is under `HPC`, with its
+  module, its kind, its *declaration* (below), whether it is a *counted declaration*, the start
+  and end lines of its declaration range, and whether its docstring begins with `**`.
+  * The *declaration* of a constant is the declaration a reader sees. Use kind-based tests, not
+    suffixes alone: `privateToUserName?` for `_private` names; auxiliary recursors and
+    `noConfusion` (`isAuxRecursor`, `isNoConfusion`); constructors, recursors, `casesOn` and
+    projections (`getProjectionFnInfo?`) belong to their inductive type or structure; matchers
+    (`Meta.isMatcherCore`), `.proof_n`, `._simp_n`, `.eq_n`, `.eq_def`, `.induct` and other
+    internal names (`Name.isInternal`) belong to the declaration they were generated for.
+  * A *counted declaration* is a theorem, definition, structure, inductive type, instance or
+    abbreviation written in a source file. Constants generated by the elaborator, parser and
+    macro constants (syntax, `macro_rules`, notation) are not counted.
+* **Edges:** for every node `c`, the constants occurring in its type or value
+  (`ConstantInfo.getUsedConstantsAsSet`). For an inductive type, add its constructors and
+  recursor. Write two files: `doc/depcensus/edges.tsv` (edges whose target is a node) and
+  `doc/depcensus/edges-external.tsv` (edges whose target is a constant of Mathlib, Batteries,
+  Aesop, `Init`, `Lean` or `Std`, with the target's package).
+
+### 2.2 The closure and its declarations
+
+* The *raw closure* of a set of targets is the set of constants reachable from them along the
+  edges.
+* A counted declaration is *used* when it is itself in the raw closure. Do not mark a declaration
+  used just because one of its auxiliary constants is: a matcher or cached lemma generated for one
+  declaration can be reused by another. If a structure's projection or constructor is in the raw
+  closure, mark the structure used.
+
+### 2.3 Files
+
+* `doc/depcensus/used.txt`: the used counted declarations of the primary closure, one per line
+  with its module.
+* `doc/depcensus/modules.tsv`: per module, the directory, the number of counted declarations, the
+  number used, the source lines of the file, and the lines covered by the used declarations
+  (the union of their ranges, so that nested ranges are not counted twice; extend each range
+  upwards over its docstring).
+* `doc/depcensus/unused-modules.txt`: modules with no used declaration.
+* `doc/depcensus/import-only.txt`: modules with no used declaration that are in the import closure
+  of a module with a used declaration (needed to compile, not for the proof).
+* `doc/depcensus/headlines.tsv`: every counted declaration whose docstring begins with `**` (after
+  leading whitespace), with its module, whether it is used, and the first line of its docstring.
+* `doc/depcensus/spine.tsv`: the used headlines in a dependency order (a topological sort by the
+  closure relation), with their directory.
+* `doc/depcensus/external.tsv`: the external constants the primary closure uses, with their
+  package and module and the number of used nodes that use each.
+* `doc/depcensus/external-modules.tsv`: the external modules those constants come from, with
+  counts, grouped by package.
+
+### 2.4 Sanity checks, reported
+
+* The primary closure contains `HPC.BJ59.bjThm10`, `HPC.BJ59.bjPlaneExample`,
+  `HPC.BJ59.CircDescr.isCircleOfPA`, `HPC.BJ59.ho16_classification`, `HPC.BJ59.hoCircleLike`,
+  `HPC.HO16.ho16_theorem20` and `HPC.HO16.ho16_indec_homogeneous_iff` (H–O Theorem 1 in the
+  indecomposable case, batch 197), and `HPC.Plane.isPseudoArc_plane`.
+* It contains no constant of `HPC/Archive` or `HPC/Census`. List, and classify, every used
+  declaration whose last name component begins with `nonvac` or ends in `_false` or
+  `_counterexample` (some are lemmas about `Bool`, which is expected).
+
+## 3. Independent checks
+
+* **A kernel replay of the closure.** Build an environment that imports only the external modules
+  of `external-modules.tsv` (no `HPC` module), and replay into it, in dependency order, every
+  constant of the primary raw closure, with `Lean.Environment.replay` (module `Lean.Replay`) or
+  the replay of `lean4checker`. Report whether every constant is accepted, and check that the two
+  targets are present in the result with the statements of `HPC/BJ59/BJ59E.lean`. This shows
+  the closure is complete, and checks the whole proof of the classification again in the kernel,
+  from Mathlib alone. If the replay is too heavy or the API differs, say what you tried.
+* **A second computation of the counts.** `scripts/closure.py` reads `nodes.tsv` and the two edge
+  files, computes the closure of the targets by breadth-first search, applies the used rule of
+  §2.2, and recomputes `used.txt`, the per-module counts of `modules.tsv` (with an independent
+  count of each file's lines) and the counts of `external.tsv`. Report agreement or every
+  difference. Say which numbers of the report rest on one computation only.
+* **Root files.** List every `.lean` file at the repository root with whether a `lean_lib` of
+  `lakefile.toml` builds it and how many `sorry` it contains.
+
+## 4. The report
+
+`doc/batches/REPORT-batch203.md`. Its first line names the commission it read. Then:
+1. **Summary table:** for the primary closure and for each comparison target, the number of used
+   declarations and of modules with a used declaration, the lines they cover, and their share of
+   the library (declarations, modules, lines; the library is all three `lean_lib`s).
+2. **By directory** under `HPC/`: declarations and lines used against present.
+3. **Unused modules**, grouped by directory, with one line per directory saying what they contain
+   (from the file docstrings and the `README.md` layout table).
+4. **Partly used modules**: those with fewer than half of their declarations used, with the used
+   fraction.
+5. **Headline results outside the classification**, grouped by source paper (from the
+   docstrings): for example, which of Bing's 1948 and 1951 theorems, Moore's, Hagopian's,
+   Jones's and Fugate's are used and which are not.
+6. **The spine.** Per directory, the number of used headlines and the ten most depended upon (by
+   the number of used headlines whose closure contains them). The full order is in `spine.tsv`.
+7. The checks of §3, with their results.
+8. The confirmation that `axioms.txt` is unchanged.
+
+## 5. Deliverables
+
+1. `scripts/DepCensus.lean`, `scripts/closure.py`, and the replay script if separate.
+2. `doc/depcensus/`: `nodes.tsv`, `edges.tsv`, `edges-external.tsv`, `used.txt`, `modules.tsv`,
+   `unused-modules.txt`, `import-only.txt`, `headlines.tsv`, `spine.tsv`, `external.tsv`,
+   `external-modules.tsv`, and a `README.md` saying how each file is produced and regenerated.
+3. The report.
+4. **Publish the changes, as in batch 202**: `doc/batches/batch203-files.tar.gz` with every file
+   added or changed (and, as before, current copies of every Lean file under `HPC/Hagopian/`,
+   `HPC/Jones/` and `HPC/Span/`), and `doc/batches/batch203-MANIFEST.txt`.

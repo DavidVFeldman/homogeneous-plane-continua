@@ -1,0 +1,41 @@
+probe61: the four walks wb, w8, w3, w71 on every 1-Lipschitz arm of [0,9] based at 5
+with LowAt (L+1) (L+8), exhaustively to length 16
+  not served by w71 (mask 2; wb 1 w8 0 w3 1): 5 4 3 2
+  not served by w71 (mask 2; wb 1 w8 0 w3 1): 5 4 3 2 2
+  not served by w71 (mask 2; wb 1 w8 0 w3 1): 5 4 3 2 3
+  not served by w71 (mask 2; wb 1 w8 0 w3 1): 5 4 3 3 2
+  not served by w71 (mask 2; wb 1 w8 0 w3 1): 5 4 4 3 2
+  not served by w71 (mask 2; wb 1 w8 0 w3 1): 5 5 4 3 2
+  served by w8 alone and not by w71: 5 6 7 8 9
+  served by w8 alone and not by w71: 5 5 6 7 8 9
+  served by w8 alone and not by w71: 5 6 6 7 8 9
+  served by w8 alone and not by w71: 5 6 7 7 8 9
+  served by w8 alone and not by w71: 5 6 7 8 8 9
+  served by w8 alone and not by w71: 5 6 7 8 9 8
+
+arms 14742992; arms not served by w71: 4096297 (floor clause fails at 2110041, ceiling at 2001272)
+
+the service sets (bit 1 = wb, 2 = w8, 4 = w3, 8 = w71):
+  {} : 0
+  {wb } : 1034
+  {w8 } : 1590250
+  {wb w8 } : 0
+  {w3 } : 15110
+  {wb w3 } : 2093991
+  {w8 w3 } : 395912
+  {wb w8 w3 } : 0
+  {w71} : 0
+  {wb w71} : 0
+  {w8 w71} : 2113101
+  {wb w8 w71} : 0
+  {w3 w71} : 0
+  {wb w3 w71} : 635212
+  {w8 w3 w71} : 0
+  {wb w8 w3 w71} : 7898382
+
+the implications:
+  served by w8 alone and not by w71 : 1590250
+  fails w8 and not served by w71    : 2110135
+  served by wb alone, not by w71    : 1034
+  served by w3 alone, not by w71    : 15110
+  served by wb and w3, not by w71   : 2093991

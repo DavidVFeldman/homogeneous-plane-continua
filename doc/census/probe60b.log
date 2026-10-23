@@ -1,0 +1,18 @@
+probe60b: the arm-only half of exhaustiveness at the branch L+5, three named walks,
+exhaustive 1-Lipschitz arms of [0,9] based at 5 with LowAt (L+1) (L+8), length <= 16
+
+arms 14742992; served by wb 10628619, by w8 11997645, by w3 11038607
+served by neither wb nor w8: 15110; by none of the three: 0
+served by neither w8 nor w3: 1034
+
+the service sets (bit 1 = wb, bit 2 = w8, bit 4 = w3):
+  {} : 0
+  {wb } : 1034
+  {w8 } : 3703351
+  {wb w8 } : 0
+  {w3} : 15110
+  {wb w3} : 2729203
+  {w8 w3} : 395912
+  {wb w8 w3} : 7898382
+arms failing the floor (L+8) clause of wb: 3703351; of them not served by w8: 0
+arms failing the deep (L+9) clause of wb: 2001272; of them served by neither w8 nor w3: 0

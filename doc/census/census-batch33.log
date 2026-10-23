@@ -1,0 +1,126 @@
+census for batch 33
+
+===== 1. the two stretches of bing 0 6 =====
+  bing 0 6 has 71 links
+  rho = 0 1 2 1 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6
+  A (forward from 57) = 3 2 3 4 3 4 5 4 3 4 5 4 5 6
+  B (backward from 13) = 3 4 3 2 3 2 1 2 3 2 1 2 1 0
+  A matches the commissioned list: yes
+  B matches the commissioned list: yes
+  B = 6 - A pointwise: yes
+  A is 1-Lipschitz: yes;  faithful crooked (sigma = rho): yes
+  B is 1-Lipschitz: yes;  faithful crooked (sigma = rho): yes
+  bing 0 6 itself is 1-Lipschitz: yes;  faithful crooked: yes
+
+  the free family of the band [0,6] has 40 members
+  forward and backward sweeps disagree on 0 members
+  members serving A: 12;  serving B: 12;  serving both: 0
+  every member, with what it serves:
+     0 [1, 5, 1]  len  9  A:no  B:no 
+     1 [2, 1, 5]  len  6  A:yes B:no 
+     2 [2, 5, 1]  len  8  A:yes B:no 
+     3 [3, 1, 5]  len  7  A:no  B:yes
+     4 [3, 5, 1]  len  7  A:yes B:no 
+     5 [4, 1, 5]  len  8  A:no  B:yes
+     6 [4, 5, 1]  len  6  A:no  B:yes
+     7 [5, 1, 5]  len  9  A:no  B:no 
+     8 [1, 2, 1, 5]  len  7  A:no  B:no 
+     9 [1, 3, 1, 5]  len  9  A:no  B:no 
+    10 [1, 4, 1, 5]  len 11  A:no  B:no 
+    11 [2, 3, 1, 5]  len  8  A:no  B:yes
+    12 [2, 4, 1, 5]  len 10  A:no  B:yes
+    13 [3, 2, 5, 1]  len  9  A:yes B:no 
+    14 [3, 4, 1, 5]  len  9  A:no  B:yes
+    15 [4, 3, 5, 1]  len  8  A:yes B:no 
+    16 [4, 2, 5, 1]  len 10  A:yes B:no 
+    17 [5, 4, 5, 1]  len  7  A:no  B:no 
+    18 [5, 3, 5, 1]  len  9  A:no  B:no 
+    19 [5, 2, 5, 1]  len 11  A:no  B:no 
+    20 [1, 3, 2, 5, 1]  len 11  A:no  B:no 
+    21 [1, 4, 3, 5, 1]  len 11  A:no  B:no 
+    22 [1, 4, 2, 5, 1]  len 13  A:no  B:no 
+    23 [2, 3, 2, 5, 1]  len 10  A:yes B:no 
+    24 [2, 4, 3, 5, 1]  len 10  A:yes B:no 
+    25 [2, 4, 2, 5, 1]  len 12  A:yes B:no 
+    26 [3, 2, 3, 1, 5]  len  9  A:no  B:yes
+    27 [3, 2, 4, 1, 5]  len 11  A:no  B:yes
+    28 [3, 4, 3, 5, 1]  len  9  A:yes B:no 
+    29 [3, 4, 2, 5, 1]  len 11  A:yes B:no 
+    30 [4, 3, 4, 1, 5]  len 10  A:no  B:yes
+    31 [4, 2, 3, 1, 5]  len 10  A:no  B:yes
+    32 [4, 2, 4, 1, 5]  len 12  A:no  B:yes
+    33 [5, 3, 4, 1, 5]  len 11  A:no  B:no 
+    34 [5, 2, 3, 1, 5]  len 11  A:no  B:no 
+    35 [5, 2, 4, 1, 5]  len 13  A:no  B:no 
+    36 [1, 3, 2, 4, 1, 5]  len 13  A:no  B:no 
+    37 [2, 3, 2, 4, 1, 5]  len 12  A:no  B:yes
+    38 [4, 3, 4, 2, 5, 1]  len 12  A:yes B:no 
+    39 [5, 3, 4, 2, 5, 1]  len 13  A:no  B:no 
+  shortest-found walk serving A: [2, 1, 5]
+  shortest-found walk serving B: [3, 1, 5]
+  probe [3, 5, 1]  walk 3 4 5 4 3 2 1  A:yes B:no
+  probe [3, 1, 5]  walk 3 2 1 2 3 4 5  A:no B:yes
+  probe [3, 2, 4, 1, 5]  walk 3 2 3 4 3 2 1 2 3 4 5  A:no B:yes
+  probe [3, 4, 2, 5, 1]  walk 3 4 3 2 3 4 5 4 3 2 1  A:yes B:no
+
+===== 2. all arms of bing 0 6 against the family =====
+  arms: 142;  arms served by no member at all: 0
+  basepoints of bing 0 6 served by some member: 71 of 71
+  pairs of arms at a common level served by no common member:
+    backward from 5  and  forward  from 59   (level 3)
+    backward from 5  and  forward  from 61   (level 3)
+    backward from 5  and  forward  from 65   (level 3)
+    backward from 9  and  forward  from 59   (level 3)
+    backward from 9  and  forward  from 61   (level 3)
+    backward from 9  and  forward  from 65   (level 3)
+    backward from 11  and  forward  from 59   (level 3)
+    backward from 11  and  forward  from 61   (level 3)
+    backward from 11  and  forward  from 65   (level 3)
+    backward from 13  and  forward  from 57   (level 3)
+  such pairs: 10  (from the same basepoint: 0;  from different basepoints: 10)
+  distinct as sequences: 10
+
+===== 3. the outside-in trimming =====
+  For each basepoint i of bing 0 n, the maximal contiguous stretch
+  containing i whose span is at most one less than the current one,
+  iterated until the span is at most 3.  Reported: how the span moves,
+  whether the basepoint stays strictly inside the stretch, and whether
+  its level is interior to the inner band.
+  span  6  links    71 :  steps max 3, mean 3.00;  span never stalls: yes;
+            basepoint becomes an endpoint of the stretch at 7 of 71 basepoints;
+            basepoint sits at an extreme level of an inner band at 23 of 71;
+            the two greedy orders differ in 130 steps
+  span  7  links   170 :  steps max 4, mean 4.00;  span never stalls: yes;
+            basepoint becomes an endpoint of the stretch at 14 of 170 basepoints;
+            basepoint sits at an extreme level of an inner band at 54 of 170;
+            the two greedy orders differ in 398 steps
+  span  8  links   409 :  steps max 5, mean 5.00;  span never stalls: yes;
+            basepoint becomes an endpoint of the stretch at 31 of 409 basepoints;
+            basepoint sits at an extreme level of an inner band at 129 of 409;
+            the two greedy orders differ in 1165 steps
+  span  9  links   986 :  steps max 6, mean 6.00;  span never stalls: yes;
+            basepoint becomes an endpoint of the stretch at 72 of 986 basepoints;
+            basepoint sits at an extreme level of an inner band at 310 of 986;
+            the two greedy orders differ in 3305 steps
+  span 10  links  2379 :  steps max 7, mean 7.00;  span never stalls: yes;
+            basepoint becomes an endpoint of the stretch at 171 of 2379 basepoints;
+            basepoint sits at an extreme level of an inner band at 747 of 2379;
+            the two greedy orders differ in 9168 steps
+  span 11  links  5742 :  steps max 8, mean 8.00;  span never stalls: yes;
+            basepoint becomes an endpoint of the stretch at 410 of 5742 basepoints;
+            basepoint sits at an extreme level of an inner band at 1802 of 5742;
+            the two greedy orders differ in 25004 steps
+  span 12  links 13861 :  steps max 9, mean 9.00;  span never stalls: yes;
+            basepoint becomes an endpoint of the stretch at 987 of 13861 basepoints;
+            basepoint sits at an extreme level of an inner band at 4349 of 13861;
+            the two greedy orders differ in 67295 steps
+
+  a full trace, bing 0 8 at basepoint 57:
+    step 0: stretch [0,408] band [0,8] span 8, level 3
+    step 1: stretch [0,407] (408 links) band [0,7] span 7, level 3
+    step 2: stretch [0,168] (169 links) band [0,6] span 6, level 3
+    step 3: stretch [0,69] (70 links) band [0,5] span 5, level 3
+    step 4: stretch [1,69] (69 links) band [1,5] span 4, level 3
+    step 5: stretch [42,69] (28 links) band [2,5] span 3, level 3
+
+done

@@ -1,0 +1,255 @@
+%======================================================================
+\chapter{Whyburn's separating point--order theorem}\label{ch:whyburn}
+%======================================================================
+
+Jones's 1949 proof has two cases, and both end the same way: some point of $M$ turns out to be a local separating
+point, and then Whyburn's theorem (\emph{Analytic Topology}, Chapter~III, (9.2)) produces a point of order~$2$, to
+which Corollary~\ref{cor:order-two} applies. Whyburn's theorem says that in a separable, locally compact metric space
+all but countably many local separating points have order~$2$. Whyburn derives it from his theory of cyclic
+elements and of ``potential order'' relative to a collection of sets (Chapter~III, \S\S1--2, (8.1)--(8.4)). The
+formal proof extracts the part that is needed: a chain of separating points, ordered as Whyburn orders them, is
+countable unless its points have order at most~$2$.
+
+Throughout, $X$ is a metric space. From Section~\ref{sec:chains} on it is separable and locally compact.
+
+\section{Separating points of an open set}
+
+\begin{definition}\label{def:sep-point}
+Let $R\subseteq X$ and $p\in R$, and let $Q$ be the component of $R$ containing $p$.
+\begin{enumerate}[label=(\alph*)]
+\item $p$ is a \emph{separating point of $R$} if there are open sets $A$, $B$ with $R\setminus\set p\subseteq A\cup B$, $A$ and $B$
+disjoint on $R\setminus\set p$, and both $A$ and $B$ meeting $Q\setminus\set p$.
+\item $p$ is a \emph{local separating point} if it is a separating point of some open set $R$.
+\end{enumerate}
+\end{definition}
+
+\formal{\lean{HPC.Jones.IsSepPointOf}, \lean{HPC.Jones.IsLocalSepPoint}. Whyburn's phrase is ``$R-p=R_a+R_b$ with
+$a\in R_a$, $b\in R_b$ in the component of $R$ containing $p$''.}
+
+A cut point $p$ of a connected space $X$ is a separating point of $R=X$. Every point of a circle, and every interior point
+of an arc, is a local separating point. The definition is invariant under homeomorphisms.
+
+\formal{\lean{HPC.Jones.IsLocalSepPoint.homeomorph}.}
+
+\begin{lemma}\label{lem:side}
+Let $Q$ be connected, $p\in Q$, and let $A$, $B$ be open sets covering $Q\setminus\set p$ and disjoint on it. Then
+$Q\setminus(B\setminus\set p)$, the $A$-side of $Q$ together with $p$, is connected.
+\end{lemma}
+
+\begin{proof}
+Let $D=Q\setminus(B\setminus\set p)$; then $D\setminus\set p\subseteq A$. The set $Q\cap B\setminus\set p$ is open in $Q$, so $D$ is closed in $Q$.
+Suppose $D=D_1\cup D_2$ with $D_1$, $D_2$ disjoint, closed in $D$ and $p\in D_1$. Then $D_2$ is closed in $Q$. It is also open in $Q$: if $O$ is
+open with $D_2=D\cap O$, we may assume $p\notin O$, and then $D_2=Q\cap(O\cap A)$, because every point of $Q\cap A$ other than $p$ lies in $D$. As $Q$ is
+connected and $p\notin D_2$, $D_2=\emptyset$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.isPreconnected_side}, \lean{HPC.Jones.isPreconnected_diff_side}.}
+
+\begin{proposition}[Whyburn (9.1)]\label{prop:whyburn91}
+Let $X$ be locally compact. If $p$ is a separating point of $R$, it is a separating point of every open $U$ with $p\in U\subseteq R$.
+\end{proposition}
+
+\begin{proof}
+Let $A$, $B$ be the open sets for $R$ and $Q$ the component of $p$ in $R$. The same $A$, $B$ cover $U\setminus\set p$ and are disjoint on it;
+it remains to see that the component $Q_U$ of $p$ in $U$ meets $A\setminus\set p$ (and likewise $B\setminus\set p$). The set $D=Q\setminus(B\setminus\set p)$ is
+connected (Lemma~\ref{lem:side}), contains $p$ and a point of $A\setminus\set p$. Let $K\subseteq U$ be a compact neighbourhood of $p$. If $D\subseteq K$, then $D$ is
+a connected subset of $U$ through $p$, so $D\subseteq Q_U$ and we are done. Otherwise $D\cap K$ is a compact proper subset of $D$ (it is closed in $D$,
+as $D$ is closed in $R$), and by boundary bumping some continuum $C\subseteq D\cap K$ through $p$ meets $\cl{D\setminus K}$, so contains a point other than
+$p$ (as $K$ is a neighbourhood of $p$). Then $C\subseteq Q_U$, and $C\setminus\set p\subseteq D\setminus\set p\subseteq A$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.whyburn_9_1}, with \lean{HPC.Jones.exists_continuum_bump_compact} (boundary bumping for a compact
+piece of a connected set) and \lean{HPC.Jones.whyburn_9_1_side}. Whyburn uses at this point that ``the components
+\dots\ are nondegenerate'' (his I, (10.2)).}
+
+\begin{lemma}\label{lem:sep-not-order1}
+A separating point $p$ of a set $R$ does not have order at most $1$. Hence, if it has order at most $2$, it has order $2$.
+\end{lemma}
+
+\begin{proof}
+Let $a\in A\cap Q$ and $b\in B\cap Q$ be points other than $p$, and let $V\ni p$ be open and miss $a$ and $b$. The connected set
+$Q\setminus(B\setminus\set p)$ contains $p\in V$ and $a\notin V$, so it meets $\fr V$, at a point of $A$ other than $p$. Likewise the $B$-side gives a
+frontier point in $B$. These two points are distinct, so $\fr V$ has at least two points.
+\end{proof}
+
+\formal{\lean{HPC.Jones.not_orderLE_one_of_isSepPointOf}, \lean{HPC.Jones.hasOrder_two_of_isSepPointOf}.}
+
+\section{Separation chains}\label{sec:chains}
+
+\begin{definition}\label{def:sepchain}
+A \emph{separation chain} consists of a set $R\subseteq X$, a connected set $Q\subseteq R$ that is closed in $R$, a set $T\subseteq Q$, and for each
+$p\in T$ two open sets $A_p$, $B_p$ with $A_p\cup B_p=R\setminus\set p$ and $A_p\cap B_p=\emptyset$, such that any two of the sets $A_p$ (and any two of
+the sets $B_p$) have a common point in $Q$. For $p,q\in T$ write $p<q$ if $q\in B_p$.
+\end{definition}
+
+\formal{\lean{HPC.Jones.SepChain}, with the order \lean{HPC.Jones.SepChain.lt}.}
+
+This is the situation of Whyburn's (1.3): all points of $T$ separate the same two sets in $R$.
+
+\begin{lemma}[Whyburn (1.2), (1.31)]\label{lem:chain-order}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item For distinct $p,q\in T$: $p<q$ if and only if $p\in A_q$. The relation $<$ is a strict linear order on $T$.
+\item If $p<q$, then $Q\cap B_q\subseteq B_p$ and $Q\cap A_p\subseteq A_q$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:side}, for $p\in T$ the sets $Q\setminus B_p$ and $Q\setminus A_p$ (the two sides of $p$ in $Q$, each with $p$) are connected. A connected
+subset of $R\setminus\set q$ meeting $B_q$ lies in $B_q$, and similarly for $A_q$.
+
+(a) Let $q\in B_p$ and suppose $p\in B_q$. The connected set $Q\setminus B_p$ misses $q$ and contains $p\in B_q$, so it lies in $B_q$. But it contains $Q\cap
+A_p$, which meets $Q\cap A_q$; this point would be in $A_q\cap B_q$. So $p\in A_q$. The converse is the same argument with the roles of $A$ and $B$
+exchanged. Totality: $q\in R\setminus\set p=A_p\cup B_p$, and $q\in A_p$ means $q<p$. Asymmetry: $q\in B_p$ and $p\in B_q$ is excluded by (a). Transitivity
+follows from (b): if $p<q<r$, then $r\in Q\cap B_q\subseteq B_p$.
+
+(b) The connected set $Q\setminus A_q$ misses $p\in A_q$ and contains $q\in B_p$, so it lies in $B_p$; it contains $Q\cap B_q$. The second inclusion is
+symmetric.
+\end{proof}
+
+\formal{\lean{HPC.Jones.SepChain.lt_iff}, \lean{HPC.Jones.SepChain.lt_total}, \lean{HPC.Jones.SepChain.lt_asymm},
+\lean{HPC.Jones.SepChain.lt_trans}, \lean{HPC.Jones.SepChain.B_sub}, \lean{HPC.Jones.SepChain.A_sub}.}
+
+For $x<y$ in $T$ let $M(x,y)=Q\cap\bigl((B_x\cap A_y)\cup\set{x,y}\bigr)$, the \emph{interval} from $x$ to $y$. It is connected and closed in $R$;
+intervals shrink as $x$ increases or $y$ decreases; and if $x<x'<y'<y$ then $M(x',y')\subseteq B_x\cap A_y$.
+
+\formal{\lean{HPC.Jones.SepChain.M}, \lean{HPC.Jones.SepChain.M_isPreconnected}, \lean{HPC.Jones.SepChain.M_closed},
+\lean{HPC.Jones.SepChain.M_mono_left}, \lean{HPC.Jones.SepChain.M_mono_right}, \lean{HPC.Jones.SepChain.M_sub_BA}.}
+
+\begin{lemma}[The counting argument of Whyburn (2.1)]\label{lem:counting}
+Let $X$ be second countable, $T\subseteq X$, $<$ a relation comparing any two distinct points of $T$, $g\colon T\to X$ and $P\colon T\to 2^X$ with
+$g(p)\in P(q)$ whenever $p<q$. Then only countably many $p\in T$ have $g(p)\notin\cl{P(p)}$.
+\end{lemma}
+
+\begin{proof}
+Assign to each such $p$ a basic open set $b(p)\ni g(p)$ missing $P(p)$. If $b(p)=b(q)$ with $p\ne q$, say $p<q$, then $g(p)\in P(q)$, but $g(p)\in b(p)=b(q)$,
+which misses $P(q)$. So $b$ is injective, and there are countably many basic sets.
+\end{proof}
+
+\formal{\lean{HPC.Jones.countable_not_mem_closure_of_lt}.}
+
+Call $p\in T$ \emph{good} if it is a limit point of its predecessors $\set{q\in T:q<p}$ and of its successors $\set{q\in T:p<q}$. The
+\emph{residue} $\operatorname{Res}(p)$ of $p$ is the set of points $z\in Q\setminus\set p$ that lie in $B_x\cap A_y$ for all $x<p<y$ in $T$: the points not
+separated from $p$ by the chain.
+
+\formal{\lean{HPC.Jones.SepChain.Good}, \lean{HPC.Jones.SepChain.Res}.}
+
+\begin{lemma}\label{lem:good-res}
+Let $X$ be second countable.
+\begin{enumerate}[label=(\alph*)]
+\item All but countably many points of $T$ are good.
+\item All but countably many good points have empty residue.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Apply Lemma~\ref{lem:counting} with $g(p)=p$ and $P(p)$ the set of predecessors of $p$; then with the reversed order and the successors.
+
+(b) If $p<q$ and $q$ is good, then $\operatorname{Res}(q)\subseteq B_p$: there is $x\in T$ with $p<x<q$ (as $q$ is a limit of predecessors), so $\operatorname{Res}(q)\subseteq
+Q\cap B_x\subseteq B_p$ by Lemma~\ref{lem:chain-order}(b). Similarly $\operatorname{Res}(q)\subseteq A_p$ if $q<p$. For each good $p$ with nonempty residue choose
+$z(p)\in\operatorname{Res}(p)$; it lies in $A_p$ or in $B_p$. Those $p$ with $z(p)\in B_p$ satisfy $z(p)\notin\cl{A_p}$ ($B_p$ is an open set missing $A_p$), and
+$z(p)\in A_q$ whenever $p<q$; Lemma~\ref{lem:counting} with $P(q)=A_q$ shows that they are countably many. The others are handled with the reversed order and
+$P(q)=B_q$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.SepChain.countable_not_good}, \lean{HPC.Jones.SepChain.Res_sub_B},
+\lean{HPC.Jones.SepChain.Res_sub_A}, \lean{HPC.Jones.SepChain.countable_res}.}
+
+\begin{proposition}\label{prop:good-order2}
+Let $X$ be locally compact and $p\in T$ a good point with empty residue, interior to $R$. Then $p$ has order at most $2$.
+\end{proposition}
+
+\begin{proof}
+Let $\rho>0$ be so small that the closed ball $\bar B(p,\rho)$ is compact and lies in $R$. We find $x<p<y$ and an open $V\ni p$ inside $B(p,\rho)$ with
+$\fr V\subseteq\set{x,y}$.
+
+\emph{Small intervals.} Some interval $M(x,y)$ with $x<p<y$ lies in $B(p,\rho)$. Otherwise each $M(x,y)$, a connected set through $p$ reaching outside $B(p,\rho)$,
+meets the sphere $S=\set{z:d(p,z)=\rho/2}$. The sets $M(x,y)\cap S$ are compact, nonempty and directed downwards (for two pairs, take the larger $x$ and the
+smaller $y$), so they have a common point $z\ne p$. For $x<p<y$ choose $x'$, $y'$ in $T$ with $x<x'<p<y'<y$ ($p$ is good); then $z\in M(x',y')\subseteq B_x\cap A_y$.
+So $z\in\operatorname{Res}(p)=\emptyset$, a contradiction.
+
+\emph{Cut wire.} Let $O=B_x\cap A_y$, an open set containing $p$, and $F=\bar B(p,\rho)\cap\cl O$, a compact subset of $R$. A point of $\cl O\cap R$ not in $O$
+is $x$ or $y$. The component of $p$ in $F$ is a connected subset of $R$ through $p$, so lies in $Q$, hence in $M(x,y)\subseteq B(p,\rho)$; it misses the
+closed set $H=\set{z:d(p,z)=\rho}$. By the Shura-Bura cut-wire lemma there is an open $G\ni p$ with $F\cap G$ closed and disjoint from $H$. Put $V=G\cap
+O\cap B(p,\rho)$. Its closure lies in the closed set $F\cap G$, which misses $H$, so lies in $B(p,\rho)$; a point of $\cl V\cap O$ is in $G$, hence in $V$.
+So $\fr V\subseteq\set{x,y}$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.SepChain.exists_small_interval}, \lean{HPC.Jones.SepChain.exists_open_frontier_pair} (with the cut-wire
+lemma \lean{HPC.Jones.exists_clopen_of_connectedComponentIn_disjoint}), \lean{HPC.Jones.SepChain.orderLE_two}. This replaces
+Whyburn's (8.3) and (2.21)--(2.22).}
+
+\begin{corollary}\label{cor:chain-countable}
+In a separable, locally compact metric space, a separation chain with $R$ open none of whose points has order at most $2$ is countable.
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{prop:good-order2} each point of $T$ is not good or is good with nonempty residue; apply Lemma~\ref{lem:good-res}.
+\end{proof}
+
+\formal{\lean{HPC.Jones.SepChain.countable_of_not_orderLE_two}.}
+
+\section{The theorem}
+
+\begin{theorem}[Whyburn's separating point--order theorem]\label{thm:sep-order}
+Let $X$ be a separable, locally compact metric space and $R\subseteq X$ open. All but countably many separating points of $R$ have order $2$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:sep-not-order1} it suffices to count the separating points that do not have order at most $2$. For such a point $p$, take $A$, $B$ as in
+Definition~\ref{def:sep-point} (cut down to $R\setminus\set p$) and points $a\in A$, $b\in B$ of the component $Q_p$ of $p$ in $R$, other than $p$; choose basic open sets
+$U\ni a$, $W\ni b$ with $U\subseteq A$, $W\subseteq B$. There are countably many pairs $(U,W)$. Fix one, and let $T$ be the set of points $p$ obtained with it.
+
+\emph{$T$ lies in one component of $R$.} Let $p,q\in T$ be distinct. The component $Q_q$ meets $U\subseteq A_p$ and $W\subseteq B_p$. If $p\notin Q_q$, the connected set $Q_q$
+lies in $R\setminus\set p=A_p\cup B_p$ and meets both, which is impossible. So $p\in Q_q$.
+
+Hence, with $Q$ this component (connected, and closed in $R$), $T$ and the sets $A_p$, $B_p$ form a separation chain: any two sets $A_p$ contain the nonempty set
+$U\cap Q$, and any two sets $B_p$ contain $W\cap Q$. By Corollary~\ref{cor:chain-countable}, $T$ is countable.
+\end{proof}
+
+\formal{\lean{HPC.Jones.countable_sepPoint_not_hasOrder_two}, from \lean{HPC.Jones.countable_sepPoint_not_orderLE_two},
+\lean{HPC.Jones.sepT}, \lean{HPC.Jones.sepT_mem_component}, \lean{HPC.Jones.countable_sepT}.}
+
+\begin{corollary}[Whyburn (3.2), (8.4), (9.2)]\label{cor:whyburn}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item In a separable, locally compact metric space only countably many local separating points fail to have order $2$.
+\item In a compact metric space only countably many separating points of the whole space fail to have order $2$.
+\item In a continuum only countably many cut points fail to have order $2$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) A separating point $p$ of an open $R$ is, by Proposition~\ref{prop:whyburn91}, a separating point of a basic open set $U$ with $p\in U\subseteq R$. Apply
+Theorem~\ref{thm:sep-order} to each of the countably many basic sets. (b) is Theorem~\ref{thm:sep-order} with $R=X$. (c) A cut point $p$ of a continuum $X$ is a
+separating point of $X$, unless $X\setminus\set p$ is empty, which happens for at most one point.
+\end{proof}
+
+\formal{\lean{HPC.Jones.whyburn_9_2}, \lean{HPC.Jones.whyburn_8_4}, \lean{HPC.Jones.whyburn_3_2}.}
+
+\begin{corollary}[The consequence Jones uses]\label{cor:some-order-two}
+An uncountable homogeneous continuum with a local separating point has a point of order $2$.
+\end{corollary}
+
+\begin{proof}
+By homogeneity every point is a local separating point. If none had order $2$, Corollary~\ref{cor:whyburn}(a) would make the space countable.
+\end{proof}
+
+\formal{\lean{HPC.Jones.jones49_some_order_two}, \lean{HPC.Jones.jones49_some_order_two_of_whyburn_9_2}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that the Sierpi\'nski triangle (gasket) has exactly three points of order $2$, its corners. Conclude from Corollary~\ref{cor:whyburn} that only countably many of its
+points are local separating points, and find infinitely many that are.
+\end{exercise}
+
+\begin{exercise}
+Show that the vertex of a simple triod is a separating point of the triod that does not have order $2$. Construct a continuum with infinitely many cut
+points, none of which has order $2$.
+\end{exercise}
+
+\begin{exercise}
+In the arc $[0,1]$ with $R=(0,1)$, $Q=R$, $T=\set{1/n:n\ge2}$, $A_p=(0,p)$ and $B_p=(p,1)$, check that the data form a separation chain, and show
+that none of its points is good. Find a chain in $[0,1]$ all of whose points are good.
+\end{exercise}

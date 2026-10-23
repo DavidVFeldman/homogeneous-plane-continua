@@ -1,0 +1,32 @@
+walk s=0 ts=[4, 1, 5]  walkList=[0, 1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 5]  stops=[0, 4, 7, 11]  levels=[0, 4, 1, 5]
+  arm (40 times): [-1, 0, 1, 2, 1, 0, -1, 0, -1, 0, 1, 0, 1, 2, 2, 3, 3, 4, 3, 2, 3, 4, 3, 4, 3, 2, 1, 0, -1, 0, 1, 2, 3, 2, 2, 3, 3, 4, 5, 6]
+  1-Lipschitz            : True
+  |f 0 - s| <= 1         : True
+  every level served     : True
+  sentence + added clause: True
+  folds onto the walk    : False
+  a counterexample       : True
+walk s=0 ts=[5, 2, 6]  walkList=[0, 1, 2, 3, 4, 5, 4, 3, 2, 3, 4, 5, 6]  stops=[0, 5, 8, 12]  levels=[0, 5, 2, 6]
+  arm (40 times): [-1, 0, 0, 1, 1, 0, -1, -1, 0, -1, 0, 1, 2, 3, 3, 3, 4, 3, 2, 1, 0, 0, 1, 0, -1, 0, 1, 0, 1, 2, 3, 3, 4, 3, 4, 5, 6, 6, 6, 7]
+  1-Lipschitz            : True
+  |f 0 - s| <= 1         : True
+  every level served     : True
+  sentence + added clause: True
+  folds onto the walk    : False
+  a counterexample       : True
+walk s=0 ts=[5, 1, 6, 0]  walkList=[0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 0]  stops=[0, 5, 9, 14, 20]  levels=[0, 5, 1, 6, 0]
+  arm (40 times): [-1, 0, -1, -1, -1, 0, 1, 0, -1, -1, 0, -1, 0, 1, 1, 2, 1, 2, 3, 4, 3, 4, 3, 3, 4, 4, 3, 3, 2, 1, 0, -1, 0, 1, 2, 3, 4, 5, 6, 7]
+  1-Lipschitz            : True
+  |f 0 - s| <= 1         : True
+  every level served     : True
+  sentence + added clause: True
+  folds onto the walk    : False
+  a counterexample       : True
+walk s=0 ts=[5, 1, 6, 0]  walkList=[0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 0]  stops=[0, 5, 9, 14, 20]  levels=[0, 5, 1, 6, 0]
+  arm (40 times): [-1, 0, -1, 0, 0, -1, 0, 0, 1, 2, 2, 2, 3, 2, 3, 2, 3, 2, 1, 2, 1, 2, 2, 2, 3, 4, 4, 3, 2, 1, 0, -1, 0, 1, 2, 3, 4, 5, 6, 7]
+  1-Lipschitz            : True
+  |f 0 - s| <= 1         : True
+  every level served     : True
+  sentence + added clause: True
+  folds onto the walk    : False
+  a counterexample       : True

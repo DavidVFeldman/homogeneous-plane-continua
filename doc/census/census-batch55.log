@@ -1,0 +1,918 @@
+census-batch55: the witness inside the residue, and the sigma-route with the walk allowed to change.
+rounds=40 seed=55 walk-steps=200 concat-draws=12
+
+==== base chain bing 0 9 (n = 986 links); IsCrookedIvF: 1 ====
+  [mix 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 417
+  [mix 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 419
+  [mix 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 421
+  [mix 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 423
+  [mix 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 429
+  [mix 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 431
+  [mix 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 433
+  [mix 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 439
+  [mix 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 721
+  [mix 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 723
+  [mix 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 725
+  [mix 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 731
+  [mix 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 733
+  [mix 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 735
+  [mix 1] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 377
+  [mix 1] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 381
+  [mix 1] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 383
+  [mix 1] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 385
+  [mix 1] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 387
+  [mix 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 417
+  [mix 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 419
+  [mix 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 421
+  [mix 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 715
+  [mix 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 719
+  [mix 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 721
+  [mix 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 723
+  [mix 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 725
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 377
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 381
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 383
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 385
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 387
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 389
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 715
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 719
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 721
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 723
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 725
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 731
+  [mix 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 419
+  [mix 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 421
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 715
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 719
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 721
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 723
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 725
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 731
+  [mix 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 757
+  [mix 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 759
+  [mix 11] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 873
+  [mix 11] no three-turn walk at the branch L+5, basepoint 873; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 11] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 875
+  [mix 11] no three-turn walk at the branch L+5, basepoint 875; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 11] no three-turn walk at the branch L+5, basepoint 876; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 11] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 877
+  [mix 11] no three-turn walk at the branch L+5, basepoint 877; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 11] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 881
+  [mix 12] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 755
+  [mix 12] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 757
+  [mix 12] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 759
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 343
+  [mix 17] no three-turn walk at the branch L+5, basepoint 343; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 347
+  [mix 17] no three-turn walk at the branch L+5, basepoint 347; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 349
+  [mix 17] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 351
+  [mix 17] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 353
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 359
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 361
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 363
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 369
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 429
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 431
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 433
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 435
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 439
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 873
+  [mix 17] no three-turn walk at the branch L+5, basepoint 873; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 875
+  [mix 17] no three-turn walk at the branch L+5, basepoint 875; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 17] no three-turn walk at the branch L+5, basepoint 877; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 19] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 347
+  [mix 19] no three-turn walk at the branch L+5, basepoint 347; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 19] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 349
+  [mix 19] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 19] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 351
+  [mix 19] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 19] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 353
+  [mix 19] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 359
+  [mix 19] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 361
+  [mix 19] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 363
+  [mix 20] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 395
+  [mix 20] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 397
+  [mix 24] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 347
+  [mix 24] no three-turn walk at the branch L+5, basepoint 347; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 24] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 349
+  [mix 24] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 24] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 351
+  [mix 24] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 24] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 353
+  [mix 24] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 357
+  [mix 24] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 359
+  [mix 24] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 361
+  [mix 24] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 363
+  [mix 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 429
+  [mix 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 431
+  [mix 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 433
+  [mix 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 435
+  [mix 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 439
+  [mix 28] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 395
+  [mix 28] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 397
+  [mix 29] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 395
+  [mix 29] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 397
+  [mix 30] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 429
+  [mix 30] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 431
+  [mix 30] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 433
+  [mix 30] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 439
+  [mix 32] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 757
+  [mix 32] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 759
+  [mix 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 347
+  [mix 37] no three-turn walk at the branch L+5, basepoint 347; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 349
+  [mix 37] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 351
+  [mix 37] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 357
+  [mix 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 359
+  [mix 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 361
+  [mix 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 363
+  [mix 39] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 419
+  [mix 39] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 421
+  [heavy 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 395
+  [heavy 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 397
+  [heavy 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 395
+  [heavy 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 397
+  [heavy 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 399
+  [heavy 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 757
+  [heavy 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 759
+  [heavy 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 395
+  [heavy 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 397
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 349
+  [heavy 4] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 351
+  [heavy 4] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 353
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 357
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 359
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 361
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 363
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 365
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 371
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 373
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 375
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 377
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 381
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 383
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 385
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 387
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 395
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 397
+  [heavy 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 399
+  [heavy 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 343
+  [heavy 5] no three-turn walk at the branch L+5, basepoint 343; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 347
+  [heavy 5] no three-turn walk at the branch L+5, basepoint 347; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 349
+  [heavy 5] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 351
+  [heavy 5] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 357
+  [heavy 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 359
+  [heavy 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 361
+  [heavy 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 363
+  [heavy 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 369
+  [heavy 6] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 873
+  [heavy 6] no three-turn walk at the branch L+5, basepoint 873; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 6] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 875
+  [heavy 6] no three-turn walk at the branch L+5, basepoint 875; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 6] no three-turn walk at the branch L+5, basepoint 876; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 6] no three-turn walk at the branch L+5, basepoint 877; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 6] no three-turn walk at the branch L+5, basepoint 881; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 343
+  [heavy 8] no three-turn walk at the branch L+5, basepoint 343; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 349
+  [heavy 8] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 351
+  [heavy 8] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 357
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 359
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 361
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 363
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 715
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 719
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 721
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 723
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 725
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 727
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 419
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 421
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 429
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 431
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 433
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 435
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 439
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 715
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 719
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 721
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 723
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 725
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 757
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 759
+  [heavy 11] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 419
+  [heavy 11] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 421
+  [heavy 12] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 757
+  [heavy 12] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 759
+  [heavy 12] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 873
+  [heavy 12] no three-turn walk at the branch L+5, basepoint 873; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 12] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 875
+  [heavy 12] no three-turn walk at the branch L+5, basepoint 875; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 12] no three-turn walk at the branch L+5, basepoint 876; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 12] no three-turn walk at the branch L+5, basepoint 877; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 12] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 881
+  [heavy 14] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 715
+  [heavy 14] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 719
+  [heavy 14] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 721
+  [heavy 14] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 723
+  [heavy 14] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 725
+  [heavy 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 419
+  [heavy 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 421
+  [heavy 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 427
+  [heavy 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 429
+  [heavy 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 431
+  [heavy 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 433
+  [heavy 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 435
+  [heavy 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 439
+  [heavy 18] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 873
+  [heavy 18] no three-turn walk at the branch L+5, basepoint 873; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 18] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 875
+  [heavy 18] no three-turn walk at the branch L+5, basepoint 875; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 18] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 877
+  [heavy 18] no three-turn walk at the branch L+5, basepoint 877; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 18] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 881
+  [heavy 19] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 395
+  [heavy 19] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 397
+  [heavy 23] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 395
+  [heavy 23] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 397
+  [heavy 24] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 733
+  [heavy 24] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 735
+  [heavy 24] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 737
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 347
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 347; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 349
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 350; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 351
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 353
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 353; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 357
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 357; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 359
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 359; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 360; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 361
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 361; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 363
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 363; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 364; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 365
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 365; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 371
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 373
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 375
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 377
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 381
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 383
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 385
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 387
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 389
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 395
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 397
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 423
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 429
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 431
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 433
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 757
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 759
+  [heavy 28] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 733
+  [heavy 28] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 735
+  [heavy 28] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 755
+  [heavy 28] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 757
+  [heavy 28] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 759
+  [heavy 29] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 721
+  [heavy 29] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 723
+  [heavy 29] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 725
+  [heavy 29] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 731
+  [heavy 30] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 733
+  [heavy 30] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 735
+  [heavy 31] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 733
+  [heavy 31] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 735
+  [heavy 32] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 419
+  [heavy 32] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 421
+  [heavy 32] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 757
+  [heavy 32] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 759
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 343
+  [heavy 33] no three-turn walk at the branch L+5, basepoint 343; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 349
+  [heavy 33] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 351
+  [heavy 33] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 353
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 357
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 359
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 361
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 363
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 371
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 373
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 375
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 377
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 383
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 385
+  [heavy 33] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 387
+  [heavy 34] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 715
+  [heavy 34] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 719
+  [heavy 34] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 721
+  [heavy 34] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 723
+  [heavy 34] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 725
+  [heavy 34] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 733
+  [heavy 34] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 735
+  [heavy 36] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 757
+  [heavy 36] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 759
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 347
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 347; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 349
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 350; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 351
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 353
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 353; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 357
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 357; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 359
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 359; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 360; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 361
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 361; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 363
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 363; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 364; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 365; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 371
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 373
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 375
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 383
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 385
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 387
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 395
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 397
+  [heavy 39] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 395
+  [heavy 39] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 397
+  [heavy 39] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 399
+  [heavy 39] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 429
+  [heavy 39] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 431
+  [heavy 39] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 433
+  [heavy 39] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 435
+  the total mixture is faithful
+  random perturbation walk: 200 steps tried, 31 accepted
+
+==== base chain bing 9 0 (n = 986 links); IsCrookedIvF: 1 ====
+  [mix 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 104
+  [mix 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 108
+  [mix 2] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 2] no three-turn walk at the branch L+5, basepoint 109; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 110
+  [mix 2] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 112
+  [mix 2] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 260
+  [mix 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 262
+  [mix 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 264
+  [mix 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 270
+  [mix 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 226
+  [mix 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 228
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 254
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 258
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 260
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 262
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 264
+  [mix 4] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 266
+  [mix 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 226
+  [mix 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 228
+  [mix 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 258
+  [mix 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 260
+  [mix 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 262
+  [mix 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 264
+  [mix 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 266
+  [mix 5] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 270
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 588
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 590
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 598
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 600
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 602
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 604
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 608
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 610
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 612
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 614
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 622
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 624
+  [mix 7] no three-turn walk at the branch L+5, basepoint 624; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 626
+  [mix 7] no three-turn walk at the branch L+5, basepoint 626; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 628
+  [mix 7] no three-turn walk at the branch L+5, basepoint 628; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 632
+  [mix 7] no three-turn walk at the branch L+5, basepoint 632; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 634
+  [mix 7] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 7] no three-turn walk at the branch L+5, basepoint 635; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 636
+  [mix 7] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 638
+  [mix 7] no three-turn walk at the branch L+5, basepoint 638; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 7] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 642
+  [mix 7] no three-turn walk at the branch L+5, basepoint 642; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 564
+  [mix 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 566
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 588
+  [mix 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 590
+  [mix 18] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 104
+  [mix 18] no three-turn walk at the branch L+5, basepoint 104; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 18] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 18] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 110
+  [mix 18] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 18] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 112
+  [mix 18] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 18] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 586
+  [mix 18] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 588
+  [mix 18] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 590
+  [mix 19] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 564
+  [mix 19] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 566
+  [mix 19] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 568
+  [mix 21] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 248
+  [mix 21] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 250
+  [mix 21] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 252
+  [mix 21] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 260
+  [mix 21] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 262
+  [mix 21] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 264
+  [mix 21] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 266
+  [mix 21] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 270
+  [mix 22] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 550
+  [mix 22] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 552
+  [mix 22] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 554
+  [mix 22] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 556
+  [mix 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 588
+  [mix 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 590
+  [mix 30] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 546
+  [mix 30] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 552
+  [mix 30] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 554
+  [mix 30] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 556
+  [mix 30] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 562
+  [mix 30] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 564
+  [mix 30] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 566
+  [mix 30] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 568
+  [mix 31] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 598
+  [mix 31] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 600
+  [mix 31] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 602
+  [mix 34] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 104
+  [mix 34] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 34] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 110
+  [mix 34] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 34] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 112
+  [mix 34] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 36] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 546
+  [mix 36] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 550
+  [mix 36] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 552
+  [mix 36] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 554
+  [mix 36] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 556
+  [mix 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 598
+  [mix 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 600
+  [mix 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 602
+  [mix 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 604
+  [mix 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 608
+  [mix 38] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 104
+  [mix 38] no three-turn walk at the branch L+5, basepoint 104; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 38] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 108
+  [mix 38] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 38] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 110
+  [mix 38] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 38] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 112
+  [mix 38] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 38] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 546
+  [mix 38] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 552
+  [mix 38] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 554
+  [mix 38] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 556
+  [heavy 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 104
+  [heavy 0] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 110
+  [heavy 0] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 0] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 112
+  [heavy 0] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 250
+  [heavy 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 252
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 250
+  [heavy 8] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 252
+  [heavy 9] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 226
+  [heavy 9] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 228
+  [heavy 9] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 250
+  [heavy 9] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 252
+  [heavy 9] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 260
+  [heavy 9] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 262
+  [heavy 9] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 264
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 104
+  [heavy 10] no three-turn walk at the branch L+5, basepoint 104; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 10] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 10] no three-turn walk at the branch L+5, basepoint 109; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 110
+  [heavy 10] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 112
+  [heavy 10] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 552
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 554
+  [heavy 10] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 556
+  [heavy 12] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 226
+  [heavy 12] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 228
+  [heavy 13] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 546
+  [heavy 13] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 552
+  [heavy 13] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 554
+  [heavy 13] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 556
+  [heavy 13] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 562
+  [heavy 13] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 592
+  [heavy 13] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 598
+  [heavy 13] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 600
+  [heavy 13] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 602
+  [heavy 13] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 604
+  [heavy 15] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 260
+  [heavy 15] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 262
+  [heavy 15] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 264
+  [heavy 15] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 266
+  [heavy 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 250
+  [heavy 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 252
+  [heavy 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 260
+  [heavy 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 262
+  [heavy 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 264
+  [heavy 16] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 266
+  [heavy 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 260
+  [heavy 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 262
+  [heavy 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 264
+  [heavy 17] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 270
+  [heavy 18] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 226
+  [heavy 18] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 228
+  [heavy 21] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 104
+  [heavy 21] no three-turn walk at the branch L+5, basepoint 104; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 21] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 21] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 110
+  [heavy 21] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 21] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 112
+  [heavy 21] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 23] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 250
+  [heavy 23] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 252
+  [heavy 24] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 226
+  [heavy 24] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 228
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 250
+  [heavy 25] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 252
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 104
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 108
+  [heavy 27] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 110
+  [heavy 27] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 112
+  [heavy 27] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 260
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 262
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 264
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 550
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 552
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 554
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 556
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 562
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 564
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 566
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 592
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 598
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 600
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 602
+  [heavy 27] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 608
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 596
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 598
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 600
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 602
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 604
+  [heavy 37] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 608
+  [heavy 39] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 39] no three-turn walk at the branch L+5, basepoint 109; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 39] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 110
+  [heavy 39] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 39] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 112
+  [heavy 39] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  the total mixture is faithful
+  random perturbation walk: 200 steps tried, 31 accepted
+
+  vpath 0 9 (1,2) (n = 174): NOT faithful
+
+  vpath 0 9 (2,1) (n = 174): NOT faithful
+
+  vpath 0 9 (2,2) (n = 66): NOT faithful
+
+  vpath 9 0 (2,2) (n = 66): NOT faithful
+
+==== chain outside Bing's family: bing 0 9 + bing 9 0 (n = 1971 links) ====
+
+==== chain outside Bing's family: bing 9 0 + bing 0 9 (n = 1971 links) ====
+
+random chains: 2 faithful of 6 tried
+  [concat-total 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 62
+  [concat-total 2] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 64
+  [concat-total 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 349
+  [concat-total 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 351
+  [concat-total 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 359
+  [concat-total 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 361
+  [concat-total 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 363
+  [concat-total 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 371
+  [concat-total 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 373
+  [concat-total 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 375
+  [concat-total 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 383
+  [concat-total 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 385
+  [concat-total 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 387
+  [concat-total 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 395
+  [concat-total 3] the sigma-route IMPLICATION FAILS: tau folds, 9 - rho folds onto no walk of the five: basepoint 397
+
+random concatenations of Bing blocks: 3 faithful of 10 drawn
+
+================ totals ================
+
+-- the thin chains --
+faithful pairs: 2; non-thin links 0/1972 (0.00000)
+branch L+4: basepoints 364, unserved 110; served by w3 110, w4 16, w5 110; by one of the three 110; BY NONE 0
+  sentence holds at 110 unserved pairs; equivalence failures 0; exactness checks 2184 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 18; of those, pairs missing the Lambda-walk 0
+  there: w4 sentence on both arms 0, w5 sentence on both arms 0, one of the two 0, NEITHER 0
+  with the pair unserved by both canonical walks: 0; w4 sentence 0, w5 sentence 0, NEITHER 0
+  arm dichotomies over 728 arms of the branch: arms failing Valley5 182 (fold onto the V-walk 182, FAILURES 0); failing TopW5 0 (fold onto the Lambda-walk 0, others 0); failing MidW4 360 (fold onto a canonical walk 360, others 0); failing BottomW4 110 (fold onto a canonical walk 110, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 0, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 0, CeilHighResidual 0, one of the two 0, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 0
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 70, of which both arms fold onto the V-walk 70
+  ValleyResidual at a branch basepoint: 92 (narrow: 92); with a failing arm: 38 (narrow: 38); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 464, unserved 110; served by the reflection of w3 110, of w4 16, of w5 110; by one of the three 110; BY NONE 0
+  of those, served by some walk of at most three turns based within one of L+5: 0; by none: 0
+BATCH 54, the sharpened residues: ValleyNarrowResidual 92 (with a failing arm 38); CeilFarFlatG 0, CeilFarFlatT 0 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 0; covered by cross_ceil_sentence_of_not_narrow_residual 0
+  walks inside the valley residue with a failing arm (38 basepoints): Lambda 0, V 38, w3 0, w4 16, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (38 basepoints): Lambda 0, V 38, w3 0, w4 16, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue: the residue is empty
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom): the residue is empty
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 464, of which both tau-arms are HighAt: 364; there one of the five walks serves the tau-pair 364 times, NONE 0
+  QUESTION 2 (the sigma-route with the walk allowed to change): the tau-pair is served by one of the five at 364 basepoints, the pair of 9 - rho at 364, both at 364; tau served and 9 - rho served by NONE: 0
+    the individual walk is lost (serves tau, not 9 - rho) at: Lambda 0, V 0, w3 0, w4 0, w5 0; basepoints where some walk is lost but another serves: 0
+
+-- single shavings --
+faithful pairs: 576; non-thin links 576/567936 (0.00101)
+branch L+4: basepoints 105004, unserved 31596; served by w3 31590, w4 4602, w5 31526; by one of the three 31596; BY NONE 0
+  sentence holds at 31596 unserved pairs; equivalence failures 0; exactness checks 630024 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 5184; of those, pairs missing the Lambda-walk 18
+  there: w4 sentence on both arms 6, w5 sentence on both arms 18, one of the two 18, NEITHER 0
+  with the pair unserved by both canonical walks: 6; w4 sentence 6, w5 sentence 6, NEITHER 0
+  arm dichotomies over 210008 arms of the branch: arms failing Valley5 52536 (fold onto the V-walk 52536, FAILURES 0); failing TopW5 12 (fold onto the Lambda-walk 12, others 0); failing MidW4 103768 (fold onto a canonical walk 103768, others 0); failing BottomW4 31776 (fold onto a canonical walk 31776, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 6, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 0, CeilHighResidual 0, one of the two 0, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 18
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 20194, of which both arms fold onto the V-walk 20194
+  ValleyResidual at a branch basepoint: 26412 (narrow: 26412); with a failing arm: 10934 (narrow: 10934); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 133462, unserved 31692; served by the reflection of w3 31626, of w4 4592, of w5 31622; by one of the three 31692; BY NONE 0
+  of those, served by some walk of at most three turns based within one of L+5: 0; by none: 0
+BATCH 54, the sharpened residues: ValleyNarrowResidual 26412 (with a failing arm 10934); CeilFarFlatG 18, CeilFarFlatT 18 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 0; covered by cross_ceil_sentence_of_not_narrow_residual 18
+  walks inside the valley residue with a failing arm (10934 basepoints): Lambda 0, V 10934, w3 0, w4 4600, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (10934 basepoints): Lambda 0, V 10934, w3 0, w4 4600, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue: the residue is empty
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom): the residue is empty
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 133304, of which both tau-arms are HighAt: 104684; there one of the five walks serves the tau-pair 104684 times, NONE 0
+  QUESTION 2 (the sigma-route with the walk allowed to change): the tau-pair is served by one of the five at 104684 basepoints, the pair of 9 - rho at 104684, both at 104684; tau served and 9 - rho served by NONE: 0
+    the individual walk is lost (serves tau, not 9 - rho) at: Lambda 0, V 100, w3 120, w4 46, w5 12; basepoints where some walk is lost but another serves: 278
+
+-- single fills --
+faithful pairs: 576; non-thin links 576/567936 (0.00101)
+branch L+4: basepoints 104832, unserved 31680; served by w3 31680, w4 4608, w5 31680; by one of the three 31680; BY NONE 0
+  sentence holds at 31680 unserved pairs; equivalence failures 0; exactness checks 628992 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 5184; of those, pairs missing the Lambda-walk 0
+  there: w4 sentence on both arms 0, w5 sentence on both arms 0, one of the two 0, NEITHER 0
+  with the pair unserved by both canonical walks: 0; w4 sentence 0, w5 sentence 0, NEITHER 0
+  arm dichotomies over 209664 arms of the branch: arms failing Valley5 52416 (fold onto the V-walk 52416, FAILURES 0); failing TopW5 0 (fold onto the Lambda-walk 0, others 0); failing MidW4 103680 (fold onto a canonical walk 103680, others 0); failing BottomW4 31680 (fold onto a canonical walk 31680, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 0, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 0, CeilHighResidual 0, one of the two 0, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 0
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 20160, of which both arms fold onto the V-walk 20160
+  ValleyResidual at a branch basepoint: 26496 (narrow: 26496); with a failing arm: 10944 (narrow: 10944); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 133632, unserved 31680; served by the reflection of w3 31680, of w4 4608, of w5 31680; by one of the three 31680; BY NONE 0
+  of those, served by some walk of at most three turns based within one of L+5: 0; by none: 0
+BATCH 54, the sharpened residues: ValleyNarrowResidual 26496 (with a failing arm 10944); CeilFarFlatG 0, CeilFarFlatT 0 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 0; covered by cross_ceil_sentence_of_not_narrow_residual 0
+  walks inside the valley residue with a failing arm (10944 basepoints): Lambda 0, V 10944, w3 0, w4 4608, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (10944 basepoints): Lambda 0, V 10944, w3 0, w4 4608, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue: the residue is empty
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom): the residue is empty
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 133530, of which both tau-arms are HighAt: 104820; there one of the five walks serves the tau-pair 104820 times, NONE 0
+  QUESTION 2 (the sigma-route with the walk allowed to change): the tau-pair is served by one of the five at 104820 basepoints, the pair of 9 - rho at 104820, both at 104820; tau served and 9 - rho served by NONE: 0
+    the individual walk is lost (serves tau, not 9 - rho) at: Lambda 0, V 164, w3 92, w4 76, w5 0; basepoints where some walk is lost but another serves: 332
+
+-- random mixtures (rate 1/3) --
+faithful pairs: 80; non-thin links 15253/78880 (0.19337)
+branch L+4: basepoints 17227, unserved 3645; served by w3 3605, w4 563, w5 2617; by one of the three 3645; BY NONE 0
+  sentence holds at 3645 unserved pairs; equivalence failures 0; exactness checks 103362 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 719; of those, pairs missing the Lambda-walk 214
+  there: w4 sentence on both arms 90, w5 sentence on both arms 214, one of the two 214, NEITHER 0
+  with the pair unserved by both canonical walks: 40; w4 sentence 36, w5 sentence 40, NEITHER 0
+  arm dichotomies over 34454 arms of the branch: arms failing Valley5 9306 (fold onto the V-walk 9306, FAILURES 0); failing TopW5 242 (fold onto the Lambda-walk 242, others 0); failing MidW4 15852 (fold onto a canonical walk 15852, others 0); failing BottomW4 5457 (fold onto a canonical walk 5457, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 129, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 19, CeilHighResidual 0, one of the two 19, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 195
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 3301, of which both arms fold onto the V-walk 3301
+  ValleyResidual at a branch basepoint: 2506 (narrow: 2506); with a failing arm: 1225 (narrow: 1225); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 16266, unserved 4266; served by the reflection of w3 3300, of w4 396, of w5 3465; by one of the three 3973; BY NONE 293
+  of those, served by some walk of at most three turns based within one of L+5: 249; by none: 44
+BATCH 54, the sharpened residues: ValleyNarrowResidual 2506 (with a failing arm 1225); CeilFarFlatG 214, CeilFarFlatT 214 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 19; covered by cross_ceil_sentence_of_not_narrow_residual 195
+  walks inside the valley residue with a failing arm (1225 basepoints): Lambda 0, V 1225, w3 0, w4 486, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (1225 basepoints): Lambda 0, V 1225, w3 0, w4 486, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue (19 basepoints): Lambda 0, V 19, w3 0, w4 0, w5 19; served by NONE of the five 0
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom) (19 basepoints): Lambda 0, V 19, w3 0, w4 0, w5 19; served by NONE of the five 0
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 13225, of which both tau-arms are HighAt: 11973; there one of the five walks serves the tau-pair 11973 times, NONE 0
+  QUESTION 2 (the sigma-route with the walk allowed to change): the tau-pair is served by one of the five at 11973 basepoints, the pair of 9 - rho at 11758, both at 11758; tau served and 9 - rho served by NONE: 215
+    the individual walk is lost (serves tau, not 9 - rho) at: Lambda 0, V 2664, w3 2023, w4 1179, w5 154; basepoints where some walk is lost but another serves: 4705
+
+-- heavy mixtures (rate 1/2, and the total mixture) --
+faithful pairs: 82; non-thin links 23977/80852 (0.29655)
+branch L+4: basepoints 19205, unserved 3750; served by w3 3728, w4 545, w5 2612; by one of the three 3750; BY NONE 0
+  sentence holds at 3750 unserved pairs; equivalence failures 0; exactness checks 115230 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 622; of those, pairs missing the Lambda-walk 178
+  there: w4 sentence on both arms 69, w5 sentence on both arms 178, one of the two 178, NEITHER 0
+  with the pair unserved by both canonical walks: 22; w4 sentence 21, w5 sentence 22, NEITHER 0
+  arm dichotomies over 38410 arms of the branch: arms failing Valley5 10677 (fold onto the V-walk 10677, FAILURES 0); failing TopW5 359 (fold onto the Lambda-walk 359, others 0); failing MidW4 16710 (fold onto a canonical walk 16710, others 0); failing BottomW4 6935 (fold onto a canonical walk 6935, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 162, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 15, CeilHighResidual 0, one of the two 15, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 163
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 3759, of which both arms fold onto the V-walk 3759
+  ValleyResidual at a branch basepoint: 1966 (narrow: 1966); with a failing arm: 1038 (narrow: 1038); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 15973, unserved 4187; served by the reflection of w3 3222, of w4 272, of w5 3236; by one of the three 3787; BY NONE 400
+  of those, served by some walk of at most three turns based within one of L+5: 333; by none: 67
+BATCH 54, the sharpened residues: ValleyNarrowResidual 1966 (with a failing arm 1038); CeilFarFlatG 178, CeilFarFlatT 178 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 15; covered by cross_ceil_sentence_of_not_narrow_residual 163
+  walks inside the valley residue with a failing arm (1038 basepoints): Lambda 0, V 1038, w3 0, w4 355, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (1038 basepoints): Lambda 0, V 1038, w3 0, w4 355, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue (15 basepoints): Lambda 0, V 15, w3 0, w4 0, w5 15; served by NONE of the five 0
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom) (15 basepoints): Lambda 0, V 15, w3 0, w4 0, w5 15; served by NONE of the five 0
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 11323, of which both tau-arms are HighAt: 10719; there one of the five walks serves the tau-pair 10719 times, NONE 0
+  QUESTION 2 (the sigma-route with the walk allowed to change): the tau-pair is served by one of the five at 10719 basepoints, the pair of 9 - rho at 10448, both at 10448; tau served and 9 - rho served by NONE: 271
+    the individual walk is lost (serves tau, not 9 - rho) at: Lambda 0, V 4027, w3 2264, w4 1523, w5 303; basepoints where some walk is lost but another serves: 5665
+
+-- random faithful perturbation walks --
+faithful pairs: 62; non-thin links 976/61132 (0.01597)
+branch L+4: basepoints 12247, unserved 3433; served by w3 3433, w4 496, w5 3433; by one of the three 3433; BY NONE 0
+  sentence holds at 3433 unserved pairs; equivalence failures 0; exactness checks 73482 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 390; of those, pairs missing the Lambda-walk 0
+  there: w4 sentence on both arms 0, w5 sentence on both arms 0, one of the two 0, NEITHER 0
+  with the pair unserved by both canonical walks: 0; w4 sentence 0, w5 sentence 0, NEITHER 0
+  arm dichotomies over 24494 arms of the branch: arms failing Valley5 5558 (fold onto the V-walk 5558, FAILURES 0); failing TopW5 0 (fold onto the Lambda-walk 0, others 0); failing MidW4 12390 (fold onto a canonical walk 12390, others 0); failing BottomW4 3354 (fold onto a canonical walk 3354, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 0, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 0, CeilHighResidual 0, one of the two 0, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 0
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 2505, of which both arms fold onto the V-walk 2505
+  ValleyResidual at a branch basepoint: 2789 (narrow: 2789); with a failing arm: 1258 (narrow: 1258); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 14373, unserved 2754; served by the reflection of w3 2754, of w4 371, of w5 2754; by one of the three 2754; BY NONE 0
+  of those, served by some walk of at most three turns based within one of L+5: 0; by none: 0
+BATCH 54, the sharpened residues: ValleyNarrowResidual 2789 (with a failing arm 1258); CeilFarFlatG 0, CeilFarFlatT 0 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 0; covered by cross_ceil_sentence_of_not_narrow_residual 0
+  walks inside the valley residue with a failing arm (1258 basepoints): Lambda 0, V 1258, w3 0, w4 605, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (1258 basepoints): Lambda 0, V 1258, w3 0, w4 605, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue: the residue is empty
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom): the residue is empty
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 14199, of which both tau-arms are HighAt: 11415; there one of the five walks serves the tau-pair 11415 times, NONE 0
+  QUESTION 2 (the sigma-route with the walk allowed to change): the tau-pair is served by one of the five at 11415 basepoints, the pair of 9 - rho at 11415, both at 11415; tau served and 9 - rho served by NONE: 0
+    the individual walk is lost (serves tau, not 9 - rho) at: Lambda 0, V 130, w3 383, w4 42, w5 0; basepoints where some walk is lost but another serves: 549
+
+-- chains outside Bing's family --
+faithful pairs: 2664; non-thin links 5308/4686453 (0.00113)
+branch L+4: basepoints 872396, unserved 262959; served by w3 262946, w4 38029, w5 262798; by one of the three 262959; BY NONE 0
+  sentence holds at 262959 unserved pairs; equivalence failures 0; exactness checks 5234376 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 42483; of those, pairs missing the Lambda-walk 45
+  there: w4 sentence on both arms 13, w5 sentence on both arms 45, one of the two 45, NEITHER 0
+  with the pair unserved by both canonical walks: 13; w4 sentence 13, w5 sentence 13, NEITHER 0
+  arm dichotomies over 1744792 arms of the branch: arms failing Valley5 440027 (fold onto the V-walk 440027, FAILURES 0); failing TopW5 50 (fold onto the Lambda-walk 50, others 0); failing MidW4 860389 (fold onto a canonical walk 860389, others 0); failing BottomW4 269833 (fold onto a canonical walk 269833, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 24, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 0, CeilHighResidual 0, one of the two 0, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 45
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 169322, of which both arms fold onto the V-walk 169322
+  ValleyResidual at a branch basepoint: 220915 (narrow: 220915); with a failing arm: 91774 (narrow: 91774); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 1095936, unserved 257579; served by the reflection of w3 257402, of w4 37538, of w5 257384; by one of the three 257547; BY NONE 32
+  of those, served by some walk of at most three turns based within one of L+5: 32; by none: 0
+BATCH 54, the sharpened residues: ValleyNarrowResidual 220915 (with a failing arm 91774); CeilFarFlatG 45, CeilFarFlatT 45 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 0; covered by cross_ceil_sentence_of_not_narrow_residual 45
+  walks inside the valley residue with a failing arm (91774 basepoints): Lambda 0, V 91774, w3 0, w4 38000, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (91774 basepoints): Lambda 0, V 91774, w3 0, w4 38000, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue: the residue is empty
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom): the residue is empty
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 1094900, of which both tau-arms are HighAt: 856535; there one of the five walks serves the tau-pair 856535 times, NONE 0
+  QUESTION 2 (the sigma-route with the walk allowed to change): the tau-pair is served by one of the five at 856535 basepoints, the pair of 9 - rho at 856520, both at 856520; tau served and 9 - rho served by NONE: 15
+    the individual walk is lost (serves tau, not 9 - rho) at: Lambda 0, V 867, w3 568, w4 375, w5 30; basepoints where some walk is lost but another serves: 1641
+
+-- EVERYTHING --
+faithful pairs: 4042; non-thin links 46666/6045161 (0.00772)
+branch L+4: basepoints 1131275, unserved 337173; served by w3 337092, w4 48859, w5 334776; by one of the three 337173; BY NONE 0
+  sentence holds at 337173 unserved pairs; equivalence failures 0; exactness checks 6787650 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 54600; of those, pairs missing the Lambda-walk 455
+  there: w4 sentence on both arms 178, w5 sentence on both arms 455, one of the two 455, NEITHER 0
+  with the pair unserved by both canonical walks: 81; w4 sentence 76, w5 sentence 81, NEITHER 0
+  arm dichotomies over 2262550 arms of the branch: arms failing Valley5 570702 (fold onto the V-walk 570702, FAILURES 0); failing TopW5 663 (fold onto the Lambda-walk 663, others 0); failing MidW4 1113149 (fold onto a canonical walk 1113149, others 0); failing BottomW4 349145 (fold onto a canonical walk 349145, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 321, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 34, CeilHighResidual 0, one of the two 34, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 421
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 219311, of which both arms fold onto the V-walk 219311
+  ValleyResidual at a branch basepoint: 281176 (narrow: 281176); with a failing arm: 117211 (narrow: 117211); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 1410106, unserved 332268; served by the reflection of w3 330094, of w4 47793, of w5 330251; by one of the three 331543; BY NONE 725
+  of those, served by some walk of at most three turns based within one of L+5: 614; by none: 111
+BATCH 54, the sharpened residues: ValleyNarrowResidual 281176 (with a failing arm 117211); CeilFarFlatG 455, CeilFarFlatT 455 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 34; covered by cross_ceil_sentence_of_not_narrow_residual 421
+  walks inside the valley residue with a failing arm (117211 basepoints): Lambda 0, V 117211, w3 0, w4 48670, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (117211 basepoints): Lambda 0, V 117211, w3 0, w4 48670, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue (34 basepoints): Lambda 0, V 34, w3 0, w4 0, w5 34; served by NONE of the five 0
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom) (34 basepoints): Lambda 0, V 34, w3 0, w4 0, w5 34; served by NONE of the five 0
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 1400945, of which both tau-arms are HighAt: 1100510; there one of the five walks serves the tau-pair 1100510 times, NONE 0
+  QUESTION 2 (the sigma-route with the walk allowed to change): the tau-pair is served by one of the five at 1100510 basepoints, the pair of 9 - rho at 1100009, both at 1100009; tau served and 9 - rho served by NONE: 501
+    the individual walk is lost (serves tau, not 9 - rho) at: Lambda 0, V 7952, w3 5450, w4 3241, w5 499; basepoints where some walk is lost but another serves: 13170
+
+---- the walks that serve the pairs of the branch L+5 the three reflected walks miss ----
+  5 -> 6 -> 8 -> 1  (11 times): shortest serving walk at 44 pairs
+  5 -> 7 -> 1 -> 8  (16 times): shortest serving walk at 246 pairs
+  4 -> 7 -> 1 -> 8  (17 times): shortest serving walk at 253 pairs
+  5 -> 3 -> 8 -> 1  (15 times): shortest serving walk at 30 pairs
+  6 -> 7 -> 8 -> 1  (10 times): shortest serving walk at 9 pairs
+  5 -> 3 -> 4 -> 7  (7 times): shortest serving walk at 1 pairs
+  5 -> 6 -> 7 -> 3  (7 times): shortest serving walk at 4 pairs
+  4 -> 3 -> 7 -> 1  (12 times): shortest serving walk at 6 pairs
+  5 -> 3 -> 7 -> 1  (13 times): shortest serving walk at 3 pairs
+  4 -> 5 -> 7 -> 1  (10 times): shortest serving walk at 12 pairs
+  5 -> 6 -> 7 -> 1  (9 times): shortest serving walk at 6 pairs
+
+-- the witness inside the valley residue (ValleyResidual with a failing arm) --
+  pairs analysed 95209; both arms fail 6377; no ascent on the arm 15625
+  the criterion holds at 95209, fails at 0
+  one application of the clause FORCES the witness at 16916, realises one at 16916, does neither at 78293
+  the arm index of the first witness: 8:47285 12:47291 22:304 26:329
+  its level: 2:95209
+  its distance from the ascent: 29:425 31:94784
+  the witness lies further out than the residual time at 95209 of 95209
+
+-- the witness inside the ceiling peak residue (CeilPeakResidual, Lambda-free) --
+  pairs analysed 11; both arms fail 0; no ascent on the arm 23
+  the criterion holds at 11, fails at 0
+  one application of the clause FORCES the witness at 0, realises one at 0, does neither at 11
+  the arm index of the first witness: 31:11
+  its level: 2:11
+  its distance from the ascent: 31:11
+  the witness lies further out than the residual time at 0 of 11
+
+-- the anchorings that force the witness --
+  1643 schemes recorded over 95220 pairs; the anchors were searched within 24
+  steps of the basepoint and at a span of at most 20
+  family 1 (anchors measured from the basepoint): the widest scheme covers 4364 of 95220 pairs (39 schemes do)
+    s at +3, t at +14, h = 4, k = 1 : 4364 pairs
+    s at +3, t at +14, h = 5, k = 1 : 4364 pairs
+    s at +3, t at +15, h = 4, k = 1 : 4364 pairs
+    s at +3, t at +15, h = 5, k = 1 : 4364 pairs
+    s at +3, t at +16, h = 4, k = 1 : 4364 pairs
+    s at +3, t at +16, h = 5, k = 1 : 4364 pairs
+    s at +4, t at +14, h = 5, k = 1 : 4364 pairs
+    s at +4, t at +14, h = 4, k = 1 : 4364 pairs
+    s at +4, t at +15, h = 5, k = 1 : 4364 pairs
+    s at +4, t at +15, h = 4, k = 1 : 4364 pairs
+    s at +4, t at +16, h = 5, k = 1 : 4364 pairs
+    s at +4, t at +16, h = 4, k = 1 : 4364 pairs
+  family 2 (anchors measured from the ascent): the widest scheme covers 6392 of 95220 pairs (85 schemes do)
+    s at -140, t at -129, h = 4, k = 1 : 6392 pairs
+    s at -140, t at -129, h = 5, k = 1 : 6392 pairs
+    s at -140, t at -128, h = 4, k = 1 : 6392 pairs
+    s at -140, t at -128, h = 5, k = 1 : 6392 pairs
+    s at -140, t at -127, h = 4, k = 1 : 6392 pairs
+    s at -140, t at -127, h = 5, k = 1 : 6392 pairs
+    s at -139, t at -129, h = 5, k = 1 : 6392 pairs
+    s at -139, t at -129, h = 4, k = 1 : 6392 pairs
+    s at -139, t at -128, h = 5, k = 1 : 6392 pairs
+    s at -139, t at -128, h = 4, k = 1 : 6392 pairs
+    s at -139, t at -127, h = 5, k = 1 : 6392 pairs
+    s at -139, t at -127, h = 4, k = 1 : 6392 pairs
+
+---- the definition audit ----
+  every predicate below is evaluated by its own definition, none by a proxy:
+    IsCrookedIvF (le, width, adj, crooked with interval triggers); IsLip via the
+    adjacency clause; HighAt (L+1) (L+8); LowAt (L+1) (L+8); Leg3Valley; Leg3Ceil;
+    Valley4; Valley5; TopW5; MidW4; CeilW4; BottomW4; FoldsOnto (the dynamic program of
+    HPC/Fold/Decide.lean) for the Lambda-walk, the V-walk, w3, w4, w5 and their
+    reflections; ValleyResidual; ValleyNarrowResidual; CeilPeakResidual;
+    CeilHighResidual; CeilFarFlatG; CeilFarFlatT.
+  the one proxy, reported as a proxy: the *narrow* valley residue of batch 53
+  (valleyResidualNarrow) reads the interval pair, and is kept beside the Lean
+  predicate ValleyNarrowResidual, which reads rho alone.
+  New in batch 55: the witness analysis reads the V-criterion and TopW5 as their
+  definitions read them, and the crookedness clause of IsCrookedIvF as the
+  structure field states it -- anchors within one step, levels three apart, two
+  returned times strictly between the anchors.  The sigma-route question uses the
+  same FoldsOnto dynamic program on tau = 9 - sig and on 9 - rho.

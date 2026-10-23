@@ -1,0 +1,229 @@
+%======================================================================
+\chapter{Upper semicontinuous decompositions}\label{ch:decomp}
+%======================================================================
+
+Throughout this chapter $X$ is a compact metric space. A \emph{decomposition} of $X$ is a partition
+of $X$ into nonempty sets, its \emph{elements}; equivalently, an equivalence relation $r$ on $X$. We
+write $\elt x$ for the element containing $x$, so $y\in\elt x$ means $r(y,x)$, and $\elt y=\elt x$ for
+every $y\in\elt x$.
+
+\section{Upper and lower semicontinuity}
+
+\begin{definition}\label{def:usc}
+A decomposition is \emph{upper semicontinuous} (u.s.c.) if every element is closed and, whenever
+an element $\elt x$ lies in an open set $U$, there is an open set $V\supseteq\elt x$ such that every
+element meeting $V$ lies in $U$. It is \emph{lower semicontinuous at the element $\elt x$} if for
+every $y\in\elt x$ and every open $V\ni y$ there is an open $W\supseteq\elt x$ such that every element
+meeting $W$ meets $V$. It is \emph{continuous} if it is u.s.c.\ and lower semicontinuous at every
+element.
+\end{definition}
+
+\formal{\lean{HPC.Jones.IsUSCDecomp}, \lean{HPC.Jones.LSCAt}, \lean{HPC.Jones.IsContinuousDecomp},
+with the element $\elt x$ written \lean{HPC.Jones.cls} (in \lean{HPC/Jones/Decomp.lean}).}
+
+Informally: u.s.c.\ means elements near $\elt x$ lie in any given neighbourhood of $\elt x$ (they
+cannot ``suddenly grow''); lower semicontinuity at $\elt x$ means elements near $\elt x$ come near
+every point of $\elt x$ (they cannot ``suddenly shrink'').
+
+\begin{example}
+The decomposition of $[0,1]^2$ into vertical segments $\set t\times[0,1]$ is continuous. The
+decomposition of $[0,1]^2$ into the segment $\set0\times[0,1]$ and the single points not on it is
+u.s.c.\ but not lower semicontinuous at the segment.
+\end{example}
+
+\begin{lemma}\label{lem:usc-open}
+If the decomposition is u.s.c.\ and $U$ is open, then $U^*=\set{x:\elt x\subseteq U}$ is open. It is a
+union of elements.
+\end{lemma}
+
+\begin{proof}
+If $\elt x\subseteq U$, take $V$ as in the definition; every $z\in V$ has $\elt z\subseteq U$, so $V\subseteq
+U^*$, and $x\in V$. The second statement holds because $\elt z=\elt x$ for $z\in\elt x$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.isOpen_setOf_cls_subset}.}
+
+\begin{proposition}\label{prop:closed-usc}
+If the relation $r$ is a closed subset of $X\times X$, the decomposition is u.s.c.
+\end{proposition}
+
+\begin{proof}
+$\elt x$ is the preimage of the closed set $r$ under $y\mapsto(y,x)$, so it is closed. Let $\elt x\subseteq U$
+with $U$ open, and let $V=U^*$. Then $V\supseteq\elt x$, every element meeting $V$ lies in $U$, and $V$ is
+open: its complement is the set of $z$ for which some $w$ with $r(w,z)$ lies outside $U$, that is, the
+projection to the second factor of the compact set $r\cap\bigl((X\setminus U)\times X\bigr)$, which is
+compact, hence closed.
+\end{proof}
+
+\formal{\lean{HPC.Jones.isUSCDecomp_of_isClosed}.}
+
+\section{The decomposition space}
+
+The \emph{decomposition space} $X/r$ is the set of elements, with the quotient topology: a set
+$\mathcal O$ of elements is open if and only if the union of its members is open in $X$. Let
+$\pi\colon X\to X/r$, $\pi(x)=\elt x$, the quotient map; it is continuous, and $X/r=\pi(X)$ is compact.
+For $U\subseteq X$ let $U^\sharp$ be the set of elements contained in $U$; if $U$ is open and the
+decomposition is u.s.c., then $U^\sharp$ is open in $X/r$, since the union of its members is the open
+set $U^*$ of Lemma~\ref{lem:usc-open}.
+
+\begin{theorem}\label{thm:quotient-metrizable}
+Let the decomposition be u.s.c. Then:
+\begin{enumerate}[label=(\alph*)]
+\item the quotient map $\pi$ is closed;
+\item $X/r$ is Hausdorff;
+\item $X/r$ has a countable basis;
+\item $X/r$ is a compact metrizable space.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Let $F\subseteq X$ be closed. The union of the elements in $\pi(F)$ is the set of points whose element
+meets $F$, the complement of $(X\setminus F)^*$, which is closed by Lemma~\ref{lem:usc-open}. So
+$\pi(F)$ is closed.
+
+(b) Two distinct elements $\elt x$, $\elt y$ are disjoint closed sets, so they have disjoint open
+neighbourhoods $U,V$ in $X$. Then $U^\sharp$ and $V^\sharp$ are disjoint open sets of $X/r$ containing
+$\elt x$ and $\elt y$.
+
+(c) Let $\mathcal B$ be a countable basis of $X$, and consider the countably many open sets
+$(\bigcup t)^\sharp$, $t$ a finite subfamily of $\mathcal B$. They form a basis: if $\elt x$ lies in an
+open set $\mathcal O$ of $X/r$, the open set $\pi^{-1}(\mathcal O)$ contains the compact set $\elt x$, so
+finitely many members of $\mathcal B$ contained in $\pi^{-1}(\mathcal O)$ cover $\elt x$; with $t$ the
+family of them, $\elt x\in(\bigcup t)^\sharp\subseteq\mathcal O$.
+
+(d) $X/r$ is compact and Hausdorff, hence regular, and has a countable basis; by Urysohn's
+metrization theorem it is metrizable.
+\end{proof}
+
+\formal{\lean{HPC.Jones.isClosedMap_mk}, \lean{HPC.Jones.t2Space_quotient},
+\lean{HPC.Jones.secondCountable_quotient}, \lean{HPC.Jones.metrizableSpace_quotient}. Urysohn's
+theorem is Mathlib's \lean{TopologicalSpace.metrizableSpace_of_t3_secondCountable}.}
+
+A decomposition is \emph{monotone} if its elements are connected.
+
+\begin{theorem}\label{thm:monotone-preimage}
+Let the decomposition be u.s.c.\ and monotone. If $K\subseteq X/r$ is compact and connected, then
+$\pi^{-1}(K)$ is a continuum.
+\end{theorem}
+
+\begin{proof}
+$K$ is closed ($X/r$ is Hausdorff), so $\pi^{-1}(K)$ is closed, hence compact; it is nonempty. Let
+$u,v$ be closed sets with $\pi^{-1}(K)\subseteq u\cup v$ and $\pi^{-1}(K)\cap u\cap v=\emptyset$. Each element
+in $K$ is connected and lies in $\pi^{-1}(K)$, so it lies in $u$ or in $v$. The sets
+$K_u=\pi(\pi^{-1}(K)\cap u)$ and $K_v=\pi(\pi^{-1}(K)\cap v)$ are closed (Theorem
+\ref{thm:quotient-metrizable}(a)) and cover $K$; and $K\cap K_u\cap K_v=\emptyset$, since an element in
+both would have a point in $u$ and a point in $v$, while lying entirely in $u$ or entirely in $v$. As
+$K$ is connected, $K\subseteq K_u$ or $K\subseteq K_v$; say $K\subseteq K_u$. Then every element in $K$ has a point
+in $u$, hence lies in $u$, and $\pi^{-1}(K)\subseteq u$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.isContinuum_preimage}.}
+
+\begin{corollary}\label{cor:monotone-decomposable}
+Let $X$ be a continuum and the decomposition u.s.c.\ and monotone. If $X/r$ is decomposable, so is
+$X$; equivalently, if $X$ is indecomposable, so is $X/r$.
+\end{corollary}
+
+\begin{proof}
+If $X/r=H\cup K$ with $H,K$ proper subcontinua, then $X=\pi^{-1}(H)\cup\pi^{-1}(K)$, and these are
+subcontinua of $X$ by Theorem~\ref{thm:monotone-preimage}, proper because $\pi$ is onto.
+\end{proof}
+
+\formal{For monotone maps onto a metric space, \lean{HPC.Hagopian.isDecomposableSpace_of_monotone_image}.}
+
+\begin{proposition}\label{prop:homeo-descends}
+Let $T\colon X\to X$ be a homeomorphism permuting the elements: $r(x,y)\iff r(Tx,Ty)$. Then $T$ induces a
+homeomorphism $\hat T$ of $X/r$ with $\hat T(\elt x)=\elt{Tx}$.
+\end{proposition}
+
+\begin{proof}
+$\hat T$ is well defined and bijective, with inverse induced by $T^{-1}$ (which also permutes the
+elements). It is continuous because $\hat T\circ\pi=\pi\circ T$ is continuous and $X/r$ carries the
+quotient topology; likewise for its inverse.
+\end{proof}
+
+\formal{\lean{HPC.Jones.exists_homeomorph_quotient}.}
+
+\section{Continuity at most elements}
+
+A subset of a topological space is \emph{nowhere dense} if its closure has empty interior,
+\emph{meager} if it is a countable union of nowhere dense sets, and \emph{residual} if its complement
+is meager. In a compact metric space a residual set is dense, by the Baire category theorem
+(\vtwo{Lemma~1.8}).
+
+\begin{lemma}\label{lem:frontier-nd}
+The frontier $\partial A=A\setminus\interior A$ of a closed set $A$ is closed and nowhere dense.
+\end{lemma}
+
+\begin{proof}
+It is closed. An open set contained in $A\setminus\interior A$ is contained in $A$, hence in $\interior
+A$, hence empty.
+\end{proof}
+
+\formal{\lean{HPC.Jones.dense_compl_frontier_of_isClosed}.}
+
+\begin{theorem}[Kuratowski, Fort]\label{thm:residual}
+Let the decomposition be u.s.c. Then the set of elements at which it is lower semicontinuous is
+residual in $X/r$. In particular (if $X\ne\emptyset$) there is an element at which it is lower
+semicontinuous.
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal B$ be a countable basis of $X$. For $b\in\mathcal B$ the set $A_b=\pi(\cl b)$ is closed
+(Theorem~\ref{thm:quotient-metrizable}(a)), so its frontier is closed and nowhere dense, and
+$G=\bigcap_{b\in\mathcal B}\bigl(X/r\setminus\partial A_b\bigr)$ is residual. We show that the
+decomposition is lower semicontinuous at every element $q=\elt x\in G$.
+
+Let $y\in\elt x$ and $V\ni y$ open, and suppose that every open $W\supseteq\elt x$ contains a point $z$ with
+$\elt z\cap V=\emptyset$. Choose $\varepsilon>0$ with $B(y,\varepsilon)\subseteq V$ and $b\in\mathcal B$ with $y\in
+b\subseteq B(y,\varepsilon/2)$; then $\cl b\subseteq V$. Now $q\in A_b$ (as $y\in\cl b$) and $q\notin\partial A_b$,
+so $q\in\interior A_b$, and $W=\pi^{-1}(\interior A_b)$ is an open set containing $\elt x$. Take $z\in W$
+with $\elt z\cap V=\emptyset$. Since $\elt z\in A_b=\pi(\cl b)$, there is $w\in\cl b$ with $\elt w=\elt z$;
+then $w\in\elt z\cap V$, a contradiction.
+
+For the last statement: $X/r$ is a nonempty compact metrizable space, in which residual sets are
+dense, hence nonempty.
+\end{proof}
+
+\formal{\lean{HPC.Jones.residual_lscAt} and \lean{HPC.Jones.exists_lscAt}.}
+
+\begin{proposition}\label{prop:lsc-homeo}
+Let $T\colon X\to X$ be a homeomorphism permuting the elements. If the decomposition is lower
+semicontinuous at $\elt x$, it is lower semicontinuous at $\elt{Tx}$.
+\end{proposition}
+
+\begin{proof}
+$T$ maps elements onto elements: $\elt{Ta}=T(\elt a)$. Let $y'\in\elt{Tx}$, so $y'=Ty$ with $y\in\elt x$,
+and let $V\ni y'$ be open. Apply lower semicontinuity at $\elt x$ to $y$ and $T^{-1}(V)$: there is an
+open $W\supseteq\elt x$ such that every element meeting $W$ meets $T^{-1}(V)$. Then $T(W)$ is an open set
+containing $\elt{Tx}$, and an element $\elt{z}$ meeting $T(W)$ is $T(\elt{T^{-1}z})$ with
+$\elt{T^{-1}z}$ meeting $W$, hence meeting $T^{-1}(V)$; so $\elt z$ meets $V$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.lscAt_homeomorph}.}
+
+\begin{remark}
+Theorem~\ref{thm:residual} and Proposition~\ref{prop:lsc-homeo} are used together in Volume~7: if
+the homeomorphisms of a homogeneous continuum permute the elements of an u.s.c.\ decomposition,
+lower semicontinuity at one element (which exists by Theorem~\ref{thm:residual}) spreads to all
+elements, so the decomposition is continuous. This is how F.~B.~Jones's decomposition of a
+decomposable homogeneous continuum is shown to be continuous.
+\end{remark}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that a decomposition of a compact metric space into closed sets is u.s.c.\ if and only if the
+relation $r$ is closed in $X\times X$.
+\end{exercise}
+
+\begin{exercise}
+Let $f\colon X\to[0,1]$ be continuous. Show that the decomposition of $X$ into the components of
+the fibres $f^{-1}(t)$, $t\in[0,1]$, is u.s.c.\ and monotone.
+\end{exercise}
+
+\begin{exercise}
+Let the decomposition of $[0,1]^2$ consist of the segments $\set t\times[0,1]$ for $t\le\frac12$ and the
+points $(t,s)$ for $t>\frac12$. Is it u.s.c.? At which elements is it lower semicontinuous? Check
+Theorem~\ref{thm:residual}.
+\end{exercise}

@@ -1,0 +1,168 @@
+%======================================================================
+\chapter{The decomposable case}\label{ch:decomposable}
+%======================================================================
+
+This chapter assembles the results of the volume. Let $M$ be a decomposable homogeneous plane continuum, $G$ Jones's
+decomposition of $M$ into the sets $\Ls x$ (Chapter~\ref{ch:jones55}), and $\pi\colon M\to M/G$ the quotient map. The plan is
+Jones's (1955, Theorem~2 and the closing remarks), completed with the indecomposable case of Volume~6:
+\begin{enumerate}
+\item $M/G$ is homeomorphic to a plane continuum (Moore's Theorem~22);
+\item hence $M/G$ is a simple closed curve (Jones 1949, Chapter~\ref{ch:jones49});
+\item $M$ has exactly two complementary domains, and the elements are indecomposable;
+\item the nondegenerate elements are pseudo-arcs (Volume~6);
+\item so $M$ is a simple closed curve, or $M$ maps onto the circle by an open, atomic map whose fibres are pseudo-arcs.
+\end{enumerate}
+
+Throughout, $M\subseteq\R^2$ is a decomposable homogeneous continuum.
+
+\section{The decomposition space lies in a plane}
+
+\begin{definition}\label{def:gprime}
+$G'$ is the decomposition of $\R^2$ whose elements are the sets $\Ls x$, $x\in M$, and the single points of $\R^2\setminus M$.
+\end{definition}
+
+\formal{\lean{HPC.Jones.gPrime}.}
+
+\begin{proposition}[Jones 1955, p.~739]\label{prop:gprime}
+$G'$ is a Moore decomposition of the plane (\vfive{Definition~2.1}). Consequently the space of elements of $G'$ is homeomorphic to $\R^2$,
+and $M/G$ is homeomorphic to a compact connected subset of $\R^2$.
+\end{proposition}
+
+\begin{proof}
+Every element is a continuum (Theorem~\ref{thm:jones48-3}) and none separates the plane (Theorem~\ref{thm:elt-not-separates}; points do not separate
+the plane). For upper semicontinuity it suffices that the quotient map $\R^2\to G'$ is closed: the saturation of a closed set $F$ is $F$ together with
+the saturation of the compact set $F\cap M$ under $G$, which is closed because $G$ is upper semicontinuous (Theorem~\ref{thm:jones55-usc},
+\vthree{Theorem~6.5}(a)); and a closed quotient map with compact fibres gives Moore's distance form of upper semicontinuity by a compactness argument.
+By Moore's Theorem~22 (\vfive{Theorem~9.13}) the space of elements of $G'$ is a plane. The inclusion $M\to\R^2$ induces a continuous injection of the
+compact space $M/G$ into it, a homeomorphism onto its image, which is compact and connected.
+\end{proof}
+
+\formal{\lean{HPC.Jones.isClosedMap_mk_gPrime}, \lean{HPC.Jones.mooreDecomp_gPrime}, \lean{HPC.Jones.jones55_plane},
+\lean{HPC.Jones.jones55_embedding_data}, \lean{HPC.Jones.jones55_embedding}. This is the construction of \vfive{Corollary~9.16}; Jones
+states the upper semicontinuity of $G'$ without argument.}
+
+\section{Jones's Theorem 2}
+
+\begin{theorem}[Jones 1955, Theorem~2]\label{thm:jones55-2}
+Let $M\subseteq\R^2$ be a decomposable homogeneous continuum. Then $G$ is a continuous decomposition of $M$, and
+\begin{enumerate}[label=(\arabic*)]
+\item $M/G$ is a simple closed curve;
+\item each element of $G$ is a homogeneous continuum that does not separate the plane.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Continuity is Theorem~\ref{thm:jones55-usc}. (1) By Theorem~\ref{thm:jones55-a}, $M/G$ is a nondegenerate homogeneous aposyndetic continuum, and by
+Proposition~\ref{prop:gprime} it is homeomorphic to a plane continuum $K$. Homogeneity and aposyndesis are topological properties, so $K$ is a nondegenerate
+homogeneous aposyndetic plane continuum, hence a simple closed curve by Theorem~\ref{thm:jones49-1}. (2) Proposition~\ref{prop:jones55-elements} and
+Theorem~\ref{thm:elt-not-separates}.
+\end{proof}
+
+\formal{\lean{HPC.Jones.jones55_circle}, \lean{HPC.Jones.jones55_theorem2'} (and \lean{HPC.Jones.jones55_theorem2}, with
+Theorem~\ref{thm:jones49-1} as a hypothesis).}
+
+\begin{corollary}[Jones 1955, closing remarks]\label{cor:jones55-remarks}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item A decomposable homogeneous plane continuum has exactly two complementary domains.
+\item The elements of $G$ are indecomposable.
+\item A homogeneous plane continuum with more than two complementary domains is indecomposable.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) In the plane of elements of $G'$ (Proposition~\ref{prop:gprime}) the image of $M$ is a simple closed curve (Theorem~\ref{thm:jones55-2}(1)). By the
+Jordan curve theorem (\vfive{Theorem~4.8}) its complement consists of two disjoint connected open sets of elements. The union of the elements in each
+of them is open (the quotient map is continuous), connected (\vfive{Proposition~2.5}(a)), and these two sets are disjoint and have union $\R^2\setminus M$, because
+the elements of $G'$ outside $M$ are the points of $\R^2\setminus M$.
+
+(b) If an element $\Ls x$ were decomposable, it would be a decomposable homogeneous plane continuum (Proposition~\ref{prop:jones55-elements}), so by (a) its complement
+would be the union of two disjoint nonempty open sets: $\Ls x$ would separate the plane, against Theorem~\ref{thm:jones55-2}(2).
+
+(c) is the contrapositive of (a): each complementary domain of $M$ is one of the two sets of (a).
+\end{proof}
+
+\formal{\lean{HPC.Jones.jones55_two_domains'}, \lean{HPC.Jones.jones55_elements_indecomposable'},
+\lean{HPC.Jones.jones55_three_domains'}; the plane Jordan curve theorem used is \lean{HPC.Jones.jordan_curve_theorem}. Jones
+derives (b) from his 1951 paper; the formal proof derives it from (a) as above.}
+
+\section{The elements are pseudo-arcs}
+
+\begin{proposition}\label{prop:elements-pseudoarc}
+Every nondegenerate element $\Ls x$ of $G$ is a pseudo-arc (\vone{Definition~2.14}).
+\end{proposition}
+
+\begin{proof}
+$\Ls x$ is homeomorphic to the plane continuum $\Ls x\subseteq\R^2$, which is homogeneous (Theorem~\ref{thm:jones55-2}(2)), indecomposable
+(Corollary~\ref{cor:jones55-remarks}(b)) and nondegenerate. By \vsix{Theorem~7.4} (proved unconditionally in \vsix{Corollary~10.6}), it is a pseudo-arc.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isPseudoArc_Lset'}, from \lean{HPC.HO16.isPseudoArc_of_indec_homogeneous} and
+\lean{HPC.HO16.ho16_theorem20}.}
+
+\section{The main theorem}
+
+\begin{definition}\label{def:atomic}
+Let $f\colon X\to Y$ be a map of compact metric spaces.
+\begin{enumerate}[label=(\alph*)]
+\item $f$ is \emph{atomic} if each fibre $f^{-1}(y)$ is terminal: every continuum in $X$ meeting $f^{-1}(y)$ lies in it or contains it.
+\item An \emph{atomic circle-of-pseudo-arcs map} is a continuous, open, surjective, atomic map $f\colon X\to\Sph$ whose fibres are pseudo-arcs.
+\end{enumerate}
+\end{definition}
+
+\formal{\lean{HPC.BJ59.IsAtomicMap}, \lean{HPC.BJ59.IsAtomicCircPAMap}. The terminology is that of Domokos and Prajs.}
+
+\begin{lemma}\label{lem:open-quotient}
+The quotient map of a continuous decomposition of a compact metric space is open.
+\end{lemma}
+
+\begin{proof}
+Let $U$ be open. We show that the set $U'$ of points whose element meets $U$ is open. Let $z\in U'$ and $y\in\elt z\cap U$. By lower semicontinuity at $\elt z$
+there is an open $W\supseteq\elt z$ such that every element meeting $W$ meets $U$; so $W\subseteq U'$. As $U'$ is saturated, $\pi(U')=\pi(U)$ is open in the quotient.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isOpenMap_quotient_mk_of_continuous}.}
+
+\begin{theorem}[The decomposable case]\label{thm:decomposable}
+Let $M$ be a decomposable homogeneous plane continuum. Then either $M$ is homeomorphic to the circle, or there is an atomic circle-of-pseudo-arcs map
+$f\colon M\to\Sph$, whose fibres are the elements $\Ls x$ of Jones's decomposition.
+\end{theorem}
+
+\begin{proof}
+Let $e\colon M/G\to\Sph$ be a homeomorphism (Theorem~\ref{thm:jones55-2}(1)) and $q=e\circ\pi$. Then $q$ is continuous and surjective, and its fibres are the elements:
+$q^{-1}(q(x))=\Ls x$.
+
+If $M$ is aposyndetic, every element is a point (Proposition~\ref{prop:jones55-elements}(a)), so $q$ is a continuous bijection from a compact space onto a Hausdorff space, hence
+a homeomorphism.
+
+Otherwise every element is nondegenerate (Proposition~\ref{prop:jones55-elements}(b)), so every fibre of $q$ is a pseudo-arc (Proposition~\ref{prop:elements-pseudoarc}). $q$ is open
+by Lemma~\ref{lem:open-quotient}, since $G$ is continuous (Theorem~\ref{thm:jones55-usc}). And $q$ is atomic: a continuum $L$ meeting $\Ls x$ either lies in $\Ls x$ or meets its
+complement, and then contains $\Ls x$ by Theorem~\ref{thm:jones55-c}.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.circle_or_atomic_of_decomposable}.}
+
+\begin{remark}[The circle-like form]\label{rem:circle-like}
+A \emph{circle of pseudo-arcs} in the sense of Bing and Jones (1959) is a circle-like continuum with a continuous open map onto $\Sph$ whose fibres are pseudo-arcs. The proof
+of Theorem~\ref{thm:decomposable} gives such a map whenever $M$ is known to be circle-like (\vthree{Chapter~5}). That a decomposable homogeneous plane continuum which is not a simple
+closed curve is circle-like, and that any two circles of pseudo-arcs are homeomorphic, are the subject of Volume~8; there the atomic map of Theorem~\ref{thm:decomposable} is the
+starting point.
+\end{remark}
+
+\formal{\lean{HPC.BJ59.circle_or_circPAMap_of_decomposable}, with the map structure \lean{HPC.BJ59.IsCircPAMap}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that the projection $P\times\Sph\to\Sph$, $P$ a pseudo-arc, is open and has pseudo-arc fibres, but is not atomic. Using that $P\times\Sph$ is homogeneous
+(\vtwo{Theorem~8.4}) and aposyndetic (Theorem~\ref{thm:jones48-7}), and Theorem~\ref{thm:decomposable}, show that $P\times\Sph$ does not embed in the plane.
+\end{exercise}
+
+\begin{exercise}
+Let $f\colon X\to\Sph$ be an atomic circle-of-pseudo-arcs map. Show that the fibres of $f$ are exactly the sets $\Ls x$ of $X$. (Use that
+the preimage of a closed arc of $\Sph$ is a continuum, and that the fibres have empty interior because $f$ is open.)
+\end{exercise}
+
+\begin{exercise}
+Where does the proof of Theorem~\ref{thm:decomposable} use the plane? List the results of this volume that are used and need it.
+\end{exercise}

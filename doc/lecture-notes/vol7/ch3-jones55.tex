@@ -1,0 +1,257 @@
+%======================================================================
+\chapter{Jones's aposyndetic decomposition}\label{ch:jones55}
+%======================================================================
+
+This chapter proves Theorem~1 of Jones's paper \emph{On a certain type of homogeneous plane continuum}
+(1955) and the part of his Theorem~2 that does not need the 1949 paper. For a homogeneous continuum $X$
+the sets $\Ls x$ of Definition~\ref{def:apos} partition $X$; the partition is a continuous decomposition
+into terminal continua; and the quotient is a homogeneous aposyndetic continuum. When $X$ lies in the
+plane, no element separates the plane.
+
+Jones derives the partition property through twelve numbered claims and a case argument occupying most
+of pages 737--738 of his paper. Here it follows in a few lines from the spreading theorem
+(Theorem~\ref{thm:spreading}) and the Lemma of Jones 1951 (Theorem~\ref{thm:jones51-lemma}).
+
+Throughout, $X$ is a homogeneous continuum (compact, connected, metric). Parts (b) and (c) of the main
+theorem need neither connectedness nor decomposability.
+
+\section{The sets \texorpdfstring{$\Ls x$}{L\_x} partition \texorpdfstring{$X$}{X}}
+
+\begin{lemma}\label{lem:U-eq}
+Let $X$ be a homogeneous compact metric space. If $y\in\Ls x$, then $\Us y=\Us x$.
+\end{lemma}
+
+\begin{proof}
+If $y=x$ there is nothing to prove; otherwise $X$ is not aposyndetic at $y$ with respect to $x$. Let $z\in\Us x$.
+If $z\notin\Us y$, then $X$ is not aposyndetic at $z$ with respect to $y$, nor at $y$ with respect to $x$, so by
+Corollary~\ref{cor:trans} not at $z$ with respect to $x$, against $z\in\Us x$. Hence $\Us x\subseteq\Us y$. By
+Theorem~\ref{thm:jones51-lemma} the inclusion is not proper.
+\end{proof}
+
+\formal{\lean{HPC.Jones.aposSet_eq_of_not_aposAt}.}
+
+\begin{theorem}[Jones 1955, Theorem~1(b)]\label{thm:jones55-b}
+Let $X$ be a homogeneous compact metric space and $x,y\in X$. Then $y\in\Ls x$ if and only if $\Ls y=\Ls x$.
+Consequently any two of the sets $\Ls x$ are equal or disjoint, and they partition $X$.
+\end{theorem}
+
+\begin{proof}
+If $y\in\Ls x$, then $\Ls y=X\setminus\Us y=X\setminus\Us x=\Ls x$ by Lemma~\ref{lem:U-eq}. Conversely, if
+$\Ls y=\Ls x$, then $y\in\Ls y=\Ls x$. If $z\in\Ls x\cap\Ls y$, then $\Ls x=\Ls z=\Ls y$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.mem_Lset_iff_Lset_eq}, \lean{HPC.Jones.jones55_b}. Jones assumes $X$ decomposable,
+which is not needed.}
+
+\begin{theorem}[Jones 1955, Theorem~1(c): the elements are terminal]\label{thm:jones55-c}
+Let $X$ be a homogeneous compact metric space. A continuum $K\subseteq X$ that meets both $\Ls x$ and
+$X\setminus\Ls x$ contains $\Ls x$.
+\end{theorem}
+
+\begin{proof}
+Let $a\in K\cap\Ls x$ and $b\in K\setminus\Ls x$, and suppose $y\in\Ls x\setminus K$. By Theorem~\ref{thm:jones55-b},
+$\Ls y=\Ls x$; so $b\notin\Ls y$, that is, some continuum $B$ missing $y$ contains an open set $V\ni b$. Then $K\cup B$
+is a continuum (the two continua share $b$) with nonempty interior, it contains $a$ and misses $y$. By
+Theorem~\ref{thm:spreading}, $X$ is aposyndetic at $a$ with respect to $y$, so $a\notin\Ls y=\Ls x$, a
+contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Jones.Lset_subset_of_meets}, \lean{HPC.Jones.jones55_c}.}
+
+So the elements $\Ls x$ are \emph{terminal} subcontinua: a subcontinuum meeting one of them either lies inside
+it or contains it. We write $G=\set{\Ls x : x\in X}$ for the decomposition and $\pi\colon X\to X/G$ for the
+quotient map; in the notation of \vthree{Chapter~6}, the element of $x$ is $\elt x=\Ls x$.
+
+\formal{The relation $\Ls x=\Ls y$ is \lean{HPC.Jones.lRel}, the setoid is \lean{HPC.Jones.lSetoid}, and
+\lean{HPC.Jones.cls_lSetoid} says that its classes are the sets $\Ls x$.}
+
+\begin{remark}[Jones's properties (a)--(f)]\label{rem:props}
+On p.~739 Jones lists six properties of an element $g=\Ls o$, phrased with his auxiliary set $N_o$ (the point $o$
+together with the points that cut $o$ from $\Us o$). All of them follow from the two theorems above:
+$N_o=g$; $\Us x=\Us o$ for $x\in g$ (Lemma~\ref{lem:U-eq}); $N_x=g$ for $x\in g$; two distinct points $x,y$ of $g$ cut
+each other from $\Us o$; $X\setminus g=\Us o$ (the definition); and a continuum meeting $g$ and $\Us o$ contains $g$
+(Theorem~\ref{thm:jones55-c}). The fourth, for instance: a continuum through $y$ and a point of $\Us o=X\setminus g$
+contains $g\ni x$.
+\end{remark}
+
+\formal{\lean{HPC.Jones.jones55_prop_a}, \lean{HPC.Jones.jones55_prop_b}, \lean{HPC.Jones.jones55_prop_c},
+\lean{HPC.Jones.jones55_prop_d}, \lean{HPC.Jones.jones55_prop_e}, \lean{HPC.Jones.jones55_prop_f}, with $N_o$ as
+\lean{HPC.Jones.Nset} and \lean{HPC.Jones.Nset_eq_Lset}. Jones's intermediate claims (1)--(12) are also proved,
+as \lean{HPC.Jones.jones55_claim1} through \lean{HPC.Jones.jones55_claim12}.}
+
+\section{The decomposition is continuous}
+
+\begin{theorem}[Jones 1955, p.~739]\label{thm:jones55-usc}
+Let $X$ be a homogeneous continuum. The decomposition $G$ is upper semicontinuous, and it is continuous.
+\end{theorem}
+
+\begin{proof}
+\emph{Upper semicontinuity.} By Theorem~\ref{thm:jones55-b}, $\Ls x=\Ls y$ if and only if $X$ is not aposyndetic
+at $x$ with respect to $y$. By Theorem~\ref{thm:jones48-1} the set of such pairs is closed in $X\times X$, and a
+decomposition with closed relation is u.s.c.\ (\vthree{Proposition~6.4}).
+
+\emph{Continuity.} By the theorem of Kuratowski and Fort (\vthree{Theorem~6.10}), $G$ is lower semicontinuous at
+some element $\Ls{x_0}$. Given $x$, let $T$ be a homeomorphism with $Tx_0=x$. By Lemma~\ref{lem:apos-basic}(b), $T$
+maps elements onto elements, $T(\Ls a)=\Ls{Ta}$, so it permutes the elements, and by \vthree{Proposition~6.11} the
+decomposition is lower semicontinuous at $\Ls{Tx_0}=\Ls x$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.isClosed_lSetoid}, \lean{HPC.Jones.jones55_usc}, \lean{HPC.Jones.lSetoid_homeomorph},
+\lean{HPC.Jones.jones55_continuous}; from \lean{HPC.Jones.isUSCDecomp_of_isClosed},
+\lean{HPC.Jones.exists_lscAt} (with \lean{HPC.Jones.residual_lscAt}) and \lean{HPC.Jones.lscAt_homeomorph}.
+Jones argues upper semicontinuity with convergent sequences of elements and property (f).}
+
+\section{The quotient}
+
+\begin{theorem}[Jones 1955, Theorem~1(a)]\label{thm:jones55-a}
+Let $X$ be a decomposable homogeneous continuum. Then $X/G$ is a nondegenerate, homogeneous, aposyndetic,
+compact metrizable continuum.
+\end{theorem}
+
+\begin{proof}
+$X/G$ is compact metrizable by \vthree{Theorem~6.5}, since $G$ is u.s.c., and connected as a continuous image of $X$.
+
+\emph{Nondegenerate.} By Theorem~\ref{thm:jones48-8} there are $x\ne y$ with $X$ aposyndetic at $x$ with respect to $y$.
+Then $x\notin\Ls y$, so $\pi(x)\ne\pi(y)$.
+
+\emph{Homogeneous.} Let $a,b\in X$ and $T$ a homeomorphism with $Ta=b$. $T$ permutes the elements, so it induces a
+homeomorphism $\hat T$ of $X/G$ with $\hat T(\pi(a))=\pi(b)$ (\vthree{Proposition~6.8}).
+
+\emph{Aposyndetic.} Let $\pi(y)\ne\pi(x)$. Then $y\notin\Ls x$, so some continuum $K$ missing $x$ contains an open $V\ni y$.
+By Theorem~\ref{thm:jones55-c}, $K$ misses $\Ls x$: otherwise it meets $\Ls x$ and (at $y$) its complement, so contains
+$\Ls x\ni x$. Hence $\pi(K)$ is a continuum in $X/G$ missing $\pi(x)$. By lower semicontinuity at $\Ls y$
+(Theorem~\ref{thm:jones55-usc}) there is an open $W\supseteq\Ls y$ such that every element meeting $W$ meets $V$. The
+set $W^*$ of points whose element lies in $W$ is open and a union of elements because $G$ is u.s.c.\
+(\vthree{Lemma~6.3}), so $\pi(W^*)$ is an open set containing $\pi(y)$; and each element in it meets $V\subseteq K$, so
+each point of $\pi(W^*)$ lies in $\pi(K)$. So $\pi(y)\in\pi(W^*)\subseteq\pi(K)$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.jones55_a}; homogeneity from \lean{HPC.Jones.exists_homeomorph_quotient},
+nondegeneracy from \lean{HPC.Jones.theorem8}. Jones states aposyndesis of $X/G$ without argument; the proof above
+uses the continuity of $G$.}
+
+\section{The elements}
+
+\begin{proposition}[Jones 1955, p.~739]\label{prop:jones55-elements}
+Let $X$ be a homogeneous continuum.
+\begin{enumerate}[label=(\alph*)]
+\item If $X$ is aposyndetic, every element is a point: $\Ls x=\set x$.
+\item If $X$ is not aposyndetic, every element is nondegenerate, any two elements are homeomorphic, and each element is
+a homogeneous continuum.
+\item If $X$ is decomposable, every element has empty interior; equivalently, each $\Us x$ is dense.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) is the definition. (b) Some $a\ne b$ have $X$ not aposyndetic at $a$ with respect to $b$, so $a\in\Ls b$ and $\Ls b$
+is nondegenerate. A homeomorphism $T$ with $Tb=x$ maps $\Ls b$ onto $\Ls x$; so every element is nondegenerate, and any
+two are homeomorphic. Let $a,b\in\Ls x$ and $T$ a homeomorphism with $Ta=b$. By Theorem~\ref{thm:jones55-b},
+$T(\Ls x)=T(\Ls a)=\Ls{Ta}=\Ls b=\Ls x$, so $T$ restricts to a homeomorphism of $\Ls x$ carrying $a$ to $b$. Each $\Ls x$
+is a continuum by Theorem~\ref{thm:jones48-3}.
+
+(c) $X$ is nondegenerate, and by Theorem~\ref{thm:jones48-8} and homogeneity no $\Us o$ is empty. Suppose the open set
+$D=\interior\Ls o$ is nonempty and let $x\in D$. A nonempty open subset of a nondegenerate continuum is not a single
+point, so $D\setminus\set x$ is nonempty and open. By Proposition~\ref{prop:claim35}(a) a continuum $K$ missing $x$ meets
+$D\setminus\set x\subseteq\Ls o$ and $\Us o=X\setminus\Ls o$. By Theorem~\ref{thm:jones55-c}, $K\supseteq\Ls o\ni x$, a
+contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Jones.Lset_eq_singleton_of_isAposyndetic}, \lean{HPC.Jones.jones55_elements},
+\lean{HPC.Jones.isHomogeneous_Lset}, \lean{HPC.Jones.aposSet_nonempty}, \lean{HPC.Jones.interior_Lset_eq_empty},
+\lean{HPC.Jones.jones55_claim12}.}
+
+\begin{proposition}\label{prop:compl-connected}
+Let $X$ be a decomposable homogeneous continuum and $x\in X$. Any two points of $X\setminus\Ls x$ lie in a continuum
+contained in $X\setminus\Ls x$. In particular $X\setminus\Ls x$ is connected.
+\end{proposition}
+
+\begin{proof}
+$X\setminus\Ls x=\Us x$. By Proposition~\ref{prop:claim35}(b), two points $a,b\in\Us x$ lie in a continuum $K$ missing $x$.
+As $K$ meets $X\setminus\Ls x$ and does not contain $x$, Theorem~\ref{thm:jones55-c} shows that $K$ misses $\Ls x$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.jones55_compl_continuumwise}, \lean{HPC.Jones.jones55_compl_connected}; Jones writes
+``it is clear that for each $g$ of $G$, $M-g$ is connected (strongly or continuum-wise connected) because of (5)''.}
+
+\section{Elements in the plane do not separate it}
+
+From now on $X=M$ is a homogeneous continuum in the plane $\R^2$.
+
+\begin{lemma}\label{lem:disjoint-open-countable}
+A family of pairwise disjoint nonempty open subsets of $\R^2$ is countable.
+\end{lemma}
+
+\begin{proof}
+Each member contains a point with rational coordinates, and distinct members contain distinct such points.
+\end{proof}
+
+\formal{\lean{HPC.Jones.countable_of_pairwiseDisjoint_open}.}
+
+\begin{theorem}[Jones 1955, Theorem~2(2), non-separation]\label{thm:elt-not-separates}
+Let $M\subseteq\R^2$ be a decomposable homogeneous continuum. No element $\Ls x$ separates the plane.
+\end{theorem}
+
+\begin{proof}
+If $M$ is aposyndetic, the elements are points (Proposition~\ref{prop:jones55-elements}(a)), and a point does not
+separate the plane. Otherwise the elements are homeomorphic compact sets
+(Proposition~\ref{prop:jones55-elements}(b)), so if one separates the plane, all do (\vfour{Theorem~2.16}). Assume this.
+
+For each element $g$ the set $M\setminus g$ is connected (Proposition~\ref{prop:compl-connected}), so it lies in one
+component of $\R^2\setminus g$; since $\R^2\setminus g$ has at least two components, some component $W_g$ of $\R^2\setminus g$
+misses $M\setminus g$, hence misses $M$. Recall that $\cl{W_g}\subseteq W_g\cup g$ (the closure of a component of the
+complement of $g$ adds only points of $g$).
+
+Let $g\ne h$ be elements with $W_g\cap W_h\ne\emptyset$. $W_g$ is a connected subset of $\R^2\setminus h$ (it misses $M\supseteq h$)
+meeting the component $W_h$, so $W_g\subseteq W_h$; symmetrically $W_h\subseteq W_g$. Then the closure of $W=W_g=W_h$ lies in
+$(W\cup g)\cap(W\cup h)=W$, as $g\cap h=\emptyset$. So $W$ is a nonempty open and closed proper subset of the plane, which is
+impossible. Hence the $W_g$ are pairwise disjoint nonempty open sets.
+
+$X/G$ is a nondegenerate metrizable continuum (Theorem~\ref{thm:jones55-a}), hence uncountable: for two of its points
+$p\ne q$, the continuous function $\dist(p,\cdot)$ takes every value between $0$ and $\dist(p,q)$. So there are
+uncountably many sets $W_g$, contradicting Lemma~\ref{lem:disjoint-open-countable}.
+\end{proof}
+
+\formal{\lean{HPC.Jones.jones55_elt_not_separates}, using \lean{HPC.Jones.separatesPlane_of_homeomorph},
+\lean{HPC.Jones.closure_component_compl_subset}, \lean{HPC.Jones.uncountable_quotient} and
+\lean{HPC.Jones.uncountable_of_connected_metrizable}. Jones's proof says only that ``if one separates, all do, which
+is impossible''; the disjointness of the domains $W_g$ is the missing step.}
+
+\section{An application: Jones's 1951 theorem}
+
+\begin{theorem}[Jones 1951, Theorem~1]\label{thm:jones51-1}
+A homogeneous hereditarily unicoherent continuum is indecomposable.
+\end{theorem}
+
+\begin{proof}
+Suppose $X$ is decomposable. By Theorem~\ref{thm:jones48-8} and homogeneity there are $a,b$ with $b\in\Us a$, so
+$\Ls a\neq\Ls b$, and the two elements are disjoint. Let $J$ be a subcontinuum irreducible between $a$ and $b$
+(\vthree{Theorem~2.5}). By hereditary unicoherence, $J$ lies in every continuum $K$ containing $a$ and $b$: $J\cap K$ is a
+continuum containing $a$ and $b$, so equals $J$. The connected set $J$ is not covered by the two disjoint closed sets
+$\Ls a$, $\Ls b$, so some $c\in J$ lies in neither. Then $a,b\in\Us c$, and by Proposition~\ref{prop:claim35}(b) some
+continuum containing $a$ and $b$ misses $c$. It contains $J\ni c$, a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Jones.jones51_theorem1}. Jones's own proof builds the decomposition of the 1955 paper in an
+early form, passes to the decomposition space and applies Whyburn's (6.21) there.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that the conclusion of Theorem~\ref{thm:jones55-b} fails for the harmonic fan (it is not homogeneous).
+\end{exercise}
+
+\begin{exercise}
+Let $X=P\times\Sph$, where $P$ is a pseudo-arc. Assuming that $X$ is homogeneous, determine the sets $\Ls x$ and the
+quotient $X/G$. (Compare Theorem~\ref{thm:jones48-7}: $X$ is aposyndetic.) Do the same for the circle of pseudo-arcs
+of Chapter~\ref{ch:decomposable}, using Theorem~\ref{thm:jones55-c}.
+\end{exercise}
+
+\begin{exercise}
+Show that every subcontinuum of a hereditarily indecomposable continuum is terminal. Let $X$ be the union of a
+nondegenerate indecomposable continuum $K$ and an arc $A$ with $A\cap K$ an end point of $A$. Show that $\Ls y\supseteq K$ for
+$y\in K$, so that Proposition~\ref{prop:jones55-elements}(c) fails without homogeneity.
+\end{exercise}
+
+\begin{exercise}
+Where does the proof of Theorem~\ref{thm:elt-not-separates} use that $M$ is decomposable?
+\end{exercise}

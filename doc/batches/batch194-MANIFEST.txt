@@ -1,0 +1,24 @@
+# batch 194: files added (A), modified (M) or moved (R) in this run, from git diff --name-status 55f9884 (the run's initial commit); the tarball doc/batches/batch194-files.tar.gz contains every file listed (new paths) plus this manifest. The uploaded PDFs doc/sources/lelek1979.pdf and doc/sources/hoehn-oversteegen2016.pdf are ignored by git but are included in the tarball.
+M	Axioms.lean
+M	HPC.lean
+A	HPC/HO16/FoldDefs.lean
+A	HPC/HO16/FoldExample.lean
+A	HPC/HO16/FoldExists.lean
+A	HPC/HO16/HO16B.lean
+A	HPC/HO16/Lemma6.lean
+A	HPC/HO16/PLLib.lean
+A	HPC/HO16/Prop7.lean
+A	HPC/HO16/Subdiv.lean
+A	HPC/HO16/Thm8Fold.lean
+M	LEDGER.md
+M	OPEN.md
+M	README.md
+M	axioms.txt
+R100	COMMISSION-batch194.md	doc/batches/COMMISSION-batch194.md
+A	doc/batches/REPORT-batch194.md
+A	doc/batches/audits/axioms-batch194.txt
+R100	HO16B.lean	doc/batches/skeletons/HO16B.lean
+M	doc/notes/ho16.md
+A	doc/batches/batch194-MANIFEST.txt
+A	doc/sources/lelek1979.pdf
+A	doc/sources/hoehn-oversteegen2016.pdf

@@ -1,0 +1,12 @@
+bing 0 9: n = 986
+self-test  thin bing 0 9 verifies: 1 (expect 1)
+self-test  monotone run verifies: 0 (expect 0)
+
+trials: 200
+  contractions verifying IsCrookedIvF: 0 (non-thin: 0)
+  of those, span nine with both ends attained: 0
+  basepoints of the open branch: 0
+    folding onto neither canonical walk: 0
+      failing the ceiling announcement (unserved_ceiling): 0
+      failing the valley announcement  (unserved_valley):  0
+      served by no walk of at most three legs: 0

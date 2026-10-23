@@ -1,0 +1,16 @@
+gap-batch52: rounds=60 seed=52
+shortest witness against floor3R_or_vee: length 175
+  levels: 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 5 5 4 5 5 5 6 6 6 5 5 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 6 5 6 6 6 5 5 5 4 5 5 5 4 5 4 3 4 4 4 5 5 5 4 4 4 3 4 5 4 3 3 3 2 3 4 3 4 4 4 3 4 4 4 5 5 5 4 4 4 3 4 4 4 5 5 5 4 5 6 5 6 6 6 5 5 5 4 5 5 5 4 4 4 3 4 5 4 5 6 5 4 5 4 3 4 4 4 3 4 3 2 3 3 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 3 3 3 2 3 3 3 4 5 4 3 3 3 2 3 4 3 2 3 2 1
+  nat16: 0x1232343233345433323334543444565454345433323434443454565454344455545556665654555444344455544434443432333454344455544434545554555666565456544434545654555666555455567656767876765
+  CrookUp=1 CrookDown=1 CrookUpR=0 CrookDownR=0 Ceil4R=0 Floor3R=0 foldsLamL4=1 foldsVeeL6=0 w3R=0 w4R=1 w5R=0
+no witness against ceil4R_or_lam
+
+shortest truncation at which the three reflected walks miss a pair: 57 steps
+  forward arm: length 57
+  levels: 5 5 6 7 6 5 5 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 6 5 6 6 6 5 5 5 4 5 6 5 4 5 4 3 4 5 4 5 5 5 4 5 4 3 4 5 4 3 3 3 2
+  nat16: 0x233345434545554543454565455566656545654443454565455567655
+  CrookUp=1 CrookDown=1 CrookUpR=0 CrookDownR=0 Ceil4R=1 Floor3R=1 foldsLamL4=0 foldsVeeL6=1 w3R=1 w4R=1 w5R=1
+  backward arm: length 57
+  levels: 5 5 4 5 5 5 6 7 6 5 6 7 6 7 8 7 6 6 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 5 5 4 5 6 5 4 4 4 3 4 5 4 5 5 5 4 5 5 5 6 7 6
+  nat16: 0x676555455545434445654555676555456567656667876765676555455
+  CrookUp=1 CrookDown=1 CrookUpR=0 CrookDownR=0 Ceil4R=0 Floor3R=1 foldsLamL4=1 foldsVeeL6=0 w3R=0 w4R=0 w5R=0

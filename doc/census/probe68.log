@@ -1,0 +1,7 @@
+probe68: the corrected sentence (level-aware trigger) with the added clause of
+  batch 66 section 2.3, randomised deep descents.
+  walks of up to 4 turns, levels in [0,6], shortest leg at least 3;
+  arms of up to 40 times; 20000000 nodes per walk; seed 68
+COUNTEREXAMPLE  minleg=3  s=0  ts=[4,1,6]  walkLen=13  walk=0123432123456  m=40  arm=-1011222122222211011212332110-101233333456
+COUNTEREXAMPLE  minleg=3  s=0  ts=[5,2,6]  walkLen=13  walk=0123454323456  m=40  arm=-1-100-1-10-1-10-101233223233443221012344345667
+[run stopped before completing the sweep; the complete sweep at a smaller budget is probe68c.log]

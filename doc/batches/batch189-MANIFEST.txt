@@ -1,0 +1,19 @@
+# batch 189: files added (A), modified (M) or moved (R) in this run; from git diff --name-status 285ae8a HEAD (no uncommitted changes), plus the delivery files
+M	Axioms.lean
+M	HPC.lean
+A	HPC/Jones/Jones75A.lean
+A	HPC/Jones/Jones75Arcs.lean
+A	HPC/Jones/Jones75L.lean
+A	HPC/Jones/Jones75Line.lean
+A	HPC/Jones/Jones75Rev.lean
+M	LEDGER.md
+M	OPEN.md
+M	README.md
+M	axioms.txt
+R100	COMMISSION-batch189.md	doc/batches/COMMISSION-batch189.md
+A	doc/batches/REPORT-batch189.md
+A	doc/batches/audits/axioms-batch189.txt
+R100	Jones75A.lean	doc/batches/skeletons/Jones75A.lean
+M	doc/notes/jones75.md
+A	doc/batches/batch189-MANIFEST.txt
+A	doc/batches/batch189-files.tar.gz	(not inside itself)

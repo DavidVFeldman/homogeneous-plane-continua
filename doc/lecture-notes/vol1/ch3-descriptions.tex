@@ -1,0 +1,245 @@
+%======================================================================
+\chapter{Descriptions and hereditary indecomposability}\label{ch:descriptions}
+%======================================================================
+
+In this chapter we prove the abstract half of the existence theorem: if a sequence of chains
+is suitably crooked and fine, the set it describes is a pseudo-arc. The ideas are Bing's
+(1948); the organization follows the formal proof. Throughout, $X$ is a metric space.
+
+\section{Descriptions}
+
+\begin{definition}[Description]\label{def:description}
+Let $P,Q\in X$. A \emph{description from $P$ to $Q$} is a sequence of chains
+$D^{(0)},D^{(1)},D^{(2)},\dots$ in $X$, where $D^{(i)}$ has length $n_i$, together with positive
+numbers $\varepsilon_0,\varepsilon_1,\dots$, such that for every $i$:
+\begin{enumerate}[label=(D\arabic*)]
+\item\label{D:from} $D^{(i)}$ goes from $P$ to $Q$;
+\item\label{D:crooked} $D^{(i+1)}$ is crooked in $D^{(i)}$;
+\item\label{D:closure} the closure of each link of $D^{(i+1)}$ lies in some link of $D^{(i)}$;
+\item\label{D:mesh} every link of $D^{(i)}$ is bounded with diameter $\le\varepsilon_i$;
+\end{enumerate}
+and moreover $\varepsilon_i\to0$. The chain $D^{(i)}$ is the \emph{level $i$} of the
+description. The \emph{described set} is
+\[
+M=\bigcap_{i\in\N}\ \bigcup D^{(i)} .
+\]
+\end{definition}
+
+We write $D^{(i)}_t$ for the link $t$ of level $i$.
+
+\formal{\lean{HPC.Description} and \lean{HPC.Description.M}
+(\lean{HPC/PseudoArc/Description.lean}).}
+
+\section{First properties}
+
+Fix a description from $P$ to $Q$, with levels $D^{(i)}$ and described set $M$.
+
+\begin{lemma}\label{lem:desc-basic}
+\begin{enumerate}[label=(\alph*)]
+\item\label{db:PQ} $P,Q\in M$.
+\item\label{db:refine} If $i\le j$, then $D^{(j)}$ refines $D^{(i)}$; in particular
+$\bigcup D^{(j)}\subseteq\bigcup D^{(i)}$.
+\item\label{db:closure} If $i<j$, then $\cl{\bigcup D^{(j)}}\subseteq\bigcup D^{(i)}$.
+\item\label{db:closed} $M=\bigcap_i\cl{\bigcup D^{(i)}}$; in particular $M$ is closed.
+\item\label{db:crooked} If $i<j$, then $D^{(j)}$ is crooked in $D^{(i)}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\ref{db:PQ} By~\ref{D:from}, $P\in D^{(i)}_0$ and $Q\in D^{(i)}_{n_i-1}$ for every $i$.
+
+\ref{db:refine} By~\ref{D:closure}, every link of level $i+1$ lies (even with its closure) in a
+link of level $i$, so level $i+1$ refines level $i$. Refinement is transitive (compose
+refinement maps), so induction on $j-i$ gives the claim.
+
+\ref{db:closure} Write $j=j'+1$ with $j'\ge i$. The closure of a finite union is the union of
+the closures, so
+$\cl{\bigcup D^{(j)}}=\bigcup_t\cl{D^{(j)}_t}$. Each $\cl{D^{(j)}_t}$ lies in a link of level
+$j'$ by~\ref{D:closure}, and that link lies in $\bigcup D^{(i)}$ by~\ref{db:refine}.
+
+\ref{db:closed} ``$\subseteq$'' is clear. Conversely, if $z\in\cl{\bigcup D^{(i)}}$ for all $i$,
+then by~\ref{db:closure} $z\in\cl{\bigcup D^{(i+1)}}\subseteq\bigcup D^{(i)}$ for all $i$, so
+$z\in M$.
+
+\ref{db:crooked} $D^{(j)}$ refines $D^{(i+1)}$ by~\ref{db:refine}, and $D^{(i+1)}$ is crooked in
+$D^{(i)}$; apply Lemma~\ref{lem:crooked-refine}.
+\end{proof}
+
+\formal{\lean{HPC.Description.P_mem_M}, \lean{HPC.Description.refines_of_le},
+\lean{HPC.Description.closure_union_subset}, \lean{HPC.Description.isClosed_M},
+\lean{HPC.Description.M_eq_iInter_closure}, \lean{HPC.Description.crooked_of_lt}.}
+
+\begin{remark}
+A level whose mesh $\varepsilon_i$ is smaller than $d(P,Q)$ has at least two links, since a single
+link would contain both $P$ and $Q$. As $\varepsilon_i\to0$ and $P\neq Q$, the lengths $n_i$ tend
+to infinity (Lemma~\ref{lem:dist-along} gives $d(P,Q)\le n_i\varepsilon_i$).
+\end{remark}
+
+\section{The described set is a continuum}
+
+From now on we assume that \emph{all links of all levels lie in a fixed compact set
+$K\subseteq X$.}
+
+\begin{theorem}\label{thm:desc-continuum}
+If all links of a description lie in a compact set $K$, the described set $M$ is a continuum
+containing $P$ and $Q$.
+\end{theorem}
+
+\begin{proof}
+$M$ is closed (Lemma~\ref{lem:desc-basic}\ref{db:closed}) and contained in $K$, hence compact. Let
+$A_i=\bigcup D^{(i)}\subseteq K$. By~\ref{D:mesh} and Lemma~\ref{lem:union-chained}, $A_i$ is
+$\varepsilon_i$-chained; $\varepsilon_i\to0$; and $P\in A_i$ for all $i$. By
+Lemma~\ref{lem:limsup}, $\limsup_iA_i$ is a continuum containing $P$. The sets $A_i$ decrease
+(Lemma~\ref{lem:desc-basic}\ref{db:refine}), so
+$\limsup_iA_i=\bigcap_i\cl{A_i}=M$ by Lemma~\ref{lem:desc-basic}\ref{db:closed}. Finally
+$Q\in M$ by Lemma~\ref{lem:desc-basic}\ref{db:PQ}.
+\end{proof}
+
+\formal{\lean{HPC.Description.isConnected_M}, \lean{HPC.Description.isContinuum_M} (compact
+ambient space) and \lean{HPC.Description.isContinuum_M_of} (links in a compact set).}
+
+\begin{remark}[The compactness hypothesis is needed]\label{rem:compact-needed}
+Without the compact set $K$ the theorem fails, even if $M$ itself happens to be compact. The
+formal proof contains a counterexample, which we sketch. Take the description of the
+pseudo-arc $M_0\subseteq\R^2$ constructed in Chapter~\ref{ch:plane}, from $P$ to $Q$. Let $Y$ be
+the subspace $(\R^2\setminus M_0)\cup\set{P,Q}$ of the plane. One can show that $M_0$ has empty
+interior, so $Y$ is dense in $\R^2$, and therefore intersecting all links with $Y$ still gives
+chains (a nonempty open set of the plane meets $Y$). These chains form a description in $Y$,
+and the described set is $M_0\cap Y=\set{P,Q}$, a compact set that is not connected.
+\end{remark}
+
+\formal{\lean{HPC.Plane.isPseudoArc_of_description_false}, using
+\lean{HPC.Plane.PA51.exists_description_compact_disconnected}.}
+
+\section{The described set is hereditarily indecomposable}
+
+This is the heart of the chapter. The proof uses only crookedness of one level in the
+previous one, the shrinking of the links, and Lemma~\ref{lem:between-link}.
+
+We first isolate the combinatorial core, stated for two chains.
+
+\begin{lemma}[Core of Bing's argument]\label{lem:core}
+Let $E$ be crooked in $D$. Let $K\subseteq\bigcup E$ be preconnected, and suppose $K\subseteq A\cup
+B$ where $A\subseteq K$ is preconnected. Let $p\in K$ and $q\in A$, and let $h,k$ be indices of
+$D$ with $k>h+2$, $p\in D_h$, $q\in D_k$. Suppose that $D_{h+1}$ misses $A$ and $D_{k-1}$ misses
+$B$. Then we have a contradiction.
+\end{lemma}
+
+\begin{proof}
+Since $K\subseteq\bigcup E$ and $q\in A\subseteq K$, there are links with $p\in E_i$ and $q\in E_j$.
+Then $E_i$ meets $D_h$ (at $p$) and $E_j$ meets $D_k$ (at $q$). Crookedness gives $r,s$ with
+$\mathrm{Btw}(i,r,s,j)$, $E_r\subseteq D_{k-1}$ and $E_s\subseteq D_{h+1}$.
+
+\emph{$A$ meets $E_r$.} The preconnected set $K$ meets $E_i$ and $E_j$, and $r$ lies strictly
+between $i$ and $j$, so by Lemma~\ref{lem:between-link} $K$ meets $E_r$, say at $z$. Now
+$z\in A\cup B$, and $z\notin B$ because $z\in E_r\subseteq D_{k-1}$, which misses $B$. So $z\in A$.
+
+\emph{$A$ meets $E_s$.} The preconnected set $A\subseteq K\subseteq\bigcup E$ meets $E_r$ and $E_j$
+(at $q$), and $s$ lies strictly between $r$ and $j$. By Lemma~\ref{lem:between-link}, $A$
+meets $E_s\subseteq D_{h+1}$. This contradicts the assumption that $D_{h+1}$ misses $A$.
+\end{proof}
+
+\formal{\lean{HPC.Description.theorem10_core}.}
+
+\begin{theorem}[Bing]\label{thm:HI}
+The described set $M$ of any description is hereditarily indecomposable: every subcontinuum of
+$M$ is indecomposable. (No compactness assumption is needed here.)
+\end{theorem}
+
+\begin{proof}
+Let $L\subseteq M$ be a continuum and suppose $L=A\cup B$ with $A,B$ subcontinua of $L$. We must
+show $A=L$ or $B=L$. Suppose not. Then there are points $p\in L\setminus A$ and $q\in L\setminus
+B$; as $L=A\cup B$, we have $p\in B$ and $q\in A$.
+
+\emph{Choice of a scale.} $A$ and $B$ are compact, hence closed. So there is $\delta_1>0$ with
+$B(p,\delta_1)\cap A=\emptyset$ and $\delta_2>0$ with $B(q,\delta_2)\cap B=\emptyset$. Let
+$\delta=\min(\delta_1,\delta_2)$. Note $d(p,q)\ge\delta$, because $q\in A$ and $B(p,\delta_1)$ misses
+$A$. Choose a level $j$ with $\varepsilon_j<\delta/3$ and write $D=D^{(j)}$, $E=D^{(j+1)}$; $E$ is
+crooked in $D$ by~\ref{D:crooked}.
+
+\emph{The links of $p$ and $q$ are far apart.} Since $p,q\in M\subseteq\bigcup D$, there are $h,k$
+with $p\in D_h$, $q\in D_k$. If $\abs{h-k}\le2$, Lemma~\ref{lem:dist-along} gives $d(p,q)\le
+3\varepsilon_j<\delta$, which is false. So $k>h+2$ or $h>k+2$.
+
+\emph{Case $k>h+2$.} Every point $z\in D_{h+1}$ satisfies $d(p,z)\le2\varepsilon_j<\delta\le
+\delta_1$ (Lemma~\ref{lem:dist-along}), so $z\notin A$: thus $D_{h+1}$ misses $A$. In the same way
+every point of $D_{k-1}$ is within $2\varepsilon_j<\delta_2$ of $q$, so $D_{k-1}$ misses $B$. Now
+apply Lemma~\ref{lem:core} with $K=L$: $L\subseteq M\subseteq\bigcup E$ is connected, $L\subseteq
+A\cup B$, $A\subseteq L$ is connected, $p\in L\cap D_h$, $q\in A\cap D_k$. This is a contradiction.
+
+\emph{Case $h>k+2$.} This is the same with the roles exchanged: apply Lemma~\ref{lem:core} with
+$K=L$, with $B$ in place of $A$ and $A$ in place of $B$, with $q$ in place of $p$ (so $q\in L\cap
+D_k$), with $p\in B\cap D_h$ in place of $q$, and with the indices $k<h$. The hypotheses are
+that $D_{k+1}$ misses $B$ (its points are within $2\varepsilon_j$ of $q$) and that $D_{h-1}$
+misses $A$ (its points are within $2\varepsilon_j$ of $p$). Again a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Description.theorem10} (\lean{HPC/PseudoArc/Theorem10.lean}). The name
+recalls that this is Theorem~10 of Bing's 1948 paper.}
+
+\section{Descriptions describe pseudo-arcs}
+
+\begin{theorem}\label{thm:desc-pseudoarc}
+Let a description from $P$ to $Q$ be given, with $P\neq Q$ and all links in a compact set $K$.
+Then the described set $M$ is a pseudo-arc.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:desc-continuum}, $M$ is a continuum, and it is nondegenerate because it
+contains $P\neq Q$. It is hereditarily indecomposable by Theorem~\ref{thm:HI}. It is
+snake-like: given $\varepsilon>0$ choose $i$ with $\varepsilon_i<\varepsilon$; then $D^{(i)}$ is an
+$\varepsilon$-chain by~\ref{D:mesh}, and $M\subseteq\bigcup D^{(i)}$ by the definition of $M$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isPseudoArc_of_description} (\lean{HPC/Plane/PseudoArc51.lean}).}
+
+So to prove that a pseudo-arc exists in the plane, it remains to construct a description in
+$\R^2$, from $P$ to $Q\neq P$, all of whose links lie in a compact set. This is the task of the
+next two chapters.
+
+\section{Every link meets the described set}
+
+The following fact is not needed for the existence of the pseudo-arc, but it is used in
+Volume~2 and is a good illustration of the definitions.
+
+\begin{proposition}\label{prop:link-meets}
+Assume all links lie in a compact set $K$. Then every link of every level meets $M$.
+\end{proposition}
+
+\begin{proof}
+\emph{Step 1: every link of level $i$ contains the closure of some link of level $i+1$.} By
+\ref{D:closure} choose, for each link $t$ of level $i+1$, an index $\chi(t)$ with
+$\cl{D^{(i+1)}_t}\subseteq D^{(i)}_{\chi(t)}$. Then $\chi$ is a refinement map, so it moves by at
+most one at each step (Lemma~\ref{lem:refinement-lipschitz}). Since $P\in D^{(i+1)}_0\subseteq
+D^{(i)}_{\chi(0)}$ and $P$ lies only in the first link of level $i$, $\chi(0)=0$; similarly
+$\chi(n_{i+1}-1)=n_i-1$. By Lemma~\ref{lem:discrete-ivt}, $\chi$ takes every value in $[n_i]$.
+
+\emph{Step 2.} Fix a link $D^{(i)}_s$. By Step~1 choose links $s=s_0,s_1,s_2,\dots$ of levels
+$i,i+1,i+2,\dots$ with $\cl{D^{(i+k+1)}_{s_{k+1}}}\subseteq D^{(i+k)}_{s_k}$. The sets
+$C_k=\cl{D^{(i+k)}_{s_k}}$ are nonempty, compact (closed subsets of $K$) and decreasing, so by
+Cantor's theorem~\ref{C:cantor} they have a common point $z$. Then $z\in C_1\subseteq
+D^{(i)}_s$, and $z\in C_{k+1}\subseteq D^{(i+k)}_{s_k}\subseteq\bigcup D^{(i+k)}$ for every $k$;
+for levels $j<i$ use $\bigcup D^{(i)}\subseteq\bigcup D^{(j)}$. So $z\in M\cap D^{(i)}_s$.
+\end{proof}
+
+\formal{\lean{HPC.Description.exists_closure_link_subset},
+\lean{HPC.Description.link_inter_M_nonempty}.}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Where exactly does the proof of Theorem~\ref{thm:HI} use that $A$ is connected? That $L$ is
+connected? Show by an example that the conclusion ``$A=L$ or $B=L$'' can fail if $A$ and $B$
+are only assumed closed.
+\end{exercise}
+
+\begin{exercise}
+Show that the described set of a description contains no arc. (Use Theorem~\ref{thm:HI}.)
+\end{exercise}
+
+\begin{exercise}
+Suppose that in Definition~\ref{def:description} condition~\ref{D:crooked} is dropped. Give a
+sequence of chains in $\R^2$ satisfying the remaining conditions whose described set is the
+segment $[0,1]\times\set0$.
+\end{exercise}

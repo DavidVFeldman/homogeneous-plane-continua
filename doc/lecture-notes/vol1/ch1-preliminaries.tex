@@ -1,0 +1,196 @@
+%======================================================================
+\chapter{Preliminaries from metric topology}\label{ch:prelim}
+%======================================================================
+
+This chapter recalls the facts about metric spaces that the rest of the volume uses. Most
+are standard and are stated with short proofs; the last section (limits of chained sets)
+is less standard and is proved in full.
+
+Throughout, $X$ is a metric space with metric $d$.
+
+\section{Distances and diameters}
+
+For $x\in X$ and $r>0$, $B(x,r)=\set{y : d(x,y)<r}$ is the open ball. A set $A\subseteq X$ is
+\emph{bounded} if it lies in some ball. For nonempty bounded $A$,
+\[
+\diam A=\sup\set{d(a,a') : a,a'\in A},
+\]
+and $\diam\emptyset=0$. Thus $d(a,a')\le\diam A$ for all $a,a'\in A$, and $\diam A\le\diam B$
+if $A\subseteq B$ with $B$ bounded. The closure $\cl A$ has the same diameter as $A$.
+
+For nonempty $A\subseteq X$ and $x\in X$ put $\dist(x,A)=\inf_{a\in A}d(x,a)$. The function
+$x\mapsto\dist(x,A)$ is $1$-Lipschitz, hence continuous, and $\dist(x,A)=0$ if and only if
+$x\in\cl A$.
+
+\begin{lemma}\label{lem:separated-distance}
+Let $F,G$ be disjoint nonempty closed subsets of $X$, with $F$ compact. Then
+$\delta=\inf\set{d(f,g): f\in F,\ g\in G}>0$.
+\end{lemma}
+
+\begin{proof}
+The continuous function $f\mapsto\dist(f,G)$ attains its minimum on the compact set $F$ at
+some $f_0$. Since $G$ is closed and $f_0\notin G$, $\dist(f_0,G)>0$; and $\delta=\dist(f_0,G)$.
+\end{proof}
+
+\section{Compactness}
+
+A metric space is \emph{compact} if every sequence has a convergent subsequence
+(equivalently, every open cover has a finite subcover). We use:
+
+\begin{enumerate}[label=(C\arabic*)]
+\item A closed subset of a compact set is compact; a compact subset of a metric space is
+closed and bounded.
+\item The continuous image of a compact set is compact.
+\item\label{C:cantor} \emph{(Cantor's intersection theorem.)} If $K_0\supseteq K_1\supseteq
+K_2\supseteq\cdots$ are nonempty compact sets, then $\bigcap_i K_i\neq\emptyset$.
+\emph{Proof:} pick $x_i\in K_i$; a subsequence converges to some $x$; for each $i$ the tail
+of the subsequence lies in the closed set $K_i$, so $x\in K_i$.
+\item\label{C:unif} \emph{(Uniform continuity.)} A continuous map $f$ from a compact set $K$
+to a metric space is uniformly continuous on $K$: for every $\varepsilon>0$ there is
+$\delta>0$ with $d(f(x),f(y))<\varepsilon$ whenever $x,y\in K$ and $d(x,y)<\delta$.
+\item In $\R^2$ a set is compact if and only if it is closed and bounded (Heine--Borel).
+\end{enumerate}
+
+\section{Connectedness}
+
+A set $C\subseteq X$ is \emph{preconnected} if there are no open sets $U,V\subseteq X$ with
+\[
+C\subseteq U\cup V,\qquad C\cap U\neq\emptyset,\qquad C\cap V\neq\emptyset,\qquad
+C\cap U\cap V=\emptyset .
+\]
+It is \emph{connected} if moreover it is nonempty. (The empty set is preconnected but not
+connected; the distinction matters only in bookkeeping.) We use:
+
+\begin{enumerate}[label=(K\arabic*)]
+\item The continuous image of a (pre)connected set is (pre)connected.
+\item\label{K:closed} A closed set $C$ is preconnected if and only if, whenever
+$C=F\cup G$ with $F,G$ closed and disjoint, one of $F,G$ is empty. \emph{Proof:} an open
+splitting $U,V$ of $C$ as above gives the closed splitting $F=C\setminus V$, $G=C\setminus U$:
+both are closed, $F\cap G=C\setminus(U\cup V)=\emptyset$, $F\cup G=C\setminus(U\cap V)=C$, and
+$F\supseteq C\cap U\neq\emptyset$, $G\supseteq C\cap V\neq\emptyset$. Conversely, a splitting of
+$C$ into disjoint nonempty closed sets $F,G$ gives the open splitting
+$U=\set{x:\dist(x,F)<\dist(x,G)}$, $V=\set{x:\dist(x,G)<\dist(x,F)}$; these are open (the
+distance functions are continuous), disjoint, and $F\subseteq U$, $G\subseteq V$ because
+$\dist(f,G)>0=\dist(f,F)$ for $f\in F$, and symmetrically.
+\end{enumerate}
+
+\section{Continua}
+
+\begin{definition}\label{def:continuum}
+A \emph{continuum} is a nonempty compact connected subset of a metric space. It is
+\emph{nondegenerate} if it contains at least two points. A \emph{subcontinuum} of a
+continuum $M$ is a continuum contained in $M$.
+\end{definition}
+
+\begin{definition}\label{def:indecomposable}
+A continuum $K$ is \emph{decomposable} if $K=A\cup B$ for two subcontinua $A,B$ of $K$, both
+different from $K$. Otherwise $K$ is \emph{indecomposable}: whenever $K=A\cup B$ with $A,B$
+subcontinua of $K$, then $A=K$ or $B=K$. A continuum $M$ is \emph{hereditarily
+indecomposable} if every subcontinuum of $M$ is indecomposable.
+\end{definition}
+
+\formal{\lean{HPC.Plane.IsHereditarilyIndecomposable} (in \lean{HPC/Plane/EndPoints51.lean}).}
+
+\begin{example}
+A one-point set is indecomposable. The interval $[0,1]$ is decomposable. The circle is
+decomposable (two closed half-circles). Any continuum containing an arc is not hereditarily
+indecomposable.
+\end{example}
+
+\section{Homeomorphisms of the plane}
+
+A \emph{homeomorphism} $\Phi\colon\R^2\to\R^2$ is a continuous bijection with continuous
+inverse. We use only the following obvious facts: $\Phi$ maps open sets to open sets and
+closed sets to closed sets; $\Phi(\cl A)=\cl{\Phi(A)}$; $\Phi(A\cap B)=\Phi(A)\cap\Phi(B)$ (by
+injectivity), so $\Phi(A)\cap\Phi(B)\ne\emptyset$ if and only if $A\cap B\neq\emptyset$; and
+$\Phi$ maps compact sets to compact sets. A composite of homeomorphisms is a homeomorphism.
+
+\section{Limits of chained sets}\label{sec:limsup}
+
+The intersection of a decreasing sequence of continua is a continuum (an easy exercise).
+The sets we shall intersect in Chapter~\ref{ch:descriptions} are, however, not connected:
+they are unions of finitely many open sets which are not assumed connected. What they do
+have is a weak form of connectedness, which survives in the limit.
+
+\begin{definition}\label{def:chained}
+Let $\varepsilon>0$. A set $A\subseteq X$ is \emph{$\varepsilon$-chained} if, whenever
+$A\subseteq U\cup V$ for sets $U,V$ with $d(u,v)>\varepsilon$ for all $u\in U$, $v\in V$, then
+$A\subseteq U$ or $A\subseteq V$.
+\end{definition}
+
+So an $\varepsilon$-chained set cannot be split into two pieces more than $\varepsilon$ apart.
+(Equivalently, any two points of $A$ can be joined by a finite sequence of points of $A$
+with consecutive points at distance $\le\varepsilon$; we shall not need this.)
+
+\formal{\lean{HPC.T13.ChainedAt}.}
+
+\begin{definition}\label{def:limsup}
+For a sequence of sets $A_0,A_1,\dots\subseteq X$, the \emph{upper limit} is
+\[
+\limsup_k A_k=\bigcap_{N\in\N}\cl{\bigcup_{k\ge N}A_k}.
+\]
+\end{definition}
+
+A point $x$ lies in $\limsup_k A_k$ exactly when every neighbourhood of $x$ meets $A_k$ for
+infinitely many $k$. The upper limit is closed, being an intersection of closed sets. If
+the sets $A_k$ decrease, $A_0\supseteq A_1\supseteq\cdots$, then
+$\bigcup_{k\ge N}A_k=A_N$ and $\limsup_k A_k=\bigcap_N\cl{A_N}$.
+
+\begin{lemma}[Limits of finely chained sets]\label{lem:limsup}
+Let $S\subseteq X$ be compact and let $A_0,A_1,\dots\subseteq S$. Suppose that $A_k$ is
+$\varepsilon_k$-chained, where $\varepsilon_k\to0$, and that a point $R$ lies in every $A_k$.
+Then $L=\limsup_kA_k$ is a continuum containing $R$.
+\end{lemma}
+
+\begin{proof}
+$L$ is closed and $L\subseteq\cl{S}=S$, so $L$ is compact. Since $R\in A_k$ for all $k$, $R\in
+\cl{\bigcup_{k\ge N}A_k}$ for all $N$, so $R\in L$. It remains to show that $L$ is
+preconnected. By~\ref{K:closed}, suppose $L=F\cup G$ with $F,G$ closed, disjoint, $R\in F$, and
+suppose for a contradiction that $G\neq\emptyset$. Both $F$ and $G$ are compact. By
+Lemma~\ref{lem:separated-distance} the number
+$\delta=\inf\set{d(f,g):f\in F,g\in G}$ is positive. Put
+\[
+U=\set{x\in X:\dist(x,F)<\delta/3},\qquad V=\set{x\in X:\dist(x,G)<\delta/3}.
+\]
+These are open sets, $F\subseteq U$, $G\subseteq V$, and for $u\in U$, $v\in V$ the triangle
+inequality gives $d(u,v)>\delta-\delta/3-\delta/3=\delta/3$.
+
+\emph{Step 1: $A_k\subseteq U\cup V$ for all large $k$.} If not, there are infinitely many
+$k$ and points $a_k\in A_k\setminus(U\cup V)$. These lie in the compact set $S$, so a
+subsequence $a_{k_1},a_{k_2},\dots$ (with $k_1<k_2<\cdots$) converges to some $a$. For each
+$N$, all but finitely many terms lie in $\bigcup_{k\ge N}A_k$, so $a\in L$. On the other hand
+the terms lie in the closed set $X\setminus(U\cup V)$, so $a\notin U\cup V\supseteq F\cup G=L$.
+This is a contradiction.
+
+\emph{Step 2.} Choose $N$ such that for $k\ge N$ we have $A_k\subseteq U\cup V$ and
+$\varepsilon_k<\delta/3$. For such $k$, the sets $U$ and $V$ are more than $\varepsilon_k$
+apart, so the $\varepsilon_k$-chained set $A_k$ lies in $U$ or in $V$. Since $R\in A_k$ and
+$R\in F\subseteq U$, and $U\cap V=\emptyset$, we get $A_k\subseteq U$. Hence
+$\bigcup_{k\ge N}A_k\subseteq U\subseteq\set{x:\dist(x,F)\le\delta/3}$, and the last set is
+closed, so it contains $\cl{\bigcup_{k\ge N}A_k}\supseteq L\supseteq G$. But every $g\in G$
+has $\dist(g,F)\ge\delta>\delta/3$. Since $G\neq\emptyset$ this is a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.T13.isPreconnected_limSup} (compact ambient space) and
+\lean{HPC.Plane.isPreconnected_limSup_of_compact} (sets inside a compact set).}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Show that the intersection of a decreasing sequence of continua is a continuum.
+\end{exercise}
+
+\begin{exercise}
+Show that a set $A$ is $\varepsilon$-chained if and only if any two points of $A$ can be
+joined by a finite sequence of points of $A$, consecutive points being at distance at most
+$\varepsilon$.
+\end{exercise}
+
+\begin{exercise}
+Show that the compactness of $S$ cannot be dropped in Lemma~\ref{lem:limsup}. Work in the
+metric space $X=\R^2\setminus\set{(0,0)}$ and let every $A_k$ be the set $A$ formed by the two
+segments $\set{\pm1}\times[-1,1]$ and the punctured segment $([-1,1]\times\set0)\setminus
+\set{(0,0)}$. Show that $A$ is $\varepsilon$-chained for every $\varepsilon>0$, that $A$ is
+closed and bounded in $X$, and that $\limsup_kA_k=A$ is not connected.
+\end{exercise}

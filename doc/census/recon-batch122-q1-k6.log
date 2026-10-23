@@ -1,0 +1,42 @@
+K=6 n=8 (special-case sequences 0): instances=0 IH-H=0 working(Cbot)=0 working(A)=0 inst-some-Cbot-works=0 inst-every-Cbot-fails=0
+   P=a: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=b: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=c: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=d: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=s: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=w: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+K=6 n=9 (special-case sequences 0): instances=0 IH-H=0 working(Cbot)=0 working(A)=0 inst-some-Cbot-works=0 inst-every-Cbot-fails=0
+   P=a: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=b: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=c: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=d: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=s: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=w: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+K=6 n=10 (special-case sequences 0): instances=0 IH-H=0 working(Cbot)=0 working(A)=0 inst-some-Cbot-works=0 inst-every-Cbot-fails=0
+   P=a: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=b: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=c: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=d: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=s: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=w: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+K=6 n=11 (special-case sequences 0): instances=0 IH-H=0 working(Cbot)=0 working(A)=0 inst-some-Cbot-works=0 inst-every-Cbot-fails=0
+   P=a: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=b: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=c: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=d: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=s: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=w: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+K=6 n=12 (special-case sequences 0): instances=0 IH-H=0 working(Cbot)=0 working(A)=0 inst-some-Cbot-works=0 inst-every-Cbot-fails=0
+   P=a: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=b: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=c: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=d: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=s: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=w: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+K=6 n=13 (special-case sequences 0): instances=0 IH-H=0 working(Cbot)=0 working(A)=0 inst-some-Cbot-works=0 inst-every-Cbot-fails=0
+   P=a: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=b: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=c: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=d: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=s: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=w: H-with-P=0 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0

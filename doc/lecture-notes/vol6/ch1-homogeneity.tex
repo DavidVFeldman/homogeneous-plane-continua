@@ -1,0 +1,419 @@
+%======================================================================
+\chapter{First consequences of homogeneity in the plane}\label{ch:homog}
+%======================================================================
+
+This chapter collects the facts about a homogeneous indecomposable plane continuum that the rest of
+the volume uses over and over. They come from the first lemma of Hagopian's 1975 paper
+\emph{Homogeneous plane continua} and from the first page of his 1976 paper. All of them rest on one
+idea: a homogeneous indecomposable continuum has uncountably many pairwise disjoint composants, each
+containing a homeomorphic copy of any given proper subcontinuum, and the plane does not have room for
+uncountably many disjoint copies of certain configurations.
+
+\section{Standing conventions}
+
+A \emph{continuum} is a compact connected metric space (or a compact connected subset of a metric
+space). The formal development allows a continuum to be a single point; ``nondegenerate'' is said
+explicitly when it is needed. A continuum $M$ is \emph{decomposable} if $M=A\cup B$ with $A,B$ proper
+subcontinua, \emph{indecomposable} otherwise, and \emph{hereditarily indecomposable} if every
+subcontinuum is indecomposable. A space $Y$ is \emph{homogeneous} if for any $x,y\in Y$ there is a
+homeomorphism $h\colon Y\to Y$ with $h(x)=y$.
+
+\formal{\lean{HPC.Fold.Q78.IsContinuum}, \lean{HPC.Fold.Q78.IsIndecomposable},
+\lean{HPC.Jones.IsDecomposableSpace}, \lean{HPC.Plane.IsHereditarilyIndecomposable},
+\lean{HPC.Jones.IsHomogeneous}.}
+
+A compact set $K\subseteq\R^2$ \emph{separates the plane} if $\R^2\setminus K$ is not connected
+(\formal{\lean{HPC.Plane.SeparatesPlane}.}) Triods, atriodic continua and (hereditarily) unicoherent
+continua are as in \vthree{Definitions~4.1 and~4.2}; in particular a triod is a continuum $T$ with a
+subcontinuum $N$ (the core) such that $T\setminus N$ is the union of three nonempty pairwise separated
+sets.
+
+Throughout the volume, unless said otherwise, $M\subseteq\R^2$ denotes a \emph{homogeneous
+indecomposable plane continuum}, in its own topology; homeomorphisms are homeomorphisms of $M$ onto
+itself. We write $\cmp Mp$ for the composant of $p$ in $M$ (\vtwo{Definition~1.1}): the union of the
+proper subcontinua of $M$ containing $p$.
+
+\section{Composants}
+
+\begin{theorem}[Moore's theorems on composants]\label{thm:composants}
+Let $X$ be a continuum.
+\begin{enumerate}[label=(\alph*)]
+\item If $X$ is nondegenerate, every composant of $X$ is dense in $X$, and $p\in\cmp Xp$.
+\item If $X$ is indecomposable and $H,K$ are proper subcontinua with a common point, $H\cup K$ is a
+proper subcontinuum.
+\item If $X$ is indecomposable, two composants are equal or disjoint.
+\item If $X$ is indecomposable, every proper subcontinuum has empty interior in $X$, and every
+composant is a countable union of nowhere dense closed sets (it is meagre).
+\item If $X$ is nondegenerate and indecomposable, $X$ has uncountably many composants.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) $\set p$ is a proper subcontinuum, so $p\in\cmp Xp$. Let $U$ be open with $U\cap X\neq\emptyset$. As $X$
+is connected and nondegenerate, it has no isolated points, so $U$ contains a point $y\in X$ with $y\ne
+p$; choose $s>0$ with $s<d(p,y)$ and $\bar B(y,s)\subseteq U$. By boundary bumping in metric form
+(\vthree{Corollary~1.12}) some subcontinuum $K$ of $X\setminus B(y,s)$ contains $p$ and meets $\bar
+B(y,s)\subseteq U$. $K$ misses $y$, so it is proper, and $K\subseteq\cmp Xp$ meets $U$.
+
+(b) $H\cup K$ is a continuum (two continua with a common point). If it were $X$, $X$ would be the union of
+the two proper subcontinua $H$ and $K$.
+
+(c) Suppose $z\in\cmp Xx\cap\cmp Xy$: there are proper subcontinua $H\ni x,z$ and $K\ni y,z$. If $w\in\cmp
+Xx$, take a proper subcontinuum $L\ni x,w$. By (b) twice, $L\cup H\cup K$ is a proper subcontinuum, and it
+contains $y$ and $w$; so $w\in\cmp Xy$. By symmetry the composants are equal.
+
+(d) A proper subcontinuum of an indecomposable continuum has empty interior (\vtwo{Theorem~1.7}). Let
+$\set{b_n}$ be a countable base of $X$ and $C_n$ the component of $x$ in the closed set $X\setminus b_n$
+(when $x\notin b_n$). Each $C_n$ is a subcontinuum missing the nonempty open set $b_n$ (if $b_n\neq\emptyset$), so
+it is proper, closed and nowhere dense. If $K$ is a proper subcontinuum containing $x$, pick $y\in X\setminus
+K$ and $b_n\ni y$ with $\cl{b_n}\cap K=\emptyset$; then $K\subseteq C_n$. So $\cmp Xx=\bigcup_n C_n$.
+
+(e) $X$ is a compact metric space, hence a Baire space. By (a) and (c), $X$ is the union of its composants;
+if there were countably many, by (d) $X$ would be a countable union of nowhere dense closed sets.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.composant_dense'}, \lean{HPC.Hagopian.union_ne_univ_of_indec},
+\lean{HPC.Hagopian.composant_eq_or_disjoint'}, \lean{HPC.Hagopian.interior_eq_empty_of_proper},
+\lean{HPC.Hagopian.composant_isMeagre'}, \lean{HPC.Hagopian.uncountable_composants'} (in
+\lean{HPC/Hagopian/H75Composants.lean}).}
+
+\begin{lemma}[Copies in every composant]\label{lem:copies}
+Let $K$ be a proper subcontinuum of $M$ and $x_0\in K$. For every composant $\kappa$ of $M$ and every
+$y\in\kappa$ there is a homeomorphism $h$ with $h(x_0)=y$, and then $h(K)$ is a proper subcontinuum of $M$
+contained in $\kappa$. Copies $h(K)\subseteq\kappa$ and $h'(K)\subseteq\kappa'$ in different composants are disjoint.
+\end{lemma}
+
+\begin{proof}
+$h$ exists by homogeneity; $h(K)$ is a proper subcontinuum containing $y$, so $h(K)\subseteq\cmp My=\kappa$.
+Different composants are disjoint by Theorem~\ref{thm:composants}(c).
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.isContinuum_homeo_image}, \lean{HPC.Hagopian.homeo_image_ne_univ},
+\lean{HPC.Hagopian.subset_composant}.}
+
+\section{Effros neighbourhoods}
+
+The Effros theorem in the form of \vthree{Theorem~7.15} is the basic tool for using homogeneity
+locally. Hagopian states it in two ways.
+
+\begin{proposition}[Hagopian 1975, Lemma~4; 1976, Lemma~2; 1984, Lemma~1]\label{prop:effros-nbhd}
+Let $Y$ be a homogeneous compact metric space, $\varepsilon>0$ and $x\in Y$.
+\begin{enumerate}[label=(\alph*)]
+\item There is an open set $W\ni x$ such that for all $y,z\in W$ some homeomorphism $h$ of $Y$ has
+$h(y)=z$ and $d(v,h(v))<\varepsilon$ for all $v\in Y$.
+\item The set $\Eff(x,\varepsilon)$ of points $h(x)$, $h$ a homeomorphism moving no point by $\varepsilon$ or
+more (an \emph{$\varepsilon$-homeomorphism}), is open and contains $x$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Take $\delta$ for $\varepsilon$ as in \vthree{Theorem~7.15} and $W=B(x,\delta/2)$.
+
+(b) $x\in\Eff(x,\varepsilon)$ by the identity. Let $y=h(x)$ with $h$ moving points by less than $\varepsilon$.
+By compactness $\max_v d(v,h(v))=\varepsilon'<\varepsilon$. Take $\delta$ for $\varepsilon-\varepsilon'$ as in
+\vthree{Theorem~7.15}. If $d(y,z)<\delta$, some $g$ with $g(y)=z$ moves points by less than
+$\varepsilon-\varepsilon'$, and $g\circ h$ takes $x$ to $z$ and moves points by less than $\varepsilon$. So
+$B(y,\delta)\subseteq\Eff(x,\varepsilon)$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.hagopian75_lemma4}, \lean{HPC.Hagopian.hagopian76_lemma2},
+\lean{HPC.Hagopian.hagopian84_lemma1}; all from \lean{HPC.Effros.effros_homogeneous}.}
+
+\section{A non-unicoherent continuum separates the plane}
+
+\begin{proposition}[Moore 1962, Theorem~22]\label{prop:moore22}
+Let $A,B\subseteq\R^2$ be compact and connected with $A\cap B$ not connected. Then $A\cup B$ separates the
+plane.
+\end{proposition}
+
+\begin{proof}
+This is Eilenberg's argument, with Borsuk's theorem in place of a logarithm on the whole plane. Write
+$A\cap B=P\cup Q$ with $P,Q$ nonempty, closed and disjoint. By Urysohn's lemma there is a continuous
+$\varphi\colon\R^2\to[0,1]$ with $\varphi=0$ on $P$ and $\varphi=1$ on $Q$. Define $f=e^{2\pi i\varphi}$ on $A$ and
+$f=1$ on $B$; on $A\cap B$ both formulas give $1$, so $f$ is continuous and nowhere zero on $A\cup B$. If
+$\R^2\setminus(A\cup B)$ were connected, Borsuk's theorem (\vfour{Theorem~2.10}) would give a logarithm $g$
+of $f$ on $A\cup B$. On the connected set $A$, $g$ and $2\pi i\varphi$ are logarithms of the same function,
+so they differ by a constant (\vfour{Lemma~1.3}); on the connected set $B$, $g$ is a logarithm of $1$,
+so it is constant. Comparing at $p\in P$ and $q\in Q$: $g(q)-g(p)=2\pi i(\varphi(q)-\varphi(p))=2\pi i$ from
+$A$, and $g(q)-g(p)=0$ from $B$. This is a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.separatesPlane_of_not_isPreconnected_inter}.}
+
+\section{Separating continua in uncountably many composants}
+
+The next lemma is the common core of the hereditary unicoherence of $M$ and of the fact that no
+proper subcontinuum of $M$ separates the plane.
+
+\begin{lemma}[Disjoint complementary domains]\label{lem:disjoint-domains}
+Let $F_1,F_2\subseteq M$ be disjoint closed sets with $F_1\ne\emptyset$, and let $U_i$ be a component of
+$\R^2\setminus F_i$ with $U_i\cap M=\emptyset$ ($i=1,2$). Then $U_1\cap U_2=\emptyset$.
+\end{lemma}
+
+\begin{proof}
+Suppose $U_1\cap U_2\neq\emptyset$. $U_1$ is connected and misses $M\supseteq F_2$, so it lies in a component of
+$\R^2\setminus F_2$; it meets $U_2$, so $U_1\subseteq U_2$. Symmetrically $U_2\subseteq U_1$, and $U=U_1=U_2$. The
+frontier of a component of the complement of a closed set lies in that set, so $\fr U\subseteq F_1\cap
+F_2=\emptyset$. Then $U$ is a nonempty clopen subset of the plane, so $U=\R^2$; but $U$ misses
+$F_1\neq\emptyset$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.disjoint_components_missing}.}
+
+\begin{lemma}\label{lem:sep-composants}
+Suppose that every composant $\kappa$ of $M$ contains a proper subcontinuum $S_\kappa$ that separates the
+plane. Then $M$ is degenerate or decomposable; that is, under the standing hypotheses this is
+impossible.
+\end{lemma}
+
+\begin{proof}
+Assume $M$ is nondegenerate (it is indecomposable by hypothesis). The $S_\kappa$ lie in distinct composants,
+so they are pairwise disjoint (Theorem~\ref{thm:composants}(c)), and there are uncountably many of them
+(Theorem~\ref{thm:composants}(e)).
+
+\emph{Step 1: some $S_\kappa$ has all its complementary domains meeting $M$.} Otherwise choose, for every
+$\kappa$, a component $U_\kappa$ of $\R^2\setminus S_\kappa$ missing $M$. By Lemma~\ref{lem:disjoint-domains}
+the $U_\kappa$ are pairwise disjoint nonempty open sets, uncountably many of them. Each contains a point
+with rational coordinates, and these points are distinct: a contradiction.
+
+\emph{Step 2.} Fix such a $\kappa$ and $S=S_\kappa$. As $S$ separates the plane it has two complementary
+domains $U\neq V$, both meeting $M$. $U\cap M$ is a nonempty open subset of the Baire space $M$, and $\kappa$
+is meagre (Theorem~\ref{thm:composants}(d)); so there is $p\in U\cap M$ with $p\notin\kappa$. The composant
+$\cmp Mp$ is dense (Theorem~\ref{thm:composants}(a)), so it contains a point $q$ of the open set $V\cap M$,
+and there is a proper subcontinuum $L$ containing $p$ and $q$. $L$ is connected and meets the two
+components $U$ and $V$ of $\R^2\setminus S$, so it meets $S$. By Theorem~\ref{thm:composants}(b), $L\cup S$ is
+a proper subcontinuum; it contains $p$ and a point of $\kappa$, so $p\in\kappa$. This is a contradiction.
+\end{proof}
+
+\formal{The argument appears twice in the formal development: in
+\lean{HPC.Hagopian.hereditarilyUnicoherent_of_homogeneous_indecomposable} (\lean{HPC/Hagopian/H75Lemma1.lean})
+and in \lean{HPC.Hagopian.no_proper_subcontinuum_separates_aux} (\lean{HPC/Hagopian/H76NoSep.lean}); the
+countability step is \lean{HPC.Jones.countable_of_pairwiseDisjoint_open}, the Baire step
+\lean{HPC.Hagopian.exists_notMem_of_isMeagre}.}
+
+\section{Hereditary unicoherence and the non-separation theorem}
+
+\begin{theorem}[Hagopian 1975, Lemma~1, second half]\label{thm:hu}
+$M$ is hereditarily unicoherent.
+\end{theorem}
+
+\begin{proof}
+If $M$ is a point there is nothing to prove. Suppose $F=H\cup L$ with $H,L$ subcontinua and $H\cap L$ not
+connected. Then $F\ne M$: if $H\cup L=M$, indecomposability forces $H=M$ or $L=M$, and then $H\cap L$ is
+$L$ or $H$, which is connected. Fix $x_0\in F$. For each composant $\kappa$ take $y\in\kappa$ and $h$ with
+$h(x_0)=y$ (Lemma~\ref{lem:copies}); $S_\kappa=h(F)=h(H)\cup h(L)$ is a proper subcontinuum in $\kappa$, and
+$h(H)\cap h(L)=h(H\cap L)$ is not connected. By Proposition~\ref{prop:moore22}, $S_\kappa$ separates the
+plane. Lemma~\ref{lem:sep-composants} gives a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.hereditarilyUnicoherent_of_homogeneous_indecomposable},
+\lean{HPC.Hagopian.hagopian75_lemma1_hu}.}
+
+Note that here the copies $h(F)$ separate the plane for the same reason as $F$: they are again unions of
+two continua with a disconnected intersection. For a general separating proper subcontinuum one needs that
+separation passes to homeomorphic copies. Volume~4 proves this in full (Borsuk's invariance theorem,
+\vfour{Theorem~2.16}) and also in a weaker form that suffices here and is the one used by the formal
+proof: \emph{if a compact set $K$ separates the plane and $K'$ is a plane continuum homeomorphic to $K$,
+some subcontinuum of $K'$ separates the plane} (\vfour{Theorem~5.22}, by Bing's theorem that a continuum
+none of whose subcontinua separates the plane is tree-like).
+
+\begin{theorem}[Hagopian 1976, p.~344]\label{thm:nosep}
+No proper subcontinuum of $M$ separates the plane.
+\end{theorem}
+
+\begin{proof}
+Let $K$ be a proper subcontinuum that separates the plane, and $x_0\in K$. For each composant $\kappa$, a
+copy $h(K)\subseteq\kappa$ (Lemma~\ref{lem:copies}) contains a subcontinuum $S_\kappa$ that separates the plane
+(\vfour{Theorem~5.22}). $S_\kappa$ is proper, as it lies in $h(K)$. Lemma~\ref{lem:sep-composants} gives a
+contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.exists_separating_subcontinuum_of_homeomorph},
+\lean{HPC.Hagopian.separating_in_copy}, \lean{HPC.Hagopian.no_proper_subcontinuum_separates}.}
+
+\begin{remark}
+Hagopian's 1976 paper cites ``[1975, Lemma~1, second paragraph of proof]'' for Theorem~\ref{thm:nosep}.
+That paragraph treats the non-unicoherent case only; for a general separating subcontinuum the step
+``each copy separates the plane'' is the topological invariance of plane separation, which neither paper
+states. The formal proof supplies it as described above.
+\end{remark}
+
+\section{Moore's triod theorem}
+
+\begin{theorem}[Moore 1962, Theorem~84]\label{thm:moore-triod}
+Every family of pairwise disjoint triods in the plane is countable.
+\end{theorem}
+
+The proof splits according to whether the cores separate the plane. Both cases are a pigeonhole
+argument over countably many ``rational'' choices.
+
+\begin{proposition}[Separating cores; Moore's Theorem~73]\label{prop:moore73}
+Let $(K_i)_{i\in I}$ be pairwise disjoint connected subsets of the plane, and $Z_i\subseteq K_i$ closed sets
+that separate the plane with $K_i\setminus Z_i\neq\emptyset$. Then $I$ is countable.
+\end{proposition}
+
+\begin{proof}
+For each $i$ choose $p_i\in K_i\setminus Z_i$, a ball $Q_i\ni p_i$ with rational centre and radius missing $Z_i$,
+and a point $o_i$ with rational coordinates in a component $C_i$ of $\R^2\setminus Z_i$ not containing $p_i$
+(there are at least two components, and components of open sets are open). Then $Q_i$, which is connected
+and misses $Z_i$, lies in the component of $p_i$, so $Q_i\cap C_i=\emptyset$. If $I$ were uncountable, two
+indices $i\neq j$ would have $Q_i=Q_j=Q$ and $o_i=o_j=o$. Let $C_i,C_j$ be the components of $o$ in
+$\R^2\setminus Z_i$ and $\R^2\setminus Z_j$.
+
+\emph{$C_i\subseteq C_j$.} $K_j$ is connected, misses $K_i\supseteq Z_i$, and contains $p_j\in Q$; so $K_j$ lies in the
+component of $\R^2\setminus Z_i$ containing $Q$, which is not $C_i$. Hence $Z_j\subseteq K_j$ misses $C_i$, and
+$C_i$ is a connected subset of $\R^2\setminus Z_j$ containing $o$. By symmetry $C_j\subseteq C_i$.
+
+So $C=C_i=C_j$, and $\fr C\subseteq Z_i\cap Z_j=\emptyset$. $C$ is a nonempty clopen proper subset of the
+plane (it misses $Q$), which is impossible.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.comp_subset_comp}, \lean{HPC.Hagopian.countable_of_separating}.}
+
+For non-separating cores the tool is an interlacing lemma: two disjoint continua inside a closed curve
+cannot meet the curve in interlaced points.
+
+\begin{lemma}[Interlacing; Moore's Theorem~76]\label{lem:interlace}
+Let $J\subseteq\R^2$ be closed with $\R^2\setminus J=D\cup E$, where $D,E$ are disjoint open sets, $E$ is connected
+and $J\subseteq\cl E$. Let $x$ be a continuum and $y$ a connected set, disjoint, both contained in $D\cup J$.
+Suppose $J=\alpha\cup\beta$ with $\alpha,\beta$ compact and $\alpha\cap\beta\subseteq x$. Then $y$ does not meet both
+$\alpha\setminus\beta$ and $\beta\setminus\alpha$.
+\end{lemma}
+
+\begin{proof}
+Suppose $y_1\in y\cap(\alpha\setminus\beta)$ and $y_2\in y\cap(\beta\setminus\alpha)$. Put $F_1=x\cup\alpha$ and $F_2=x\cup\beta$;
+these are compact, and $F_1\cap F_2=x\cup(\alpha\cap\beta)=x$ is connected. $E$ misses $F_1$ and $F_2$ (it misses $J$
+and $x\subseteq D\cup J$); let $U_k$ be the component of $\R^2\setminus F_k$ containing $E$.
+
+(i) \emph{$U_1\cap U_2\cap(D\setminus x)=\emptyset$.} If $w$ were in it, then for $e\in E$ neither $F_1$ nor $F_2$
+would separate $w$ from $e$, and by Janiszewski's theorem (\vfour{Theorem~2.7}) $F_1\cup F_2=x\cup J$ would not.
+But a connected set missing $J$ cannot meet both $D$ and $E$.
+
+(ii) \emph{A point $z\in J\setminus x$ lies in exactly one of $U_1$, $U_2$:} in $U_2\setminus U_1$ if $z\in\alpha\setminus\beta$,
+and in $U_1\setminus U_2$ if $z\in\beta\setminus\alpha$. Say $z\in\alpha\setminus\beta$. Then $z\in F_1$, so $z\notin U_1$; and $z\notin
+F_2$, while $z\in\cl E$, so $z$ is in the closure of the connected set $E\subseteq\R^2\setminus F_2$ and off $F_2$; hence
+$z\in U_2$.
+
+(iii) \emph{$y\subseteq U_1\cup U_2$.} Points of $y\cap J$ are in $J\setminus x$ and are covered by (ii). Let $w\in y\cap
+D$ and suppose $w\notin U_1\cup U_2$. Let $C$ be the component of $w$ in $\R^2\setminus(x\cup J)$; it is open. If a
+point $z\in J\setminus x$ were in $\fr C$, then by (ii) $z$ would lie in $U_1$ or in $U_2$, say in $U_k$; the open
+set $U_k$ meets $C$, and $C$ is a connected subset of $\R^2\setminus F_k$, so $C\subseteq U_k$ and $w\in U_k$. Hence
+$\fr C\subseteq x$. Now $y$ is connected, misses $x\supseteq\fr C$, and meets the open set $C$, so $y\subseteq C$. But
+$y_1\in y\cap J$ and $C\cap J=\emptyset$.
+
+By (i)--(iii), $y\cap U_1$ and $y\cap U_2$ are disjoint relatively open sets covering $y$, containing $y_2$ and $y_1$
+respectively. This contradicts the connectedness of $y$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.interlace}, with \lean{HPC.Hagopian.mem_comp_of_mem_closure},
+\lean{HPC.Hagopian.mem_of_mem_frontier_comp}, \lean{HPC.Hagopian.subset_of_disjoint_frontier}.}
+
+For a simple closed polygon $J$, with $D=\inn J$ and $E$ the unbounded complementary domain
+(\vfour{Theorem~3.15}), $J$ is the image of $[0,2]$ under a continuous $\gamma$ injective on $[0,2)$ with
+$\gamma(2)=\gamma(0)$. If $0\le s<u<t<v<2$ with $\gamma(s),\gamma(t)\in x$ and $\gamma(u),\gamma(v)\in y$, the lemma applies to
+$\alpha=\gamma[s,t]$ and $\beta=\gamma([t,2]\cup[0,s])$: $\alpha\cap\beta=\set{\gamma(s),\gamma(t)}\subseteq x$, $\gamma(u)\in\alpha\setminus\beta$
+and $\gamma(v)\in\beta\setminus\alpha$. So such parameters do not exist.
+
+\formal{\lean{HPC.Hagopian.exists_loop_param}, \lean{HPC.Hagopian.interlace_param}.}
+
+\begin{lemma}\label{lem:interlace-three}
+Let $x,y$ be as above, and suppose there are three pairwise ordered intervals $I_1<I_2<I_3$ in $[0,2)$
+such that each $I_k$ contains a parameter $p_k$ with $\gamma(p_k)\in x$ and a parameter $q_k$ with
+$\gamma(q_k)\in y$. This is impossible.
+\end{lemma}
+
+\begin{proof}
+If $p_3<q_3$ then $p_1<q_2<p_3<q_3$ are interlaced parameters of the forbidden kind; if $q_3<p_3$ then
+$q_1<p_2<q_3<p_3$ are, with the roles of $x$ and $y$ exchanged.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.interlace_three}.}
+
+\begin{proposition}[Non-separating cores; Moore's Theorems~79, 78 and~76]\label{prop:moore79}
+A family of pairwise disjoint triods in the plane whose cores do not separate the plane is countable.
+\end{proposition}
+
+\begin{proof}[Proof in outline]
+Let $T_i$ be a triod with core $Z_i$ and legs $A_i,B_i,C_i$, and choose $a_i\in A_i$, $b_i\in B_i$, $c_i\in C_i$.
+By the enclosing polygon theorem (\vfour{Theorem~4.14}, applied with $G=\R^2\setminus\set{a_i,b_i,c_i}$ and a slight
+shrinking) there is a simple closed polygon $J_i$, which may be taken with rational vertices, such that
+$Z_i\subseteq\inn J_i$ and $a_i,b_i,c_i\notin\inn J_i\cup J_i$. There are countably many such polygons, so if the
+family were uncountable, uncountably many triods would share one polygon $J$, with $D=\inn J$.
+
+For such a triod, boundary bumping applied to the continuum $Z_i\cup A_i$ (and likewise for the other legs)
+gives a subcontinuum of $T_i\cap(D\cup J)$ through a point of $Z_i$ that meets $J$ in a point of $A_i$; the union
+of the three continua so obtained is a continuum $x_i\subseteq T_i\cap(D\cup J)$ meeting $J$ in a point of each
+leg. The three points have distinct parameters on $J$, which lie in three pairwise ordered intervals
+with rational end points. Again by countability, two triods $i\neq j$ have the same three intervals.
+Then $x_i$ and $x_j$ are disjoint continua in $D\cup J$ to which Lemma~\ref{lem:interlace-three} applies:
+a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.TriodData}, \lean{HPC.Hagopian.exists_leg},
+\lean{HPC.Hagopian.exists_cross_continuum}, \lean{HPC.Hagopian.exists_rat_intervals},
+\lean{HPC.Hagopian.countable_of_nonseparating}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:moore-triod}]
+The triods whose cores separate the plane are countably many by Proposition~\ref{prop:moore73} (with
+$K_i=T_i$, $Z_i$ the core; $T_i\setminus Z_i$ is nonempty). The others are countably many by
+Proposition~\ref{prop:moore79}.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.moore_triod_theorem'}, \lean{HPC.Hagopian.mooreTriodStatement}; the statement as a
+proposition is \lean{HPC.Hagopian.MooreTriodStatement}.}
+
+\begin{theorem}[Hagopian 1975, Lemma~1]\label{thm:hagopian-lemma1}
+$M$ is atriodic and hereditarily unicoherent.
+\end{theorem}
+
+\begin{proof}
+Hereditary unicoherence is Theorem~\ref{thm:hu}. Let $T\subseteq M$ be a triod. $T\neq M$, since an
+indecomposable continuum is not a triod (\vthree{Corollary~4.7}). Fix $x_0\in T$; for each composant
+$\kappa$ choose a copy $h_\kappa(T)\subseteq\kappa$ (Lemma~\ref{lem:copies}). These are pairwise disjoint triods in the
+plane, uncountably many by Theorem~\ref{thm:composants}(e), contradicting Theorem~\ref{thm:moore-triod}.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.atriodic_of_homogeneous_indecomposable},
+\lean{HPC.Hagopian.not_isTriod_univ_of_indecomposable}, \lean{HPC.Hagopian.isTriodSet_image},
+\lean{HPC.Hagopian.hagopian75_lemma1}.}
+
+\section{Two consequences used later}
+
+\begin{corollary}\label{cor:nested-or-arc}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item If $H,K$ are subcontinua of $M$ with a common point, $H\cap K$ is a continuum.
+\item \emph{(The triod argument.)} There are no continua $N,X_1,X_2,X_3\subseteq M$ such that each $X_i$ meets
+$N$, $X_i\cap X_j\subseteq N$ for $i\neq j$, and no $X_i$ is contained in $N$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) $H\cup K$ is a subcontinuum, which is unicoherent by Theorem~\ref{thm:hu}. (b) By
+\vthree{Lemma~4.5}, $N\cup X_1\cup X_2\cup X_3$ would be a triod in $M$, against
+Theorem~\ref{thm:hagopian-lemma1}.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.isContinuum_inter_of_HU}; \lean{HPC.Plane.isTriod_of_core}.}
+
+Most arguments of the next two chapters end with Corollary~\ref{cor:nested-or-arc}(b): one exhibits a
+continuum $N$ and three continua through it that pairwise meet only in $N$, and concludes that the
+configuration is impossible.
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that in Theorem~\ref{thm:composants}(d) the countable base can be replaced by any countable family of
+open sets $b_n$ such that every point $y\ne x$ lies in some $b_n$ with $x\notin\cl{b_n}$.
+\end{exercise}
+
+\begin{exercise}
+Show that the circle is homogeneous and not hereditarily unicoherent, and explain which hypothesis of
+Theorem~\ref{thm:hu} fails.
+\end{exercise}
+
+\begin{exercise}
+Deduce from Proposition~\ref{prop:moore73} that the plane does not contain uncountably many pairwise disjoint
+simple closed curves each with a ``tail'' (a continuum $K_i=J_i\cup A_i$, $A_i$ an arc meeting the simple closed
+curve $J_i$ in one end point).
+\end{exercise}

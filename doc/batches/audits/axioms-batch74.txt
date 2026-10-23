@@ -1,0 +1,3 @@
+'HPC.Fold.s3_span_le_nine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.theorem3_ten_links' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.s3_span_nine' depends on axioms: [propext, Classical.choice, Quot.sound]

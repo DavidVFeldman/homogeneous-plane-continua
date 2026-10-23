@@ -1,0 +1,75 @@
+# ext76.py — the independent search for ExtendsSubBand at the stored witnesses.
+# 'least' mode: own least-leg search, then a literal ExtendsSubBand search at that count.
+# 'extk' mode (span-14 six-leg witness only): k taken from the file (check75.py's least count).
+
+== witness-batch72-min.txt: n=78 i=1 band [3,9] (span 6) level 5 |G|=77 |T|=2
+   least leg count k = 1: walk 4 -> 8
+   ExtendsSubBand at k = 1: L'=3 H'=5 s=4 ts=[] e=8  (w' = 4 -> ; truncated arms 1, 2 links; len w' = 1, len w = 5)
+   LEAN witness-batch72-min.txt 78 1 3 9 1 3 5 4  | 8
+== witness-batch71-min.txt: n=290 i=104 band [2,9] (span 7) level 5 |G|=186 |T|=105
+   least leg count k = 3: walk 4 -> 7 -> 3 -> 8
+   ExtendsSubBand at k = 3: L'=3 H'=7 s=4 ts=[7, 3] e=8  (w' = 4 -> 7 -> 3; truncated arms 185, 5 links; len w' = 8, len w = 13)
+   LEAN witness-batch71-min.txt 290 104 2 9 3 3 7 4 7 3 | 8
+== witness-batch75-span9-k4.txt: n=2378 i=343 band [0,9] (span 9) level 5 |G|=2035 |T|=344
+   least leg count k = 4: walk 4 -> 2 -> 7 -> 1 -> 8
+   ExtendsSubBand at k = 4: L'=1 H'=7 s=4 ts=[2, 7, 1] e=8  (w' = 4 -> 2 -> 7 -> 1; truncated arms 65, 343 links; len w' = 14, len w = 21)
+   LEAN witness-batch75-span9-k4.txt 2378 343 0 9 4 1 7 4 2 7 1 | 8
+== witness-batch75-span10-k4.txt: n=2379 i=343 band [0,10] (span 10) level 5 |G|=2036 |T|=344
+   least leg count k = 4: walk 4 -> 2 -> 7 -> 1 -> 9
+   ExtendsSubBand at k = 4: L'=0 H'=7 s=4 ts=[2, 7, 0] e=9  (w' = 4 -> 2 -> 7 -> 0; truncated arms 65, 344 links; len w' = 15, len w = 24)
+   LEAN witness-batch75-span10-k4.txt 2379 343 0 10 4 0 7 4 2 7 0 | 9
+== witness-batch75-span10-k5.txt: n=3000 i=1256 band [0,10] (span 10) level 5 |G|=1744 |T|=1257
+   least leg count k = 5: walk 4 -> 7 -> 2 -> 8 -> 1 -> 9
+   ExtendsSubBand at k = 5: L'=1 H'=8 s=4 ts=[7, 2, 8, 1] e=9  (w' = 4 -> 7 -> 2 -> 8 -> 1; truncated arms 112, 873 links; len w' = 22, len w = 30)
+   LEAN witness-batch75-span10-k5.txt 3000 1256 0 10 5 1 8 4 7 2 8 1 | 9
+== witness-batch74-span11.txt: n=5815 i=946 band [0,11] (span 11) level 5 |G|=4869 |T|=947
+   least leg count k = 5: walk 4 -> 7 -> 2 -> 8 -> 1 -> 10
+   ExtendsSubBand at k = 5: L'=0 H'=8 s=4 ts=[7, 2, 8, 0] e=10  (w' = 4 -> 7 -> 2 -> 8 -> 0; truncated arms 112, 947 links; len w' = 23, len w = 33)
+   LEAN witness-batch74-span11.txt 5815 946 0 11 5 0 8 4 7 2 8 0 | 10
+== witness-batch75-span11-k4.txt: n=5742 i=343 band [0,11] (span 11) level 5 |G|=5399 |T|=344
+   least leg count k = 4: walk 4 -> 2 -> 7 -> 1 -> 10
+   ExtendsSubBand at k = 4: L'=0 H'=8 s=4 ts=[2, 7, 0] e=10  (w' = 4 -> 2 -> 7 -> 0; truncated arms 642, 344 links; len w' = 15, len w = 25)
+   LEAN witness-batch75-span11-k4.txt 5742 343 0 11 4 0 8 4 2 7 0 | 10
+== witness-batch75-span11-k5.txt: n=5742 i=5099 band [0,11] (span 11) level 7 |G|=643 |T|=5100
+   least leg count k = 5: walk 6 -> 4 -> 9 -> 2 -> 10 -> 1
+   ExtendsSubBand at k = 5: L'=2 H'=10 s=6 ts=[4, 9, 2, 10] e=1  (w' = 6 -> 4 -> 9 -> 2 -> 10; truncated arms 642, 1736 links; len w' = 23, len w = 32)
+   LEAN witness-batch75-span11-k5.txt 5742 5099 0 11 5 2 10 6 4 9 2 10 | 1
+== witness-batch74-span12.txt: n=13861 i=2027 band [0,12] (span 12) level 5 |G|=11834 |T|=2028
+   least leg count k = 5: walk 4 -> 7 -> 2 -> 9 -> 1 -> 11
+   ExtendsSubBand at k = 5: L'=0 H'=9 s=4 ts=[7, 2, 9, 0] e=11  (w' = 4 -> 7 -> 2 -> 9 -> 0; truncated arms 351, 2028 links; len w' = 25, len w = 36)
+   LEAN witness-batch74-span12.txt 13861 2027 0 12 5 0 9 4 7 2 9 0 | 11
+== witness-batch75-span12-k4.txt: n=13861 i=343 band [0,12] (span 12) level 5 |G|=13518 |T|=344
+   least leg count k = 4: walk 4 -> 2 -> 7 -> 1 -> 11
+   ExtendsSubBand at k = 4: L'=0 H'=9 s=4 ts=[2, 8, 0] e=11  (w' = 4 -> 2 -> 8 -> 0; truncated arms 2035, 344 links; len w' = 17, len w = 28)
+   LEAN witness-batch75-span12-k4.txt 13861 343 0 12 4 0 9 4 2 8 0 | 11
+== witness-batch75-span12-k5.txt: n=13861 i=2027 band [0,12] (span 12) level 5 |G|=11834 |T|=2028
+   least leg count k = 5: walk 4 -> 7 -> 2 -> 9 -> 1 -> 11
+   ExtendsSubBand at k = 5: L'=0 H'=9 s=4 ts=[7, 2, 9, 0] e=11  (w' = 4 -> 7 -> 2 -> 9 -> 0; truncated arms 351, 2028 links; len w' = 25, len w = 36)
+   LEAN witness-batch75-span12-k5.txt 13861 2027 0 12 5 0 9 4 7 2 9 0 | 11
+== witness-batch75-span12-k6.txt: n=14000 i=1586 band [0,12] (span 12) level 7 |G|=12414 |T|=1587
+   least leg count k = 6: walk 6 -> 9 -> 4 -> 10 -> 2 -> 11 -> 1
+   ExtendsSubBand at k = 6: L'=2 H'=11 s=6 ts=[9, 4, 10, 2, 11] e=1  (w' = 6 -> 9 -> 4 -> 10 -> 2 -> 11; truncated arms 4240, 1501 links; len w' = 32, len w = 42)
+   LEAN witness-batch75-span12-k6.txt 14000 1586 0 12 6 2 11 6 9 4 10 2 11 | 1
+== witness-batch75-span13-k4.txt: n=33462 i=343 band [0,13] (span 13) level 5 |G|=33119 |T|=344
+   least leg count k = 4: walk 4 -> 2 -> 7 -> 1 -> 12
+   ExtendsSubBand at k = 4: L'=0 H'=9 s=4 ts=[2, 8, 0] e=12  (w' = 4 -> 2 -> 8 -> 0; truncated arms 2035, 344 links; len w' = 17, len w = 29)
+   LEAN witness-batch75-span13-k4.txt 33462 343 0 13 4 0 9 4 2 8 0 | 12
+== witness-batch75-span13-k5.txt: n=33462 i=2027 band [0,13] (span 13) level 5 |G|=31435 |T|=2028
+   least leg count k = 5: walk 4 -> 7 -> 2 -> 9 -> 1 -> 12
+   ExtendsSubBand at k = 5: L'=0 H'=10 s=4 ts=[7, 2, 9, 0] e=12  (w' = 4 -> 7 -> 2 -> 9 -> 0; truncated arms 3714, 2028 links; len w' = 25, len w = 37)
+   LEAN witness-batch75-span13-k5.txt 33462 2027 0 13 5 0 10 4 7 2 9 0 | 12
+== witness-batch75-span13-k6.txt: n=33462 i=5099 band [0,13] (span 13) level 7 |G|=28363 |T|=5100
+   least leg count k = 6: walk 6 -> 4 -> 9 -> 2 -> 10 -> 1 -> 12
+   ExtendsSubBand at k = 6: L'=0 H'=10 s=6 ts=[4, 9, 2, 10, 0] e=12  (w' = 6 -> 4 -> 9 -> 2 -> 10 -> 0; truncated arms 642, 5100 links; len w' = 33, len w = 45)
+   LEAN witness-batch75-span13-k6.txt 33462 5099 0 13 6 0 10 6 4 9 2 10 0 | 12
+== witness-batch75-span14-k4.txt: n=80783 i=343 band [0,14] (span 14) level 5 |G|=80440 |T|=344
+   least leg count k = 4: walk 4 -> 2 -> 7 -> 1 -> 13
+   ExtendsSubBand at k = 4: L'=0 H'=9 s=4 ts=[2, 8, 0] e=13  (w' = 4 -> 2 -> 8 -> 0; truncated arms 2035, 344 links; len w' = 17, len w = 30)
+   LEAN witness-batch75-span14-k4.txt 80783 343 0 14 4 0 9 4 2 8 0 | 13
+== witness-batch75-span14-k5.txt: n=80783 i=2027 band [0,14] (span 14) level 5 |G|=78756 |T|=2028
+   least leg count k = 5: walk 4 -> 7 -> 2 -> 9 -> 1 -> 13
+   ExtendsSubBand at k = 5: L'=0 H'=11 s=4 ts=[7, 2, 10, 0] e=13  (w' = 4 -> 7 -> 2 -> 10 -> 0; truncated arms 11833, 2028 links; len w' = 27, len w = 40)
+   LEAN witness-batch75-span14-k5.txt 80783 2027 0 14 5 0 11 4 7 2 10 0 | 13
+== witness-batch75-span14-k6.txt: n=80783 i=11825 band [0,14] level 7; k = 6 from the file
+   ExtendsSubBand at k = 6: L'=0 H'=11 s=6 ts=[4, 9, 2, 11, 0] e=13
+   LEAN witness-batch75-span14-k6.txt 80783 11825 0 14 6 0 11 6 4 9 2 11 0 | 13

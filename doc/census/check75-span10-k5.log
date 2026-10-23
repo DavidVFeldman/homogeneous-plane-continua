@@ -1,0 +1,12 @@
+==============================================================================
+witness-batch75-span10-k5.txt: 3000 links, basepoint 1256, the census's least leg count 5, its walk [4, 7, 2, 8, 1, 9]
+  band [0, 10], span 10; basepoint level 5; thin (sig = rho): False
+  IsCrookedIvF (linear decision): True
+  IsCrookedIvF (quadratic decision, over all index pairs): True; the two agree: True
+  the whole arms: |armG| = 1744, |armT| = 1257
+  walks of fewer than 5 legs tried: 5371
+  none of them serves both arms: the least leg count 5 is reproduced
+  the census's walk [4, 7, 2, 8, 1, 9] folds both arms: True
+  least walks of 5 legs found (up to 16): [(4, 7, 2, 8, 1, 9), (4, 7, 3, 8, 1, 9), (5, 7, 2, 8, 1, 9), (5, 7, 3, 8, 1, 9)]
+  S2.1: the least walk (4, 7, 2, 8, 1, 9) extends the walk (4, 7, 2, 8, 1), which serves this basepoint
+        read in the sub-band of span 7 (3 levels dropped); truncated arms 112 and 873 links; 0 legs prepended, 1 appended

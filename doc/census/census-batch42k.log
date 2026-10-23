@@ -1,0 +1,18 @@
+bing 0 9 : length 986
+bing 0 10 : length 2379
+bing 0 11 : length 5742
+windows of span exactly nine: 1694639
+branch 4: inhabited 10588, unserved 0
+    both arms lamCrit : 10588
+    both arms veeCrit : 0
+    MIXED             : 0  (of which both failures vacuous: 0)
+    neither           : 0
+    pairs with an arm that never meets the floor   : 0
+    pairs with an arm that never meets the ceiling : 0
+branch 5: inhabited 11184, unserved 0
+    both arms lamCrit : 11184
+    both arms veeCrit : 0
+    MIXED             : 0  (of which both failures vacuous: 0)
+    neither           : 0
+    pairs with an arm that never meets the floor   : 0
+    pairs with an arm that never meets the ceiling : 0

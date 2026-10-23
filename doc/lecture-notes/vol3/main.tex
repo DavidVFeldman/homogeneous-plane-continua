@@ -1,0 +1,94 @@
+% Lecture notes on the classification of homogeneous plane continua,
+% following the formal (Lean 4) proof in this repository.
+% Volume 3: General theory of continua.
+%
+% Compile with:  pdflatex main && pdflatex main   (two runs for the contents and references)
+\documentclass[11pt,oneside]{book}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tikz}
+\usepackage[hidelinks]{hyperref}
+
+% ---------------------------------------------------------------- theorem styles
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ---------------------------------------------------------------- notation
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\interior}{\operatorname{int}}
+\newcommand{\cl}[1]{\overline{#1}}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\fl}[1]{\left\lfloor #1\right\rfloor}
+% the composant of p in M
+\newcommand{\cmp}[2]{\operatorname{cmp}_{#1}(#2)}
+% the element of a decomposition containing x
+\newcommand{\elt}[1]{[#1]}
+% the homeomorphism group
+\newcommand{\Homeo}{\mathcal{H}}
+% the sup-distance of a homeomorphism from the identity
+\newcommand{\mv}{\operatorname{mv}}
+% irreducible from A to B
+\newcommand{\irr}{\operatorname{irr}}
+
+% Names of declarations in the Lean development (typewriter, underscores allowed).
+\newcommand{\lean}[1]{\texttt{\detokenize{#1}}}
+% A Lean name ending in a subscript digit (such as IsEssentialSum with subscript 2).
+\newcommand{\leansub}[2]{\texttt{\detokenize{#1}}\ensuremath{_{#2}}}
+% A paragraph pointing to the formal counterpart of a result.
+\newcommand{\formal}[1]{\par\smallskip\noindent{\small\textit{Formal counterpart:} #1}\par\smallskip}
+% References to numbered results of Volumes 1 and 2.
+\newcommand{\vone}[1]{Volume~1, #1}
+\newcommand{\vtwo}[1]{Volume~2, #1}
+
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{\textbf{Homogeneous Plane Continua}\\[6pt]
+\Large Lecture notes following the formal proof\\[18pt]
+\large Volume 3\\[4pt]
+\Large General theory of continua}
+\author{}
+\date{}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+% The introduction is Chapter 0, as in Volumes 1 and 2.
+\setcounter{chapter}{-1}
+\input{ch0-intro}
+\input{ch1-bumping}
+\input{ch2-irreducible}
+\input{ch3-noncut}
+\input{ch4-triods}
+\input{ch5-snake}
+\input{ch6-decompositions}
+\input{ch7-effros}
+
+\appendix
+\input{appA-formal}
+
+\end{document}

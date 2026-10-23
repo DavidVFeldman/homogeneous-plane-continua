@@ -1,0 +1,175 @@
+%======================================================================
+\chapter{Theorems 7 and 8}\label{ch:thm78}
+%======================================================================
+
+A chain map $H$ of a chain $Y$ with $m$ links onto a chain $D$ with $n$ links says how the links of a finer chain should run through the links of $D$.
+Theorem~7 realizes $H$ on one pseudo-arc and Theorem~8 on a whole snake-like arc of pseudo-arcs. We say a chain $E=(E_0,\dots,E_{m-1})$ \emph{follows} $H$ in
+$D$ if $E_i\subseteq D_{H(i)}$ for every $i$.
+
+\section{Theorem 7 on one pseudo-arc}
+
+\begin{theorem}[Bing and Jones, Theorem~7, first sentence]\label{thm:bj7}
+Let $P$ be a pseudo-arc in a metric space $X$, $D$ a chain with $n$ links covering $P$ with every link meeting $P$, and $H$ a chain map of $\set{0,\dots,m-1}$
+onto $\set{0,\dots,n-1}$. There is a BJ-chain $E$ following $H$ in $D$, covering $P$, with every link meeting $P$.
+\end{theorem}
+
+\begin{proof}[Proof in outline]
+\emph{Inside $P$.} The traces $D_j\cap P$ form a chain of the compact space $P$. Choose $r$, $s$ with $H(r)=0$, $H(s)=n-1$; reversing the numbering of $D$ if
+necessary, $r\le s$.
+\begin{enumerate}[label=(\alph*)]
+\item Shrink the trace chain, link by link, to a chain $T$ from a point $p$ to a point $q$ ($p$ only in $T_0$, $q$ only in $T_{n-1}$) with $p$ and $q$ in different
+composants of $P$: choose $p\in T_0\setminus\cl{T_1}$, then $q$ in the open set $T_{n-1}\setminus\cl{T_{n-2}}$ outside the composant of $p$ (composants of a
+pseudo-arc are dense and disjoint, \vtwo{Chapter~1}), and remove small closed balls about $p$ and $q$ from the neighbouring links.
+\item By \vtwo{Chapter~7}, $P$ has a description from $p$ to $q$; placing $T$ in front gives a description whose first chain is $T$.
+\item By pattern following (\vtwo{Theorem~3.1}) the pattern $H\circ w$ in $T$, where $w$ is the walk of Lemma~\ref{lem:unfold}, is followed by some chain $E'$ of
+the description: $E'$ covers $P$ and its $k$-th link lies in $T_{H(w(k))}$.
+\item Fold $E'$ along $w$ (Definition~\ref{def:fold}): the result is a chain of $P$ with $m$ links following $H$ in $T$.
+\end{enumerate}
+\emph{Back in $X$.} Each link of the folded chain is open in $P$, so it is $P\cap O_i$ for an open $O_i\subseteq D_{H(i)}$ of $X$; the $O_i$ need not form a chain of
+$X$, but their traces on $P$ do, and the shrinking argument of Theorem~\ref{thm:shrink} turns them into a BJ-chain of $X$ inside the $O_i$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.bj_theorem7'} and \lean{HPC.BJ59.bj_theorem7}; inside $P$, \lean{HPC.BJ59.bj7_compact}, with \lean{HPC.BJ59.traceChain},
+\lean{HPC.BJ59.exists_chain_isFrom}, \lean{HPC.BJ59.prependDesc}, \lean{HPC.BJ59.exists_follow_pattern}; the lift uses
+\lean{HPC.BJ59.exists_bjChain_shrink'}.}
+
+Bing and Jones assume the description of step~(b) without comment. The second sentence of their Theorem~7 adds prescribed sets in two links.
+
+\begin{theorem}[Theorem~7, second sentence]\label{thm:bj7-ends}
+In Theorem~\ref{thm:bj7} suppose $n\ge3$, $H(r)=0$, $H(s)=n-1$, and let $A\subseteq P\cap D_0$ and $B\subseteq P\cap D_{n-1}$ be closed. Then $E$ may be chosen with
+moreover $A\subseteq E_r$ and $B\subseteq E_s$.
+\end{theorem}
+
+\begin{proof}[Proof in outline]
+Work in $P$ with the trace chain $T$, and assume $A$, $B$ nonempty.
+\emph{The collar chain.} Choose $\rho>0$ with $\set{x:\dist(x,A)\le3\rho}\subseteq T_0$ and a point $w\in T_0\cap T_1$ with $\dist(w,A)>3\rho$ (if $T_0\cap T_1\subseteq
+A$, then $T_0$ would be closed and open in $P$). Replace $T_0$, $T_1$ by the four sets
+\[
+\set{\dist(\cdot,A)<2\rho},\quad \set{\rho<\dist(\cdot,A)<3\rho},\quad T_0\cap\set{\dist(\cdot,A)>2\rho},\quad T_1\cap\set{\dist(\cdot,A)>3\rho},
+\]
+and likewise at the other end for $B$. This gives a chain $M$ of $n+4$ links refining $T$ by $(0,0,0,1,2,\dots,n-2,n-1,n-1,n-1)$, in which $A$ meets only the first
+link and $B$ only the last.
+\emph{The buffered pattern.} Extend the walk $w$ by two more copies of $r$ in front and of $s$ at the end, and let the pattern in $M$ be $0,1$, then $H(w(k))+2$ along
+the walk, then $n+2,n+3$. Follow it in $M$ (as in steps (a)--(c) above) and fold along the extended walk. Every link of the following chain that meets $A$ lies in
+$M_0$, so it sits at a position of the pattern with value $0$, which the walk sends to $r$; hence $A$ lies in the $r$-th folded link. Likewise $B$ lies in the
+$s$-th. Lift to $X$ as before, keeping the compact sets $A$, $B$ inside the links (Theorem~\ref{thm:shrink}).
+\end{proof}
+
+\formal{\lean{HPC.BJ59.bj_theorem7_ends'}; inside $P$, \lean{HPC.BJ59.bj7_ends_compact}, with \lean{HPC.BJ59.collar_data},
+\lean{HPC.BJ59.exists_collar_chain}, \lean{HPC.BJ59.bufIdx}, \lean{HPC.BJ59.bufPat}.}
+
+\begin{remark}\label{rem:bj7-false}
+As printed, the second sentence of Theorem~7 has no restriction on $n$. It fails for $n=1$: take $D$ one link, $m=3$, $A=B=\set p$, $r=0$, $s=2$; then $p$ would lie
+in the two nonadjacent links $E_0$ and $E_2$. The printed proof replaces $D$ by a chain $U_0,U_1,U_2,\dots$ built from the differences $D_1\setminus D_0$, $D_2\setminus
+D_1$; for $n=3$ two of these sets, whose places are not adjacent, must meet. The collar chain above avoids this and works for every $n\ge3$.
+\end{remark}
+
+\formal{\lean{HPC.BJ59.bj_theorem7_ends_printed_false}, \lean{HPC.BJ59.bj_theorem7_proof_n3}.}
+
+\section{Theorem 8 on an arc of pseudo-arcs}
+
+From now on $X$ is a snake-like compact metric space and $f\colon X\to\I$ a continuous arc of pseudo-arcs (open, with pseudo-arc fibres).
+
+\begin{theorem}[Bing and Jones, Theorem~8]\label{thm:bj8}
+Let $D$ be a chain of $n\ge3$ links covering $X$, each link meeting every fibre, and $H$ a chain map of $\set{0,\dots,m-1}$ onto $\set{0,\dots,n-1}$. There is a BJ-chain
+$E$ covering $X$ and following $H$ in $D$, each link of $E$ meeting every fibre.
+\end{theorem}
+
+\begin{proof}
+\emph{The case $H(0)=0$, $H(m-1)=n-1$.}
+
+\emph{Step 1: $U_A$, $U_B$.} By Lemma~\ref{lem:deep} there are $\rho>0$ and open sets $U'_A$, $U_A$ with $\cl{U'_A}\subseteq U_A$, $\cl{U_A}\subseteq D_0$, $U'_A$ meeting every
+fibre; likewise $U'_B$, $U_B$ in $D_{n-1}$. As $n\ge3$, $D_0\cap D_{n-1}=\emptyset$.
+
+\emph{Step 2: $E(a)$.} For each $a\in\I$, Theorem~\ref{thm:bj7-ends} on the pseudo-arc $p_a=\fib fa$ with $r=0$, $s=m-1$, $A=\cl{U_A}\cap p_a$, $B=\cl{U_B}\cap p_a$ gives a chain
+$E(a)$ following $H$ in $D$, covering $p_a$, with $\cl{U_A}\cap p_a\subseteq E(a)_0$ and $\cl{U_B}\cap p_a\subseteq E(a)_{m-1}$.
+
+\emph{Step 3: $I_a$.} The set of points of $X$ not covered by $E(a)$, together with the points of $\cl{U_A}$ outside $E(a)_0$ and those of $\cl{U_B}$ outside $E(a)_{m-1}$, is
+closed and misses $p_a$; its image is closed and misses $a$. Let $I_a$ be the complement of that image: an open neighbourhood of $a$ such that for $x\in I_a$,
+$p_x\subseteq\bigcup E(a)$, $\cl{U_A}\cap p_x\subseteq E(a)_0$ and $\cl{U_B}\cap p_x\subseteq E(a)_{m-1}$.
+
+\emph{Step 4: the cover.} Let $\lambda$ be a Lebesgue number of $\set{I_a}$ and cut $\I$ into $T$ segments so short that each segment, enlarged slightly, lies in some
+$I_{a_i}$ ($i=1,\dots,T$). At each of the $T-1$ cuts $c_i$ choose a short open interval $J_i\ni c_i$ inside $(0,1)$, the $J_i$ disjoint and increasing. The set
+$V_i=(U_A\cup U_B)\cap\fib f{J_i}$ is open and nonempty and lies over $J_i$, so Corollary~\ref{cor:bj-cut} splits $X\setminus V_i$ into disjoint closed sets $L_i$ (over
+$[0,\sup J_i)$) and $R_i$ (over $(\inf J_i,1]$). Put $R_0=L_T=X$ and
+\[
+U_i=(R_{i-1}\cap L_i)\cup U_A\cup U_B=\bigl((X\setminus L_{i-1})\cap(X\setminus R_i)\bigr)\cup U_A\cup U_B .
+\]
+The $U_i$ are open and cover $X$ (a point lies in $U_i$ for the least $i$ with the point in $L_i$); for $i<k$, $U_i\cap U_k\subseteq U_A\cup U_B$ since $L_i\cap
+R_{k-1}=\emptyset$; and $U_i\setminus(U_A\cup U_B)$ lies over $(\inf J_{i-1},\sup J_i)\subseteq I_{a_i}$.
+
+\emph{Step 5: the links.} Put
+\[
+e_k=\bigcup_{i=1}^T E(a_i)_k\cap U_i\cap\fib f{I_{a_i}}\qquad(k<m).
+\]
+They are open, cover $X$, $e_k\subseteq D_{H(k)}$, $U_A\subseteq e_0$ and $U_B\subseteq e_{m-1}$. Nonadjacent links are disjoint: two pieces with the same $i$ are disjoint since
+$E(a_i)$ is a chain; pieces with $i\neq j$ meet only in $U_A\cup U_B$; at a point of $U_A$ over $x\in I_{a_i}\cap I_{a_j}$ both $E(a_i)_0$ and $E(a_j)_0$ contain the point,
+so both indices are at most $1$; $U_B$ is symmetric.
+
+\emph{Step 6.} Each fibre meets $U_A\subseteq e_0$ and $U_B\subseteq e_{m-1}$ and is connected, so it meets every $e_k$ (Lemma~\ref{lem:meets-all}); in particular adjacent
+links meet and $(e_k)$ is a chain.
+
+\emph{Step 7.} Shrink to a BJ-chain by Theorem~\ref{thm:shrink}, keeping the compact sets $\cl{U'_A}$ in the first link and $\cl{U'_B}$ in the last; Step~6 applies
+again.
+
+\emph{The general case.} Choose $r$, $s$ with $H(r)=0$, $H(s)=n-1$; reversing, $r\le s$. Apply the first case to the pattern $H\circ w$ along the walk $w$ of
+Lemma~\ref{lem:unfold} and fold along $w$. Folding keeps every fibre meeting every link and keeps the BJ property.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.bj_theorem8}, from \lean{HPC.BJ59.bj_theorem8_le} and \lean{HPC.BJ59.bj_theorem8_ends}.}
+
+\begin{remark}
+Bing and Jones give no argument for $U_A$, $U_B$ (and print $d_2$ for $d_n$), derive the cover $U_1,\dots,U_t$ from Theorem~4 without detail, and take
+$e_k=\bigcup_iE(a_i)_k\cap U_i$. These sets need not form a chain: $E(a_i)_k$ is controlled only over $I_{a_i}$, and over a fibre outside $I_{a_i}$ it can reach into
+$U_A\subseteq U_i\cap U_j$ and meet $E(a_j)_0$ there. Restricting each piece to $\fib f{I_{a_i}}$ repairs this.
+\end{remark}
+
+\section{The corollary to Theorem 8}
+
+\begin{lemma}\label{lem:walk-core}
+Let $a_p,\dots,a_q$ be integers with $\abs{a_{j+1}-a_j}\le1$, $a_p\le b+1$ and $a_q\ge b+4$. Then for some $k$ with $p\le k\le q-2$, the three values $a_k,a_{k+1},a_{k+2}$
+lie in $[b,b+3]$.
+\end{lemma}
+
+\begin{proof}
+Let $k$ be the last index $\le q$ with $a_k\le b+1$; then $k<q$, and after $k$ the values are $\ge b+2$, increasing by at most one per step, so $a_{k+1}=b+2$ and
+$a_{k+2}\le b+3$; and $a_k=b+1$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.walk_core}.}
+
+\begin{corollary}[Bing and Jones, Corollary to Theorem~8]\label{cor:bj8}
+Let $E$ be a chain of $n\ge3$ links covering $X$, each link meeting every fibre, and $H_1$ a chain map of $\set{0,\dots,\ell-1}$ onto $\set{0,\dots,n-1}$. There is
+$\varepsilon>0$ such that for every $\varepsilon$-chain $F$ covering $X$ there is a chain map $R$ of $F$ onto $\set{0,\dots,\ell-1}$ with $F_j\subseteq E_{H_1(R(j))}$ for every
+$j$, and such that, whenever a run $F_v,\dots,F_w$ covers a fibre, every $d<\ell$ is the value of $R$ at three consecutive indices in $[v,w]$.
+\end{corollary}
+
+\begin{proof}
+Apply Theorem~\ref{thm:bj8} to the chain map $4i+c\mapsto H_1(i)$ ($c<4$) of $4\ell$ indices: a chain $G$ of $4\ell$ links with $G_{4i+c}\subseteq E_{H_1(i)}$, every link
+meeting every fibre. Let $\varepsilon$ be smaller than a Lebesgue number of $G$ and, if $\ell=1$, than a third of the uniform spread $\kappa$ of the fibres
+(Lemma~\ref{lem:fibre-spread}). For each link $F_j$ choose $a(j)$ with $F_j\subseteq G_{a(j)}$ (since consecutive links of $F$ meet, $G_{a(j)}$ and $G_{a(j+1)}$ meet, so $a$ changes by at most one
+between consecutive indices) and put $R(j)=\fl{a(j)/4}$. A run covering a fibre contains points of that fibre in $G_0$ and in
+$G_{4\ell-1}$, so along it $a$ runs from $\le1$ to $\ge4\ell-2$ in steps of at most one; Lemma~\ref{lem:walk-core} with $b=4d$ gives three consecutive indices with
+$a\in[4d,4d+3]$, that is, $R=d$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.bj_theorem8_cor}. The irreducibility of $F$ assumed by Bing and Jones is not needed.}
+
+The proof of Theorem~10 uses the corollary on a sub-arc $\G ab$, transferred by Lemma~\ref{lem:window-transfer}; there $E$ may also have a single link, and then $R$ is the
+zigzag $0,0,0,1,1,1,\dots,\ell-1,\ell-1,\ell-1,\ell-1,\dots,0,0,0,\dots$, which works once $\varepsilon$ is small compared with the spread of the fibres.
+
+\formal{\lean{HPC.BJ59.bj_theorem8_cor_sub}, \lean{HPC.BJ59.bj_theorem8_cor_sub_three}, \lean{HPC.BJ59.bj_theorem8_cor_sub_one}, \lean{HPC.BJ59.zigN}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that the surjectivity of $H$ cannot be dropped from Theorem~\ref{thm:bj7}. (Use Proposition~\ref{prop:private-interior}.)
+\end{exercise}
+
+\begin{exercise}
+Show that the conclusion of Lemma~\ref{lem:walk-core} fails if $a_q\ge b+4$ is weakened to $a_q\ge b+3$.
+\end{exercise}
+
+\begin{exercise}
+Why does Step~4 of the proof of Theorem~\ref{thm:bj8} need $J_i\subseteq(0,1)$?
+\end{exercise}

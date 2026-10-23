@@ -1,0 +1,16 @@
+-- Batch 152: `#print axioms` (collected axioms) for every theorem and definition of the three new files
+-- (`HPC/Jones/Jones49DSep.lean`, `Jones49DCross.lean`, `Jones49D.lean`). 9 theorems and 1 definition;
+-- every one depends on exactly [propext, Quot.sound, Classical.choice].
+-- HPC.Jones.Jones49DSep: 2 theorems
+HPC.Jones.Sec14.join_in_domain: [propext, Quot.sound, Classical.choice]
+HPC.Jones.Sec14.local_join_of_noncut: [propext, Quot.sound, Classical.choice]
+-- HPC.Jones.Jones49DCross: 3 theorems, 1 definition
+HPC.Jones.Sec14.BadAt (definition): [propext, Quot.sound, Classical.choice]
+HPC.Jones.Sec14.IsPreconnected.inter_frontier_nonempty': [propext, Quot.sound, Classical.choice]
+HPC.Jones.Sec14.exists_bad_point_of_crossing: [propext, Quot.sound, Classical.choice]
+HPC.Jones.Sec14.not_orderLE_of_accumulating: [propext, Quot.sound, Classical.choice]
+-- HPC.Jones.Jones49D: 4 theorems
+HPC.Jones.whyburn39_curve_from_order_two: [propext, Quot.sound, Classical.choice]
+HPC.Jones.whyburn39_local_noncut: [propext, Quot.sound, Classical.choice]
+HPC.Jones.whyburn39_moore_curve: [propext, Quot.sound, Classical.choice]
+HPC.Jones.whyburn39_theorem14: [propext, Quot.sound, Classical.choice]

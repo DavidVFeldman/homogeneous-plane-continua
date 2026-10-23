@@ -1,0 +1,97 @@
+--- the crookedness test, on paths whose status is known ---
+bing 0 3 : length    6, crooked 1 (must be 1)
+bing 0 4 : length   13, crooked 1 (must be 1)
+bing 0 5 : length   30, crooked 1 (must be 1)
+bing 0 6 : length   71, crooked 1 (must be 1)
+bing 0 7 : length  170, crooked 1 (must be 1)
+bing 0 8 : length  409, crooked 1 (must be 1)
+bing 0 9 : length  986, crooked 1 (must be 1)
+the monotone run 0..9   : crooked 0 (must be 0)
+the single fold 0..3..0 : crooked 0 (must be 0)
+
+candidate walks of up to three turns: 2014
+
+--- the span-nine chains themselves, every basepoint ---
+bing 0 9 : crooked 1
+whole path: length 986, band [0,9], span 9
+  MIXED basepoint 138 (arms 848, 139): G lam 1 vee 0, T lam 0 vee 1; least turns 3, walk L+3 L+6 L+1 L+8
+  MIXED basepoint 142 (arms 844, 143): G lam 1 vee 0, T lam 0 vee 1; least turns 3, walk L+3 L+6 L+1 L+8
+  MIXED basepoint 144 (arms 842, 145): G lam 1 vee 0, T lam 0 vee 1; least turns 3, walk L+3 L+6 L+1 L+8
+  MIXED basepoint 146 (arms 840, 147): G lam 1 vee 0, T lam 0 vee 1; least turns 3, walk L+3 L+6 L+1 L+8
+  MIXED basepoint 148 (arms 838, 149): G lam 1 vee 0, T lam 0 vee 1; least turns 3, walk L+3 L+6 L+1 L+8
+  MIXED basepoint 150 (arms 836, 151): G lam 1 vee 0, T lam 0 vee 1; least turns 3, walk L+3 L+6 L+1 L+8
+  basepoints of the open branch at L+4: 182  (lam,lam 30; vee,vee 97; MIXED 55; neither 0)
+  of the MIXED ones, served by L+3,L+6,L+1,L+8 : 55 of 55
+
+--- family A: windows of bing 0 N, N = 9 .. 10 ---
+bing 0 9 : length 986, crooked
+MIXED at L+4, window length 986, basepoint 138, arms 848 and 139; v[114..162]: 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 [4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6
+MIXED at L+4, window length 986, basepoint 142, arms 844 and 143; v[118..166]: 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 [4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6
+MIXED at L+4, window length 986, basepoint 144, arms 842 and 145; v[120..168]: 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 [4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6
+MIXED at L+4, window length 986, basepoint 146, arms 840 and 147; v[122..170]: 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 [4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6
+MIXED at L+4, window length 986, basepoint 148, arms 838 and 149; v[124..172]: 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 [4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6
+MIXED at L+4, window length 986, basepoint 150, arms 836 and 151; v[126..174]: 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 [4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4
+MIXED at L+4, window length 986, basepoint 154, arms 832 and 155; v[130..178]: 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 [4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4
+MIXED at L+4, window length 986, basepoint 156, arms 830 and 157; v[132..180]: 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 [4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4
+bing 0 10 : length 2379, crooked
+after family A: windows 1520, branch pairs 1027362, mixed in branch 270431
+
+--- family B: windows of bing a b, |a-b| >= 9, a,b <= 12 ---
+bing 1 10 : length 986, crooked
+bing 1 11 : length 2379, crooked
+bing 2 11 : length 986, crooked
+bing 2 12 : length 2379, crooked
+bing 3 12 : length 986, crooked
+bing 9 0 : length 986, crooked
+bing 10 0 : length 2379, crooked
+bing 10 1 : length 986, crooked
+bing 11 1 : length 2379, crooked
+bing 11 2 : length 986, crooked
+bing 12 2 : length 2379, crooked
+bing 12 3 : length 986, crooked
+after family B: windows 9122, branch pairs 6290235, mixed in branch 1624939
+
+--- family C: random concatenations of Bing paths ---
+concatenation 1 : length 991, crooked
+concatenation 2 : length 146, crooked
+concatenation 3 : length 32, crooked
+concatenation 4 : length 8, crooked
+concatenation 5 : length 7, crooked
+concatenation 6 : length 412, crooked
+concatenation 7 : length 1237, crooked
+concatenation 8 : length 5, crooked
+concatenation 9 : length 496, crooked
+concatenation 10 : length 15, crooked
+concatenation 11 : length 8, crooked
+concatenation 12 : length 4, crooked
+concatenation 13 : length 25, crooked
+concatenation 14 : length 42, crooked
+concatenation 15 : length 15, crooked
+concatenation 16 : length 15, crooked
+concatenation 17 : length 175, crooked
+concatenation 18 : length 69, crooked
+concatenation 19 : length 433, crooked
+concatenation 20 : length 421, crooked
+concatenations tried 40, of them crooked 20
+
+=== totals ===
+windows of span exactly nine          : 9128
+basepoints at L+4 / L+5               : 4197408 / 4197408
+  both arms lamCrit                   : 3629626
+  both arms veeCrit                   : 3081586
+  MIXED                               : 1629892
+  neither                             : 53712
+OPEN BRANCH pairs at L+4 / L+5        : 2780569 / 3512150
+  both arms lamCrit                   : 1539625
+  both arms veeCrit                   : 3081586
+  MIXED (neither walk serves the pair): 1625599  (L+4: 810653, L+5: 814946)
+  neither                             : 45909
+branch pairs tested against L+3,L+6,L+1,L+8 : 20000
+  of them NOT served by that walk            : 6738
+  of the MIXED ones, 5280 tested, 0 not served
+branch pairs run through the walk set : 3290
+unserved by any walk of <= 3 turns    : 0
+walks of <= 3 turns serving ALL 400 branch pairs met : 0
+walks of <= 3 turns serving ALL 3000 MIXED pairs met  : 2
+   walk 3 turns: L+3 L+6 L+1 L+8
+   walk 3 turns: L+3 L+7 L+1 L+8

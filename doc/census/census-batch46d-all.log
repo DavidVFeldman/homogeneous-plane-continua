@@ -1,0 +1,29 @@
+bing 0 9: n = 986; thin pair verifies: 1
+local maxima: 288 (of them at level 7: 36)
+
+  *** WORK ITEM FAILS on a verified general pair (tag 128), basepoint 138
+      ceiling announcement: 1; valley announcement: 0
+      folds: Lambda (G,T) = (1,0); V (G,T) = (0,1)
+
+  *** WORK ITEM FAILS on a verified general pair (tag 128), basepoint 142
+      ceiling announcement: 1; valley announcement: 0
+      folds: Lambda (G,T) = (1,0); V (G,T) = (0,1)
+
+  *** WORK ITEM FAILS on a verified general pair (tag 128), basepoint 144
+      ceiling announcement: 1; valley announcement: 0
+      folds: Lambda (G,T) = (1,0); V (G,T) = (0,1)
+
+  *** WORK ITEM FAILS on a verified general pair (tag 128), basepoint 146
+      ceiling announcement: 1; valley announcement: 0
+      folds: Lambda (G,T) = (1,0); V (G,T) = (0,1)
+
+  *** WORK ITEM FAILS on a verified general pair (tag 128), basepoint 148
+      ceiling announcement: 1; valley announcement: 0
+      folds: Lambda (G,T) = (1,0); V (G,T) = (0,1)
+single shavings tried: 288; faithful: 288
+
+basepoints of the open branch met: 52502
+  folding onto neither canonical walk: 15798
+    failing the ceiling announcement (unserved_ceiling): 3
+    failing the valley announcement  (unserved_valley):  30
+    served by no walk of at most three legs: 0

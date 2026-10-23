@@ -1,0 +1,226 @@
+%======================================================================
+\chapter{Boundaries of complementary domains}\label{ch:boundaries}
+%======================================================================
+
+Jones's 1949 proof continues: ``Hence each element of $G$ is a simple domain [Whyburn]. Let the simple closed
+curve $J$ denote the boundary of an element $D$ of $G$.'' Here $G$ is the collection of complementary domains
+of $M$, and the reference is to Whyburn's 1939 paper \emph{Semi-locally-connected sets}, \S14:
+
+\begin{quote}
+\emph{Theorem~14.} If $M$ is a compact semi-locally-connected plane continuum, the boundary of each complementary
+domain of $M$ is locally connected.
+
+\emph{Corollary~1.} If $M$ is moreover cyclic (has no cut point), the boundary of every complementary domain of $M$
+is a simple closed curve.
+\end{quote}
+
+Whyburn's proof of Theorem~14 reduces to bounded domains by an inversion, joins points by arcs and
+uses a simple closed curve supplied by ``a theorem of R.~L.~Moore'' in one step, and a curve built
+from a point of order~2 in another. The reduction has a gap: the centre of the inversion must lie in a
+second complementary domain (a centre in $R$ leaves the image of $R$ unbounded, and a centre on $M$ destroys
+compactness), and when $R$ is the only complementary domain, for instance when $M$ is a closed disk, there is none. The proof below needs no inversion, no arcs and no Jordan curves.
+It uses Janiszewski's theorem (\vfour{Theorem~2.7}), the sector theorem of Chapter~\ref{ch:sectors}, and
+Whyburn's theorem on cut points of order other than~$2$ (Corollary~\ref{cor:whyburn}(c)). Corollary~1, which
+Whyburn states without proof, then follows from the arc theorem for Peano continua and a lemma on
+$\theta$-curves.
+
+Throughout, $M\subseteq\R^2$ is a compact continuum that is semi-locally connected at each of its points
+(Definition~\ref{def:slc}), $R$ is a component of $\R^2\setminus M$, and $B=\fr R$. $B$ is a continuum by Brouwer's
+theorem (\vfour{Theorem~1.12}), and $B\subseteq M$. Distances are taken in the maximum metric, as in
+Chapter~\ref{ch:sectors}; $V_\varepsilon(p)$ is the open ball $B(p,\varepsilon)$.
+
+\formal{\lean{HPC.Jones.isConnected_frontier_complDomain}.}
+
+\section{Joining points of a domain near a non-cut point}
+
+\begin{lemma}[Whyburn (6.22), the form used in \S14]\label{lem:whyburn622}
+Let $X$ be a continuum semi-locally connected at each point, and $p$ a non-cut point of $X$. For every $\varepsilon>0$ there is $\delta\in(0,\varepsilon)$
+such that some component of $X\setminus V_\delta(p)$ contains $X\setminus V_\varepsilon(p)$.
+\end{lemma}
+
+\begin{proof}
+If $X=\set p$ there is nothing to prove; fix $q\ne p$. By Corollary~\ref{cor:jones41}, $X$ is aposyndetic. For each $a\ne p$ there is a continuum $H_a$
+missing $p$ and containing an open $U_a\ni a$; by Proposition~\ref{prop:whyburn62} (the component of $a$ in the connected set $X\setminus\set p$ is all of it), some
+continuum missing $p$ contains $a$ and $q$; so we may assume $q\in H_a$. Finitely many $U_a$ cover the compact set $X\setminus V_\varepsilon(p)$. The union $W$ of the
+corresponding $H_a$ is a continuum (all contain $q$) missing $p$; choose $\delta<\varepsilon$ with $V_\delta(p)\cap W=\emptyset$. Then $W$ is a connected subset of $X\setminus V_\delta(p)$
+containing $X\setminus V_\varepsilon(p)$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.whyburn39_6_22_sec14}.}
+
+\begin{lemma}[The joining lemma]\label{lem:join}
+Let $N\subseteq M$ be a continuum containing $M\setminus V_\varepsilon(p)$, and let $W$ be the component of $\R^2\setminus\bigl(N\cup(\R^2\setminus V_\varepsilon(p))\bigr)$ containing $p$. Any two
+points $a,b\in R\cap W$ lie in the same component of $W\setminus M$.
+\end{lemma}
+
+\begin{proof}
+Let $K=(M\cap\cl W)\cup N$ and $L=(\R^2\setminus W)\cap\bar B(p,\rho)$, with $\rho>\varepsilon$ so large that $M\subseteq\bar B(p,\rho)$. Both are compact, and $K\cap L=N$ (a point of $M\cap\cl W$ outside $W$ lies in the frontier of $W$,
+hence in $N$ or outside $V_\varepsilon(p)$, and in the latter case in $M\setminus V_\varepsilon(p)\subseteq N$), which is connected. $K\subseteq M$ does not separate $a$ from $b$, as both lie in the component
+$R$ of $\R^2\setminus M$; and $L$ does not separate them, as both lie in the connected set $W$, which misses $L$. By Janiszewski's theorem (\vfour{Theorem~2.7}), $K\cup L$ does not
+separate $a$ from $b$. The component $C$ of $a$ in $\R^2\setminus(K\cup L)$ is a connected set starting in $W$; it cannot leave $W$, because the frontier of $W$ lies in $N\subseteq K$ or in
+$\cl{V_\varepsilon(p)}\setminus V_\varepsilon(p)\subseteq L$. So $C\subseteq W$, and $C$ misses $M\cap\cl W\subseteq K$: $C\subseteq W\setminus M$, and $b\in C$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.Sec14.join_in_domain}; it replaces Whyburn's $\theta$-curve step and Moore's curve
+$C$ (\lean{HPC.Jones.whyburn39_moore_curve} records the form used).}
+
+\begin{proposition}[Step 3 of Whyburn's proof]\label{prop:local-join}
+Let $p\in B$ be a non-cut point of $M$. For every $\varepsilon>0$ there is $\delta>0$ such that any two points of $R$ within $\delta$ of $p$ lie in a connected subset of $R$ within
+$\varepsilon$ of $p$. In particular there is no sequence of points of $R$ converging to $p$ no two of which lie in a connected subset of $R$ of diameter less than $\varepsilon$.
+\end{proposition}
+
+\begin{proof}
+Lemma~\ref{lem:whyburn622} gives $\delta<\varepsilon$ and a component of $M\setminus V_\delta(p)$ containing $M\setminus V_\varepsilon(p)$; let $N$ be its closure, a continuum in $M\setminus V_\delta(p)$. The ball
+$V_\delta(p)$ is connected, misses $N$ and lies in $V_\varepsilon(p)$, so it lies in the component $W$ of Lemma~\ref{lem:join}. For $a,b\in R\cap V_\delta(p)$, the component of $a$ in $W\setminus M$ is a
+connected subset of $R$ (it is connected, misses $M$ and contains $a$) inside $W\subseteq V_\varepsilon(p)$, containing $b$. For the second statement apply the first with $\varepsilon/3$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.Sec14.local_join_of_noncut}, \lean{HPC.Jones.whyburn39_local_noncut}.}
+
+\section{Theorem 14}
+
+Say that Whyburn's condition \emph{fails at $p\in B$ with constant $\varepsilon$} if some sequence of points of $R$ converges to $p$ and no two of its terms lie in a connected subset of
+$R$ of diameter less than $\varepsilon$.
+
+\formal{\lean{HPC.Jones.Sec14.BadAt}.}
+
+\begin{lemma}[Accumulating continua exclude finite order]\label{lem:accum}
+Let $T_0,T_1,\dots$ be pairwise disjoint connected subsets of a metric space, $b_i\in T_i$ with $b_i\to p$, and suppose each $T_i$ has a point at distance at least $d>0$ from $p$. Then $p$
+has no finite order.
+\end{lemma}
+
+\begin{proof}
+Let $V\ni p$ be open inside $B(p,d)$. For all large $i$, $b_i\in V$, and $T_i$ has a point outside $V$; so the connected set $T_i$ meets $\fr V$. As the $T_i$ are disjoint, $\fr V$ is infinite.
+\end{proof}
+
+\formal{\lean{HPC.Jones.Sec14.not_orderLE_of_accumulating}, recorded as
+\lean{HPC.Jones.whyburn39_curve_from_order_two}; it replaces Whyburn's curve $K$ and his pigeonhole argument.}
+
+\begin{lemma}[Bad points at every middle radius]\label{lem:bad-point}
+Let $t_0,t_1,\dots$ be pairwise disjoint continua in $B$ crossing $\Ann(P,r_1,r_2)$, and let $\rho\in[r_1+\frac{r_2-r_1}3,\,r_2-\frac{r_2-r_1}3]$. There is $h\in B$ with $d(h,P)=\rho$ at which Whyburn's
+condition fails with constant $\eta=\frac{r_2-r_1}6$, and at which infinitely many of the $t_n$ accumulate (points $b_i\in t_{s(i)}$, $s$ strictly increasing, with $b_i\to h$).
+\end{lemma}
+
+\begin{proof}
+Apply the cyclic order (Theorem~\ref{thm:cyclic}) to the $t_n$; renumber the subsequence as $t_0,t_1,\dots$, with the sets $V_n$. Each $t_n$ crosses the annulus, so it has a point $b_n$ with
+$d(b_n,P)=\rho$. The points $b_n$ with $n$ odd have a limit point $h$ (the square $d(z,P)=\rho$ is compact), $h\in B$ as $B$ is closed, and $d(h,P)=\rho$. For each odd $n\ge1$ choose $\delta_n\le\min(\eta,1/n)$
+such that the ball $B(b_n,\delta_n)$ misses $t_{n-1}\cup t_{n+1}$ and lies, within $\Ann$, in $V_n$; since $b_n\in B=\fr R$, there is $c_n\in R\cap B(b_n,\delta_n)$. Along the odd indices for which
+$b_n\to h$, also $c_n\to h$.
+
+Let $n<m$ be two of these indices and $C\subseteq R$ a connected set of diameter less than $\eta$ containing $c_n$ and $c_m$. $C$ misses every $t_k\subseteq B$, since $R$ is open and $B=\fr R$. As $d(c_n,P)$ is
+within $\eta$ of $\rho$, every point of $C$ is within $2\eta=\frac{r_2-r_1}3$ of the square $d(z,P)=\rho$, so $C$ lies in $\Ann$. It meets $V_n$ (at $c_n$) and misses $t_{n-1}\cup t_{n+1}$, so $C\subseteq V_n$ by Theorem~\ref{thm:cyclic}(iii). But $c_m\in V_m$ and $\abs{n-m}\ge2$, so $V_n\cap V_m=\emptyset$
+by Theorem~\ref{thm:cyclic}(ii). So Whyburn's condition fails at $h$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.Sec14.exists_bad_point_of_crossing}. This is Moore's 1922 argument (p.~236) at an
+arbitrary radius; at the middle radius it gives Moore's local sufficiency theorem
+\lean{HPC.Jones.moore22_sufficiency_local}, \lean{HPC.Jones.Sector.sufficiency_local}.}
+
+\begin{theorem}[Whyburn 1939, Theorem~14]\label{thm:whyburn14}
+Let $M\subseteq\R^2$ be a compact continuum, semi-locally connected at each point. The boundary $B$ of each complementary domain $R$ of $M$, bounded or not, is locally connected.
+\end{theorem}
+
+\begin{proof}
+Suppose not. By Proposition~\ref{prop:cik}(a), $B$ is not connected im kleinen at some $P\in B$, and by Proposition~\ref{prop:cik}(b) there are pairwise disjoint continua $t_n\subseteq B$ crossing an
+annulus $\Ann(P,r_1,r_2)$. For each $\rho$ in the middle third $I_0=[r_1+\frac{r_2-r_1}3,r_2-\frac{r_2-r_1}3]$, Lemma~\ref{lem:bad-point} gives $h_\rho\in B\subseteq M$ with $d(h_\rho,P)=\rho$. At $h_\rho$ infinitely many
+disjoint continua $t_{s(i)}\subseteq M$ accumulate, each reaching distance at least $\frac{r_2-r_1}3$ from $h_\rho$; by Lemma~\ref{lem:accum}, $h_\rho$ has no finite order in $M$, in particular not order~$2$.
+Whyburn's condition fails at $h_\rho$, so by Proposition~\ref{prop:local-join}, $h_\rho$ is a cut point of $M$. The points $h_\rho$, $\rho\in I_0$, are distinct. So $M$ has uncountably many cut points not of
+order~$2$, against Corollary~\ref{cor:whyburn}(c).
+\end{proof}
+
+\formal{\lean{HPC.Jones.whyburn39_theorem14}.}
+
+\section{Corollary 1}
+
+Recall that an \emph{arc} is a homeomorphic image of $[0,1]$ (\vfive{Definition~1.1}). A \emph{$\theta$-curve} consists of three arcs $K_1,K_2,K_3$ from $a$ to $b$, $a\ne b$, any two of which meet only in
+$\set{a,b}$. Then each $J_{ij}=K_i\cup K_j$ is a simple closed curve, and $\oarc K_k=K_k\setminus\set{a,b}$ is a connected set missing $J_{ij}$, for $\set{i,j,k}=\set{1,2,3}$.
+
+\begin{lemma}[The $\theta$-curve lemma]\label{lem:theta}
+Let $K_1\cup K_2\cup K_3\subseteq\R^2$ be a $\theta$-curve and $k_i\in\oarc K_i$.
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(No common side.)} No point $m$ off the $\theta$-curve lies, for each $i$, in the component of $\R^2\setminus J_{jk}$ containing $k_i$.
+\item No connected set $D$ missing the $\theta$-curve has the whole $\theta$-curve in its closure.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We use the Jordan curve theorem (\vfive{Theorem~4.8}): $\R^2\setminus J_{ij}$ has exactly two components, each with frontier $J_{ij}$. Hence a connected set $A$ missing $J_{ij}$ whose closure contains a
+connected set $A'$ missing $J_{ij}$ lies in the same component as $A'$: if $A$ lies in the component $S$, then $\cl A\subseteq S\cup J_{ij}$, so $A'\subseteq S$.
+
+(a) Let $S$ be the component of $\R^2\setminus J_{12}$ containing $\oarc K_3$ (and $m$), and $T$ the other one; pick $w\in T$. $T$ is connected and misses $K_3$ (as $\oarc K_3\subseteq S$), so it misses $J_{13}$ and $J_{23}$. Its
+closure contains $\fr T=J_{12}\supseteq\oarc K_2$, so $T$ lies in the component of $\R^2\setminus J_{13}$ containing $\oarc K_2$, which also contains $m$. Likewise $T$ and $m$ lie in the same component of
+$\R^2\setminus J_{23}$. So neither $J_{13}$ nor $J_{23}$ separates $m$ from $w$, and $J_{13}\cap J_{23}=K_3$ is connected. By Janiszewski's theorem, $J_{13}\cup J_{23}$ does not separate $m$ from $w$. But it contains
+$J_{12}$, which does.
+
+(b) Let $m\in D$. For each $i$, $D$ is a connected set missing $J_{jk}$ whose closure contains $\oarc K_i$; so $D$, and $m$, lie in the component of $\R^2\setminus J_{jk}$ containing $k_i$. This contradicts (a).
+\end{proof}
+
+\formal{\lean{HPC.Jones.theta_no_common_side}, \lean{HPC.Jones.theta_not_subset_closure} (with
+\lean{HPC.Jones.jordan_side}).}
+
+\begin{lemma}[The boundary is cyclic]\label{lem:frontier-cyclic}
+If $z$ is a cut point of $B$, it is a cut point of $M$.
+\end{lemma}
+
+\begin{proof}
+Let $B\setminus\set z=U\cup V$ with $U$, $V$ separated and nonempty, and put $P=U\cup\set z$, $Q=V\cup\set z$: compact sets with $P\cap Q=\set z$. Let $R_P$, $R_Q$ be the components of $\R^2\setminus P$ and
+$\R^2\setminus Q$ containing the connected set $R$. A point of $R_P\cap R_Q$ is separated from $R$ neither by $P$ nor by $Q$, so by Janiszewski's theorem not by $P\cup Q=B$; as $R$ is a component of $\R^2\setminus B$,
+$R_P\cap R_Q=R$. Each $v\in V$ is a limit of points of $R\subseteq R_P$ and lies outside $P$, so $V\subseteq R_P$ ($R_P$ is closed in $\R^2\setminus P$); likewise $U\subseteq R_Q$.
+
+Consider $M\cap R_Q$, an open subset of $M\setminus\set z$ containing $U$ and missing $V\subseteq Q$. It is also closed in $M\setminus\set z$: a point of its closure lies in $R_Q\cup Q$; if it is a point $v\in V$, a small
+connected ball about $v$ missing $P$ lies in $R_P$, so its intersection with $R_Q$ lies in $R_P\cap R_Q=R$, which misses $M$, a contradiction. So $M\setminus\set z$ is not connected.
+\end{proof}
+
+\formal{\lean{HPC.Jones.frontier_cyclic}, \lean{HPC.Jones.frontier_cyclic'}.}
+
+\begin{proposition}[Curves in cyclic Peano continua]\label{prop:cyclic-peano}
+Let $X$ be a locally connected continuum.
+\begin{enumerate}[label=(\alph*)]
+\item Two distinct points of a connected open subset $U$ of $X$ are the end points of an arc in $U$.
+\item If $X$ has no cut point and is nondegenerate, it contains a simple closed curve; if moreover $X$ is not a simple closed curve, it contains a $\theta$-curve.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Moore's nested simple chains, with the connected open subsets of $U$ as regions, give a compact connected subset of $U$ irreducible between the two points (as in \vfive{Theorem~5.7}); it is an arc
+by \vfive{Corollary~1.9}.
+
+(b) Take an arc $\alpha$ from $a$ to $b$ and a point $c$ of $\alpha$ other than $a,b$. As $X\setminus\set c$ is a connected open set, (a) gives an arc $\beta$ from $a$ to $b$ avoiding $c$. Let $a_1$ be the last point of $\beta$
+on the sub-arc of $\alpha$ from $a$ to $c$, and $b_1$ the first point of $\beta$ after $a_1$ on $\alpha$; then $b_1$ lies beyond $c$, and the sub-arcs of $\alpha$ and of $\beta$ from $a_1$ to $b_1$ form a simple closed curve
+$J$. If $X\ne J$, take $w\notin J$, an arc from $w$ to $J$ and its first point $c_1$ on $J$, giving an arc $\gamma_1$ from $w$ to $c_1$ meeting $J$ only in $c_1$. In $X\setminus\set{c_1}$ take an arc $\delta$ from $w$ to a
+point of $J$; let $c_2$ be its first point on $J$ and $u$ its last point on $\gamma_1$ before $c_2$. Then the sub-arc of $\gamma_1$ from $c_1$ to $u$ followed by the sub-arc of $\delta$ from $u$ to $c_2$ is an arc from $c_1$ to $c_2\ne
+c_1$ meeting $J$ only in its end points; with the two arcs of $J$ between $c_1$ and $c_2$ it forms a $\theta$-curve.
+\end{proof}
+
+\formal{\lean{HPC.Jones.exists_tarc_in_open}, \lean{HPC.Jones.exists_tarc_of_locallyConnected},
+\lean{HPC.Jones.exists_scc_of_cyclic}, \lean{HPC.Jones.exists_theta_of_cyclic},
+\lean{HPC.Jones.theta_of_cyclic_peano}.}
+
+\begin{theorem}[Whyburn 1939, \S14, Corollary~1]\label{thm:whyburn-cor1}
+Let $M\subseteq\R^2$ be a nondegenerate compact continuum, semi-locally connected at each point and without cut points. The boundary $B$ of each complementary domain $R$ of $M$ is a simple closed curve.
+\end{theorem}
+
+\begin{proof}
+$B$ is a continuum, locally connected by Theorem~\ref{thm:whyburn14}, and without cut points by Lemma~\ref{lem:frontier-cyclic}. It is nondegenerate: if $B\subseteq\set z$, the connected set $\R^2\setminus\set z$ would lie in the union of the disjoint open sets $R$ and
+$\R^2\setminus\cl R$, hence in $R$, and $M\subseteq\set z$. If $B$ is not a simple closed curve, it contains a $\theta$-curve (Proposition~\ref{prop:cyclic-peano}(b)). This $\theta$-curve lies in $B\subseteq\cl R$, and $R$ is connected and misses it, against
+Lemma~\ref{lem:theta}(b). So $B$ is a simple closed curve, homeomorphic to the circle (\vfive{Proposition~1.13}).
+\end{proof}
+
+\formal{\lean{HPC.Jones.whyburn39_corollary1}, with \lean{HPC.Jones.tscc_homeomorph_circle}. Whyburn gives no
+proof and refers to Wilder (1938). The hypothesis ``no cut points'' is stated there as: $M\setminus\set z$ is connected and nonempty for
+every $z\in M$, which includes nondegeneracy. The same argument also shows that every point of $B$ is accessible from $R$:
+\lean{HPC.Jones.accessible_of_cyclic}, which the classification does not need.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that Theorem~\ref{thm:whyburn14} fails without semi-local connectedness: find a plane continuum one of whose complementary domains has a boundary that is not locally connected.
+\end{exercise}
+
+\begin{exercise}
+Let $M$ be the union of two circles meeting in one point. Determine the boundaries of the complementary domains, and explain which hypothesis of Theorem~\ref{thm:whyburn-cor1} fails.
+\end{exercise}
+
+\begin{exercise}
+Prove Lemma~\ref{lem:theta}(b) directly for the $\theta$-curve consisting of a circle and a diameter.
+\end{exercise}

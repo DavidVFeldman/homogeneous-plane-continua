@@ -1,0 +1,23 @@
+# #print axioms, batch 76 (lake env lean on a file importing HPC.Fold.Target76 and HPC.Fold.Audit76)
+'HPC.Fold.extendsSubBandB_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.extendsSubBand_of_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.foldsOnto_arms_of_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.walkList_mem_Icc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P78.extendsSubBand' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P78.extendsSubBand_search' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P78.faithful' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P290.extendsSubBand' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P290.extendsSubBand_search' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P290.not_extendsSubBand_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P290.faithful' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P2378.extendsSubBand' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P2379.extendsSubBand' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P3000.extendsSubBand' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+# library Audit76Long (lake env lean on a file importing its six basepoint modules)
+'HPC.Fold.Audit76.P5815.extendsSubBand_946' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P5742a.extendsSubBand_343' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P5742b.extendsSubBand_5099' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P13861.extendsSubBand_2027' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P13861.extendsSubBand_343' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Audit76.P14000.extendsSubBand_1586' depends on axioms: [propext, Classical.choice, Quot.sound]

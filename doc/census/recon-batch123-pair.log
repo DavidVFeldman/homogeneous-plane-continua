@@ -1,0 +1,4 @@
+pair n = 6 K = 4 instances 298449 failures 0
+pair n = 6 K = 5 instances 448028 failures 0
+pair n = 7 K = 5 instances 3017612 failures 0
+pair n = 7 K = 6 instances 4045322 failures 0

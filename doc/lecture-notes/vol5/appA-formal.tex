@@ -1,0 +1,175 @@
+%======================================================================
+\chapter{Correspondence with the formal proof}\label{app:formal}
+%======================================================================
+
+The table lists the definitions and results of this volume that carry a ``Formal counterpart''
+line, together with the corresponding declarations of the Lean development. All declaration
+names start with \lean{HPC.}. The formal statements are sometimes slightly more general, or are
+split differently into lemmas; the table points to the place where the content of each result is
+proved. Rows are in the order of the text.
+
+The main theorems of the volume are, in the Lean development (prefix \lean{HPC.} omitted):
+\begin{center}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.54\textwidth}@{}}
+\toprule
+Characterization of the arc (Corollary~\ref{cor:arc-char}) & \lean{Moore.isIrreducibleConnected_iff_arc}\\
+Characterization of the circle (Theorem~\ref{thm:circle-char}) & \lean{Moore.circle_char}\\
+Quotient of a Moore decomposition is metrizable (Theorem~\ref{thm:quot-metrizable}) & \lean{Moore.quotient_metrizable_plane}\\
+Mullikin's theorem, corrected (Theorem~\ref{thm:mullikin}) & \lean{Moore.mullikin_theorem5}\\
+Moore 1925, Theorem~11 (Theorem~\ref{thm:m25-11}) & \lean{Moore.m25_theorem11}\\
+Jordan curve theorem (Theorem~\ref{thm:jct}) & \lean{Jones.jordan_curve_theorem}\\
+Moore 1919, Theorem~D (Theorem~\ref{thm:theoremD}) & \lean{Moore.m19_theoremD}\\
+A compact grid is a square (Theorem~\ref{thm:grid-square}) & \lean{Sq.Grid.exists_square}\\
+Schoenflies theorem in a Moore space (Theorem~\ref{thm:schoenflies}) & \lean{Moore.m19_schoenflies_boundary_proof}\\
+Moore's characterization of the plane (Theorem~\ref{thm:moore-plane}) & \lean{Moore.m19_plane}\\
+Moore 1925, Theorem~21 (Theorem~\ref{thm:m25-21}) & \lean{Moore.m25_theorem21}\\
+Moore 1925, Theorem~22 (Theorem~\ref{thm:m25-22}) & \lean{Moore.m25_theorem22}, \lean{Moore.m25_theorem22_moore}\\
+Monotone images (Corollary~\ref{cor:monotone-plane}) & \lean{Hagopian.exists_plane_quotient_of_monotone}\\
+Schoenflies theorem in the plane (Theorem~\ref{thm:plane-schoenflies}) & \lean{Hagopian.plane_schoenflies_aux}\\
+Two-sided collars (Theorem~\ref{thm:collar}) & \lean{Hagopian.exists_collar}\\
+\bottomrule
+\end{tabular}
+\end{center}
+All of them are proved in the Lean development without \lean{sorry} and without axioms beyond the
+standard ones of Lean and Mathlib. The printed forms that are false (Section~\ref{sec:intro-diff}) are
+refuted by the declarations whose names begin with \lean{not_}.
+
+\begin{longtable}{@{}p{0.40\textwidth}p{0.56\textwidth}@{}}
+\toprule
+In these notes & In the Lean development\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:arcs}}}\\
+Definition~\ref{def:arc} & \lean{HPC.Moore.Gen.TArc}, \lean{HPC.Moore.Gen.TSCC}.\\
+Sub-arcs (Lemma~\ref{lem:subarc}) & \lean{HPC.Moore.Gen.TArc.image_Icc}, \lean{HPC.Moore.Gen.TArc.exists_sub}, \lean{HPC.Moore.Gen.TArc.nonempty_diff}, \lean{HPC.Moore.Gen.TArc.isPreconnected_diff}, \lean{HPC.Moore.Gen.TArc.subset_closure_diff}.\\
+Lemma~\ref{lem:conn-frontier} & \lean{HPC.Moore.Gen.conn_sub_of_frontier}, \lean{HPC.Moore.Gen.conn_sub_ext_of_frontier}.\\
+First points, gluing, joining (Lemma~\ref{lem:arc-ops}) & \lean{HPC.Moore.Gen.TArc.first_point}, \lean{HPC.Moore.Gen.TArc.union}, \lean{HPC.Moore.Gen.TArc.join}.\\
+Lemma~\ref{lem:insert-conn} & \lean{HPC.Moore.ac_insert_isPreconnected}.\\
+Cuts (Lemma~\ref{lem:cut}) & \lean{HPC.Moore.ac_compl_isPreconnected}, \lean{HPC.Moore.ac_cut}.\\
+Proposition~\ref{prop:arc-order} & \lean{HPC.Moore.acL}, \lean{HPC.Moore.acL_asymm}, \lean{HPC.Moore.acL_trans}, \lean{HPC.Moore.acL_total}, \lean{HPC.Moore.acL_ray}, \lean{HPC.Moore.ac_exists_between}.\\
+Irreducible continua are arcs (Theorem~\ref{thm:irr-arc}) & \lean{HPC.Moore.ac_exists_strictMono}, \lean{HPC.Moore.ac_homeomorph}.\\
+Arc characterization (Corollary~\ref{cor:arc-char}) & \lean{HPC.Moore.isIrreducibleConnected_iff_arc}.\\
+Definition~\ref{def:cutarc} & \lean{HPC.Moore.IsCutArc}.\\
+Proposition~\ref{prop:cutarc} & (a) \lean{HPC.Moore.IsCutArc.irreducible}; (b) \lean{HPC.Moore.IsCutArc.exists_embedding}, \lean{HPC.Moore.isCutArc_range}, \lean{HPC.Moore.isCutArc_image_Icc}; (c) \lean{HPC.Moore.eq_image_Icc_of_subset_range}, \lean{HPC.Moore.ends_of_image_Icc}; (d) \lean{HPC.Moore.exists_nonCut_diff}.\\
+Moore 1920, Theorem~4 (Theorem~\ref{thm:circle-char}) & \lean{HPC.Moore.circle_noCut}, \lean{HPC.Moore.circle_half}, \lean{HPC.Moore.circle_char}.\\
+Proposition~\ref{prop:scc-cut} & \lean{HPC.Moore.Gen.tscc_cut}; \lean{HPC.Jones.glue_circle}, \lean{HPC.Jones.tscc_homeomorph_circle}.\\
+Limit arcs (Theorem~\ref{thm:limit-arc}) & \lean{HPC.Moore.Gen.tarc_of_seq}; with trimming of arcs that meet more than consecutively, \lean{HPC.Moore.Gen.exists_tarc_of_seq}.\\
+Replacement of a null family of sub-arcs (Theorem~\ref{thm:arc-replace}) & \lean{HPC.Moore.Gen.arc_replace}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:usc}}}\\
+Definition~\ref{def:moore-decomp} & \lean{HPC.Moore.MooreDecomp}, \lean{HPC.Moore.elt}, \lean{HPC.Moore.ptsOf}.\\
+Definition~\ref{def:tube} & \lean{HPC.Moore.tube}.\\
+Proposition~\ref{prop:closed-map} & \lean{HPC.Moore.isClosedMap_mk_plane}, \lean{HPC.Moore.isOpen_tube}, \lean{HPC.Moore.mem_nhds_iff_tube}, \lean{HPC.Moore.usc_of_isClosedMap}.\\
+Theorem~\ref{thm:quot-metrizable} & \lean{HPC.Moore.t1Space_quot}, \lean{HPC.Moore.regularSpace_quot}, \lean{HPC.Moore.secondCountable_quot}, \lean{HPC.Moore.quotient_metrizable_plane}.\\
+Proposition~\ref{prop:pts-conn} & \lean{HPC.Moore.isPreconnected_ptsOf}, \lean{HPC.Moore.ptsOf_connectedComponentIn}, \lean{HPC.Moore.isOpen_connectedComponentIn_quot}, \lean{HPC.Moore.locallyConnectedSpace_quot}, \lean{HPC.Moore.frontier_eq_image}.\\
+Corollary~\ref{cor:quot-tools} & \lean{HPC.Moore.quot_brouwer}, \lean{HPC.Moore.quot_janiszewski}, \lean{HPC.Moore.m25_unbounded_unique}, \lean{HPC.Moore.isConnected_compl_singleton_quot}.\\
+Proposition~\ref{prop:moore-notions} & \lean{HPC.Moore.isLimitElt_iff}, \lean{HPC.Moore.m25_domain_iff}, \lean{HPC.Moore.m25_boundary_iff}.\\
+Moore, Theorem~1 (Theorem~\ref{thm:m25-1}) & \lean{HPC.Moore.m25_theorem1}.\\
+Definition~\ref{def:moore-region} & \lean{HPC.Moore.mooreRegion}, \lean{HPC.Moore.spaceOfElts}.\\
+Moore, Theorem~3 (Theorem~\ref{thm:m25-3}) & \lean{HPC.Moore.exists_region_in_tube}, \lean{HPC.Moore.m25_theorem3}.\\
+Moore, Theorem~4 (Theorem~\ref{thm:m25-4}) & \lean{HPC.Moore.isTopologicalBasis_mooreRegion}, \lean{HPC.Moore.m25_theorem4}, \lean{HPC.Moore.spaceOfElts_topology}, \lean{HPC.Moore.cl_eq_closure_quot}.\\
+Moore, Theorem~2 (Theorem~\ref{thm:m25-2}) & \lean{HPC.Moore.m25_theorem2}.\\
+Proposition~\ref{prop:p420} & \lean{HPC.Moore.m25_axioms1245}, \lean{HPC.Moore.m25_FA_1_15}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:elements}}}\\
+Definition~\ref{def:arc-elt} & \lean{HPC.Moore.IsArcElt}, \lean{HPC.Moore.IsSCCElt}.\\
+Proposition~\ref{prop:arc-elt-top} & \lean{HPC.Moore.isCompact_of_isClosed_bounded}, \lean{HPC.Moore.isArcElt_iff_tarc}, \lean{HPC.Moore.isSCCElt_iff_tscc}.\\
+Moore, Theorems 5--8 and 10 (Theorem~\ref{thm:m25-5-10}) & \lean{HPC.Moore.m25_theorem5}, \lean{HPC.Moore.m25_theorem6}, \lean{HPC.Moore.m25_theorem7}, \lean{HPC.Moore.m25_theorem8}, \lean{HPC.Moore.m25_theorem10}.\\
+Moore, Theorem~9 (Theorem~\ref{thm:m25-9}) & \lean{HPC.Moore.m25_theorem9}.\\
+Corollary~\ref{cor:pts-nonsep} & \lean{HPC.Moore.not_separatesPlane_ptsOf}.\\
+Moore, Theorem~12 (Theorem~\ref{thm:m25-12}) & \lean{HPC.Moore.m25_theorem12}.\\
+Text of Section~\ref{sec:points} & \lean{HPC.Moore.mooreDecomp_ptSetoid}, \lean{HPC.Moore.ptHomeo}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:jordan}}}\\
+At least two components (Proposition~\ref{prop:mullikin-two}) & \lean{HPC.Moore.not_isConnected_compl_union}.\\
+At most two components; Eilenberg (Proposition~\ref{prop:mullikin-three}) & \lean{HPC.Moore.exists_jump}, \lean{HPC.Moore.no_log_pow_of_bounded_component}, \lean{HPC.Moore.not_two_bounded_components}, \lean{HPC.Moore.compl_union_two_components}.\\
+Mullikin's theorem (Theorem~\ref{thm:mullikin}) & \lean{HPC.Moore.mullikin_theorem5}.\\
+Lemma~\ref{lem:frontier-scc} & \lean{HPC.Moore.frontier_eq_of_scc}.\\
+Moore, Theorem~11 (Theorem~\ref{thm:m25-11}) & \lean{HPC.Moore.m25_theorem11}, \lean{HPC.Moore.sccInterior_spec}.\\
+Jordan curve theorem (Theorem~\ref{thm:jct}) & \lean{HPC.Jones.jordan_curve_theorem}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:axioms}}}\\
+Moore's derived notions (Definition~\ref{def:moore-notions}) & \lean{HPC.Moore.Space}, \lean{HPC.Moore.Space.IsLimitPt}, \lean{HPC.Moore.Space.bdry}, \lean{HPC.Moore.Space.cl}, \lean{HPC.Moore.Space.ext}, \lean{HPC.Moore.Space.IsConn}, \lean{HPC.Moore.Space.IsBoundedM}, \lean{HPC.Moore.Space.IsDomain}, \lean{HPC.Moore.Space.IsArc}, \lean{HPC.Moore.Space.IsSCC}, \lean{HPC.Moore.Space.IsSimpleChain}.\\
+Moore's axioms, F.A.\ pp.~132--133 (Definition~\ref{def:moore-axioms}) & \lean{HPC.Moore.Space.Axiom1} \dots\ \lean{HPC.Moore.Space.Axiom8}, \leansub{HPC.Moore.Space.Axiom5}{1}, \leansub{HPC.Moore.axiom5}{1}\lean{_of_axiom5}.\\
+The bridge (Proposition~\ref{prop:bridge}) & \lean{HPC.Moore.Space.topology}, \lean{HPC.Moore.fa_theorem6}, \lean{HPC.Moore.isTopologicalBasis_region}, \lean{HPC.Moore.isLimitPt_iff}, \lean{HPC.Moore.cl_eq_closure}, \lean{HPC.Moore.isClosedM_iff}, \lean{HPC.Moore.isConn_iff}, \lean{HPC.Moore.isDomain_iff}, \lean{HPC.Moore.heineBorel_iff}, \lean{HPC.Moore.t1Space}, \lean{HPC.Moore.regularSpace}, \lean{HPC.Moore.fa_theorem4}, \lean{HPC.Moore.secondCountable}, \lean{HPC.Moore.metrizable}, \lean{HPC.Moore.isCompact_closure_region}, \lean{HPC.Moore.isBoundedM_of_isCompact}.\\
+F.A.\ Theorems~1--3, 5, 7--9, 11--14, 17--19, 22 (Theorem~\ref{thm:fa-elementary}) & \lean{HPC.Moore.fa_theorem1}, \lean{HPC.Moore.fa_theorem2}, \lean{HPC.Moore.fa_theorem3}, \lean{HPC.Moore.fa_theorem5}, \lean{HPC.Moore.fa_theorem7}, \lean{HPC.Moore.fa_theorem8}, \lean{HPC.Moore.fa_theorem9}, \lean{HPC.Moore.fa_theorem11}, \lean{HPC.Moore.fa_theorem12}, \lean{HPC.Moore.fa_theorem13}, \lean{HPC.Moore.fa_theorem14}, \lean{HPC.Moore.fa_theorem17}, \lean{HPC.Moore.fa_theorem18}, \lean{HPC.Moore.fa_theorem19}, \lean{HPC.Moore.isConn_univ}, \lean{HPC.Moore.fa_theorem22}.\\
+F.A.\ Theorem~10 (Theorem~\ref{thm:fa10}) & \lean{HPC.Moore.fa_theorem10}, \lean{HPC.Moore.exists_simpleChain_sublist}.\\
+F.A.\ Theorem~15 (Theorem~\ref{thm:fa15}) & \lean{HPC.Moore.exists_chains}, \lean{HPC.Moore.exists_irreducible}, \lean{HPC.Moore.fa_theorem15}.\\
+F.A.\ Theorem~16 (Corollary~\ref{cor:fa16}) & \lean{HPC.Moore.fa_theorem16}.\\
+Proposition~\ref{prop:moore-arcs} & \lean{HPC.Moore.isArc_iff}, \lean{HPC.Moore.isSCC_iff_tscc}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:curves}}}\\
+F.A.\ Theorems~20 and~21 (Theorem~\ref{thm:fa20-21}) & \lean{HPC.Moore.fa_theorem20}, \lean{HPC.Moore.fa_theorem21}.\\
+The interior of a closed curve (Corollary~\ref{cor:interior}) & \lean{HPC.Moore.existsUnique_interior}, \lean{HPC.Moore.jordan}, \lean{HPC.Moore.Space.IsInteriorOf}.\\
+Text of the section ``The interior of a closed curve'' & \lean{HPC.Moore.Gen.ArcConn}, \lean{HPC.Moore.Gen.Th21Prop}, \lean{HPC.Moore.Gen.Ax8Prop}, \lean{HPC.Moore.Gen.TInt}.\\
+Text of the section ``The interior of a closed curve'' & \lean{HPC.Moore.Gen.exists_access}, \lean{HPC.Moore.Gen.exists_cross}.\\
+F.A.\ Theorem~23 (Theorem~\ref{thm:fa23}) & \lean{HPC.Moore.fa_theorem23}.\\
+F.A.\ Theorem~24 (Theorem~\ref{thm:fa24}) & \lean{HPC.Moore.fa_theorem24}, \lean{HPC.Moore.Gen.th24_sub}, \lean{HPC.Moore.Gen.th24_ext}, \lean{HPC.Moore.Gen.th24_disj}.\\
+F.A.\ Theorem~25 (Theorem~\ref{thm:fa25}) & \lean{HPC.Moore.fa_theorem25}, \lean{HPC.Moore.Gen.th25}.\\
+F.A.\ Theorem~26 (Theorem~\ref{thm:fa26}) & \lean{HPC.Moore.fa_theorem26}, \lean{HPC.Moore.Gen.th26}.\\
+F.A.\ Theorem~27 (Theorem~\ref{thm:fa27}) & \lean{HPC.Moore.fa_theorem27}, \lean{HPC.Moore.Gen.th27}.\\
+Splitting an interior (Corollary~\ref{cor:split-interior}) & \lean{HPC.Moore.split_interior}, \lean{HPC.Moore.split_interior_of}.\\
+F.A.\ Theorem~28 (Theorem~\ref{thm:fa28}) & \lean{HPC.Moore.fa_theorem28}.\\
+Text of the section ``Arcs near a curve: Theorems 28--30'' & \lean{HPC.Moore.fa_theorem29}, \lean{HPC.Moore.fa_theorem30}.\\
+F.A.\ Theorem~31; the pocket construction (Theorem~\ref{thm:fa31}) & \lean{HPC.Moore.fa_theorem31}, \lean{HPC.Moore.th31_pocket}.\\
+The two sides (Corollary~\ref{cor:sides}) & \lean{HPC.Moore.sides}.\\
+Propagation and accessibility; F.A.\ Theorem~32 (Theorem~\ref{thm:fa32}) & \lean{HPC.Moore.side_propagate}, \lean{HPC.Moore.accessible}, \lean{HPC.Moore.fa_theorem32}.\\
+F.A.\ Theorems~33 and~34 (Theorem~\ref{thm:fa33-34}) & \lean{HPC.Moore.reach_end}, \lean{HPC.Moore.joinZ}, \lean{HPC.Moore.fa_theorem33}, \lean{HPC.Moore.fa_theorem34_region}, \lean{HPC.Moore.fa_theorem34}.\\
+F.A.\ Theorems~39 and~40; accessibility of a closed curve (Theorem~\ref{thm:fa39-40}) & \lean{HPC.Moore.access}, \lean{HPC.Moore.fa_theorem39}, \lean{HPC.Moore.fa_theorem40}.\\
+F.A.\ Theorems~35 and~36 (Theorem~\ref{thm:fa35-36}) & \lean{HPC.Moore.fa_theorem35}, \lean{HPC.Moore.fa_theorem36}, \lean{HPC.Moore.fa_theorem36_interior_subset}.\\
+Chords form a null family; Moore 1919, Theorem~A (Lemma~\ref{lem:chords-null}) & \lean{HPC.Moore.chords_null}, \lean{HPC.Moore.m19_theoremA}.\\
+Text of the section ``Merging interiors: Theorems 37--43'' & \lean{HPC.Moore.exists_maximal_chord}, \lean{HPC.Moore.fa_theorem37}, \lean{HPC.Moore.fa_theorem38}.\\
+F.A.\ Theorem~41 (Theorem~\ref{thm:fa41}) & \lean{HPC.Moore.fa_theorem41_caseI_nested}, \lean{HPC.Moore.fa_theorem41_caseI}, \lean{HPC.Moore.fa_theorem41_of_subset}, \lean{HPC.Moore.fa_theorem41_caseII}, \lean{HPC.Moore.Gen.arc_replace}, \lean{HPC.Moore.fa_theorem41}.\\
+F.A.\ Theorem~42 (Theorem~\ref{thm:fa42}) & \lean{HPC.Moore.fa_theorem42_of_41}, \lean{HPC.Moore.fa_theorem42}.\\
+F.A.\ Theorem~43, corrected (Theorem~\ref{thm:fa43}) & \lean{HPC.Moore.dual_component}, \lean{HPC.Moore.fa_theorem43}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:rulings}}}\\
+Definition~\ref{def:quad} & \lean{HPC.Moore.Space.Quad}.\\
+Definition~\ref{def:double-ruling} & \lean{HPC.Moore.Space.DoubleRuling}, \lean{HPC.Moore.Space.DoubleRuling.carrier}, \lean{HPC.Moore.Space.DoubleRuling.cells}.\\
+Text of the section ``Quadrilaterals and double rulings'' & \lean{HPC.Moore.Space.ArcRuling}, \lean{HPC.Moore.Space.ArcRuling.toDoubleRuling}, \lean{HPC.Moore.Space.DoubleRuling.toArcRuling}, \lean{HPC.Moore.Space.ArcRuling.param_mono}.\\
+Lemma~\ref{lem:tiling} & \lean{HPC.Moore.Space.Tiling}, \lean{HPC.Moore.Space.Tiling.add_arc}, \lean{HPC.Moore.Space.Tiling.add_arc_finite}, \lean{HPC.Moore.Space.Tiling.components}.\\
+Subdivision lemma (Proposition~\ref{prop:cells-count}) & \lean{HPC.Moore.Space.DoubleRuling.tiling}, \lean{HPC.Moore.doubleRuling_cells_ncard}.\\
+Text of the section ``Cutting, gluing, extending and refining'' & \lean{HPC.Moore.Space.Quad.splitX}, \lean{HPC.Moore.Space.Quad.rot}, \lean{HPC.Moore.Space.Quad.Cut}.\\
+Cut and glue (Lemma~\ref{lem:cut-glue}) & \lean{HPC.Moore.Space.Quad.Cut.restrictA}, \lean{HPC.Moore.Space.Quad.Cut.restrictB}, \lean{HPC.Moore.Space.Quad.Cut.glue}, \lean{HPC.Moore.Space.ArcRuling.extendY}, \lean{HPC.Moore.Space.ArcRuling.extendY_finite}.\\
+Text of the section ``Cutting, gluing, extending and refining'' & \lean{HPC.Moore.Space.Rulable}, \lean{HPC.Moore.Space.DoubleRulable}.\\
+Refinement (Proposition~\ref{prop:refine}) & \lean{HPC.Moore.Space.ArcRuling.refine}, \lean{HPC.Moore.doubleRuling_refine}, \lean{HPC.Moore.Space.Quad.Cut.rulable}.\\
+Definition~\ref{def:chord-quad} & \lean{HPC.Moore.Space.IsChord}, \lean{HPC.Moore.Space.Crosses}, \lean{HPC.Moore.Space.IsCrossCut}.\\
+Text of the section ``Theorem C'' & \lean{HPC.Moore.no_ruling_of_two_branches}, \lean{HPC.Moore.tangent_configuration}, \lean{HPC.Moore.not_m19_theoremC_printed}.\\
+Chords (Proposition~\ref{prop:chords-rulable}) & \lean{HPC.Moore.Space.Pocket}, \lean{HPC.Moore.chordWeight}, \lean{HPC.Moore.outer_tile}, \lean{HPC.Moore.exists_gap}, \lean{HPC.Moore.chords_rulable}.\\
+A curve within (Proposition~\ref{prop:inside-rulable}) & \lean{HPC.Moore.inside_rulable}.\\
+Text of the section ``Theorem C'' & \lean{HPC.Moore.extract_chords}, \lean{HPC.Moore.curve_rulable}, \lean{HPC.Moore.m19_theoremC_corrected}, \lean{HPC.Moore.m19_theoremC_crosscuts}, \lean{HPC.Moore.m19_theoremC_within}.\\
+A nice curve about a compact set (Proposition~\ref{prop:nice-curve}) & \lean{HPC.Moore.lens_data}, \lean{HPC.Moore.lens_family}, \lean{HPC.Moore.exists_nice_curve}.\\
+Moore 1919, Theorem~D (Theorem~\ref{thm:theoremD}) & \lean{HPC.Moore.rulable_of_cover}, \lean{HPC.Moore.m19_theoremD}.\\
+Theorem~D for regions (Corollary~\ref{cor:theoremD-regions}) & \lean{HPC.Moore.m19_theoremD_regions_of_curves}, \lean{HPC.Moore.m19_theoremD_regions}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:plane}}}\\
+Definition~\ref{def:family-lines} & \lean{HPC.Sq.Family}, \lean{HPC.Sq.PreGrid}, \lean{HPC.Sq.box}, \lean{HPC.Sq.Grid}.\\
+A compact grid is a square (Theorem~\ref{thm:grid-square}) & \lean{HPC.Sq.Family.pos}, \lean{HPC.Sq.Grid.dense_t}, \lean{HPC.Sq.Grid.mem_L_of_pos_eq}, \lean{HPC.Sq.Grid.continuousOn_pos}, \lean{HPC.Sq.Grid.eq_of_pos_eq}, \lean{HPC.Sq.Grid.image_pos}, \lean{HPC.Sq.Grid.exists_square}, \lean{HPC.Sq.Grid.exists_square_param}.\\
+Boxes are components (Lemma~\ref{lem:boxes}) & \lean{HPC.Sq.PreGrid.box_nonempty}, \lean{HPC.Sq.PreGrid.box_sub_component}.\\
+Nested rulings (Lemma~\ref{lem:nested-rulings}) & \lean{HPC.Moore.nested_rulings}, \lean{HPC.Moore.nested_rulings_fund}.\\
+Schoenflies; Moore 1919, Theorem~E (Theorem~\ref{thm:schoenflies}) & \lean{HPC.Moore.lineFam}, \lean{HPC.Moore.lr_mono}, \lean{HPC.Moore.preGrid}, \lean{HPC.Moore.preGrid_box_sub_cell}, \lean{HPC.Moore.m19_schoenflies_proof}, \lean{HPC.Moore.m19_schoenflies_param}, \lean{HPC.Moore.m19_schoenflies_boundary_proof}, \lean{HPC.Moore.m19_schoenflies_boundary}.\\
+Corollary~\ref{cor:schoenflies-curve} & \lean{HPC.Moore.exists_quad}, \lean{HPC.Moore.exists_square_of_interior}.\\
+Annulus lemma (Theorem~\ref{thm:annulus}) & \lean{HPC.Moore.exists_cuts}, \lean{HPC.Moore.annulus_decomp}, \lean{HPC.Moore.exists_collar}, \lean{HPC.Moore.m19_annulus}, \lean{HPC.Moore.m19_annulus_square}.\\
+Lemma~\ref{lem:curve-about-compact} & \lean{HPC.Moore.preconnectedSpace}, \lean{HPC.Moore.exists_curve_about_compact}.\\
+Moore 1919, Theorem~F (Theorem~\ref{thm:theoremF}) & \lean{HPC.Moore.m19_theoremF_proof}, \lean{HPC.Moore.m19_theoremF}.\\
+Pasting (Proposition~\ref{prop:paste}) & \lean{HPC.Sq.exhaust_homeomorph}, \lean{HPC.Sq.plane_of_collars}.\\
+Moore's characterization of the plane (Theorem~\ref{thm:moore-plane}) & \lean{HPC.Moore.m19_plane_proof}, \lean{HPC.Moore.m19_plane}.\\
+Moore 1919, Theorem~G and the final paragraph (Corollary~\ref{cor:theoremG}) & \lean{HPC.Moore.m19_theoremG}, \lean{HPC.Moore.m19_openCurve}, \lean{HPC.Moore.m19_final}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:quotient}}}\\
+Interiors and exteriors (chapter introduction) & \lean{HPC.Moore.sccInterior}, \lean{HPC.Moore.sccExterior}, \lean{HPC.Moore.sccInterior_spec}, \lean{HPC.Moore.closure_sccInterior}, \lean{HPC.Moore.closure_sccExterior}.\\
+Proposition~\ref{prop:elt-top} & \lean{HPC.Moore.isArcElt_iff_tarc}, \lean{HPC.Moore.isSCCElt_iff_tscc}, \lean{HPC.Moore.isSCCElt_union}, \lean{HPC.Moore.t2Space_quot}, \lean{HPC.Moore.arcConn_quot}, \lean{HPC.Jones.tscc_homeomorph_circle}.\\
+Definition~\ref{def:restricted} & \lean{HPC.Moore.restrictedRegion}, \lean{HPC.Moore.spaceRestricted}.\\
+Lemma~\ref{lem:restricted-moore} & \lean{HPC.Moore.mooreRegion_of_restricted}, \lean{HPC.Moore.th21Prop_restricted}, \lean{HPC.Moore.ax8Prop_restricted}, \lean{HPC.Moore.isCompact_closure_restricted}, \lean{HPC.Moore.not_isCompact_univ_quot}.\\
+Janiszewski's theorem for elements (Lemma~\ref{lem:quot-jan}) & \lean{HPC.Moore.quot_janiszewski}.\\
+Moore, Theorem~13 (Theorem~\ref{thm:m25-13}) & \lean{HPC.Moore.not_subset_arc_of_cut}, \lean{HPC.Moore.m25_theorem13}.\\
+Moore, Theorem~14 (Theorem~\ref{thm:m25-14}) & \lean{HPC.Moore.exists_tscc_of_arcs}, \lean{HPC.Moore.m25_theorem14}.\\
+Moore, Theorems~15 and~16 (Theorem~\ref{thm:m25-15-16}) & \lean{HPC.Moore.m25_theorem15}, \lean{HPC.Moore.m25_theorem16}.\\
+Moore, Theorem~17 (Theorem~\ref{thm:m25-17}) & \lean{HPC.Moore.m25_theorem17}.\\
+Moore, Theorem~18 (Theorem~\ref{thm:m25-18}) & \lean{HPC.Moore.m25_theorem18}.\\
+Moore, Theorem~19 (Theorem~\ref{thm:m25-19}) & \lean{HPC.Moore.m25_theorem19}.\\
+Moore, Theorem~20 (Theorem~\ref{thm:m25-20}) & \lean{HPC.Moore.isTopologicalBasis_restricted}, \lean{HPC.Moore.m25_theorem20}, \lean{HPC.Moore.spaceRestricted_topology}.\\
+Moore, Theorem~21 (Theorem~\ref{thm:m25-21}) & \lean{HPC.Moore.m25r_axiom1}, \lean{HPC.Moore.m25r_axiom2}, \lean{HPC.Moore.m25r_axiom3}, \lean{HPC.Moore.m25r_axiom4}, \lean{HPC.Moore.m25r_axiom5}, \lean{HPC.Moore.m25r_axiom6}, \lean{HPC.Moore.m25r_axiom7}, \lean{HPC.Moore.m25r_axiom8}, \lean{HPC.Moore.m25_axioms6'7'}, \lean{HPC.Moore.m25_theorem21}.\\
+Moore, Theorem~22 (Theorem~\ref{thm:m25-22}) & \lean{HPC.Moore.m25_theorem22}, \lean{HPC.Moore.m25_theorem22_moore}.\\
+Proposition~\ref{prop:monotone} & \lean{HPC.Hagopian.isPreconnected_preimage_of_monotone}, \lean{HPC.Hagopian.isDecomposableSpace_of_monotone_image}.\\
+Lemma~\ref{lem:fibre-usc} & \lean{HPC.Hagopian.fibreSetoid}, \lean{HPC.Hagopian.fibre_usc}.\\
+Corollary~\ref{cor:monotone-plane} & \lean{HPC.Hagopian.fibreSetoid_mooreDecomp}, \lean{HPC.Hagopian.exists_plane_quotient_of_monotone_aux}, \lean{HPC.Hagopian.exists_plane_quotient_of_monotone}.\\
+Cross-cuts in the plane (Theorem~\ref{thm:plane-split}) & \lean{HPC.Hagopian.plane_split}.\\
+Schoenflies theorem in the plane, one side prescribed (Theorem~\ref{thm:plane-schoenflies}) & \lean{HPC.Hagopian.plane_schoenflies_aux}.\\
+Two-sided collars (Theorem~\ref{thm:collar}) & \lean{HPC.Hagopian.IsCollar}, \lean{HPC.Hagopian.exists_collar}.\\
+
+\end{longtable}

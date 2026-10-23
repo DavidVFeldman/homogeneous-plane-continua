@@ -1,0 +1,169 @@
+%======================================================================
+\chapter{Correspondence with the formal proof}\label{app:formal}
+%======================================================================
+
+The table lists the definitions and results of this volume that carry a ``Formal counterpart''
+line, together with the corresponding declarations of the Lean development. All declaration
+names start with \lean{HPC.}. The formal statements are sometimes slightly more general, or are
+split differently into lemmas; the table points to the place where the content of each result is
+proved. Rows are in the order of the text; rows labelled ``Text of \dots'' belong to formal counterpart lines in the
+running text of the named section.
+
+The main theorems of the volume are, in the Lean development (prefix \lean{HPC.} omitted):
+\begin{center}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.54\textwidth}@{}}
+\toprule
+Jones 1948, Theorem~3 (Theorem~\ref{thm:jones48-3}) & \lean{Jones.theorem3}\\
+Jones 1948, Theorem~8 (Theorem~\ref{thm:jones48-8}) & \lean{Jones.theorem8}\\
+Spreading (Theorem~\ref{thm:spreading}) & \lean{Jones.aposAt_of_isContinuum_interior}\\
+Jones 1951, Lemma (Theorem~\ref{thm:jones51-lemma}) & \lean{Jones.jones51_lemma}\\
+Bing 1948, Theorem~5 (Theorem~\ref{thm:bing5}) & \lean{Plane.arcs_theorem5_point}\\
+Jones 1955, Theorem~1(b), (c) (Theorems~\ref{thm:jones55-b}, \ref{thm:jones55-c}) & \lean{Jones.jones55_b}, \lean{Jones.jones55_c}\\
+$G$ is continuous (Theorem~\ref{thm:jones55-usc}) & \lean{Jones.jones55_continuous}\\
+Jones 1955, Theorem~1(a) (Theorem~\ref{thm:jones55-a}) & \lean{Jones.jones55_a}\\
+Elements do not separate (Theorem~\ref{thm:elt-not-separates}) & \lean{Jones.jones55_elt_not_separates}\\
+Jones 1951, Theorem~1 (Theorem~\ref{thm:jones51-1}) & \lean{Jones.jones51_theorem1}\\
+Menger's theorem (Theorem~\ref{thm:menger}) & \lean{Jones.menger_order_two}\\
+Separating point--order theorem (Theorem~\ref{thm:sep-order}) & \lean{Jones.countable_sepPoint_not_hasOrder_two}\\
+Whyburn (9.2) (Corollary~\ref{cor:whyburn}(a)) & \lean{Jones.whyburn_9_2}\\
+Sector theorem (Theorem~\ref{thm:sector}) & \lean{Jones.sector_theorem}\\
+Cyclic order (Theorem~\ref{thm:cyclic}) & \lean{Jones.sector_cyclic_order}\\
+Whyburn 1939, Theorem~14 (Theorem~\ref{thm:whyburn14}) & \lean{Jones.whyburn39_theorem14}\\
+Whyburn 1939, Corollary~1 (Theorem~\ref{thm:whyburn-cor1}) & \lean{Jones.whyburn39_corollary1}\\
+Jones 1949, Theorem~1 (Theorem~\ref{thm:jones49-1}) & \lean{Jones.jones49_theorem1}\\
+Jones 1949, Theorem~2 (Corollary~\ref{cor:jones49-2}) & \lean{Jones.jones49_theorem2}\\
+Jones 1955, Theorem~2 (Theorem~\ref{thm:jones55-2}) & \lean{Jones.jones55_theorem2'}\\
+Two complementary domains (Corollary~\ref{cor:jones55-remarks}) & \lean{Jones.jones55_two_domains'}, \lean{Jones.jones55_elements_indecomposable'}\\
+The elements are pseudo-arcs (Proposition~\ref{prop:elements-pseudoarc}) & \lean{BJ59.isPseudoArc_Lset'}\\
+The decomposable case (Theorem~\ref{thm:decomposable}) & \lean{BJ59.circle_or_atomic_of_decomposable}\\
+\bottomrule
+\end{tabular}
+\end{center}
+All of them are proved in the Lean development without \lean{sorry} and without axioms beyond the
+standard ones of Lean and Mathlib. The printed forms that are false (Section~\ref{sec:intro-diff}) are
+refuted by the declarations whose names begin with \lean{not_}.
+
+\begin{longtable}{@{}p{0.40\textwidth}p{0.56\textwidth}@{}}
+\toprule
+In these notes & In the Lean development\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:apos}}}\\
+Text of ``Conventions and definitions'' & The setting is a type \lean{X} with \lean{[MetricSpace X] [CompactSpace X] [ConnectedSpace X]}; continua in $X$ are \lean{HPC.Fold.Q78.IsContinuum}; decomposability is \lean{HPC.Jones.IsDecomposableSpace}.\\
+Definition~\ref{def:apos} & \lean{HPC.Jones.AposAt}, \lean{HPC.Jones.AposyndeticAt}, \lean{HPC.Jones.IsAposyndetic}, \lean{HPC.Jones.TotallyNonAposyndetic}; $\Us x$ is \lean{HPC.Jones.aposSet} (with \lean{HPC.Jones.aposSet_eq}) and $\Ls x$ is \lean{HPC.Jones.Lset} (with \lean{HPC.Jones.Lset_compl}).\\
+Definition~\ref{def:slc} & \lean{HPC.Jones.SemiLocConnAt}.\\
+Definition~\ref{def:cuts} & \lean{HPC.Jones.CutsPts}, \lean{HPC.Jones.IsWeakCutPoint}, \lean{HPC.Jones.IsStrongCutPoint}.\\
+Lemma~\ref{lem:apos-basic} & \lean{HPC.Jones.aposAt_of_mem}, \lean{HPC.Jones.aposAt_homeomorph_iff}, \lean{HPC.Jones.aposSet_homeomorph}, \lean{HPC.Jones.Lset_homeomorph}.\\
+Theorem~\ref{thm:jones48-1} & \lean{HPC.Jones.isOpen_setOf_aposAt}, \lean{HPC.Jones.isOpen_aposSet}, \lean{HPC.Jones.isClosed_Lset}, \lean{HPC.Jones.theorem1}. Jones states the sequential form with the hypotheses $x\ne y$, $x_i\ne y_i$, which are not needed.\\
+Lemma~\ref{lem:heine-borel} & \lean{HPC.Jones.exists_finite_apos_cover}, \lean{HPC.Jones.exists_nhd_uniform_apos}.\\
+Lemma~\ref{lem:apos-frontier} & \lean{HPC.Jones.aposAt_of_frontier}; the last step is \lean{HPC.Jones.exists_open_subset_component}.\\
+Theorem~\ref{thm:jones48-3} & \lean{HPC.Jones.theorem3}, \lean{HPC.Jones.isContinuum_Lset}. Jones prints no proof.\\
+Theorem~\ref{thm:jones48-0} & \lean{HPC.Jones.theorem0}. Jones only says that it ``may be established with the help of the Heine--Borel theorem''.\\
+Corollary~\ref{cor:jones41} & \lean{HPC.Jones.semiLocConn_of_isAposyndetic}, \lean{HPC.Jones.isAposyndetic_of_semiLocConn}.\\
+Proposition~\ref{prop:whyburn62} & \lean{HPC.Jones.whyburn_6_2}; also Whyburn's (6.1) and (6.21), \lean{HPC.Jones.whyburn_6_1}, \lean{HPC.Jones.whyburn_6_21}. Whyburn argues with the components of $X\setminus V_\delta(x)$; the formal proof goes through Theorem~\ref{thm:jones48-0}.\\
+Theorem~\ref{thm:jones48-8} & \lean{HPC.Jones.theorem8}, \lean{HPC.Jones.theorem9}; the first direction is \lean{HPC.Jones.aposAt_of_decomposition}.\\
+Theorem~\ref{thm:jones48-7} & \lean{HPC.Jones.theorem7}, with \lean{HPC.Jones.isContinuum_prod_cross}.\\
+Remark~\ref{rem:jones48-rest} & \lean{HPC.Jones.theorem6}, \lean{HPC.Jones.not_theorem6_printed}, \lean{HPC.Jones.theorem10}, \lean{HPC.Jones.theorem10_printed_iff}, \lean{HPC.Jones.not_theorem10_printed_unitInterval}, \lean{HPC.Jones.theorem11}, \lean{HPC.Jones.theorem12}, \lean{HPC.Jones.theorem13}, \lean{HPC.Jones.totallyNonApos_exists_weakCutPoint}, \lean{HPC.Jones.theorem18} (in \lean{HPC/Jones/Basic.lean}, \lean{HPC/Jones/Theorem6.lean}, \lean{HPC/Jones/Theorem13.lean}, \lean{HPC/Jones/CutPoints.lean}).\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:spread}}}\\
+Text of ``chapter introduction'' & \lean{HPC.Jones.IsHomogeneous}; it is the hypothesis of \lean{HPC.Effros.effros_homogeneous} (\lean{HPC.Jones.isHomogeneous_iff_isPretransitive}).\\
+Theorem~\ref{thm:spreading} & \lean{HPC.Jones.aposAt_of_isContinuum_interior}, from \lean{HPC.Effros.effros_homogeneous}.\\
+Corollary~\ref{cor:trans} & \lean{HPC.Jones.not_aposAt_trans}.\\
+Lemma~\ref{lem:open-subset-U} & \lean{HPC.Jones.isOpen_setOf_subset_aposSet}.\\
+Theorem~\ref{thm:jones51-lemma} & \lean{HPC.Jones.jones51_lemma}, with the function $g$ from \lean{HPC.Jones.exists_lsc_strictMono_aposSet}. Jones's proof runs a transfinite sequence of points $x_0,x_1,\dots$ through the countable ordinals with $\Us{x_i}$ strictly decreasing, and contradicts second countability; the lower semicontinuous function replaces the transfinite recursion.\\
+Lemma~\ref{lem:tight-conn} & \lean{HPC.Plane.Arcs48.isPreconnected_closure_diff_union} (Bing: ``$F_i+N$ is a continuum'').\\
+Lemma~\ref{lem:tight-piece} & \lean{HPC.Plane.Arcs48.exists_nowhereDense_piece}.\\
+Lemma~\ref{lem:tight-case} & \lean{HPC.Plane.Arcs48.exists_point_of_tight}.\\
+Lemma~\ref{lem:bing-seq} & \lean{HPC.Plane.Arcs48.tight_or_point}, \lean{HPC.Plane.Arcs48.exists_point_dense}.\\
+Theorem~\ref{thm:bing5} & \lean{HPC.Plane.arcs_theorem5_point}; the general form for a proper subset $R$ in place of $\set r$ is \lean{HPC.Plane.arcs_theorem5}.\\
+Corollary~\ref{cor:bing2} & \lean{HPC.Plane.arcs_corollary2}, with Bing's relation ``$R$ cuts $A$ from $B$ in $M$'' as \lean{HPC.Plane.Cuts}.\\
+Proposition~\ref{prop:claim35} & \lean{HPC.Jones.exists_continuum_meets_of_open}, \lean{HPC.Jones.jones55_claim3}, \lean{HPC.Jones.exists_continuum_of_mem_aposSet}, \lean{HPC.Jones.jones55_claim5}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:jones55}}}\\
+Lemma~\ref{lem:U-eq} & \lean{HPC.Jones.aposSet_eq_of_not_aposAt}.\\
+Theorem~\ref{thm:jones55-b} & \lean{HPC.Jones.mem_Lset_iff_Lset_eq}, \lean{HPC.Jones.jones55_b}. Jones assumes $X$ decomposable, which is not needed.\\
+Theorem~\ref{thm:jones55-c} & \lean{HPC.Jones.Lset_subset_of_meets}, \lean{HPC.Jones.jones55_c}.\\
+Text of ``The sets $\Ls x$ partition $X$'' & The relation $\Ls x=\Ls y$ is \lean{HPC.Jones.lRel}, the setoid is \lean{HPC.Jones.lSetoid}, and \lean{HPC.Jones.cls_lSetoid} says that its classes are the sets $\Ls x$.\\
+Remark~\ref{rem:props} & \lean{HPC.Jones.jones55_prop_a}, \lean{HPC.Jones.jones55_prop_b}, \lean{HPC.Jones.jones55_prop_c}, \lean{HPC.Jones.jones55_prop_d}, \lean{HPC.Jones.jones55_prop_e}, \lean{HPC.Jones.jones55_prop_f}, with $N_o$ as \lean{HPC.Jones.Nset} and \lean{HPC.Jones.Nset_eq_Lset}. Jones's intermediate claims (1)--(12) are also proved, as \lean{HPC.Jones.jones55_claim1} through \lean{HPC.Jones.jones55_claim12}.\\
+Theorem~\ref{thm:jones55-usc} & \lean{HPC.Jones.isClosed_lSetoid}, \lean{HPC.Jones.jones55_usc}, \lean{HPC.Jones.lSetoid_homeomorph}, \lean{HPC.Jones.jones55_continuous}; from \lean{HPC.Jones.isUSCDecomp_of_isClosed}, \lean{HPC.Jones.exists_lscAt} (with \lean{HPC.Jones.residual_lscAt}) and \lean{HPC.Jones.lscAt_homeomorph}. Jones argues upper semicontinuity with convergent sequences of elements and property (f).\\
+Theorem~\ref{thm:jones55-a} & \lean{HPC.Jones.jones55_a}; homogeneity from \lean{HPC.Jones.exists_homeomorph_quotient}, nondegeneracy from \lean{HPC.Jones.theorem8}. Jones states aposyndesis of $X/G$ without argument; the proof above uses the continuity of $G$.\\
+Proposition~\ref{prop:jones55-elements} & \lean{HPC.Jones.Lset_eq_singleton_of_isAposyndetic}, \lean{HPC.Jones.jones55_elements}, \lean{HPC.Jones.isHomogeneous_Lset}, \lean{HPC.Jones.aposSet_nonempty}, \lean{HPC.Jones.interior_Lset_eq_empty}, \lean{HPC.Jones.jones55_claim12}.\\
+Proposition~\ref{prop:compl-connected} & \lean{HPC.Jones.jones55_compl_continuumwise}, \lean{HPC.Jones.jones55_compl_connected}; Jones writes ``it is clear that for each $g$ of $G$, $M-g$ is connected (strongly or continuum-wise connected) because of (5)''.\\
+Lemma~\ref{lem:disjoint-open-countable} & \lean{HPC.Jones.countable_of_pairwiseDisjoint_open}.\\
+Theorem~\ref{thm:elt-not-separates} & \lean{HPC.Jones.jones55_elt_not_separates}, using \lean{HPC.Jones.separatesPlane_of_homeomorph}, \lean{HPC.Jones.closure_component_compl_subset}, \lean{HPC.Jones.uncountable_quotient} and \lean{HPC.Jones.uncountable_of_connected_metrizable}. Jones's proof says only that ``if one separates, all do, which is impossible''; the disjointness of the domains $W_g$ is the missing step.\\
+Theorem~\ref{thm:jones51-1} & \lean{HPC.Jones.jones51_theorem1}. Jones's own proof builds the decomposition of the 1955 paper in an early form, passes to the decomposition space and applies Whyburn's (6.21) there.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:order}}}\\
+Definition~\ref{def:order} & \lean{HPC.Jones.OrderLE}, \lean{HPC.Jones.HasOrder}.\\
+Lemma~\ref{lem:order-basic} & \lean{HPC.Jones.orderLE_homeomorph}, \lean{HPC.Jones.hasOrder_homeomorph}, \lean{HPC.Jones.orderLE_subtype}.\\
+Lemma~\ref{lem:triod} & \lean{HPC.Jones.not_orderLE_two_of_triod}.\\
+Proposition~\ref{prop:finite-order-lc} & \lean{HPC.Jones.locallyConnectedSpace_of_orderLE}.\\
+Lemma~\ref{lem:open-continuum} & \lean{HPC.Jones.exists_continuum_of_isOpen}.\\
+Proposition~\ref{prop:finite-order-arcs} & \lean{HPC.Jones.exists_tarc_of_orderLE}.\\
+Lemma~\ref{lem:legs} & \lean{HPC.Jones.arc_eq_of_legs}.\\
+Theorem~\ref{thm:menger} & \lean{HPC.Jones.menger_order_two}, with \lean{HPC.Jones.frontier_connectedComponentIn_subset}, \lean{HPC.Jones.isPreconnected_diff_of_frontier} and \lean{HPC.Jones.tscc_homeomorph_circle} (two arcs glued along their ends, \lean{HPC.Jones.glue_circle}). Menger's own route goes through his $n$-Beinsatz and the classification of curves of order~2; the proof above is his second argument (the first point on an arc is a branch point), applied twice.\\
+Corollary~\ref{cor:order-two} & \lean{HPC.Jones.jones49_order_two}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:whyburn}}}\\
+Definition~\ref{def:sep-point} & \lean{HPC.Jones.IsSepPointOf}, \lean{HPC.Jones.IsLocalSepPoint}. Whyburn's phrase is ``$R-p=R_a+R_b$ with $a\in R_a$, $b\in R_b$ in the component of $R$ containing $p$''.\\
+Text of ``Separating points of an open set'' & \lean{HPC.Jones.IsLocalSepPoint.homeomorph}.\\
+Lemma~\ref{lem:side} & \lean{HPC.Jones.isPreconnected_side}, \lean{HPC.Jones.isPreconnected_diff_side}.\\
+Proposition~\ref{prop:whyburn91} & \lean{HPC.Jones.whyburn_9_1}, with \lean{HPC.Jones.exists_continuum_bump_compact} (boundary bumping for a compact piece of a connected set) and \lean{HPC.Jones.whyburn_9_1_side}. Whyburn uses at this point that ``the components \dots\ are nondegenerate'' (his I, (10.2)).\\
+Lemma~\ref{lem:sep-not-order1} & \lean{HPC.Jones.not_orderLE_one_of_isSepPointOf}, \lean{HPC.Jones.hasOrder_two_of_isSepPointOf}.\\
+Definition~\ref{def:sepchain} & \lean{HPC.Jones.SepChain}, with the order \lean{HPC.Jones.SepChain.lt}.\\
+Lemma~\ref{lem:chain-order} & \lean{HPC.Jones.SepChain.lt_iff}, \lean{HPC.Jones.SepChain.lt_total}, \lean{HPC.Jones.SepChain.lt_asymm}, \lean{HPC.Jones.SepChain.lt_trans}, \lean{HPC.Jones.SepChain.B_sub}, \lean{HPC.Jones.SepChain.A_sub}.\\
+Text of ``Separation chains'' & \lean{HPC.Jones.SepChain.M}, \lean{HPC.Jones.SepChain.M_isPreconnected}, \lean{HPC.Jones.SepChain.M_closed}, \lean{HPC.Jones.SepChain.M_mono_left}, \lean{HPC.Jones.SepChain.M_mono_right}, \lean{HPC.Jones.SepChain.M_sub_BA}.\\
+Lemma~\ref{lem:counting} & \lean{HPC.Jones.countable_not_mem_closure_of_lt}.\\
+Text of ``Separation chains'' & \lean{HPC.Jones.SepChain.Good}, \lean{HPC.Jones.SepChain.Res}.\\
+Lemma~\ref{lem:good-res} & \lean{HPC.Jones.SepChain.countable_not_good}, \lean{HPC.Jones.SepChain.Res_sub_B}, \lean{HPC.Jones.SepChain.Res_sub_A}, \lean{HPC.Jones.SepChain.countable_res}.\\
+Proposition~\ref{prop:good-order2} & \lean{HPC.Jones.SepChain.exists_small_interval}, \lean{HPC.Jones.SepChain.exists_open_frontier_pair} (with the cut-wire lemma \lean{HPC.Jones.exists_clopen_of_connectedComponentIn_disjoint}), \lean{HPC.Jones.SepChain.orderLE_two}. This replaces Whyburn's (8.3) and (2.21)--(2.22).\\
+Corollary~\ref{cor:chain-countable} & \lean{HPC.Jones.SepChain.countable_of_not_orderLE_two}.\\
+Theorem~\ref{thm:sep-order} & \lean{HPC.Jones.countable_sepPoint_not_hasOrder_two}, from \lean{HPC.Jones.countable_sepPoint_not_orderLE_two}, \lean{HPC.Jones.sepT}, \lean{HPC.Jones.sepT_mem_component}, \lean{HPC.Jones.countable_sepT}.\\
+Corollary~\ref{cor:whyburn} & \lean{HPC.Jones.whyburn_9_2}, \lean{HPC.Jones.whyburn_8_4}, \lean{HPC.Jones.whyburn_3_2}.\\
+Corollary~\ref{cor:some-order-two} & \lean{HPC.Jones.jones49_some_order_two}, \lean{HPC.Jones.jones49_some_order_two_of_whyburn_9_2}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:sectors}}}\\
+Definition~\ref{def:annulus} & \lean{HPC.Jones.Sector.Ann}, \lean{HPC.Jones.Sector.IsCrossA}, \lean{HPC.Jones.Sector.Strip}, \lean{HPC.Jones.Sector.IsCross}, \lean{HPC.Jones.Sector.Ecov}, \lean{HPC.Jones.Sector.dist_Ecov}.\\
+Lemma~\ref{lem:lift} & \lean{HPC.Jones.Sector.exists_log_cross}, \lean{HPC.Jones.Sector.exists_lift} (the lift as \lean{HPC.Jones.Sector.IsLift}), \lean{HPC.Jones.Sector.exists_normalized_lift} (a lift whose leftmost points have first coordinate in $[0,2\pi)$).\\
+Definition~\ref{def:sides} & \lean{HPC.Jones.Sector.Rc}, \lean{HPC.Jones.Sector.Lc}, \lean{HPC.Jones.Sector.NotR}, with \lean{HPC.Jones.Sector.SideOf}, \lean{HPC.Jones.Sector.FarR}, \lean{HPC.Jones.Sector.FarL}.\\
+Text of ``The two sides of a crossing set'' & \lean{HPC.Jones.Sector.sideOf_absorb}, \lean{HPC.Jones.Sector.sideOf_open_rel}, \lean{HPC.Jones.Sector.GoodSide.exists_mem_closure}, \lean{HPC.Jones.Sector.GoodSide.union_isPreconnected}.\\
+Theorem~\ref{thm:strip-sep} & \lean{HPC.Jones.Sector.no_cross_join}, \lean{HPC.Jones.Sector.exists_compact_join}, \lean{HPC.Jones.Sector.lc_disjoint_rc}.\\
+Definition~\ref{def:prec} & \lean{HPC.Jones.Sector.Prec}.\\
+Proposition~\ref{prop:prec} & \lean{HPC.Jones.Sector.prec_total}, \lean{HPC.Jones.Sector.prec_asymm}, \lean{HPC.Jones.Sector.prec_trans}, \lean{HPC.Jones.Sector.prec_of_notR}, \lean{HPC.Jones.Sector.rc_mono}, \lean{HPC.Jones.Sector.notR_mono}, \lean{HPC.Jones.Sector.prec_min}, \lean{HPC.Jones.Sector.prec_sh_self}.\\
+Text of ``Sectors'' & \lean{HPC.Jones.Sector.LiftFam}, \lean{HPC.Jones.Sector.Sec}, \lean{HPC.Jones.Sector.sec_open_rel}, \lean{HPC.Jones.Sector.LiftFam.prec_shift_pos}.\\
+Proposition~\ref{prop:sectors} & \lean{HPC.Jones.Sector.LiftFam.sub_sec}, \lean{HPC.Jones.Sector.LiftFam.sec_disjoint_mem}, \lean{HPC.Jones.Sector.LiftFam.sec_nonempty}, \lean{HPC.Jones.Sector.LiftFam.sec_disjoint}, \lean{HPC.Jones.Sector.LiftFam.sec_cover}.\\
+Theorem~\ref{thm:sector} & \lean{HPC.Jones.sector_theorem}, from \lean{HPC.Jones.Sector.sector_two} and \lean{HPC.Jones.Sector.two_piece_lift}; Moore uses it on p.~236 of his 1922 paper (``must clearly contain a point either of $k_{n-1}$ or of $k_{n+1}$'').\\
+Theorem~\ref{thm:cyclic} & \lean{HPC.Jones.sector_cyclic_order}, from \lean{HPC.Jones.Sector.sector_cyclic}, \lean{HPC.Jones.Sector.sector_props}, \lean{HPC.Jones.Sector.preconnected_sub_piece}. Moore (p.~237) orders the continua by their points on a middle circle; the order of the lifts avoids having to show that this is well defined.\\
+Definition~\ref{def:cik} & \lean{HPC.Jones.CikAt}.\\
+Proposition~\ref{prop:cik} & \lean{HPC.Jones.locallyConnectedSpace_of_cikAt}, \lean{HPC.Jones.exists_crossing_continua}, and for closed sets \lean{HPC.Jones.Sector.exists_crossing_continua_closed}. Moore attributes (b) to ``the argument beginning with the second line from the bottom of page 365'' of a 1918 note.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:boundaries}}}\\
+Text of ``chapter introduction'' & \lean{HPC.Jones.isConnected_frontier_complDomain}.\\
+Lemma~\ref{lem:whyburn622} & \lean{HPC.Jones.whyburn39_6_22_sec14}.\\
+Lemma~\ref{lem:join} & \lean{HPC.Jones.Sec14.join_in_domain}; it replaces Whyburn's $\theta$-curve step and Moore's curve $C$ (\lean{HPC.Jones.whyburn39_moore_curve} records the form used).\\
+Proposition~\ref{prop:local-join} & \lean{HPC.Jones.Sec14.local_join_of_noncut}, \lean{HPC.Jones.whyburn39_local_noncut}.\\
+Text of ``Theorem 14'' & \lean{HPC.Jones.Sec14.BadAt}.\\
+Lemma~\ref{lem:accum} & \lean{HPC.Jones.Sec14.not_orderLE_of_accumulating}, recorded as \lean{HPC.Jones.whyburn39_curve_from_order_two}; it replaces Whyburn's curve $K$ and his pigeonhole argument.\\
+Lemma~\ref{lem:bad-point} & \lean{HPC.Jones.Sec14.exists_bad_point_of_crossing}. This is Moore's 1922 argument (p.~236) at an arbitrary radius; at the middle radius it gives Moore's local sufficiency theorem \lean{HPC.Jones.moore22_sufficiency_local}, \lean{HPC.Jones.Sector.sufficiency_local}.\\
+Theorem~\ref{thm:whyburn14} & \lean{HPC.Jones.whyburn39_theorem14}.\\
+Lemma~\ref{lem:theta} & \lean{HPC.Jones.theta_no_common_side}, \lean{HPC.Jones.theta_not_subset_closure} (with \lean{HPC.Jones.jordan_side}).\\
+Lemma~\ref{lem:frontier-cyclic} & \lean{HPC.Jones.frontier_cyclic}, \lean{HPC.Jones.frontier_cyclic'}.\\
+Proposition~\ref{prop:cyclic-peano} & \lean{HPC.Jones.exists_tarc_in_open}, \lean{HPC.Jones.exists_tarc_of_locallyConnected}, \lean{HPC.Jones.exists_scc_of_cyclic}, \lean{HPC.Jones.exists_theta_of_cyclic}, \lean{HPC.Jones.theta_of_cyclic_peano}.\\
+Theorem~\ref{thm:whyburn-cor1} & \lean{HPC.Jones.whyburn39_corollary1}, with \lean{HPC.Jones.tscc_homeomorph_circle}. Whyburn gives no proof and refers to Wilder (1938). The hypothesis ``no cut points'' is stated there as: $M\setminus\set z$ is connected and nonempty for every $z\in M$, which includes nondegeneracy. The same argument also shows that every point of $B$ is accessible from $R$: \lean{HPC.Jones.accessible_of_cyclic}, which the classification does not need.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:jones49}}}\\
+Text of ``chapter introduction'' & The statement is \lean{HPC.Jones.Jones49Thm1}; the one-point counterexample to the printed version is \lean{HPC.Jones.not_jones49_theorem1_point}.\\
+Lemma~\ref{lem:jones49-setting} & \lean{HPC.Jones.jones49_setting}, \lean{HPC.Jones.jones49_simple_domains}. Jones: ``Because $M$ is homogeneous and contains a non-separating point, no point of $M$ separates $M$. Since $M$ is aposyndetic, $M$ is semi-locally-connected. Hence each element of $G$ is a simple domain.''\\
+Lemma~\ref{lem:local-sep} & \lean{HPC.Jones.isLocalSepPoint_of_open_sub_tscc}, \lean{HPC.Jones.isLocalSepPoint_of_separation}.\\
+Lemma~\ref{lem:frontier-of-jordan} & \lean{HPC.Jones.frontier_cc_of_jordan}.\\
+Proposition~\ref{prop:case1} & \lean{HPC.Jones.exists_frontier_through}, \lean{HPC.Jones.countable_complDomains}, \lean{HPC.Jones.jones49_case1_core}, \lean{HPC.Jones.jones49_case1}. Jones ends with: ``Since no point of $M$ is of order~2 in $M$, each point of $J_i$ is a limit point of $M-J_i$. This contradicts a well known theorem (Baire).''\\
+Lemma~\ref{lem:theta-sep} & \lean{HPC.Jones.theta_separation}, \lean{HPC.Jones.theta_separation_core}, with \lean{HPC.Jones.mem_cc_of_not_mem_domain} and \lean{HPC.Jones.side_eq_cc}.\\
+Proposition~\ref{prop:case2} & \lean{HPC.Jones.exists_domain_meeting}, \lean{HPC.Jones.exists_theta_arcs}, \lean{HPC.Jones.jones49_case2_core}, \lean{HPC.Jones.jones49_case2}; the polygonal arc is \lean{HPC.Jones.exists_tarc_of_isOpen_plane}. Jones: ``It follows that $M-(A+B)$ is \emph{not} connected, but $M-B$ \emph{is} connected. Hence $A$ is a local separating point of $M$.''\\
+Theorem~\ref{thm:jones49-1} & \lean{HPC.Jones.jones49_theorem1}, of type \lean{HPC.Jones.Jones49Thm1}.\\
+Corollary~\ref{cor:jones49-2} & \lean{HPC.Jones.jones49_theorem2}, from \lean{HPC.Jones.theorem18}; the one-point space is again a counterexample to the printed statement, \lean{HPC.Jones.not_jones49_theorem2_point}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:decomposable}}}\\
+Definition~\ref{def:gprime} & \lean{HPC.Jones.gPrime}.\\
+Proposition~\ref{prop:gprime} & \lean{HPC.Jones.isClosedMap_mk_gPrime}, \lean{HPC.Jones.mooreDecomp_gPrime}, \lean{HPC.Jones.jones55_plane}, \lean{HPC.Jones.jones55_embedding_data}, \lean{HPC.Jones.jones55_embedding}. This is the construction of \vfive{Corollary~9.16}; Jones states the upper semicontinuity of $G'$ without argument.\\
+Theorem~\ref{thm:jones55-2} & \lean{HPC.Jones.jones55_circle}, \lean{HPC.Jones.jones55_theorem2'} (and \lean{HPC.Jones.jones55_theorem2}, with Theorem~\ref{thm:jones49-1} as a hypothesis).\\
+Corollary~\ref{cor:jones55-remarks} & \lean{HPC.Jones.jones55_two_domains'}, \lean{HPC.Jones.jones55_elements_indecomposable'}, \lean{HPC.Jones.jones55_three_domains'}; the plane Jordan curve theorem used is \lean{HPC.Jones.jordan_curve_theorem}. Jones derives (b) from his 1951 paper; the formal proof derives it from (a) as above.\\
+Proposition~\ref{prop:elements-pseudoarc} & \lean{HPC.BJ59.isPseudoArc_Lset'}, from \lean{HPC.HO16.isPseudoArc_of_indec_homogeneous} and \lean{HPC.HO16.ho16_theorem20}.\\
+Definition~\ref{def:atomic} & \lean{HPC.BJ59.IsAtomicMap}, \lean{HPC.BJ59.IsAtomicCircPAMap}. The terminology is that of Domokos and Prajs.\\
+Lemma~\ref{lem:open-quotient} & \lean{HPC.BJ59.isOpenMap_quotient_mk_of_continuous}.\\
+Theorem~\ref{thm:decomposable} & \lean{HPC.BJ59.circle_or_atomic_of_decomposable}.\\
+Remark~\ref{rem:circle-like} & \lean{HPC.BJ59.circle_or_circPAMap_of_decomposable}, with the map structure \lean{HPC.BJ59.IsCircPAMap}.\\[4pt]
+\end{longtable}

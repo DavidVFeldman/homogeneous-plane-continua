@@ -1,0 +1,311 @@
+%======================================================================
+\chapter{Snake-like and circle-like continua}\label{ch:snake}
+%======================================================================
+
+Recall from Volume~1 that a chain $D=(D_0,\dots,D_{n-1})$ is a sequence of open sets with $D_i\cap
+D_j\ne\emptyset$ if and only if $\abs{i-j}\le1$ (\vone{Definition~2.1}); it is an
+\emph{$\varepsilon$-chain} if every link is bounded with diameter $<\varepsilon$
+(\vone{Definition~2.3}); and a continuum $M\subseteq X$ is \emph{snake-like} if for every $\varepsilon>0$
+some $\varepsilon$-chain covers it (\vone{Definition~2.13}). We use repeatedly:
+
+\begin{quote}
+\vone{Lemma~2.8} (separation by a link). \emph{If $C\subseteq\bigcup E$ is preconnected and meets the
+links $E_a$ and $E_c$ of a chain $E$, and $a<b<c$, then $C$ meets $E_b$.}
+\end{quote}
+
+\section{Subcontinua}
+
+\begin{theorem}\label{thm:snake-sub}
+A subcontinuum of a snake-like continuum is snake-like.
+\end{theorem}
+
+\begin{proof}
+Let $K\subseteq M$ with $M$ snake-like, and $\varepsilon>0$. Take an $\varepsilon$-chain $D$ of length $n$
+covering $M$. Let $i$ and $j$ be the least and the largest index of a link meeting $K$ (there is one,
+as $K\ne\emptyset$). By \vone{Lemma~2.8} every link $D_l$ with $i\le l\le j$ meets $K$, and the others do
+not. The links $D_i,D_{i+1},\dots,D_j$ form a chain (the chain condition only involves differences
+of indices), an $\varepsilon$-chain, which covers $K$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isSnakeLike_of_subcontinuum}; the interval of links meeting $K$ is
+\lean{HPC.Plane.meets_between}.}
+
+\section{Unicoherence and triods}
+
+\begin{lemma}[Intermediate values along a chain]\label{lem:chain-ivt}
+Let $D$ be an $\varepsilon$-chain and $f\colon X\to\R$ a function with $\abs{f(x)-f(y)}\le d(x,y)$.
+Let $i\le j$ be indices and $c\in\R$, and suppose the link $D_i$ contains a point with $f\le c$ and
+$D_j$ a point with $f\ge c$. Let $Y$ be a set meeting every link $D_l$, $i\le l\le j$. Then there are
+$l\in[i,j]$ and $y\in Y\cap D_l$ with $\abs{f(y)-c}<\varepsilon$. The same holds if $i>j$, with $[j,i]$
+in place of $[i,j]$.
+\end{lemma}
+
+\begin{proof}
+The case $i>j$ follows by reversing the chain. Let $l$ be the largest index in $[i,j]$ such that $D_l$
+contains a point $x$ with $f(x)\le c$. If $l=j$, then $D_l$ also contains a point $x'$ with $f(x')\ge c$.
+If $l<j$, every point of $D_{l+1}$ has $f>c$, and $D_l\cap D_{l+1}$ contains such a point $x'$. In both
+cases $D_l$ contains points $x,x'$ with $f(x)\le c\le f(x')$. Take $y\in Y\cap D_l$. If $f(y)\ge c$ then
+$0\le f(y)-c\le f(y)-f(x)\le d(y,x)<\varepsilon$; if $f(y)<c$ then $0<c-f(y)\le f(x')-f(y)<\varepsilon$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.chain_ivt}.}
+
+\begin{corollary}\label{cor:two-sets}
+Under the hypotheses of Lemma~\ref{lem:chain-ivt}, if $Y$ and $Z$ both meet every link between $D_i$
+and $D_j$, there are $y\in Y$ and $z\in Z$ with $\abs{f(y)-c}<\varepsilon$ and $d(y,z)<\varepsilon$.
+\end{corollary}
+
+\begin{proof}
+Take $l$ and $y$ from the lemma and $z\in Z\cap D_l$; then $d(y,z)\le\diam D_l<\varepsilon$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.chain_two_sets}.}
+
+In the next two proofs $S$ is a compact metric space, and $\dist(x,P)$ is the distance from $x$ to a
+nonempty set $P$, a function with $\abs{\dist(x,P)-\dist(y,P)}\le d(x,y)$. We also use: \emph{two
+disjoint compact sets $A,B$ have $d(a,b)\ge\eta$ for all $a\in A$, $b\in B$, for some $\eta>0$}
+(\vone{Lemma~1.1}, or trivially if one of them is empty).
+
+\begin{theorem}\label{thm:snake-unicoherent}
+A snake-like continuum in a compact metric space is unicoherent, and hence hereditarily
+unicoherent.
+\end{theorem}
+
+\begin{proof}
+Let $M$ be snake-like and $M=H\cup K$ with $H,K$ subcontinua. Since $M$ is connected and $H,K$ are
+closed and nonempty, $H\cap K\neq\emptyset$. Suppose $H\cap K$ is not connected: $H\cap K=P\cup Q$ with
+$P,Q$ closed, disjoint and nonempty. Let $\delta>0$ be the distance from $Q$ to $P$, and
+$f(x)=\dist(x,P)$; so $f=0$ on $P$ and $f\ge\delta$ on $Q$. Consider the band
+\[
+B=\set{x:\delta/4\le f(x)\le3\delta/4}.
+\]
+The compact sets $H\cap B$ and $K\cap B$ are disjoint, because a common point would lie in $H\cap
+K=P\cup Q$, where $f=0$ or $f\ge\delta$. Let $\eta>0$ be a lower bound for their mutual distances, and
+$\varepsilon=\min(\eta,\delta/8)$.
+
+Take an $\varepsilon$-chain $D$ covering $M$, and links $D_i\ni p$ and $D_j\ni q$ with $p\in P$, $q\in
+Q$. The connected sets $H$ and $K$ contain $p$ and $q$, so by \vone{Lemma~2.8} each meets every link
+between $D_i$ and $D_j$. Corollary~\ref{cor:two-sets} with $c=\delta/2$ (note $f(p)=0\le c\le f(q)$)
+gives $y\in H$ and $z\in K$ with $\abs{f(y)-\delta/2}<\delta/8$ and $d(y,z)<\varepsilon$; then also
+$\abs{f(z)-\delta/2}<\delta/4$. So $y\in H\cap B$, $z\in K\cap B$, and $d(y,z)\ge\eta\ge\varepsilon$, a
+contradiction.
+
+Every subcontinuum of $M$ is snake-like (Theorem~\ref{thm:snake-sub}), hence unicoherent.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isUnicoherent_of_isSnakeLike} and
+\lean{HPC.Plane.isHereditarilyUnicoherent_of_isSnakeLike} (Nadler 12.2).}
+
+\begin{theorem}\label{thm:snake-atriodic}
+A snake-like continuum in a compact metric space is not a triod. Hence it is atriodic.
+\end{theorem}
+
+\begin{proof}
+Let $T$ be snake-like with core $N$ and $T\setminus N=A\cup B\cup C$ as in Definition~\ref{def:triod}.
+By Lemma~\ref{lem:piece} the sets $N\cup A$, $N\cup B$, $N\cup C$ are continua. Let
+$f(x)=\dist(x,N)$, choose $a\in A$, $b\in B$, $c\in C$ (they are not in $N$, so $f>0$ there) and let
+$\rho=\min(f(a),f(b),f(c))>0$. The band $B'=\set{x:\rho/4\le f(x)\le3\rho/4}$ misses $N$.
+
+The sets $A\cap B'$, $B\cap B'$, $C\cap B'$ are closed: a point of $\cl{A\cap B'}$ lies in $T$ and in
+$B'$, hence not in $N$, and not in $B\cup C$ (which is separated from $A$), so in $A\cap B'$. They are
+pairwise disjoint, so there is $\eta>0$ bounding their mutual distances from below. Let
+$\varepsilon=\min(\eta,\rho/8)$, and take an $\varepsilon$-chain covering $T$ with links $D_{i_a}\ni a$,
+$D_{i_b}\ni b$, $D_{i_c}\ni c$ and $D_{i_n}\ni n$ for some $n\in N$.
+
+Two of the three indices $i_a,i_b,i_c$ lie on the same side of $i_n$; say (renaming) $i_a$ and $i_b$,
+with $i_a$ not farther from $i_n$ than $i_b$. Then every index between $i_n$ and $i_a$ lies between
+$i_n$ and $i_b$. The connected set $N\cup A$ contains $n$ and $a$, and $N\cup B$ contains $n$ and $b$,
+so both meet every link between $D_{i_n}$ and $D_{i_a}$ (\vone{Lemma~2.8}). Apply
+Corollary~\ref{cor:two-sets} with the level $\rho/2$ in place of $c$ ($f(n)=0$, $f(a)\ge\rho$): there are $y\in N\cup A$ and
+$z\in N\cup B$ with $\abs{f(y)-\rho/2}<\rho/8$ and $d(y,z)<\varepsilon$, so that $y,z\in B'$. Then
+$y,z\notin N$, so $y\in A\cap B'$ and $z\in B\cap B'$, and $d(y,z)\ge\eta\ge\varepsilon$, a contradiction.
+
+Every subcontinuum of a snake-like continuum is snake-like, hence not a triod.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isAtriodic_of_isSnakeLike}, through
+\lean{HPC.Plane.not_isTriod_of_isSnakeLike} (Nadler 12.4).}
+
+\begin{remark}
+Bing (1951, Theorem~11) proved the converse for hereditarily decomposable continua: an atriodic,
+hereditarily unicoherent, hereditarily decomposable continuum is snake-like. This is not needed
+for the classification. By Corollary~\ref{cor:atriodic-irr}, a nondegenerate snake-like continuum
+is irreducible between two of its points.
+\end{remark}
+
+\section{\texorpdfstring{$\varepsilon$}{Epsilon}-maps}
+
+\begin{definition}\label{def:epsmap}
+Let $K\subseteq X$ and $\varepsilon>0$. An \emph{$\varepsilon$-map} on $K$ is a continuous function
+$g\colon K\to\R$ such that $g(x)=g(y)$ implies $d(x,y)<\varepsilon$.
+\end{definition}
+
+\begin{proposition}\label{prop:chain-epsmap}
+If $K$ is covered by an $\varepsilon$-chain $D$, then $K$ has an $\varepsilon$-map.
+\end{proposition}
+
+\begin{proof}
+For each $i$ let $w_i(x)=\dist(x,X\setminus D_i)$ (or $w_i=1$ if $D_i=X$): a continuous function, $\ge0$,
+and $>0$ exactly on the open set $D_i$. Put $\Sigma(x)=\sum_iw_i(x)$ and $\Lambda(x)=\sum_i i\,w_i(x)$; on
+$K$, $\Sigma>0$. Define $g=\Lambda/\Sigma$ on $K$, a continuous function.
+
+For $x\in K$ let $p$ be the least index with $x\in D_p$. Any two links containing $x$ meet, so their
+indices differ by at most one; hence $x$ lies only in $D_p$ and possibly $D_{p+1}$. Then
+\[
+\Lambda(x)-p\,\Sigma(x)=\sum_i(i-p)w_i(x)\ge0,\qquad(p+1)\Sigma(x)-\Lambda(x)=\sum_i(p+1-i)w_i(x)\ge
+w_p(x)>0,
+\]
+so $p\le g(x)<p+1$, that is, $\fl{g(x)}=p$. If $g(x)=g(y)$, then $x$ and $y$ have the same least link
+$D_p$, and $d(x,y)\le\diam D_p<\varepsilon$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.exists_epsMap_of_chain} and \lean{HPC.BJ59.exists_epsMap_of_isSnakeLike}.}
+
+\begin{lemma}\label{lem:uniform-fibres}
+Let $M$ be compact and $f\colon M\to\R$ continuous with $f(x)=f(y)\Rightarrow d(x,y)<\varepsilon$ for
+$x,y\in M$. Then there is $\delta>0$ such that $x,y\in M$ and $\abs{f(x)-f(y)}<\delta$ imply
+$d(x,y)<\varepsilon$.
+\end{lemma}
+
+\begin{proof}
+The set $\set{(x,y)\in M\times M:d(x,y)\ge\varepsilon}$ is compact, and the continuous function
+$\abs{f(x)-f(y)}$ is positive on it; let $\delta$ be its minimum (or $\delta=1$ if the set is empty).
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_delta_of_fibres_on}.}
+
+\begin{theorem}[The $\varepsilon$-map criterion]\label{thm:epsmap-criterion}
+Let $S$ be a compact metric space and $M\subseteq S$ a continuum. Suppose that for every
+$\varepsilon>0$ there is a continuous $f\colon S\to\R$ such that $f(x)=f(y)$ implies $d(x,y)<\varepsilon$
+for $x,y\in M$. Then $M$ is snake-like.
+\end{theorem}
+
+\begin{proof}
+Let $\varepsilon>0$, and take $f$ for $\varepsilon/4$. Lemma~\ref{lem:uniform-fibres} gives $\delta>0$
+with $\abs{f(x)-f(y)}<\delta\Rightarrow d(x,y)<\varepsilon/4$ on $M$; uniform continuity of $f$ on $S$
+gives $\eta>0$ with $d(x,y)<\eta\Rightarrow\abs{f(x)-f(y)}<\delta/6$. Put $\eta'=\min(\eta,\varepsilon/8)$
+and let $N$ be the open $\eta'$-neighbourhood of $M$.
+
+$f(M)$ is compact and connected, so $f(M)=[a,b]$. Let $h=\delta/6$ and $n=\fl{(b-a)/h}+1$, so that
+$(n-1)h\le b-a$. For $i\in[n]$ put $I_i=(a+(i-1)h,\ a+(i+1)h)$ and
+\[
+D_i=f^{-1}(I_i)\cap N .
+\]
+These are open sets. \emph{They form a chain:} if $\abs{i-j}\ge2$ then $I_i\cap I_j=\emptyset$; $D_i$
+contains a point of $M$ with $f=a+ih\in[a,b]$; and $D_i\cap D_{i+1}$ contains a point of $M$ with
+$f=a+(i+\frac12)h$, which lies in $[a,b]$ since $(i+1)h\le(n-1)h\le b-a$. \emph{They cover $M$:} for
+$x\in M$ let $i=\fl{(f(x)-a)/h}$; then $0\le i\le n-1$ and $f(x)\in I_i$. \emph{Their diameters are at
+most $\varepsilon/2$:} if $x,y\in D_i$, choose $x',y'\in M$ with $d(x,x'),d(y,y')<\eta'$. Then
+$\abs{f(x)-f(y)}<2h=\delta/3$ and $\abs{f(x)-f(x')},\abs{f(y)-f(y')}<\delta/6$, so
+$\abs{f(x')-f(y')}<\delta$, hence $d(x',y')<\varepsilon/4$ and $d(x,y)<\varepsilon/4+2\eta'\le\varepsilon/2$.
+So $D$ is an $\varepsilon$-chain covering $M$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isSnakeLike_of_epsMap}; for the whole space,
+\lean{HPC.Plane.isSnakeLike_univ_of_epsMap}.}
+
+\begin{theorem}[Snake-likeness is topological]\label{thm:snake-homeo}
+Let $A\subseteq X$ be snake-like, $Y$ a compact metric space, $B\subseteq Y$, and $e\colon A\to B$ a
+homeomorphism. Then $B$ is snake-like.
+\end{theorem}
+
+\begin{proof}
+$B=e(A)$ is a continuum. Let $\varepsilon>0$. Since $A$ is compact, $e$ is uniformly continuous: there is
+$\delta>0$ with $d(a,a')<\delta\Rightarrow d(e(a),e(a'))<\varepsilon$. Proposition~\ref{prop:chain-epsmap}
+gives a $\delta$-map $g$ on $A$. The function $g\circ e^{-1}\colon B\to\R$ is continuous on the closed
+set $B$; by the Tietze extension theorem it extends to a continuous $F\colon Y\to\R$. If $x,y\in B$ and
+$F(x)=F(y)$, then $g(e^{-1}x)=g(e^{-1}y)$, so $d(e^{-1}x,e^{-1}y)<\delta$ and $d(x,y)<\varepsilon$. By
+Theorem~\ref{thm:epsmap-criterion}, $B$ is snake-like.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isSnakeLike_of_homeomorph}.}
+
+\begin{remark}
+Bing (1951, Theorem~4) proved that every snake-like continuum is homeomorphic to a plane continuum
+(\lean{HPC.Plane.theorem4}). The proof combines minimal covering chains with the matching covers of
+\vtwo{Chapter~4} and tame chains in the plane; it is not reproduced here.
+\end{remark}
+
+\section{Circular chains and circle-like continua}
+
+For $i,j\in[n]$ let the \emph{cyclic distance} be $\min(\abs{i-j},\,n-\abs{i-j})$.
+
+\begin{definition}\label{def:circchain}
+A \emph{circular chain} of length $n$ is a sequence $O_0,\dots,O_{n-1}$ of open sets with $O_i\cap
+O_j\ne\emptyset$ if and only if the cyclic distance of $i$ and $j$ is at most $1$. It is an
+\emph{$\varepsilon$-circular chain} if its links are bounded with diameter $<\varepsilon$. A continuum
+is \emph{circle-like} if for every $\varepsilon>0$ some $\varepsilon$-circular chain covers it.
+\end{definition}
+
+\formal{\lean{HPC.Plane.CircChain}, \lean{HPC.Plane.IsCircEpsChain}, \lean{HPC.Plane.IsCircleLike}
+(in \lean{HPC/Plane/Ingram68.lean}).}
+
+For $n\le3$ every two links of a circular chain meet.
+
+\begin{proposition}\label{prop:circle-circlelike}
+The circle $\mathbb T=\set{z\in\mathbb C:\abs z=1}$ is circle-like.
+\end{proposition}
+
+\begin{proof}
+Let $\varepsilon>0$, choose $n\ge4$ with $3\pi/n<\varepsilon$, put $p(t)=e^{2\pi it/n}$, and
+$O_k=p\bigl((k-\frac14,\,k+\frac54)\bigr)$ for $k\in[n]$. These are open arcs (the map $p$ is open). The
+parameter intervals have length $\frac32$; two of them meet if and only if their left end points
+differ by less than $\frac32$ modulo $n$, that is, if and only if the indices have cyclic distance at
+most $1$ (for indices at cyclic distance $\ge2$ the intervals are at least $\frac12$ apart, also
+modulo $n$, as $n\ge4$). Every real $t$ lies in $(k-\frac14,k+\frac54)$ for $k=\fl t$, so the arcs
+cover $\mathbb T$. Finally $\abs{e^{ia}-e^{ib}}\le\abs{a-b}$, so $\diam O_k\le\frac{2\pi}n\cdot\frac32=
+3\pi/n<\varepsilon$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isCircleLike_circle}, with the arcs \lean{HPC.BJ59.circArc}.}
+
+\begin{proposition}\label{prop:circle-homeo}
+Let $X$ be a compact metric space homeomorphic to a circle-like compact metric space $Y$. Then $X$ is
+circle-like.
+\end{proposition}
+
+\begin{proof}
+Let $e\colon X\to Y$ be a homeomorphism; $e^{-1}$ is uniformly continuous. Given $\varepsilon$, take
+$\delta$ with $d(y,y')<\delta\Rightarrow d(e^{-1}y,e^{-1}y')<\varepsilon/2$, and a $\delta$-circular
+chain $O$ covering $Y$. The sets $e^{-1}(O_i)$ are open, cover $X$, meet exactly when the $O_i$ do
+($e$ is a bijection), and have diameter $\le\varepsilon/2$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isCircleLike_univ_of_homeomorph}.}
+
+\begin{theorem}\label{thm:circle-sub}
+A proper subcontinuum of a circle-like continuum is snake-like.
+\end{theorem}
+
+\begin{proof}
+Let $Z\subsetneq C$ with $C$ circle-like, and $\varepsilon>0$. Take $x\in C\setminus Z$; then
+$r=\dist(x,Z)>0$. Take a $\min(\varepsilon,r)$-circular chain $O_0,\dots,O_{n-1}$ covering $C$, and a link
+$O_{i_0}\ni x$. This link misses $Z$, since its diameter is less than $r$. List the remaining links in
+cyclic order starting after $i_0$: $E_j=O_{\sigma(j)}$ with $\sigma(j)=i_0+1+j$ modulo $n$, for
+$j\in[n-1]$. Consecutive $E_j$ are cyclically adjacent, so they meet. If $\abs{j-j'}\ge2$, the cyclic
+distance of $\sigma(j)$ and $\sigma(j')$ is $\min(\abs{j-j'},n-\abs{j-j'})\ge2$, because
+$\abs{j-j'}\le n-2$; so $E_j\cap E_{j'}=\emptyset$. Thus $E$ is an $\varepsilon$-chain, and it covers $Z$,
+as every point of $Z$ lies in a link other than $O_{i_0}$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isSnakeLike_of_subset_circleLike} (Nadler 12.51).}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that the letter T is not snake-like, directly from the definition.
+\end{exercise}
+
+\begin{exercise}
+Show that the circle is not snake-like. (Hint: Theorem~\ref{thm:snake-unicoherent}.)
+\end{exercise}
+
+\begin{exercise}
+Show that a continuum $M$ in a compact space $S$ is snake-like if and only if for every
+$\varepsilon>0$ it has an $\varepsilon$-map into $[0,1]$.
+\end{exercise}
+
+\begin{exercise}
+Show that the $\sin(1/x)$-continuum is snake-like, by exhibiting $\varepsilon$-maps and using
+Theorem~\ref{thm:epsmap-criterion}.
+\end{exercise}

@@ -1,0 +1,35 @@
+# seam-batch121.py, summary lines (per-instance FAIL lines omitted)
+# K=5, n=11..13, reading A
+K=5 n=11: instances=320 some-H-fails=288 every-H-fails=192 kinds={'lip': 1440, 'first': 1064}
+K=5 n=12: instances=6528 some-H-fails=5920 every-H-fails=3808 kinds={'lip': 46832, 'first': 31240}
+K=5 n=13: instances=76288 some-H-fails=69632 every-H-fails=43296 kinds={'lip': 904248, 'first': 551664}
+# padded (realized inside the faithful model): False
+# grouping reading B
+K=5 n=11: instances=320 some-H-fails=160 every-H-fails=160 kinds={'lip': 1648}
+K=5 n=12: instances=6528 some-H-fails=3264 every-H-fails=3264 kinds={'lip': 51480}
+# padded (realized inside the faithful model): False
+# grouping reading Ctop
+K=5 n=11: instances=320 some-H-fails=160 every-H-fails=160 kinds={'lip': 1648}
+K=5 n=12: instances=6528 some-H-fails=3264 every-H-fails=3264 kinds={'lip': 51480}
+# padded (realized inside the faithful model): False
+# grouping reading Cbot
+K=5 n=11: instances=320 some-H-fails=176 every-H-fails=0 kinds={'lip': 496, 'first': 160}
+K=5 n=12: instances=6528 some-H-fails=3760 every-H-fails=0 kinds={'lip': 15856, 'first': 4448}
+# padded (realized inside the faithful model): False
+# grouping reading A
+K=6 n=8: instances=0 some-H-fails=0 every-H-fails=0 kinds={}
+K=6 n=9: instances=0 some-H-fails=0 every-H-fails=0 kinds={}
+K=6 n=10: instances=0 some-H-fails=0 every-H-fails=0 kinds={}
+K=6 n=11: instances=0 some-H-fails=0 every-H-fails=0 kinds={}
+K=6 n=12: instances=0 some-H-fails=0 every-H-fails=0 kinds={}
+K=6 n=13: instances=0 some-H-fails=0 every-H-fails=0 kinds={}
+K=6 n=14: instances=0 some-H-fails=0 every-H-fails=0 kinds={}
+# padded (realized inside the faithful model): False
+# grouping reading Cbot
+K=6 n=8: instances=0 some-H-fails=0 every-H-fails=0 kinds={}
+K=6 n=9: instances=0 some-H-fails=0 every-H-fails=0 kinds={}
+K=6 n=10: instances=0 some-H-fails=0 every-H-fails=0 kinds={}
+K=6 n=11: instances=0 some-H-fails=0 every-H-fails=0 kinds={}
+K=6 n=12: instances=0 some-H-fails=0 every-H-fails=0 kinds={}
+K=6 n=13: instances=0 some-H-fails=0 every-H-fails=0 kinds={}
+K=6 n=14: instances=0 some-H-fails=0 every-H-fails=0 kinds={}

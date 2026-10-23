@@ -1,0 +1,42 @@
+break-batch71: the construction attempt of batch 71, question 2.4.
+  seeds read from seeds-batch71.txt: 64
+  seed lengths: 986 to 2378 links
+  the four-leg family: 64 walks
+  every edit is re-tested for faithfulness and re-scanned from scratch.
+
+  *** BREAK [splice] n= 990 i= 104 w8 side=T  nearest at 2:  69 (bound 67), at 1:  308 (166), at 0:  885 (405);  Ceil72 running=1 partner=1; w72 both=1; a walk serves both=1
+  *** BREAK [splice] n= 990 i= 104 w8 side=T  nearest at 2:  69 (bound 67), at 1:  308 (166), at 0:  885 (405);  Ceil72 running=1 partner=1; w72 both=1; a walk serves both=1
+  *** BREAK [stretch] n= 994 i= 104 w8 side=T  nearest at 2:  73 (bound 67), at 1:  312 (166), at 0:  889 (405);  Ceil72 running=1 partner=1; w72 both=1; a walk serves both=1
+  *** BREAK [stretch] n= 994 i= 108 w8 side=T  nearest at 2:  69 (bound 67), at 1:  308 (166), at 0:  885 (405);  Ceil72 running=1 partner=1; w72 both=1; a walk serves both=1
+  *** BREAK [stretch] n=1008 i= 104 w8 side=T  nearest at 2:  87 (bound 67), at 1:  326 (166), at 0:  903 (405);  Ceil72 running=1 partner=1; w72 both=1; a walk serves both=1
+  *** BREAK [stretch] n=1008 i= 108 w8 side=T  nearest at 2:  83 (bound 67), at 1:  322 (166), at 0:  899 (405);  Ceil72 running=1 partner=1; w72 both=1; a walk serves both=1
+  *** BREAK [stretch] n=1022 i= 104 w8 side=T  nearest at 2: 101 (bound 67), at 1:  340 (166), at 0:  917 (405);  Ceil72 running=1 partner=1; w72 both=1; a walk serves both=1
+  *** BREAK [stretch] n=1036 i= 104 w8 side=T  nearest at 2: 115 (bound 67), at 1:  354 (166), at 0:  931 (405);  Ceil72 running=1 partner=1; w72 both=1; a walk serves both=1
+  *** BREAK [stretch] n=1050 i= 104 w8 side=T  nearest at 2: 129 (bound 67), at 1:  368 (166), at 0:  945 (405);  Ceil72 running=1 partner=1; w72 both=1; a walk serves both=1
+  *** BREAK [stretch] n=1064 i= 104 w8 side=T  nearest at 2: 143 (bound 67), at 1:  382 (166), at 0:  959 (405);  Ceil72 running=1 partner=1; w72 both=1; a walk serves both=1
+  *** BREAK [stretch] n=1078 i= 104 w8 side=T  nearest at 2: 157 (bound 67), at 1:  396 (166), at 0:  973 (405);  Ceil72 running=1 partner=1; w72 both=1; a walk serves both=1
+  *** BREAK [stretch] n=1092 i= 104 w8 side=T  nearest at 2: 171 (bound 67), at 1:  410 (166), at 0:  987 (405);  Ceil72 running=1 partner=1; w72 both=1; a walk serves both=1
+  *** BREAK [stretch] n=1106 i= 104 w8 side=T  nearest at 2: 185 (bound 67), at 1:  424 (166), at 0: 1001 (405);  Ceil72 running=1 partner=1; w72 both=1; a walk serves both=1
+
+================ the result ================
+  edits tried: 9032; faithful: 2071; with a high-run crossing: 1885
+  edits that lost faithfulness: 6961; faithful edits with no high-run crossing left: 186
+    raise    tried  1576  faithful    68  with a crossing    66  largest distance 65
+    splice   tried  5039  faithful  1467  with a crossing  1347  largest distance 75
+    stretch  tried   536  faithful   536  with a crossing   472  largest distance 185
+    band     tried  1881  faithful     0  with a crossing     0  largest distance 0
+  the largest distance to the nearest time at L+2 or below, over every
+  high-run crossing of every faithful edit: 185 (the bound is 67)
+
+  high-run crossings of faithful edits at which the distance statement FAILS: 2229
+    of them, the L+1 reading also fails (no time at L+1 or below within 166): 2229
+    the floor reading also fails (none at the floor within 405): 2229
+    at least one of the three readings of NearLowBandT still available: 0
+    the nearest time at L+1 or below lies in [307, 424]; at the floor in [884, 1001]
+    Ceil72 nevertheless holds on the running arm at 2229 of 2229, and on the partner at 2229
+    both arms satisfy the landmark sentence of w72 at 2229 of 2229
+    some walk of the four-leg family serves both arms at 2229; none does at 0
+
+  the extreme break: a stretch edit, 1106 links, basepoint 104, the w8 side is the backward arm,
+  nearest time at L+2 or below 185 steps before the basepoint (at L+1: 424, at the floor: 1001)
+  it is stored whole in witness-batch71.txt, for check71.py

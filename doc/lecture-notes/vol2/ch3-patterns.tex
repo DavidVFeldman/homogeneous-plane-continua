@@ -1,0 +1,406 @@
+%======================================================================
+\chapter{Pattern following}\label{ch:patterns}
+%======================================================================
+
+Let $D^{(0)},D^{(1)},\dots$ be a description from $P$ to $Q$ (\vone{Definition~3.1}). A
+\emph{pattern} in a chain $D$ of length $n$ is a function $x\colon[N]\to[n]$ with unit steps,
+$x(0)=0$ and $x(N-1)=n-1$: a walk through the links of $D$ from the first to the last. A chain $E$ of
+length $N$ \emph{follows} $x$ in $D$ if $E_u\subseteq D_{x(u)}$ for all $u$ (\vone{Definition~2.3}).
+This chapter proves:
+
+\begin{theorem}[Pattern following; Bing 1948, Theorem~6]\label{thm:pattern-following}
+Let $D^{(0)},D^{(1)},\dots$ be a description from $P$ to $Q$ in a compact metric space $X$, with
+$P\neq Q$. Let $i\in\N$ and let $x\colon[N]\to[n_i]$ be a pattern in $D^{(i)}$. Then there are $j>i$
+and a consolidation $E$ of $D^{(j)}$ of length $N$ which goes from $P$ to $Q$ and follows $x$ in $D^{(i)}$.
+\end{theorem}
+
+\formal{\lean{HPC.Description.patternFollowing}; the property itself is
+\lean{HPC.Description.PatternFollowing}, and patterns are \lean{HPC.Description.IsPattern}.}
+
+\begin{remark}\label{rem:pf-false}
+The hypothesis $P\neq Q$ cannot be dropped. Let $X$ be a one-point space $\set y$ and let every level be
+the chain with one link $X$; this is a description from $y$ to $y$ (crookedness holds vacuously, as
+there are no indices $h,k$ with $k>h+2$). The pattern $x=(0,0)$ of length $2$ cannot be followed by any
+chain from $y$ to $y$: in a chain of length $2$ from $y$ to $y$, the point $y$ would lie in the first link
+and in the last link, but it may lie in only one link. Bing's paper does not have this hypothesis; it is
+harmless for us, since the uniqueness theorem assumes $P\neq Q$ anyway.
+\end{remark}
+
+\formal{\lean{HPC.Description.unitDescription}, \lean{HPC.Description.not_patternFollowing_unconditional}.}
+
+The proof has a combinatorial core (Sections~\ref{sec:pf-setting}--\ref{sec:pf-induction}), a statement
+about integer sequences proved by induction, and a geometric part (Section~\ref{sec:pf-geometry}) which
+applies the core to the indices of links. The idea is this. Let $F=D^{(m+1)}$ be a very deep level and
+$R=D^{(m)}$ the level above it. Reading off, for each link of $F$, a link of $R$ containing it gives an
+integer sequence $\sigma$ which is crooked, because $F$ is crooked in $R$. Since $m$ is large, the links of
+$R$ are tiny compared with those of $D^{(0)}$, and a whole stretch of $w$ consecutive links of $R$ lies in a
+single link of $D^{(0)}$. We must group the links of $F$ into $N$ blocks, the $u$-th block lying in
+$D^{(0)}_{x(u)}$. Crookedness of $\sigma$ is what allows the blocks to go back and forth as the pattern
+demands.
+
+\section{The combinatorial setting}\label{sec:pf-setting}
+
+Throughout Sections~\ref{sec:pf-setting}--\ref{sec:pf-induction} we fix the following data.
+
+\begin{itemize}
+\item A \emph{fine reading} $\sigma\colon\N\to\Z$ and a time $T\in\N$ such that
+\begin{enumerate}[label=(S\arabic*)]
+\item\label{S:lip} $\abs{\sigma(f+1)-\sigma(f)}\le1$ for all $f$;
+\item\label{S:crook} \emph{crookedness:} if $f<f'\le T$ and $\abs{\sigma(f)-\sigma(f')}\ge3$, then there are
+$r,s$ with $f<r<s<f'$, $\abs{\sigma(r)-\sigma(f')}\le2$ and $\abs{\sigma(s)-\sigma(f)}\le2$.
+\end{enumerate}
+We call $f\in\N$ a \emph{time} and the values of $\sigma$ \emph{positions}.
+\item A width $w\ge1$ and a \emph{coarse reading} $\tau\colon\Z\to\Z$ which is \emph{$w$-slow}:
+\[
+\abs{p-p'}\le w\implies\abs{\tau(p)-\tau(p')}\le1 .
+\]
+\end{itemize}
+
+The \emph{canonical reading} at time $f$ is $\ell(f)=\tau(\sigma(f))$. Since $w\ge1$, $\ell$ has unit steps.
+
+\begin{definition}\label{def:allowed}
+Let $d\in\N$. A value $v\in\Z$ is \emph{allowed at time $f$ with radius $d$} if there is a position $p$
+with $\abs{p-\sigma(f)}\le d$ and $\tau(p)=v$. We write $\mathrm{Al}_d(f,v)$.
+\end{definition}
+
+\begin{lemma}\label{lem:allowed}
+\begin{enumerate}[label=(\alph*)]
+\item $\mathrm{Al}_0(f,\ell(f))$; and $\mathrm{Al}_d(f,v)$ implies $\mathrm{Al}_{d'}(f,v)$ for $d'\ge d$.
+\item $\abs{\sigma(f')-\sigma(f)}\le\abs{f'-f}$; hence $\mathrm{Al}_d(f,v)$ implies $\mathrm{Al}_{d+k}(f',v)$ when
+$\abs{f'-f}\le k$.
+\item If $d\le w$ and $\mathrm{Al}_d(f,v)$, then $\abs{\ell(f)-v}\le1$.
+\item If $\mathrm{Al}_d(f,v)$, $\mathrm{Al}_{d'}(f',v')$ and $\abs{v-v'}\ge2$, then
+$\abs{\sigma(f)-\sigma(f')}\ge w+1-d-d'$, and so $\abs{f-f'}\ge w+1-d-d'$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Take $p=\sigma(f)$. (b) The first statement follows from~\ref{S:lip} by the triangle inequality; then a
+position within $d$ of $\sigma(f)$ is within $d+k$ of $\sigma(f')$. (c) $\abs{p-\sigma(f)}\le w$ and
+slowness give $\abs{\tau(p)-\tau(\sigma(f))}\le1$. (d) Let $\tau(p)=v$, $\tau(p')=v'$ with
+$\abs{p-\sigma(f)}\le d$, $\abs{p'-\sigma(f')}\le d'$. Slowness and $\abs{v-v'}\ge2$ force $\abs{p-p'}\ge w+1$,
+and the triangle inequality gives the first claim; the second follows from~(b).
+\end{proof}
+
+\formal{\lean{HPC.PatCore.Setting}, \lean{HPC.PatCore.Slow}, \lean{HPC.PatCore.Al},
+\lean{HPC.PatCore.al_canon}, \lean{HPC.PatCore.al_move}, \lean{HPC.PatCore.al_near},
+\lean{HPC.PatCore.al_far}, \lean{HPC.PatCore.time_ge}.}
+
+We also use the discrete intermediate value theorem \vone{Lemma~2.5} for $\tau$ along positions: since $\tau$ has
+unit steps on consecutive positions, if $u$ lies between $\tau(p)$ and $\tau(p')$ then $\tau(p'')=u$ for some
+$p''$ between $p$ and $p'$; in particular $\abs{p''-p}\le\abs{p'-p}$.
+
+\formal{\lean{HPC.PatCore.ivt_between}.}
+
+\section{Lifts}
+
+Let $x\colon\N\to\Z$ (a pattern; only finitely many values matter). For index bounds $p\le q$, times
+$a\le b$ and indices $i,j$:
+
+\begin{definition}\label{def:lift}
+A \emph{lift of $x$ over $[a,b]$ in $[p,q]$ from $i$ to $j$} is a function $\varphi\colon[a,b]\to\N$ with
+$\varphi(a)=i$, $\varphi(b)=j$, unit steps, and, for every $f\in[a,b]$,
+\[
+p\le\varphi(f)\le q\qquad\text{and}\qquad \mathrm{Al}_w\bigl(f,x(\varphi(f))\bigr).
+\]
+\end{definition}
+
+So a lift walks through the indices of the pattern, one step at a time at most, in such a way that at each
+time $f$ the pattern value $x(\varphi(f))$ is read by $\tau$ at a position within $w$ of $\sigma(f)$.
+
+\formal{\lean{HPC.PatCore.Real}.}
+
+\begin{lemma}[Operations on lifts]\label{lem:lift-ops}
+\begin{enumerate}[label=(\alph*)]
+\item \emph{Gluing.} A lift over $[a,m]$ from $i$ to $j$ and a lift over $[m,b]$ from $j$ to $k$ (in the same
+$[p,q]$) combine into a lift over $[a,b]$ from $i$ to $k$.
+\item \emph{Widening.} A lift in $[p',q']$ is a lift in $[p,q]$ when $p\le p'$ and $q'\le q$.
+\item \emph{Negation.} A lift of $-x$ for the coarse reading $-\tau$ is a lift of $x$ for $\tau$ (and $-\tau$ is
+$w$-slow when $\tau$ is).
+\item \emph{Reflection.} If $\varphi$ is a lift of $k\mapsto x(p+q-k)$ in $[p,q]$ from $i$ to $j$, then
+$p+q-\varphi$ is a lift of $x$ in $[p,q]$ from $p+q-i$ to $p+q-j$.
+\item \emph{Step.} If $\mathrm{Al}_w(a,x(i))$ and $\mathrm{Al}_w(a+1,x(i+1))$, with $p\le i<q$, then there is a lift
+over $[a,a+1]$ from $i$ to $i+1$.
+\item \emph{Ramp.} If $q-p\le b-a$ and $\mathrm{Al}_w(f,x(i))$ for all $f\in[a,b]$ and $i\in[p,q]$, then
+$\varphi(f)=\min(p+(f-a),q)$ is a lift over $[a,b]$ from $p$ to $q$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+All are immediate from the definition. In (a) use the first lift on $[a,m]$ and the second on $[m,b]$; they agree at
+$m$. In (c), $\tau(p)=v$ if and only if $-\tau(p)=-v$.
+\end{proof}
+
+\formal{\lean{HPC.PatCore.real_glue}, \lean{HPC.PatCore.real_widen}, \lean{HPC.PatCore.real_of_neg},
+\lean{HPC.PatCore.real_reflect}, \lean{HPC.PatCore.real_step}, \lean{HPC.PatCore.real_ramp}.}
+
+\section{The induction}\label{sec:pf-induction}
+
+Fix a \emph{budget} $B\in\N$ with $2B+10\le w$.
+
+\begin{definition}\label{def:good}
+A tuple $(\tau,x,p,q,a,b,e)$ (with $\tau$ $w$-slow) is \emph{good} if
+\begin{enumerate}[label=(G\arabic*)]
+\item\label{G:order} $p\le q$, $a\le b\le T$, and $q-p\le b-a$;
+\item\label{G:x} $x$ has unit steps on $[p,q]$, and $x(p)\le x(i)\le x(q)$ for $p\le i\le q$;
+\item\label{G:read} $x(p)\le\ell(f)\le x(q)$ for $a\le f\le b$;
+\item\label{G:anchor} $\mathrm{Al}_e(a,x(p))$ and $\mathrm{Al}_e(b,x(q))$ (the \emph{anchors});
+\item\label{G:budget} $e+2(q-p)\le B$.
+\end{enumerate}
+\end{definition}
+
+So the pattern goes from its minimum to its maximum, the canonical readings stay in that range, and the end values
+are allowed at the end times with radius $e$. Note $e\le B\le w$, so by Lemma~\ref{lem:allowed}(c),
+$\ell(a)\le x(p)+1$ and $\ell(b)\ge x(q)-1$.
+
+\formal{\lean{HPC.PatCore.Good}.}
+
+\begin{theorem}[Main induction]\label{thm:pf-main}
+If $(\tau,x,p,q,a,b,e)$ is good, there is a lift of $x$ over $[a,b]$ in $[p,q]$ from $p$ to $q$.
+\end{theorem}
+
+\begin{proof}
+By strong induction on $b-a$: assume the statement for all good tuples with a shorter time interval. Write
+$\mu=x(p)$ and $M=x(q)$. We distinguish cases; they are exhaustive, as explained at the end.
+
+\paragraph{Case 1: $M=\mu$ (constant pattern).} By~\ref{G:x} and~\ref{G:read}, $x(i)=\mu=\ell(f)$ for all $i\in[p,q]$
+and $f\in[a,b]$, so every $x(i)$ is allowed at every $f$ with radius $0$. Use the ramp.
+
+\paragraph{Case 2: $M\neq\mu$ and $x(p+1)=\mu$ (a repeated first value).} Then $p<q$ and $a<b$. By
+Lemma~\ref{lem:allowed}(b), $\mathrm{Al}_{e+1}(a+1,\mu)$. The tuple $(\tau,x,p+1,q,a+1,b,e+1)$ is good: the pattern on
+$[p+1,q]$ still starts at its minimum $x(p+1)=\mu$, and the budget is $e+1+2(q-p-1)<e+2(q-p)$. By induction there is a
+lift over $[a+1,b]$ from $p+1$ to $q$. In front of it put the step from $p$ at time $a$ to $p+1$ at time $a+1$ (allowed:
+$x(p)=\mu$ with radius $e$, $x(p+1)=\mu$ with radius $e+1$, both $\le w$), and glue.
+
+\paragraph{Case 3: $M\neq\mu$ and $x(q-1)=M$ (a repeated last value).} Symmetric to Case~2, removing the last time and
+the last index.
+
+\paragraph{Case 4: $M=\mu+1$, $x(p+1)\neq\mu$, $x(q-1)\ne M$.} Then every $x(i)$ ($p\le i\le q$) and every $\ell(f)$
+($a\le f\le b$) is $\mu$ or $\mu+1$; and $x(p+1)=\mu+1$, $x(q-1)=\mu$. Let $W=q-p$.
+
+\emph{Short intervals.} If $b-a+e\le w$, every value $\mu$, $\mu+1$ is allowed at every time of $[a,b]$ with radius $w$
+(move the anchors by Lemma~\ref{lem:allowed}(b)); use the ramp.
+
+\emph{Long intervals.} Otherwise, there is a time $f_0\in[a,b]$ at which both $\mu$ and $\mu+1$ are allowed with radius
+$e+1$. Indeed, if $\ell(a)=\mu+1$ take $f_0=a$; if $\ell(b)=\mu$ take $f_0=b$. Otherwise $\ell(a)=\mu$ and $\ell(b)=\mu+1$;
+let $f_1$ be the first time with $\ell(f_1)=\mu+1$; then $f_1>a$, and $f_0=f_1-1$ has $\ell(f_0)=\mu$ while $\mu+1$ is
+allowed at $f_0$ with radius $1$. Now let $u=\max\bigl(a+1,\min(f_0,b-1-W)\bigr)$. Then $a+1\le u$, $u+W+1\le b$ (the
+interval is long), and every time $f\in[u,u+W]$ satisfies $\abs{f-f_0}\le W+1$; so both values are allowed at every such
+$f$ with radius $e+W+2\le w$. Let $\theta(f)=1$ if $\ell(f)=\mu+1$ and $\theta(f)=0$ otherwise, and define
+\[
+\varphi(f)=\begin{cases}
+p & f=a,\\
+p+\theta(f) & a<f<u,\\
+\min(p+1+(f-u),\,q-1) & u\le f<u+W,\\
+q-1+\theta(f) & u+W\le f<b,\\
+q & f=b.
+\end{cases}
+\]
+One checks directly that $\varphi$ has unit steps. It is a lift: at $f=a$ and $f=b$ use the anchors; for $a<f<u$, the
+value $x(p+\theta(f))$ is $\mu+1=\ell(f)$ if $\theta(f)=1$ and $\mu=\ell(f)$ otherwise, so it is allowed with radius $0$;
+similarly for $u+W\le f<b$, using $x(q-1)=\mu$, $x(q)=\mu+1$; and for $u\le f<u+W$ both values are allowed.
+
+\paragraph{Case 5: $M\ge\mu+2$, $x(p+1)=\mu+1$, and the pattern returns to its minimum:} $x(i)=\mu$ for some $i\in(p,q]$.
+Let $i_r$ be the least such $i$; then $i_r\ge p+2$. Let $i_c\in[p,i_r]$ be an index where $x$ is largest on $[p,i_r]$
+and $c=x(i_c)$; then $c\ge\mu+1$ and $p<i_c<i_r$.
+
+Let $f_s$ be the first time $f\ge a$ with $\ell(f)\ge c+1$, or $f_s=b$ if there is none. Then $\ell(f)\le c$ for
+$a\le f<f_s$, and $f_s>a$ (as $\ell(a)\le\mu+1\le c$, and $b>a$ since $q-p\ge2$). There is a value $v\ge\max(c,\mu+2)$ with
+$\mathrm{Al}_e(f_s,v)$: if $\ell(f_s)\ge c+1$ then $\ell(f_s)=c+1$ (unit steps) and we take $v=c+1$; otherwise $f_s=b$ and we
+take $v=M\ge c$.
+
+\emph{Crookedness.} By Lemma~\ref{lem:allowed}(d) applied to $\mathrm{Al}_e(a,\mu)$ and $\mathrm{Al}_e(f_s,v)$,
+$\abs{\sigma(a)-\sigma(f_s)}\ge w+1-2e\ge3$. By~\ref{S:crook} there are times $a<r<s<f_s$ with
+$\abs{\sigma(r)-\sigma(f_s)}\le2$ and $\abs{\sigma(s)-\sigma(a)}\le2$. Then:
+\begin{itemize}
+\item $\mathrm{Al}_{e+2}(r,c)$: a position $p_v$ with $\tau(p_v)=v\ge c$ lies within $e+2$ of $\sigma(r)$, and
+$\ell(r)=\tau(\sigma(r))\le c$; by the intermediate value theorem for $\tau$, the value $c$ is read at a position between
+$\sigma(r)$ and $p_v$.
+\item $\mathrm{Al}_{e+2}(s,\mu)$: move the anchor at $a$.
+\item The three pieces are long: by Lemma~\ref{lem:allowed}(d) and the triangle inequality, $\abs{\sigma(a)-\sigma(r)}$,
+$\abs{\sigma(r)-\sigma(s)}$ and $\abs{\sigma(s)-\sigma(b)}$ are all at least $w+1-2e-4\ge q-p$ (using $w\ge2B+10\ge
+2e+4(q-p)+10$), and time differences dominate position differences, so $r-a$, $s-r$, $b-s\ge q-p$.
+\end{itemize}
+
+\emph{Three subproblems.} The following tuples are good, each with radius $e+2$ and budget at most $e+2+2(q-p-1)\le B$:
+\begin{enumerate}[label=(\roman*)]
+\item the ascent: pattern on $[p,i_c]$ (from its minimum $\mu$ to its maximum $c$), times $[a,r]$ (readings in $[\mu,c]$
+since $r<f_s$; anchors $\mathrm{Al}_e(a,\mu)$, $\mathrm{Al}_{e+2}(r,c)$);
+\item the descent: pattern on $[i_c,i_r]$, which goes from its maximum $c$ to its minimum $\mu$, with $x$ and $\tau$
+negated so that it goes from minimum to maximum; times $[r,s]$;
+\item the rest: pattern on $[i_r,q]$ (from $x(i_r)=\mu$, its minimum, to $M$), times $[s,b]$.
+\end{enumerate}
+Each time interval is shorter than $[a,b]$. By induction (and negation, Lemma~\ref{lem:lift-ops}(c), for (ii)) we get
+lifts from $p$ to $i_c$, from $i_c$ to $i_r$, and from $i_r$ to $q$; widen them to $[p,q]$ and glue.
+
+\paragraph{Case 6: $M\ge\mu+2$, $x(p+1)=\mu+1$, and $x(i)>\mu$ for all $i\in(p,q]$.}
+Let $g$ be the last time in $[a,b]$ which is either $a$ or has $\ell(g)=\mu$. Then $\ell(f)\ge\mu+1$ for $g<f\le b$, and
+$\mathrm{Al}_e(g,\mu)$. By Lemma~\ref{lem:allowed}(d), $\abs{\sigma(g)-\sigma(b)}\ge w+1-2e$, so $g<b$ and indeed $b-g\ge
+q-p$.
+
+\emph{After $g$.} $\mathrm{Al}_{e+1}(g+1,\mu+1)$: if $\ell(g)=\mu$, then $\ell(g+1)=\mu+1$; otherwise $g=a$ and
+$\ell(a)=\mu+1$, and we move by one time. The tuple $(\tau,x,p+1,q,g+1,b,e+1)$ is good (the pattern on $[p+1,q]$ has minimum
+$x(p+1)=\mu+1$ since it never returns to $\mu$; the readings after $g$ are $\ge\mu+1$), so by induction there is a lift over
+$[g+1,b]$ from $p+1$ to $q$. Before it, put the step from $p$ at time $g$ to $p+1$ at time $g+1$.
+
+\emph{Up to $g$: a lift over $[a,g]$ from $p$ to $p$.} If $g=a$ this is a single time. Otherwise $\ell(g)=\mu$. Let $f_k$
+be a time in $[a,g]$ where $\ell$ is largest, and $E=\ell(f_k)$.
+\begin{itemize}
+\item If $E\le\mu+1$, let $\varphi(f)=p+1$ if $f\notin\set{a,g}$ and $\ell(f)=\mu+1$, and $\varphi(f)=p$ otherwise. This has
+unit steps, and it is a lift: $x(p+1)=\mu+1=\ell(f)$, resp.\ $x(p)=\mu=\ell(f)$ (for $a<f<g$ the reading is $\mu$ or $\mu+1$),
+and at $a$ use the anchor, at $g$ the reading $\ell(g)=\mu$.
+\item If $E\ge\mu+2$, then $E\le M$ and, by the intermediate value theorem, the pattern takes the value $E$; let $i_e$ be
+the least index with $x(i_e)=E$. Then $p<i_e$ and $x\le E$ on $[p,i_e]$. By Lemma~\ref{lem:allowed}(d),
+$f_k-a\ge q-p$ and $g-f_k\ge q-p$. The ascent (pattern on $[p,i_e]$, times $[a,f_k]$, radius $e$, upper anchor
+$\mathrm{Al}_0(f_k,E)$) and the descent (pattern $k\mapsto x(p+i_e-k)$ on $[p,i_e]$, negated, times $[f_k,g]$, radius $0$,
+anchors $\mathrm{Al}_0(f_k,E)$ and $\mathrm{Al}_0(g,\mu)$) are good tuples with shorter time intervals. Induction, negation
+and reflection give lifts over $[a,f_k]$ from $p$ to $i_e$ and over $[f_k,g]$ from $i_e$ to $p$; glue them.
+\end{itemize}
+Gluing the three pieces gives the lift over $[a,b]$ from $p$ to $q$.
+
+\paragraph{Exhaustiveness.} If neither Case~1 nor Case~2 applies, then $x(p+1)\ne\mu$, and since $x(p)$ is the minimum and
+$x$ has unit steps, $x(p+1)=\mu+1$. If $M=\mu+1$, Case~3 or Case~4 applies. Otherwise $M\ge\mu+2$, and Case~5 or Case~6
+applies.
+\end{proof}
+
+\formal{\lean{HPC.PatCore.main_step} with the cases \lean{HPC.PatCore.case_const},
+\lean{HPC.PatCore.case_plateau}, \lean{HPC.PatCore.case_plateau_end}, \lean{HPC.PatCore.case_amp1},
+\lean{HPC.PatCore.case_return}, \lean{HPC.PatCore.case_noreturn}; the induction is \lean{HPC.PatCore.ih_all}.}
+
+\begin{theorem}[Combinatorial core of pattern following]\label{thm:realize}
+Let $\sigma$, $T$ satisfy~\ref{S:lip} and~\ref{S:crook}, let $N\ge1$ and $w\ge4N+10$, and let $\tau$ be $w$-slow. Let
+$x\colon\N\to\Z$ have unit steps on $[0,N-1]$ with $x(0)\le x(i)\le x(N-1)$ for $i<N$. Suppose $x(0)\le\ell(f)\le x(N-1)$
+for $f\le T$, $\ell(0)=x(0)$, $\ell(T)=x(N-1)$, and $N-1\le T$. Then there is $\varphi\colon[0,T]\to[0,N-1]$ with unit
+steps, $\varphi(0)=0$, $\varphi(T)=N-1$, and $\mathrm{Al}_w(f,x(\varphi(f)))$ for all $f\le T$.
+\end{theorem}
+
+\begin{proof}
+Take $B=2(N-1)$; then $2B+10\le w$. The tuple $(\tau,x,0,N-1,0,T,0)$ is good: the anchors hold with radius $0$ because
+$\ell(0)=x(0)$ and $\ell(T)=x(N-1)$. Apply Theorem~\ref{thm:pf-main}.
+\end{proof}
+
+\formal{\lean{HPC.PatCore.realize}.}
+
+\section{Back to chains}\label{sec:pf-geometry}
+
+Let $D^{(0)},D^{(1)},\dots$ be a description from $P$ to $Q$ in a compact metric space $X$, with mesh bounds
+$\varepsilon_i\to0$ and lengths $n_i$.
+
+\begin{lemma}\label{lem:n-tendsto}
+If $P\neq Q$, then $n_i\to\infty$.
+\end{lemma}
+
+\begin{proof}
+Both $P$ and $Q$ lie in $\bigcup D^{(i)}$. Let $P\in D^{(i)}_a$ and $Q\in D^{(i)}_b$. By \vone{Lemma~2.9},
+$d(P,Q)\le(\abs{a-b}+1)\varepsilon_i\le n_i\varepsilon_i$. As $\varepsilon_i\to0$, $n_i\ge d(P,Q)/\varepsilon_i\to\infty$.
+\end{proof}
+
+\formal{\lean{HPC.Description.n_tendsto_atTop} (via the more general \lean{HPC.Chain.diam_le_length_mul}).}
+
+\begin{lemma}[Thick readings]\label{lem:thick}
+For every $w\in\N$ there is $m_0$ such that for all $m\ge m_0$ and every index $p$ of $D^{(m)}$ there is an index $s$ of
+$D^{(0)}$ with $D^{(m)}_{p'}\subseteq D^{(0)}_s$ for every $p'$ with $\abs{p-p'}\le w$.
+\end{lemma}
+
+\begin{proof}
+The set $K=\cl{\bigcup D^{(1)}}$ is compact, and $K\subseteq\bigcup D^{(0)}$ because the closure of each link of $D^{(1)}$
+lies in a link of $D^{(0)}$. By the Lebesgue number lemma there is $\delta>0$ such that every ball of radius $\delta$ about a
+point of $K$ lies in a link of $D^{(0)}$. Choose $m_0\ge1$ with $\varepsilon_m(w+2)<\delta$ for $m\ge m_0$. Given $p$, pick
+$y\in D^{(m)}_p$; then $y\in K$ (as $D^{(m)}$ refines $D^{(1)}$), so the ball $B(y,\delta)$ lies in some $D^{(0)}_s$. If
+$\abs{p-p'}\le w$ and $z\in D^{(m)}_{p'}$, then $d(z,y)\le(w+1)\varepsilon_m<\delta$ by \vone{Lemma~2.9}, so $z\in
+D^{(0)}_s$.
+\end{proof}
+
+\formal{\lean{HPC.Description.eventually_thick}.}
+
+\begin{lemma}\label{lem:setting-of-crooked}
+Let $F$ (of length $n_F\ge1$) be crooked in $R$, and let $\sigma_0\colon[n_F]\to[n_R]$ satisfy $F_t\subseteq R_{\sigma_0(t)}$.
+Then $\sigma(f)=\sigma_0(\min(f,n_F-1))$ satisfies~\ref{S:lip} and~\ref{S:crook} with $T=n_F-1$.
+\end{lemma}
+
+\begin{proof}
+\ref{S:lip} is \vone{Lemma~2.4} (and $\sigma$ is constant after $n_F-1$). For~\ref{S:crook} let $f<f'\le T$ with
+$\abs{\sigma(f)-\sigma(f')}\ge3$; say $\sigma(f')>\sigma(f)+2$ (the other case is symmetric). The link $F_f$ meets
+$R_{\sigma(f)}$ and $F_{f'}$ meets $R_{\sigma(f')}$, so crookedness gives $r,s$ with $\mathrm{Btw}(f,r,s,f')$, i.e.
+$f<r<s<f'$, and $F_r\subseteq R_{\sigma(f')-1}$, $F_s\subseteq R_{\sigma(f)+1}$. Since $F_r$ also lies in $R_{\sigma(r)}$, these
+two links of $R$ meet and $\abs{\sigma(r)-(\sigma(f')-1)}\le1$; so $\abs{\sigma(r)-\sigma(f')}\le2$. Likewise
+$\abs{\sigma(s)-\sigma(f)}\le2$.
+\end{proof}
+
+\formal{\lean{HPC.Chain.setting_of_crooked}.}
+
+\begin{lemma}\label{lem:consolidation-of-lift}
+Let $F$ be a chain of length $n_F$ from $P$ to $Q$, $D$ a chain, and $x\colon[N]\to[n]$. Let $\varphi\colon[n_F]\to[N]$ have
+unit steps, $\varphi(0)=0$, $\varphi(n_F-1)=N-1$, and $F_f\subseteq D_{x(\varphi(f))}$ for all $f$. Then there is a
+consolidation $E$ of $F$ of length $N$ which goes from $P$ to $Q$ and follows $x$ in $D$.
+\end{lemma}
+
+\begin{proof}
+$\varphi$ is surjective by the discrete intermediate value theorem, so it is a block map; let $E=F^\varphi$
+(Lemma~\ref{lem:block-chain}). The only link of $F$ containing $P$ is $F_0$, in block $0$; the only one containing $Q$ is
+$F_{n_F-1}$, in block $N-1$; so $E$ goes from $P$ to $Q$ by Lemma~\ref{lem:block-from}. Finally
+$E_u=\bigcup_{\varphi(f)=u}F_f\subseteq D_{x(u)}$.
+\end{proof}
+
+\formal{\lean{HPC.Chain.exists_consolidation_of_lift}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:pattern-following}]
+The levels $D^{(i)},D^{(i+1)},\dots$ form a description from $P$ to $Q$ (with the same properties), so we may assume $i=0$
+and must find $j>0$. Let $x\colon[N]\to[n_0]$ be a pattern in $D^{(0)}$ and $w=4N+10$. By Lemmas~\ref{lem:thick}
+and~\ref{lem:n-tendsto} choose $m$ such that the conclusion of Lemma~\ref{lem:thick} holds for $D^{(m)}$, and $n_{m+1}\ge N$.
+Let $R=D^{(m)}$, $F=D^{(m+1)}$ and $T=n_{m+1}-1$. For each index $p$ of $R$ let $\tau_0(p)$ be an index $s$ as in
+Lemma~\ref{lem:thick}, and let $\sigma_0(t)$ be an index with $F_t\subseteq R_{\sigma_0(t)}$.
+
+Extend to $\tau(p)=\tau_0(\text{clamp}(p))$ for $p\in\Z$, where $\text{clamp}(p)$ is the nearest index of $R$ to $p$, and
+let $\sigma$ be as in Lemma~\ref{lem:setting-of-crooked}; also extend $x$ to $\N$ by $x(i)=x(\min(i,N-1))$.
+\begin{itemize}
+\item $\tau$ is $w$-slow: if $\abs{p-p'}\le w$, then $R_{p'}$ (with $p,p'$ clamped) lies in $D^{(0)}_{\tau(p)}$ and in
+$D^{(0)}_{\tau(p')}$, so these links meet and $\abs{\tau(p)-\tau(p')}\le1$. (Clamping does not increase distances.)
+\item $\sigma$ satisfies~\ref{S:lip} and~\ref{S:crook} with this $T$, by Lemma~\ref{lem:setting-of-crooked}, since $F$ is
+crooked in $R$.
+\item The pattern conditions hold: $x(0)=0\le x(i)\le n_0-1=x(N-1)$, and every reading $\ell(f)$ lies in $[0,n_0-1]$.
+\item $\ell(0)=0$: $P\in F_0\subseteq R_{\sigma(0)}$, and $P$ lies only in $R_0$, so $\sigma(0)=0$; and $P\in R_0\subseteq
+D^{(0)}_{\tau_0(0)}$, and $P$ lies only in $D^{(0)}_0$, so $\tau_0(0)=0$. Likewise $\ell(T)=n_0-1$ using $Q$.
+\item $N-1\le T$.
+\end{itemize}
+Theorem~\ref{thm:realize} gives $\varphi\colon[0,T]\to[0,N-1]$ with unit steps from $0$ to $N-1$ such that for every $f$
+there is a position $p$ with $\abs{p-\sigma(f)}\le w$ and $\tau(p)=x(\varphi(f))$. Then
+\[
+F_f\subseteq R_{\sigma(f)}\subseteq D^{(0)}_{\tau_0(p)}=D^{(0)}_{x(\varphi(f))},
+\]
+the middle inclusion by the choice of $\tau_0$, since $\sigma(f)$ is within $w$ of $p$. Lemma~\ref{lem:consolidation-of-lift}
+gives the required consolidation of $F=D^{(m+1)}$; so $j=m+1>0$.
+\end{proof}
+
+\formal{\lean{HPC.Description.theorem6Pos_of_ne}, and
+\lean{HPC.Description.patternFollowing_of_theorem6Pos} for the passage to arbitrary $i$ (via the shifted description
+\lean{HPC.Description.shift}).}
+
+\begin{remark}
+Bing derives Theorem~6 from a more general Theorem~5 (patterns between any two links $h$ and $k$, followed by
+consolidations of subchains). The formal development also proves Theorem~5 (\lean{HPC.Description.theorem5}), but
+the uniqueness theorem needs only Theorem~6, and the direct proof above is simpler.
+\end{remark}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Check the unit-step claim for $\varphi$ in Case~4 of the proof of Theorem~\ref{thm:pf-main} at each of the four
+transition times $a+1$, $u$, $u+W$ and $b$.
+\end{exercise}
+
+\begin{exercise}
+Show that crookedness~\ref{S:crook} cannot be dropped from Theorem~\ref{thm:realize}: take $\sigma(f)=f$, $\tau(p)=\fl{p/(w+1)}$,
+and a pattern $x$ which, starting from its minimum, rises by at least $4$, then falls by at least $4$, and then rises to its
+maximum at the end. Show that no lift exists. (Hint: $\ell$ is nondecreasing.)
+\end{exercise}
+
+\begin{exercise}
+In Lemma~\ref{lem:consolidation-of-lift}, show that the blocks of $E$ need not be sets of consecutive indices, and draw an example.
+\end{exercise}
+
+\begin{exercise}
+Where is the compactness of $X$ used in the proof of Theorem~\ref{thm:pattern-following}? Show that it suffices that the
+links of the description lie in a compact set.
+\end{exercise}

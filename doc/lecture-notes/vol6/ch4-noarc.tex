@@ -1,0 +1,429 @@
+%======================================================================
+\chapter{No arc, and hereditary indecomposability}\label{ch:noarc}
+%======================================================================
+
+This chapter proves that a homogeneous indecomposable plane continuum contains no arc (Bing 1960 for the
+indecomposable case; F.~B.~Jones, \emph{Use of a new technique in homogeneous continua}, 1975), and deduces from
+it and Chapter~\ref{ch:decomp} Hagopian's theorem that such a continuum is hereditarily indecomposable.
+
+Jones's paper proves the no-arc theorem from six properties (a)--(f) of a homogeneous indecomposable plane
+continuum containing an arc. The formal proof keeps his overall idea (study the arc components, which are lines,
+and use the Effros theorem to transport pieces of a line along itself) but replaces two of his steps, whose
+printed proofs are defective, and replaces his final planar argument by a different one.
+
+\begin{itemize}
+\item Jones's property (f) (``no folding in a thin neighbourhood'') is proved from (a)--(c) and the Effros theorem
+alone. That argument cannot be right: the dyadic solenoid satisfies everything it uses, and (f) fails there. The
+formal proof replaces (f) by two properties, (R) and (O) below, which do hold in that generality.
+\item Jones's argument that every point of a line is a limit of the rest of the line has a gap (the Effros
+homeomorphism might reverse the line); it is replaced by a short recurrence argument.
+\item The final planar contradiction is a ``trapping'' argument in a collar of an arc, in the spirit of the
+Poincar\'e--Bendixson theorem, using the Jordan curve theorem.
+\end{itemize}
+
+\section{The setting}
+
+\begin{definition}\label{def:jones-setting}
+A \emph{Jones setting} is a compact metric space $Y$ that is homogeneous, hereditarily unicoherent and atriodic and
+contains an arc.
+\end{definition}
+
+\formal{\lean{HPC.Hagopian.JonesSetting}, \lean{HPC.Hagopian.jonesSetting_of_plane}.}
+
+By Theorem~\ref{thm:hagopian-lemma1}, a homogeneous indecomposable plane continuum that contains an arc is a Jones
+setting. Sections~\ref{sec:lines}--\ref{sec:recurrence} work in an arbitrary Jones setting $Y$; planarity enters
+only in Section~\ref{sec:trap}. (The dyadic solenoid is a Jones setting, so these sections are not vacuous.)
+
+\section{Arcs and lines}\label{sec:lines}
+
+\begin{proposition}[Jones (c)]\label{prop:jones-c}
+Let $A,B$ be arcs in $Y$ that meet. Then $A\cup B$ is an arc. If $A$ and $B$ have a common end point and meet in another
+point, one of them contains the other.
+\end{proposition}
+
+\begin{proof}
+$A\cap B$ is a continuum (hereditary unicoherence), hence a point or a sub-arc of each. At each end point of $A\cap B$
+count the arms of $A\cup B$ there: the sub-arc $A\cap B$ (if nondegenerate), a tail of $A$, a tail of $B$. Three arms that
+pairwise meet only at that point form a triod (\vthree{Lemma~4.5}), which is excluded. So there is at most one tail at
+each end (at most two in all if $A\cap B$ is a point), and $A\cup B$ is an arc. For the second statement, $A\cap B$ is a sub-arc
+from the common end point $a$; its far end is an end point of $A$ or of $B$, since otherwise there would be three arms
+there.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.JonesSetting.inter_isPreconnected}, \lean{HPC.Hagopian.JonesSetting.no_three_arms},
+\lean{HPC.Hagopian.JonesSetting.union_arc}, \lean{HPC.Hagopian.JonesSetting.nested}.}
+
+In particular two arcs with the same end points are equal. By homogeneity every point is an interior point of an arc
+(map an interior point of a given arc to it).
+
+\formal{\lean{HPC.Hagopian.JonesSetting.arc_unique}, \lean{HPC.Hagopian.JonesSetting.exists_arc_through}.}
+
+The \emph{arc component} of $x$ is the union of $\set x$ and all arcs containing $x$. A \emph{line} is a continuous
+injection $\ell\colon\R\to Y$ whose image is an arc component.
+
+\formal{\lean{HPC.Hagopian.arcComp}, \lean{HPC.Hagopian.IsLine}.}
+
+\begin{theorem}\label{thm:lines}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item Every arc component of $Y$ is the image of a line.
+\item If $\ell$ is a line and $s<t$, then $\ell[s,t]$ is an arc, and every arc between two points of $\ell$ is of this form.
+\item If $\ell,\ell'$ are lines and $h$ is a homeomorphism of $Y$ with $h(\ell(0))\in\ell'(\R)$, then $h\circ\ell=\ell'\circ\psi$ for a
+continuous strictly monotone bijection $\psi$ of $\R$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Fix an arc $[a,c]$ with $x$ in its interior. The arcs from $x$ containing $[x,c]$ form a chain under inclusion
+(Proposition~\ref{prop:jones-c}). There is no largest one: if $[x,z]$ were largest, an arc with $z$ in its interior would
+extend it beyond $z$. The union $R^+$ of the chain is separable; a countable dense subset is covered by countably many
+arcs of the chain, and these are cofinal (if all lay in one arc $[x,y]$, $R^+$ would lie in the closed set $[x,y]$, which
+would be largest). Parametrize $[0,\infty)$ piecewise along an increasing cofinal sequence. Do the same for $R^-$ through
+$a$. $R^+\cap R^-=\set x$, since an arc from $x$ containing $[x,a]$ and $[x,c]$ would make them nested, and $R^+\cup R^-$ is
+the arc component by Proposition~\ref{prop:jones-c}. Gluing the two parametrizations gives a continuous injection of $\R$.
+
+(b) The first statement holds for any continuous injection; the second because two arcs with the same end points are
+equal.
+
+(c) $h$ maps arc components onto arc components, so it maps $\ell(\R)$ onto $\ell'(\R)$; $\psi=\ell'^{-1}\circ h\circ\ell$ is a bijection of $\R$
+that maps compact intervals onto compact intervals by (b), hence is continuous and strictly monotone.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.JonesSetting.rayArcs_total}, \lean{HPC.Hagopian.JonesSetting.extend},
+\lean{HPC.Hagopian.JonesSetting.exists_ray_seq}, \lean{HPC.Hagopian.JonesSetting.exists_line},
+\lean{HPC.Hagopian.JonesSetting.line_arc}, \lean{HPC.Hagopian.JonesSetting.arc_in_line},
+\lean{HPC.Hagopian.JonesSetting.homeo_on_line}.}
+
+\section{No small reversal}\label{sec:reversal}
+
+\begin{lemma}[(R0)]\label{lem:R0}
+Let $A=[a,p]$ and $C=[p,c]$ be arcs and $\rho=\min(\dist(a,C),\dist(c,A))$. If $h$ is a homeomorphism with $h(p)=p$ that moves every
+point by less than $\rho$, then $h(A)\cap C=\set p$.
+\end{lemma}
+
+\begin{proof}
+Suppose $h(A)$ meets $C\setminus\set p$. The arcs $h(A)$ and $C$ start at $p$ and meet elsewhere, so they are nested
+(Proposition~\ref{prop:jones-c}). If $C\subseteq h(A)$, then $c=h(y)$ with $y\in A$ and $d(c,y)<\rho\le\dist(c,A)$; if $h(A)\subseteq C$,
+then $h(a)\in C$ and $d(a,h(a))<\rho\le\dist(a,C)$. Both are impossible.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.JonesSetting.no_reversal_arc}.}
+
+\begin{theorem}[(R) and (O)]\label{thm:RO}
+There is $\varepsilon_0>0$ with the following properties.
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(R)} If $h$ is an $\varepsilon_0$-homeomorphism fixing $\ell(s)$ for a line $\ell$, then $h$ maps $\ell(t)$, $t>s$, to points
+$\ell(t')$ with $t'>s$.
+\item \emph{(O)} If $h$ is an $\varepsilon_0$-homeomorphism with $h(\ell(0))\in\ell(\R)$, then $h\circ\ell=\ell\circ\psi$ with $\psi$ strictly
+increasing, continuous and onto.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) For each $q\in Y$ take an arc with $q$ in its interior and its $\rho_q$ as in Lemma~\ref{lem:R0}, and let $\delta_q$ be the
+Effros bound for $\rho_q/3$. If $d(b,q)<\delta_q$, let $g$ be a $\rho_q/3$-homeomorphism with $g(b)=q$. If $h$ fixes $b$, moves points
+less than $\rho_q/3$ and reverses the line through $b$, then $ghg^{-1}$ fixes $q$, moves points less than $\rho_q$, and reverses
+the line through $q$; by Theorem~\ref{thm:lines}(c) reversing the line at a fixed point means reversing every arc there,
+which contradicts Lemma~\ref{lem:R0}. Cover $Y$ by finitely many balls $B(q,\delta_q)$ and take $\varepsilon_0=\min\rho_q/3$.
+
+(b) By Theorem~\ref{thm:lines}(c), $h\circ\ell=\ell\circ\psi$ with $\psi$ a continuous monotone bijection. If $\psi$ decreased, $\psi(s)-s$ would be
+continuous, strictly decreasing and onto $\R$, so $\psi(s^*)=s^*$ for some $s^*$, and $h$ would fix $\ell(s^*)$ and reverse $\ell$
+there, against (a).
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.JonesSetting.local_no_reversal}, \lean{HPC.Hagopian.JonesSetting.exists_no_reversal},
+\lean{HPC.Hagopian.JonesSetting.orientation}.}
+
+\begin{remark}
+Jones's (f) asserts, for a point $p$ and an open set $D$ with $p\notin\cl D$, an $\varepsilon$ such that no arc $abc$ with $a,c\in D$ has
+the $\varepsilon$-neighbourhood of $ab$ containing $p$ and $bc$. His proof uses only the Effros theorem and (c). In the dyadic
+solenoid, where all of these hold, (f) fails: a long initial piece $\lambda[0,S]$ of a line is $\varepsilon/2$-dense, and an arc $abc$
+along the line beyond it is a counterexample. Theorem~\ref{thm:RO} is what the argument actually needs.
+\end{remark}
+
+\section{Recurrence}\label{sec:recurrence}
+
+For a line $\ell$, its \emph{forward limit set} is $\omega(\ell)=\set{z: z=\lim\ell(u_n)\text{ for some }u_n\to\infty}$.
+
+\formal{\lean{HPC.Hagopian.omegaLim}, \lean{HPC.Hagopian.mem_omegaLim_iff}.}
+
+\begin{theorem}\label{thm:recurrent}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item $\omega(\ell)$ contains the arc component of each of its points.
+\item Every line lies in its own forward limit set: $\ell(\R)\subseteq\omega(\ell)$. The same holds backwards.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Let $z=\lim\ell(u_n)$, $u_n\to\infty$, and $\lambda$ the line through $z$ with $\lambda(0)=z$. The Effros theorem gives
+$\varepsilon_n$-homeomorphisms $h_n$, $\varepsilon_n\to0$, with $h_n(z)=\ell(u_n)$; by Theorem~\ref{thm:lines}(c), $h_n(\lambda(s))=\ell(\psi_n(s))$
+with $\psi_n(0)=u_n$. Fix $s$. If $\psi_n(s)\le C$ along a subsequence, then for every $L$, eventually $\ell[C,C+L]\subseteq h_n(\lambda[0,s])$ (the
+parameter interval between $\psi_n(s)$ and $u_n$ eventually covers $[C,C+L]$), which lies within $\varepsilon_n$ of $\lambda[0,s]$. So
+$\ell[C,\infty)\subseteq\lambda[0,s]$, a compact arc, which is impossible (the arc components of $\ell$ and $\lambda$ are equal or disjoint, and
+$\ell$ is injective). Hence $\psi_n(s)\to\infty$ and $\lambda(s)\in\omega(\ell)$.
+
+(b) $K=\omega(\ell)$ is nonempty and compact. Suppose $\ell(0)\notin K$ and let $\varepsilon=\frac12\dist(\ell(0),K)$. Take $p\in K$, $\delta$ the Effros
+bound for $\varepsilon$, $t$ with $d(\ell(t),p)<\delta$, and an $\varepsilon$-homeomorphism $g$ with $g(\ell(t))=p$. $g$ maps the line $\ell$ onto the
+line through $p$, which lies in $K$ by (a); so $g(\ell(0))\in K$, while $d(\ell(0),g(\ell(0)))<\varepsilon<\dist(\ell(0),K)$. Apply this to the shifted
+lines $s\mapsto\ell(s+c)$ and the reversed line $s\mapsto\ell(-s)$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.JonesSetting.omegaLim_saturated}, \lean{HPC.Hagopian.JonesSetting.zero_mem_omegaLim},
+\lean{HPC.Hagopian.JonesSetting.line_recurrent}, \lean{HPC.Hagopian.JonesSetting.jones75_d}.}
+
+\section{Passes through a box}\label{sec:passes}
+
+From now on $M$ is a homogeneous indecomposable plane continuum containing an arc, $\ell$ is a line in $M$, and
+$\gamma=\ell|_{[0,1]}$. By the collar theorem (\vfive{Theorem~9.19}) there is a \emph{collar} $F$ of $\gamma$: an embedding of
+$[0,1]\times[-1,1]$ into the plane with $F(t,0)=\gamma(t)$ and $F((0,1)\times(-1,1))$ open. On $F([0,1]\times[-1,1])$ we use the collar coordinates
+$(X,Y)=F^{-1}$. The \emph{flipped} collar $\bar F(x,y)=F(x,-y)$ is again a collar; everything below that is stated ``above'' the arc
+holds ``below'' by flipping.
+
+\formal{\lean{HPC.Hagopian.IsCollar}, \lean{HPC.Hagopian.exists_collar}, \lean{HPC.Hagopian.collarCoord},
+\lean{HPC.Hagopian.flipC}.}
+
+Fix $\kappa=1/32$. The \emph{middle band} is $X\in[\frac14+\kappa,\frac34-\kappa]=[\frac9{32},\frac{23}{32}]$; it contains the column
+$[\frac38,\frac58]$. For $\eta\le1$ let $Q_\eta=F([\frac14,\frac34]\times[-\eta,\eta])$ be the \emph{box} of height $\eta$.
+
+\begin{definition}\label{def:pass}
+A \emph{pass} of $Q_\eta$ is a piece $\ell[a,b]$, $a<b$, with $\ell(a)$ on the left edge $F(\set{\frac14}\times[-\eta,\eta])$, $\ell(b)$ on the right
+edge $F(\set{\frac34}\times[-\eta,\eta])$, and $\ell((a,b))$ in the open box $F((\frac14,\frac34)\times(-\eta,\eta))$. A pass has property
+\emph{(Mon)} if $X(\ell(v))>X(\ell(v'))-2\kappa$ whenever $a\le v'<v\le b$. It is \emph{above} (below) the arc if it lies, end points
+included, in $Y>0$ ($Y<0$).
+\end{definition}
+
+\formal{\lean{HPC.Hagopian.IsPass}, \lean{HPC.Hagopian.PassMon}, \lean{HPC.Hagopian.PassAbove},
+\lean{HPC.Hagopian.PassBelow}.}
+
+On a pass with (Mon), if $X(\ell v)=c$, $X(\ell v')=c'$ and $c'-c\ge2\kappa$, then $v<v'$ (the \emph{order corollary}).
+
+\begin{lemma}[Passes]\label{lem:passes}
+\leavevmode
+\begin{enumerate}[label=(P\arabic*)]
+\item Distinct passes of $Q_\eta$ have disjoint closed parameter intervals.
+\item Only finitely many passes meet a bounded parameter interval; so among the passes with a given property starting after
+a given time, if any, there is a first one.
+\item $\ell[\frac14,\frac34]$ is a pass (the \emph{base pass}).
+\item Every other pass is above or below the arc.
+\end{enumerate}
+For $\eta'\le\eta$, every pass of $Q_{\eta'}$ is a pass of $Q_\eta$.
+\end{lemma}
+
+\begin{proof}
+(P1) If $a<a'<b$, then $\ell(a')$ would be on the left edge and in the open box; if $a'=b$, on both edges; if $a=a'$ and $b<b'$,
+$\ell(b)$ would be on the right edge and in the open box. (P2) Passes inside $[-N,N]$ have length at least the modulus of uniform
+continuity of $\ell$ for the distance between the edges, and at most two straddle $\pm N$. (P3) is clear. (P4) A pass other than the
+base pass misses the base arc (injectivity of $\ell$ and (P1)), and its preimage under $F$ is connected.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.IsPass.disjoint}, \lean{HPC.Hagopian.IsPass.finite}, \lean{HPC.Hagopian.exists_first_pass},
+\lean{HPC.Hagopian.isPass_base}, \lean{HPC.Hagopian.IsPass.above_or_below}, \lean{HPC.Hagopian.IsPass.mono}.}
+
+\begin{lemma}[The shadow lemma]\label{lem:shadow}
+For every $\eta'\in(0,1]$ there is $\delta>0$ such that: if $x\in[\frac9{32},\frac{23}{32}]$ and $d(\ell(u),\ell(x))<\delta$, then $u$ lies in the open
+parameter interval of a pass of $Q_{\eta'}$ with (Mon).
+\end{lemma}
+
+\begin{proof}
+Take $\varepsilon<\varepsilon_0$ (Theorem~\ref{thm:RO}) such that every point within $\varepsilon$ of $\gamma(s)$, $s\in[\kappa,1-\kappa]$, lies in the open collar with
+$\abs{X-s}<\kappa$ and $\abs Y<\eta'$ (uniform continuity of $F^{-1}$ near the compact arc), and let $\delta$ be the Effros bound for $\varepsilon$.
+\begin{enumerate}
+\item The Effros theorem gives $h$ with $h(\ell(x))=\ell(u)$ moving points less than $\varepsilon$; by (O), applied to the shifted line, $h\circ\ell=\ell\circ\psi$
+with $\psi$ increasing, continuous and onto, $\psi(x)=u$. Let $\theta=\psi^{-1}$.
+\item Put $s_1=\frac3{16}$, $s_2=\frac{13}{16}$. For $v\in[\psi(s_1),\psi(s_2)]$ the point $\ell(v)=h(\gamma(\theta(v)))$ lies in the open collar with
+$\abs{X(\ell v)-\theta(v)}<\kappa$ and $\abs Y<\eta'$. So $X<\frac14$ at $\psi(s_1)$ and $X>\frac34$ at $\psi(s_2)$.
+\item Let $a=\max\set{v\in[\psi(s_1),u]:X(\ell v)\le\frac14}$ and $b=\min\set{v\in[u,\psi(s_2)]:X(\ell v)\ge\frac34}$. On $(a,u]$, $\frac14<X<\theta(v)+\kappa\le
+x+\kappa\le\frac34$; on $[u,b)$, $\frac34>X>\theta(v)-\kappa\ge x-\kappa\ge\frac14$. Hence $a<u<b$, $X(\ell a)=\frac14$, $X(\ell b)=\frac34$, and
+$\ell[a,b]$ is a pass of $Q_{\eta'}$.
+\item (Mon): for $v'<v$, $X(\ell v)>\theta(v)-\kappa>\theta(v')-\kappa>X(\ell v')-2\kappa$.\qedhere
+\end{enumerate}
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.shadow_pass}.}
+
+The shadow lemma holds only in the middle band: near an edge the line may turn back by up to $2\kappa$.
+
+\begin{corollary}[Two scales]\label{cor:scales}
+Put $\eta=\frac12$.
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(Flow box.)} There is $\eta_2\in(0,\eta)$ such that every $u$ with $\ell(u)\in F([\frac9{32},\frac{23}{32}]\times[-\eta_2,\eta_2])$ lies in a pass of
+$Q_\eta$ with (Mon); by (P1) every pass of $Q_\eta$ through such a point has (Mon).
+\item A pass of $Q_\eta$ is \emph{thin} if it lies in $Q_{\eta_2}$. Every thin pass has (Mon) (it meets $X=\frac12$).
+\item \emph{(Scale two.)} There is $\delta_2>0$ such that if $d(\ell(u),\ell(\frac12))<\delta_2$, then $u$ lies in the open interval of a thin pass.
+\item \emph{(Late thin passes.)} For every $T$ there is a thin pass starting after $T$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) Take $\delta_1$ from Lemma~\ref{lem:shadow} for $\eta'=\eta$ and $\eta_2$ with $d(F(x,y),F(x,0))<\delta_1$ for $\abs y\le\eta_2$; apply the lemma at
+$x=X(\ell u)$. (c) Lemma~\ref{lem:shadow} with $\eta'=\eta_2/2$, nesting and (P1). (d) Let $T'$ be the end of the pass containing $T$, if any,
+and $T'=T$ otherwise. By recurrence (Theorem~\ref{thm:recurrent}) there is $u>T'$ with $d(\ell(u),\ell(\frac12))<\delta_2$; the thin pass $[a,b]\ni u$
+has $a>T$, since otherwise it would contain $T$ and end at $T'<u$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.flow_box}, \lean{HPC.Hagopian.FBProp}, \lean{HPC.Hagopian.PassThin},
+\lean{HPC.Hagopian.scale_two}, \lean{HPC.Hagopian.exists_late_thin_pass}.}
+
+\section{The trap}\label{sec:trap}
+
+Let $P_m=\ell[a_m,b_m]$ be a thin pass above the arc with $a_m>\frac34$.
+
+\begin{lemma}[The region under a thin pass]\label{lem:region}
+$I_m=F^{-1}(P_m)$ is an arc from $r=(\frac14,r_2)$ to $s=(\frac34,s_2)$ in $[\frac14,\frac34]\times(0,\eta_2]$, meeting the vertical sides only in $r,s$.
+There is a connected bounded open set $D_m\subseteq(\frac14,\frac34)\times(0,\eta_2)$ with
+\[
+\fr D_m=I_m\cup[\tfrac14,\tfrac34]\times\set0\cup\set{\tfrac14}\times[0,r_2]\cup\set{\tfrac34}\times[0,s_2].
+\]
+Put $R_m=F(D_m)$. For $c\in(\frac14,\frac34)$ let $w_m(c)$ be the least height of a point of $I_m$ over $c$ and $\tau_m(c)=\set c\times(0,w_m(c))$; let
+$h_m>0$ be below all heights of $I_m$. Then $\tau_m(c)\subseteq D_m$, $(\frac14,\frac34)\times(0,h_m)\subseteq D_m$, and $\tau_m(c)$ is a cross-cut of $D_m$: no
+connected subset of $D_m\setminus\tau_m(c)$ has closure meeting both open vertical sides.
+\end{lemma}
+
+\begin{proof}[Proof in outline]
+$D_m$ is the bounded complementary domain of the simple closed curve formed by $I_m$ and the three sides, given by the Jordan curve
+theorem (\vfive{Theorem~4.8}). For the cross-cut, the Jordan curve formed by the part of $I_m$ from $r$ to $(c,w_m(c))$, the left side, the
+bottom from $\frac14$ to $c$ and $\tau_m(c)$ has the points of $D_m$ near the left side inside and the points near the right side outside.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.rect_domain_aux}, \lean{HPC.Hagopian.rect_domain_low}, \lean{HPC.Hagopian.seg_subset_rect_domain},
+\lean{HPC.Hagopian.rect_domain_crosscut}, \lean{HPC.Hagopian.thinPass_arc}.}
+
+\begin{lemma}[Passes entering the region]\label{lem:R1R2}
+Let $P'=\ell[a',b']$ be a pass other than the base pass and $P_m$ whose interior meets $R_m$. Then (R1) its interior lies in $R_m$, its end
+points lie on the open sides $F(\set{\frac14}\times(0,r_2))$ and $F(\set{\frac34}\times(0,s_2))$, and $P'$ is thin; and (R2) its interior meets $F(\tau_m(c))$
+for every $c\in(\frac14,\frac34)$.
+\end{lemma}
+
+\begin{proof}
+(R1) By (P4) $P'$ is above the arc; the preimage of its interior is connected, meets $D_m$, and misses $I_m$ (by (P1) and injectivity), the
+bottom and the sides, so it lies in $D_m$. Its end points are limits of the interior, so they lie in $\fr D_m$, on the sides and not at the
+corners. (R2) is the cross-cut property of Lemma~\ref{lem:region}.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.region_pass}, \lean{HPC.Hagopian.region_cross}.}
+
+\begin{theorem}[The trapping lemma]\label{thm:trap}
+Suppose that every thin pass above the arc starting after $\frac34$ starts at or after $a_m$. Then no pass starting after $b_m$ has its
+interior in $R_m$.
+\end{theorem}
+
+\begin{proof}
+\emph{Lemma A: no $v\in(\frac34,a_m)$ has $\ell(v)\in R_m$ with $X(\ell v)\in[\frac9{32},\frac{23}{32}]$.} Otherwise $R_m\subseteq Q_{\eta_2}$ and the flow box put $v$
+in a pass $P'\ne$ base, $P_m$; by (R1) $P'$ is thin with interior in $R_m$, and by (P1) its interval lies in $(\frac34,a_m)$, against the
+hypothesis.
+
+\emph{Notation.} $w_L=w_m(\frac38)$, $y_m=w_m(\frac12)$, $w_R=w_m(\frac58)$; $T_L=F(\tau_m(\frac38))$, $\sigma=F(\set{\frac12}\times[0,y_m])$, $T_R=F(\tau_m(\frac58))$;
+$x_m=F(\frac12,y_m)=\ell(t_m)$ and $z_R=F(\frac58,w_R)=\ell(t_R)$, with $t_m,t_R\in(a_m,b_m)$.
+
+\emph{Step 1: $t_m<t_R$}, by (Mon) for $P_m$ and the order corollary ($\frac58-\frac12\ge2\kappa$).
+
+\emph{Step 2: $J=\sigma\cup\ell[\frac12,t_m]$ is a simple closed curve.} $\sigma\cap\ell[\frac12,t_m]=\set{\ell(\frac12),x_m}$: the base piece $\ell[\frac12,\frac34]$
+meets $\sigma$ only at $\ell(\frac12)$; the open segment $\sigma^\circ$ lies in $R_m$ and Lemma A excludes points of $\ell((\frac34,a_m))$ on it; points of $P_m$
+on $X=\frac12$ have height at least $y_m$. By the Jordan curve theorem, $\R^2\setminus J=W\cup W'$ with $W,W'$ open, connected, disjoint, and
+$\fr W=\fr W'=J$. Note \textbf{(J1)}: for $v>t_m$, $\ell(v)\in J$ iff $\ell(v)\in\sigma^\circ$.
+
+\emph{Step 3.} Put $h=h_m$, $B_L=F([\frac38,\frac12)\times(0,h))$, $B_R=F((\frac12,\frac58]\times(0,h))$. The four connected sets $B_L,T_L,B_R,T_R$ lie in $R_m$
+and miss $J$ (they miss $\sigma$ as $X\ne\frac12$, the base arc as $Y>0$, $P_m$ as they lie below its lowest points, and $\ell((\frac34,a_m))$ by
+Lemma A). $B_L$ meets $T_L$ and $B_R$ meets $T_R$; let $W_L$ and $W_R$ be the components of $\R^2\setminus J$ containing $B_L\cup T_L$ and $B_R\cup T_R$.
+
+\emph{Step 4: $W_L\ne W_R$.} Let $p=F(\frac12,h/2)\in\sigma^\circ$ and $S$ a small open square about $(\frac12,h/2)$ inside $[\frac38,\frac58]\times(0,h)$. $F(S)$ is
+open and $F(S)\setminus J\subseteq B_L\cup B_R$. As $p$ is in the frontier of both components of $\R^2\setminus J$, each of them meets $B_L\cup B_R$; if both
+$B_L$ and $B_R$ lay in one component, the other would miss $B_L\cup B_R$.
+
+\emph{Step 5: $z_R\in W_R$.} $z_R\notin J$ by (J1), and $z_R\in\cl{T_R}$.
+
+\emph{Step 6.} Suppose $P=\ell[a,b]$ has $a>b_m$ and interior in $R_m$. By (R2) at $c=\frac38$ there is $v_L\in(a,b)$ with $\ell(v_L)\in T_L\subseteq W_L$.
+The path $\ell[t_R,v_L]$ joins $W_R$ to $W_L$, so it meets $J$; let $s^*$ be the largest $v\in[t_R,v_L]$ with $\ell(v)\in J$. By (J1),
+$\ell(s^*)\in\sigma^\circ$, and $\ell((s^*,v_L])\subseteq W_L$. Also $s^*>b_m$, because $\ell((t_m,b_m])$ misses $\sigma$. By the flow box at $X=\frac12$, $s^*$
+lies in the open interval of a pass $P^*=\ell[a^*,b^*]$ with (Mon); by (R1) its interior lies in $R_m$ and by (P1) $a^*>b_m$. If $s^*\in(a,v_L)$ then
+$P^*=P$, and (Mon) for $P$ would put its point on $X=\frac38$ after its point on $X=\frac12$, which the order corollary forbids; so $b^*<a$. By
+(R2) at $c=\frac58$ there is $v_R\in(a^*,b^*)$ with $\ell(v_R)\in T_R\subseteq W_R$, and (Mon) for $P^*$ gives $v_R>s^*$. So $v_R\in(s^*,v_L)$ and
+$\ell(v_R)\in W_L$, contradicting Step~4.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.region_lemmaA}, \lean{HPC.Hagopian.two_sides}, \lean{HPC.Hagopian.trap_jordan},
+\lean{HPC.Hagopian.trap_pass}; the Jordan curve theorem is \lean{HPC.Jones.jordan_curve_theorem}.}
+
+\section{The contradiction}
+
+\begin{theorem}[Bing 1960; Jones 1975]\label{thm:noarc}
+No homogeneous indecomposable plane continuum contains an arc.
+\end{theorem}
+
+\begin{proof}
+Suppose $M$ does, and let $\ell$, $F$ be as above.
+
+\emph{C1.} By Corollary~\ref{cor:scales}(d) and (P2) let $P_1=\ell[a_1,b_1]$ be the first thin pass with $a_1>\frac34$; flipping the collar if
+necessary, it is above the arc. The hypothesis of Theorem~\ref{thm:trap} holds for $R_1$: a violating pass would be thin (R1) and start in
+$(\frac34,a_1)$.
+
+\emph{C2.} Take $h_1=h_{m_1}$ and $\rho_1$ with $B(\ell(\frac12),\rho_1)\subseteq F((\frac38,\frac58)\times(-h_1,h_1))$. Recurrence gives $u_1>b_1$ with
+$d(\ell(u_1),\ell(\frac12))<\min(\delta_2,\rho_1)$.
+
+\emph{C3.} Write $\ell(u_1)=F(x,y)$. If $y=0$, then $u_1=x<b_1$ by injectivity. If $y>0$, $\ell(u_1)\in R_1$ lies on a thin pass (scale two) whose
+interior is in $R_1$ (R1) and which starts after $b_1$ (P1), against Theorem~\ref{thm:trap}. So $y<0$, and some thin pass below the arc starts after
+$b_1$; let $P_2=\ell[a_2,b_2]$ be the first.
+
+\emph{C4.} The trapping lemma applies to $P_2$ (with the flipped collar): a thin pass below the arc starting in $(\frac34,a_2)$ would, by (P1),
+start in $(\frac34,a_1)$, against the minimality of $P_1$, or in $(b_1,a_2)$, against the minimality of $P_2$.
+
+\emph{C5.} Take $h=\min(h_1,h_2)$ and $\rho$ with $B(\ell(\frac12),\rho)\subseteq F((\frac38,\frac58)\times(-h,h))$; recurrence gives $u>b_2$ with
+$d(\ell(u),\ell(\frac12))<\min(\delta_2,\rho)$. $Y(\ell u)=0$ is excluded by injectivity; $Y>0$ puts $\ell(u)$ in $R_1$ on a thin pass after $b_1$ (C1);
+$Y<0$ puts it in $R_2$ on a thin pass after $b_2$ (C4). This is a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.jones75_final_aux}, \lean{HPC.Hagopian.jones75_contra},
+\lean{HPC.Hagopian.NoArcIndecHomPlane}, \lean{HPC.Hagopian.jones75_noArc}.}
+
+\section{Hereditary indecomposability}
+
+\begin{lemma}\label{lem:monotone-image}
+A monotone image of an indecomposable continuum is indecomposable: if $q\colon X\to Y$ is a continuous surjection of a continuum onto a metric space
+with connected fibres and $X$ is indecomposable, so is $Y$.
+\end{lemma}
+
+\begin{proof}
+$q$ is closed with connected fibres, so preimages of subcontinua are subcontinua (as in Lemma~\ref{lem:adm-basic}(a)). If $Y=H\cup K$ with $H,K$
+proper subcontinua, then $X=q^{-1}(H)\cup q^{-1}(K)$ with both proper.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.indecomposable_of_monotone_image}.}
+
+\begin{theorem}[Hagopian 1976, Theorem~1]\label{thm:HI}
+Every homogeneous indecomposable plane continuum is hereditarily indecomposable.
+\end{theorem}
+
+\begin{proof}
+This is Hagopian's 1984 proof (his Corollary~3), following a plan of Jones. Suppose $M$ is not hereditarily indecomposable, and let $q\colon M\to Y$ be
+as in Theorem~\ref{thm:h84}. Its fibres are proper subcontinua of $M$, so they do not separate the plane (Theorem~\ref{thm:nosep}). By Moore's
+theorem on monotone decompositions (\vfive{Corollary~9.16}), $Y$ is homeomorphic to a compact plane set $Q$. $Q$ is connected (an image of $M$),
+homogeneous (as $Y$ is), indecomposable (Lemma~\ref{lem:monotone-image}) and contains an arc. This contradicts Theorem~\ref{thm:noarc}.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.exists_plane_quotient_of_monotone}, \lean{HPC.Hagopian.hagopian76_theorem1_of_jones},
+\lean{HPC.Hagopian.hagopian76_theorem1_jones}, \lean{HPC.Hagopian.Hagopian76Thm1}, \lean{HPC.Hagopian.hagopian76_theorem1}.}
+
+\begin{corollary}\label{cor:bing60}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(Bing 1960, for plane continua.)} A homogeneous plane continuum that contains an arc is a simple closed curve.
+\item \emph{(Hagopian 1976, Theorem~2.)} A homogeneous plane continuum that does not separate the plane is hereditarily indecomposable.
+\end{enumerate}
+\end{corollary}
+
+These consequences are recorded in the formal development; they are not used in this volume.
+
+\formal{\lean{HPC.Hagopian.bing60_plane_uncond}, \lean{HPC.Hagopian.hagopian76_theorem2_uncond}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that in a compact metric space the forward limit set of a continuous map $\ell\colon\R\to Y$ is nonempty and compact, and that it does not
+change if $\ell$ is replaced by $s\mapsto\ell(s+c)$.
+\end{exercise}
+
+\begin{exercise}
+Show that the dyadic solenoid is homogeneous and that its arc components are lines. Which part of the proof of Theorem~\ref{thm:noarc} fails for
+it?
+\end{exercise}

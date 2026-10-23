@@ -1,0 +1,25 @@
+== section 1-2: the one-turn walks at the basepoint's level, bing 0 n ==
+  (counts are over interior basepoints, L+3 <= level <= H-3)
+  bing 0 6       interior     25 | vee-hyp      5  lam-hyp      5  either     10 | vee     11  lam     11  either     22  +-1     25 | unserved      0  opposite      0
+  bing 0 7       interior    104 | vee-hyp     12  lam-hyp     12  either     24 | vee     34  lam     34  either     68  +-1    104 | unserved      0  opposite      0
+  bing 0 8       interior    319 | vee-hyp     21  lam-hyp     21  either     42 | vee     76  lam     76  either    152  +-1    311 | unserved      8  opposite      6
+  bing 0 9       interior    868 | vee-hyp     32  lam-hyp     32  either     64 | vee    140  lam    140  either    280  +-1    720 | unserved    148  opposite    126
+  bing 0 10      interior   2229 | vee-hyp     45  lam-hyp     45  either     90 | vee    230  lam    230  either    460  +-1   1380 | unserved    849  opposite    789
+  bing 0 11      interior   5556 | vee-hyp     60  lam-hyp     60  either    120 | vee    350  lam    350  either    700  +-1   2396 | unserved   3160  opposite   3058
+  bing 0 12      interior  13635 | vee-hyp     77  lam-hyp     77  either    154 | vee    504  lam    504  either   1008  +-1   3880 | unserved   9755  opposite   9607
+
+== section 3: least number of turning targets, IsZigFree, bing 0 n ==
+  bing 0 4   links     13  span  4  unserved 0  max turns 2  interior      0  max turns (interior) 0  first at -1
+  bing 0 5   links     30  span  5  unserved 0  max turns 2  interior      0  max turns (interior) 0  first at -1
+  bing 0 6   links     71  span  6  unserved 0  max turns 2  interior     25  max turns (interior) 2  first at 5
+  bing 0 7   links    170  span  7  unserved 0  max turns 2  interior    104  max turns (interior) 2  first at 5
+  bing 0 8   links    409  span  8  unserved 0  max turns 3  interior    319  max turns (interior) 3  first at 57
+  bing 0 9   links    986  span  9  unserved 0  max turns 3  interior    868  max turns (interior) 3  first at 57
+  bing 0 10  links   2379  span 10  unserved 0  max turns 4  interior   2229  max turns (interior) 4  first at 343
+  bing 0 11  links   5742  span 11  unserved 0  max turns 4  interior   5556  max turns (interior) 4  first at 343
+  bing 0 12  links  13861  span 12  unserved 0  max turns 5  interior  13635  max turns (interior) 5  first at 2027
+
+== section 4: random subchains of bing 0 12, span >= 6 ==
+  subchains tested 143
+  subchains      interior 186911 | vee-hyp  10587  lam-hyp   9606  either  20193 | vee  35816  lam  33854  either  69632  +-1 161203 | unserved  25708  opposite  21820
+  unserved basepoints 0, max turns over swept subchains 2

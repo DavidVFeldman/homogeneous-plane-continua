@@ -1,0 +1,113 @@
+% Lecture notes on the classification of homogeneous plane continua,
+% following the formal (Lean 4) proof in this repository.
+% Volume 8: Circles of pseudo-arcs and the classification theorem.
+%
+% Compile with:  pdflatex main && pdflatex main   (two runs for the contents and references)
+\documentclass[11pt,oneside]{book}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tikz}
+\usepackage[hidelinks]{hyperref}
+
+% ---------------------------------------------------------------- theorem styles
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ---------------------------------------------------------------- notation
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\interior}{\operatorname{int}}
+\newcommand{\cl}[1]{\overline{#1}}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\fl}[1]{\left\lfloor #1\right\rfloor}
+\newcommand{\cel}[1]{\left\lceil #1\right\rceil}
+% the unit interval and the circle
+\newcommand{\I}{[0,1]}
+\newcommand{\Sph}{S^1}
+% the fibres of an arc of continua, and the preimage of an interval
+\newcommand{\fib}[2]{#1^{-1}(#2)}
+\newcommand{\G}[2]{G[#1,#2]}
+% the order relation of Volume 1 (r and s strictly between i and j, r nearer to i)
+\newcommand{\Btw}{\mathrm{Btw}}
+% the star image H_i d(p,i) of Bing and Jones
+\newcommand{\st}{\operatorname{st}}
+% runs of a circular description
+\newcommand{\run}{\operatorname{R}}
+% the joint positions and their interpolation
+\newcommand{\Ph}{\widehat{P}}
+% the covering map of the punctured plane
+\newcommand{\cexp}{\operatorname{E}}
+
+% Names of declarations in the Lean development (typewriter, underscores allowed).
+\newcommand{\lean}[1]{\texttt{\detokenize{#1}}}
+% A Lean name ending in a subscript digit.
+\newcommand{\leansub}[2]{\texttt{\detokenize{#1}}\ensuremath{_{#2}}}
+% A paragraph pointing to the formal counterpart of a result.
+\newcommand{\formal}[1]{\par\smallskip\noindent{\small\textit{Formal counterpart:} #1}\par\smallskip}
+% References to numbered results of the earlier volumes.
+\newcommand{\vone}[1]{Volume~1, #1}
+\newcommand{\vtwo}[1]{Volume~2, #1}
+\newcommand{\vthree}[1]{Volume~3, #1}
+\newcommand{\vfour}[1]{Volume~4, #1}
+\newcommand{\vfive}[1]{Volume~5, #1}
+\newcommand{\vsix}[1]{Volume~6, #1}
+\newcommand{\vseven}[1]{Volume~7, #1}
+
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{\textbf{Homogeneous Plane Continua}\\[6pt]
+\Large Lecture notes following the formal proof\\[18pt]
+\large Volume 8\\[4pt]
+\Large Circles of pseudo-arcs\\ and the classification theorem}
+\author{}
+\date{}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+% The introduction is Chapter 0, as in Volumes 1--7.
+\setcounter{chapter}{-1}
+\input{ch0-intro}
+\input{ch1-circles}
+\input{ch2-atomic}
+\input{ch3-chains}
+\input{ch4-arcs}
+\input{ch5-thm78}
+\input{ch6-zigzag}
+\input{ch7-thm10}
+\input{ch8-uniqueness}
+\input{ch9-circdescr}
+\input{ch10-sweep}
+\input{ch11-plane}
+\input{ch12-classification}
+
+\appendix
+\input{appA-formal}
+
+\end{document}

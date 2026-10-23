@@ -1,0 +1,22 @@
+# batch 186: files added (A), modified (M) or moved (R) in this run; from git diff --name-status eb442e0 HEAD, plus the untracked upload and the delivery files
+M	Axioms.lean
+M	HPC.lean
+A	HPC/Hagopian/H84Delta.lean
+A	HPC/Hagopian/H84Fold.lean
+A	HPC/Hagopian/H84Lemma12.lean
+A	HPC/Hagopian/H84Lemma1415.lean
+M	HPC/Hagopian/Hagopian84A.lean
+A	HPC/Hagopian/Hagopian84B.lean
+M	LEDGER.md
+M	OPEN.md
+M	README.md
+M	axioms.txt
+R100	COMMISSION-batch186.md	doc/batches/COMMISSION-batch186.md
+A	doc/batches/REPORT-batch186.md
+A	doc/batches/audits/axioms-batch186.txt
+R100	Hagopian84B.lean	doc/batches/skeletons/Hagopian84B.lean
+M	doc/notes/hagopian84.md
+A	doc/notes/jones75.md
+A	doc/sources/jones1975.pdf	(untracked: *.pdf is gitignored; included in the tarball)
+A	doc/batches/batch186-MANIFEST.txt
+A	doc/batches/batch186-files.tar.gz	(not inside itself)

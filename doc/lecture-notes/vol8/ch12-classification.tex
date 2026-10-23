@@ -1,0 +1,116 @@
+%======================================================================
+\chapter{The classification theorem}\label{ch:classification}
+%======================================================================
+
+All the pieces are now in place. A \emph{simple closed curve} is a space homeomorphic to $\Sph$.
+
+\section{The decomposable case}
+
+\begin{theorem}\label{thm:decomp-case}
+A decomposable homogeneous plane continuum is a simple closed curve or a circle of pseudo-arcs.
+\end{theorem}
+
+\begin{proof}
+Let $M$ be such a continuum. By Theorem~\ref{thm:ho-circlelike}, $M$ is circle-like. By \vseven{Theorem~9.8}, $M$ is a simple closed curve, or there is a continuous, open, surjective map
+$f\colon M\to\Sph$ whose fibres are pseudo-arcs. In the second case $M$, being circle-like, is a circle of pseudo-arcs (Definition~\ref{def:circle-pa}).
+\end{proof}
+
+\formal{\lean{HPC.BJ59.circle_or_circleOfPA_of_decomposable} (with circle-likeness as the hypothesis \lean{HPC.BJ59.HOCircleLike}, discharged by
+\lean{HPC.BJ59.hoCircleLike'}), from \lean{HPC.BJ59.circle_or_circPAMap_of_decomposable} and \lean{HPC.BJ59.circle_or_atomic_of_decomposable}.}
+
+\section{The classification}
+
+\begin{theorem}[The classification of homogeneous plane continua]\label{thm:classification}
+A nondegenerate plane continuum is homogeneous if and only if it is a simple closed curve, a pseudo-arc, or a circle of pseudo-arcs.
+\end{theorem}
+
+\begin{proof}
+Let $M$ be a nondegenerate plane continuum.
+
+($\Rightarrow$) Suppose $M$ is homogeneous. If $M$ is decomposable, Theorem~\ref{thm:decomp-case} applies. If $M$ is indecomposable, it is a pseudo-arc by \vsix{Theorem~7.4}.
+
+($\Leftarrow$) A simple closed curve is homogeneous (Proposition~\ref{prop:circle-homog}). A pseudo-arc is homogeneous (\vtwo{Theorem~8.4}). A circle of pseudo-arcs is homogeneous
+(Theorem~\ref{thm:homog}).
+\end{proof}
+
+\formal{\leansub{HPC.BJ59.ho16_classification}{4}. The indecomposable case in both directions is \lean{HPC.HO16.ho16_indec_homogeneous_iff}, and the converse for pseudo-arcs
+\lean{HPC.HO16.ho16_pseudoArc_indec_homogeneous}.}
+
+By Theorem~\ref{thm:dp61}, the third class may equally be described as in Domokos and Prajs: compact spaces with a continuous, open, surjective, atomic map onto $\Sph$ whose fibres are
+pseudo-arcs.
+
+\formal{\lean{HPC.BJ59.ho16_classification_atomic'}.}
+
+\begin{theorem}[The plane form]\label{thm:classification-plane}
+There are plane continua $C_1$, $C_2$, $C_3$ such that
+\begin{enumerate}[label=(\alph*)]
+\item $C_1$ is a simple closed curve, $C_2$ is a pseudo-arc and $C_3$ is a circle of pseudo-arcs;
+\item each of them is homogeneous;
+\item no two of them are homeomorphic;
+\item a nondegenerate plane continuum is homogeneous if and only if it is homeomorphic to $C_1$, to $C_2$ or to $C_3$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Take the unit circle for $C_1$ (Proposition~\ref{prop:circle-homog}), the plane pseudo-arc of \vone{Theorem~5.18} for $C_2$, and the plane circle of pseudo-arcs of
+Theorem~\ref{thm:plane-example} for $C_3$.
+
+(b) Theorem~\ref{thm:classification}, ($\Leftarrow$).
+
+(c) $C_1$ and $C_3$ are decomposable (Proposition~\ref{prop:circle-decomp}, Corollary~\ref{cor:circle-pa-decomp}), while $C_2$ is hereditarily indecomposable; so $C_2$ is homeomorphic to
+neither. $C_1$ and $C_3$ are not homeomorphic by Corollary~\ref{cor:circle-not-cpa}.
+
+(d) A continuum homeomorphic to a homogeneous one is homogeneous. Conversely, if $M$ is homogeneous, Theorem~\ref{thm:classification} makes it a simple closed curve (homeomorphic to $C_1$), a
+pseudo-arc (homeomorphic to $C_2$ by \vtwo{Theorem~8.3}) or a circle of pseudo-arcs (homeomorphic to $C_3$ by Theorem~\ref{thm:unique}).
+\end{proof}
+
+\formal{\leansub{HPC.BJ59.ho16_classification_plane}{4}, with \lean{HPC.BJ59.exists_plane_circle}, \lean{HPC.Plane.isPseudoArc_plane}, \lean{HPC.BJ59.bjPlaneExample},
+\lean{HPC.Plane.theorem1_HIC'}.}
+
+\section{How the inputs were discharged}
+
+The formal development first proved the classification with three named statements as hypotheses, and then proved the statements one at a time:
+\begin{center}
+\begin{tabular}{@{}p{0.45\textwidth}p{0.48\textwidth}@{}}
+\toprule
+Statement & Proved in this volume as\\
+\midrule
+Theorem~10 of Bing and Jones (\lean{HPC.BJ59.BJThm10}) & Theorem~\ref{thm:bj10}\\
+Decomposable homogeneous plane continua are circle-like (\lean{HPC.BJ59.HOCircleLike}) & Theorem~\ref{thm:ho-circlelike}\\
+A plane circle of pseudo-arcs exists (\lean{HPC.BJ59.BJPlaneExample}) & Theorem~\ref{thm:plane-example}\\
+\bottomrule
+\end{tabular}
+\end{center}
+The classification with all three as hypotheses is \lean{HPC.BJ59.ho16_classification} (and \lean{HPC.BJ59.ho16_classification_plane}); the circle-likeness statement is then derived from
+the other two (\leansub{HPC.BJ59.ho16_classification}{2}), Theorem~10 is discharged (\leansub{HPC.BJ59.ho16_classification}{3}), and finally the plane example
+(\leansub{HPC.BJ59.ho16_classification}{4}); likewise for the plane form (\leansub{HPC.BJ59.ho16_classification_plane}{2}, \leansub{HPC.BJ59.ho16_classification_plane}{3},
+\leansub{HPC.BJ59.ho16_classification_plane}{4}). The final two theorems carry no hypotheses beyond those in their statements.
+
+\formal{\leansub{HPC.BJ59.ho16_classification}{4}, \leansub{HPC.BJ59.ho16_classification_plane}{4}.}
+
+\section{The whole proof at a glance}
+
+\begin{enumerate}
+\item \emph{Indecomposable case} (Volume~6): a homogeneous indecomposable plane continuum is hereditarily indecomposable (Hagopian, Jones), has span zero (Oversteegen and Tymchatyn) and is
+snake-like (Hoehn and Oversteegen); hence a pseudo-arc (Volumes~1 and~2).
+\item \emph{Decomposable case} (Volume~7): Jones's aposyndetic decomposition gives a continuous decomposition into terminal indecomposable continua with a circle as quotient, or $M$ is a simple
+closed curve; the elements are pseudo-arcs.
+\item \emph{Circles of pseudo-arcs} (this volume): the quotient map is atomic, so its halves are snake-like (Chapter~\ref{ch:atomic}); Theorem~10 of Bing and Jones (Chapters~\ref{ch:chains}--\ref{ch:thm10})
+makes any two such spaces homeomorphic (Chapter~\ref{ch:uniqueness}); a plane example (Chapters~\ref{ch:circdescr}--\ref{ch:plane}) shows that they are circle-like and that the third class is
+nonempty.
+\item Plane topology (Volumes~4 and~5) and general continuum theory (Volume~3) are used throughout.
+\end{enumerate}
+
+\section*{Exercises}
+
+\begin{exercise}
+Which of the three continua $C_1$, $C_2$, $C_3$ are snake-like? Which are circle-like? Which are hereditarily indecomposable?
+\end{exercise}
+
+\begin{exercise}
+Show that the product $P\times\Sph$ of a pseudo-arc and a circle is homogeneous but is not homeomorphic to any plane continuum. (Use Theorem~\ref{thm:classification-plane}.)
+\end{exercise}
+
+\begin{exercise}
+Show that a homogeneous plane continuum which contains an arc is a simple closed curve.
+\end{exercise}

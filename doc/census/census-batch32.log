@@ -1,0 +1,184 @@
+== batch 32 census: covering a band by walks of the free family ==
+   walks: base in [L+1,H-1], alternating, amplitudes increasing after the first,
+   last two targets (L+1,H-1) or (H-1,L+1); FoldsOnto decided by reachability.
+
+-- bing 0 6: 71 links, band [0,6], 40 walks in the family, 25 interior
+  greedy cover of ALL basepoints:
+    walk  1  [3, 2, 4, 1, 5]  covers 36 more  (running 36 of 71)
+    walk  2  [4, 3, 5, 1]  covers 21 more  (running 57 of 71)
+    walk  3  [1, 5, 1]  covers 10 more  (running 67 of 71)
+    walk  4  [5, 1, 5]  covers 3 more  (running 70 of 71)
+    walk  5  [2, 1, 5]  covers 1 more  (running 71 of 71)
+  greedy: all 5, interior 2 | disjoint-set lower bound: all 4, interior 2 | level-gap bound 3
+  exact minimum cover of all basepoints: 4
+  rule check: backward-read targets fail at 9 of 71 basepoints; outward alternation fails at 43 of 71
+  rule family (alternations from the base, first amplitude and direction free, amplitudes increasing by one): fails at 4 of 71 basepoints
+-- bing 0 7: 170 links, band [0,7], 96 walks in the family, 104 interior
+  greedy cover of ALL basepoints:
+    walk  1  [3, 4, 2, 5, 1, 6]  covers 72 more  (running 72 of 170)
+    walk  2  [4, 5, 3, 6, 1]  covers 48 more  (running 120 of 170)
+    walk  3  [2, 3, 1, 6]  covers 26 more  (running 146 of 170)
+    walk  4  [6, 1, 6]  covers 14 more  (running 160 of 170)
+    walk  5  [3, 6, 1]  covers 6 more  (running 166 of 170)
+    walk  6  [1, 6, 1]  covers 3 more  (running 169 of 170)
+    walk  7  [3, 1, 6]  covers 1 more  (running 170 of 170)
+  greedy: all 7, interior 3 | disjoint-set lower bound: all 4, interior 2 | level-gap bound 3
+  exact minimum cover of all basepoints: 4
+  rule check: backward-read targets fail at 40 of 170 basepoints; outward alternation fails at 136 of 170
+  rule family (alternations from the base, first amplitude and direction free, amplitudes increasing by one): fails at 30 of 170 basepoints
+-- bing 0 8: 409 links, band [0,8], 224 walks in the family, 319 interior
+  greedy cover of ALL basepoints:
+    walk  1  [4, 3, 5, 2, 6, 1, 7]  covers 144 more  (running 144 of 409)
+    walk  2  [5, 4, 6, 3, 7, 1]  covers 102 more  (running 246 of 409)
+    walk  3  [3, 2, 4, 1, 7]  covers 62 more  (running 308 of 409)
+    walk  4  [6, 5, 7, 1]  covers 31 more  (running 339 of 409)
+    walk  5  [3, 6, 2, 7, 1]  covers 30 more  (running 369 of 409)
+    walk  6  [5, 1, 7]  covers 17 more  (running 386 of 409)
+    walk  7  [1, 7, 1]  covers 13 more  (running 399 of 409)
+    walk  8  [4, 1, 7]  covers 3 more  (running 402 of 409)
+    walk  9  [7, 1, 7]  covers 3 more  (running 405 of 409)
+    walk 10  [4, 3, 7, 1]  covers 3 more  (running 408 of 409)
+    walk 11  [3, 7, 1]  covers 1 more  (running 409 of 409)
+  greedy: all 11, interior 7 | disjoint-set lower bound: all 6, interior 4 | level-gap bound 3
+  exact minimum cover: not decided within the node budget
+  rule check: backward-read targets fail at 216 of 409 basepoints; outward alternation fails at 369 of 409
+  rule family (alternations from the base, first amplitude and direction free, amplitudes increasing by one): fails at 135 of 409 basepoints
+-- bing 0 9: 986 links, band [0,9], 512 walks in the family, 868 interior
+  greedy cover of ALL basepoints:
+    walk  1  [4, 5, 3, 6, 2, 7, 1, 8]  covers 288 more  (running 288 of 986)
+    walk  2  [5, 6, 4, 7, 2, 8, 1]  covers 226 more  (running 514 of 986)
+    walk  3  [3, 4, 2, 6, 1, 8]  covers 144 more  (running 658 of 986)
+    walk  4  [7, 3, 8, 1]  covers 82 more  (running 740 of 986)
+    walk  5  [4, 3, 8, 1]  covers 70 more  (running 810 of 986)
+    walk  6  [2, 4, 1, 8]  covers 42 more  (running 852 of 986)
+    walk  7  [6, 1, 8]  covers 41 more  (running 893 of 986)
+    walk  8  [4, 8, 1]  covers 32 more  (running 925 of 986)
+    walk  9  [7, 5, 8, 1]  covers 19 more  (running 944 of 986)
+    walk 10  [5, 1, 8]  covers 12 more  (running 956 of 986)
+    walk 11  [1, 8, 1]  covers 10 more  (running 966 of 986)
+    walk 12  [5, 3, 8, 1]  covers 8 more  (running 974 of 986)
+    walk 13  [7, 8, 1]  covers 6 more  (running 980 of 986)
+    walk 14  [3, 6, 1, 8]  covers 4 more  (running 984 of 986)
+    walk 15  [2, 1, 8]  covers 1 more  (running 985 of 986)
+    walk 16  [8, 1, 8]  covers 1 more  (running 986 of 986)
+  greedy: all 16, interior 11 | disjoint-set lower bound: all 8, interior 6 | level-gap bound 4
+  rule check: backward-read targets fail at 544 of 986 basepoints; outward alternation fails at 940 of 986
+  rule family (alternations from the base, first amplitude and direction free, amplitudes increasing by one): fails at 484 of 986 basepoints
+-- bing 0 10: 2379 links, band [0,10], 1152 walks in the family, 2229 interior
+  greedy cover of ALL basepoints:
+    walk  1  [5, 4, 6, 3, 7, 2, 8, 1, 9]  covers 576 more  (running 576 of 2379)
+    walk  2  [6, 5, 7, 4, 8, 2, 9, 1]  covers 473 more  (running 1049 of 2379)
+    walk  3  [4, 3, 5, 2, 7, 1, 9]  covers 322 more  (running 1371 of 2379)
+    walk  4  [7, 6, 8, 3, 9, 1]  covers 196 more  (running 1567 of 2379)
+    walk  5  [4, 7, 3, 9, 1]  covers 185 more  (running 1752 of 2379)
+    walk  6  [5, 6, 2, 7, 1, 9]  covers 109 more  (running 1861 of 2379)
+    walk  7  [2, 6, 1, 9]  covers 103 more  (running 1964 of 2379)
+    walk  8  [3, 8, 2, 9, 1]  covers 81 more  (running 2045 of 2379)
+    walk  9  [7, 2, 8, 1, 9]  covers 67 more  (running 2112 of 2379)
+    walk 10  [8, 5, 9, 1]  covers 57 more  (running 2169 of 2379)
+    walk 11  [5, 9, 1]  covers 49 more  (running 2218 of 2379)
+    walk 12  [6, 3, 9, 1]  covers 47 more  (running 2265 of 2379)
+    walk 13  [5, 1, 9]  covers 39 more  (running 2304 of 2379)
+    walk 14  [4, 7, 1, 9]  covers 25 more  (running 2329 of 2379)
+    walk 15  [2, 4, 1, 9]  covers 19 more  (running 2348 of 2379)
+    walk 16  [8, 7, 9, 1]  covers 11 more  (running 2359 of 2379)
+    walk 17  [7, 4, 9, 1]  covers 8 more  (running 2367 of 2379)
+    walk 18  [1, 9, 1]  covers 7 more  (running 2374 of 2379)
+    walk 19  [9, 1, 9]  covers 3 more  (running 2377 of 2379)
+    walk 20  [2, 1, 9]  covers 1 more  (running 2378 of 2379)
+    walk 21  [6, 1, 9]  covers 1 more  (running 2379 of 2379)
+  greedy: all 21, interior 18 | disjoint-set lower bound: all 12, interior 10 | level-gap bound 4
+  rule check: backward-read targets fail at 1323 of 2379 basepoints; outward alternation fails at 2327 of 2379
+  rule family (alternations from the base, first amplitude and direction free, amplitudes increasing by one): fails at 1515 of 2379 basepoints
+-- bing 0 11: 5742 links, band [0,11], 2560 walks in the family, 5556 interior
+  greedy cover of ALL basepoints:
+    walk  1  [5, 6, 4, 7, 3, 8, 2, 9, 1, 10]  covers 1152 more  (running 1152 of 5742)
+    walk  2  [6, 7, 5, 8, 3, 9, 2, 10, 1]  covers 970 more  (running 2122 of 5742)
+    walk  3  [4, 5, 3, 7, 2, 9, 1, 10]  covers 693 more  (running 2815 of 5742)
+    walk  4  [8, 5, 9, 3, 10, 1]  covers 476 more  (running 3291 of 5742)
+    walk  5  [5, 7, 4, 9, 3, 10, 1]  covers 432 more  (running 3723 of 5742)
+    walk  6  [3, 5, 2, 7, 1, 10]  covers 326 more  (running 4049 of 5742)
+    walk  7  [7, 2, 8, 1, 10]  covers 270 more  (running 4319 of 5742)
+    walk  8  [6, 9, 5, 10, 1]  covers 201 more  (running 4520 of 5742)
+    walk  9  [5, 4, 6, 3, 10, 1]  covers 198 more  (running 4718 of 5742)
+    walk 10  [4, 6, 2, 7, 1, 10]  covers 171 more  (running 4889 of 5742)
+    walk 11  [8, 3, 9, 1, 10]  covers 142 more  (running 5031 of 5742)
+    walk 12  [9, 6, 10, 1]  covers 140 more  (running 5171 of 5742)
+    walk 13  [4, 8, 1, 10]  covers 116 more  (running 5287 of 5742)
+    walk 14  [4, 2, 5, 1, 10]  covers 97 more  (running 5384 of 5742)
+    walk 15  [5, 8, 4, 9, 1, 10]  covers 74 more  (running 5458 of 5742)
+    walk 16  [3, 9, 2, 10, 1]  covers 64 more  (running 5522 of 5742)
+    walk 17  [1, 10, 1]  covers 49 more  (running 5571 of 5742)
+    walk 18  [7, 5, 8, 4, 10, 1]  covers 48 more  (running 5619 of 5742)
+    walk 19  [6, 5, 7, 3, 10, 1]  covers 34 more  (running 5653 of 5742)
+    walk 20  [6, 1, 10]  covers 21 more  (running 5674 of 5742)
+    walk 21  [5, 8, 4, 10, 1]  covers 15 more  (running 5689 of 5742)
+    walk 22  [8, 10, 1]  covers 12 more  (running 5701 of 5742)
+    walk 23  [3, 5, 1, 10]  covers 8 more  (running 5709 of 5742)
+    walk 24  [3, 1, 10]  covers 6 more  (running 5715 of 5742)
+    walk 25  [6, 10, 1]  covers 5 more  (running 5720 of 5742)
+    walk 26  [10, 1, 10]  covers 5 more  (running 5725 of 5742)
+    walk 27  [4, 3, 8, 1, 10]  covers 5 more  (running 5730 of 5742)
+    walk 28  [7, 8, 3, 10, 1]  covers 5 more  (running 5735 of 5742)
+    walk 29  [8, 5, 10, 1]  covers 4 more  (running 5739 of 5742)
+    walk 30  [4, 3, 10, 1]  covers 3 more  (running 5742 of 5742)
+  greedy: all 30, interior 27 | disjoint-set lower bound: all 14, interior 12 | level-gap bound 4
+  rule check: backward-read targets fail at 3757 of 5742 basepoints; outward alternation fails at 5684 of 5742
+  rule family (alternations from the base, first amplitude and direction free, amplitudes increasing by one): fails at 4334 of 5742 basepoints
+-- bing 0 12: 13861 links, band [0,12], 5632 walks in the family, 13635 interior
+  greedy cover of ALL basepoints:
+    walk  1  [6, 5, 7, 4, 8, 3, 9, 2, 10, 1, 11]  covers 2304 more  (running 2304 of 13861)
+    walk  2  [7, 6, 8, 5, 9, 3, 10, 2, 11, 1]  covers 2015 more  (running 4319 of 13861)
+    walk  3  [5, 4, 6, 3, 8, 2, 10, 1, 11]  covers 1536 more  (running 5855 of 13861)
+    walk  4  [8, 7, 9, 5, 10, 3, 11, 1]  covers 1035 more  (running 6890 of 13861)
+    walk  5  [5, 8, 4, 10, 3, 11, 1]  covers 983 more  (running 7873 of 13861)
+    walk  6  [4, 5, 3, 6, 2, 8, 1, 11]  covers 653 more  (running 8526 of 13861)
+    walk  7  [7, 8, 3, 9, 2, 10, 1, 11]  covers 640 more  (running 9166 of 13861)
+    walk  8  [5, 7, 2, 8, 1, 11]  covers 553 more  (running 9719 of 13861)
+    walk  9  [4, 9, 3, 10, 2, 11, 1]  covers 491 more  (running 10210 of 13861)
+    walk 10  [7, 6, 8, 5, 10, 4, 11, 1]  covers 457 more  (running 10667 of 13861)
+    walk 11  [9, 7, 10, 5, 11, 1]  covers 390 more  (running 11057 of 13861)
+    walk 12  [7, 4, 9, 3, 10, 2, 11, 1]  covers 348 more  (running 11405 of 13861)
+    walk 13  [3, 4, 2, 7, 1, 11]  covers 300 more  (running 11705 of 13861)
+    walk 14  [3, 9, 2, 10, 1, 11]  covers 240 more  (running 11945 of 13861)
+    walk 15  [6, 9, 1, 11]  covers 234 more  (running 12179 of 13861)
+    walk 16  [9, 3, 10, 1, 11]  covers 217 more  (running 12396 of 13861)
+    walk 17  [6, 3, 7, 2, 11, 1]  covers 196 more  (running 12592 of 13861)
+    walk 18  [6, 10, 5, 11, 1]  covers 174 more  (running 12766 of 13861)
+    walk 19  [7, 4, 8, 1, 11]  covers 162 more  (running 12928 of 13861)
+    walk 20  [6, 2, 7, 1, 11]  covers 117 more  (running 13045 of 13861)
+    walk 21  [8, 3, 11, 1]  covers 111 more  (running 13156 of 13861)
+    walk 22  [9, 10, 8, 11, 1]  covers 108 more  (running 13264 of 13861)
+    walk 23  [4, 8, 1, 11]  covers 107 more  (running 13371 of 13861)
+    walk 24  [2, 5, 1, 11]  covers 67 more  (running 13438 of 13861)
+    walk 25  [3, 11, 1]  covers 53 more  (running 13491 of 13861)
+    walk 26  [5, 10, 1, 11]  covers 48 more  (running 13539 of 13861)
+    walk 27  [6, 4, 11, 1]  covers 46 more  (running 13585 of 13861)
+    walk 28  [9, 6, 11, 1]  covers 37 more  (running 13622 of 13861)
+    walk 29  [5, 1, 11]  covers 35 more  (running 13657 of 13861)
+    walk 30  [6, 3, 9, 1, 11]  covers 35 more  (running 13692 of 13861)
+    walk 31  [5, 7, 3, 11, 1]  covers 26 more  (running 13718 of 13861)
+    walk 32  [9, 4, 11, 1]  covers 25 more  (running 13743 of 13861)
+    walk 33  [8, 5, 9, 1, 11]  covers 24 more  (running 13767 of 13861)
+    walk 34  [3, 6, 1, 11]  covers 18 more  (running 13785 of 13861)
+    walk 35  [11, 1, 11]  covers 16 more  (running 13801 of 13861)
+    walk 36  [8, 7, 11, 1]  covers 16 more  (running 13817 of 13861)
+    walk 37  [5, 9, 4, 11, 1]  covers 13 more  (running 13830 of 13861)
+    walk 38  [1, 11, 1]  covers 11 more  (running 13841 of 13861)
+    walk 39  [3, 1, 11]  covers 4 more  (running 13845 of 13861)
+    walk 40  [3, 8, 1, 11]  covers 4 more  (running 13849 of 13861)
+    walk 41  [8, 5, 11, 1]  covers 4 more  (running 13853 of 13861)
+    walk 42  [9, 3, 11, 1]  covers 4 more  (running 13857 of 13861)
+    walk 43  [5, 9, 3, 11, 1]  covers 2 more  (running 13859 of 13861)
+    walk 44  [5, 11, 1]  covers 1 more  (running 13860 of 13861)
+    walk 45  [8, 11, 1]  covers 1 more  (running 13861 of 13861)
+  greedy: all 45, interior 41 | disjoint-set lower bound: all 24, interior 22 | level-gap bound 5
+  rule check: backward-read targets fail at 10963 of 13861 basepoints; outward alternation fails at 13797 of 13861
+  rule family (alternations from the base, first amplitude and direction free, amplitudes increasing by one): fails at 11671 of 13861 basepoints
+
+== the ordinary item: two basepoints served by no common walk ==
+  bing 0 4 (13 links, band [0,4]): pair (0,5) at levels (0,3) | interior pair (1,11) at levels (1,3)
+  bing 0 5 (30 links, band [0,5]): pair (0,5) at levels (0,3) | interior pair (1,11) at levels (1,3)
+  bing 0 6 (71 links, band [0,6]): pair (0,5) at levels (0,3) | interior pair (1,11) at levels (1,3)
+  bing 0 7 (170 links, band [0,7]): pair (0,5) at levels (0,3) | interior pair (1,11) at levels (1,3)
+  bing 0 8 (409 links, band [0,8]): pair (0,5) at levels (0,3) | interior pair (1,11) at levels (1,3)

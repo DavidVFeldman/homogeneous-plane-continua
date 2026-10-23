@@ -1,0 +1,93 @@
+probe60: the two ascent clauses of L+6 -> L+3 -> L+7 -> L+1 -> L+8 as arm-only
+dichotomies; exhaustive 1-Lipschitz arms of [0,9] based at 5 with LowAt (L+1) (L+8),
+length up to 14; family of 58 walks
+  an arm failing both the best walk and w8 (mask 4): 5 4 3 2 3 4 5 6 7 8 9
+  an arm failing both the best walk and w8 (mask 4): 5 4 3 2 2 3 4 5 6 7 8 9
+  an arm failing both the best walk and w8 (mask 4): 5 4 3 2 3 3 4 5 6 7 8 9
+  an arm failing both the best walk and w8 (mask 4): 5 4 3 2 3 4 4 5 6 7 8 9
+  an arm failing both the best walk and w8 (mask 4): 5 4 3 2 3 4 5 5 6 7 8 9
+  an arm failing both the best walk and w8 (mask 4): 5 4 3 2 3 4 5 6 6 7 8 9
+  an arm failing the best walk, w8 and wR (mask 4): 5 6 5 4 3 2 3 4 5 6 7 8 9
+  an arm failing the best walk, w8 and wR (mask 4): 5 5 6 5 4 3 2 3 4 5 6 7 8 9
+  an arm failing the best walk, w8 and wR (mask 4): 5 6 5 4 3 2 2 3 4 5 6 7 8 9
+  an arm failing the best walk, w8 and wR (mask 4): 5 6 5 4 3 2 3 3 4 5 6 7 8 9
+  an arm failing the best walk, w8 and wR (mask 4): 5 6 5 4 3 2 3 4 4 5 6 7 8 9
+  an arm failing the best walk, w8 and wR (mask 4): 5 6 5 4 3 2 3 4 5 5 6 7 8 9
+
+arms examined 1773593; the best walk's sentence holds on 1318302
+arms failing: base 0, floor (L+8) 425020, deep (L+9) 205035, ceiling (descent) 754
+floor-failing arms: served by another walk 425020, by none 0
+deep-failing arms:  served by another walk 205035, by none 0
+the landmark sentence against the fold, on every arm x walk tried: 0 disagreements
+ceiling-failing arms: served by another walk 754, by none 0
+
+arms failing both the best walk and w8 = direct (5,8,1): 621; the walks serving them:
+  reflected P=4 K=6 M=1 : 6 -> 3 -> 8 -> 1 -> 8  serves 621   <- serves every one of them
+  reflected P=4 K=7 M=1 : 6 -> 2 -> 8 -> 1 -> 8  serves 621   <- serves every one of them
+  reflected P=4 K=8 M=1 : 6 -> 1 -> 8 -> 1 -> 8  serves 170
+  reflected P=5 K=6 M=1 : 5 -> 3 -> 8 -> 1 -> 8  serves 621   <- serves every one of them
+  direct    P=5 K=6 M=2 : 4 -> 6 -> 2 -> 8 -> 1  serves 43
+  direct    P=5 K=6 M=3 : 4 -> 6 -> 3 -> 8 -> 1  serves 43
+  reflected P=5 K=7 M=1 : 5 -> 2 -> 8 -> 1 -> 8  serves 621   <- serves every one of them
+  reflected P=5 K=8 M=1 : 5 -> 1 -> 8 -> 1 -> 8  serves 378
+  direct    P=6 K=6 M=1 : 5 -> 6 -> 1 -> 8 -> 1  serves 19
+  reflected P=6 K=6 M=1 : 4 -> 3 -> 8 -> 1 -> 8  serves 606
+  direct    P=6 K=6 M=2 : 5 -> 6 -> 2 -> 8 -> 1  serves 130
+  direct    P=6 K=6 M=3 : 5 -> 6 -> 3 -> 8 -> 1  serves 130
+  reflected P=6 K=7 M=1 : 4 -> 2 -> 8 -> 1 -> 8  serves 606
+  direct    P=6 K=7 M=2 : 5 -> 7 -> 2 -> 8 -> 1  serves 2
+  direct    P=6 K=7 M=3 : 5 -> 7 -> 3 -> 8 -> 1  serves 2
+  reflected P=6 K=8 M=1 : 4 -> 1 -> 8 -> 1 -> 8  serves 606
+
+greedy cover of all 1773593 arms by walks of the family (0 served by no walk):
+  pick 1: direct    P=5 K=8 M=1 (4 -> 8 -> 1 -> 8 -> 1) covers 1464125, left 309468
+  pick 2: reflected P=4 K=7 M=1 (6 -> 2 -> 8 -> 1 -> 8) covers 309467, left 1
+  pick 3: reflected P=4 K=6 M=2 (6 -> 3 -> 7 -> 1 -> 8) covers 1, left 0
+  walks needed: 3; arms left: 0
+
+arms failing the best walk, w8 and wR = reflected (6,8,1): 15; the walks serving them:
+  reflected P=4 K=6 M=1 : serves 15   <- serves every one of them
+  reflected P=4 K=7 M=1 : serves 15   <- serves every one of them
+  reflected P=4 K=8 M=1 : serves 15   <- serves every one of them
+  reflected P=5 K=6 M=1 : serves 15   <- serves every one of them
+  direct    P=5 K=6 M=2 : serves 15   <- serves every one of them
+  direct    P=5 K=6 M=3 : serves 15   <- serves every one of them
+  reflected P=5 K=7 M=1 : serves 15   <- serves every one of them
+  reflected P=5 K=8 M=1 : serves 15   <- serves every one of them
+  direct    P=6 K=6 M=1 : serves 6
+  direct    P=6 K=6 M=2 : serves 15   <- serves every one of them
+  direct    P=6 K=6 M=3 : serves 15   <- serves every one of them
+  direct    P=6 K=7 M=2 : serves 2
+  direct    P=6 K=7 M=3 : serves 2
+
+walks serving an arm that fails a clause of the best walk (all / floor-failing / deep-failing / ceiling-failing):
+  reflected P=4 K=6 M=1 : 6 -> 3 -> 8 -> 1 -> 8  serves 30271 / 0 / 30271 / 0
+  reflected P=4 K=7 M=1 : 6 -> 2 -> 8 -> 1 -> 8  serves 4041 / 0 / 4041 / 0
+  reflected P=4 K=8 M=1 : 6 -> 1 -> 8 -> 1 -> 8  serves 170 / 0 / 170 / 0
+  reflected P=5 K=6 M=1 : 5 -> 3 -> 8 -> 1 -> 8  serves 56330 / 26678 / 39724 / 2
+  direct    P=5 K=6 M=2 : 4 -> 6 -> 2 -> 8 -> 1  serves 457 / 0 / 457 / 0
+  reflected P=5 K=6 M=2 : 5 -> 3 -> 7 -> 1 -> 8  serves 16606 / 16606 / 0 / 2
+  direct    P=5 K=6 M=3 : 4 -> 6 -> 3 -> 8 -> 1  serves 8609 / 0 / 8609 / 0
+  direct    P=5 K=7 M=1 : 4 -> 7 -> 1 -> 8 -> 1  serves 250256 / 250256 / 0 / 738
+  reflected P=5 K=7 M=1 : 5 -> 2 -> 8 -> 1 -> 8  serves 6117 / 0 / 6117 / 0
+  direct    P=5 K=7 M=2 : 4 -> 7 -> 2 -> 8 -> 1  serves 250139 / 250139 / 0 / 621
+  direct    P=5 K=7 M=3 : 4 -> 7 -> 3 -> 8 -> 1  serves 250329 / 249533 / 811 / 0
+  direct    P=5 K=8 M=1 : 4 -> 8 -> 1 -> 8 -> 1  serves 454670 / 425020 / 204414 / 754   <- serves every floor-failing arm
+  reflected P=5 K=8 M=1 : 5 -> 1 -> 8 -> 1 -> 8  serves 378 / 0 / 378 / 0
+  direct    P=5 K=8 M=2 : 4 -> 8 -> 2 -> 8 -> 1  serves 454552 / 424902 / 204413 / 636
+  direct    P=5 K=8 M=3 : 4 -> 8 -> 3 -> 8 -> 1  serves 453916 / 424266 / 204398 / 0
+  direct    P=6 K=6 M=1 : 5 -> 6 -> 1 -> 8 -> 1  serves 19 / 0 / 19 / 0
+  reflected P=6 K=6 M=1 : 4 -> 3 -> 8 -> 1 -> 8  serves 89284 / 67023 / 48171 / 16
+  direct    P=6 K=6 M=2 : 5 -> 6 -> 2 -> 8 -> 1  serves 1207 / 0 / 1207 / 0
+  reflected P=6 K=6 M=2 : 4 -> 3 -> 7 -> 1 -> 8  serves 41113 / 41113 / 0 / 16
+  direct    P=6 K=6 M=3 : 5 -> 6 -> 3 -> 8 -> 1  serves 14318 / 0 / 14318 / 0
+  direct    P=6 K=7 M=1 : 5 -> 7 -> 1 -> 8 -> 1  serves 250256 / 250256 / 0 / 738
+  reflected P=6 K=7 M=1 : 4 -> 2 -> 8 -> 1 -> 8  serves 7995 / 0 / 7995 / 0
+  direct    P=6 K=7 M=2 : 5 -> 7 -> 2 -> 8 -> 1  serves 250174 / 250139 / 35 / 621
+  direct    P=6 K=7 M=3 : 5 -> 7 -> 3 -> 8 -> 1  serves 251415 / 249533 / 1897 / 0
+  direct    P=6 K=7 M=4 : 5 -> 7 -> 4 -> 8 -> 1  serves 267248 / 262168 / 20218 / 0
+  direct    P=6 K=8 M=1 : 5 -> 8 -> 1 -> 8 -> 1  serves 446663 / 425020 / 196407 / 754   <- serves every floor-failing arm
+  reflected P=6 K=8 M=1 : 4 -> 1 -> 8 -> 1 -> 8  serves 606 / 0 / 606 / 0
+  direct    P=6 K=8 M=2 : 5 -> 8 -> 2 -> 8 -> 1  serves 446545 / 424902 / 196406 / 636
+  direct    P=6 K=8 M=3 : 5 -> 8 -> 3 -> 8 -> 1  serves 445909 / 424266 / 196391 / 0
+  direct    P=6 K=8 M=4 : 5 -> 8 -> 4 -> 8 -> 1  serves 443304 / 421661 / 196274 / 0

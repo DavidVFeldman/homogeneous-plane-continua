@@ -1,0 +1,37 @@
+batch178-files.tar.gz — manifest
+
+How the file list was made
+--------------------------
+The request asked for the files from `git diff --name-status` against the
+batch-177 commit. This repository's git history has only one commit
+("Initial commit"), with no tag or branch for batch 177, so that diff cannot
+be run. The list below was put together from the batch-178 report instead
+(doc/batches/REPORT-batch178.md, "Files", "Earlier files edited" and
+"The uploads"), plus the files that mention the new batch-178 modules.
+Status letters follow the --name-status convention (A = added, M = modified)
+and are inferred, not taken from git.
+
+A  HPC/Hagopian/Hagopian76W.lean
+A  HPC/Hagopian/H76Unicoh.lean
+A  HPC/Hagopian/H76Order.lean
+A  HPC/Hagopian/H76OrderConcrete.lean
+A  HPC/Hagopian/H76EndLayer.lean
+A  HPC/Hagopian/H76SepCross.lean
+A  HPC/Hagopian/H76Blocks.lean
+A  HPC/Hagopian/H76Comp.lean
+M  HPC/Hagopian/Hagopian76V.lean
+A  doc/batches/COMMISSION-batch178.md
+A  doc/batches/skeletons/Hagopian76W.lean
+A  doc/batches/REPORT-batch178.md
+A  doc/notes/hagopian76-cases.md
+M  README.md
+
+Requested explicitly:
+M  axioms.txt
+M  Axioms.lean
+M  HPC.lean
+M  OPEN.md
+M  LEDGER.md
+A  doc/batches/audits/axioms-batch178.txt
+
+Also included: this manifest (doc/batches/batch178-MANIFEST.txt).

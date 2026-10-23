@@ -1,0 +1,20 @@
+# batch 195: files added (A) or modified (M) in this run, from git diff --name-status c10d0c7 (the run's initial commit), followed by the batch-195 Lean files written by the earlier, interrupted run (already present in c10d0c7, listed with status P); the tarball doc/batches/batch195-files.tar.gz contains every file listed plus this manifest.
+M	Axioms.lean
+M	HPC/HO16/StairExample.lean
+M	LEDGER.md
+M	OPEN.md
+M	README.md
+M	axioms.txt
+A	doc/batches/REPORT-batch195.md
+A	doc/batches/audits/axioms-batch195.txt
+M	doc/notes/ho16.md
+P	HPC.lean
+P	HPC/HO16/StairDefs.lean
+P	HPC/HO16/PLLib2.lean
+P	HPC/HO16/SidesLib.lean
+P	HPC/HO16/Sides.lean
+P	HPC/HO16/StairLib.lean
+P	HPC/HO16/Stairwell.lean
+P	HPC/HO16/Lemma18.lean
+P	HPC/HO16/HO16C.lean
+A	doc/batches/batch195-MANIFEST.txt

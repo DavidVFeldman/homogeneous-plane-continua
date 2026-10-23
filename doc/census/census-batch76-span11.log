@@ -1,0 +1,194 @@
+census-batch76: the fold at span 11.  L = 0, H = 11.
+seed=75 windows-per-chain=4 mixtures-per-chain=1 kmax=5 max-pair-length=6000 hard-sample-per-level-and-leg-count=250 shave/fill-cap=12 windows=1
+walks of at most 5 legs, based within one of a level: 174098 in all
+   0 legs: 12 walks
+   1 legs: 110 walks
+   2 legs: 660 walks
+   3 legs: 3960 walks
+   4 legs: 24024 walks
+   5 legs: 145332 walks
+
+---- the corpus, chain by chain ----
+  bing 0 11: 5742 links
+  Q2 NO SUFFIX REPAIR [1] bing             n= 5742 i=  785 level=5 k=3 |G|= 4957 |T|=  786  w' = 4 -> 7 -> 1  e = 10  band [1,7]  truncated 101, 39
+  Q2 NO SUFFIX REPAIR [2] bing             n= 5742 i=  789 level=5 k=3 |G|= 4953 |T|=  790  w' = 4 -> 7 -> 1  e = 10  band [1,7]  truncated 97, 43
+  Q2 NO SUFFIX REPAIR [3] bing             n= 5742 i=  791 level=5 k=3 |G|= 4951 |T|=  792  w' = 4 -> 7 -> 1  e = 10  band [1,7]  truncated 95, 45
+  Q2 NO SUFFIX REPAIR [4] bing             n= 5742 i=  793 level=5 k=3 |G|= 4949 |T|=  794  w' = 4 -> 7 -> 1  e = 10  band [1,7]  truncated 93, 47
+  Q2 NO SUFFIX REPAIR [5] bing             n= 5742 i=  795 level=5 k=3 |G|= 4947 |T|=  796  w' = 4 -> 7 -> 1  e = 10  band [1,7]  truncated 91, 49
+  Q2 NO SUFFIX REPAIR [6] bing             n= 5742 i=  797 level=5 k=3 |G|= 4945 |T|=  798  w' = 4 -> 7 -> 1  e = 10  band [1,7]  truncated 89, 51
+  least 5 legs [1] bing             n=5742 i=5099 level=7 |G|= 643 |T|=5100  walk 6 -> 4 -> 9 -> 2 -> 10 -> 1  (general)
+  least 5 legs [2] bing             n=5742 i=5103 level=7 |G|= 639 |T|=5104  walk 6 -> 5 -> 9 -> 2 -> 10 -> 1  (general)
+  least 5 legs [3] bing             n=5742 i=5105 level=7 |G|= 637 |T|=5106  walk 7 -> 4 -> 9 -> 2 -> 10 -> 1  (general)
+  least 5 legs [4] bing             n=5742 i=5107 level=7 |G|= 635 |T|=5108  walk 7 -> 4 -> 9 -> 2 -> 10 -> 1  (general)
+    [bing             n=5742] pairs so far 27, distinct basepoints 86130, 78s
+  bing 11 0: 5742 links
+    [bing-rev         n=5742] pairs so far 54, distinct basepoints 172260, 110s
+  bing 0 12: 13861 links
+    [bing012-grid     n=6000] pairs so far 81, distinct basepoints 262189, 140s
+    [bing012-grid     n=5964] pairs so far 108, distinct basepoints 351649, 170s
+    [bing012-grid     n=5815] pairs so far 135, distinct basepoints 438874, 200s
+  -> windows of span 11: 3 at grid offsets, 0 at random offsets
+  bing 0 13: 33462 links
+    [bing013-grid     n=6000] pairs so far 162, distinct basepoints 444872, 211s
+    [bing013-grid     n=6000] pairs so far 189, distinct basepoints 534828, 240s
+    [bing013-grid     n=6000] pairs so far 216, distinct basepoints 624783, 270s
+    [bing013-grid     n=6000] pairs so far 243, distinct basepoints 714726, 302s
+    [bing013-rand     n=6000] pairs so far 270, distinct basepoints 804673, 333s
+  -> windows of span 11: 4 at grid offsets, 1 at random offsets
+  bing 0 14: 80783 links
+    [bing014-grid     n=6000] pairs so far 297, distinct basepoints 810672, 344s
+    [bing014-grid     n=6000] pairs so far 324, distinct basepoints 816671, 357s
+    [bing014-grid     n=6000] pairs so far 351, distinct basepoints 822670, 369s
+    [bing014-grid     n=6000] pairs so far 378, distinct basepoints 828669, 382s
+    [bing014-rand     n=6000] pairs so far 405, distinct basepoints 918610, 412s
+  -> windows of span 11: 4 at grid offsets, 1 at random offsets
+  bing 0 15: 195026 links
+    [bing015-grid     n=6000] pairs so far 432, distinct basepoints 924609, 423s
+    [bing015-grid     n=6000] pairs so far 459, distinct basepoints 930608, 435s
+    [bing015-grid     n=6000] pairs so far 486, distinct basepoints 936607, 447s
+    [bing015-grid     n=6000] pairs so far 513, distinct basepoints 942605, 459s
+  -> windows of span 11: 4 at grid offsets, 0 at random offsets
+  vpath 0 11 (1,2): 586 links
+  vpath 11 0 (1,2): 586 links
+  vpath 0 11 (2,1): 586 links
+  vpath 11 0 (2,1): 586 links
+  vpath 0 11 (2,2): 158 links
+  vpath 11 0 (2,2): 158 links
+  vpath 0 11 (1,3): 270 links
+  vpath 11 0 (1,3): 270 links
+    [concat           n=5812] pairs so far 540, distinct basepoints 1029785, 488s
+  random concatenations of Bing blocks: 1 used
+
+================ the corpus at span 11 ================
+  base level sequences of band [0,11] swept: 28
+  pairs tried: 548;  faithful: 540;  scanned: 540 (306 distinct)
+  links: 3215025, of which not thin: 93679
+  basepoints of the band: 3215025 (1029785 distinct by their pair of whole arms;
+  it is the distinct ones that are scored), of which thin: 65052
+  arm lengths seen: 1 to 6000  (whole arms; no arm-length bound)
+  keys in the distinctness table: 1030091; past capacity: 0
+
+======== S2.3  the least number of legs, over the distinct basepoints ========
+  least 0 legs:        0 basepoints   (thin pairs alone:        0)
+  least 1 legs:    42071 basepoints   (thin pairs alone:     2441)
+  least 2 legs:   451804 basepoints   (thin pairs alone:    27550)
+  least 3 legs:   514871 basepoints   (thin pairs alone:    33697)
+  least 4 legs:    21035 basepoints   (thin pairs alone:     1364)
+  least 5 legs:        4 basepoints   (thin pairs alone:        0)
+  no walk of at most 5 legs: 0  (thin: 0)
+  the maximum least leg count at span 11 is 5
+  the levels at which it is attained:  L+7 (4)
+
+  by level (columns: least 0,1,...,5 legs, then none):
+   level  0:        0      174        0        0        0        0  | none 0
+   level  1:        0     2458        0        0        0        0  | none 0
+   level  2:        0    17269        0        0        0        0  | none 0
+   level  3:        0        0    49736    19079        0        0  | none 0
+   level  4:        0        0    82764    87380        0        0  | none 0
+   level  5:        0        0    97444   156588    10553        0  | none 0
+   level  6:        0        0    96977   153207    10430        0  | none 0
+   level  7:        0        0    82203    81134       52        4  | none 0
+   level  8:        0     4250    42680    17483        0        0  | none 0
+   level  9:        0    15645        0        0        0        0  | none 0
+   level 10:        0     2115        0        0        0        0  | none 0
+   level 11:        0      160        0        0        0        0  | none 0
+
+======== S2.5  the thin pairs alone (sigma = rho) ========
+  distinct basepoints of thin pairs: 65052
+  the maximum least leg count over thin pairs alone: 4  (over all pairs: 5)
+  by level (thin only):
+   level  0:        0       11        0        0        0        0
+   level  1:        0      153        0        0        0        0
+   level  2:        0     1069        0        0        0        0
+   level  3:        0        0     3049     1205        0        0
+   level  4:        0        0     4949     5577        0        0
+   level  5:        0        0     5773    10054      682        0
+   level  6:        0        0     5784    10054      682        0
+   level  7:        0        0     4960     5592        0        0
+   level  8:        0        0     3035     1215        0        0
+   level  9:        0     1052        0        0        0        0
+   level 10:        0      145        0        0        0        0
+   level 11:        0       11        0        0        0        0
+
+======== B76 S2.3  ExtendsSubBand at the least leg count, decided exactly ========
+  sampled basepoints of least leg count k >= 3: 2056
+    k=3: 1500 of 1500 satisfy ExtendsSubBand
+    k=4: 552 of 552 satisfy ExtendsSubBand
+    k=5: 4 of 4 satisfy ExtendsSubBand
+  basepoints at which ExtendsSubBand FAILS: 0
+  (w', w) pairs witnessing it, over all satisfied basepoints: 16086
+  canonical witness (widest sub-band, then longest truncated arms): minimal sub-band span:
+     span  5 (S-6): 20
+     span  6 (S-5): 178
+     span  7 (S-4): 520
+     span  8 (S-3): 1338
+  canonical witnesses whose appended leg continues w''s last leg (w has k-1 legs): 0
+
+======== B76 S2.2  the suffixes ========
+  basepoints: 2056 (those satisfying ExtendsSubBand)
+  canonical witness, both suffixes fold from the LATEST arrival time of the truncated fold: 1940
+  canonical witness, both suffixes fold from the EARLIEST arrival time: 1329
+  canonical witness, each suffix folds from SOME arrival time of its own arm: 1940
+  some witness (w', w) at which each suffix folds from some arrival time of its own arm: 1987
+  basepoints at which no witness and no arrival time serves: 69
+  arm G (canonical witness): not truncated 3; latest ok 2032; earliest ok 1796; some ok 2032
+  arm T (canonical witness): not truncated 0; latest ok 1964; earliest ok 1589; some ok 1964
+  over all witnesses: 16086 pairs tried, 14200 with both suffixes folding from some own arrival time
+
+======== B76 S2.4  which extreme ========
+  appended leg to L+1 (down): 931;  to H-1 (up): 1125;  basepoints admitting both: 216
+  merged (continuing w''s last leg): down 0, up 0
+  (a) side of the FIRST exit from the sub-band (by arm index):
+     appended down:  D 435  U 496  none 0  tie-mixed 0
+     appended up  :  D 716  U 409  none 0  tie-mixed 0
+  (a') exit side of G x exit side of T:
+     appended down:  GD/TD 376  GD/TU 16  GU/TD 536  Gnone/TU 3
+     appended up  :  GU/TD 923  GU/TU 202
+  (b) the basepoint's level against the middle of the sub-band:
+     appended down:  below 249  middle 219  above 463
+     appended up  :  below 432  middle 202  above 491
+  (c) the last target of w' (its last level) in the sub-band, and w''s last leg:
+     appended down:  at the sub-band's bottom 0  top 931  inner 0 | last leg descent 0 ascent 931 none 0
+     appended up  :  at the sub-band's bottom 1125  top 0  inner 0 | last leg descent 1125 ascent 0 none 0
+  (d) the widest band [a,b] containing w''s levels and p at which the canonical w' still folds both
+      truncated arms -- the band of the ARMS, against the minimal band of the WALK's levels:
+     span  7 (S-4): 20
+     span  8 (S-3): 178
+     span  9 (S-2): 517
+     span 10 (S-1): 1341
+     appended down:  neither end 0  a = L 3  b = H 928  a = L and b = H 0
+     appended up  :  neither end 0  a = L 1125  b = H 0  a = L and b = H 0
+  (e) the side of the first exit from that widest band:
+     appended down:  D 928  U 3  none 0  tie-mixed 0
+     appended up  :  D 0  U 1125  none 0  tie-mixed 0
+  (f) whether w' comes within one of L (lowest level <= L+1) or of H (highest >= H-1):
+     appended down:  covers neither extreme 0  covers L only 0  covers H only 931  covers both 0
+     appended up  :  covers neither extreme 0  covers L only 1125  covers H only 0  covers both 0
+
+======== B76 S2.5  why S-3 ========
+  basepoints examined: 2056
+  (A) some walk confined to a band of span S-1 folds that band's truncated arms: 2056 (none within k+1 legs: 0)
+      least legs:  1: 500  2: 1101  3: 455
+  (A) some walk confined to a band of span S-2 folds that band's truncated arms: 2056 (none within k+1 legs: 0)
+      least legs:  1: 1056  2: 1000
+  (B) a walk of k legs (least) that is a one-leg extension of a w' folding the truncated arms
+      of a band of span exactly S-1: 2056;  of span exactly S-2: 2056
+  (B) the same with k+1 legs (not least): span S-1: 2056;  span S-2: 2056
+  (B) the widest minimal band of such a w', over extensions of at most k legs:
+     span  8 (S-3): 365
+     span  9 (S-2): 1691
+  (B) the same, over extensions w whose targets all lie in [L+1, H-1] (the batch-75 family):
+     span  8 (S-3): 2056
+     none in the family: 0
+  (B) the widest minimal band of such a w', over extensions of exactly k+1 legs:
+     span 10 (S-1): 2056
+     none with k+1 legs: 0
+
+  audit: the fold decided by masks against arrays on 210599 calls (every canonical-witness
+  suffix, and a sample of the rest): 0 disagreements
+
+---- the audit sample ----
+  the fold decided by the bitmask propagation against the same fold decided by an
+  array propagation (stored walks, whole arms): 3000 samples, 0 disagreements
+  every predicate of this census is evaluated by its own definition: IsCrookedIvF,
+  armG, armT, FoldsOnto (twice, independently).

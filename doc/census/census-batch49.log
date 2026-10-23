@@ -1,0 +1,5 @@
+maxdepth 16: nodes 14594512, prefixes rejected by crookedness 1377199, rejected as settled 459128, depth cutoffs 8986730
+arms reaching 8: 104572; of those failing HighAt(1,8): 104572; meeting Leg3Ceil: 0; FAILING Leg3Ceil with HighAt: 0
+maxdepth 20: nodes 695614352, prefixes rejected by crookedness 65336271, rejected as settled 22990052, depth cutoffs 427260648
+arms reaching 8: 5314806; of those failing HighAt(1,8): 5314806; meeting Leg3Ceil: 0; FAILING Leg3Ceil with HighAt: 0
+EXIT=0

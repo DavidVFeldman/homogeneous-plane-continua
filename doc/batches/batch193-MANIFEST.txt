@@ -1,0 +1,20 @@
+# batch 193: files added (A), modified (M) or moved (R) in this run, from git diff --name-status abd1088 (the run's initial commit); the tarball doc/batches/batch193-files.tar.gz contains every file listed (new paths) plus this manifest. The two uploaded PDFs were saved as doc/sources/hoehn-oversteegen2016.pdf and doc/sources/krasinkiewicz-minc1977.pdf (ignored by git, not in the tarball).
+M	Axioms.lean
+M	HPC.lean
+A	HPC/HO16/Defs.lean
+A	HPC/HO16/Grid.lean
+A	HPC/HO16/HO16A.lean
+A	HPC/HO16/KM77.lean
+A	HPC/HO16/Plane.lean
+A	HPC/HO16/Thm4.lean
+A	HPC/HO16/Thm8.lean
+M	LEDGER.md
+M	OPEN.md
+M	README.md
+M	axioms.txt
+R100	COMMISSION-batch193.md	doc/batches/COMMISSION-batch193.md
+A	doc/batches/REPORT-batch193.md
+A	doc/batches/audits/axioms-batch193.txt
+R100	HO16A.lean	doc/batches/skeletons/HO16A.lean
+A	doc/notes/ho16.md
+A	doc/batches/batch193-MANIFEST.txt

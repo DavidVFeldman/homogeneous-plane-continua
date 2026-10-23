@@ -1,0 +1,144 @@
+%======================================================================
+\chapter{Uniqueness, homogeneity and recognition}\label{ch:uniqueness}
+%======================================================================
+
+``It follows from Theorem~10 that any two circles of pseudo-arcs are topologically equivalent and that each is homogeneous'' (Bing and Jones, p.~189). This
+chapter supplies the argument: cut each circle of pseudo-arcs into its two halves, apply Theorem~10 to each half, and glue. The same argument, with
+Corollary~\ref{cor:atomic-halves} in place of Proposition~\ref{prop:halves-snake}, recognizes the continua of Volume~7 as circles of pseudo-arcs.
+
+Throughout, $X$ and $Y$ are compact metric spaces and $f\colon X\to\Sph$, $g\colon Y\to\Sph$ have snake-like halves (Definition~\ref{def:snake-halves}). Recall that
+the end fibres of the half maps $f_s$ are $\fib f1$ and $\fib f{-1}$, for both $s$.
+
+\section{Gluing two halves}
+
+\begin{lemma}[One half]\label{lem:one-half}
+Let $k_+\colon\fib f1\to\fib g1$ and $k_-\colon\fib f{-1}\to\fib g{-1}$ be homeomorphisms and $s\in\set{1,-1}$. There is a homeomorphism $H_s\colon X_s\to Y_s$ with $g\circ
+H_s=f$ on $X_s$, equal to $k_+$ on $\fib f1$ and to $k_-$ on $\fib f{-1}$.
+\end{lemma}
+
+\begin{proof}
+The half maps $f_s\colon X_s\to\I$ and $g_s\colon Y_s\to\I$ are continuous arcs of pseudo-arcs (Proposition~\ref{prop:halves}) on snake-like compact spaces. Their fibres over
+$0$ are $\fib f1$, $\fib g1$ and over $1$ are $\fib f{-1}$, $\fib g{-1}$. Theorem~\ref{thm:bj10}, with $h_0=k_+$ and $h_1=k_-$ (transported through these identifications),
+gives a homeomorphism $H_s$ with $g_s\circ H_s=f_s$, that is, $g\circ H_s=f$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.exists_half_homeomorph'}, with \lean{HPC.BJ59.halfFibreEquiv}.}
+
+\begin{theorem}[Gluing]\label{thm:glue}
+With $k_+$, $k_-$ as in Lemma~\ref{lem:one-half} there is a homeomorphism $\Phi\colon X\to Y$ with $g\circ\Phi=f$ and $\Phi=k_+$ on $\fib f1$.
+\end{theorem}
+
+\begin{proof}
+Let $H_1$, $H_{-1}$ be given by Lemma~\ref{lem:one-half}. The halves $X_1$, $X_{-1}$ are closed, cover $X$, and meet in $\fib f1\cup\fib f{-1}$, where $H_1$ and $H_{-1}$
+both equal $k_+$ or $k_-$. So $\Phi=H_1$ on $X_1$, $\Phi=H_{-1}$ on $X_{-1}$ is well defined, and continuous by the pasting lemma for two closed sets. It satisfies $g\circ\Phi=f$.
+It is injective: if $\Phi(x)=\Phi(x')$ then $f(x)=f(x')$, so $x$, $x'$ lie in a common half, where $\Phi$ is injective. It is onto, since $Y=Y_1\cup Y_{-1}$ and $H_s$ maps
+$X_s$ onto $Y_s$. A continuous bijection of compact metric spaces is a homeomorphism.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.exists_homeomorph_glue'}; Theorem~\ref{thm:bj10} enters as the hypothesis \lean{HPC.BJ59.BJThm10}, discharged by \lean{HPC.BJ59.bjThm10}.}
+
+\begin{corollary}\label{cor:snakehalves-homeo}
+Any two compact metric spaces carrying maps with snake-like halves are homeomorphic.
+\end{corollary}
+
+\begin{proof}
+The fibres $\fib f1$, $\fib g1$ are pseudo-arcs, hence homeomorphic (\vtwo{Theorem~8.3}); likewise $\fib f{-1}$, $\fib g{-1}$. Apply Theorem~\ref{thm:glue}.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.homeomorph_of_isSnakeHalvesMap}, with \lean{HPC.Plane.theorem1_HIC'}.}
+
+\section{Circles of pseudo-arcs}
+
+\begin{theorem}[Bing and Jones, p.~189]\label{thm:unique}
+Any two circles of pseudo-arcs are homeomorphic.
+\end{theorem}
+
+\begin{proof}
+A circle of pseudo-arcs is compact (it is circle-like) and its map has snake-like halves (Proposition~\ref{prop:halves-snake}). Apply Corollary~\ref{cor:snakehalves-homeo}.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.homeomorph_of_isCircleOfPA'}; with Theorem~10 as a hypothesis, \lean{HPC.BJ59.homeomorph_of_isCircleOfPA} and
+\lean{HPC.BJ59.homeomorph_of_isCircPAMap}.}
+
+\begin{theorem}[Bing and Jones, p.~189]\label{thm:homog}
+Every circle of pseudo-arcs is homogeneous.
+\end{theorem}
+
+\begin{proof}
+Let $f\colon X\to\Sph$ be a circle-of-pseudo-arcs map and $x,y\in X$. The rotated maps $f'=f(x)^{-1}f$ and $f''=f(y)^{-1}f$ are again circle-of-pseudo-arcs maps, with $f'(x)=1$
+and $f''(y)=1$. Their fibres over $1$ are the fibres $P_x\ni x$ and $P_y\ni y$ of $f$. These are pseudo-arcs; a homeomorphism $P_x\to P_y$ followed by a homeomorphism of $P_y$
+moving its image of $x$ to $y$ (\vtwo{Theorems~8.3 and~8.4}) gives $k_+\colon P_x\to P_y$ with $k_+(x)=y$. Let $k_-$ be any homeomorphism between the fibres of $f'$ and $f''$
+over $-1$. Theorem~\ref{thm:glue} for $f'$ and $f''$ gives a homeomorphism $\Phi$ of $X$ with $\Phi(x)=k_+(x)=y$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isHomogeneous_of_isCircleOfPA'}; with Theorem~10 as a hypothesis, \lean{HPC.BJ59.isHomogeneous_of_isCircleOfPA},
+\lean{HPC.BJ59.isHomogeneous_of_isCircPAMap}; the pseudo-arc facts are \lean{HPC.Plane.theorem1_HIC'} and \lean{HPC.Plane.homogeneous_of_isPseudoArc}.}
+
+\section{Recognition}
+
+\begin{lemma}\label{lem:circlelike-homeo}
+The circle is circle-like, and a compact metric space homeomorphic to a circle-like space is circle-like.
+\end{lemma}
+
+\begin{proof}
+For the circle, take the $N$ open arcs of length $3\pi/N$ centred at the $N$-th roots of unity, $N\ge4$ large. For the second statement pull the links of fine circular chains back
+along the homeomorphism $e\colon X\to Y$; by uniform continuity of $e$ on the compact space $X$, the pulled-back chains are fine.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isCircleLike_circle}, \lean{HPC.BJ59.isCircleLike_univ_of_homeomorph}.}
+
+\begin{theorem}[Domokos and Prajs, Theorem~6.1]\label{thm:dp61}
+Let $X$ be a compact metric space with an atomic circle-of-pseudo-arcs map $f\colon X\to\Sph$ (continuous, open, surjective, atomic, with pseudo-arc fibres). Then $X$ is
+homeomorphic to every circle of pseudo-arcs. If a circle of pseudo-arcs exists, $X$ is one. Conversely, every circle of pseudo-arcs carries an atomic circle-of-pseudo-arcs
+map.
+\end{theorem}
+
+\begin{proof}
+By Corollary~\ref{cor:atomic-halves}, $f$ has snake-like halves; so does a circle-of-pseudo-arcs map on any circle of pseudo-arcs $Y$. By Corollary~\ref{cor:snakehalves-homeo},
+$X$ is homeomorphic to $Y$. Then $X$ is circle-like (Lemma~\ref{lem:circlelike-homeo}), and with $f$ it is a circle of pseudo-arcs.
+
+For the converse, let $C$ be the plane circle of pseudo-arcs of Theorem~\ref{thm:plane-example}. It is homogeneous (Theorem~\ref{thm:homog}) and decomposable
+(Corollary~\ref{cor:circle-pa-decomp}), so by \vseven{Theorem~9.8} it is a simple closed curve or carries an atomic circle-of-pseudo-arcs map. It is not a simple closed curve
+(Corollary~\ref{cor:circle-not-cpa}). An atomic circle-of-pseudo-arcs map on $C$ transports along a homeomorphism $X\to C$ (Theorem~\ref{thm:unique}) to one on $X$: fibres,
+openness and atomicity are preserved.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.dp22_theorem61'} and \lean{HPC.BJ59.dp22_theorem61_iff'}; with the inputs as hypotheses, \lean{HPC.BJ59.dp22_theorem61},
+\lean{HPC.BJ59.isCircleOfPA_of_atomic}, \lean{HPC.BJ59.dp22_theorem61_iff}; the converse uses \lean{HPC.BJ59.exists_atomic_of_plane_isCircleOfPA} and
+\lean{HPC.BJ59.IsAtomicCircPAMap.comp_homeomorph}.}
+
+Two compact spaces with atomic circle-of-pseudo-arcs maps are homeomorphic, and each is homogeneous, by the same arguments.
+
+\formal{\lean{HPC.BJ59.homeomorph_of_atomic}, \lean{HPC.BJ59.isHomogeneous_of_atomic}.}
+
+\section{Circle-likeness of the decomposable continua}
+
+Volume~7 left one gap: it did not show that a decomposable homogeneous plane continuum is circle-like.
+
+\begin{theorem}\label{thm:ho-circlelike}
+Every decomposable homogeneous plane continuum is circle-like.
+\end{theorem}
+
+\begin{proof}
+Let $M$ be such a continuum. By \vseven{Theorem~9.8}, $M$ is a simple closed curve, which is circle-like by Lemma~\ref{lem:circlelike-homeo}, or $M$ carries an atomic
+circle-of-pseudo-arcs map. In the second case, Theorem~\ref{thm:dp61} with the plane circle of pseudo-arcs of Theorem~\ref{thm:plane-example} shows that $M$ is a circle of
+pseudo-arcs, in particular circle-like.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.hoCircleLike'}, a proof of the statement \lean{HPC.BJ59.HOCircleLike}; with Theorem~10 and the plane example as hypotheses,
+\lean{HPC.BJ59.hoCircleLike}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that in Theorem~\ref{thm:glue} the homeomorphism can be chosen to equal any prescribed homeomorphism $k_-$ on $\fib f{-1}$ as well.
+\end{exercise}
+
+\begin{exercise}
+Show that the homeomorphism $\Phi$ constructed in the proof of Theorem~\ref{thm:homog} satisfies $f\circ\Phi=f(y)f(x)^{-1}\,f$; so it permutes the
+fibres of $f$ by a rotation of $\Sph$.
+\end{exercise}
+
+\begin{exercise}
+Let $f\colon X\to\Sph$ be a circle-of-pseudo-arcs map and $c\in\Sph$. Show that there is a homeomorphism $\Phi$ of $X$ with $f\circ\Phi=c\,f$.
+\end{exercise}

@@ -1,0 +1,23 @@
+# Batch 183 manifest
+# git diff --name-status 92a5288 (run's initial commit) .. final commit, plus uncommitted changes (none),
+# plus this manifest and the file the report names that this run did not change
+# (the tarball doc/batches/batch183-files.tar.gz holds every file below; it does not contain itself)
+
+M	Axioms.lean
+M	HPC.lean
+A	HPC/Hagopian/H76E24.lean
+A	HPC/Hagopian/H76Restrict.lean
+A	HPC/Hagopian/Hagopian76AB.lean
+M	LEDGER.md
+M	OPEN.md
+M	README.md
+M	axioms.txt
+R100	COMMISSION-batch183.md	doc/batches/COMMISSION-batch183.md
+A	doc/batches/REPORT-batch183.md
+A	doc/batches/audits/axioms-batch183.txt
+R100	Hagopian76AB.lean	doc/batches/skeletons/Hagopian76AB.lean
+M	doc/notes/hagopian76-cases.md
+A	doc/batches/batch183-MANIFEST.txt
+
+# named in the report, unchanged in this run
+=	doc/batches/REPORT-batch182.md

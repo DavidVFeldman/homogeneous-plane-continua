@@ -1,0 +1,143 @@
+%======================================================================
+\chapter{Sweep patterns}\label{ch:sweep}
+%======================================================================
+
+This chapter produces lifted patterns $x\colon\Z\to\Z$ with the properties required of the $\pi_k$ in Definition~\ref{def:circdescr}. The new chain sweeps back
+and forth across a window of old links; the window slides once around the circle, one end at a time. Each sweep is a stuttered Bing pattern (\vone{Definitions~4.4
+and~4.8}), and a combinatorial lemma, the sweep lemma, makes every run of the new chain crooked.
+
+Since the indices are now integers, we use crookedness of $g\colon\Z\to\Z$ on $[lo,hi]\subseteq\Z$, defined exactly as in Chapter~\ref{ch:circdescr}.
+
+\formal{\lean{HPC.BJ59.PatCrookedOnZ}, with the passage to and from sequences indexed by $\N$, \lean{HPC.BJ59.PatCrookedOnZ.toNat}, \lean{HPC.BJ59.PatCrookedOn.toZ}.}
+
+\section{The sweep lemma}
+
+\begin{definition}\label{def:sweep-walk}
+Fix $L>0$. A \emph{sweep walk} is a map $g\colon\Z\to\Z$ together with windows $[b_n,t_n]$ ($t_n>b_n$) and directions (up or down) for the blocks $[nL,(n+1)L]$,
+$n\in\Z$ (consecutive blocks share their end points), such that:
+\begin{itemize}
+\item on block $n$, $g$ takes values in $[b_n,t_n]$ and is crooked; if block $n$ is up it starts at $b_n$ and ends at $t_n$, if down it starts at $t_n$ and ends at $b_n$;
+\item directions alternate;
+\item after an up block the bottom may grow by one ($b_{n+1}\in\set{b_n,b_n+1}$, $t_{n+1}=t_n$); after a down block the top may grow by one ($t_{n+1}\in\set{t_n,t_n+1}$,
+$b_{n+1}=b_n$).
+\end{itemize}
+A junction $nL$ is an \emph{event} if the windows of blocks $n-1$ and $n$ differ.
+\end{definition}
+
+A sweep walk has steps of at most one (inside a block by crookedness of a stuttered pattern, at a junction because both blocks take the same extreme value there).
+
+\begin{theorem}[Sweep lemma]\label{thm:sweep}
+A sweep walk is crooked on every interval $[lo,hi]$ containing at most two events.
+\end{theorem}
+
+\begin{proof}
+Let $lo\le i,j\le hi$ with $g(i)\le h$, $h+3\le k\le g(j)$.
+
+\emph{The ascending case $i<j$.} Let $t_0$ be the last index in $[i,j]$ with $g\le h$, and $s_0$ the first index in $[t_0,j]$ with $g\ge k$. Unit steps give $g(t_0)=h$, $g(s_0)=k$, and
+$h<g<k$ strictly between them. It suffices to find $t_0<r<s<s_0$ with $g(r)=k-1$ and $g(s)=h+1$. Let $\sigma$ be the block containing $t_0$ (the later one, if $t_0$ is a junction).
+
+\emph{Case 1: $s_0\in\sigma$.} Use the crookedness of $\sigma$ on $[t_0,s_0]$.
+
+\emph{Case 2: $s_0\notin\sigma$.} Then $t_0$ is not the last index of $\sigma$ (otherwise the next block starts at the value $h$, at an index in $(t_0,s_0]$, against the choice of
+$t_0$). So the last index $e$ of $\sigma$ lies in $(t_0,s_0)$ and $h<g(e)<k$. If $\sigma$ were down, $g(e)=b_\sigma\le g(t_0)=h$; so $\sigma$ is up and $g(e)=t_\sigma<k$. The next block
+$\sigma'$ is down with values $\le t_\sigma<k$, so $s_0$ lies beyond it; $\sigma'$ is a full block inside $(t_0,s_0)$ ending at its bottom $b_{\sigma'}>h\ge b_\sigma$. So the junction
+$\sigma|\sigma'$ is an event, $h=b_\sigma$ and $b_{\sigma'}=h+1$.
+\begin{itemize}
+\item \emph{Case 2a: $k-1\le t_\sigma$.} Take $r$ the first index after $t_0$ in $\sigma$ with $g(r)=k-1$, and $s$ the last index of $\sigma'$.
+\item \emph{Case 2b: $k-1>t_\sigma$.} To reach $k\ge t_\sigma+2$ the top must grow twice after $\sigma'$, two more events; with $\sigma|\sigma'$ that makes three, which is excluded.
+\end{itemize}
+
+\emph{The descending case $j<i$.} Let $s_0$ be the last index in $[j,i]$ with $g\ge k$ and $t_0$ the first index after $s_0$ with $g\le h$; then $g(s_0)=k$, $g(t_0)=h$, and it suffices to find
+$s_0<s<r<t_0$ with $g(s)=h+1$, $g(r)=k-1$. Suppose $t_0$ is not in the block $\sigma$ of $s_0$. As before the end $e$ of $\sigma$ lies in $(s_0,t_0)$ with $h<g(e)<k$; if $\sigma$ were up,
+$g(e)=t_\sigma\ge k$; so $\sigma$ is down and $g(e)=b_\sigma>h$. The next block $\sigma'$ is up with bottom $b_\sigma$ (bottoms change only after up blocks), so its values are $>h$, $t_0\notin\sigma'$, and
+$\sigma'$ is a full block ending at its top $\ge t_\sigma\ge k$ inside $(s_0,t_0)$: a contradiction. So $t_0\in\sigma$, and the crookedness of $\sigma$ on $[s_0,t_0]$ gives the witnesses.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.sweep_lemma}.}
+
+\begin{remark}
+The lemma holds with at most three events: in Case~2b the top then grows exactly once more before reaching $k-1$, the up block after that growth ends at $k-1$, and the down block after
+it ends at the bottom $h+1$, which gives $r$ and $s$. Only two events are needed below. Reversing the indices and negating $g$ maps sweep walks to sweep walks, but it maps the
+descending case to itself, so the two cases must be argued separately.
+\end{remark}
+
+\formal{\lean{HPC.BJ59.sweep_lemma3}, with \lean{HPC.BJ59.sweep_window_case2b}.}
+
+\section{The pattern}
+
+\begin{definition}\label{def:sweepX}
+Let $m\ge5$ and $S\ge1$ be integers, $z$ Bing's numbers (\vone{Definition~4.3}), and put
+\[
+L=S\,z(m-2)\,z(m-1),\qquad P=3L,\qquad Q=2P=6S\,z(m-2)\,z(m-1).
+\]
+For $j\in\Z$, \emph{period $j$} is the block of indices $[jP,(j+1)P)$, with window
+\[
+t_j=\fl{(j+m)/2},\qquad b_j=\cel{(j+2-m)/2}
+\]
+of width $d_j=t_j-b_j$, equal to $m-1$ if $j+m$ is even and $m-2$ if it is odd. Period $j$ consists of three \emph{sweeps} of length $L$, the sweep $n=3j+r$ ($r=0,1,2$) occupying
+$[nL,(n+1)L)$. With $K_j=L/z(d_j)$ and $F_d$ Bing's pattern of length $z(d)$ from $0$ to $d$ (\vone{Definition~4.4}), sweep $n$ at position $u\in[0,L)$ has the value
+\[
+b_j+F_{d_j}(\fl{u/K_j})\ \text{ if $n+m$ is even (up)},\qquad t_j-F_{d_j}(\fl{u/K_j})\ \text{ if $n+m$ is odd (down)}.
+\]
+This defines the \emph{sweep pattern} $x=x_{m,S}\colon\Z\to\Z$.
+\end{definition}
+
+\formal{\lean{HPC.BJ59.sweepX}, with \lean{HPC.BJ59.sweepL}, \lean{HPC.BJ59.sweepQ}, \lean{HPC.BJ59.swT}, \lean{HPC.BJ59.swB}, \lean{HPC.BJ59.swD},
+\lean{HPC.BJ59.swK}, \lean{HPC.BJ59.swVal}.}
+
+Each sweep is a stuttered Bing pattern (stutter $K_j\ge S$) across the window of its period. From period $j$ to period $j+1$ the top grows when $j+m$ is odd and the bottom grows when $j+m$ is
+even, one end at a time; the period after a top growth starts at the bottom and the period after a bottom growth starts at the top. So $x$ is a sweep walk with blocks of length $L$, whose events lie
+at multiples of $P$.
+
+\formal{\lean{HPC.BJ59.sw_win_up}, \lean{HPC.BJ59.sw_win_down}, \lean{HPC.BJ59.swVal_junction}, \lean{HPC.BJ59.sweepX_block_crooked}.}
+
+\begin{theorem}\label{thm:sweep-pattern}
+For $m\ge5$, $S\ge1$, the sweep pattern $x$ satisfies, with $y(t)=1/4+t/Q$ and $\rho=m/2-1/4$:
+\begin{enumerate}[label=(\alph*)]
+\item (period) $x(t+Q)=x(t)+1$;
+\item (unit steps) $\abs{x(t+1)-x(t)}\le1$;
+\item (slow) if $x(s)+2\le x(t)$ then $\abs{s-t}\ge S$;
+\item (nesting) $\abs{x(t)-y(t)}\le\rho$;
+\item (survival) if $\abs{y-l}\le m/2-1/2$, there is $t$ with $x(t)=l$ and $\abs{y-y(t)}\le1/4-1/(2Q)$;
+\item (crookedness) for every $a\in\Z$, $u\mapsto x(a+u)$ is crooked on $[0,P+3]$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) $t_{j+2}=t_j+1$, $b_{j+2}=b_j+1$, $d_{j+2}=d_j$, and $Q$ is two periods.
+
+(b) Inside a sweep, by \vone{Lemma~4.9}; at a junction both sweeps take the same extreme value.
+
+(c) The walk is a sequence of maximal constant blocks of length at least $S$ (the stutter is a multiple of $S$), consecutive blocks differing by one.
+
+(d) In period $j$, $y(t)\in[e_j,e_{j+1})$ with $e_j=1/4+j/2$, and $b_j\le x(t)\le t_j$, where $t_j\le(j+m)/2=e_j+\rho$ and $b_j\ge(j+2-m)/2=e_{j+1}-\rho$.
+
+(e) The periods whose window contains $l$ are $j=2l-m,\dots,2l+m-2$, covering the $y$-range $[l-\rho,l+\rho)$, and every sweep of these periods takes the value $l$. In the first,
+$j_1=2l-m$, $l=t_{j_1}$ is a new top and the period starts at the bottom; its first sweep reaches $l$ at a $y$ below $l-\rho+1/6$. In the last, $j_2=2l+m-2$, $l=b_{j_2}$ and its third sweep
+starts at $l$, at $y=l+\rho-1/6$. Consecutive visits to $l$ are less than $2L$ indices apart, a $y$-gap below $1/3\le1/2-1/Q$. So the intervals $[y(t)-1/4+1/(2Q),\,y(t)+1/4-1/(2Q)]$ over
+the visits $t$ cover $[l-\rho+1/4,l+\rho-1/4]=[l-m/2+1/2,\,l+m/2-1/2]$.
+
+(f) An interval of $P+4$ consecutive indices contains at most two multiples of $P$ (as $P\ge4$), hence at most two events. Apply Theorem~\ref{thm:sweep}.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.exists_sweepPattern}, from \lean{HPC.BJ59.sweepX_period}, \lean{HPC.BJ59.sweepX_step}, \lean{HPC.BJ59.sweepX_slow}, \lean{HPC.BJ59.sweepX_nest},
+\lean{HPC.BJ59.sweepX_surv}, \lean{HPC.BJ59.sweepX_crook}.}
+
+\begin{remark}
+Three sweeps per period are needed for survival: with one sweep, consecutive visits to a link can be a whole period apart (a $y$-gap of $1/2$, more than $1/2-1/Q$). In
+Chapter~\ref{ch:plane} the new level has $\lambda N=Q/2=P$, so the window $\cel{\lambda_{k+1}N_{k+1}}+3$ of condition (crook) is exactly $P+3$.
+\end{remark}
+
+\section*{Exercises}
+
+\begin{exercise}
+Compute $Q$ for $m=5$, $S=1$. (Use $z(3)$ and $z(4)$ from \vone{Definition~4.3}.)
+\end{exercise}
+
+\begin{exercise}
+Give a sweep walk with one sweep per window change which is not crooked on an interval containing four events.
+\end{exercise}
+
+\begin{exercise}
+Check that the window of period $j$ consists exactly of the integers $l$ with $\abs{l-y}\le\rho$ for every $y\in[e_j,e_{j+1}]$.
+\end{exercise}

@@ -1,0 +1,25 @@
+# recon-batch124-pair (mode pair): Theorem3Pair in the model; 'special' = only instances in Bing's special case
+mode=pair N=5 K=5 special=0 sequences=1833 instances=4946 pairs=14384 failures=0
+mode=pair N=6 K=5 special=0 sequences=6865 instances=18594 pairs=67398 failures=0
+mode=pair N=7 K=5 special=0 sequences=25745 instances=69942 pairs=303652 failures=0
+mode=pair N=8 K=5 special=0 sequences=96697 instances=263034 pairs=1330646 failures=0
+mode=pair N=9 K=5 special=0 sequences=363513 instances=988614 pairs=5710960 failures=0
+mode=pair N=10 K=5 special=0 sequences=1366817 instances=3713082 pairs=24116666 failures=0
+mode=pair N=11 K=5 special=0 sequences=5137761 instances=13936134 pairs=100530316 failures=0
+mode=pair N=12 K=5 special=0 sequences=19301897 instances=52273818 pairs=414655374 failures=0
+mode=pair N=8 K=5 special=1 sequences=67971 instances=0 pairs=0 failures=0
+mode=pair N=9 K=5 special=1 sequences=251613 instances=0 pairs=0 failures=0
+mode=pair N=10 K=5 special=1 sequences=932171 instances=0 pairs=0 failures=0
+mode=pair N=11 K=5 special=1 sequences=3454821 instances=64 pairs=352 failures=0
+mode=pair N=12 K=5 special=1 sequences=12806227 instances=1088 pairs=7040 failures=0
+mode=pair N=13 K=5 special=1 sequences=47472109 instances=10432 pairs=77184 failures=0
+mode=pair N=14 K=5 special=1 sequences=175981339 instances=74944 pairs=621568 failures=0
+mode=pair N=7 K=6 special=0 sequences=33715 instances=93295 pairs=404278 failures=0
+mode=pair N=8 K=6 special=0 sequences=127585 instances=353173 pairs=1783511 failures=0
+mode=pair N=9 K=6 special=0 sequences=483083 instances=1335551 pairs=7702532 failures=0
+mode=pair N=10 K=6 special=0 sequences=1828745 instances=5044757 pairs=32716249 failures=0
+mode=pair N=11 K=6 special=0 sequences=6917827 instances=19034927 pairs=137117162 failures=0
+mode=pair N=12 K=6 special=0 sequences=26143441 instances=71754325 pairs=568430131 failures=0
+mode=pair N=8 K=7 special=0 sequences=158473 instances=443312 pairs=2236376 failures=0
+mode=pair N=9 K=7 special=0 sequences=602653 instances=1682488 pairs=9694104 failures=0
+mode=pair N=10 K=7 special=0 sequences=2290673 instances=6376432 pairs=41315832 failures=0

@@ -1,0 +1,34 @@
+break-batch72: break the valley at L + 3.  seed=72
+the four-leg family: 64 walks
+
+---- attack A: edit the running arm's approach at a high-run crossing ----
+  the edits are aimed at the valley: cuts that bracket it, the raise of the
+  valley link itself and of its neighbours, splices and stretches placed just
+  before it and just after it.
+  seeds-batch71.txt: 64 seeds read
+
+---- attack B: edit the partner at a basepoint whose running arm already fails ----
+  the edits are aimed at the partner's w8 sentence, which is what a crossing
+  needs taken off it: cuts that remove its first high excursion, splices that
+  put a descent of the sub-band before that excursion, raises and stretches.
+  seeds-batch72.txt: 96 seeds read
+
+================ the outcome ================
+  attack A (the running arm's approach at a high-run crossing)
+  edit      tried   faithful   still a crossing   still a high run   breaks it
+  cut        27744          0                  0                  0           0
+  stretch     2722       2229                 43                  2           0
+  raise        119          0                  0                  0           0
+  splice      2164          0                  0                  0           0
+
+  attack B (the partner at a basepoint whose running arm already fails)
+  edit      tried   faithful   still a crossing   still a high run   breaks it
+  cut        15273        320                  0                  0           0
+  stretch     3629       2269                  0                  0           0
+  raise        265          1                  0                  0           0
+  splice      3913        148                  0                  0           0
+
+  crossings whose running arm fails Valley3BeforeNine, found: 0
+  (every edited pair is re-tested for IsCrookedIvF and re-scanned from scratch
+   for the band, the basepoint, LowAt, the trichotomy, the high run and
+   Valley3BeforeNine; nothing is inherited from the seed.)

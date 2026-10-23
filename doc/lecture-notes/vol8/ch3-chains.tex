@@ -1,0 +1,217 @@
+%======================================================================
+\chapter{Chains in the sense of Bing and Jones}\label{ch:chains}
+%======================================================================
+
+The proof of Theorem~10 manipulates chains on two spaces at once and maps of their link indices. This chapter collects the facts about chains that it uses.
+Throughout, $X$ is a metric space and chains are as in \vone{Definition~2.1}, with links numbered from $0$. For a chain $D=(D_0,\dots,D_{n-1})$ a
+\emph{run} is a set of consecutive links $D_u,\dots,D_v$ ($u\le v$); we say the run $[u,v]$ \emph{covers} a set $C$ if $C\subseteq D_u\cup\dots\cup D_v$.
+
+\section{Chains whose nonadjacent links are apart}
+
+\begin{definition}[Bing and Jones, p.~172]\label{def:bjchain}
+A chain $D$ is a \emph{BJ-chain} if any two links $D_i$, $D_j$ with $\abs{i-j}\ge2$ are a positive distance apart: there is $\delta>0$ with
+$\dist(x,y)\ge\delta$ for $x\in D_i$, $y\in D_j$.
+\end{definition}
+
+\formal{\lean{HPC.BJ59.IsBJChain}. These are Fugate's \emph{taut} chains: \lean{HPC.BJ59.isBJChain_iff_isTaut}.}
+
+In a BJ-chain nonadjacent links have disjoint closures. Hence:
+
+\begin{lemma}\label{lem:adj-closure}
+If $D$ is a BJ-chain and a point lies in $\cl{D_a}\cap\cl{D_b}$, then $\abs{a-b}\le1$.
+\end{lemma}
+
+\formal{\lean{HPC.BJ59.IsBJChain.adjacent_of_closure}.}
+
+\begin{lemma}\label{lem:adjacent-meet}
+Let $K$ be connected and let $U_0,\dots,U_{n-1}$ be open sets covering $K$, each meeting $K$, with $U_i\cap U_j=\emptyset$ for $\abs{i-j}\ge2$. Then
+$U_i\cap U_{i+1}\neq\emptyset$ for every $i$; so $(U_0,\dots,U_{n-1})$ is a chain.
+\end{lemma}
+
+\begin{proof}
+Otherwise $U_0\cup\dots\cup U_i$ and $U_{i+1}\cup\dots\cup U_{n-1}$ are disjoint open sets covering $K$ and both meeting it.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.adjacent_meet_of_cover}.}
+
+\begin{theorem}[Shrinking to a BJ-chain]\label{thm:shrink}
+Let $K$ be a continuum, $D$ a chain covering $K$ with every link meeting $K$, and $C_i\subseteq D_i$ compact sets. There is a BJ-chain $D'$ with the same
+number of links covering $K$, every link meeting $K$, with $\cl{D'_i}\subseteq D_i$ and $C_i\subseteq D'_i$ for every $i$.
+\end{theorem}
+
+\begin{proof}
+Choose $k_i\in K\cap D_i$ and enlarge $C_i$ to $C_i\cup\set{k_i}$. The compact set $K$ is covered by the open sets $D_i$, so it is covered by compact sets
+$F_i\subseteq D_i$ (the shrinking lemma for finite open covers of a compact metric space). Let $Q_i=F_i\cup C_i$, a compact subset of $D_i$. For
+$\abs{i-j}\ge2$, $Q_i$ and $Q_j$ are disjoint compact sets, so they have positive distance; let $d>0$ be smaller than all these distances and smaller than
+the distance from each $Q_i$ to the complement of $D_i$. Put $D'_i=\set{x\in D_i:\dist(x,Q_i)<d/3}$. Then $\cl{D'_i}\subseteq\set{x:\dist(x,Q_i)\le
+d/3}\subseteq D_i$, $C_i\subseteq D'_i$, the $D'_i$ cover $K$ and each meets $K$ (at $k_i$), and for $\abs{i-j}\ge2$ points of $D'_i$ and $D'_j$ are at distance
+at least $d/3$. By Lemma~\ref{lem:adjacent-meet}, $D'$ is a chain.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.exists_bjChain_shrink}, from \lean{HPC.BJ59.exists_bjChain_shrink'}. The argument is Barrett's, as used for taut chains in
+\lean{HPC.Plane.exists_taut_epsChain}.}
+
+\section{Private points}
+
+\begin{definition}\label{def:private}
+A chain $D$ has \emph{private points} if every link $D_j$ contains a point lying in the closure of no other link.
+\end{definition}
+
+\formal{\lean{HPC.BJ59.HasPrivatePoints}.}
+
+\begin{proposition}\label{prop:private-interior}
+Let $D$ be a BJ-chain covering a connected set $P$, with every link meeting $P$. Every interior link $D_i$ ($0<i<n-1$) contains a point of $P$ outside the
+closures of the other links.
+\end{proposition}
+
+\begin{proof}
+Otherwise every point of $P\cap D_i$ lies in the closure of another link. Let $A$ be the union of the closures of the links $D_j$, $j<i$, and $B$ that of
+the links $D_j$, $j>i$. They are closed, and disjoint by the BJ property ($j<i<k$ forces $\abs{j-k}\ge2$). $P\subseteq A\cup B$, and $P$ meets both (at
+points of $D_{i-1}$ and $D_{i+1}$), so $P$ is not connected.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.exists_privatePoint_interior}.}
+
+\begin{proposition}\label{prop:private-shrink}
+Let $K$ be a nondegenerate continuum and $D$ a BJ-chain covering $K$ with every link meeting $K$. There is a BJ-chain $D'$ with $D'_i\subseteq D_i$ covering
+$K$ and having private points in $K$.
+\end{proposition}
+
+\begin{proof}
+A nondegenerate connected set has no isolated points, so we may choose distinct points $z_i\in K\cap D_i$. Choose $r>0$ with $B(z_i,r)\subseteq D_i$ and
+$2r<\dist(z_i,z_j)$ for all $i\neq j$, and put $D'_i=D_i\setminus\bigcup_{j\ne i}\cl B(z_j,r/2)$. A point of $D_i$ removed from $D'_i$ lies in some
+$\cl B(z_j,r/2)\subseteq D_j$ and in no other of these balls, so it lies in $D'_j$; hence $D'$ covers whatever $D$ covers. $z_i\in D'_i$, and $z_i$ is not in
+the closure of $D'_j$ for $j\neq i$, since $D'_j$ misses $B(z_i,r/2)$. Subsets of the links of a BJ-chain keep the distance condition, and
+Lemma~\ref{lem:adjacent-meet} shows $D'$ is a chain.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.exists_privatePoint_shrink}, with \lean{HPC.BJ59.exists_injective_choice}.}
+
+\section{Runs}
+
+\begin{lemma}\label{lem:runs}
+Let $D$ be a chain with $n$ links.
+\begin{enumerate}[label=(\alph*)]
+\item If $C\neq\emptyset$ is covered by $D$, some run $[r,s]$ covers $C$ while neither $[r+1,s]$ nor $[r,s-1]$ does.
+\item If $S\neq\emptyset$ is connected and covered by $D$, the links meeting $S$ form a run covering $S$.
+\item If $C$ is connected and the run $[r,s]$ covers $C$ minimally as in (a), each link $D_j$, $r\le j\le s$, contains a point of $C$ lying in no other
+link of the run.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Take a shortest covering run. (b) If $k$ lies strictly between two indices of links meeting $S$ and $D_k$ misses $S$, the unions of the links before and
+after $k$ separate $S$. (c) Otherwise $C\cap D_j$ lies in the union $U$ of the links $D_k$, $r\le k<j$, together with the union $V$ of the links $D_k$,
+$j<k\le s$. These are disjoint open sets covering $C$. If $C$ missed $U$, the run $[r+1,s]$ would cover $C$ (if $j>r$, as $D_r\subseteq U$; if $j=r$, as $C\subseteq
+V$); so $C$ meets $U$, likewise $V$, and $C$ is not connected.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.exists_minimal_run}, \lean{HPC.BJ59.exists_run_meeting}, \lean{HPC.BJ59.exists_point_only_of_minimal}.}
+
+\section{Chain maps}
+
+\begin{definition}[Bing and Jones, p.~173]\label{def:chainmap}
+A map $H\colon\set{0,\dots,n-1}\to\set{0,\dots,m-1}$ is a \emph{chain map} if $\abs{H(i)-H(j)}\le1$ whenever $\abs{i-j}\le1$. If $D$ has $n$ links and $E$ has
+$m$ links, we say $H$ is a chain map of $D$ into (onto, if surjective) $E$, thinking of $H$ as sending $D_i$ to $E_{H(i)}$; containments $D_i\subseteq
+E_{H(i)}$ are stated separately when they hold.
+\end{definition}
+
+\formal{\lean{HPC.BJ59.IsChainMap}.}
+
+\begin{lemma}[Discrete intermediate values]\label{lem:chainmap-ivt}
+If $H$ is a chain map and $i\le i'$, every value between $H(i)$ and $H(i')$ is taken by $H$ on $[i,i']$. So the image of a run is a run.
+\end{lemma}
+
+\formal{\lean{HPC.BJ59.chainMap_ivt}, from \lean{HPC.BJ59.exists_eq_of_steps}.}
+
+Bing and Jones's Theorem~6 says that two chain maps into the same chain, each reaching its next-to-last link, agree up to adjacency somewhere. The proof
+of Theorem~10 uses the following form instead.
+
+\begin{theorem}[Theorem~6, the form used]\label{thm:bj6}
+Let $D$ be a chain, $C$ a set, and $R,R'$ chain maps defined on a run $[t,u]$ of indices, with values in the indices of $D$. Suppose each link $D_{R(a)}$,
+$t\le a\le u$, meets $C$ and these links cover $C$; and the same for $R'$. Then $\abs{R(a)-R'(a)}\le1$ for some $a\in[t,u]$.
+\end{theorem}
+
+\begin{proof}
+Let $a_0$ minimize $R$ on $[t,u]$ and $b_0$ minimize $R'$; put $v=R(a_0)$, $v'=R'(b_0)$. A point of $D_v\cap C$ lies in some $D_{R'(a)}$, which then meets $D_v$,
+so $v'\le R'(a)\le v+1$. Symmetrically $v\le v'+1$. The function $\varphi=R-R'$ changes by at most $2$ between consecutive indices. Now $\varphi(a_0)=v-R'(a_0)\le
+v-v'\le1$ and $\varphi(b_0)=R(b_0)-v'\ge v-v'\ge-1$. If $\varphi(a_0)\ge-1$ we are done at $a_0$. Otherwise $\varphi(a_0)\le-2$ and $\varphi(b_0)\ge-1$; walking
+from $a_0$ towards $b_0$, the first index where $\varphi\ge-1$ follows one where $\varphi\le-2$, so there $-1\le\varphi\le0$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.adjacent_of_properCover}; Bing and Jones's form is \lean{HPC.BJ59.bj_theorem6} (with \lean{HPC.BJ59.sign_persist}), which is
+not used.}
+
+\section{Folding a chain along a walk}
+
+\begin{definition}\label{def:fold}
+Let $E$ be a chain with $N$ links and $\pi\colon\set{0,\dots,N-1}\to\set{0,\dots,m-1}$ a chain map with a section $\mu$ ($\pi\circ\mu=\mathrm{id}$) that is
+also a chain map. The \emph{folded chain} has links $\bigcup_{\pi(k)=i}E_k$, $i<m$.
+\end{definition}
+
+It is a chain: if folded links $i$ and $j$ meet, some $E_k$ and $E_l$ with $\pi(k)=i$, $\pi(l)=j$ meet, so $\abs{k-l}\le1$ and $\abs{i-j}\le1$; conversely
+$E_{\mu(i)}$ and $E_{\mu(j)}$ meet when $\abs{i-j}\le1$. If $E$ is a BJ-chain so is the folded chain (finitely many pairs of links, each at positive
+distance).
+
+\formal{\lean{HPC.BJ59.foldChain}, \lean{HPC.BJ59.isBJChain_foldChain}.}
+
+\begin{lemma}[The unfolded walk]\label{lem:unfold}
+Let $H$ be a chain map of $\set{0,\dots,m-1}$ onto $\set{0,\dots,n-1}$ with $H(r)=0$, $H(s)=n-1$, $r\le s$. The walk
+\[
+r,\ r-1,\ \dots,\ 1,\ 0,\ 1,\ \dots,\ m-1,\ m-2,\ \dots,\ s
+\]
+has steps of at most one and passes through every index; composed with $H$ it is a pattern from the first link of $D$ to the last (\vtwo{Chapter~3}).
+\end{lemma}
+
+\formal{\lean{HPC.BJ59.unfoldIdx}, \lean{HPC.BJ59.unfoldFin}, \lean{HPC.BJ59.unfoldMain}, \lean{HPC.BJ59.isPattern_unfold}.}
+
+Thus if a chain $E'$ follows the pattern $H\circ(\text{walk})$ in a chain $D$, folding $E'$ along the walk (with the middle pass $0,1,\dots,m-1$ as the section)
+gives a chain with $m$ links whose $k$-th link lies in $D_{H(k)}$: a chain that \emph{follows} $H$. This is Bing and Jones's device
+$e_i=e'_i+f_i+g_i$ in the proof of their Theorem~7.
+
+\section{Fibres and fine chains}
+
+\begin{lemma}\label{lem:fibre-spread}
+Let $X$ be compact and $f\colon X\to\I$ continuous and open, with nondegenerate fibres. There is $\kappa>0$ such that every fibre contains two points at
+distance at least $\kappa$.
+\end{lemma}
+
+\begin{proof}
+For each $t$ choose $p_t\ne q_t$ in $\fib ft$ and let $d_t=\dist(p_t,q_t)$. The set $O_t=f(B(p_t,d_t/3))\cap f(B(q_t,d_t/3))$ is open (as $f$ is open) and
+contains $t$. Finitely many $O_t$ cover $\I$; let $\kappa$ be the least of the corresponding $d_t/3$. If $s\in O_t$, the fibre over $s$ has points within
+$d_t/3$ of $p_t$ and of $q_t$, at distance at least $d_t/3\ge\kappa$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.exists_fibre_spread}.}
+
+\begin{definition}\label{def:fibre-fine}
+A chain $E$ on $Y$ is \emph{fibre-fine} for $g\colon Y\to\I$ if it has one link, or every run covering a fibre $\fib gt$ has at least three links.
+\end{definition}
+
+\formal{\lean{HPC.BJ59.IsFibreFine}.}
+
+\begin{lemma}\label{lem:fibre-fine}
+If every fibre of $g$ contains two points at distance at least $\kappa$, every chain of mesh $<\kappa/3$ is fibre-fine.
+\end{lemma}
+
+\begin{proof}
+If a run of at most two links covered $\fib gt$, two points of the fibre at distance $\ge\kappa$ would lie in one link or in two meeting links, hence at
+distance $<2\kappa/3$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isFibreFine_of_isEpsChain}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Give a chain on $\R$ which is not a BJ-chain. (Use open intervals whose nonadjacent members are disjoint but touch at a point.)
+\end{exercise}
+
+\begin{exercise}
+Show that Proposition~\ref{prop:private-interior} fails for the end links: a BJ-chain of three links properly covering $\I$ may have its first link inside
+the closure of the second.
+\end{exercise}
+
+\begin{exercise}
+Show that the conclusion of Theorem~\ref{thm:bj6} can fail if only one of $R$, $R'$ has all its links meeting $C$.
+\end{exercise}

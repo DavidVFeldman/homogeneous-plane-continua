@@ -1,0 +1,337 @@
+%======================================================================
+\chapter{Hagopian's decomposition}\label{ch:decomp}
+%======================================================================
+
+This chapter proves the following theorem, which is the first half of the proof that $M$ is hereditarily
+indecomposable (the second half, Chapter~\ref{ch:noarc}, shows that the quotient it produces cannot exist).
+
+\begin{theorem}[Hagopian 1984, Theorem~1, with $N=M$]\label{thm:h84}
+Let $M$ be a homogeneous indecomposable plane continuum that is not hereditarily indecomposable. There is a
+continuous surjection $q\colon M\to Y$ onto a compact metric space $Y$, with connected fibres none of which is $M$,
+such that $Y$ is homogeneous and contains an arc.
+\end{theorem}
+
+\formal{\lean{HPC.Hagopian.Hagopian84Decomp} (the statement), \lean{HPC.Hagopian.hagopian84_decomp} (the proof).}
+
+The route is Hagopian's 1984 paper \emph{Atriodic homogeneous continua}, which simplifies the decomposition of his
+1976 paper and works for atriodic homogeneous continua in general. Since the argument is long and consists mostly of
+careful bookkeeping with chains of open sets, this chapter gives the definitions and statements in full and the proofs
+in outline; the complete arguments are in the Lean files \lean{HPC/Hagopian/H84*.lean} and
+\lean{HPC/Hagopian/Hagopian84*.lean}. Throughout, $M$ is as in the standing hypotheses of Chapter~\ref{ch:homog},
+and ``minimal admissible'' and ``layer'' are as in Chapter~\ref{ch:typelambda}.
+
+\section{Rigidity of layers}
+
+The following facts express that type $\lambda$ continua in $M$ fit together like arcs in a one-dimensional
+manifold: where two of them overlap essentially, their layers agree.
+
+\begin{lemma}\label{lem:rigid}
+Let $(G,g)$ be minimal admissible in $M$.
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(Staying inside.)} A subcontinuum $C$ of $M$ that meets $G$ and misses the end layers of $G$ lies in $G$.
+\item \emph{(No arm at an interior layer.)} If $0<u<1$ and $A$ is a continuum with $\emptyset\ne A\cap G\subseteq\lay gu$, then
+$A\subseteq\lay gu$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) is Step~1 of the proof of Theorem~\ref{thm:layer-invariant}, with $C$ in place of $h(Z)$. (b) Otherwise $\lay
+g{[0,u]}$, $\lay g{[u,1]}$ and $A\cup\lay gu$ are three continua through the core $\lay gu$ that pairwise meet only in it,
+and none lies in it; Corollary~\ref{cor:nested-or-arc}(b).
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.subset_of_meets_avoids}, \lean{HPC.Hagopian.no_arm_at_interior_layer}.}
+
+\begin{theorem}[Continuity of the decomposition; Hagopian 1976, Lemma~5]\label{thm:h76-lemma5}
+If $(E,k)$ is minimal admissible in $M$, the decomposition of $E$ into layers is continuous: the map $s\mapsto\lay ks$ is
+continuous for the Hausdorff metric.
+\end{theorem}
+
+\begin{proof}[Proof in outline]
+Upper semicontinuity holds for every admissible map. Lower semicontinuity at an interior layer comes from
+Theorem~\ref{thm:h76-lemma3}: if layers $\lay k{s_n}$ accumulated only on part of $\lay ks$, small homeomorphisms
+taking points of $\lay ks$ to nearby points of $\lay k{s_n}$ (Proposition~\ref{prop:effros-nbhd}) would map $\lay ks$
+onto $\lay k{s_n}$. At an end layer, Hagopian passes to a larger type $\lambda$ continuum in which it becomes an
+interior layer: an \emph{extension} of $E$ away from the other end set (Hagopian 1976, Lemma~4: the extensions of
+$E$ away from an end set are linearly ordered by inclusion and have no largest element; the formal proof supplies the
+argument for ``no largest element'', which Hagopian leaves unargued). The layers of $E$ are layers of the extension.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.IsExtensionAway}, \lean{HPC.Hagopian.hagopian76_lemma4_chain},
+\lean{HPC.Hagopian.hagopian76_lemma4}, \lean{HPC.Hagopian.hagopian76_lemma5}.}
+
+\begin{corollary}[Restriction]\label{cor:restrict}
+If $(L,d)$ is minimal admissible and $a<b$, then $\lay d{[a,b]}$ is of type $\lambda$, with a minimal admissible map
+whose layers are the layers $\lay d{a+t(b-a)}$; its end sets are $\lay da$ and $\lay db$.
+\end{corollary}
+
+\formal{\lean{HPC.Hagopian.minimalAdmissible_restrict}.}
+
+A subcontinuum $H$ of a type $\lambda$ continuum $E$ is \emph{essential} in $E$ if it meets more than one layer of $E$.
+
+\begin{theorem}[Hagopian 1984, Lemma~6]\label{thm:h84-lemma6}
+If $H$ is an essential subcontinuum of $(E,k)$, then $H=\lay k{[a,b]}$ for some $a<b$, $H$ is of type $\lambda$, and every
+layer of the decomposition of $H$ is a layer of $k$.
+\end{theorem}
+
+\begin{proof}
+By the interval lemma, $H\supseteq\lay k{(a,b)}$ where $[a,b]=k(H)$. By continuity of the decomposition
+(Theorem~\ref{thm:h76-lemma5}) the layers over $a$ and $b$ are limits of layers over $(a,b)$, so $H=\lay k{[a,b]}$;
+Corollary~\ref{cor:restrict} gives the minimal admissible map, and uniqueness (Theorem~\ref{thm:unique-decomp}) the last
+statement.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.IsEssential84}, \lean{HPC.Hagopian.hagopian84_lemma6}.}
+
+This replaces Thomas's Theorem~8, which Hagopian cites.
+
+\begin{theorem}[Rigidity; Hagopian 1984, Lemma~7]\label{thm:layers-agree}
+Let $(E,k)$ and $(G,d)$ be minimal admissible in $M$, and suppose $E\cap G$ meets two layers of $E$. Then either $E$ lies in a
+single layer of $G$, or $E\cap G=\lay k{[a,b]}=\lay d{[a',b']}$ with $a<b$ and $a'<b'$, every layer of $k$ meeting $G$ is a layer
+of $d$, and every layer of $d$ meeting $E$ is a layer of $k$. In particular (Hagopian's Lemma~7), if neither of $E,G$
+contains the other and $G$ meets a layer $\lay kr$, then $\lay kr$ is a layer of $d$.
+\end{theorem}
+
+\begin{proof}[Proof in outline]
+$K=E\cap G$ is a continuum (Corollary~\ref{cor:nested-or-arc}(a)). If $K$ lies in one layer of $G$ and $E\not\subseteq G$, then
+$E$ is an arm at that layer and Lemma~\ref{lem:rigid}(b) applies (end layers are handled by passing to extensions,
+Lemma~4 of 1976, in which they become interior). If $K$ meets two layers of each, Theorem~\ref{thm:h84-lemma6} applied in
+$E$ and in $G$ shows that $K$ is a union of layers of both, and that the two decompositions of $K$ coincide by
+uniqueness. The remaining case ($K$ meets two layers of $E$ and lies in one layer $Y$ of $G$) is excluded by passing to a
+two-sided extension of $G$ in which $Y$ is interior, and applying Lemma~\ref{lem:rigid}(b) again. This route differs from
+Hagopian's printed proof.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.layers_agree}, \lean{HPC.Hagopian.hagopian84_lemma7_aux}.}
+
+\begin{remark}
+Hagopian 1976, Lemma~6, and 1984, Lemma~11 (with $N=M$): the closure of the union of the extensions of $E$ away from an end
+set is indecomposable (\formal{\lean{HPC.Hagopian.hagopian76_lemma6_X}, \lean{HPC.Hagopian.hagopian84_lemma11}.}) In
+the 1976 paper this union plays the role that the decomposition $\mathfrak D$ below plays in 1984.
+\end{remark}
+
+\section{Chains through which a continuum runs straight}
+
+We work with chains of five open subsets of $M$, indexed $L_0,\dots,L_4$ (Hagopian's $L_1,\dots,L_5$).
+
+\begin{definition}\label{def:chain5}
+A \emph{5-chain} is a sequence $L=(L_0,\dots,L_4)$ of open subsets of $M$ with $L_i\cap L_j\ne\emptyset$ iff $|i-j|\le1$. Its
+\emph{middle} is $L'=L_1\cup L_2\cup L_3$. It is
+\begin{itemize}
+\item \emph{normal} if $\cl{L_i}\cap\cl{L_j}=\emptyset$ for $|i-j|>1$;
+\item \emph{free} if $\fr\bigcup_iL_i\subseteq\fr(L_0\cup L_4)\setminus\cl{L'}$ (frontiers and closures in $M$).
+\end{itemize}
+A minimal admissible $(E,k)$ \emph{runs straight through} $L$ if (1) $E\subseteq\bigcup_iL_i$; (2) $\lay k0\subseteq L_0\setminus L_1$
+and $\lay k1\subseteq L_4\setminus L_3$; (3) a layer meeting $\fr L_i$ lies in $\fr L_i$; (4) if $r<t$ and $\lay kr\cup\lay kt\subseteq
+L_i$, then $\lay k{[r,t]}\subseteq L_i$. The chain is \emph{regular} if for each component $K$ of $L'$, $\cl K$ (a
+\emph{strand}) is of type $\lambda$ and runs straight through $L$. An \emph{ordered refinement} of $L$ is a 5-chain $P$ with
+$P_i\subseteq L_i$.
+\end{definition}
+
+\formal{\lean{HPC.Hagopian.IsChain5}, \lean{HPC.Hagopian.midUnion}, \lean{HPC.Hagopian.IsNormal5},
+\lean{HPC.Hagopian.IsFree5}, \lean{HPC.Hagopian.RunsStraight}, \lean{HPC.Hagopian.IsRegular5},
+\lean{HPC.Hagopian.IsOrderedRefinement5}.}
+
+The chains are built from Effros neighbourhoods of pieces of $E$: for $S\subseteq M$ and $\delta>0$ let $\Eff(S,\delta)$ be the
+set of points $h(x)$, $x\in S$, $h$ a $\delta$-homeomorphism; it is open by Proposition~\ref{prop:effros-nbhd}.
+
+\begin{lemma}[Folds]\label{lem:fold}
+Let $V_0,\dots,V_4$ be open subsets of $[0,1]$ covering it, with $V_i\cap V_j=\emptyset$ for $|i-j|>1$, $0\in V_0\setminus V_1$ and
+$1\in V_4\setminus V_3$. If some $V_i$ is not an interval, there are $r<s<t$ and adjacent indices $p,q$ with $s\in V_p$ and
+$r,t\in V_q\setminus V_p$ (a \emph{fold}).
+\end{lemma}
+
+\begin{proof}
+Sweep from left to right. Suppose there is no fold. If $a\in V_p$, no point left of $a$ lies in a later set and no point $\ge
+a$ in an earlier one, then $V_p$ is an interval, and the first point after $a$ outside $V_p$ lies in $V_{p+1}$, with the
+same two properties. Starting with $a=0$, $p=0$, every $V_p$ is an interval. (If $V_p$ had a gap, the last point of the
+complement before a point of $V_p$ and the first after it would lie in neighbours of $V_p$, and the two properties force both
+into the same neighbour: a fold.)
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.exists_fold}.}
+
+\begin{theorem}[Hagopian 1984, Lemmas~12 and~13]\label{thm:h84-lemma13}
+Let $(E,k)$ be minimal admissible in $M$, $\varepsilon>0$, $A$ a closed set missing $E$, and $B$ an open set containing $\lay k0\cup\lay
+k1$. Then $E$ runs straight through a free normal regular 5-chain $P$ in $M\setminus A$ with $\cl{P_0\cup P_4}\subseteq B$, such that
+for each component $K$ of the middle $P'$ there is an $\varepsilon$-homeomorphism $h$ for which $\cl K$ is an essential
+subcontinuum of $h(E)$.
+\end{theorem}
+
+\begin{proof}[Proof in outline]
+\emph{Lemma~13, the chain.} Choose $0=x_0<x_1<\dots<x_{15}=1$ with $\lay k{[0,x_3]}$ and $\lay k{[x_{12},1]}$ inside $B$, and let
+$L_i=\Eff(\lay k{[x_{3i},x_{3i+3}]},\delta)$. For small $\delta$ these form a normal chain in $M\setminus A$ (pieces of non-adjacent
+links are disjoint compact sets), and every $\delta$-translate $h(E)$ satisfies (1) and (2). Condition (3) uses the Effros
+theorem with the room $\delta-\max_vd(v,h(v))$; condition (4) uses Lemma~\ref{lem:fold}: a non-interval among the parameter
+sets $\set{s: h(\lay ks)\subseteq L_i}$ gives a fold, and folds are excluded by atriodicity
+(Lemma~\ref{lem:rigid}(a)) and the gap bounds $\dist(\lay k{[0,x_j]},\lay k{[x_{j+1},1]})$. Two translates that meet have
+their layers matched by Theorem~\ref{thm:h76-lemma3}. Regularity: a component $K$ of the middle contains a point $h(v)$,
+$v\in E$; $\cl K\subseteq h(E)$ by Lemma~\ref{lem:rigid}(a), and it is essential in $h(E)$; by
+Theorem~\ref{thm:h84-lemma6} it is of type $\lambda$ and runs straight.
+
+\emph{Lemma~12, freeness.} Put $A'=L_0\setminus\cl{L_1}$ and $B'=L_4\setminus\cl{L_3}$. Moore's theorem on separating closed sets
+(\vthree{Theorem~1.9}) applied in $M\setminus(A'\cup B')$ splits off the points that cannot be joined to $E$, and removing
+them from the middle links gives an ordered refinement $P$ that is free, normal and regular, through which $E$ still runs
+straight, and whose middle components are components of $L'$. The hypothesis of Moore's theorem comes from atriodicity
+directly.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.WsetOf}, \lean{HPC.Hagopian.chainLinks84}, \lean{HPC.Hagopian.chainLinks84_chain},
+\lean{HPC.Hagopian.chainLinks84_runsStraight}, \lean{HPC.Hagopian.chainLinks84_regular},
+\lean{HPC.Hagopian.hagopian84_lemma12}, \lean{HPC.Hagopian.hagopian84_lemma13}.}
+
+\section{The layers of a chain}
+
+For a regular 5-chain $P$ let $\Omega(P)$ be the set of all layers of all strands of $P$, and $\Delta(P)$ the set of those
+that miss $\cl{P_0\cup P_4}$.
+
+\formal{\lean{HPC.Hagopian.Omega5}, \lean{HPC.Hagopian.Delta5}.}
+
+\begin{proposition}\label{prop:delta}
+Let $P$ be a regular 5-chain.
+\begin{enumerate}[label=(\alph*)]
+\item $\Delta(P)$ is a partition of $\bigcup_iP_i\setminus\cl{P_0\cup P_4}$.
+\item If $P$ is free, there is $\eta>0$ with $d(z,y)\ge\eta$ for $z\in\bigcup\Delta(P)$ and $y\notin P'$.
+\item \emph{(Lemma~14.)} If $P$ is free, $\Delta(P)$ is continuous: members through nearby points are Hausdorff close.
+\item \emph{(Lemma~15.)} If $P$ is free and normal, there is $\varepsilon>0$ such that every $\varepsilon$-homeomorphism maps each member of
+$\Delta(P)$ onto a member of $\Omega(P)$ inside $P'$.
+\item \emph{(The arc.)} If $P$ is normal, every strand has a closed interval of layers $\lay c{[a,b]}$, $a<b$, all in $\Delta(P)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof in outline]
+(a) A layer through a point outside $\cl{P_i}$ misses $\cl{P_i}$ by (3); two members that meet come from the same strand,
+where the decomposition is unique. (b) $\cl{\bigcup\Delta(P)}\subseteq P'$ by freeness, then compactness. (c) For $\varepsilon'=\min(\varepsilon,\eta)$,
+an $\varepsilon'$-homeomorphism carrying $z$ to $z'$ maps the member through $z$ onto the member through $z'$ by
+Theorem~\ref{thm:h76-lemma3} (its hypotheses are checked with $\eta$). (d) The image $h(Z)$ lies in one component $K'$ of
+the middle; $h(\cl K)\cap\cl{K'}$ meets two layers of $h(\cl K)$ by Lemma~\ref{lem:rigid}(b), and
+Theorem~\ref{thm:layers-agree} makes $h(Z)$ a layer of $\cl{K'}$. (e) The strand meets $P_2$, and the layer through such a
+point lies in $P_2$, hence misses $\cl{P_0\cup P_4}$ by normality; the parameters of layers inside $P_2$ form an open set.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.delta5_partition}, \lean{HPC.Hagopian.delta5_dist_pos},
+\lean{HPC.Hagopian.hagopian84_lemma14}, \lean{HPC.Hagopian.hagopian84_lemma15},
+\lean{HPC.Hagopian.exists_interval_in_delta}.}
+
+\begin{theorem}[Lemma~16$'$]\label{thm:lemma16p}
+Let $P$ be a free normal regular 5-chain and $(F,d)$ minimal admissible with $\lay d0\cap P'=\emptyset$. Every layer of $F$ that meets
+$P'$ is a layer of the strand of $P$ through any of its points in $P'$.
+\end{theorem}
+
+\begin{proof}[Proof in outline]
+By Theorem~\ref{thm:layers-agree}, either the layer of $F$ is a layer of the strand, or the strand lies in a single layer of
+$F$. The second alternative is impossible: following the layers of $F$ from the end layer $\lay d0$ (outside $P'$) to the
+strand, a limit point argument in $\cl{P_2}$ produces an arm at an interior layer.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.strand_layer_mem_delta}, \lean{HPC.Hagopian.not_strand_subset_extension_layer},
+\lean{HPC.Hagopian.strand_layer_of_extension}; Hagopian's Lemma~16 as printed is
+\lean{HPC.Hagopian.hagopian84_lemma16}.}
+
+\section{The decomposition}
+
+Fix a type $\lambda$ continuum in $M$ (Theorem~\ref{thm:exists-lambda}) and a free normal regular chain $P$ through which it runs
+straight (Theorem~\ref{thm:h84-lemma13} with $A=\emptyset$, $B=M$). The members of $\Delta(P)$ cover $\bigcup_iP_i$ except near the
+end links; the rest of $M$ is covered by further chains.
+
+\begin{proposition}[Bridges and the chains $P(Z)$]\label{prop:bridges}
+Let $Z\in\Omega(P)\setminus\Delta(P)$. Then $Z$ lies in $\cl{P_0}$ or in $\cl{P_4}$ and misses $\cl{P_2}$. There is a type $\lambda$
+continuum $J(Z)$ (a \emph{bridge}) containing $Z$ as a layer, missing $\cl{P_2}$, with both end layers in $\Delta(P)$. By
+Theorem~\ref{thm:h84-lemma13} with $A=\cl{P_2}$ and $B=\bigcup\Delta(P)$, $J(Z)$ runs straight through a free normal regular chain
+$P(Z)$ in $M\setminus\cl{P_2}$ with $\cl{P_0(Z)\cup P_4(Z)}\subseteq\bigcup\Delta(P)$, and then $Z\in\Delta(P(Z))$.
+\end{proposition}
+
+\formal{\lean{HPC.Hagopian.omega_not_delta_side}, \lean{HPC.Hagopian.exists_bridge84},
+\lean{HPC.Hagopian.mem_delta_of_bridge_chain}, \lean{HPC.Hagopian.exists_chainZ84}.}
+
+\begin{proposition}[The finite cover]\label{prop:finite-cover}
+There are finitely many $Z_1,\dots,Z_n\in\Omega(P)\setminus\Delta(P)$ with
+$M=\bigcup\Delta(P)\cup\bigcup_{i=1}^n\bigcup\Delta(P(Z_i))$.
+\end{proposition}
+
+\begin{proof}
+$C=\cl{\bigcup\Delta(P)}\setminus\bigcup\Delta(P)$ is compact. Each point of $C$ lies in $P'\cap\cl{P_0\cup P_4}$, so the layer $Z$
+through it of its strand is in $\Omega(P)\setminus\Delta(P)$, and the point lies in the open set $\bigcup\Delta(P(Z))$; finitely many of
+these cover $C$. The union $U$ of $\bigcup\Delta(P)$ with them is open; it is closed because
+$\cl{\bigcup\Delta(P(Z))}\subseteq\bigcup\Delta(P(Z))\cup\cl{P_0(Z)\cup P_4(Z)}$ (freeness) and $\cl{P_0(Z)\cup P_4(Z)}\subseteq\bigcup\Delta(P)$. As
+$M$ is connected, $U=M$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.exists_finite_cover84}, \lean{HPC.Hagopian.hagopian84_cover},
+\lean{HPC.Hagopian.CoverData84}, \lean{HPC.Hagopian.exists_coverData84}.}
+
+Hagopian argues instead that the union of the whole (uncountable) family is closed; the formal proof uses the finite form
+above, and deduces the printed statement from it (\formal{\lean{HPC.Hagopian.sUnion_cover84_eq_univ}.})
+
+Put $P(Z_0)=P$ and let $\mathfrak D=\bigcup_{i=0}^n\Delta(P(Z_i))$.
+
+\begin{theorem}\label{thm:frakD}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(Transfer.)} If $Z\in\Omega(P)$ contains a point $z$ of the middle of some $Q=P(Z_i)$, then $Z$ is the layer through $z$ of
+the strand of $Q$ through $z$; if moreover $z\notin\cl{Q_0\cup Q_4}$, then $Z\in\Delta(Q)$.
+\item $\mathfrak D$ is a partition of $M$ into proper subcontinua.
+\item \emph{(Claims (5) and (6).)} $\Omega(P)\subseteq\mathfrak D$, and there is $\delta>0$ such that every $\delta$-homeomorphism maps members of
+$\mathfrak D$ onto members of $\mathfrak D$.
+\item $\mathfrak D$ is upper semicontinuous, and some compact $C\subseteq M$ has a continuous map onto $[0,1]$ whose fibres are the traces of
+members of $\mathfrak D$ (an arc of members).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof in outline]
+(a) $Z=c^{-1}(r)$ for the strand map $c$; the strand meets $P_2$ in a layer $c^{-1}(s)$, which misses $\bigcup Q\ni z$ (as $Q$ lies in
+$M\setminus\cl{P_2}$), so $s\ne r$; the piece of the strand between these two layers is of type $\lambda$
+(Corollary~\ref{cor:restrict}) with one end layer missing $Q'$ and the other $Z$; apply Theorem~\ref{thm:lemma16p} to $Q$.
+(b) Every point is covered (Proposition~\ref{prop:finite-cover}); two members that meet are equal, by (a) and
+Proposition~\ref{prop:delta}(a), and in the last case by Theorem~\ref{thm:h76-lemma3}. (c) A member of $\Omega(P)\setminus\Delta(P)$ lies in
+$\cl{P_0}$ or $\cl{P_4}$, so a point of it lies in some $\bigcup\Delta(P(Z_i))$; then (a). For (6), take $\delta$ below the constants of
+Proposition~\ref{prop:delta}(b),(d) for each of the finitely many chains, and use (a) again. (d) Upper semicontinuity from
+Proposition~\ref{prop:delta}(c); the arc from Proposition~\ref{prop:delta}(e).
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.omega_layer_of_mem_mid}, \lean{HPC.Hagopian.omega_mem_delta_of_mem_mid},
+\lean{HPC.Hagopian.CoverData84.members}, \lean{HPC.Hagopian.CoverData84.members_disjoint},
+\lean{HPC.Hagopian.CoverData84.omega_subset_members}, \lean{HPC.Hagopian.CoverData84.invariant},
+\lean{HPC.Hagopian.CoverData84.isJonesDecomp}.}
+
+\section{The quotient}
+
+Call an equivalence relation on $M$ a \emph{Jones decomposition} if it is upper semicontinuous, its classes are connected and different
+from $M$, there is $\delta>0$ such that every $\delta$-homeomorphism respects it, and it has an arc of classes as in
+Theorem~\ref{thm:frakD}(d). By Theorem~\ref{thm:frakD}, $\mathfrak D$ is one.
+
+\formal{\lean{HPC.Hagopian.IsJonesDecomp84}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:h84}]
+Let $q\colon M\to Y=M/\mathfrak D$ be the quotient map. $Y$ is compact and metrizable (\vthree{Theorem~6.5}), $q$ is continuous and onto
+with connected fibres, none equal to $M$.
+
+\emph{$Y$ is homogeneous.} Let $\mathcal G$ be the set of finite compositions of $\delta$-homeomorphisms. Each $g\in\mathcal G$ respects $\mathfrak
+D$ and so induces a homeomorphism of $Y$ (\vthree{Proposition~6.8}). The orbit of a point $x$ under $\mathcal G$ is open (it contains
+$\Eff(y,\delta)$ around each of its points $y$, Proposition~\ref{prop:effros-nbhd}), and the orbits partition $M$, so each orbit is also
+closed. As $M$ is connected, $\mathcal G$ acts transitively, and so does the group of induced homeomorphisms of $Y$.
+
+\emph{$Y$ contains an arc.} The map $C\to[0,1]$ of Theorem~\ref{thm:frakD}(d) factors through $q(C)$ as a continuous bijection of a
+compact space onto $[0,1]$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.exists_comp_small_homeo}, \lean{HPC.Hagopian.hagopian84Decomp_of_package},
+\lean{HPC.Hagopian.hagopian84_decomp}.}
+
+\begin{remark}
+In Hagopian's text the chain of points used for homogeneity, the positivity of several constants, the closedness of the union
+$\bigcup\mathfrak B$, the choice of $\varepsilon$ in Lemma~15 and the existence of the arc in $M/\mathfrak D$ are stated without argument;
+the formal proof supplies them as indicated. Several printed lemmas (7, 12, 15, 16) are proved by routes different from the
+printed ones, and Lemma~16 is used in the stronger form Lemma~16$'$.
+\end{remark}
+
+\section*{Exercises}
+
+\begin{exercise}
+Prove Lemma~\ref{lem:fold} in detail, and show by an example that the conclusion can fail if $V_0$ and $V_2$ are allowed to meet.
+\end{exercise}
+
+\begin{exercise}
+Let $Y$ be a compact metric space and $\mathcal G$ a set of homeomorphisms of $Y$ closed under composition such that the $\mathcal
+G$-orbit of every point contains a neighbourhood of the point. Show that if $Y$ is connected, $\mathcal G$ acts transitively.
+\end{exercise}

@@ -1,0 +1,148 @@
+%======================================================================
+\chapter{Introduction}\label{ch:intro}
+%======================================================================
+
+\section{What this volume is about}
+
+The classification of homogeneous plane continua is a theorem about the \emph{plane}, and its proof
+uses a good deal of plane topology: which compact sets separate the plane, how separation behaves
+under unions and homeomorphisms, polygons and their insides, and covers of plane continua by
+tree chains. This volume develops the part of this material that can be done with two elementary
+tools, continuous logarithms and polygons. Moore's topological characterization of the plane,
+decompositions of the plane and the Jordan curve theorem for arbitrary simple closed curves are
+left to Volume~5.
+
+The volume has five chapters.
+
+\begin{itemize}
+\item \textbf{Chapter~\ref{ch:log}: Continuous logarithms.} Uniqueness of logarithms up to a
+constant, existence on contractible spaces from the homotopy lifting property of the exponential
+map, explicit logarithms on small balls, the unicoherence of the plane and Brouwer's theorem on the
+frontiers of complementary domains.
+\item \textbf{Chapter~\ref{ch:sep}: Separation by logarithms; Janiszewski and Borsuk.} A compact set
+$K$ separates $x$ from $y$ exactly when $(z-x)/(z-y)$ has no logarithm on $K$ (in the two directions
+needed). Consequences: Janiszewski's theorem, Borsuk's theorem (a compact set with connected
+complement carries a logarithm of every nonvanishing function), and the topological invariance of
+plane separation.
+\item \textbf{Chapter~\ref{ch:poly}: Polygons and the polygonal Jordan curve theorem.} The crossing
+parity with a half-open crossing rule, the Jordan curve theorem for simple closed polygons,
+polygonal paths and arcs, and the absence of a logarithm of $z-p$ on a polygon around $p$.
+\item \textbf{Chapter~\ref{ch:enc}: Graphs, mod-2 cycles and enclosing polygons.} A finite graph of
+segments separating two points contains a cycle, and then a simple closed polygon, separating them.
+Applied to the boundary of a union of grid squares this gives \emph{enclosing polygons}: a continuum
+$M$ not separating the plane lies inside a simple closed polygon in any given neighbourhood of $M$.
+\item \textbf{Chapter~\ref{ch:tree}: Tree-like continua.} Bing's theorem that a plane continuum is
+tree-like if and only if none of its subcontinua separates the plane; logarithms on tree-like
+continua; a weak form of the invariance of plane separation; a survey of Bing's Theorem~7.
+\end{itemize}
+
+The main results, in the form used later, are:
+
+\begin{theorem}[Janiszewski; Theorem~\ref{thm:janiszewski}]
+Let $A,B\subseteq\R^2$ be compact with $A\cap B$ connected or empty. If neither $A$ nor $B$
+separates $x$ from $y$, then $A\cup B$ does not separate $x$ from $y$.
+\end{theorem}
+
+\begin{theorem}[Borsuk; Theorem~\ref{thm:borsuk}]
+If $K\subseteq\R^2$ is compact and $\R^2\setminus K$ is connected, every continuous nowhere zero
+function on $K$ has a continuous logarithm on $K$.
+\end{theorem}
+
+\begin{theorem}[Theorem~\ref{thm:sep-invariant}]
+If two compact subsets of the plane are homeomorphic and one separates the plane, so does the other.
+\end{theorem}
+
+\begin{theorem}[Jordan curve theorem for polygons; Theorem~\ref{thm:jct-poly}]
+The complement of a simple closed polygon has exactly two components, one bounded and one unbounded,
+and the polygon is the frontier of each.
+\end{theorem}
+
+\begin{theorem}[Enclosing polygons; Theorem~\ref{thm:enclose}]
+Let $M$ be a continuum that does not separate the plane and $G\supseteq M$ open. There is a simple
+closed polygon $J\subseteq G\setminus M$ whose inside contains $M$ and lies in $G$.
+\end{theorem}
+
+\begin{theorem}[Bing; Corollary~\ref{cor:treelike-iff}]
+A plane continuum is tree-like if and only if none of its subcontinua separates the plane.
+\end{theorem}
+
+\section{Where these results are used}
+
+\begin{itemize}
+\item Janiszewski's theorem for compact sets is used throughout the plane-topological parts of the
+proof: in Moore's characterization of the plane (Volume~5), in Hagopian's arguments on
+indecomposable homogeneous plane continua (Volume~6), and in Jones's work on decomposable
+homogeneous continua (Volume~7).
+\item The unicoherence of the plane and Brouwer's theorem enter Volume~5 and Jones's arguments.
+\item Borsuk's theorem and the invariance of plane separation (Theorem~\ref{thm:sep-invariant}) are
+used for Jones's aposyndetic decomposition (Volume~7). The weak invariance of
+Section~\ref{sec:weak-invariance} is the form used in Hagopian's argument (Volume~6).
+\item Polygons, the polygonal Jordan curve theorem and enclosing polygons are the basis of Bing's
+Theorems~6 and~7 and are used again in Volumes~5 and~6.
+\end{itemize}
+
+\section{Where the formal proof differs from the literature}\label{sec:intro-diff}
+
+\begin{enumerate}
+\item \textbf{Logarithms instead of homology.} Separation is detected by logarithms throughout; no
+homology is used. The covering property
+of the exponential map, Stone--Weierstrass approximation and Sard's theorem in equal dimensions are
+quoted from Mathlib (Chapters~\ref{ch:log} and~\ref{ch:sep}).
+\item \textbf{A half-open crossing rule.} The crossing parity of a polygon is defined by a half-open
+rule which counts correctly when a ray passes through vertices or along edges, so that the proof of
+the polygonal Jordan curve theorem needs no general-position perturbation (Chapter~\ref{ch:poly}).
+\item \textbf{Janiszewski's theorem for compact sets, not closed sets.} The formal development
+first stated Janiszewski's theorem for closed sets, and this is false: two closed half-lines
+meeting in a point form a line (Chapter~\ref{ch:sep}). The correct hypothesis is compactness.
+\item \textbf{Bing's Theorem~6 by the compact Janiszewski theorem.} The formal development first
+proved Janiszewski's theorem only for polygonal sets, by mod-2 cycles (Remark~\ref{rem:jan-cycles}),
+and derived Bing's Theorem~6 from Theorem~7, whose links are polygon interiors. These notes prove
+Theorem~6 directly from Bing's notched-square covers, with the compact form of Janiszewski's
+theorem; this proof was formalized for these notes (in the file
+\texttt{HPC/Plane/Theorem6Direct.lean}). The polygonal form of Janiszewski's theorem is deduced from
+the compact one.
+\item \textbf{Definition of tree-likeness.} The links of the tree chains are required to be bounded.
+Without this requirement the formal definition would have been satisfied by every continuum
+(Chapter~\ref{ch:tree}).
+\item \textbf{The unstated converse.} Bing states Theorem~7 for tree-like continua and proves it for
+continua with no separating subcontinuum. The implication between the two hypotheses, which he
+does not state, is Theorem~\ref{thm:treelike-nonsep}.
+\item \textbf{Weak invariance without Borsuk.} The step ``a homeomorphic copy of a separating
+continuum separates the plane'' in Hagopian's argument is replaced by a weaker statement proved from
+Bing's Theorem~6 and logarithms on tree-like continua (Section~\ref{sec:weak-invariance}).
+\end{enumerate}
+
+\section{Prerequisites and conventions}\label{sec:intro-conv}
+
+The reader should know the basic metric topology of \vone{Chapter~1}. From Volume~3 we use the
+separation of two closed sets in a compact set (\vthree{Theorem~1.9}) and, for comparison only,
+circular chains (\vthree{Definition~5.13}).
+
+\begin{itemize}
+\item \textbf{The plane.} $\R^2$ carries the \emph{sup metric}
+$d(z,w)=\nrm{z-w}=\max(\abs{z_1-w_1},\abs{z_2-w_2})$, as in the formal development, where the plane is
+the product $\R\times\R$. So the balls $B(c,r)$ and $\bar B(c,r)$ are open and closed squares, and the
+sphere $\set{z:d(z,c)=r}$ is the boundary of a square. Balls are convex.
+\item \textbf{Complex numbers.} We identify $z=(z_1,z_2)$ with the complex number $z_1+iz_2$
+(\lean{HPC.Plane.toCpx}) and write $\abs w$ for the euclidean modulus. Then
+$\nrm w\le\abs w\le2\nrm w$ (\lean{HPC.Plane.dist_le_norm_toCpx_sub},
+\lean{HPC.Plane.norm_toCpx_sub_le}). The topology is the usual one.
+\item \textbf{Continua.} A \emph{continuum} is a nonempty compact connected set
+(\lean{HPC.Fold.Q78.IsContinuum}). \emph{Preconnected} means connected or empty; a closed set is
+preconnected if and only if it is not the union of two disjoint nonempty closed sets
+(\vone{(K2)}).
+\item \textbf{Components.} For $A\subseteq\R^2$ and $x\notin A$, $\comp Ax$ is the component of $x$ in
+$\R^2\setminus A$ (Definition~\ref{def:separates}). For a simple closed polygon $\Gamma$, $\inn\Gamma$ is
+its inside, the union of the bounded components of $\R^2\setminus\Gamma$
+(Definition~\ref{def:ins}).
+\item \textbf{Logarithms.} A \emph{logarithm} of $f$ on a set $K$ is a function $g$ continuous on $K$
+with $e^{g}=f$ on $K$ (Definition~\ref{def:log}). $\Log$ and $\Arg$ are the principal logarithm and
+argument.
+\end{itemize}
+
+\paragraph{Formal counterparts.} As in the earlier volumes, many results are followed by a line
+``Formal counterpart:'' naming the corresponding declaration of the Lean development (all names
+begin with \lean{HPC.}, except those of Mathlib). These lines may be skipped.
+Appendix~\ref{app:formal} collects them.
+
+\paragraph{Exercises.} Each chapter ends with exercises. None of them is used later.

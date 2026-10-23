@@ -1,0 +1,22 @@
+import HPC.Plane.BandChain
+#print axioms HPC.Plane.stripSet_eq
+#print axioms HPC.Plane.stripSet_zero_ne
+#print axioms HPC.Plane.isThreadedChain_of_isTameChain
+#print axioms HPC.Plane.exists_pseudoArc_in_threadedChain
+#print axioms HPC.Plane.geomLemma'_of_geomLemma
+#print axioms HPC.Plane.dense_pseudoArcs_of'
+#print axioms HPC.Plane.theorem2_HIC_of'
+#print axioms HPC.Plane.stretchTri_subset_ball
+#print axioms HPC.Plane.stretchTri_subset_ball_false
+#print axioms HPC.Plane.stretchTri_subset_thickening
+#print axioms HPC.Plane.stretchTri_subset_thickening_false
+#print axioms HPC.Plane.stretchTri_separated
+#print axioms HPC.Plane.roundedPath_continuousOn
+#print axioms HPC.Plane.roundedNormal_continuousOn
+#print axioms HPC.Plane.norm_roundedNormal
+#print axioms HPC.Plane.roundedPath_mem_stretchTri
+#print axioms HPC.Plane.band_injOn
+#print axioms HPC.Plane.band_continuousOn
+#print axioms HPC.Plane.latticeChain_link
+#print axioms HPC.Plane.isThreadedChain_latticeChain
+#print axioms HPC.Plane.exists_threadedChain_of_latticePath

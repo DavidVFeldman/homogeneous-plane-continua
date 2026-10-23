@@ -1,0 +1,377 @@
+%======================================================================
+\chapter{Continua of type \texorpdfstring{$\lambda$}{lambda}}\label{ch:typelambda}
+%======================================================================
+
+A decomposable irreducible continuum looks, from far away, like an arc: it can often be mapped onto
+$[0,1]$ with connected fibres, the \emph{layers}, so that it is ``an arc of layers''. Continua with such
+a map whose layers are nowhere dense are said to be of \emph{type $\lambda$} (Hagopian writes ``type
+A$'$'', following Thomas). They are Hagopian's main tool: if $M$ is not hereditarily indecomposable,
+it contains a continuum of type $\lambda$, and the layers of such continua are rigid enough under small
+homeomorphisms of $M$ to produce, in Chapter~\ref{ch:decomp}, a decomposition of $M$ whose quotient
+contains an arc.
+
+The first half of the chapter is the general theory, which comes from Kuratowski's \emph{Topology},
+Volume~II, \S48 (Thomas's memoir, which Hagopian cites, was not used). The second half proves the
+existence of type $\lambda$ continua in $M$ and the invariance of their interior layers under small
+homeomorphisms (Hagopian 1975, Theorem~1).
+
+\section{Admissible maps and layers}
+
+A continuum $E$ is \emph{irreducible between $a$ and $b$} if $a,b\in E$ and no proper subcontinuum of $E$
+contains both (\vthree{Definition~2.1}).
+
+\formal{\lean{HPC.IsIrreducibleBetween}; for the space itself, \lean{HPC.Hagopian.IrrBetween}.}
+
+\begin{definition}\label{def:admissible}
+Let $E$ be a compact metric space. An \emph{admissible map} of $E$ is a continuous surjection
+$k\colon E\to[0,1]$ all of whose fibres are connected. The fibres $\lay ks$ are the \emph{layers} of $k$;
+$\lay k0$ and $\lay k1$ are the \emph{end layers}, the others are \emph{interior layers}. For $A\subseteq[0,1]$
+write $\lay kA$ for the union of the layers over $A$. A continuum $E$ is of \emph{type $\lambda$} if it is
+irreducible between two of its points and has an admissible map whose layers all have empty interior in
+$E$. Such a pair $(E,k)$ is called \emph{minimal admissible}; following Hagopian, $k$ is ``the
+decomposition'' of $E$ (by Theorem~\ref{thm:unique-decomp} below its layers are determined by $E$).
+\end{definition}
+
+\formal{\lean{HPC.Hagopian.IsAdmissibleMap}, \lean{HPC.Hagopian.layer}, \lean{HPC.Hagopian.IsTypeA'},
+\lean{HPC.Hagopian.IsMinimalAdmissible}, \lean{HPC.Hagopian.layerSet}.}
+
+The fibre decomposition of an admissible map is upper semicontinuous, and its quotient space is
+homeomorphic to $[0,1]$ (a continuous bijection from a compact space onto a Hausdorff space); so the map
+form of the definition agrees with Hagopian's, who speaks of an upper semicontinuous decomposition with
+quotient an arc (\formal{\lean{HPC.Hagopian.admissible_quotient_homeomorph}.})
+
+\begin{lemma}\label{lem:adm-basic}
+Let $k$ be an admissible map of the compact space $E$.
+\begin{enumerate}[label=(\alph*)]
+\item If $S\subseteq[0,1]$ is connected, $\lay kS$ is connected. If moreover $S$ is a nonempty closed interval,
+$\lay kS$ is a continuum; in particular every layer is a continuum.
+\item If $E$ is irreducible between $a$ and $b$, then $\set{k(a),k(b)}=\set{0,1}$.
+\item \emph{(The interval lemma.)} If $E$ is irreducible between two points and $K\subseteq E$ is a subcontinuum
+meeting $\lay kd$ and $\lay ke$ with $d<e$, then $\lay ku\subseteq K$ for every $u\in(d,e)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $k$ is a closed map (compact to Hausdorff) with connected fibres. If $\lay kS=P\cup Q$ with $P,Q$
+disjoint and relatively closed, every fibre over $S$ lies in $P$ or in $Q$, so $S=k(P)\cup k(Q)$ with $k(P)$
+and $k(Q)$ disjoint and relatively closed in $S$ ($k$ is closed); one of them is empty.
+
+(b) Let $s=k(a)$, $t=k(b)$ and $I$ the closed interval between them. $\lay kI$ is a continuum containing $a$
+and $b$, so it is $E$, and $I=k(E)=[0,1]$.
+
+(c) By (b) we may assume $k(a)=0$ and $k(b)=1$. The continua $\lay k{[0,d]}$, $K$ and $\lay k{[e,1]}$ form a chain
+of continua each meeting the next, so their union is a continuum containing $a$ and $b$, hence equal to
+$E$. A layer over $u\in(d,e)$ misses the first and the last, so it lies in $K$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.IsAdmissibleMap.isPreconnected_preimage}, \lean{HPC.Hagopian.isContinuum_img},
+\lean{HPC.Hagopian.isContinuum_layer}, \lean{HPC.Hagopian.end_layers},
+\lean{HPC.Hagopian.layer_subset_of_meets'}, \lean{HPC.Hagopian.layer_subset_of_meets}.}
+
+\begin{proposition}[End sets]\label{prop:end-sets}
+Let $(E,k)$ be minimal admissible. A subcontinuum of $E$ meeting both end layers is $E$.
+\end{proposition}
+
+\begin{proof}
+By the interval lemma, $K\supseteq\lay k{(0,1)}$. The end layers are closed with empty interior, so their
+union has empty interior, and $\lay k{(0,1)}$ is dense in $E$. As $K$ is closed, $K=E$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.dense_middle}, \lean{HPC.Hagopian.eq_of_meets_ends},
+\lean{HPC.Hagopian.admissible_end_sets'}, \lean{HPC.Hagopian.hagopian76_end_sets}.}
+
+\begin{remark}\label{rem:end-sets-false}
+Without the condition on the layers this fails, although it is used in this form in the literature (as
+``Thomas, Theorem~8''): on $E=[0,2]$, irreducible between $0$ and $2$, the map $k(x)=\max(0,x-1)$ is
+admissible with end layer $\lay k0=[0,1]$, and $K=[1,2]$ meets both end layers. The formal development
+proves this counterexample (\formal{\lean{HPC.Hagopian.not_admissible_end_sets}.}) Hagopian only uses
+end sets of type $\lambda$ continua, where Proposition~\ref{prop:end-sets} applies.
+\end{remark}
+
+\begin{lemma}\label{lem:split-conn}
+Let $K$ be a connected space, $K=C\cup D$ with $C,D$ closed, and $S\subseteq C$ connected with $C\cap D\subseteq S$.
+Then $C$ is connected.
+\end{lemma}
+
+\begin{proof}
+If $C=C_1\cup C_2$ with $C_1,C_2$ disjoint closed and $S\subseteq C_1$, then $C_2\cap D\subseteq C_2\cap S=\emptyset$, so
+$K=(C_1\cup D)\cup C_2$ is a union of two disjoint closed sets, and $C_2=\emptyset$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.isPreconnected_of_union_closed}.}
+
+\begin{proposition}[Lemma~2 of Hagopian 1975, necessity]\label{prop:lemma2-nec}
+In a continuum $(E,k)$ of type $\lambda$, every subcontinuum $K$ with nonempty interior in $E$ is decomposable.
+\end{proposition}
+
+\begin{proof}
+Let $d=\min k(K)$ and $e=\max k(K)$. If $d=e$, $K$ lies in a layer, which has empty interior. So $d<e$; pick
+$m\in(d,e)$ and put $C=K\cap\lay k{[0,m]}$, $D=K\cap\lay k{[m,1]}$. By the interval lemma
+$S=\lay k{(d,m]}\subseteq K$, so $S\subseteq C$, $S$ is connected (Lemma~\ref{lem:adm-basic}(a)), and $C\cap
+D\subseteq\lay km\subseteq S$. By Lemma~\ref{lem:split-conn}, $C$ is a continuum, and likewise $D$. Neither is $K$: $C$
+misses the points of $K$ in $\lay ke$, and $D$ those in $\lay kd$. So $K=C\cup D$ is decomposable.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.not_isIndecomposable_of_typeA'}.}
+
+\begin{theorem}[Uniqueness of the decomposition; Hagopian 1975, Lemma~3]\label{thm:unique-decomp}
+Let $(E,k)$ be minimal admissible and $k'$ any admissible map of $E$. Every layer of $k$ lies in a layer of
+$k'$. Consequently two minimal admissible maps of $E$ have the same layers.
+\end{theorem}
+
+\begin{proof}
+Let $L=\lay kt$, a continuum. If $k'$ took two values $d<e$ on $L$, the interval lemma for $k'$ would give
+$L\supseteq\lay{k'}{(d,e)}$, a nonempty open subset of $E$; but $L$ has empty interior. The second statement
+follows by applying the first in both directions.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.fibre_subset_fibre}, \lean{HPC.Hagopian.hagopian75_lemma3},
+\lean{HPC.Hagopian.fibre_eq_iff}, \lean{HPC.Hagopian.hagopian75_lemma3_unique}.}
+
+So a homeomorphism $h$ carries the decomposition of $E$ to that of $h(E)$, and ``the decomposition'' of a
+type $\lambda$ continuum is well defined (up to reversing $[0,1]$).
+
+\section{Kuratowski's family \texorpdfstring{$\mathcal D$}{D}}
+
+The converse of Proposition~\ref{prop:lemma2-nec} is the substantial half of Lemma~2. Throughout this
+section $Y$ is a continuum irreducible between $a\ne b$. A set $D$ is a \emph{closed domain} if
+$D=\cl{\interior D}$. Let $\mathcal D$ consist of $\emptyset$ and the connected closed domains containing $a$.
+
+\formal{\lean{HPC.Hagopian.IsDElt}.}
+
+\begin{lemma}[Kuratowski \S48 II--III]\label{lem:kur}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item If $K\ni a$ is a subcontinuum with $b\notin K$, then $\cl{Y\setminus K}$ is a continuum.
+\item \emph{(No hole.)} Let $K\ni a$ be a subcontinuum with $b\notin K$ and $U\subseteq K$ a nonempty open set with
+$a\notin U$ and $\cl U\cap\interior K\subseteq U$. This is impossible.
+\item If $K\ni a$ is a subcontinuum with nonempty interior, then $\cl{\interior K}\in\mathcal D$.
+\item $\mathcal D$ is a chain under inclusion; if $D_1\subsetneq D_2$ in $\mathcal D$, then $D_1\subseteq\interior D_2$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Let $\cl{Y\setminus K}=P\cup Q$ with $P,Q$ disjoint closed and $b\in P$, and suppose $Q\ne\emptyset$. Since $Y\setminus K$
+is dense in $\cl{Y\setminus K}$ and $Q$ is relatively open there, $Q\setminus K\ne\emptyset$. We claim $K\cup P$ is connected. If
+$K\cup P=A\cup B$ with $A,B$ disjoint closed and $K\subseteq A$, then $B\subseteq P\setminus K$ misses $Q$, so $Y=(A\cup Q)\cup B$ is a
+union of disjoint closed sets and $B=\emptyset$. So $K\cup P$ is a continuum containing $a$ and $b$, hence equals $Y$; but
+it misses $Q\setminus K\neq\emptyset$.
+
+(b) The component $C$ of $a$ in the compact set $K\setminus U$ reaches the relative frontier of $K\setminus U$ in $K$
+(boundary bumping, \vthree{Theorem~1.10}), which lies in $\cl U\setminus U$; by hypothesis such points are not in
+$\interior K$, so they lie in $\cl{Y\setminus K}$. By (a), $C\cup\cl{Y\setminus K}$ is a continuum; it contains $a$ and $b$ and
+misses $U$ ($\cl{Y\setminus K}$ misses $U\subseteq\interior K$). This contradicts irreducibility.
+
+(c) If $b\in K$ then $K=Y$. Otherwise let $F=\cl{\interior K}$ and suppose $F=F_1\cup F_2$ with $F_1,F_2$ disjoint
+closed, $F_2\ne\emptyset$ and $a\notin F_2$ (if $a\notin F$ take $F_1=\emptyset$). Then $U=\interior K\setminus F_1$ is open,
+nonempty ($F_2$ is relatively open in $F=\cl{\interior K}$, so it meets $\interior K$), contained in $K$, misses $a$,
+and $\cl U\cap\interior K\subseteq F_2\cap\interior K\subseteq U$. This contradicts (b). So $F$ is connected and contains
+$a$.
+
+(d) Let $D_1,D_2\in\mathcal D$ be nonempty, neither equal to $Y$, and suppose $D_1\not\subseteq D_2$ and $D_2\not\subseteq D_1$.
+Since $D_1$ is a closed domain not contained in $D_2$, there is $x\in\interior D_1\setminus D_2$; likewise $y\in\interior
+D_2\setminus D_1$. The continuum $D_1\cup\cl{Y\setminus D_2}$ (it is connected by (a), and $x$ is a common point) contains
+$a$ and $b$, so it is $Y$; but $y$ is in neither set. For the second statement, suppose $z\in D_1\setminus\interior
+D_2$, so $z\in\cl{Y\setminus D_2}$; again $D_1\cup\cl{Y\setminus D_2}=Y$, while a point of $\interior D_2\setminus D_1$ lies in
+neither.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.irr_compl_continuum}, \lean{HPC.Hagopian.irr_no_hole},
+\lean{HPC.Hagopian.isDElt_closure_interior}, \lean{HPC.Hagopian.IsDElt.chain},
+\lean{HPC.Hagopian.IsDElt.subset_interior}.}
+
+\begin{proposition}[No jumps; Kuratowski \S48 VII, Theorems~1--2]\label{prop:no-jumps}
+If $D_1\subsetneq D_2$ in $\mathcal D$, then $\cl{D_2\setminus D_1}$ is a continuum. If every subcontinuum of $Y$ with nonempty
+interior is decomposable, then some member of $\mathcal D$ lies strictly between $D_1$ and $D_2$.
+\end{proposition}
+
+\begin{proof}[Proof in outline]
+The first statement is a separation argument of the kind used in Lemma~\ref{lem:kur}(a), applied to
+$\cl{Y\setminus D_1}$, $\cl{Y\setminus D_2}$ and the decomposition $D_2=D_1\cup\cl{D_2\setminus D_1}$. For the second, if nothing
+lay strictly between, the continuum $\cl{D_2\setminus D_1}$, which has interior $\interior D_2\setminus D_1\ne\emptyset$, would be
+decomposable, $\cl{D_2\setminus D_1}=H\cup K$ with $H,K$ proper subcontinua; one of them, say $H$, meets $D_1$, and then
+$\cl{\interior(D_1\cup H)}$ is a member of $\mathcal D$ (Lemma~\ref{lem:kur}(c)) strictly between $D_1$ and $D_2$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.IsDElt.closure_diff}, \lean{HPC.Hagopian.IsDElt.exists_between}.}
+
+\begin{theorem}[From $\mathcal D$ to a map; Kuratowski \S48 IV and VII, Theorems~3--5]\label{thm:scale}
+If $Y$ is irreducible between $a$ and $b$ and every subcontinuum of $Y$ with nonempty interior is
+decomposable, then $Y$ has an admissible map all of whose layers have empty interior.
+\end{theorem}
+
+\begin{proof}
+\emph{A countable dense subfamily.} Let $\set{b_n}$ be a countable base. For each pair $(m,n)$ choose, if there is one,
+a member of $\mathcal D$ whose interior contains $b_m$ and which misses $b_n$; the countably many chosen sets form a family
+$\mathcal C\subseteq\mathcal D$ that is \emph{dense}: strictly between two members $D_1\subsetneq D_2$ of $\mathcal D$ lies a member of
+$\mathcal C$. (By Proposition~\ref{prop:no-jumps} there are $D_1\subsetneq D\subsetneq D'\subsetneq D_2$; basic sets $b_m\subseteq\interior
+D\setminus D_1$ and $b_n\subseteq\interior D_2\setminus D'$ exist by Lemma~\ref{lem:kur}(d), and the chosen member for $(m,n)$
+lies between $D_1$ and $D_2$ because $\mathcal D$ is a chain.)
+
+\emph{A scale.} With $\emptyset$ and $Y$ removed, $\mathcal C$ is a countable dense linear order without end points, hence
+(Cantor) order-isomorphic to $\Q\cap(0,1)$. This gives a family $(E_q)_{q\in\Q}$ in $\mathcal D$, increasing, strictly so on
+$(0,1)$, with $E_q=\emptyset$ for $q\le0$, $E_q=Y$ for $q\ge1$, and dense in $\mathcal D$. By Lemma~\ref{lem:kur}(d),
+$E_q\subseteq\interior E_{q'}$ for $q<q'$.
+
+\emph{The map.} Put $k(y)=\inf\set{q:y\in E_q}\in[0,1]$. Then $k(y)<t$ iff $y\in E_q$ for some rational $q<t$, and
+$k(y)>t$ iff $y\notin E_q$ for some rational $q>t$; using $E_q\subseteq\interior E_{q'}$, both sets are open, so $k$ is
+continuous. It is onto because the scale is strictly increasing and $Y$ is connected. The fibre over $t$ is the
+intersection of the continua $\cl{E_{q'}\setminus E_q}$, $q<t<q'$ (Proposition~\ref{prop:no-jumps}), a directed family, so it
+is connected. If a fibre had interior, the closure of $\bigcup_{q<t}E_q$ and the closure of the interior of
+$\bigcap_{q>t}E_q$ would be two members of $\mathcal D$, the first strictly inside the second; by density two
+members of the scale would lie between them, and both would have index $t$, which is absurd.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.exists_countable_dense_D}, \lean{HPC.Hagopian.IsDScale},
+\lean{HPC.Hagopian.exists_scale}, \lean{HPC.Hagopian.scaleFun}, \lean{HPC.Hagopian.continuous_scaleFun},
+\lean{HPC.Hagopian.isPreconnected_scaleFun_fibre}, \lean{HPC.Hagopian.interior_scaleFun_fibre},
+\lean{HPC.Hagopian.scaleMap_spec}, \lean{HPC.Hagopian.exists_typeA'_map}.}
+
+\begin{remark}
+Kuratowski's Theorem~3 states that $\mathcal D$ has the order type of an interval. The formal proof only uses
+the order type of the countable dense subfamily, which is that of the rationals by Cantor's theorem.
+\end{remark}
+
+\begin{theorem}[Hagopian 1975, Lemma~2]\label{thm:lemma2}
+A continuum $E$ irreducible between two points is of type $\lambda$ if and only if every subcontinuum of $E$ with
+nonempty interior (relative to $E$) is decomposable.
+\end{theorem}
+
+\begin{proof}
+Necessity is Proposition~\ref{prop:lemma2-nec}; sufficiency is Theorem~\ref{thm:scale}, applied to $E$ as a
+space.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.isTypeA'_of_decomposable}, \lean{HPC.Hagopian.hagopian75_lemma2}.}
+
+\begin{remark}\label{rem:thomas21}
+Hagopian's paragraph~4 of the proof of his Theorem~1 quotes a theorem (Thomas, Theorem~21; Kuratowski
+\S48 VII, Theorem~6 in the form cited): \emph{if every interior layer of a type $\lambda$ continuum is degenerate,
+the continuum is an arc}. As stated this is false: the $\sin(1/x)$-continuum
+$\set{(x,\sin(1/x)):0<x\le1}\cup(\set0\times[-1,1])$ is irreducible between $(1,\sin1)$ and $(0,0)$, the first
+coordinate is an admissible map with nowhere dense layers, its interior layers are points, but its end layer
+over $0$ is a segment. The formal development proves this counterexample, and the two correct forms: if
+\emph{all} layers are points, $k$ is a homeomorphism onto $[0,1]$; if all interior layers are points, $E$
+contains an arc. The classification does not use paragraph~4.
+\end{remark}
+
+\formal{\lean{HPC.Hagopian.not_arc_of_degenerate_layers}, \lean{HPC.Hagopian.arc_of_degenerate_layers'},
+\lean{HPC.Hagopian.exists_arc_of_degenerate_layers}.}
+
+\section{Type \texorpdfstring{$\lambda$}{lambda} continua in \texorpdfstring{$M$}{M}}
+
+We return to the standing hypotheses: $M$ is a homogeneous indecomposable plane continuum. By
+Theorem~\ref{thm:hagopian-lemma1} it is atriodic and hereditarily unicoherent.
+
+\begin{theorem}[Hagopian 1975, Theorem~1, paragraphs~1--3]\label{thm:exists-lambda}
+Every decomposable subcontinuum $A$ of $M$ contains a continuum of type $\lambda$.
+\end{theorem}
+
+\begin{proof}
+Write $A=B\cup C$ with $B,C$ proper subcontinua, and choose $b\in B\setminus C$, $c\in C\setminus B$. Let $E\subseteq A$ be a
+subcontinuum irreducible between $b$ and $c$ (\vthree{Theorem~2.5}). By Theorem~\ref{thm:lemma2} it suffices to
+show that no indecomposable subcontinuum $I$ of $E$ contains a nonempty set $Q=O\cap E$ with $O$ open.
+
+Suppose $I$ is one. The sets $I\cap B$ and $I\cap C$ are continua or empty (Corollary~\ref{cor:nested-or-arc}(a)) and
+their union is $I$; as $I$ is indecomposable, $I\subseteq B$ or $I\subseteq C$, say $I\subseteq B$. Then $c\notin I$, and $c\notin Q$.
+By boundary bumping there is a continuum $F\subseteq E\setminus O$ containing $c$ and meeting $\cl Q\subseteq I$ in a point
+$x$.
+
+Fix $q\in Q$ and $\varepsilon=\min(\dist(c,B),\dist(q,F))>0$, and let $\delta$ be given by the Effros theorem
+(\vthree{Theorem~7.15}) for $\varepsilon$. The composants of the indecomposable continuum $I$ are meagre in $I$
+(Theorem~\ref{thm:composants}(d)), so the ball $B(x,\delta)$ contains points $x_1,x_2$ of $I$ such that $x,x_1,x_2$ lie
+in three different composants of $I$. Let $f,g$ be $\varepsilon$-homeomorphisms with $f(x)=x_1$, $g(x)=x_2$. Then
+$f(c),g(c)\notin B$ and $q\notin f(F)\cup g(F)$.
+
+\emph{$F$, $f(F)$, $g(F)$ are pairwise disjoint.} If, say, $F\cap f(F)\ne\emptyset$, then $P=F\cup f(F)$ is a continuum,
+and $P\cap I$ is a continuum (Corollary~\ref{cor:nested-or-arc}(a)) containing $x$ and $f(x)$, which lie in different
+composants of $I$. So $P\cap I=I\ni q$; but $q\notin F$ (as $F\cap O=\emptyset$) and $q\notin f(F)$. The other pairs are
+similar.
+
+\emph{The triod.} Take $N=B$ and $X_1=F$, $X_2=f(F)$, $X_3=g(F)$. Each meets $B$ (at $x$, $f(x)$, $g(x)$, points of $I\subseteq
+B$), none lies in $B$ (they contain $c$, $f(c)$, $g(c)$), and they are pairwise disjoint. This contradicts
+Corollary~\ref{cor:nested-or-arc}(b).
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.no_indecomposable_interior_aux}, \lean{HPC.Hagopian.hagopian75_no_indecomposable_interior},
+\lean{HPC.Hagopian.hagopian75_exists_typeA'}.}
+
+The disjointness of $F$, $f(F)$, $g(F)$ is not argued in Hagopian's text; the formal proof supplies the argument
+above.
+
+\section{Interior layers under small homeomorphisms}
+
+Let $(E,k)$ be minimal admissible in $M$. The next theorem says that a small homeomorphism of $M$ that moves an
+interior layer onto itself at one point moves it onto itself.
+
+\begin{theorem}[Hagopian 1975, Theorem~1, paragraphs~9--11]\label{thm:layer-invariant}
+Let $0\le r<s<t\le1$, and let $\varepsilon>0$ be at most the distance from $\lay k{[r,t]}$ to $\lay k0\cup\lay k1$. If $h$ is
+a homeomorphism of $M$ moving no point by $\varepsilon$ or more, and $h(\lay ks)$ meets $\lay ks$, then $h(\lay ks)=\lay
+ks$.
+\end{theorem}
+
+\begin{proof}
+Write $Y=\lay ks$ and $Z=\lay k{[r,t]}$; note that $\varepsilon>0$ forces $0<r$ and $t<1$.
+
+\emph{Step 1: $h(Z)\subseteq E$.} $h(Z)$ misses the end layers (by the choice of $\varepsilon$) and meets $E$. Suppose
+$h(Z)\not\subseteq E$. Then $J=E\cap h(Z)$ is a continuum (Corollary~\ref{cor:nested-or-arc}(a)) with $k(J)=[d',e']\subseteq(0,1)$.
+Put $N=\lay k{[d',e']}$, $X_1=\lay k{[0,d']}$, $X_2=\lay k{[e',1]}$ and $X_3=h(Z)\cup N$. These are continua; $X_1,X_2$ meet $N$
+in the layers over $d'$ and $e'$; $X_3\cap X_1$ and $X_3\cap X_2$ lie in $N$ because $h(Z)\cap E=J\subseteq N$; and no $X_i$ lies in
+$N$ ($X_3$ because $h(Z)\not\subseteq E$). This contradicts Corollary~\ref{cor:nested-or-arc}(b).
+
+\emph{Step 2: $h(Y)\subseteq Y$.} Suppose not. Then $k(h(Y))=[d,e]$ with $d<e$ (it contains $s$), and by the interval lemma
+every layer over $(d,e)$ lies in $h(Y)$. Now $E\setminus Y$ is covered by $\lay k{[0,r]}$, $\lay k{[t,1]}$, $\lay k{[r,s)}$ and
+$\lay k{(s,t]}$. The images of the first two are compact and miss $h(Y)$. The images of the last two are connected
+subsets of $E$ (Step 1) that miss $\lay k{(d,e)}\subseteq h(Y)$, so each lies in $\lay k{[0,d]}$ or in $\lay k{[e,1]}$. Hence a
+point $y$ with $k(y)\in(d,e)$ has a neighbourhood that meets $h(E)$ only in $h(Y)$. Pulling it back by $h$, $Y$ has
+nonempty interior in $E$, which is false.
+
+\emph{Step 3.} $h^{-1}$ also moves no point by $\varepsilon$ or more and $h^{-1}(Y)$ meets $Y$; by Step~2, $h^{-1}(Y)\subseteq Y$,
+that is $Y\subseteq h(Y)$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.homeo_image_subset_of_meets}, \lean{HPC.Hagopian.homeo_image_layer_subset},
+\lean{HPC.Hagopian.hagopian75_layer_invariant_aux}, \lean{HPC.Hagopian.hagopian75_layer_invariant}.}
+
+\begin{remark}
+Combining Theorem~\ref{thm:layer-invariant} with Proposition~\ref{prop:effros-nbhd} along a chain of Effros
+neighbourhoods inside a layer shows that every interior layer of $E$ is homogeneous (Hagopian's paragraphs~5--8 and~12;
+\formal{\lean{HPC.Hagopian.layer_homogeneous_aux}, \lean{HPC.Hagopian.hagopian75_layer_homogeneous}.}) This is not used
+in the classification.
+\end{remark}
+
+The form in which Theorem~\ref{thm:layer-invariant} is used later replaces the smallness of $h$ by a condition on
+where $h$ sends the end sets.
+
+\begin{theorem}[Hagopian 1976, Lemma~3]\label{thm:h76-lemma3}
+Let $(E,k)$ and $(F,d)$ be minimal admissible in $M$, $0<s<1$, and $h$ a homeomorphism of $M$. Let $Y=\lay ks$ and $U=\lay
+du$. Suppose that $U$ meets $h(Y)$, that $U$ misses $h(\lay k0\cup\lay k1)$, and that $h(Y)$ misses $\lay d0\cup\lay d1$. Then
+$h(Y)=U$.
+\end{theorem}
+
+\begin{proof}[Proof in outline]
+The hypothesis $h(Y)\cap(\lay d0\cup\lay d1)=\emptyset$ replaces the smallness of $h$. The triod of Step~1 above puts $h(Y)$
+inside $F$; then $J=F\cap h(E)$ is a continuum. Let $[\gamma,\delta]=k(h^{-1}(J))$. If $\gamma=s$ (or $\delta=s$), the continuum
+$h(\lay k{[0,s]})$ (or $h(\lay k{[s,1]})$) meets $F$ only in $h(Y)$, so by the same triod it lies in $F$, which puts $h(\lay
+k0)$ (or $h(\lay k1)$) into the layer of $F$ containing $h(Y)$, against the hypotheses. If $\gamma<s<\delta$ and $h(Y)\ne U$,
+then $h(Y)$ contains an open subset of $F$ and Step~2 above gives $Y$ nonempty interior in $E$. So $h(Y)\subseteq U$; the same
+argument for $h^{-1}$, $U$ and $Y$ gives $U\subseteq h(Y)$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.hagopian76_lemma3}, proved in \lean{HPC/Hagopian/H76Lemma3.lean}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that an arc is of type $\lambda$, and that its decomposition is into points. Show that the
+$\sin(1/x)$-continuum is of type $\lambda$, and find its decomposition.
+\end{exercise}
+
+\begin{exercise}
+Show that a continuum of type $\lambda$ is not indecomposable. (Use Proposition~\ref{prop:lemma2-nec} with $K=E$.)
+\end{exercise}
+
+\begin{exercise}
+Let $(E,k)$ be minimal admissible and $0<a<b<1$. Show that $\lay k{[a,b]}$ is of type $\lambda$, and that its decomposition
+consists of the layers of $k$ over $[a,b]$.
+\end{exercise}

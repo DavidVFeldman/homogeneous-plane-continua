@@ -1,0 +1,44 @@
+library modules read: 863; library constants: 38735
+raw closure: 17643 constants (12480 of the libraries, 5163 external)
+agreement with doc/depcensus/closure.tsv: true (census 17643, here 17643, only in census 0, only here 0)
+external modules imported: 690
+constants in the external environment: 443254
+external closure constants missing from the external environment: 0
+library closure constants already present in the external environment: 0
+constants sent to replay: 12480 (unsafe or partial, skipped by replay: 0)
+replay: every constant accepted by the kernel (119 s)
+library closure constants absent after replay: 0
+abbreviations of the closure given back the attribute [reducible]: 9
+target HPC.BJ59.ho16_classification_plane₄: present after replay, kind theorem, type identical to the stored type: true
+target HPC.BJ59.ho16_classification₄: present after replay, kind theorem, type identical to the stored type: true
+statements elaborated in the replayed environment (copied from HPC/BJ59/BJ59E.lean):
+    namespace HPC.Plane end HPC.Plane
+    namespace HPC.Jones end HPC.Jones
+    namespace HPC.HO16 end HPC.HO16
+    attribute [reducible] HPC.Hagopian.cRect
+    attribute [reducible] HPC.Hagopian.flipC
+    attribute [reducible] HPC.Hagopian.lc
+    attribute [reducible] HPC.Moore.restrictedRegions
+    attribute [reducible] HPC.Plane.Pt
+    attribute [reducible] HPC.Plane.Seg
+    attribute [reducible] HPC.Plane.gsq
+    attribute [reducible] HPC.Sq.Bsq
+    attribute [reducible] HPC.Moore.Space.RulingStage
+    namespace HPC.BJ59
+    open Set Topology Metric Filter HPC.Plane HPC.Jones HPC.HO16
+    theorem ho16_classification_plane₄_stmt :
+        ∃ C₁ C₂ C₃ : Set Pt,
+          (Nonempty (C₁ ≃ₜ Circle) ∧ IsPseudoArc C₂ ∧ IsCircleOfPA C₃) ∧
+          (IsHomogeneous C₁ ∧ IsHomogeneous C₂ ∧ IsHomogeneous C₃) ∧
+          (IsEmpty (C₁ ≃ₜ C₂) ∧ IsEmpty (C₁ ≃ₜ C₃) ∧ IsEmpty (C₂ ≃ₜ C₃)) ∧
+          ∀ M : Set Pt, IsCompact M → IsConnected M → M.Nontrivial →
+            (IsHomogeneous M ↔ Nonempty (M ≃ₜ C₁) ∨ Nonempty (M ≃ₜ C₂) ∨ Nonempty (M ≃ₜ C₃)) := sorry
+    theorem ho16_classification₄_stmt (M : Set Pt) [CompactSpace M] [ConnectedSpace M]
+        (hnt : (univ : Set M).Nontrivial) :
+        IsHomogeneous M ↔ Nonempty (M ≃ₜ Circle) ∨ IsPseudoArc (univ : Set M) ∨ IsCircleOfPA M := sorry
+    end HPC.BJ59
+    
+  message: <replay-check>:15:8: warning: declaration uses `sorry`
+  message: <replay-check>:22:8: warning: declaration uses `sorry`
+target HPC.BJ59.ho16_classification_plane₄: the elaborated source statement is identical to the replayed type: true
+target HPC.BJ59.ho16_classification₄: the elaborated source statement is identical to the replayed type: true

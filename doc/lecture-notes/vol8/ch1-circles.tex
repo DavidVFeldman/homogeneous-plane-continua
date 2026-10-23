@@ -1,0 +1,210 @@
+%======================================================================
+\chapter{Arcs and circles of pseudo-arcs}\label{ch:circles}
+%======================================================================
+
+This chapter fixes the definitions of the volume and proves the elementary facts about them: the two halves of a map onto the circle, and three
+facts that tell the circle, the pseudo-arc and the circles of pseudo-arcs apart.
+
+\section{Definitions}
+
+\begin{definition}[Bing and Jones, p.~173]\label{def:arc-continua}
+Let $X$ be a metric space and $f\colon X\to\I$.
+\begin{enumerate}[label=(\alph*)]
+\item $f$ is an \emph{arc of continua} if $f$ is continuous and surjective and every fibre $\fib fx$ is a continuum.
+\item $f$ is a \emph{continuous arc of pseudo-arcs} if $f$ is continuous, open and surjective and every fibre $\fib fx$ is a pseudo-arc.
+\end{enumerate}
+\end{definition}
+
+\formal{\lean{HPC.BJ59.IsArcOfContinua}, \lean{HPC.BJ59.IsContArcPA}.}
+
+Bing and Jones speak of a \emph{continuous snake-like arc of pseudo-arcs}; snake-likeness of $X$ is stated separately here. ``Continuous'' refers to
+the decomposition into fibres, which is continuous exactly when $f$ is open (\vseven{Lemma~9.7} for one direction).
+
+\begin{definition}[Bing and Jones, p.~173]\label{def:circle-pa}
+A metric space $X$ is a \emph{circle of pseudo-arcs} if $X$ is circle-like (\vthree{Definition~5.13}) and there is a continuous, open, surjective map
+$f\colon X\to\Sph$ all of whose fibres are pseudo-arcs. Such a map, on a circle-like space, is a \emph{circle-of-pseudo-arcs map}.
+\end{definition}
+
+\formal{\lean{HPC.BJ59.IsCircleOfPA}, \lean{HPC.BJ59.IsCircPAMap}; the equivalence of ``$X$ is a circle of pseudo-arcs'' with ``$X$ carries a
+circle-of-pseudo-arcs map'' is \lean{HPC.BJ59.isCircleOfPA_iff}.}
+
+\begin{remark}\label{rem:nonsnake}
+Bing and Jones call a continuum circle-like only if it is moreover not snake-like. For a circle of pseudo-arcs this is automatic: by
+Corollary~\ref{cor:circle-pa-decomp} below $X$ is the union of two continua whose intersection is the union of two disjoint fibres, so $X$ is not
+unicoherent, while snake-like continua are (\vthree{Theorem~5.4}). The definition above omits the condition.
+\end{remark}
+
+Recall also the atomic maps of \vseven{Definition~9.6}: $f\colon X\to Y$ is \emph{atomic} if every continuum in $X$ meeting a fibre $\fib fy$ lies in it or
+contains it; an \emph{atomic circle-of-pseudo-arcs map} is a continuous, open, surjective, atomic map $X\to\Sph$ whose fibres are pseudo-arcs. Here
+circle-likeness is not assumed. By \vseven{Theorem~9.8}, a decomposable homogeneous plane continuum which is not a simple closed curve carries such a map.
+
+\begin{example}\label{ex:not-atomic}
+The second projection $\I\times\I\to\I$ is open and has arcs as fibres, but it is not atomic: the continuum $\set0\times\I$ meets the fibre $\I\times\set t$
+without lying in it or containing it. The projection $P\times\Sph\to\Sph$, $P$ a pseudo-arc, fails to be atomic in the same way. The identity of any
+space is atomic.
+\end{example}
+
+\formal{\lean{HPC.BJ59.not_isAtomicMap_snd}, \lean{HPC.BJ59.isAtomicMap_id}.}
+
+\section{Preimages of connected sets}
+
+\begin{lemma}\label{lem:monotone-preimage}
+Let $X$ be compact, $q\colon X\to Y$ continuous into a metric space, with every fibre connected. If $A\subseteq q(X)$ is connected, then $q^{-1}(A)$ is
+connected.
+\end{lemma}
+
+\begin{proof}
+Suppose $q^{-1}(A)\subseteq U\cup V$ with $U,V$ open, disjoint, both meeting $q^{-1}(A)$. Each fibre over a point of $A$ is connected, so it lies in $U$ or
+in $V$. Put $A_U=\set{a\in A:q^{-1}(a)\subseteq U}$ and $A_V$ likewise. They are disjoint, cover $A$ and are nonempty. Since $q$ is a closed map ($X$ is
+compact), $Y\setminus q(X\setminus U)$ is open, and $A_U=A\setminus q(X\setminus U)$ (a point of $A$ lies in $q(X)$, so its fibre is nonempty).
+So $A_U$, and likewise $A_V$, is relatively open in $A$, and $A$ is not connected.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isPreconnected_preimage_of_monotone'}.}
+
+\begin{corollary}\label{cor:G-connected}
+Let $X$ be compact and $f\colon X\to\I$ an arc of continua. For $a\le b$ the set $\G ab=\fib f{[a,b]}$ is a continuum, and so is $X$.
+\end{corollary}
+
+\formal{\lean{HPC.BJ59.isPreconnected_preimage_Icc}, \lean{HPC.BJ59.isCompact_preimage_Icc}.}
+
+\section{The two halves}
+
+\begin{definition}\label{def:halves}
+For $s\in\set{1,-1}$ let $c_s\colon\I\to\Sph$, $c_s(t)=\exp(i\pi st)$, and let $A_s=c_s(\I)$, the closed upper ($s=1$) or lower ($s=-1$) half-circle from $1$
+to $-1$. The map $c_s$ is a homeomorphism of $\I$ onto $A_s$. For $f\colon X\to\Sph$ the \emph{half} of $X$ over $A_s$ is $X_s=\fib f{A_s}$, with the
+\emph{half map} $f_s=c_s^{-1}\circ f\colon X_s\to\I$.
+\end{definition}
+
+\formal{\lean{HPC.Jones.halfC}, \lean{HPC.BJ59.halfParam}, \lean{HPC.BJ59.halfSet}, \lean{HPC.BJ59.halfMap}.}
+
+Thus $A_1\cup A_{-1}=\Sph$ and $A_1\cap A_{-1}=\set{1,-1}$, and the point $\exp(-i\pi s/2)$ is not in $A_s$. The fibre of $f_s$ over $t$ is the fibre of $f$
+over $c_s(t)$; the end fibres of $f_s$ are $\fib f1$ and $\fib f{-1}$, for both values of $s$.
+
+\formal{\lean{HPC.BJ59.range_halfC_union}, \lean{HPC.BJ59.mem_range_halfC_inter}, \lean{HPC.BJ59.exists_not_mem_range_halfC},
+\lean{HPC.BJ59.image_val_halfMap_fibre}, \lean{HPC.BJ59.halfFibreEquiv}.}
+
+\begin{proposition}\label{prop:halves}
+Let $X$ be compact and $f\colon X\to\Sph$ continuous, open and surjective, with pseudo-arc fibres. Then each half map $f_s\colon X_s\to\I$ is a continuous
+arc of pseudo-arcs, and $X_s$ is a continuum. If $f$ is atomic, so is $f_s$.
+\end{proposition}
+
+\begin{proof}
+$f_s$ is continuous and surjective, and its fibres are fibres of $f$. It is open: an open set of $X_s$ is $W\cap X_s$ with $W$ open in $X$, and
+$f(W\cap X_s)=f(W)\cap A_s$ because $X_s$ is the full preimage of $A_s$; this is open in $A_s$, and $c_s$ is a homeomorphism. $X_s$ is closed, hence
+compact, and connected by Lemma~\ref{lem:monotone-preimage}, $A_s$ being connected. A continuum in $X_s$ is a continuum in $X$, and the fibres of $f_s$ are
+those of $f$, so atomicity passes to $f_s$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isContArcPA_halfMap'} (with \lean{HPC.BJ59.continuous_halfMap}, \lean{HPC.BJ59.isOpenMap_halfMap},
+\lean{HPC.BJ59.surjective_halfMap}), \lean{HPC.BJ59.isContinuum_halfSet}, \lean{HPC.BJ59.isAtomicMap_halfMap}.}
+
+\begin{proposition}\label{prop:halves-snake}
+If $f\colon X\to\Sph$ is a circle-of-pseudo-arcs map, each half $X_s$ is snake-like.
+\end{proposition}
+
+\begin{proof}
+$X$ is compact, being circle-like, and $X_s$ is a continuum (Proposition~\ref{prop:halves}). It is a proper subcontinuum of $X$: it misses the fibre over
+$\exp(-i\pi s/2)$, which is nonempty since $f$ is onto. A proper subcontinuum of a circle-like continuum is snake-like (\vthree{Theorem~5.16}), and
+snake-likeness is a property of the space $X_s$ (\vthree{Theorem~5.11}).
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isContArcPA_halfMap}, \lean{HPC.BJ59.isSnakeLike_halfSet}, from \lean{HPC.Plane.isSnakeLike_of_subset_circleLike}.}
+
+Both kinds of maps of this volume, the circle-of-pseudo-arcs maps and the atomic ones, will be used only through the following properties.
+
+\begin{definition}\label{def:snake-halves}
+A map $f\colon X\to\Sph$ \emph{has snake-like halves} if it is continuous, open and surjective, its fibres are pseudo-arcs, and both halves $X_1$, $X_{-1}$
+are snake-like.
+\end{definition}
+
+\formal{\lean{HPC.BJ59.IsSnakeHalvesMap}; a circle-of-pseudo-arcs map has snake-like halves by \lean{HPC.BJ59.IsCircPAMap.isSnakeHalvesMap}, and an
+atomic one on a compact space by \lean{HPC.BJ59.IsAtomicCircPAMap.isSnakeHalvesMap} (Chapter~\ref{ch:atomic}).}
+
+Rotations preserve all these properties: if $f$ is a circle-of-pseudo-arcs map (or an atomic one), so is $x\mapsto cf(x)$ for every $c\in\Sph$, since its
+fibres are the fibres of $f$.
+
+\formal{\lean{HPC.BJ59.IsCircPAMap.mul_left}, \lean{HPC.BJ59.IsAtomicCircPAMap.mul_left}.}
+
+\section{The three classes are distinct}
+
+\begin{proposition}\label{prop:circle-decomp}
+The circle is decomposable.
+\end{proposition}
+
+\begin{proof}
+$\Sph=A_1\cup A_{-1}$, and each $A_s$ is a continuum (the image of $\I$) different from $\Sph$ (it misses $\exp(-i\pi s/2)$).
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isDecomposableSpace_circle}.}
+
+\begin{corollary}\label{cor:circle-pa-decomp}
+If $f\colon X\to\Sph$ is continuous, open and surjective with pseudo-arc fibres, and $X$ is compact, then $X=X_1\cup X_{-1}$ is decomposable, and
+$X_1\cap X_{-1}=\fib f1\cup\fib f{-1}$. In particular every circle of pseudo-arcs is decomposable.
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{prop:halves} the halves are continua; each misses a nonempty fibre, so each is proper. The intersection is the preimage of
+$A_1\cap A_{-1}=\set{1,-1}$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isDecomposableSpace_of_isCircPAMap}.}
+
+\begin{proposition}\label{prop:pa-not-in-circle}
+No proper subset of the circle is a pseudo-arc.
+\end{proposition}
+
+\begin{proof}
+Let $K\subsetneq\Sph$ be a nondegenerate continuum and $z\notin K$. After a rotation we may assume $z=-1$. The argument $\arg\colon\Sph\setminus\set{-1}\to
+(-\pi,\pi)$ is continuous and injective, so it maps the compact set $K$ homeomorphically onto a nondegenerate compact connected subset of $\R$, that is, onto
+an interval $[a,b]$ with $a<b$. An interval is decomposable ($[a,b]=[a,c]\cup[c,b]$ for $a<c<b$), so $K$ is not hereditarily indecomposable, and not a
+pseudo-arc.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.not_isPseudoArc_of_ne_univ_circle}, with \lean{HPC.BJ59.continuousAt_arg_circle}, \lean{HPC.BJ59.arg_injective_circle} and
+\lean{HPC.BJ59.not_isHereditarilyIndecomposable_of_nontrivial_real}.}
+
+\begin{corollary}\label{cor:circle-not-cpa}
+The circle is not homeomorphic to a circle of pseudo-arcs.
+\end{corollary}
+
+\begin{proof}
+Let $f\colon X\to\Sph$ be a circle-of-pseudo-arcs map and $\Phi\colon X\to\Sph$ a homeomorphism. The fibre $\fib f1$ is a pseudo-arc, and so is its image
+under $\Phi$ (being a pseudo-arc is a topological property, \vthree{Theorem~5.11} and the invariance of hereditary indecomposability). This image misses
+$\Phi(x)$ for any $x\in\fib f{-1}$, so it is a proper subset of $\Sph$, against Proposition~\ref{prop:pa-not-in-circle}.
+\end{proof}
+
+\formal{Inside the proof of \lean{HPC.BJ59.ho16_classification_plane}, with \lean{HPC.BJ59.isPseudoArc_of_homeomorph}.}
+
+The pseudo-arc is indecomposable, so by Proposition~\ref{prop:circle-decomp} and Corollary~\ref{cor:circle-pa-decomp} it is homeomorphic neither to the circle
+nor to a circle of pseudo-arcs.
+
+\section{Two facts about the circle}
+
+\begin{proposition}\label{prop:circle-homog}
+The circle is homogeneous, and so is every space homeomorphic to it. A simple closed curve lies in the plane.
+\end{proposition}
+
+\begin{proof}
+For $x,y\in\Sph$ multiplication by $yx^{-1}$ is a homeomorphism carrying $x$ to $y$. If $e\colon W\to Y$ is a homeomorphism and $W$ is homogeneous, then
+for $x,y\in Y$ a homeomorphism $g$ of $W$ with $g(e^{-1}x)=e^{-1}y$ gives $e\circ g\circ e^{-1}$. The unit circle of $\R^2$ is a simple closed curve.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isHomogeneous_circle'}, \lean{HPC.BJ59.isHomogeneous_circle}, \lean{HPC.Span.isHomogeneous_of_homeomorph},
+\lean{HPC.BJ59.exists_plane_circle}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that the preimage of every closed arc of $\Sph$ under a circle-of-pseudo-arcs map is a continuum, and that the preimage of every proper closed arc is
+snake-like.
+\end{exercise}
+
+\begin{exercise}
+Show that Lemma~\ref{lem:monotone-preimage} fails without compactness of $X$. (Consider the map $[0,1)\cup\set2\to\I$ that is the identity on $[0,1)$ and
+sends $2$ to $1$.)
+\end{exercise}
+
+\begin{exercise}
+Let $f\colon X\to\Sph$ be an atomic circle-of-pseudo-arcs map. Show that $X$ contains no arc. (An arc in $X$ either lies in a fibre or contains one.)
+\end{exercise}

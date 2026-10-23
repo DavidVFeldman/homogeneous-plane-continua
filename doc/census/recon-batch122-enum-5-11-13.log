@@ -1,0 +1,2 @@
+K=5 n=11: sequences=0 instances(table, basepoint)=0 failures=0
+# run stopped by hand during n = 12 (batch 122); n = 11 has no instances in this enumeration mode

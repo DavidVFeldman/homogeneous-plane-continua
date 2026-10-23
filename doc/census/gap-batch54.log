@@ -1,0 +1,14 @@
+gap-batch54: the sigma-route's lost link at the branch L+5.
+concat-draws=12 seed=5404
+
+random concatenations of Bing blocks: 3 faithful of 10 drawn
+
+faithful pairs 1875; links 1924984, non-thin 3730 (0.00194)
+branch L+5 basepoints 432069, of which both arms are thin 717
+the tau-pair is served by one of the five walks at 333463 basepoints; the pair of 9 - rho at 333463
+  walk Lambda: serves tau and 9 - rho 54825 times; serves tau and NOT 9 - rho 0 times
+  walk V: serves tau and 9 - rho 177588 times; serves tau and NOT 9 - rho 591 times
+  walk w3: serves tau and 9 - rho 252296 times; serves tau and NOT 9 - rho 390 times
+  walk w4: serves tau and 9 - rho 49351 times; serves tau and NOT 9 - rho 242 times
+  walk w5: serves tau and 9 - rho 182809 times; serves tau and NOT 9 - rho 18 times
+basepoints where the sigma-route serves tau but no walk of the five serves 9 - rho: 0 (of them thin on both arms: 0); another walk of at most three turns serves 9 - rho at 0 of them, none at 0

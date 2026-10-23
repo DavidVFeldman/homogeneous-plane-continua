@@ -1,0 +1,45 @@
+walks of at most 3 legs, start within one of L+4: 1336
+check bing 0 8 (n=409) crooked: 1
+check monotone run crooked: 0
+bing 0 9: n = 986, crooked = 1
+after the whole chain: branch pairs 182, mixed 125
+family C: 7 concatenations crooked and used
+
+branch pairs (v = L+4, both arms HighAt (L+1) (L+8)): 66382, of them mixed 43600
+served by the Lambda-walk: 10425
+served by the V-walk:      37010
+served by the four-leg walk L+3,L+6,L+1,L+8: 49674  (mixed: 36624 served, 6976 not)
+served by none of the three: 0
+pairs served by at least one walk of an engine already in the repository: 60128
+pairs served by NO such walk: 6254
+   Lambda L+3   10425
+   Lambda L+4   165
+   Lambda L+5   12
+   V L+3        4034
+   V L+4        13870
+   V L+5        37010
+   Leg4 K=L+6   37004
+   Leg4 K=L+7   27037
+   Leg4 K=L+8   10272
+over EVERY branch arm (132764): a time at L+1 before every ascent to L+8: 99209; descents to L+1 announced at K = L+6: 100010
+mixed pairs 87200: Lambda-only arms without a time at L+1 before some ascent to L+8: 47250; V-only arms failing the valley announcement: 34880
+over the arms of pairs missed by both canonical walks (38368 arms):
+   least step at which an arm stands at L+1 or below: 39
+   least step at which an arm stands at L+7 or above: 5
+   arms announcing every descent to L+1 (K = L+6): 38368
+   arms announcing every ascent to L+9 (K = L+7):  38368
+   arms announcing every descent to L+1 (K = L+7): 19184
+   arms announcing every ascent to L+8 (K = L+6):  38368
+   arms reaching L+8: 30250; reaching L+9: 20108
+pairs missed by both canonical walks: 19184; of them served by
+   L+3,L+6,L+1,L+8 (valley at the floor):   19184
+   L+3,L+6,L+2,L+8 (the Leg4 engine, K=L+6): 12930
+   L+3,L+7,L+2,L+8 (the Leg4 engine, K=L+7): 12568
+   L+3,L+8,L+2,L+8 (the Leg4 engine, K=L+8): 0
+served by NO walk of at most 3 legs: 0 (mixed: 0)
+walks serving ALL 66382 branch pairs met: 0
+walks serving ALL 19184 pairs missed by both canonical walks: 4
+   turns 2: 3456543212345678
+   turns 2: 34565432123456789
+   turns 2: 345676543212345678
+   turns 2: 3456765432123456789

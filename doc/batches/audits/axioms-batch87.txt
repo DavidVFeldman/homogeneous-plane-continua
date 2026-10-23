@@ -1,0 +1,27 @@
+'HPC.Description.IsCoveringFold.toFold₃' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Description.coveringStep_of_folds₃' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.block₃_val_ne' depends on axioms: [propext, Quot.sound]
+'HPC.Fold.model_covering_fold₃_recon86' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.recon87_isCrookedIvF' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.recon87_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.model_covering_fold₃_refuted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.ModelEndTime.ends_close' depends on axioms: [propext]
+'HPC.Fold.endRho_isCrookedIvF' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.endRho_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.model_end_time_refuted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.end15_isCrookedIvF' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.end15_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.model_end_time_refuted'' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Census87.mem_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Census87.modelT3End_of_check' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Census87.fold3_of_check' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Census87.modelT3End_census_K4' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'HPC.Fold.Census87.fold3_census_K4' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]

@@ -1,0 +1,213 @@
+census for batch 34 (max span 12)
+
+===== 1. the gate: ExtendStep at every interior basepoint =====
+  trims: G1 greedy left-first (span <= H-L-1), G2 greedy right-first,
+         IN the maximal stretch avoiding both extreme levels.
+  forms: E some order of the appended legs folds the whole arms,
+         O the order dictated by the inner member's end does.
+
+  span  6: 71 links, 25 interior basepoints, 3 distinct trims
+    trim [0,69] band [0,5] span 5: 16 family members, 25 interior basepoints served, E ok 19, O ok 16  [NO extension of any used member is a family member of [L,H]]
+    trim [1,70] band [1,6] span 5: 16 family members, 25 interior basepoints served, E ok 19, O ok 16  [NO extension of any used member is a family member of [L,H]]
+    trim [1,69] band [1,5] span 4: 6 family members, 25 interior basepoints served, E ok 23, O ok 13
+    passing with G1 only: E 19/25, O 16/25
+    passing with G2 only: E 19/25, O 16/25
+    passing with IN only: E 23/25, O 13/25
+    passing with G1 or G2: E 25/25, O 25/25
+    the two greedy orders give different verdicts at 18 basepoints
+    FAILURES of the gate (some trim must pass): E 0, O 0
+    trim [0,69]: basepoint 45 has an inner member that does not extend: [4, 2, 3, 1, 4]
+    trim [1,70]: basepoint 5 has an inner member that does not extend: [2, 5, 2]
+    trim [1,69]: basepoint 5 has an inner member that does not extend: [2, 4, 2]
+
+  span  7: 170 links, 104 interior basepoints, 3 distinct trims
+    trim [0,168] band [0,6] span 6: 40 family members, 104 interior basepoints served, E ok 82, O ok 73  [NO extension of any used member is a family member of [L,H]]
+    trim [1,169] band [1,7] span 6: 40 family members, 104 interior basepoints served, E ok 82, O ok 73  [NO extension of any used member is a family member of [L,H]]
+    trim [1,168] band [1,6] span 5: 16 family members, 104 interior basepoints served, E ok 90, O ok 64
+    passing with G1 only: E 82/104, O 73/104
+    passing with G2 only: E 82/104, O 73/104
+    passing with IN only: E 90/104, O 64/104
+    passing with G1 or G2: E 104/104, O 104/104
+    the two greedy orders give different verdicts at 62 basepoints
+    FAILURES of the gate (some trim must pass): E 0, O 0
+    trim [0,168]: basepoint 108 has an inner member that does not extend: [5, 2, 4, 1, 5]
+    trim [1,169]: basepoint 5 has an inner member that does not extend: [2, 6, 2]
+    trim [1,168]: basepoint 5 has an inner member that does not extend: [2, 5, 2]
+
+  span  8: 409 links, 319 interior basepoints, 3 distinct trims
+    trim [0,407] band [0,7] span 7: 96 family members, 319 interior basepoints served, E ok 254, O ok 240  [NO extension of any used member is a family member of [L,H]]
+    trim [1,408] band [1,8] span 7: 96 family members, 319 interior basepoints served, E ok 254, O ok 240  [NO extension of any used member is a family member of [L,H]]
+    trim [1,407] band [1,7] span 6: 40 family members, 319 interior basepoints served, E ok 273, O ok 199
+    passing with G1 only: E 254/319, O 240/319
+    passing with G2 only: E 254/319, O 240/319
+    passing with IN only: E 273/319, O 199/319
+    passing with G1 or G2: E 319/319, O 319/319
+    the two greedy orders give different verdicts at 158 basepoints
+    FAILURES of the gate (some trim must pass): E 0, O 0
+    trim [0,407]: basepoint 269 has an inner member that does not extend: [6, 3, 4, 2, 5, 1, 6]
+    trim [1,408]: basepoint 5 has an inner member that does not extend: [2, 7, 2]
+    trim [1,407]: basepoint 5 has an inner member that does not extend: [2, 6, 2]
+
+  span  9: 986 links, 868 interior basepoints, 3 distinct trims
+    trim [0,984] band [0,8] span 8: 224 family members, 868 interior basepoints served, E ok 704, O ok 671  [NO extension of any used member is a family member of [L,H]]
+    trim [1,985] band [1,9] span 8: 224 family members, 868 interior basepoints served, E ok 704, O ok 671  [NO extension of any used member is a family member of [L,H]]
+    trim [1,984] band [1,8] span 7: 96 family members, 868 interior basepoints served, E ok 736, O ok 586
+    passing with G1 only: E 704/868, O 671/868
+    passing with G2 only: E 704/868, O 671/868
+    passing with IN only: E 736/868, O 586/868
+    passing with G1 or G2: E 868/868, O 868/868
+    the two greedy orders give different verdicts at 394 basepoints
+    FAILURES of the gate (some trim must pass): E 0, O 0
+    trim [0,984]: basepoint 650 has an inner member that does not extend: [7, 3, 5, 2, 6, 1, 7]
+    trim [1,985]: basepoint 5 has an inner member that does not extend: [2, 8, 2]
+    trim [1,984]: basepoint 5 has an inner member that does not extend: [2, 7, 2]
+
+  span 10: 2379 links, 2229 interior basepoints, 3 distinct trims
+    trim [0,2377] band [0,9] span 9: 512 family members, 2229 interior basepoints served, E ok 1804, O ok 1755  [NO extension of any used member is a family member of [L,H]]
+    trim [1,2378] band [1,10] span 9: 512 family members, 2229 interior basepoints served, E ok 1804, O ok 1755  [NO extension of any used member is a family member of [L,H]]
+    trim [1,2377] band [1,9] span 8: 224 family members, 2229 interior basepoints served, E ok 1899, O ok 1531
+    passing with G1 only: E 1804/2229, O 1755/2229
+    passing with G2 only: E 1804/2229, O 1755/2229
+    passing with IN only: E 1899/2229, O 1531/2229
+    passing with G1 or G2: E 2229/2229, O 2229/2229
+    the two greedy orders give different verdicts at 948 basepoints
+    FAILURES of the gate (some trim must pass): E 0, O 0
+    trim [0,2377]: basepoint 1603 has an inner member that does not extend: [8, 4, 5, 3, 6, 2, 7, 1, 8]
+    trim [1,2378]: basepoint 5 has an inner member that does not extend: [2, 9, 2]
+    trim [1,2377]: basepoint 5 has an inner member that does not extend: [2, 8, 2]
+
+  span 11: 5742 links, 5556 interior basepoints, 3 distinct trims
+    trim [0,5740] band [0,10] span 10: 1152 family members, 5556 interior basepoints served, E ok 4502, O ok 4430  [NO extension of any used member is a family member of [L,H]]
+    trim [1,5741] band [1,11] span 10: 1152 family members, 5556 interior basepoints served, E ok 4502, O ok 4430  [NO extension of any used member is a family member of [L,H]]
+    trim [1,5740] band [1,10] span 9: 512 family members, 5556 interior basepoints served, E ok 4704, O ok 3904
+    passing with G1 only: E 4502/5556, O 4430/5556
+    passing with G2 only: E 4502/5556, O 4430/5556
+    passing with IN only: E 4704/5556, O 3904/5556
+    passing with G1 or G2: E 5556/5556, O 5556/5556
+    the two greedy orders give different verdicts at 2252 basepoints
+    FAILURES of the gate (some trim must pass): E 0, O 0
+    trim [0,5740]: basepoint 4010 has an inner member that does not extend: [9, 1, 9]
+    trim [1,5741]: basepoint 5 has an inner member that does not extend: [2, 10, 2]
+    trim [1,5740]: basepoint 5 has an inner member that does not extend: [2, 9, 2]
+
+  span 12: 13861 links, 13635 interior basepoints, 3 distinct trims
+    trim [0,13859] band [0,11] span 11: 2560 family members, 13635 interior basepoints served, E ok 11031, O ok 10932  [NO extension of any used member is a family member of [L,H]]
+    trim [1,13860] band [1,12] span 11: 2560 family members, 13635 interior basepoints served, E ok 11031, O ok 10932  [NO extension of any used member is a family member of [L,H]]
+    trim [1,13859] band [1,11] span 10: 1152 family members, 13635 interior basepoints served, E ok 11525, O ok 9691
+    passing with G1 only: E 11031/13635, O 10932/13635
+    passing with G2 only: E 11031/13635, O 10932/13635
+    passing with IN only: E 11525/13635, O 9691/13635
+    passing with G1 or G2: E 13635/13635, O 13635/13635
+    the two greedy orders give different verdicts at 5406 basepoints
+    FAILURES of the gate (some trim must pass): E 0, O 0
+    trim [0,13859]: basepoint 9681 has an inner member that does not extend: [10, 1, 10]
+    trim [1,13860]: basepoint 5 has an inner member that does not extend: [2, 11, 2]
+    trim [1,13859]: basepoint 5 has an inner member that does not extend: [2, 10, 2]
+
+===== 1b. the gate over all inner trims (band inside [L+1,H-1]) =====
+  For each basepoint: is there a band [L',H'] with L+1 <= L', H' <= H-1
+  and a maximal stretch of that band containing the basepoint, such that
+  some member of the band's free family folds both inner arms and every
+  such member's oriented extension folds both whole arms?
+  span  6: 71 links, 25 interior basepoints, 10 family members swept
+           EVERY form, passing with some inner trim: 15/25   FAILURES 10
+           SOME  form, passing with some inner trim: 25/25   FAILURES 0
+           passing with the full inner band [L+1,H-1]: 13/25
+           least number of working bands at a passing basepoint: 1
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE EVERY FORM: 5 (level 3)
+           witness: at basepoint 5 (level 3), band [1,5], the member [2, 4, 2] serves both inner arms but its oriented extension does not serve both whole arms
+  span  7: 170 links, 104 interior basepoints, 34 family members swept
+           EVERY form, passing with some inner trim: 70/104   FAILURES 34
+           SOME  form, passing with some inner trim: 104/104   FAILURES 0
+           passing with the full inner band [L+1,H-1]: 64/104
+           least number of working bands at a passing basepoint: 1
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE EVERY FORM: 5 (level 3)
+           witness: at basepoint 5 (level 3), band [1,6], the member [2, 5, 2] serves both inner arms but its oriented extension does not serve both whole arms
+  span  8: 409 links, 319 interior basepoints, 98 family members swept
+           EVERY form, passing with some inner trim: 221/319   FAILURES 98
+           SOME  form, passing with some inner trim: 319/319   FAILURES 0
+           passing with the full inner band [L+1,H-1]: 199/319
+           least number of working bands at a passing basepoint: 1
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE EVERY FORM: 5 (level 3)
+           witness: at basepoint 5 (level 3), band [1,7], the member [2, 6, 2] serves both inner arms but its oriented extension does not serve both whole arms
+  span  9: 986 links, 868 interior basepoints, 258 family members swept
+           EVERY form, passing with some inner trim: 624/868   FAILURES 244
+           SOME  form, passing with some inner trim: 868/868   FAILURES 0
+           passing with the full inner band [L+1,H-1]: 586/868
+           least number of working bands at a passing basepoint: 1
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE EVERY FORM: 5 (level 3)
+           witness: at basepoint 5 (level 3), band [1,8], the member [2, 7, 2] serves both inner arms but its oriented extension does not serve both whole arms
+  span 10: 2379 links, 2229 interior basepoints, 642 family members swept
+           EVERY form, passing with some inner trim: 1663/2229   FAILURES 566
+           SOME  form, passing with some inner trim: 2229/2229   FAILURES 0
+           passing with the full inner band [L+1,H-1]: 1531/2229
+           least number of working bands at a passing basepoint: 1
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE EVERY FORM: 5 (level 3)
+           witness: at basepoint 5 (level 3), band [1,9], the member [2, 8, 2] serves both inner arms but its oriented extension does not serve both whole arms
+  span 11: 5742 links, 5556 interior basepoints, 1538 family members swept
+           EVERY form, passing with some inner trim: 4370/5556   FAILURES 1186
+           SOME  form, passing with some inner trim: 5556/5556   FAILURES 0
+           passing with the full inner band [L+1,H-1]: 3904/5556
+           least number of working bands at a passing basepoint: 1
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE EVERY FORM: 5 (level 3)
+           witness: at basepoint 5 (level 3), band [1,10], the member [2, 9, 2] serves both inner arms but its oriented extension does not serve both whole arms
+  span 12: 13861 links, 13635 interior basepoints, 3586 family members swept
+           EVERY form, passing with some inner trim: 11229/13635   FAILURES 2406
+           SOME  form, passing with some inner trim: 13635/13635   FAILURES 0
+           passing with the full inner band [L+1,H-1]: 9691/13635
+           least number of working bands at a passing basepoint: 1
+           oriented extensions that are not members of the free family of [L,H]: 0
+           FIRST BASEPOINT FAILING THE EVERY FORM: 5 (level 3)
+           witness: at basepoint 5 (level 3), band [1,11], the member [2, 10, 2] serves both inner arms but its oriented extension does not serve both whole arms
+
+===== 2. the trims themselves =====
+  span  6: 71 links; greedy orders differ at 25 interior basepoints;
+           IN differs from both greedy trims at 25; IN has span != span-2 at 0;
+           IN's band is not exactly [L+1,H-1] at 0
+  span  7: 170 links; greedy orders differ at 104 interior basepoints;
+           IN differs from both greedy trims at 104; IN has span != span-2 at 0;
+           IN's band is not exactly [L+1,H-1] at 0
+  span  8: 409 links; greedy orders differ at 319 interior basepoints;
+           IN differs from both greedy trims at 319; IN has span != span-2 at 0;
+           IN's band is not exactly [L+1,H-1] at 0
+  span  9: 986 links; greedy orders differ at 868 interior basepoints;
+           IN differs from both greedy trims at 868; IN has span != span-2 at 0;
+           IN's band is not exactly [L+1,H-1] at 0
+  span 10: 2379 links; greedy orders differ at 2229 interior basepoints;
+           IN differs from both greedy trims at 2229; IN has span != span-2 at 0;
+           IN's band is not exactly [L+1,H-1] at 0
+  span 11: 5742 links; greedy orders differ at 5556 interior basepoints;
+           IN differs from both greedy trims at 5556; IN has span != span-2 at 0;
+           IN's band is not exactly [L+1,H-1] at 0
+  span 12: 13861 links; greedy orders differ at 13635 interior basepoints;
+           IN differs from both greedy trims at 13635; IN has span != span-2 at 0;
+           IN's band is not exactly [L+1,H-1] at 0
+
+===== 3. a trace: bing 0 8, basepoint 57, the IN trim iterated =====
+  step 0: stretch [0,408] band [0,8] span 8, level 3
+  step 1: stretch [1,407] (407 links) band [1,7] span 6, level 3
+  step 2: stretch [42,98] (57 links) band [2,6] span 4, level 3
+  step 3: stretch [49,57] (9 links) band [3,5] span 2, level 3  [basepoint at an end]  [basepoint at an extreme level]
+
+===== 4. the witness in full: bing 0 6, basepoint 5 =====
+  rho = 0 1 2 1 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6
+  basepoint 5 has level 3
+  band [1,4]: stretch [1,28] (28 links), actual band [1,4]
+    member [2, 3, 2]  inner G:yes T:yes   extension [2, 3, 2, 5, 1] member of [0,6]:yes  whole G:yes T:no 
+    member [3, 2, 3]  inner G:yes T:yes   extension [3, 2, 3, 1, 5] member of [0,6]:yes  whole G:yes T:yes
+  band [1,5]: stretch [1,69] (69 links), actual band [1,5]
+    member [2, 4, 2]  inner G:yes T:yes   extension [2, 4, 2, 5, 1] member of [0,6]:yes  whole G:yes T:no 
+    member [3, 2, 4]  inner G:yes T:yes   extension [3, 2, 4, 1, 5] member of [0,6]:yes  whole G:yes T:no 
+    member [3, 4, 2]  inner G:no  T:no    extension [3, 4, 2, 5, 1] member of [0,6]:yes  whole G:no  T:no 
+    member [4, 2, 4]  inner G:yes T:yes   extension [4, 2, 4, 1, 5] member of [0,6]:yes  whole G:yes T:no 
+    member [2, 3, 2, 4]  inner G:yes T:yes   extension [2, 3, 2, 4, 1, 5] member of [0,6]:yes  whole G:yes T:no 
+    member [4, 3, 4, 2]  inner G:no  T:no    extension [4, 3, 4, 2, 5, 1] member of [0,6]:yes  whole G:no  T:no 
+  band [2,5]: stretch [4,6] (3 links), actual band [2,3]  [extremes not attained: not a trim]
+
+done

@@ -1,0 +1,227 @@
+%======================================================================
+\chapter{Atomic arcs are snake-like}\label{ch:atomic}
+%======================================================================
+
+Let $f\colon M\to\Sph$ be the map of \vseven{Theorem~9.8}: open, atomic, with pseudo-arc fibres. To compare $M$ with a circle of pseudo-arcs we cut it
+into its two halves (Chapter~\ref{ch:circles}), and Theorem~10 of Bing and Jones needs each half to be snake-like. This chapter proves that. The tool
+is Bing's 1951 theorem that a continuum built from snake-like hereditarily indecomposable ``layers'' is snake-like; the fibres of an atomic map play the
+role of the layers.
+
+Throughout, $X$ is a compact metric space. A continuum $K$ is \emph{$\varepsilon$-coverable} if some chain of mesh $<\varepsilon$ (an
+\emph{$\varepsilon$-chain}) covers it; $K$ is snake-like if it is $\varepsilon$-coverable for every $\varepsilon>0$ (\vthree{Chapter~5}). A chain $F$
+\emph{refines} a chain $D$ if each link of $F$ lies in some link of $D$.
+
+\formal{\lean{HPC.Plane.EpsCoverable}, \lean{HPC.Plane.isEpsChain_of_refines}.}
+
+\section{Atomic maps onto the interval}
+
+\begin{lemma}[Saturation]\label{lem:saturation}
+Let $f\colon X\to Y$ be atomic and $L\subseteq X$ a continuum. Either $L$ lies in one fibre, or $L=f^{-1}(f(L))$; in the second case $L$ contains every
+fibre it meets.
+\end{lemma}
+
+\begin{proof}
+Suppose $L$ lies in no fibre. If $x\in f^{-1}(f(L))$, pick $l\in L$ with $f(l)=f(x)$. The continuum $L$ meets the fibre $\fib f{f(l)}$ and does not lie in
+it, so it contains it, and $x\in L$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.subset_fibre_or_saturated}, \lean{HPC.BJ59.fibre_subset_of_saturated}.}
+
+From now on $f\colon X\to\I$ is continuous and atomic, and its fibres are continua. Then $\G ab=\fib f{[a,b]}$ is a continuum for $a\le b$, and $X$ itself is
+a continuum (Corollary~\ref{cor:G-connected}).
+
+\formal{\lean{HPC.BJ59.isPreconnected_preimage_of_fibres}, \lean{HPC.BJ59.isContinuum_univ_of_fibres}.}
+
+Recall Bing's \emph{condition B} for a point $p$ of a continuum $M$: of any two subcontinua of $M$ containing $p$, one contains the other.
+
+\begin{lemma}[Terminal points]\label{lem:condB}
+Suppose the fibres of $f$ are hereditarily indecomposable, and let $a\le b$. Every point $\mu$ with $f(\mu)\in\set{a,b}$ satisfies condition B in $\G ab$.
+\end{lemma}
+
+\begin{proof}
+Let $H,K\subseteq\G ab$ be continua containing $\mu$, and let $F=\fib f{f(\mu)}$. By Lemma~\ref{lem:saturation} each of $H$, $K$ lies in $F$ or is saturated.
+If both lie in $F$, then $H\cup K$ is a continuum in the hereditarily indecomposable $F$, so one of $H$, $K$ contains the other (otherwise $H\cup K$ would
+be decomposable). If $H\subseteq F$ and $K$ is saturated, then $K\supseteq F\supseteq H$ by the second part of the saturation lemma; symmetrically in the
+opposite case. If both are saturated, $f(H)$ and $f(K)$ are intervals in $[a,b]$ containing the end point $f(\mu)$ of $[a,b]$, so they are nested, and so
+are their preimages $H$ and $K$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.condB_preimage_Icc}, with \lean{HPC.BJ59.nested_of_common_bound}.}
+
+\begin{proposition}\label{prop:atomic-hu}
+If the fibres of $f$ are snake-like, $X$ is hereditarily unicoherent: for subcontinua $H$, $L$ with $H\cup L$ a continuum, $H\cap L$ is connected.
+\end{proposition}
+
+\begin{proof}
+Let $K=H\cup L$. Since $K$ is connected, $H\cap L\neq\emptyset$. If $K$ lies in a fibre, use that snake-like continua are hereditarily unicoherent
+(\vthree{Theorem~5.4}). Otherwise, if $H$ lies in a fibre $\fib fy$, then $L$ meets $\fib fy$ (at a point of $H\cap L$), and $L\not\subseteq\fib fy$ (else
+$K\subseteq\fib fy$), so $L\supseteq\fib fy\supseteq H$ and $H\cap L=H$. Likewise if $L$ lies in a fibre. In the remaining case both are saturated, and
+$H\cap L=f^{-1}(f(H)\cap f(L))$ is the preimage of the intersection of two intervals, which is connected by Lemma~\ref{lem:monotone-preimage}.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isHereditarilyUnicoherent_of_atomic}, with \lean{HPC.Plane.isHereditarilyUnicoherent_of_isSnakeLike}.}
+
+\section{Bing's minimal counterexample}
+
+\begin{lemma}[Brouwer reduction]\label{lem:brouwer}
+If a continuum $M\subseteq X$ is not $\varepsilon$-coverable, it contains a subcontinuum $S$ which is not $\varepsilon$-coverable, while every proper
+subcontinuum of $S$ is.
+\end{lemma}
+
+\begin{proof}
+Order the subcontinua of $M$ that are not $\varepsilon$-coverable by inclusion. A decreasing sequence $S_1\supseteq S_2\supseteq\cdots$ of them has
+intersection $S_\infty$, a continuum (\vthree{Chapter~1}). If a chain covered $S_\infty$, its union $W$ would be an open set containing
+$\bigcap_nS_n$, so $S_n\subseteq W$ for some $n$ by compactness; hence $S_\infty$ is not $\varepsilon$-coverable either. In a compact metric space this
+sequential condition suffices for a minimal element (the form of Zorn's lemma of \vthree{Chapter~2}).
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_minimal_notCoverable}.}
+
+The heart of Bing's argument is a way of moving a point to the end of a chain. Bing proved it for a point satisfying condition B (his 1951 Theorem~10);
+Fugate extended it to terminal subcontinua. A subcontinuum $A$ of $M$ is \emph{terminal} if for subcontinua $K,L$ of $M$ both meeting $A$,
+$K\subseteq A\cup L$ or $L\subseteq K\cup A$. For $A=\set p$ this is condition B.
+
+\formal{\lean{HPC.Plane.IsTerminalSub}, \lean{HPC.Plane.isTerminalSub_singleton_iff}.}
+
+\begin{theorem}[Bing 1951, Theorem~10; Fugate 1966, Lemma~1]\label{thm:fugate1}
+Let $M$ be a continuum, $A$ a terminal subcontinuum of $M$ and $D$ a chain covering $M$. There is a chain $F$ covering $M$ and refining $D$ whose last link
+contains a point of $A$ outside the closure of the union of the other links.
+\end{theorem}
+
+The proof is long; we give its structure. Call a chain $F$ a \emph{Theorem-10 chain for $(K,p)$ under $D$} if it covers $K$, refines $D$, has $p$ in its
+first link and $p$ in the closure of no other link. Theorem~\ref{thm:fugate1} asks for a Theorem-10 chain for $(M,p)$ with some $p\in A$ (then reverse it).
+
+\formal{\lean{HPC.Plane.IsT10Chain}.}
+
+\begin{lemma}[Bing's surgery]\label{lem:surgery}
+Let $D=(D_0,\dots,D_{m-1})$ cover the continuum $M$, let $p\in M$, and let $K\subseteq M$. Suppose $F=(F_0,\dots,F_{k-1})$ is a Theorem-10 chain for
+$(K,p)$ under $D$, and that some $y\ne p$ lies in $F_{k-1}\cap D_0$, such that every subcontinuum of $M$ containing $p$ and not $y$ lies in $K$. Then there
+is a Theorem-10 chain for $(M,p)$ under $D$.
+\end{lemma}
+
+\begin{proof}[Proof in outline]
+Take a small open ball $N$ about $y$ with $\cl N\subseteq F_{k-1}\cap D_0$ and $p\notin\cl N$. The component of $p$ in the compact set $M\setminus N$ lies in
+$K$, hence in the union of $F$. A component of a compact space is the intersection of the clopen sets containing it (\vthree{Chapter~1}), so $M\setminus N$
+splits into disjoint compact sets $H\ni p$ and $H'$ with $H$ inside the union of $F$. Let $U\supseteq H$ and $V\supseteq H'$ be open with disjoint
+closures and $p\notin\cl V$. The sequence
+\[
+F_0\cap U,\ \dots,\ F_{k-2}\cap U,\ (F_{k-1}\cap U)\cup N,\ D_0\cap V,\ (D_1\cap V)\setminus\cl N,\ \dots,\ (D_{m-1}\cap V)\setminus\cl N
+\]
+covers $M$, its links are open and refine $D$, and links two or more places apart are disjoint. Removing empty links and trimming (\vone{Lemma~2.5}
+and its companion for such ``weak chains'') gives a chain with the required properties; $p$ is still only in the first link.
+\end{proof}
+
+\formal{\lean{HPC.Plane.surgery_of_sep} (Bing's original form with condition B is \lean{HPC.Plane.theorem10_1951_of_lastLink}); the trimming is
+\lean{HPC.Plane.exists_chain_of_weak}.}
+
+\begin{lemma}[The composant step]\label{lem:composant-step}
+If $A$ is a proper terminal subcontinuum of $M$ and every link of a chain $D$ covering $M$ meets $M$, some proper subcontinuum of $M$ containing $A$ meets
+every link of $D$.
+\end{lemma}
+
+\begin{proof}
+Fix $z\in M\setminus A$. For each link $D_i$, boundary bumping (\vthree{Chapter~1}) gives a subcontinuum $K_i\subseteq M$ meeting $A$ and $D_i$, and missing
+$z$. By terminality the sets $A\cup K_i$ are linearly ordered by inclusion; the largest one is a proper subcontinuum of $M$ (it misses $z$) containing $A$
+and meeting every link.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_proper_superset_meeting_all_links}, with \lean{HPC.Plane.IsTerminalSub.mono}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:fugate1} in outline]
+Strong induction on the number $m$ of links of $D$. Suppose the statement fails for some $M\supseteq A$ under $D$; by Zorn's lemma take a minimal such
+$M'$ among the subcontinua of $M$ containing $A$ (terminality passes to them). Then every link of $D$ meets $M'$ (else apply the induction hypothesis to the
+shorter chain). If $A$ met the first or last link of $D$, removing a small closed ball about a point $p\in A$ there from the other links would give a
+Theorem-10 chain directly. So $A$ misses the end links. Lemma~\ref{lem:composant-step} gives a proper subcontinuum $K\supseteq A$ of $M'$ meeting every
+link; by minimality $K$ has a Theorem-10 chain $F$ from some $p\in A$. Choose $F$ so that its last link is as low as possible; it contains a point
+$y\in K\cap(D_0\cup D_{m-1})$, and $y\notin A$. By terminality, every subcontinuum of $M'$ containing $p$ and not $y$ lies in $K$, and
+Lemma~\ref{lem:surgery} (or its mirror form) gives a Theorem-10 chain for $M'$, a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Plane.fugate_lemma1}, from \lean{HPC.Plane.lemma1_aux}, \lean{HPC.Plane.t10Chain_of_mem_first},
+\lean{HPC.Plane.t10Chain_of_mem_last}. Fugate assumes $M$ atriodic and hereditarily unicoherent; the formal proof does not use either hypothesis.}
+
+\section{Gluing two chains}
+
+\begin{proposition}[Fugate, p.~392]\label{prop:glue-halves}
+Let $M$ be a hereditarily unicoherent continuum, $M=A\cup C$ with $A$, $C$ continua, and $\mu\in A\cap C$. Suppose that every subcontinuum $Q\subseteq C$
+which meets $A\cap C$ but does not lie in it contains $A\cap C$ (``Claim 1''). If $A$ is covered by an $\varepsilon$-chain $E=(E_0,\dots,E_{x-1})$ with
+$\mu\in E_{x-1}$, and $C$ by an $\varepsilon$-chain $F=(F_0,\dots,F_{y-1})$ with $\mu\in F_{y-1}$, then $M$ is $\varepsilon$-coverable.
+\end{proposition}
+
+\begin{proof}
+Take an open $O\ni\mu$ with $\cl O\subseteq E_{x-1}\cap F_{y-1}$, and let $E^*$ be the union of $E$.
+
+\emph{Claim 2: no connected $Z\subseteq M\setminus O$ meets both $A\setminus O$ and $M\setminus E^*$.} Otherwise let $N=\cl Z$, a continuum in $M\setminus O$
+containing a point $a\in A$ and a point $z\notin E^*$; then $z\notin A$, so $z\in C$. Since $N$ meets $A$ and $C$ and lies in $A\cup C$, it meets $A\cap C$.
+By hereditary unicoherence $Q=N\cap C$ is a continuum; it lies in $C$, meets $A\cap C$, and contains $z\notin A\cap C$. By Claim~1, $A\cap C\subseteq Q\subseteq
+N$. But $\mu\in A\cap C$ and $\mu\in O$, which $N$ misses.
+
+By Claim~2 and the separation of two closed sets in a compact space when no connected set meets both (\vthree{Chapter~1}), $M\setminus O=H\cup L$ with $H$,
+$L$ disjoint and closed, $A\setminus O\subseteq H$ and $M\setminus E^*\subseteq L$. Let $S\supseteq H$, $T\supseteq L$ be disjoint open sets. Consider
+\[
+(E_0\cap S)\setminus\cl O,\ \dots,\ (E_{x-2}\cap S)\setminus\cl O,\ E_{x-1}\cap S,\ (F_{y-1}\cap T)\cup O,\ F_{y-2}\cap T,\ \dots,\ F_0\cap T.
+\]
+Each link lies in a link of $E$ or of $F$ (note $O\subseteq F_{y-1}$), so the mesh is $<\varepsilon$. Links two or more places apart are disjoint: within one
+half by the chain property, across the middle because $S\cap T=\emptyset$ and the first $x-1$ links miss $\cl O$. The links cover $M$: a point of $O$ is in
+the middle link; a point of $H$ lies in $E^*\cap S$, and if it lies in $\cl O$ it lies in $E_{x-1}\cap S$; a point of $L$ lies in $T$ and in $C$ (if it were
+in $A$ it would be in $A\setminus O\subseteq H$), hence in some $F_j\cap T$. Trimming the weak chain gives an $\varepsilon$-chain covering $M$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.epsCoverable_of_halves}, with Claim~2 as \lean{HPC.Plane.claim2}. Fugate uses $\varepsilon/2$-chains; no mesh is lost.}
+
+\section{The theorem}
+
+\begin{theorem}[Bing 1951, Theorem~11, for atomic maps]\label{thm:atomic-snake}
+Let $X$ be a compact metric space and $f\colon X\to\I$ a continuous atomic map whose fibres are snake-like and hereditarily indecomposable. Then $X$ is
+snake-like.
+\end{theorem}
+
+\begin{proof}
+$X$ is a continuum. Suppose it is not $\varepsilon$-coverable, and let $S$ be a minimal non-$\varepsilon$-coverable subcontinuum (Lemma~\ref{lem:brouwer}).
+$S$ lies in no fibre, since fibres are snake-like; by Lemma~\ref{lem:saturation}, $S=f^{-1}(f(S))=\G ab$ with $f(S)=[a,b]$, and $a<b$. Let $c=(a+b)/2$,
+$A=\G ac$ and $C=\G cb$. These are continua with $A\cup C=S$ and $A\cap C=\fib fc$, and both are proper subcontinua of $S$ (they miss $\fib fb$ and $\fib
+fa$), hence $\varepsilon$-coverable. Fix $\mu\in\fib fc$.
+
+By Lemma~\ref{lem:condB}, $\mu$ satisfies condition B in $A$ and in $C$. Apply Theorem~\ref{thm:fugate1} to $A$ with the terminal subcontinuum $\set\mu$ and an $\varepsilon$-chain
+covering $A$: we get an $\varepsilon$-chain covering $A$ with $\mu$ in its last link. Likewise for $C$. Claim~1 of Proposition~\ref{prop:glue-halves} is
+atomicity at the fibre $A\cap C=\fib fc$, and $S$ is hereditarily unicoherent (Proposition~\ref{prop:atomic-hu}). So $S$ is $\varepsilon$-coverable, a
+contradiction.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isSnakeLike_of_atomic'}; the case of pseudo-arc fibres is \lean{HPC.BJ59.isSnakeLike_of_atomic}. Openness of $f$ is not needed.
+Bing's own theorem, for his ``layers'', is \lean{HPC.Plane.theorem11_1951}.}
+
+\begin{corollary}\label{cor:atomic-halves}
+If $X$ is compact and $f\colon X\to\Sph$ is an atomic circle-of-pseudo-arcs map, each half $f_s\colon X_s\to\I$ is a continuous arc of pseudo-arcs and each
+half $X_s$ is snake-like. Hence $f$ has snake-like halves.
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{prop:halves}, $f_s$ is a continuous, open, atomic arc of pseudo-arcs on the compact space $X_s$. Its fibres are pseudo-arcs, so snake-like
+and hereditarily indecomposable, and Theorem~\ref{thm:atomic-snake} applies.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.isContArcPA_halfMap_of_atomic}, \lean{HPC.BJ59.isSnakeLike_halfSet_of_atomic},
+\lean{HPC.BJ59.IsAtomicCircPAMap.isSnakeHalvesMap}.}
+
+\begin{remark}
+Domokos and Prajs obtain Corollary~\ref{cor:atomic-halves} from a proposition of Hagopian, Marsh and Prajs, which requires the halves to be atriodic. The
+argument above needs no atriodicity.
+\end{remark}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that Lemma~\ref{lem:condB} fails for points of an interior fibre of $\G ab$: give two subcontinua through such a point neither of which contains the
+other.
+\end{exercise}
+
+\begin{exercise}
+Show that the projection $P\times\I\to\I$, $P$ a pseudo-arc, satisfies every hypothesis of Theorem~\ref{thm:atomic-snake} except atomicity, and that
+$P\times\I$ is not snake-like. (For three points $p_1,p_2,p_3\in P$, the continuum $P\times\set0\cup\set{p_1,p_2,p_3}\times\I$ is a
+triod.)
+\end{exercise}
+
+\begin{exercise}
+Prove Lemma~\ref{lem:composant-step} for $A=\set p$ directly from condition B.
+\end{exercise}

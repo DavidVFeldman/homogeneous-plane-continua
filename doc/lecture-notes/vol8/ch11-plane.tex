@@ -1,0 +1,146 @@
+%======================================================================
+\chapter{A circle of pseudo-arcs in the plane}\label{ch:plane}
+%======================================================================
+
+We realize the circular descriptions of Chapter~\ref{ch:circdescr} in the plane, using the sweep patterns of Chapter~\ref{ch:sweep}. The construction is
+the circular analogue of the plane pseudo-arc of \vone{Chapter~5}: there each new chain was obtained from a standard chain by a homeomorphism of the plane
+built from joint positions and a shear (\vone{Proposition~5.14}). Around a circle the linear shear of Volume~1 cannot close up; it is replaced by a shear on the
+universal cover of the punctured plane, which commutes with the deck translations and so descends.
+
+The plane carries the sup metric, as in Volume~1.
+
+\section{Standard circular chains}
+
+\begin{definition}\label{def:std-circ}
+For $t\in\Z$ let $R(t)=(2t,2t+3)\times(0,1)$ and $Z(t)=[2t+8/5,\,2t+17/5]\times[0,1]$ (the standard rectangles and zones of \vone{Definition~5.1}, with integer index). For
+$N\ge1$ let $\cexp_N(u,v)=(e^v\cos(\pi u/N),\,e^v\sin(\pi u/N))$, a covering map of $\R^2$ onto $\R^2\setminus\set0$ with period $2N$ in $u$. The \emph{standard circular chain}
+with $N$ links has links $\cexp_N(R(t))$ and zones $\cexp_N(Z(t))$, $t\in\Z$.
+\end{definition}
+
+\formal{\lean{HPC.BJ59.stdRectZ}, \lean{HPC.BJ59.zoneZ}, \lean{HPC.BJ59.circExp}, \lean{HPC.BJ59.stdCircLink}, \lean{HPC.BJ59.stdCircZone}.}
+
+The links are open, preconnected (images of rectangles under an open map), lie in the closed annulus $1\le\abs p\le e$, and satisfy $\cexp_N(R(t+N))=\cexp_N(R(t))$.
+
+\formal{\lean{HPC.BJ59.CircStd.isOpen_stdCircLink}, \lean{HPC.BJ59.CircStd.isPreconnected_stdCircLink}, \lean{HPC.BJ59.CircStd.stdCircLink_periodic}.}
+
+\begin{lemma}\label{lem:std-meet}
+For $N\ge4$, $\cexp_N(R(s))$ meets $\cexp_N(R(t))$ if and only if $s-t$ is within $1$ of a multiple of $N$.
+\end{lemma}
+
+\begin{proof}
+Two points have the same image if and only if their $v$-coordinates agree and their $u$-coordinates differ by a multiple of $2N$. The intervals $(2s,2s+3)$ and
+$(2t+2Nn,2t+2Nn+3)$ meet if and only if $\abs{s-t-Nn}\le1$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.stdCircLink_meet_iff}.}
+
+\section{The circular planar step}
+
+\begin{theorem}[The circular planar step]\label{thm:circ-step}
+Let $\Phi$ be a homeomorphism of the plane, $N\ge4$, $\varepsilon>0$ and $B\in\R$. There is $S\ge12$ with the following property. Let $Q\ge2$, $y_0\in\R$, and $x\colon\Z\to\Z$ with
+$x(t+Q)=x(t)+1$, unit steps, $S$-slow ($x(s)+2\le x(t)$ implies $\abs{s-t}\ge S$) and $\abs{x(t)-(y_0+t/Q)}\le B$. Then there is a homeomorphism $\psi$ of the plane such that,
+writing $L'_t=\Phi\psi\cexp_{QN}(R(t))$ for the new links and $L_l=\Phi\cexp_N(R(l))$ for the old ones:
+\begin{enumerate}[label=(\arabic*)]
+\item $\cl{L'_t}\subseteq L_{x(t)}$;
+\item if $L'_t$ meets $L_l$, then $x(t')=l+nN$ for some $\abs{t'-t}\le1$ and $n\in\Z$;
+\item each $L'_t$ has diameter $\le\varepsilon$ or lies in an old zone $\Phi\cexp_N(Z(k))$;
+\item each new zone $\Phi\psi\cexp_{QN}(Z(t))$ has diameter $\le\varepsilon$.
+\end{enumerate}
+\end{theorem}
+
+\formal{\lean{HPC.BJ59.circ_step}.}
+
+\begin{proof}[Proof in outline]
+\emph{Joint positions.} Define $P(t)\in\R$ for $t\in\Z$ by the formulas of \vone{Definition~5.6} applied to the lifted pattern $x$: at a \emph{stay} ($x(t-1)=x(t)$),
+$P(t)=2x(t)+3/2+\varphi(t)/4$, where $\varphi(t)=(\ell-r)/(\ell+r)$ is computed from the (doubled, capped at $2S$) distances $\ell$, $r$ to the nearest indices with values $x(t)\mp1$;
+at a \emph{transition}, $P(t)=2\min(x(t-1),x(t))+5/2$. The formulas are local, so $P(t+QN)=P(t)+2N$, and the link lemma of \vone{Lemma~5.8}, which concerns a bounded window of
+indices, transfers: it describes the horizontal position of the new links relative to the old ones.
+
+\emph{Interpolation.} Let $\Ph\colon\R\to\R$ equal $P(t)$ on $[2t-2/5,\,2t+7/5]$ and be linear from $P(t)$ to $P(t+1)$ on $[2t+7/5,\,2t+8/5]$. It is continuous, $\Ph(u+2QN)=\Ph(u)+2N$,
+and $\Ph$ is constant on the $u$-range of each zone.
+
+\emph{The shear on the cover.} For small constants $\varepsilon_0,C>0$ put
+\[
+\widetilde\Psi(u,v)=\Bigl(\Ph(u)+\varepsilon_0v,\ \tfrac12+C\bigl(\Ph(u)-u/Q-c\bigr)+C\varepsilon_0v\Bigr),\qquad c=2y_0+3/2.
+\]
+It is a homeomorphism of $\R^2$: it is the vertical shear $(u,v)\mapsto(u,\Ph(u)-u/Q+\varepsilon_0v)$ followed by the linear map $(u,w)\mapsto(u/Q+w,\,1/2+C(w-c))$, of determinant
+$C/Q\neq0$. It commutes with the deck translations: $\widetilde\Psi(u+2QN,v)=\widetilde\Psi(u,v)+(2N,0)$.
+
+\emph{Heights.} $\abs{\Ph(u)-u/Q-c}\le2B+4$, so for $C(2B+5)\le1/8$ and $\varepsilon_0\le1/20$, $\widetilde\Psi$ maps $\R\times[0,1]$ into heights in $(1/4,3/4)$. Two passes of the new chain
+over the same place are thereby separated vertically by $C$ times the drift between them.
+
+\emph{Descent.} Define $\psi(\cexp_{QN}(p))=\cexp_N(\widetilde\Psi(p))$ and $\psi(0)=0$. By equivariance (of $\widetilde\Psi$ and its inverse) $\psi$ is a well-defined bijection; it is
+continuous away from $0$ because $\cexp$ is a local homeomorphism, and continuous at $0$ (with its inverse) because the second coordinate of $\widetilde\Psi(u,v)$ is $C\varepsilon_0v$ plus a
+bounded function of $u$, so $\abs{\psi(w)}\le e^{B'}\abs w^{C\varepsilon_0}$.
+
+\emph{The four properties.} On the cover, $\widetilde\Psi(R(t))$ has horizontal projection in $[\min(P(t),P(t+1)),\,\max(P(t),P(t+1))+\varepsilon_0]$ and heights in $(1/4,3/4)$. Containment
+and tightness are then the horizontal analysis of the link lemma, read modulo $2N$ through $\cexp_N$. A stay link has image of width $\abs{P(t+1)-P(t)}+\varepsilon_0$ and height
+$C(\abs{P(t+1)-P(t)}+3/Q+\varepsilon_0)$, and stay steps are $O(1/S)$, so stay links are small for large $S$; transition links lie in old zones; the image of a zone lies in a box of width
+$\varepsilon_0$ and height $C(9/(5Q)+\varepsilon_0)$. Uniform continuity of $\cexp_N$ on $\R\times[0,1]$ (it is periodic) and of $\Phi$ on the compact annulus $1\le\abs p\le e$ converts these
+bounds into (3) and (4). The constants are chosen in the order $\varepsilon_0$, $C$, then $S$.
+\end{proof}
+
+\formal{The joint positions are \lean{HPC.BJ59.CircJ.jointZ}, with the link lemma \lean{HPC.BJ59.CircJ.link_facts_Z}; the interpolation is \lean{HPC.BJ59.Ramp.phat}; the
+shear is \lean{HPC.BJ59.cover}; the descent is \lean{HPC.BJ59.Descent.descHomeo}, with \lean{HPC.BJ59.Descent.E}; the estimates are
+\lean{HPC.BJ59.CircStepAux.small_images} and \lean{HPC.BJ59.CircStepAux.phat_height}.}
+
+\section{The assembly}
+
+\begin{definition}\label{def:levels}
+A \emph{level} is a quadruple $(N,\Phi,m,o)$ with $N\ge4$, $\Phi$ a homeomorphism of the plane, $m\ge5$, $m+4\le N$, and $o\in\R$. Level $0$ is $(16,\mathrm{id},5,0)$. From level $i$, with
+$\eta_i=2^{-i}$ and $B=m/2-1/4$: take $S$ from Theorem~\ref{thm:circ-step} for $(\Phi,N,\eta_i,B)$; take the sweep pattern $x=x_{m,S}$ of Definition~\ref{def:sweepX}, with $Q$ its
+period; take $\psi$ from Theorem~\ref{thm:circ-step} with $y_0=1/4$. Level $i+1$ is
+\[
+\bigl(QN,\ \Phi\circ\psi,\ Q/2,\ o+1/(4N)\bigr).
+\]
+\end{definition}
+
+Then $Q/2=3Sz(m-2)z(m-1)\ge5$ and $Q/2+4\le QN$, so level $i+1$ is again a level.
+
+\formal{\lean{HPC.BJ59.CircPlane.Lvl}, \lean{HPC.BJ59.CircPlane.L0}, \lean{HPC.BJ59.CircPlane.next}, \lean{HPC.BJ59.CircPlane.lvl}.}
+
+\begin{theorem}\label{thm:circdescr-plane}
+Let $(N_k,\Phi_k,m_k,o_k)$ be the levels. The links $L_k(t)=\Phi_k\cexp_{N_k}(R(t))$, the patterns $\pi_k$ (the sweep pattern of step $k$), the offsets $o_k$ and the arc lengths
+$\lambda_k=m_k/N_k$ form a circular description in the plane.
+\end{theorem}
+
+\begin{proof}
+\emph{Links.} $K$ is the closed annulus $1\le\abs p\le e$: level-$0$ links lie in it, and all others by (nest). Openness, preconnectedness, periodicity and the meeting rule come from the standard
+circular chains (Lemma~\ref{lem:std-meet}).
+
+\emph{Patterns.} (nest) and (tight) are properties (1), (2) of Theorem~\ref{thm:circ-step}. Degree one: iterating $x(t+Q)=x(t)+1$ $N_k$ times gives $x(t+QN_k)=x(t)+N_k$. Unit steps: Theorem~\ref{thm:sweep-pattern}(b).
+
+\emph{Mesh.} Level-$0$ links and zones lie in the closed sup-ball of radius $e$, so have diameter at most $2e<8$. A level-$(i+1)$ link has diameter $\le\eta_i$ or lies in a level-$i$ zone, whose
+diameter is $\le\eta_{i-1}$ (property (4) at the previous step) or $<8$ when $i=0$. So $\diam L_k(t)\le16/2^k$.
+
+\emph{Arcs.} $\lambda_{k+1}=1/(2N_k)\to0$, and $5\le m_k=\lambda_kN_k$, $\lambda_kN_k+4\le N_k$ by the definition of a level. (arcNest): $\abs{c_{k+1}(t)-c_k(x(t))}=\abs{1/4+t/Q-x(t)}/N_k\le(m_k/2-1/4)/N_k=(\lambda_k-\lambda_{k+1})/2$ by
+Theorem~\ref{thm:sweep-pattern}(d). (surv): with $y=N_k(z-o_k)$ the hypothesis reads $\abs{y-l}\le m_k/2-1/2$, and Theorem~\ref{thm:sweep-pattern}(e) gives the conclusion multiplied by $N_k$ (note
+$\lambda_{k+1}/2=1/(4N_k)$, $\delta_{k+1}=1/(2QN_k)$). (crook): $\lambda_{k+1}N_{k+1}=Q/2=P$, and Theorem~\ref{thm:sweep-pattern}(f).
+\end{proof}
+
+\formal{\lean{HPC.BJ59.planeDescr}, \lean{HPC.BJ59.exists_circDescr_plane}, with \lean{HPC.BJ59.CircPlane.link_diam}, \lean{HPC.BJ59.CircPlane.arcNest},
+\lean{HPC.BJ59.CircPlane.surv}, \lean{HPC.BJ59.CircPlane.crook}.}
+
+\begin{theorem}[Bing and Jones, \S7]\label{thm:plane-example}
+Some plane continuum is a circle of pseudo-arcs.
+\end{theorem}
+
+\begin{proof}
+Theorems~\ref{thm:circdescr-plane} and~\ref{thm:circdescr}.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.bjPlaneExample}, a proof of the statement \lean{HPC.BJ59.BJPlaneExample}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that a linear shear $(u,v)\mapsto(u,v+cu)$ with $c\neq0$ does not commute with the translation $u\mapsto u+2QN$, and so does not descend through $\cexp_{QN}$.
+\end{exercise}
+
+\begin{exercise}
+Verify that $\widetilde\Psi$ is injective directly: if $\widetilde\Psi(u,v)=\widetilde\Psi(u',v')$, subtract $1/C$ times the second coordinate from the first.
+\end{exercise}
+
+\begin{exercise}
+Show that the continuum of Theorem~\ref{thm:plane-example} separates the plane into exactly two components. (It is homogeneous and decomposable; use \vseven{Chapter~9}.)
+\end{exercise}

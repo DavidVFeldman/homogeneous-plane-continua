@@ -1,0 +1,97 @@
+=== 1. maximum over basepoints of the least number of turning targets ===
+    (counting convention: an itinerary is ts[0] plus k turning targets;
+     the number reported is max over basepoints of the least such k)
+
+  regime 0 (free zigzags):
+    span  4 (   13 links): max least k = 1 ; unserved 0 (of them at an extreme level 0) ; distribution 1:13 ; walks swept 6
+    span  5 (   30 links): max least k = 1 ; unserved 0 (of them at an extreme level 0) ; distribution 1:30 ; walks swept 12
+    span  6 (   71 links): max least k = 2 ; unserved 0 (of them at an extreme level 0) ; distribution 1:46 2:25 ; walks swept 50
+    span  7 (  170 links): max least k = 2 ; unserved 0 (of them at an extreme level 0) ; distribution 1:66 2:104 ; walks swept 97
+    span  8 (  409 links): max least k = 3 ; unserved 0 (of them at an extreme level 0) ; distribution 1:90 2:311 3:8 ; walks swept 687
+    span  9 (  986 links): max least k = 3 ; unserved 0 (of them at an extreme level 0) ; distribution 1:118 2:720 3:148 ; walks swept 1241
+    span 10 ( 2379 links): max least k = 4 ; unserved 0 (of them at an extreme level 0) ; distribution 1:150 2:1380 3:841 4:8 ; walks swept 8097
+    span 11 ( 5742 links): max least k = 4 ; unserved 0 (of them at an extreme level 0) ; distribution 1:186 2:2396 3:3036 4:124 ; walks swept 14977
+    span 12 (13861 links): max least k = 5 ; unserved 0 (of them at an extreme level 0) ; distribution 1:226 2:3880 3:8589 4:1158 5:8 ; walks swept 168052
+
+  regime 1 (IsZig):
+    span  4 (   13 links): max least k = 2 ; unserved 2 (of them at an extreme level 2) ; distribution 2:11 ; walks swept 2
+    span  5 (   30 links): max least k = 2 ; unserved 2 (of them at an extreme level 2) ; distribution 2:28 ; walks swept 6
+    span  6 (   71 links): max least k = 2 ; unserved 2 (of them at an extreme level 2) ; distribution 2:69 ; walks swept 14
+    span  7 (  170 links): max least k = 3 ; unserved 2 (of them at an extreme level 2) ; distribution 2:166 3:2 ; walks swept 30
+    span  8 (  409 links): max least k = 3 ; unserved 2 (of them at an extreme level 2) ; distribution 2:391 3:16 ; walks swept 62
+    span  9 (  986 links): max least k = 3 ; unserved 2 (of them at an extreme level 2) ; distribution 2:818 3:166 ; walks swept 126
+    span 10 ( 2379 links): max least k = 4 ; unserved 2 (of them at an extreme level 2) ; distribution 2:1496 3:873 4:8 ; walks swept 254
+    span 11 ( 5742 links): max least k = 4 ; unserved 2 (of them at an extreme level 2) ; distribution 2:2530 3:3086 4:124 ; walks swept 508
+    span 12 (13861 links): max least k = 5 ; unserved 2 (of them at an extreme level 2) ; distribution 2:4032 3:8661 4:1158 5:8 ; walks swept 1002
+
+  regime 2 (IsZigFree):
+    span  4 (   13 links): max least k = 2 ; unserved 0 (of them at an extreme level 0) ; distribution 2:13 ; walks swept 4
+    span  5 (   30 links): max least k = 2 ; unserved 0 (of them at an extreme level 0) ; distribution 2:30 ; walks swept 6
+    span  6 (   71 links): max least k = 2 ; unserved 0 (of them at an extreme level 0) ; distribution 2:71 ; walks swept 8
+    span  7 (  170 links): max least k = 2 ; unserved 0 (of them at an extreme level 0) ; distribution 2:170 ; walks swept 10
+    span  8 (  409 links): max least k = 3 ; unserved 0 (of them at an extreme level 0) ; distribution 2:401 3:8 ; walks swept 31
+    span  9 (  986 links): max least k = 3 ; unserved 0 (of them at an extreme level 0) ; distribution 2:838 3:148 ; walks swept 43
+    span 10 ( 2379 links): max least k = 4 ; unserved 0 (of them at an extreme level 0) ; distribution 2:1530 3:841 4:8 ; walks swept 177
+    span 11 ( 5742 links): max least k = 4 ; unserved 0 (of them at an extreme level 0) ; distribution 2:2582 3:3036 4:124 ; walks swept 272
+    span 12 (13861 links): max least k = 5 ; unserved 0 (of them at an extreme level 0) ; distribution 2:4106 3:8589 4:1158 5:8 ; walks swept 1071
+
+=== 2. ladder check: every basepoint within two of an extreme ===
+  bing 0  4: 13 basepoints within two of an extreme, 0 not served by the ladder
+  bing 0  5: 30 basepoints within two of an extreme, 0 not served by the ladder
+  bing 0  6: 46 basepoints within two of an extreme, 0 not served by the ladder
+  bing 0  7: 66 basepoints within two of an extreme, 0 not served by the ladder
+  bing 0  8: 90 basepoints within two of an extreme, 0 not served by the ladder
+  bing 0  9: 118 basepoints within two of an extreme, 0 not served by the ladder
+  bing 0 10: 150 basepoints within two of an extreme, 0 not served by the ladder
+  bing 0 11: 186 basepoints within two of an extreme, 0 not served by the ladder
+  bing 0 12: 226 basepoints within two of an extreme, 0 not served by the ladder
+
+=== 3. S3ZigFree at every basepoint of bing 0 N ===
+  bing 0  4:    13 links, span  4 ... unserved basepoints: 0 ; max least turning targets: 2
+  bing 0  5:    30 links, span  5 ... unserved basepoints: 0 ; max least turning targets: 2
+  bing 0  6:    71 links, span  6 ... unserved basepoints: 0 ; max least turning targets: 2
+  bing 0  7:   170 links, span  7 ... unserved basepoints: 0 ; max least turning targets: 2
+  bing 0  8:   409 links, span  8 ... unserved basepoints: 0 ; max least turning targets: 3
+  bing 0  9:   986 links, span  9 ... unserved basepoints: 0 ; max least turning targets: 3
+  bing 0 10:  2379 links, span 10 ... unserved basepoints: 0 ; max least turning targets: 4
+  bing 0 11:  5742 links, span 11 ... unserved basepoints: 0 ; max least turning targets: 4
+  bing 0 12: 13861 links, span 12 ... unserved basepoints: 0 ; max least turning targets: 5
+
+  span 11: 124 basepoints attain the maximum 4; the first, with all its minimal itineraries:
+      [4, 3, 7, 1, 10]
+      [4, 3, 8, 1, 10]
+      [4, 2, 7, 1, 10]
+      [4, 2, 8, 1, 10]
+      [5, 3, 7, 1, 10]
+      [5, 3, 8, 1, 10]
+      [5, 2, 7, 1, 10]
+      [5, 2, 8, 1, 10]
+      [6, 3, 7, 1, 10]
+      [6, 3, 8, 1, 10]
+      [6, 2, 7, 1, 10]
+      [6, 2, 8, 1, 10]
+    basepoint 343 (level 5): 12 minimal itineraries with 4 turning targets
+
+  span 12: 8 basepoints attain the maximum 5; the first, with all its minimal itineraries:
+      [4, 7, 3, 9, 1, 11]
+      [4, 7, 3, 10, 1, 11]
+      [4, 7, 2, 9, 1, 11]
+      [4, 7, 2, 10, 1, 11]
+      [4, 8, 3, 9, 1, 11]
+      [4, 8, 3, 10, 1, 11]
+      [4, 8, 2, 9, 1, 11]
+      [4, 8, 2, 10, 1, 11]
+      [5, 7, 3, 9, 1, 11]
+      [5, 7, 3, 10, 1, 11]
+      [5, 7, 2, 9, 1, 11]
+      [5, 7, 2, 10, 1, 11]
+      [5, 8, 3, 9, 1, 11]
+      [5, 8, 3, 10, 1, 11]
+      [5, 8, 2, 9, 1, 11]
+      [5, 8, 2, 10, 1, 11]
+    basepoint 2027 (level 5): 16 minimal itineraries with 5 turning targets
+
+=== 4. S3ZigFree on subchains of bing 0 12 of span >= 9 ===
+  random subchains: tested 4000, with a failure 0 (0 basepoints)
+  max least turning targets, distribution: 3:3406 4:594
+  grid subchains (stride 97): tested 8025, with a failure 0 (0 basepoints)

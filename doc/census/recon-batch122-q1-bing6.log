@@ -1,0 +1,19 @@
+# Bing chain P(0, 5), length 30: special-case subchains 3
+bing KK=6 K=5 n=11: instances=10 IH-H=64 working(Cbot)=64 working(A)=34 inst-some-Cbot-works=10 inst-every-Cbot-fails=0
+   P=a: H-with-P=24 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=4
+      e.g. unsat:   rho=[1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] sig=[1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=4 k=6 i=3
+   P=b: H-with-P=64 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=c: H-with-P=24 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=4
+      e.g. unsat:   rho=[1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] sig=[1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=4 k=6 i=3
+   P=d: H-with-P=50 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=s: H-with-P=64 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=w: H-with-P=64 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+bing KK=6 K=6 n=28: instances=12 IH-H=5362 working(Cbot)=5362 working(A)=2893 inst-some-Cbot-works=12 inst-every-Cbot-fails=0
+   P=a: H-with-P=2045 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=5
+      e.g. unsat:   rho=[1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3, 4, 3, 2, 3, 2, 1, 2, 3, 2, 3, 4, 3, 2, 3, 4, 3, 4] sig=[1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3, 4, 3, 2, 3, 2, 1, 2, 3, 2, 3, 4, 3, 2, 3, 4, 3, 4] h=11 k=16 i=7
+   P=b: H-with-P=5018 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=c: H-with-P=1907 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=5
+      e.g. unsat:   rho=[1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3, 4, 3, 2, 3, 2, 1, 2, 3, 2, 3, 4, 3, 2, 3, 4, 3, 4] sig=[1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3, 4, 3, 2, 3, 2, 1, 2, 3, 2, 3, 4, 3, 2, 3, 4, 3, 4] h=11 k=16 i=7
+   P=d: H-with-P=3994 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=s: H-with-P=5362 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=w: H-with-P=5362 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0

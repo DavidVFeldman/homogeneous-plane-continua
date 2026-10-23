@@ -1,0 +1,25 @@
+# batch 197: files added (A) or modified (M) for batch 197, relative to the batch-196 delivery (doc/batches/batch196-files.tar.gz and the files it lists). The modified files were checked against their batch-196 versions in that tarball. The tarball doc/batches/batch197-files.tar.gz contains every file listed plus this manifest.
+M	Axioms.lean
+M	axioms.txt
+M	HPC.lean
+M	README.md
+M	LEDGER.md
+M	OPEN.md
+M	doc/notes/ho16.md
+A	COMMISSION-batch197.md
+A	HO16E.lean
+A	doc/batches/COMMISSION-batch197.md
+A	doc/batches/skeletons/HO16E.lean
+A	doc/batches/REPORT-batch197.md
+A	doc/batches/audits/axioms-batch197.txt
+A	HPC/HO16/LadderDefs.lean
+A	HPC/HO16/LadderParam.lean
+A	HPC/HO16/LadderPiece.lean
+A	HPC/HO16/LadderStair.lean
+A	HPC/HO16/LadderStair2.lean
+A	HPC/HO16/LadderSubdiv.lean
+A	HPC/HO16/LadderSign.lean
+A	HPC/HO16/LadderSep.lean
+A	HPC/HO16/LadderExists.lean
+A	HPC/HO16/HO16E.lean
+A	HPC/HO16/NonVac197.lean

@@ -1,0 +1,187 @@
+%======================================================================
+\chapter{Theorem 15: ladders}\label{ch:ladders}
+%======================================================================
+
+It remains to prove Theorem~\ref{thm:ho15}: inside any neighbourhood $U$ of a separator $M$ of the bottom of $G^\star$ from the top there is a set with a
+stairwell structure of odd height. Hoehn and Oversteegen first replace $M$ by a nicer separator $M'$ (their Claim~15.1, ``left to the reader''), make it irreducible,
+and then build the stairwell over the arcs of a subdivision, with a zig-zag added wherever two curves of $M'$ are born or die. This chapter replaces Claim~15.1
+and the irreducibility by an explicit combinatorial object, a \emph{ladder}, read off from the signs of one function on a grid. The odd counts come from
+sign changes, and the parity argument of Hoehn and Oversteegen for (S4) becomes a statement about parities of list lengths.
+
+\section{Ladders}
+
+Fix a decomposition $\mathcal S$ of the PL graph $G$ into oriented edges $s=(s_1,s_2)$, and write $s(\mu)=s_1+\mu(s_2-s_1)$ for $\mu\in\I$.
+
+\begin{definition}[Ladder]\label{def:ladder}
+A \emph{ladder} on $G$ consists of a decomposition $\mathcal S$ of $G$, a list $y(v)=(y_1(v),\dots,y_{j(v)}(v))$ of heights in $(0,1)$ of \emph{odd} length $j(v)$ at each vertex $v$, and
+for each edge $s$ an \emph{event}, which is either
+\begin{itemize}
+\item \emph{none}: then $j(s_1)=j(s_2)$; or
+\item a \emph{wedge} $(m,\lambda,h)$ at $s_2$: then $j(s_2)=j(s_1)+2$, $1\le m\le j(s_1)+1$, $\lambda,h\in(0,1)$. The wedge occupies places $m$ and $m+1$ at $s_2$, and its tip is
+$(s(\lambda),h)$.
+\end{itemize}
+The \emph{height} of the ladder is the largest $j(v)$.
+\end{definition}
+
+\formal{\lean{HPC.HO16.IsLadder}, \lean{HPC.HO16.ladderY}, \lean{HPC.HO16.ladderHeight} (in \lean{HPC/HO16/LadderDefs.lean}).}
+
+\emph{The sheets.} Let $s$ be an edge and $j=j(s_1)$.
+\begin{itemize}
+\item No event: for $1\le i\le j$, sheet $i$ contains the segment from $(s_1,y_i(s_1))$ to $(s_2,y_i(s_2))$.
+\item A wedge $(m,\lambda,h)$: for $i<m$ as before. For $m\le i\le j$, let $L_i$ be the line from $(s_1,y_i(s_1))$ to $(s_2,y_{i+2}(s_2))$, parametrized by $\mu\in\I$, and put
+\[
+l_i=\lambda\,\frac{2(j-i)+1}{2(j-m)+3},\qquad r_i=\lambda\,\frac{2(j-i)+2}{2(j-m)+3},
+\]
+so that $0<l_j<r_j<l_{j-1}<\dots<l_m<r_m<\lambda$. The \emph{zig-zag} of curve $i$ consists of $C_i^1=L_i[0,r_i]$ in sheet $i$, $C_i^2=L_i[l_i,r_i]$ in sheet $i+1$, and $C_i^3=L_i[l_i,1]$ in
+sheet $i+2$. Finally the two halves of the wedge, the segments from the tip to $(s_2,y_m(s_2))$ and to $(s_2,y_{m+1}(s_2))$, go into sheets $m$ and $m+1$.
+\end{itemize}
+Sheet $i$ is the union of its pieces over all edges.
+
+\formal{\lean{HPC.HO16.ladderPiece}, \lean{HPC.HO16.ladderSheet}; the zig-zag parameters are \lean{HPC.HO16.zzL}, \lean{HPC.HO16.zzR} and the lines
+\lean{HPC.HO16.zzLine}.}
+
+Over a wedge edge, a curve $i\ge m$ entering at rank $i$ leaves at rank $i+2$: it climbs two sheets by running forward in sheet $i$, back in sheet $i+1$ and forward in
+sheet $i+2$. The three pieces lie on one line and overlap. Definitions~\ref{def:straight}--\ref{def:stairwell} do not forbid sheets to meet, and the end sets
+come out of the construction, so nothing needs to be separated. Compared with Hoehn and Oversteegen's picture, the wedge is put at the end of the edge and the zig-zags
+before its tip.
+
+\begin{example}\label{ex:ladder}
+$G=[0,2]\subseteq\R$ with vertices $0,1,2$ and lists $(\frac12)$, $(\frac12)$, $(\frac14,\frac12,\frac34)$; no event on $(0,1)$ and a wedge $(1,\frac12,\frac38)$ at $2$ on $(1,2)$. Here $j=1$, $m=1$,
+$l_1=\frac16$, $r_1=\frac13$ in the parameter of $[1,2]$. Then $\pi(S_1)=[0,\frac43]\cup[\frac32,2]$, $\pi(S_2)=[\frac76,\frac43]\cup[\frac32,2]$, $\pi(S_3)=[\frac76,2]$, $\pi(\alpha_2)=\set{\frac43,\frac32}$,
+$\pi(\alpha_3)=\set{\frac76}$: a stairwell structure of height~$3$.
+\end{example}
+
+\formal{\lean{HPC.HO16.ladder_example}, \lean{HPC.HO16.ladder_example_height}, \lean{HPC.HO16.ladder_example_stairwell}.}
+
+\section{A ladder is a stairwell}
+
+\begin{theorem}\label{thm:ladder-stairwell}
+Let a ladder on $G$ with at least one edge have height $k$. Then $k$ is odd, and the sheets $S_1,\dots,S_k$ form a stairwell structure of height $k$ for their union.
+\end{theorem}
+
+\begin{proof}
+$k$ is the length of some list, hence odd.
+
+\emph{The end sets.} On a wedge edge write $L_i(\mu)$ for the point of $L_i$ at parameter $\mu$. Let $\alpha_i$ consist of the points $L_{i-1}(r_{i-1})$ (the common right end of $C^1_{i-1}$ and
+$C^2_{i-1}$, if $m\le i-1\le j$), $L_{i-2}(l_{i-2})$ (the common left end of $C^2_{i-2}$ and $C^3_{i-2}$, if $m\le i-2\le j$), and the tip (if $i=m+1$), over all wedge edges. Then
+$\alpha_1=\emptyset$, and $\alpha_{k+1}=\emptyset$ because a wedge edge has $j(s_1)\le k-2$.
+
+(S1) Over an edge, the pieces of sheet $i$ lie over the parameter intervals $[0,r_i]$, $[l_{i-1},r_{i-1}]$, $[l_{i-2},1]$ and, for $i\in\set{m,m+1}$, $[\lambda,1]$, which are pairwise disjoint;
+over a vertex $v$ every edge at $v$ contributes the same point $(v,y_i(v))$ if $i\le j(v)$, and none otherwise. So $\pi$ is injective on each sheet, and $\pi(S_i)$ is a finite union of
+nondegenerate segments, a PL graph (Proposition~\ref{prop:pl-library}(a)). A vertex with $j(v)=k$ gives every sheet a point.
+
+(S2) A vertex $v$ is interior to $\pi(S_i)$ if $i\le j(v)$ (every edge at $v$ has a piece of sheet $i$ starting at $v$) and outside it otherwise. So $\rfr\pi(S_i)$ consists of the parameters
+where pieces stop inside edges: $r_i$, $l_{i-1}$, $r_{i-1}$, $l_{i-2}$ and the tip. These are exactly the points of $\alpha_i\cup\alpha_{i+1}$, and they lie in $S_i$.
+
+(S3) At each point of $\beta_i=\alpha_{i+1}$ the two sheets leave in the same direction: $C_i^1$ and $C_i^2$ both end at $r_i$ from the left; $C_{i-1}^2$ and $C_{i-1}^3$ both start at
+$l_{i-1}$ to the right; the two wedge halves both start at the tip. Every other piece of the two sheets on that edge is at positive distance.
+
+(S4) Let $C$ be a component of $G\setminus\pi(S_i)$. Inside one edge, $C$ is one of the gaps $(r_i,l_{i-1})$ (both ends in $\pi(\beta_i)$), $(r_{i-1},l_{i-2})$ (both ends in $\pi(\alpha_i)$), or a gap
+next to the tip (both ends in $\pi(\beta_m)$, respectively in $\pi(\alpha_{m+1})$). Otherwise $C$ contains vertices, all with $j(v)<i$. Its frontier lies on wedge edges $s$ with $j(s_1)<i\le
+j(s_1)+2$, at the first piece of sheet $i$ starting from $s_1$, and that end point is in $\beta_i$ if $i-j(s_1)=1$ and in $\alpha_i$ if $i-j(s_1)=2$. \emph{All $j(v)$ are odd}, so which case occurs
+depends only on the parity of $i$: $\rfr C\subseteq\pi(\beta_i)$ for $i$ even and $\rfr C\subseteq\pi(\alpha_i)$ for $i$ odd. As $\pi(\alpha_i)\cap\pi(\beta_i)=\emptyset$, both halves of (S4) follow.
+
+(S5) All end points lie over interior points of edges, which are ordinary, at pairwise different parameters.
+\end{proof}
+
+\formal{\lean{HPC.HO16.ho16_stairwell_of_ladder}, with $\alpha$ given by \lean{HPC.HO16.ladderAlphaSet}; the parity argument for (S4) is \lean{HPC.HO16.ladder_S4}.}
+
+This is Hoehn and Oversteegen's parity argument of p.~198 (``we must have that $j_1$ and $j_n$ have the same parity and, hence, $j_1=j_n$''). Connectedness of $G$ is not
+needed, the lists need not be sorted, and the heights need not be distinct.
+
+\section{A ladder inside a neighbourhood of a separator}
+
+\begin{lemma}[A sign function]\label{lem:sign-fn}
+Let $G$ be a nonempty compact set, $M\subseteq G\times(0,1)$ separate $G\times\set0$ from $G\times\set1$ in $G^\star$, and $U\supseteq M$ open. There are a continuous $u\colon E\times\R\to\R$ and $\delta>0$
+with $u\le0$ on $G\times\set0$, $u>0$ on $G\times\set1$, and: if $p\in G^\star$ is within $\delta$ of a point $c_1$ with $u(c_1)\le0$ and of a point $c_2$ with $u(c_2)>0$, then $p\in U\cap G\times(0,1)$.
+\end{lemma}
+
+\begin{proof}
+Let $O_0\supseteq G\times\set0$ and $O_1\supseteq G\times\set1$ be the open sets of the separation. $K=G^\star\setminus(U\cap E\times(0,1))$ is compact and lies in $G^\star\setminus M\subseteq O_0\cup O_1$. Put
+$K_0=K\setminus O_1\supseteq G\times\set0$ and $K_1=K\setminus O_0\supseteq G\times\set1$: disjoint compact sets with union $K$. Let $u=\dist(\cdot,K_0)-\dist(\cdot,K_1)$, a $2$-Lipschitz function, negative on
+$K_0$ and positive on $K_1$, so $\omega=\min_K\abs u>0$. Note $G\times\set0\subseteq K_0$: it lies in $K$, in $O_0$, and hence not in $O_1$, as $O_0\cap O_1$ misses $G^\star\setminus M$; likewise
+$G\times\set1\subseteq K_1$. Take $\delta=\omega/4$. If $p$ is as in the statement, then $\abs{u(p)-u(c_i)}<2\delta=\omega/2$. If $u(p)\ge0$, then $u(p)<u(c_1)+\omega/2\le\omega/2$; if $u(p)<0$,
+then $u(p)>u(c_2)-\omega/2>-\omega/2$. So $\abs{u(p)}<\omega$, hence $p\notin K$, that is, $p\in U\cap G\times(0,1)$.
+\end{proof}
+
+\formal{\lean{HPC.HO16.exists_sign_fn}.}
+
+\begin{theorem}[Replacing Claim~15.1]\label{thm:exists-ladder}
+Let $G$ be a connected PL graph, $M\subseteq G\times(0,1)$ separate $G\times\set0$ from $G\times\set1$ in $G^\star$, and $U\supseteq M$ open. There is a ladder on $G$ with at least one edge all of
+whose sheets lie in $U\cap G\times(0,1)$.
+\end{theorem}
+
+\begin{proof}
+Take $u$ and $\delta$ from Lemma~\ref{lem:sign-fn}. Choose a decomposition $\mathcal S_0$ of $G$ with edges shorter than $\delta$, and $N$ with $1/N<\delta$; put $t_q=q/N$. At a vertex $v$ let
+$\sigma(v,q)=-$ if $u(v,t_q)\le0$ and $+$ otherwise; so $\sigma(v,0)=-$ and $\sigma(v,N)=+$.
+
+\emph{Heights at vertices.} Let $y(v)$ be the list of midpoints $\frac12(t_q+t_{q+1})$ of those $q$ with $\sigma(v,q)\neq\sigma(v,q+1)$, in increasing order. Since the signs go from $-$ to $+$, there is an
+odd number of them.
+
+\emph{One flip per edge.} For an edge $(v,w)$ of $\mathcal S_0$ let $q_1<\dots<q_r$ be the indices with $\sigma(v,q)\neq\sigma(w,q)$. Subdivide the edge into $r$ edges (one if $r=0$), and give the $p$-th new
+vertex the sign sequence of $v$ with $q_1,\dots,q_p$ flipped (so the last one has that of $w$), and the list of midpoints of its sign changes. Each new edge flips one sign $q$, which changes the
+sign changes at $q-1\mid q$ and at $q\mid q+1$:
+\begin{itemize}
+\item one appears and one disappears: one curve moves from $\frac12(t_{q-1}+t_q)$ to $\frac12(t_q+t_{q+1})$ or back, and no other curve moves; no event;
+\item two appear: a wedge at the far end, with $\lambda=\frac12$, $h=t_q$ and $m$ the rank of the new lower curve;
+\item two disappear: a wedge at the near end; orient the edge backwards.
+\end{itemize}
+
+\emph{The sheets lie in $U$.} At every new vertex the sign at each level $t_q$ is that of $v$ or of $w$. A curve at height $\frac12(t_q+t_{q+1})$ at a vertex means a sign change between $t_q$ and $t_{q+1}$
+there. So every piece of a sheet lies in a set $s_0\times[t_q,t_{q+1}]$ ($s_0$ the original edge) whose corners carry both signs, or, near a flip at $q$, in $s_0\times[t_{q-1},t_{q+1}]$, where
+$(v,t_q)$ and $(w,t_q)$ carry both signs. Every point of such a set is within $\max(\abs{s_0},1/N)<\delta$ of each of its corners (in the sup-norm on $E\times\R$), so by Lemma~\ref{lem:sign-fn} it lies in
+$U\cap G\times(0,1)$.
+\end{proof}
+
+\formal{\lean{HPC.HO16.exists_ladder} (in \lean{HPC/HO16/LadderSep.lean}, \lean{HPC/HO16/LadderSubdiv.lean}, \lean{HPC/HO16/LadderSign.lean},
+\lean{HPC/HO16/LadderExists.lean}). Connectedness of $G$ is used only for $G\neq\emptyset$.}
+
+\section{The end of the proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:ho15}]
+Theorem~\ref{thm:exists-ladder} gives a ladder whose sheets lie in $U\cap G\times(0,1)$, and Theorem~\ref{thm:ladder-stairwell} makes their union a set with a stairwell structure of odd height.
+\end{proof}
+
+\formal{\lean{HPC.HO16.ho16_theorem15}.}
+
+\begin{corollary}\label{cor:final}
+Theorem~\ref{thm:ho20} holds; hence Theorem~\ref{thm:ho1} holds without hypothesis, and every nondegenerate homogeneous indecomposable plane continuum is homeomorphic to the
+pseudo-arc (Theorem~\ref{thm:indec-pseudoarc}).
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:20-from-15} and Theorem~\ref{thm:ho15}.
+\end{proof}
+
+\formal{\lean{HPC.HO16.ho16_theorem20}, \lean{HPC.HO16.ho16_indec_homogeneous_pseudoArc}, \lean{HPC.HO16.ho16_indec_homogeneous_iff}.}
+
+\section{On Hoehn and Oversteegen's proof}
+
+For the reader comparing with the paper (pp.~194--198):
+\begin{itemize}
+\item Claim~15.1, the existence of a separator $M'$ with properties (1), (3), (5), (6), is left to the reader. The passage to an irreducible separator keeps (1) and (3), but this is not argued.
+In the definition of a side wedge, ``$C_2$ are arcs which both have $x$ as an endpoint'' should read $(x,y)$. And in the paragraph on property~(4), the reason given for ``$(x,y)$ cannot be an
+endpoint of $M'$'' (property~(3)) does not apply at points of $T$; irreducibility gives the step.
+\item The odd number of points of $M'$ over each $a\in Z'$ (p.~196) is not argued. Here it comes from sign changes.
+\item In the zig-zag construction nothing excludes $b\in J_j$; the arcs $J_i$ must lie in the open arc.
+\item The case split in the (S4) argument omits a component not inside one arc whose frontier points lie on one arc (around a cycle of $G$); the same chain argument covers it.
+\item That the final $S$ irreducibly separates is claimed but not argued, and is not needed: the end sets come out of the construction.
+\end{itemize}
+
+\section*{Exercises}
+
+\begin{exercise}
+Verify the end sets in Example~\ref{ex:ladder}, and check (S3) and (S4) for them.
+\end{exercise}
+
+\begin{exercise}
+Construct a ladder on the circle (a triangle in $\R^2$) of height~$3$ with two wedges. Is the result consistent with Claim~14.1?
+\end{exercise}
+
+\begin{exercise}
+Run the construction of Theorem~\ref{thm:exists-ladder} for $G=\I$, $M=\I\times\set{\frac12}$ and $u(x,t)=t-\frac12$ with $N=4$. What is the ladder?
+\end{exercise}
+
+\begin{exercise}
+Why are all list lengths odd in Theorem~\ref{thm:exists-ladder}? What goes wrong in the (S4) argument of Theorem~\ref{thm:ladder-stairwell} if lists of even length were allowed?
+\end{exercise}

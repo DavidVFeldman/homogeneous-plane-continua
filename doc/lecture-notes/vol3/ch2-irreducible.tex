@@ -1,0 +1,119 @@
+%======================================================================
+\chapter{Irreducible continua}\label{ch:irreducible}
+%======================================================================
+
+Throughout this chapter $S$ is a compact metric space.
+
+\section{Definitions and existence}
+
+\begin{definition}\label{def:irreducible}
+Let $W$ be a continuum and $a,b$ points. $W$ is \emph{irreducible between $a$ and $b$} if $a,b\in W$
+and no subcontinuum of $W$ other than $W$ contains both $a$ and $b$. A continuum is
+\emph{irreducible} if it is irreducible between two of its points.
+\end{definition}
+
+\formal{\lean{HPC.IsIrreducibleBetween} (in \lean{HPC/PseudoArc/Theorem14.lean}).}
+
+\begin{definition}\label{def:irr-sets}
+Let $C$ be a continuum and $A,B$ sets. $C$ is \emph{irreducible from $A$ to $B$}, written
+$C=\irr(A,B)$, if $C$ meets $A$ and $B$, and no subcontinuum of $C$ other than $C$ meets both $A$
+and $B$.
+\end{definition}
+
+\formal{\lean{HPC.Plane.IrrFromTo} (Nadler 11.29).}
+
+For points, $C$ is irreducible between $a$ and $b$ exactly when $C=\irr(\set a,\set b)$.
+
+\begin{example}\label{ex:arc-irr}
+The arc $[0,1]$ is irreducible between $0$ and $1$: a connected subset of $\R$ containing $0$ and
+$1$ contains $[0,1]$. It is not irreducible between $0$ and $\frac12$, since $[0,\frac12]$ is a
+smaller subcontinuum containing both. A circle is not irreducible: any two of its points lie in
+a closed half-circle, which is a proper subcontinuum.
+\end{example}
+
+We use Zorn's lemma in the following form: \emph{if $\mathcal S$ is a nonempty family of sets such
+that the intersection of every nonempty chain in $\mathcal S$ contains a member of $\mathcal S$,
+then $\mathcal S$ has a minimal member} (one containing no other member of $\mathcal S$).
+
+\begin{lemma}\label{lem:nested-meets}
+Let $\mathcal C$ be a nonempty chain of continua in $S$ and $D\subseteq S$ compact. If every member
+of $\mathcal C$ meets $D$, then $\bigcap\mathcal C$ meets $D$.
+\end{lemma}
+
+\begin{proof}
+The compact sets $C\cap D$, $C\in\mathcal C$, form a chain of nonempty sets; any finitely many of
+them have nonempty intersection (the smallest one). By compactness their whole intersection,
+$\bigcap\mathcal C\cap D$, is nonempty.
+\end{proof}
+
+\begin{theorem}[Existence of irreducible subcontinua]\label{thm:irr-exists}
+Let $X_0$ be a continuum in $S$ and $A,B$ compact sets meeting $X_0$. Then $X_0$ contains a
+subcontinuum $C=\irr(A,B)$. In particular, a continuum containing two points $a,b$ contains a
+subcontinuum irreducible between $a$ and $b$.
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal S$ be the family of subcontinua of $X_0$ meeting both $A$ and $B$; it contains $X_0$.
+Let $\mathcal C\subseteq\mathcal S$ be a nonempty chain. Its intersection is a continuum
+(Lemma~\ref{lem:nested}), lies in $X_0$, and meets $A$ and $B$ (Lemma~\ref{lem:nested-meets}); so
+it is a member of $\mathcal S$. By Zorn's lemma $\mathcal S$ has a minimal member $C$. If $K\subseteq
+C$ is a subcontinuum meeting $A$ and $B$, then $K\in\mathcal S$, so $K=C$ by minimality. Thus
+$C=\irr(A,B)$. For two points take $A=\set a$, $B=\set b$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_irrFromTo} (Nadler 11.30) and \lean{HPC.exists_irreducible}.}
+
+\section{Indecomposable continua are irreducible}
+
+\begin{theorem}\label{thm:indec-irr}
+Let $X_0$ be a nondegenerate indecomposable continuum in $S$ and $p\in X_0$. There is $q\in X_0$,
+$q\neq p$, such that $X_0$ is irreducible between $p$ and $q$. In fact any $q$ outside the composant
+of $p$ will do.
+\end{theorem}
+
+\begin{proof}
+By \vtwo{Theorem~1.4} there is $q\in X_0$ lying in no proper subcontinuum of $X_0$ containing $p$.
+If $K\subseteq X_0$ is a subcontinuum containing $p$ and $q$, then $K$ is not proper, that is,
+$K=X_0$. So $X_0$ is irreducible between $p$ and $q$. If $q=p$, the proper subcontinuum $\set p$
+(proper because $X_0$ is nondegenerate) would contain $p$ and $q$; so $q\neq p$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_irreducible_of_indecomposable} (the case of Nadler 11.15 used
+later).}
+
+\begin{remark}
+In an indecomposable continuum every composant is dense, and there are uncountably many
+composants; so an indecomposable continuum is irreducible between ``most'' pairs of its points.
+We shall not need this.
+\end{remark}
+
+\begin{proposition}\label{prop:irr-homeo}
+Let $M$ be a continuum, $T\colon M\to M$ a homeomorphism, and $W\subseteq M$ a subcontinuum
+irreducible between $a$ and $b$. Then $T(W)$ is irreducible between $T(a)$ and $T(b)$.
+\end{proposition}
+
+\begin{proof}
+$T(W)$ is a continuum containing $T(a)$ and $T(b)$. If $K\subseteq T(W)$ is a subcontinuum containing
+them, then $T^{-1}(K)\subseteq W$ is a subcontinuum containing $a$ and $b$, so $T^{-1}(K)=W$ and
+$K=T(W)$.
+\end{proof}
+
+\formal{\lean{HPC.IsIrreducibleBetween.homImage}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that the $\sin(1/x)$-continuum, the closure in $\R^2$ of $\set{(x,\sin(1/x)):0<x\le1}$, is
+irreducible between $(1,\sin1)$ and any point of the limit segment $\set0\times[-1,1]$, but is not
+irreducible between $(0,0)$ and $(0,1)$.
+\end{exercise}
+
+\begin{exercise}
+Show that a continuum irreducible between $a$ and $b$ is not the union of three subcontinua with a
+common point, none of which is contained in the union of the other two. (This is
+Lemma~\ref{lem:weak-not-irr} below.)
+\end{exercise}
+
+\begin{exercise}
+Give an example of a continuum $X_0$ and closed sets $A,B$ for which $\irr(A,B)$ is not unique.
+\end{exercise}

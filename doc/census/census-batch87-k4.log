@@ -1,0 +1,438 @@
+# Batch 87 census, four coarse links (K = 4). Program: census-batch87-model.c (with census-batch87-common.h).
+# Statements decided: see the header comment of census-batch87-model.c (classes FOLD3, END, T3END).
+# n = 6..10: 'model enum n 4 0 1 all' (all FOLD3 classes); n = 11..13: 'model enum n 4 0 1' (FOLD3 with S2 only).
+# These runs predate the END classes C+X and W+S+C+X; those classes are in the END-only reruns
+# ('CHECKS=e model enum n 4 ...', n = 11..13) at the end of this file. All other classes are identical.
+# Node limit 2e7 per search order. FAIL/UNDEC lines: the first few failures per class, verbatim.
+
+=== n=6 (all classes)
+END-FAIL-E0 n=6 K=4 1 0 5 [0,5] rho=0,1,1,1,2,3 sig=0,1,2,1,2,3
+END-FAIL-E0 n=6 K=4 2 0 5 [0,5] rho=0,1,1,1,2,3 sig=0,1,2,1,2,3
+END-FAIL-E0 n=6 K=4 3 0 5 [0,5] rho=0,1,1,1,2,3 sig=0,1,2,1,2,3
+END-FAIL-E0 n=6 K=4 4 0 5 [0,5] rho=0,1,1,1,2,3 sig=0,1,2,1,2,3
+END-FAIL-E0 n=6 K=4 1 0 5 [0,5] rho=0,1,1,1,2,3 sig=0,1,2,2,2,3
+enum n=6 K=4 shard 0/1 limit=20000000 all=1 sequences=32
+  FOLD3[none] instances=2560 fails=0 undecided=0
+  FOLD3[S1] instances=0 fails=0 undecided=0
+  FOLD3[S2] instances=0 fails=0 undecided=0
+  FOLD3[S1+S2] instances=0 fails=0 undecided=0
+  END[none] instances=128 fails=32 undecided=0
+  END[window] instances=48 fails=0 undecided=0
+  END[window+S] instances=0 fails=0 undecided=0
+  END[X] instances=0 fails=0 undecided=0
+  END[window+S+X] instances=0 fails=0 undecided=0
+  END[C] instances=96 fails=0 undecided=0
+  END[window+S+C] instances=0 fails=0 undecided=0
+  T3END instances=192 fails=0 undecided=0 thm3fails=0 thm3undecided=0
+
+=== n=7 (all classes)
+FOLD3-FAIL-S0 n=7 K=4 1 2 0 [1,4] rho=0,0,1,1,1,2,3 sig=0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=7 K=4 1 3 0 [1,5] rho=0,0,1,1,1,2,3 sig=0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=7 K=4 1 4 0 [1,5] rho=0,0,1,1,1,2,3 sig=0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=7 K=4 1 5 0 [1,5] rho=0,0,1,1,1,2,3 sig=0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=7 K=4 1 6 0 [1,6] rho=0,0,1,1,1,2,3 sig=0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=7 K=4 1 6 0 [1,6] rho=0,0,1,1,1,2,3 sig=0,0,1,2,1,2,3
+END-FAIL-E0 n=7 K=4 1 0 6 [0,6] rho=0,0,1,1,1,2,3 sig=0,0,1,2,1,2,3
+END-FAIL-E0 n=7 K=4 2 0 6 [0,6] rho=0,0,1,1,1,2,3 sig=0,0,1,2,1,2,3
+END-FAIL-E0 n=7 K=4 3 0 6 [0,6] rho=0,0,1,1,1,2,3 sig=0,0,1,2,1,2,3
+END-FAIL-E0 n=7 K=4 4 0 6 [0,6] rho=0,0,1,1,1,2,3 sig=0,0,1,2,1,2,3
+END-FAIL-E0 n=7 K=4 5 0 6 [0,6] rho=0,0,1,1,1,2,3 sig=0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=7 K=4 1 6 0 [1,6] rho=0,0,1,1,1,2,3 sig=0,0,1,2,2,2,3
+FOLD3-FAIL-S1 n=7 K=4 1 6 0 [1,6] rho=0,0,1,2,1,2,3 sig=0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=7 K=4 1 6 0 [1,6] rho=0,0,1,2,1,2,3 sig=0,0,1,2,2,2,3
+END-FAIL-EW n=7 K=4 5 0 6 [0,6] rho=0,1,1,1,2,2,3 sig=0,1,2,1,2,3,3
+FOLD3-FAIL-S1 n=7 K=4 5 0 6 [0,5] rho=0,1,1,1,2,3,3 sig=0,1,2,1,2,3,3
+END-FAIL-EW n=7 K=4 5 0 6 [0,6] rho=0,1,1,1,2,3,3 sig=0,1,2,1,2,3,3
+END-FAIL-EWS n=7 K=4 5 0 6 [0,6] rho=0,1,1,1,2,3,3 sig=0,1,2,1,2,3,3
+END-FAIL-EW n=7 K=4 5 0 6 [0,6] rho=0,1,1,1,2,2,3 sig=0,1,2,2,2,3,3
+END-FAIL-EW n=7 K=4 5 0 6 [0,6] rho=0,1,1,1,2,3,3 sig=0,1,2,2,2,3,3
+END-FAIL-EWS n=7 K=4 5 0 6 [0,6] rho=0,1,1,1,2,3,3 sig=0,1,2,2,2,3,3
+END-FAIL-EW n=7 K=4 5 0 6 [0,6] rho=0,1,2,1,2,2,3 sig=0,1,2,1,2,3,3
+END-FAIL-EWS n=7 K=4 5 0 6 [0,6] rho=0,1,2,1,2,3,3 sig=0,1,2,1,2,3,3
+END-FAIL-EWS n=7 K=4 5 0 6 [0,6] rho=0,1,2,1,2,3,3 sig=0,1,2,2,2,3,3
+END-FAIL-EWS n=7 K=4 5 0 6 [0,6] rho=3,2,1,1,1,0,0 sig=3,2,1,2,1,0,0
+enum n=7 K=4 shard 0/1 limit=20000000 all=1 sequences=352
+  FOLD3[none] instances=49280 fails=80 undecided=0
+  FOLD3[S1] instances=96 fails=16 undecided=0
+  FOLD3[S2] instances=32 fails=0 undecided=0
+  FOLD3[S1+S2] instances=0 fails=0 undecided=0
+  END[none] instances=1760 fails=360 undecided=0
+  END[window] instances=640 fails=16 undecided=0
+  END[window+S] instances=24 fails=8 undecided=0
+  END[X] instances=0 fails=0 undecided=0
+  END[window+S+X] instances=0 fails=0 undecided=0
+  END[C] instances=1400 fails=0 undecided=0
+  END[window+S+C] instances=16 fails=0 undecided=0
+  T3END instances=2464 fails=0 undecided=0 thm3fails=0 thm3undecided=0
+
+=== n=8 (all classes)
+FOLD3-FAIL-S0 n=8 K=4 0 1 2 [0,1] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=8 K=4 1 0 2 [0,1] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=8 K=4 1 2 0 [1,2] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=8 K=4 1 3 0 [1,5] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=8 K=4 1 4 0 [1,6] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=8 K=4 1 7 0 [1,7] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=8 K=4 2 7 0 [1,7] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=8 K=4 2 7 1 [2,7] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,1,2,3
+END-FAIL-E0 n=8 K=4 1 0 7 [0,7] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,1,2,3
+END-FAIL-E0 n=8 K=4 2 0 7 [0,7] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,1,2,3
+END-FAIL-E0 n=8 K=4 3 0 7 [0,7] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,1,2,3
+END-FAIL-E0 n=8 K=4 4 0 7 [0,7] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,1,2,3
+END-FAIL-E0 n=8 K=4 5 0 7 [0,7] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=8 K=4 1 7 0 [1,7] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,2,2,3
+FOLD3-FAIL-S1 n=8 K=4 2 7 0 [1,7] rho=0,0,0,1,1,1,2,3 sig=0,0,0,1,2,2,2,3
+END-FAIL-EW n=8 K=4 6 0 7 [0,7] rho=0,0,1,1,1,2,2,3 sig=0,0,1,2,1,2,3,3
+END-FAIL-EC n=8 K=4 1 0 7 [0,7] rho=0,0,1,1,1,2,3,2 sig=0,0,1,2,1,2,3,2
+END-FAIL-EC n=8 K=4 1 0 7 [0,7] rho=0,0,1,1,1,2,3,2 sig=0,0,1,2,1,2,3,3
+END-FAIL-EW n=8 K=4 6 0 7 [0,7] rho=0,0,1,1,1,2,3,3 sig=0,0,1,2,1,2,3,3
+END-FAIL-EWS n=8 K=4 6 0 7 [0,7] rho=0,0,1,1,1,2,3,3 sig=0,0,1,2,1,2,3,3
+END-FAIL-EW n=8 K=4 6 0 7 [0,7] rho=0,0,1,1,1,2,2,3 sig=0,0,1,2,2,2,3,3
+END-FAIL-EC n=8 K=4 1 0 7 [0,7] rho=0,0,1,1,1,2,3,2 sig=0,0,1,2,2,2,3,2
+END-FAIL-EC n=8 K=4 1 0 7 [0,7] rho=0,0,1,1,1,2,3,2 sig=0,0,1,2,2,2,3,3
+END-FAIL-EW n=8 K=4 6 0 7 [0,7] rho=0,0,1,1,1,2,3,3 sig=0,0,1,2,2,2,3,3
+END-FAIL-EWS n=8 K=4 6 0 7 [0,7] rho=0,0,1,1,1,2,3,3 sig=0,0,1,2,2,2,3,3
+END-FAIL-EW n=8 K=4 6 0 7 [0,7] rho=0,0,1,2,1,2,2,3 sig=0,0,1,2,1,2,3,3
+END-FAIL-EC n=8 K=4 1 0 7 [0,7] rho=0,0,1,2,1,2,3,2 sig=0,0,1,2,1,2,3,2
+END-FAIL-EWS n=8 K=4 6 0 7 [0,7] rho=0,0,1,2,1,2,3,3 sig=0,0,1,2,1,2,3,3
+END-FAIL-EWS n=8 K=4 6 0 7 [0,7] rho=0,0,1,2,1,2,3,3 sig=0,0,1,2,2,2,3,3
+END-FAIL-EWS n=8 K=4 6 0 7 [0,7] rho=0,0,1,1,1,2,3,3 sig=0,1,1,2,1,2,3,3
+enum n=8 K=4 shard 0/1 limit=20000000 all=1 sequences=2528
+  FOLD3[none] instances=566272 fails=1504 undecided=0
+  FOLD3[S1] instances=1856 fails=256 undecided=0
+  FOLD3[S2] instances=448 fails=0 undecided=0
+  FOLD3[S1+S2] instances=0 fails=0 undecided=0
+  END[none] instances=15168 fails=2624 undecided=0
+  END[window] instances=5520 fails=224 undecided=0
+  END[window+S] instances=304 fails=96 undecided=0
+  END[X] instances=0 fails=0 undecided=0
+  END[window+S+X] instances=0 fails=0 undecided=0
+  END[C] instances=12576 fails=32 undecided=0
+  END[window+S+C] instances=208 fails=0 undecided=0
+  T3END instances=20224 fails=0 undecided=0 thm3fails=0 thm3undecided=0
+
+=== n=9 (all classes)
+FOLD3-FAIL-S0 n=9 K=4 0 1 2 [0,1] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=9 K=4 0 1 3 [0,2] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=9 K=4 0 2 3 [0,2] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=9 K=4 1 0 2 [0,1] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=9 K=4 1 0 3 [0,2] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=9 K=4 1 8 0 [1,8] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=9 K=4 2 8 0 [1,8] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=9 K=4 2 8 1 [2,8] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=9 K=4 3 8 0 [1,8] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=9 K=4 3 8 1 [2,8] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=9 K=4 1 0 8 [0,8] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=9 K=4 2 0 8 [0,8] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=9 K=4 3 0 8 [0,8] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=9 K=4 4 0 8 [0,8] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=9 K=4 5 0 8 [0,8] rho=0,0,0,0,1,1,1,2,3 sig=0,0,0,0,1,2,1,2,3
+END-FAIL-EW n=9 K=4 7 0 8 [0,8] rho=0,0,0,1,1,1,2,2,3 sig=0,0,0,1,2,1,2,3,3
+END-FAIL-EC n=9 K=4 1 0 8 [0,8] rho=0,0,0,1,1,1,2,3,2 sig=0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=9 K=4 2 0 8 [0,8] rho=0,0,0,1,1,1,2,3,2 sig=0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=9 K=4 1 0 8 [0,8] rho=0,0,0,1,1,1,2,3,2 sig=0,0,0,1,2,1,2,3,3
+END-FAIL-EC n=9 K=4 2 0 8 [0,8] rho=0,0,0,1,1,1,2,3,2 sig=0,0,0,1,2,1,2,3,3
+END-FAIL-EW n=9 K=4 7 0 8 [0,8] rho=0,0,0,1,1,1,2,3,3 sig=0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=9 K=4 7 0 8 [0,8] rho=0,0,0,1,1,1,2,3,3 sig=0,0,0,1,2,1,2,3,3
+END-FAIL-EW n=9 K=4 7 0 8 [0,8] rho=0,0,0,1,1,1,2,2,3 sig=0,0,0,1,2,2,2,3,3
+END-FAIL-EC n=9 K=4 1 0 8 [0,8] rho=0,0,0,1,1,1,2,3,2 sig=0,0,0,1,2,2,2,3,2
+END-FAIL-EW n=9 K=4 7 0 8 [0,8] rho=0,0,0,1,1,1,2,3,3 sig=0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=9 K=4 7 0 8 [0,8] rho=0,0,0,1,1,1,2,3,3 sig=0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=9 K=4 7 0 8 [0,8] rho=0,0,0,1,2,1,2,2,3 sig=0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=9 K=4 7 0 8 [0,8] rho=0,0,0,1,2,1,2,3,3 sig=0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=9 K=4 7 0 8 [0,8] rho=0,0,0,1,2,1,2,3,3 sig=0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=9 K=4 7 0 8 [0,8] rho=0,0,0,1,1,1,2,3,3 sig=0,0,1,1,2,1,2,3,3
+enum n=9 K=4 shard 0/1 limit=20000000 all=1 sequences=14880
+  FOLD3[none] instances=4999680 fails=16656 undecided=0
+  FOLD3[S1] instances=21024 fails=2512 undecided=0
+  FOLD3[S2] instances=3904 fails=0 undecided=0
+  FOLD3[S1+S2] instances=0 fails=0 undecided=0
+  END[none] instances=104160 fails=15536 undecided=0
+  END[window] instances=38328 fails=1856 undecided=0
+  END[window+S] instances=2400 fails=720 undecided=0
+  END[X] instances=0 fails=0 undecided=0
+  END[window+S+X] instances=0 fails=0 undecided=0
+  END[C] instances=89040 fails=416 undecided=0
+  END[window+S+C] instances=1680 fails=0 undecided=0
+  T3END instances=133920 fails=0 undecided=0 thm3fails=0 thm3undecided=0
+
+=== n=10 (all classes)
+FOLD3-FAIL-S0 n=10 K=4 0 1 2 [0,1] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=10 K=4 0 1 3 [0,2] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=10 K=4 0 1 4 [0,3] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=10 K=4 0 2 3 [0,2] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S0 n=10 K=4 0 2 4 [0,3] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=10 K=4 1 9 0 [1,9] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=10 K=4 2 9 0 [1,9] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=10 K=4 2 9 1 [2,9] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=10 K=4 3 9 0 [1,9] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+FOLD3-FAIL-S1 n=10 K=4 3 9 1 [2,9] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=10 K=4 1 0 9 [0,9] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=10 K=4 2 0 9 [0,9] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=10 K=4 3 0 9 [0,9] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=10 K=4 4 0 9 [0,9] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=10 K=4 5 0 9 [0,9] rho=0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,1,2,1,2,3
+END-FAIL-EW n=10 K=4 8 0 9 [0,9] rho=0,0,0,0,1,1,1,2,2,3 sig=0,0,0,0,1,2,1,2,3,3
+END-FAIL-EC n=10 K=4 1 0 9 [0,9] rho=0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=10 K=4 2 0 9 [0,9] rho=0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=10 K=4 3 0 9 [0,9] rho=0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=10 K=4 1 0 9 [0,9] rho=0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,1,2,1,2,3,3
+END-FAIL-EC n=10 K=4 2 0 9 [0,9] rho=0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,1,2,1,2,3,3
+END-FAIL-EW n=10 K=4 8 0 9 [0,9] rho=0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=10 K=4 8 0 9 [0,9] rho=0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,1,2,1,2,3,3
+END-FAIL-EW n=10 K=4 8 0 9 [0,9] rho=0,0,0,0,1,1,1,2,2,3 sig=0,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=10 K=4 8 0 9 [0,9] rho=0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=10 K=4 8 0 9 [0,9] rho=0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=10 K=4 8 0 9 [0,9] rho=0,0,0,0,1,2,1,2,2,3 sig=0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=10 K=4 8 0 9 [0,9] rho=0,0,0,0,1,2,1,2,3,3 sig=0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=10 K=4 8 0 9 [0,9] rho=0,0,0,0,1,2,1,2,3,3 sig=0,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=10 K=4 8 0 9 [0,9] rho=0,0,0,0,1,1,1,2,3,3 sig=0,0,0,1,1,2,1,2,3,3
+enum n=10 K=4 shard 0/1 limit=20000000 all=1 sequences=78016
+  FOLD3[none] instances=37447680 fails=140832 undecided=0
+  FOLD3[S1] instances=182208 fails=19360 undecided=0
+  FOLD3[S2] instances=27072 fails=0 undecided=0
+  FOLD3[S1+S2] instances=0 fails=0 undecided=0
+  END[none] instances=624128 fails=81568 undecided=0
+  END[window] instances=233024 fails=12064 undecided=0
+  END[window+S] instances=15152 fails=4336 undecided=0
+  END[X] instances=0 fails=0 undecided=0
+  END[window+S+X] instances=0 fails=0 undecided=0
+  END[C] instances=545856 fails=3296 undecided=0
+  END[window+S+C] instances=10816 fails=0 undecided=0
+  T3END instances=780160 fails=0 undecided=0 thm3fails=0 thm3undecided=0
+
+=== n=11
+END-FAIL-E0 n=11 K=4 1 0 10 [0,10] rho=0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=11 K=4 2 0 10 [0,10] rho=0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=11 K=4 3 0 10 [0,10] rho=0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=11 K=4 4 0 10 [0,10] rho=0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=11 K=4 5 0 10 [0,10] rho=0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-EW n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,2,3 sig=0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EC n=11 K=4 1 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=11 K=4 2 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=11 K=4 3 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=11 K=4 4 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=11 K=4 1 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EW n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EW n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,2,3 sig=0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,2,1,2,2,3 sig=0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,2,1,2,3,3 sig=0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,2,1,2,3,3 sig=0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,1,1,2,1,2,3,3
+enum n=11 K=4 shard 0/1 limit=20000000 all=0 sequences=379584
+  FOLD3[S2] instances=163840 fails=0 undecided=0
+  FOLD3[S1+S2] instances=0 fails=0 undecided=0
+  END[none] instances=3416256 fails=396664 undecided=0
+  END[window] instances=1295728 fails=68192 undecided=0
+  END[window+S] instances=83992 fails=23016 undecided=0
+  END[X] instances=256 fails=0 undecided=0
+  END[window+S+X] instances=64 fails=0 undecided=0
+  END[C] instances=3040200 fails=20608 undecided=0
+  END[window+S+C] instances=60976 fails=0 undecided=0
+  T3END instances=4175424 fails=0 undecided=0 thm3fails=0 thm3undecided=0
+
+=== n=12
+END-FAIL-E0 n=12 K=4 1 0 11 [0,11] rho=0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=12 K=4 2 0 11 [0,11] rho=0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=12 K=4 3 0 11 [0,11] rho=0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=12 K=4 4 0 11 [0,11] rho=0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=12 K=4 5 0 11 [0,11] rho=0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-EW n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,2,3 sig=0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EC n=12 K=4 1 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=12 K=4 2 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=12 K=4 3 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=12 K=4 4 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=12 K=4 5 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EW n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EW n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,2,3 sig=0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,2,1,2,2,3 sig=0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,2,1,2,3,3 sig=0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,2,1,2,3,3 sig=0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,1,1,2,1,2,3,3
+enum n=12 K=4 shard 0/1 limit=20000000 all=0 sequences=1754176
+  FOLD3[S2] instances=906560 fails=0 undecided=0
+  FOLD3[S1+S2] instances=0 fails=0 undecided=0
+  END[none] instances=17541760 fails=1831712 undecided=0
+  END[window] instances=6761680 fails=352720 undecided=0
+  END[window+S] instances=428224 fails=112752 undecided=0
+  END[X] instances=5120 fails=0 undecided=0
+  END[window+S+X] instances=1216 fails=0 undecided=0
+  END[C] instances=15822400 fails=112352 undecided=0
+  END[window+S+C] instances=315472 fails=0 undecided=0
+  T3END instances=21050112 fails=0 undecided=0 thm3fails=0 thm3undecided=0
+
+=== n=13
+END-FAIL-E0 n=13 K=4 1 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=13 K=4 2 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=13 K=4 3 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=13 K=4 4 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=13 K=4 5 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,2,3 sig=0,0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EC n=13 K=4 1 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=13 K=4 2 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=13 K=4 3 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=13 K=4 4 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=13 K=4 5 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,2,3 sig=0,0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,2,1,2,2,3 sig=0,0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,2,1,2,3,3 sig=0,0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,2,1,2,3,3 sig=0,0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,1,1,2,1,2,3,3
+enum n=13 K=4 shard 0/1 limit=20000000 all=0 sequences=7811008
+  FOLD3[S2] instances=4711104 fails=0 undecided=0
+  FOLD3[S1+S2] instances=0 fails=0 undecided=0
+  END[none] instances=85921088 fails=8155456 undecided=0
+  END[window] instances=33662184 fails=1717904 undecided=0
+  END[window+S] instances=2061696 fails=523152 undecided=0
+  END[X] instances=59904 fails=0 undecided=0
+  END[window+S+X] instances=13440 fails=0 undecided=0
+  END[C] instances=78327392 fails=561760 undecided=0
+  END[window+S+C] instances=1538544 fails=0 undecided=0
+  T3END instances=101543104 fails=0 undecided=0 thm3fails=0 thm3undecided=0
+
+=== END-only rerun n=11
+END-FAIL-E0 n=11 K=4 1 0 10 [0,10] rho=0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=11 K=4 2 0 10 [0,10] rho=0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=11 K=4 3 0 10 [0,10] rho=0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=11 K=4 4 0 10 [0,10] rho=0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=11 K=4 5 0 10 [0,10] rho=0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-EW n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,2,3 sig=0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EC n=11 K=4 1 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=11 K=4 2 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=11 K=4 3 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=11 K=4 4 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=11 K=4 1 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EW n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EW n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,2,3 sig=0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,2,1,2,2,3 sig=0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,2,1,2,3,3 sig=0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,2,1,2,3,3 sig=0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=11 K=4 9 0 10 [0,10] rho=0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,1,1,2,1,2,3,3
+enum n=11 K=4 shard 0/1 limit=20000000 all=0 sequences=379584
+  END[none] instances=3416256 fails=396664 undecided=0
+  END[window] instances=1295728 fails=68192 undecided=0
+  END[window+S] instances=83992 fails=23016 undecided=0
+  END[X] instances=256 fails=0 undecided=0
+  END[window+S+X] instances=64 fails=0 undecided=0
+  END[C] instances=3040200 fails=20608 undecided=0
+  END[window+S+C] instances=60976 fails=0 undecided=0
+  END[C+X] instances=256 fails=0 undecided=0
+  END[window+S+C+X] instances=64 fails=0 undecided=0
+
+=== END-only rerun n=12
+END-FAIL-E0 n=12 K=4 1 0 11 [0,11] rho=0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=12 K=4 2 0 11 [0,11] rho=0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=12 K=4 3 0 11 [0,11] rho=0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=12 K=4 4 0 11 [0,11] rho=0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=12 K=4 5 0 11 [0,11] rho=0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-EW n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,2,3 sig=0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EC n=12 K=4 1 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=12 K=4 2 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=12 K=4 3 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=12 K=4 4 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=12 K=4 5 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EW n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EW n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,2,3 sig=0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,2,1,2,2,3 sig=0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,2,1,2,3,3 sig=0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,2,1,2,3,3 sig=0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=12 K=4 10 0 11 [0,11] rho=0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,1,1,2,1,2,3,3
+enum n=12 K=4 shard 0/1 limit=20000000 all=0 sequences=1754176
+  END[none] instances=17541760 fails=1831712 undecided=0
+  END[window] instances=6761680 fails=352720 undecided=0
+  END[window+S] instances=428224 fails=112752 undecided=0
+  END[X] instances=5120 fails=0 undecided=0
+  END[window+S+X] instances=1216 fails=0 undecided=0
+  END[C] instances=15822400 fails=112352 undecided=0
+  END[window+S+C] instances=315472 fails=0 undecided=0
+  END[C+X] instances=5120 fails=0 undecided=0
+  END[window+S+C+X] instances=1216 fails=0 undecided=0
+
+=== END-only rerun n=13 (2 shards)
+END-FAIL-E0 n=13 K=4 1 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=13 K=4 2 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=13 K=4 3 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=13 K=4 4 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=13 K=4 5 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,0,0,0,0,0,1,2,1,2,3
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,2,3 sig=0,0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EC n=13 K=4 1 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=13 K=4 2 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=13 K=4 3 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=13 K=4 4 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=13 K=4 5 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,0,0,0,0,1,2,1,2,3,2
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,2,3 sig=0,0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,2,1,2,2,3 sig=0,0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,2,1,2,3,3 sig=0,0,0,0,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,2,1,2,3,3 sig=0,0,0,0,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,0,0,0,1,1,2,1,2,3,3
+enum n=13 K=4 shard 0/2 limit=20000000 all=0 sequences=3912944
+  END[none] instances=43042384 fails=4233564 undecided=0
+  END[window] instances=16851024 fails=877480 undecided=0
+  END[window+S] instances=1057692 fails=268748 undecided=0
+  END[X] instances=29952 fails=0 undecided=0
+  END[window+S+X] instances=6752 fails=0 undecided=0
+  END[C] instances=39123348 fails=314528 undecided=0
+  END[window+S+C] instances=788944 fails=0 undecided=0
+  END[C+X] instances=29952 fails=0 undecided=0
+  END[window+S+C+X] instances=6752 fails=0 undecided=0
+END-FAIL-E0 n=13 K=4 1 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,1,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=13 K=4 2 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,1,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=13 K=4 3 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,1,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=13 K=4 4 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,1,0,0,0,0,1,2,1,2,3
+END-FAIL-E0 n=13 K=4 5 0 12 [0,12] rho=0,0,0,0,0,0,0,0,1,1,1,2,3 sig=0,0,0,1,0,0,0,0,1,2,1,2,3
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,2,3 sig=0,0,0,1,0,0,0,1,2,1,2,3,3
+END-FAIL-EC n=13 K=4 1 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,1,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=13 K=4 2 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,1,0,0,0,1,2,1,2,3,2
+END-FAIL-EC n=13 K=4 1 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,1,0,0,0,1,2,1,2,3,3
+END-FAIL-EC n=13 K=4 2 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,1,0,0,0,1,2,1,2,3,3
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,1,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,1,0,0,0,1,2,1,2,3,3
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,2,3 sig=0,0,0,1,0,0,0,1,2,2,2,3,3
+END-FAIL-EC n=13 K=4 1 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,2 sig=0,0,0,1,0,0,0,1,2,2,2,3,2
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,1,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,1,0,0,0,1,2,2,2,3,3
+END-FAIL-EW n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,2,1,2,2,3 sig=0,0,0,1,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,2,1,2,3,3 sig=0,0,0,1,0,0,0,1,2,1,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,2,1,2,3,3 sig=0,0,0,1,0,0,0,1,2,2,2,3,3
+END-FAIL-EWS n=13 K=4 11 0 12 [0,12] rho=0,0,0,0,0,0,0,1,1,1,2,3,3 sig=0,0,0,1,0,0,1,1,2,1,2,3,3
+enum n=13 K=4 shard 1/2 limit=20000000 all=0 sequences=3898064
+  END[none] instances=42878704 fails=3921892 undecided=0
+  END[window] instances=16811160 fails=840424 undecided=0
+  END[window+S] instances=1004004 fails=254404 undecided=0
+  END[X] instances=29952 fails=0 undecided=0
+  END[window+S+X] instances=6688 fails=0 undecided=0
+  END[C] instances=39204044 fails=247232 undecided=0
+  END[window+S+C] instances=749600 fails=0 undecided=0
+  END[C+X] instances=29952 fails=0 undecided=0
+  END[window+S+C+X] instances=6688 fails=0 undecided=0
+
+=== END-only rerun n=13, shards summed
+### k4e-n13-s*.log (2 file(s)) sequences=7811008
+  END[none] instances=85921088 fails=8155456 undecided=0
+  END[window] instances=33662184 fails=1717904 undecided=0
+  END[window+S] instances=2061696 fails=523152 undecided=0
+  END[X] instances=59904 fails=0 undecided=0
+  END[window+S+X] instances=13440 fails=0 undecided=0
+  END[C] instances=78327392 fails=561760 undecided=0
+  END[window+S+C] instances=1538544 fails=0 undecided=0
+  END[C+X] instances=59904 fails=0 undecided=0
+  END[window+S+C+X] instances=13440 fails=0 undecided=0

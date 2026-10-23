@@ -1,0 +1,276 @@
+%======================================================================
+\chapter{Span zero}\label{ch:span}
+%======================================================================
+
+The \emph{span} of a continuum, introduced by Lelek, measures how far apart two points can stay while each of them runs
+over the whole continuum (or one runs over the part traced by the other). Snake-like continua have span zero, and the
+main theorem of Hoehn and Oversteegen (Chapters~\ref{ch:snake}--\ref{ch:ladders}) is a converse for hereditarily
+indecomposable continua. This chapter and the next prove:
+
+\begin{theorem}[Theorem~C of Hoehn--Oversteegen]\label{thm:theoremC}
+Every homogeneous indecomposable plane continuum has span zero.
+\end{theorem}
+
+\formal{\lean{HPC.Span.TheoremC}, \lean{HPC.Span.theoremC}.}
+
+The proof follows Oversteegen and Tymchatyn, \emph{Plane strips and the span of continua (I)} (1982): Theorem~3.2 (the strip
+theorem, Chapter~\ref{ch:strips}) $\Rightarrow$ Corollary~3.5 $\Rightarrow$ Theorem~3.6 $\Rightarrow$ Theorem~C. Several
+steps of the printed proofs are unargued or, as printed, impossible; the formal proof supplies them, and proves the strip
+theorem in a slightly weaker form that suffices.
+
+\section{Span}
+
+Let $X$ be a metric space with projections $\pr1,\pr2\colon X\times X\to X$, and $\Diag$ the diagonal. Only positivity of span matters,
+so we use topological forms.
+
+\begin{definition}\label{def:span}
+A set $Z\subseteq X\times X$ is \emph{off the diagonal} if $Z\cap\Diag=\emptyset$. A set $A\subseteq X$ has \emph{positive surjective span} if there is a
+continuum $Z\subseteq A\times A$ off the diagonal with $\pr1(Z)=\pr2(Z)=A$, and \emph{positive surjective semi-span} if there is one with $\pr1(Z)=A$.
+$X$ has \emph{span zero} (\emph{semi-span zero}) if no subcontinuum of $X$ has positive surjective span (semi-span). Following
+Hoehn--Oversteegen, $X$ has \emph{span zero in their sense} if every subcontinuum $Z\subseteq X\times X$ with $\pr1(Z)\subseteq\pr2(Z)$ meets the diagonal.
+\end{definition}
+
+\formal{\lean{HPC.Span.OffDiag}, \lean{HPC.Span.SurjSpanPos}, \lean{HPC.Span.SurjSemiSpanPos},
+\lean{HPC.Span.SpanZero}, \lean{HPC.Span.SemiSpanZero}, \lean{HPC.Span.HOSpanZero}.}
+
+\begin{proposition}\label{prop:span-basic}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item For compact $X$, Lelek's numerical definitions agree with these: $\sigma_0(X)>0$ (respectively $\sigma(X)>0$) iff some subcontinuum has
+positive surjective semi-span (span).
+\item Positive surjective span (semi-span) of $A$ passes to $f(A)$ for any continuous $f$ injective on $A$.
+\item Semi-span zero is the same as span zero in the sense of Hoehn--Oversteegen; and that is equivalent to: for all maps $f,g\colon C\to X$
+of a continuum with $f(C)\subseteq g(C)$ there is $c$ with $f(c)=g(c)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Given a connected $C\subseteq A\times A$ with $d\ge\alpha>0$ on $C$ and $\pr1(C)=A$, the closure $\cl C$ is a continuum off the diagonal with
+$\pr1(\cl C)=\cl A$; conversely, on a continuum off the diagonal $d$ has a positive minimum. (b) Use $(f\times f)(Z)$. (c) Use the swap
+$(a,b)\mapsto(b,a)$: if $Z$ is off the diagonal with $\pr1(Z)\subseteq\pr2(Z)=A$, its swap lies in $A\times A$ and has first projection $A$; and
+conversely. For maps, take $Z=\set{(f(c),g(c))}$, and conversely $C=Z$ with the two projections.
+\end{proof}
+
+\formal{\lean{HPC.Span.otSemiSpanPos_iff}, \lean{HPC.Span.otSpanPos_iff}, \lean{HPC.Span.SurjSpanPos.image},
+\lean{HPC.Span.SurjSemiSpanPos.image}, \lean{HPC.Span.semiSpanZero_iff_hoSpanZero}, \lean{HPC.Span.hoSpanZero_iff_maps}.}
+
+\section{Confluence and Davis's theorem}
+
+\begin{theorem}[Cook 1967, Theorem~4]\label{thm:cook}
+Let $f$ be a continuous map of a compact metric continuum $X$ onto a hereditarily indecomposable continuum $S$. Then $f$ is
+\emph{confluent}: for every subcontinuum $Q\subseteq S$ and every component $C$ of $f^{-1}(Q)$, $f(C)=Q$.
+\end{theorem}
+
+\begin{proof}
+If $C=X$ then $f(C)=S\supseteq Q$. Otherwise let $q\in Q$ and suppose $q\notin f(C)$. Then $f^{-1}(q)$ is compact and misses $C$, so a closed
+$\delta$-neighbourhood $N$ of $C$ misses $f^{-1}(q)$; we may take $N\ne X$. Let $K$ be the component of a point $x\in C$ in $N$. By boundary
+bumping (\vthree{Theorem~1.10}) $K$ meets the frontier of $N$, so $K\not\subseteq C$. Then $f(K)$ meets $Q$ (at $f(x)$) and is not inside $Q$
+(otherwise $K$ would be a connected subset of $f^{-1}(Q)$ larger than $C$). Two subcontinua of the hereditarily indecomposable $S$ that meet are
+nested, so $Q\subseteq f(K)$, and $q=f(z)$ with $z\in K\subseteq N$; but $N$ misses $f^{-1}(q)$.
+\end{proof}
+
+\formal{\lean{HPC.Span.nested_of_hi}, \lean{HPC.Span.cook67_theorem4}.}
+
+This uses one closed neighbourhood of $C$ instead of Cook's decreasing sequence $C_n$, whose existence Cook does not argue.
+
+\begin{lemma}[Brouwer reduction]\label{lem:brouwer}
+Let $Z$ be a continuum and $P$ a property of subcontinua of $Z$ that holds for $Z$ and passes to intersections of nonempty chains. Then $Z$
+contains a subcontinuum $Z_0$ with $P$ that is minimal: no proper subcontinuum of $Z_0$ has $P$. Moreover, the intersection of a nonempty chain
+of continua is a continuum, and continuous images commute with such intersections.
+\end{lemma}
+
+\begin{proof}
+The intersection of a nonempty chain of continua is compact, nonempty by the finite intersection property, and connected as a directed
+intersection of continua. Zorn's lemma gives $Z_0$. For a continuous $\varphi$ and a chain $(W_j)$ of compact sets, $\varphi(\bigcap W_j)=\bigcap\varphi(W_j)$:
+if $y\in\bigcap\varphi(W_j)$, the sets $W_j\cap\varphi^{-1}(y)$ form a chain of nonempty compacta.
+\end{proof}
+
+\formal{\lean{HPC.Span.isContinuum_sInter_chain}, \lean{HPC.Span.brouwer_reduction}.}
+
+\begin{theorem}[Davis's theorem for hereditarily indecomposable continua]\label{thm:davis}
+If $A$ is hereditarily indecomposable and has positive surjective semi-span, some subcontinuum $B\subseteq A$ has positive surjective span.
+\end{theorem}
+
+\begin{proof}
+Let $Z\subseteq A\times A$ be a continuum off the diagonal with $\pr1(Z)=A$. The property $P(W)$: ``$\pr2(W)\subseteq\pr1(W)$'' holds for $Z$ and passes to
+intersections of chains (Lemma~\ref{lem:brouwer}); let $Z_0\subseteq Z$ be minimal with it, and $B=\pr1(Z_0)$, a hereditarily indecomposable continuum.
+Suppose $Q=\pr2(Z_0)\ne B$. Take $w\in Z_0$ with $\pr1(w)\in Q$ and let $Z'$ be the component of $w$ in $Z_0\cap\pr1^{-1}(Q)$. By Cook's theorem (applied to
+$\pr1\colon Z_0\to B$), $\pr1(Z')=Q$; so $\pr2(Z')\subseteq Q=\pr1(Z')$ and $Z'\ne Z_0$, against minimality. Hence $\pr1(Z_0)=\pr2(Z_0)=B$.
+\end{proof}
+
+\formal{\lean{HPC.Span.exists_surjSpanPos_of_surjSemiSpanPos}, \lean{HPC.Span.semiSpanZero_of_spanZero}.}
+
+\section{Theorem 3.6 from Corollary 3.5}
+
+\begin{definition}
+\emph{Corollary~3.5} is the statement: if $M$ is an indecomposable homogeneous plane continuum, every proper subcontinuum of $M$ has zero surjective
+semi-span (that is, does not have positive surjective semi-span).
+\end{definition}
+
+\formal{\lean{HPC.Span.OTCor35}.}
+
+\begin{lemma}\label{lem:dense-proper}
+A nondegenerate indecomposable continuum has, for every $\delta>0$, a $\delta$-dense proper subcontinuum.
+\end{lemma}
+
+\begin{proof}
+The proper subcontinua through a point $x$ are directed by union (Theorem~\ref{thm:composants}(b)) and their union, the composant, is dense
+(Theorem~\ref{thm:composants}(a)). Finitely many of them meet each ball of a finite $\delta/2$-net, and their union is one proper subcontinuum.
+\end{proof}
+
+\formal{\lean{HPC.Span.union_proper_of_indec}, \lean{HPC.Span.exists_dense_proper_subcontinuum}.}
+
+\begin{theorem}[Oversteegen--Tymchatyn, Theorem~3.6, indecomposable case]\label{thm:ot36}
+Let $X$ be a homogeneous, indecomposable, hereditarily indecomposable continuum none of whose proper subcontinua has positive surjective
+semi-span. Then $X$ does not have positive surjective semi-span.
+\end{theorem}
+
+\begin{proof}
+Suppose $Z\subseteq X\times X$ is a continuum off the diagonal with $\pr1(Z)=X$; write $f=\pr1$, $g=\pr2$ on $Z$, and let $\alpha>0$ be the minimum of $d(f,g)$ on $Z$.
+
+\emph{Reduction.} We may assume that $g(Z)\ne X$, or that no proper subcontinuum of $Z$ is mapped onto $X$ by $g$: if $g(Z)=X$, take by
+Lemma~\ref{lem:brouwer} a minimal $Z_0\subseteq Z$ with $g(Z_0)=X$; if $f(Z_0)=X$ replace $Z$ by $Z_0$, and otherwise by the swap of $Z_0$ (whose
+first projection is onto and second is not).
+
+\emph{Effros.} Let $\delta$ be the Effros bound (\vthree{Theorem~7.15}) for $\alpha$, and $K$ a $\delta$-dense proper subcontinuum (Lemma~\ref{lem:dense-proper};
+$X$ is nondegenerate since $Z$ exists).
+
+\emph{Cook.} By Theorem~\ref{thm:cook}, a component $C$ of $f^{-1}(K)$ has $f(C)=K$; $C\ne Z$ since $K\ne X$.
+
+\emph{The copy.} Take $y\in g(C)$, $x\in K$ with $d(x,y)<\delta$, and an $\alpha$-homeomorphism $h$ with $h(x)=y$. The subcontinua $h(K)$ and $g(C)$ meet at
+$y$, so they are nested; let $Z^*$ be the larger. It is proper: $h(K)\ne X$, and $g(C)\ne X$ because either $g(Z)\ne X$, or $g$ is irreducible onto $X$
+and $C\subsetneq Z$.
+
+\emph{The contradiction.} $W=\set{(h(f(c)),g(c)):c\in C}$ is a continuum with projections $h(K)$ and $g(C)$; it is off the diagonal, since
+$h(f(c))=g(c)$ would give $d(f(c),g(c))=d(f(c),h(f(c)))<\alpha$. If $g(C)\subseteq h(K)=Z^*$, $W$ witnesses positive surjective semi-span of $Z^*$; otherwise its
+swap does. This contradicts the hypothesis.
+\end{proof}
+
+\formal{\lean{HPC.Span.exists_reduced_witness}, \lean{HPC.Span.not_surjSemiSpanPos_univ}.}
+
+\begin{corollary}\label{cor:C-from-35}
+Corollary~3.5 implies Theorem~C.
+\end{corollary}
+
+\begin{proof}
+Let $M$ be a homogeneous indecomposable plane continuum. It is hereditarily indecomposable (Theorem~\ref{thm:HI}). By Corollary~3.5 and
+Theorem~\ref{thm:ot36} it has semi-span zero, which is span zero in the sense of Hoehn--Oversteegen
+(Proposition~\ref{prop:span-basic}(c)).
+\end{proof}
+
+\formal{\lean{HPC.Span.ot82_theorem36_of_cor35}, \lean{HPC.Span.theoremC_of_cor35}.}
+
+\section{Corollary 3.5 from the strip theorem}
+
+The strip theorem is proved in the next chapter in the following form.
+
+\begin{definition}[The strip theorem, strip form]\label{def:otthm32}
+Let $Y$ be a continuum, $X\subseteq Y$ a subcontinuum, $x\in X$ and $y\in Y$. Let $(K_i)_{i\in I}$ be pairwise disjoint continua in the strip
+$[0,1]\times\R$, each meeting both lines $x=0$ and $x=1$, and $h_i\colon Y\to K_i$ continuous maps with $h_i(x)$ on the line $x=0$ and
+$\pr1(h_i(z))<\pr1(h_i(y))$ for all $z\in X$ (here $\pr1$ is the first coordinate). Then only countably many of the sets $h_i(X)$ have positive surjective
+span.
+\end{definition}
+
+\formal{\lean{HPC.Span.OTThm32}.}
+
+Oversteegen and Tymchatyn's Theorem~3.2 does not have the continua $K_i$; it only asks that the images $h_i(Y)$ be pairwise disjoint. Its printed
+proof relies on two ``we may suppose'' steps that are not available together, and on three images one of which separates the other two, which is
+not argued. The strip form is what Corollary~3.5 uses.
+
+\begin{lemma}[Re-embedding]\label{lem:reembed}
+\leavevmode
+\begin{enumerate}[label=(E\arabic*)]
+\item For a nonempty compact $K\subseteq\R^2$ there is a homeomorphism $\Phi$ of the plane with $\Phi(K)\subseteq\set{x\ge0}$ meeting the line $x=0$ in exactly one
+point: if $(u_0,v_0)$ has least first coordinate in $K$, take $\Phi(u,v)=(u-u_0+(v-v_0)^2,v)$.
+\item \emph{(Finger move.)} If $U$ is a connected open set and $p,q\in U$, there is a homeomorphism of the plane fixing every point off $U$ and
+taking $p$ to $q$.
+\item If $A\subseteq\set{x\ge0}$ is a continuum that does not separate the plane and meets $x=0$ in at most one point, then $\set{x>0}\setminus A$ is connected.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(E2) If $B(c,r)\subseteq U$ and $\nrm{z-c}<r/2$, the map $T(w)=w+\beta(w)(z-c)$ with $\beta(w)=\max(0,1-\nrm{w-c}/r)$ is a homeomorphism (the perturbation is
+Lipschitz with constant less than $\frac12$, so $T$ is injective and, by the contraction principle, onto), $T(c)=z$, and $T$ is the identity off
+$B(c,r)$. The set of points reachable from $p$ by compositions of such maps is open and closed in $U$.
+
+(E3) Let $F$ be the part of $\set{x>0}$ above, below, or to the right of a large box containing $A$; it is connected and misses $A$. Every component
+$C$ of $\set{x>0}\setminus A$ meets $F$: otherwise $C$ is bounded with frontier in $A\cup J$, $J$ the segment of the line $x=0$ next to $A$, so $A\cup J$
+separates the plane; but $A\cap J$ has at most one point and neither $A$ nor $J$ separates, against Janiszewski's theorem (\vfour{Theorem~2.7}).
+\end{proof}
+
+\formal{\lean{HPC.Span.exists_homeomorph_unique_leftmost}, \lean{HPC.Span.exists_homeomorph_ball_step},
+\lean{HPC.Span.exists_homeomorph_push}, \lean{HPC.Span.isConnected_rightHalf_diff}.}
+
+\begin{lemma}[Crossing continua]\label{lem:crossing}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(The cut-wire argument.)} If $P$ is a continuum with points on both sides of the strip $S=[a,b]\times\R$, some component of $P\cap S$ meets
+both lines $x=a$ and $x=b$.
+\item If $M$ is a nondegenerate indecomposable plane continuum with points left of $x=a$ and right of $x=b$, there is an uncountable family of
+pairwise disjoint subcontinua of $M\cap S$ each meeting both lines.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Otherwise, by \vthree{Theorem~1.9} applied in the compact set $P\cap S$, there is a relatively clopen $F_1$ containing $P\cap\set{x=a}$ and missing
+$P\cap\set{x=b}$. With $F_2=(P\cap S)\setminus F_1$, the sets $(P\cap\set{x\le a})\cup F_1$ and $(P\cap\set{x\ge b})\cup F_2$ are disjoint, closed, nonempty and
+cover $P$.
+
+(b) Each composant $\kappa$ is dense, so it contains a point $p$ left of $x=a$, and $\cmp Mp=\kappa$ contains a point $q$ right of $x=b$; a proper subcontinuum
+$P\ni p,q$ lies in $\kappa$, and (a) gives $K_\kappa\subseteq P\cap S$. Distinct composants are disjoint and uncountably many
+(Theorem~\ref{thm:composants}).
+\end{proof}
+
+\formal{\lean{HPC.Span.exists_crossing_subcontinuum}, \lean{HPC.Span.exists_uncountable_crossing}.}
+
+\begin{theorem}[Oversteegen--Tymchatyn, Corollary~3.5]\label{thm:ot35}
+The strip theorem implies Corollary~3.5.
+\end{theorem}
+
+\begin{proof}
+Let $M$ be an indecomposable homogeneous plane continuum and $A_0\ne M$ a subcontinuum with positive surjective semi-span. $M$ is hereditarily
+indecomposable (Theorem~\ref{thm:HI}).
+
+\emph{1. Davis.} By Theorem~\ref{thm:davis} some $A_1\subseteq A_0$ has positive surjective span.
+
+\emph{2. Re-embed.} By (E1) we may assume $M\subseteq\set{x\ge0}$ with a unique point $x_0$ on $x=0$ (positivity of span and all hypotheses are carried
+by $\Phi$). By homogeneity move $A_1$ to a continuum $A\ni x_0$; $A\ne M$ and $A$ has positive surjective span.
+
+\emph{3. Finger move.} $A$ does not separate the plane (Theorem~\ref{thm:nosep}), so by (E3) $U=\set{x>0}\setminus A$ is open and connected. Take
+$p\in M\setminus A$ and $q$ to the right of $A$, and by (E2) a homeomorphism $T$ fixing everything off $U$ with $T(p)=q$. Replacing $M$ by $T(M)$, we may
+assume in addition that some point of $M$ lies to the right of $A$. (These printed ``without loss of generality'' steps are not a matter of
+scaling; this is how the formal proof achieves them.)
+
+\emph{4. Constants.} Let $s<m$ be the largest first coordinates on $A$ and on $M$, $\eta=(m-s)/8$ and $r=s+4\eta$. Let $\delta$ be the Effros bound for $\eta$,
+and choose $\varepsilon\in(0,r)$ with $M\cap\set{x\le\varepsilon}\subseteq B(x_0,\delta)$.
+
+\emph{5. The family.} Lemma~\ref{lem:crossing}(b) gives an uncountable family $\mathcal K$ of disjoint subcontinua crossing $[\varepsilon,r]\times\R$.
+
+\emph{6. Copies of $A$.} For $K\in\mathcal K$ pick $x_K\in K$ on $x=\varepsilon$ and an $\eta$-homeomorphism $h_K$ with $h_K(x_0)=x_K$. $h_K(A)$ and $K$ meet, so
+they are nested; $K\subseteq h_K(A)$ is impossible, since $K$ reaches $x=r$ while $h_K(A)\subseteq\set{x\le s+\eta}$. So $h_K(A)\subseteq K$.
+
+\emph{7. The continuum $B$ and the point $y$.} The continua $B_K=h_K^{-1}(K)$ all contain $A$, so they are pairwise nested, and $B=\bigcap_KB_K$ is a
+continuum containing $A$. The sets $B_K\cap\set{x\ge r-\eta}$ form a chain of nonempty compacta, so their intersection contains a point $y\in B$. For $z\in
+A$: $\pr1h_K(z)<s+\eta<r-2\eta<\pr1h_K(y)$.
+
+\emph{8.} Rescale the strip $[\varepsilon,r]\times\R$ to $[0,1]\times\R$ and apply the strip theorem with $Y=B$, $X=A$, $x=x_0$, $y$, the continua $K\in\mathcal K$ and the
+maps $h_K|_B$. Every $h_K(A)$ has positive surjective span (Proposition~\ref{prop:span-basic}(b)), so $\mathcal K$ would be countable.
+\end{proof}
+
+\formal{\lean{HPC.Span.cor35_core}, \lean{HPC.Span.ot82_cor35_of_thm32}, \lean{HPC.Span.theoremC_of_thm32}.}
+
+\begin{remark}
+In the printed proof of Corollary~3.5, the normalization $\pr1(A)=[0,\frac12]$, the existence of $\mathcal K$, and the continuum $B$ (``it is easy to see'') are
+unargued, the supposition $K\cap(\set\varepsilon\times\R)=\set{x_K}$ is unjustified (and unnecessary), and the inclusion ``$[0,\frac58]\subseteq\pr1(h_K(B))$'' is
+impossible as printed; step~7 gives what is needed, one point $y$ for all $K$.
+\end{remark}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that an arc has span zero, and that a simple closed curve has positive surjective span.
+\end{exercise}
+
+\begin{exercise}
+Show that a continuous image of a continuum with span zero need not have span zero, but that span zero is a topological invariant.
+\end{exercise}

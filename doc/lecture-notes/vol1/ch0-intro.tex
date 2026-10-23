@@ -1,0 +1,179 @@
+%======================================================================
+\chapter{Introduction and plan of the notes}\label{ch:intro}
+%======================================================================
+
+\section{The theorem these notes are about}
+
+A \emph{continuum} is a nonempty compact connected metric space. Continua include the
+closed interval $[0,1]$, the circle, the closed disc, and many stranger objects. In this
+course a continuum will usually sit inside the plane $\R^2$, and we call it a \emph{plane
+continuum}. A continuum is \emph{nondegenerate} if it has more than one point.
+
+A space $M$ is \emph{homogeneous} if for any two points $x,y\in M$ there is a
+homeomorphism $h\colon M\to M$ with $h(x)=y$. In words: every point looks like every
+other point. The circle is homogeneous (rotate it). The interval $[0,1]$ is not: removing
+an end point leaves a connected set, while removing an interior point does not, and a
+homeomorphism cannot change this.
+
+The final goal of the whole series of notes is the following theorem, which completes a
+programme begun in the 1920s.
+
+\begin{theorem}[Classification of homogeneous plane continua]\label{thm:classification}
+A nondegenerate plane continuum is homogeneous if and only if it is homeomorphic to one
+of the following three continua:
+\begin{enumerate}[label=(\roman*)]
+\item the circle;
+\item the pseudo-arc;
+\item the circle of pseudo-arcs.
+\end{enumerate}
+Each of the three is realized in the plane, each is homogeneous, and no two of them are
+homeomorphic.
+\end{theorem}
+
+The theorem has been proved in full in the Lean~4 proof assistant, in the repository
+that accompanies these notes. A proof assistant checks every logical step of a proof
+down to the axioms. The formal proof is therefore reliable, but it is not written to be
+read by people: it consists of roughly a thousand files of code. These notes translate
+it back into ordinary mathematics. They follow the formal proof step by step, and where
+the formal proof departs from the original papers (it often does, to repair a gap or to
+find a route that is easier to check) the notes follow the formal proof.
+
+\section{The three continua, informally}
+
+\paragraph{The circle.} Nothing needs to be said, except that ``circle'' means any space
+homeomorphic to $S^1=\set{z\in\mathbb{C} : \abs{z}=1}$; such a space is also called a
+\emph{simple closed curve}.
+
+\paragraph{The pseudo-arc.} Here is a first description. Cover a continuum $M$ by a finite
+sequence of open sets $L_0,\dots,L_{n-1}$ (``links'') such that consecutive links meet and
+non-consecutive links do not. Such a cover is called a \emph{chain}. A continuum that can
+be covered by chains with arbitrarily small links is called \emph{snake-like} (or
+\emph{chainable}). The interval $[0,1]$ is snake-like: cover it by short overlapping
+intervals. The circle is not snake-like.
+
+A continuum is \emph{decomposable} if it is the union of two proper subcontinua, and
+\emph{indecomposable} otherwise. The interval is decomposable ($[0,1]=[0,\frac12]\cup
+[\frac12,1]$). It is a surprising fact that indecomposable nondegenerate continua exist at
+all. A continuum is \emph{hereditarily indecomposable} if every subcontinuum is
+indecomposable.
+
+\begin{definition}\label{def:pseudoarc-intro}
+A \emph{pseudo-arc} is a nondegenerate continuum that is snake-like and hereditarily
+indecomposable.
+\end{definition}
+
+That such a continuum exists is the main theorem of this volume. That any two pseudo-arcs
+are homeomorphic, and that the pseudo-arc is homogeneous, are the main theorems of
+Volume~2. The pseudo-arc is a very strange object: it contains no arc (no subset
+homeomorphic to $[0,1]$), yet it is homeomorphic to each of its nondegenerate
+subcontinua.
+
+\paragraph{The circle of pseudo-arcs.} This is a continuum $X$ with a continuous open map
+$f\colon X\to S^1$ onto the circle, every fibre $f^{-1}(c)$ of which is a pseudo-arc, and
+which is itself ``circle-like''. Think of a circle in which every point has been replaced
+by a pseudo-arc. It is constructed and studied in Volume~8.
+
+\section{The shape of the whole proof}
+
+The proof of Theorem~\ref{thm:classification} splits as follows.
+\begin{enumerate}
+\item \textbf{The pseudo-arc.} A pseudo-arc exists in the plane; any two pseudo-arcs are
+homeomorphic; the pseudo-arc is homogeneous.
+\item \textbf{The indecomposable case.} A homogeneous indecomposable plane continuum is a
+pseudo-arc. One shows in turn that it is hereditarily indecomposable, that it has ``span
+zero'', and that a hereditarily indecomposable continuum of span zero is snake-like.
+\item \textbf{The decomposable case.} A homogeneous decomposable plane continuum is either
+a circle or admits an open map onto the circle whose fibres are pseudo-arcs.
+\item \textbf{Circles of pseudo-arcs.} Any two continua of the last kind are homeomorphic,
+they are homogeneous, and one of them lies in the plane.
+\item \textbf{Assembly.}
+\end{enumerate}
+All of this rests on two bodies of general theory: the topology of continua (chains,
+decompositions, the Effros theorem on homogeneous spaces), and the topology of the plane
+(separation theorems, the Jordan curve theorem, and R.~L.~Moore's characterization of the
+plane).
+
+\section{Plan of the series}
+
+The formal proof is far too long for one course. The notes are therefore planned in
+volumes, each of which can be read on its own once its prerequisites are known. The plan
+is as follows; only Volume~1 is written at present.
+
+\begin{center}
+\begin{tabular}{@{}lp{0.72\textwidth}@{}}
+\toprule
+Volume & Content\\
+\midrule
+1 & Chains and crookedness; descriptions; described continua are hereditarily
+indecomposable; Bing's crooked pattern; construction of a pseudo-arc in the plane.
+\emph{(This volume.)}\\
+2 & Composants and indecomposable continua; Bing's consolidation theorem and pattern
+following; matching covers and homeomorphisms; uniqueness of the pseudo-arc; homogeneity
+of the pseudo-arc.\\
+3 & General theory of continua: boundary bumping, irreducibility, non-cut points, triods,
+snake-like and circle-like continua, upper semicontinuous decompositions, the
+homeomorphism group and the Effros theorem.\\
+4 & Plane topology I: continuous logarithms, Borsuk's theorem, Janiszewski's theorem,
+polygons and the polygonal Jordan curve theorem, enclosing polygons, tree-like plane
+continua.\\
+5 & Plane topology II: Moore's axioms characterize the plane; decompositions of the plane
+into non-separating continua; the Jordan curve theorem.\\
+6 & The indecomposable case: consequences of homogeneity, hereditary indecomposability,
+span zero, snake-likeness.\\
+7 & The decomposable case: aposyndesis, Jones's aposyndetic decomposition, homogeneous
+aposyndetic plane continua are circles.\\
+8 & Circles of pseudo-arcs; the classification theorem.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{What this volume proves}
+
+The main theorem of this volume is:
+
+\begin{theorem}[Existence of the pseudo-arc]\label{thm:main-vol1}
+There is a pseudo-arc in the plane $\R^2$.
+\end{theorem}
+
+The proof has two halves.
+\begin{itemize}
+\item \emph{Abstract half} (Chapters~\ref{ch:prelim}--\ref{ch:descriptions}). We define
+crookedness of one chain in another and \emph{descriptions}: sequences of chains, each
+crooked in the one before and with links tending to zero in size. We prove that the
+intersection of the levels of a description, if the links stay in a compact set, is a
+hereditarily indecomposable snake-like continuum. This is a theorem of R.~H.~Bing from
+1948.
+\item \emph{Concrete half} (Chapters~\ref{ch:patterns}--\ref{ch:plane}). We write down an
+explicit integer sequence, Bing's pattern, prove that it is crooked, and use it together
+with an explicit homeomorphism of the plane to construct a description in $\R^2$ whose
+links stay in a fixed rectangle.
+\end{itemize}
+
+The concrete half is where the formal proof differs most from the literature: the
+classical construction is described with pictures, while the formal proof needs exact
+coordinates. These notes give the exact coordinates and check every inequality, so that
+the construction can be verified line by line without pictures.
+
+\section{Prerequisites and conventions}
+
+The reader should know the basics of metric spaces: open and closed sets, convergence,
+continuity, compactness and connectedness. Everything beyond this is proved in the notes;
+Chapter~\ref{ch:prelim} recalls what is used, with proofs of the less standard facts.
+
+\begin{itemize}
+\item $\N=\set{0,1,2,\dots}$ includes $0$. For $n\in\N$ we write $[n]=\set{0,1,\dots,n-1}$.
+Chains are indexed from $0$, as in the formal proof.
+\item The plane $\R^2$ carries the \emph{maximum metric}
+$d\big((a,b),(c,d)\big)=\max\big(\abs{a-c},\abs{b-d}\big)$. It defines the usual topology.
+We use it because it is the metric of the formal proof, and because it makes diameters of
+rectangles easy to compute: the rectangle $[a,a']\times[b,b']$ has diameter
+$\max(a'-a,b'-b)$.
+\item For integers $a,b$ we write $\fl{a/b}$ for the integer part of $a/b$ ($a\ge0$, $b>0$).
+\end{itemize}
+
+\paragraph{Formal counterparts.} After many results there is a line ``Formal counterpart:''
+giving the name of the corresponding statement in the Lean development. These names are
+there for readers who want to compare with the formal proof; nothing in the notes depends
+on them, and they may be ignored. Appendix~\ref{app:formal} collects them in one table.
+
+\paragraph{Exercises.} Each chapter ends with exercises. None of them is used later.

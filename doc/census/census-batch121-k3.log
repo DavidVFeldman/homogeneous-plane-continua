@@ -1,0 +1,218 @@
+=== K=3 n=3
+enum n=3 K=3 shard 0/1 limit=20000000 sequences=8
+  T3END instances=24 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=24 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=24 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=24 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=24 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=24 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=24 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=24 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=24 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=3 n=4
+enum n=4 K=3 shard 0/1 limit=20000000 sequences=56
+  T3END instances=224 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=224 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=224 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=224 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=224 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=224 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=224 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=288 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=288 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=3 n=5
+LITP-FAIL n=5 K=3 i=2 S=0 rho=1,0,1,2,1 sig=1,0,1,2,1
+LITM-FAIL n=5 K=3 i=2 S=6 rho=1,0,1,2,1 sig=1,0,1,2,1
+LITP-FAIL n=5 K=3 i=2 S=0 rho=1,2,1,0,1 sig=1,2,1,0,1
+LITM-FAIL n=5 K=3 i=2 S=9 rho=1,2,1,0,1 sig=1,2,1,0,1
+enum n=5 K=3 shard 0/1 limit=20000000 sequences=288
+  T3END instances=1440 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=1440 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=1440 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=1440 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=1440 fails=2 (in 2 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=1440 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=1440 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=2200 fails=2 (in 2 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=2200 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=3 n=6
+LITP-FAIL n=6 K=3 i=3 S=0 rho=1,0,0,1,2,1 sig=1,0,0,1,2,1
+LITM-FAIL n=6 K=3 i=3 S=6 rho=1,0,0,1,2,1 sig=1,0,0,1,2,1
+LITP-FAIL n=6 K=3 i=2 S=0 rho=1,0,1,2,2,1 sig=1,0,1,2,2,1
+LITM-FAIL n=6 K=3 i=2 S=6 rho=1,0,1,2,2,1 sig=1,0,1,2,2,1
+LITP-FAIL n=6 K=3 i=2 S=0 rho=1,2,1,0,0,1 sig=1,2,1,0,0,1
+LITM-FAIL n=6 K=3 i=2 S=9 rho=1,2,1,0,0,1 sig=1,2,1,0,0,1
+LITP-FAIL n=6 K=3 i=3 S=0 rho=1,2,2,1,0,1 sig=1,2,2,1,0,1
+LITM-FAIL n=6 K=3 i=3 S=9 rho=1,2,2,1,0,1 sig=1,2,2,1,0,1
+enum n=6 K=3 shard 0/1 limit=20000000 sequences=1296
+  T3END instances=7776 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=7776 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=7776 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=7776 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=7776 fails=4 (in 4 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=7776 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=7776 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=13104 fails=4 (in 4 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=13104 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=3 n=7
+LITP-FAIL n=7 K=3 i=4 S=0 rho=1,0,0,0,1,2,1 sig=1,0,0,0,1,2,1
+LITM-FAIL n=7 K=3 i=4 S=6 rho=1,0,0,0,1,2,1 sig=1,0,0,0,1,2,1
+LITP-FAIL n=7 K=3 i=3 S=0 rho=1,0,0,1,2,2,1 sig=1,0,0,1,2,2,1
+LITM-FAIL n=7 K=3 i=3 S=6 rho=1,0,0,1,2,2,1 sig=1,0,0,1,2,2,1
+LITP-FAIL n=7 K=3 i=4 S=0 rho=1,0,0,0,1,2,1 sig=1,0,1,0,1,2,1
+LITM-FAIL n=7 K=3 i=4 S=6 rho=1,0,0,0,1,2,1 sig=1,0,1,0,1,2,1
+LITP-FAIL n=7 K=3 i=4 S=0 rho=1,0,1,0,1,2,1 sig=1,0,1,0,1,2,1
+LITM-FAIL n=7 K=3 i=4 S=6 rho=1,0,1,0,1,2,1 sig=1,0,1,0,1,2,1
+LITP-FAIL n=7 K=3 i=2 S=0 rho=1,0,1,2,1,2,1 sig=1,0,1,2,1,2,1
+LITM-FAIL n=7 K=3 i=2 S=6 rho=1,0,1,2,1,2,1 sig=1,0,1,2,1,2,1
+LITP-FAIL n=7 K=3 i=2 S=0 rho=1,0,1,2,1,2,1 sig=1,0,1,2,2,2,1
+LITM-FAIL n=7 K=3 i=2 S=6 rho=1,0,1,2,1,2,1 sig=1,0,1,2,2,2,1
+LITP-FAIL n=7 K=3 i=2 S=0 rho=1,0,1,2,2,2,1 sig=1,0,1,2,2,2,1
+LITM-FAIL n=7 K=3 i=2 S=6 rho=1,0,1,2,2,2,1 sig=1,0,1,2,2,2,1
+LITP-FAIL n=7 K=3 i=2 S=0 rho=1,2,1,0,0,0,1 sig=1,2,1,0,0,0,1
+LITM-FAIL n=7 K=3 i=2 S=9 rho=1,2,1,0,0,0,1 sig=1,2,1,0,0,0,1
+enum n=7 K=3 shard 0/1 limit=20000000 sequences=5432
+  T3END instances=38024 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=38024 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=38024 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=38024 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=38024 fails=14 (in 14 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=38024 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=38024 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=68040 fails=14 (in 14 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=68040 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=3 n=8
+LITP-FAIL n=8 K=3 i=5 S=0 rho=1,0,0,0,0,1,2,1 sig=1,0,0,0,0,1,2,1
+LITM-FAIL n=8 K=3 i=5 S=6 rho=1,0,0,0,0,1,2,1 sig=1,0,0,0,0,1,2,1
+LITP-FAIL n=8 K=3 i=4 S=0 rho=1,0,0,0,1,2,2,1 sig=1,0,0,0,1,2,2,1
+LITM-FAIL n=8 K=3 i=4 S=6 rho=1,0,0,0,1,2,2,1 sig=1,0,0,0,1,2,2,1
+LITP-FAIL n=8 K=3 i=5 S=0 rho=1,0,0,0,0,1,2,1 sig=1,0,0,1,0,1,2,1
+LITM-FAIL n=8 K=3 i=5 S=6 rho=1,0,0,0,0,1,2,1 sig=1,0,0,1,0,1,2,1
+LITP-FAIL n=8 K=3 i=5 S=0 rho=1,0,0,1,0,1,2,1 sig=1,0,0,1,0,1,2,1
+LITM-FAIL n=8 K=3 i=5 S=6 rho=1,0,0,1,0,1,2,1 sig=1,0,0,1,0,1,2,1
+LITP-FAIL n=8 K=3 i=3 S=0 rho=1,0,0,1,2,1,2,1 sig=1,0,0,1,2,1,2,1
+LITM-FAIL n=8 K=3 i=3 S=6 rho=1,0,0,1,2,1,2,1 sig=1,0,0,1,2,1,2,1
+LITP-FAIL n=8 K=3 i=3 S=0 rho=1,0,0,1,2,1,2,1 sig=1,0,0,1,2,2,2,1
+LITM-FAIL n=8 K=3 i=3 S=6 rho=1,0,0,1,2,1,2,1 sig=1,0,0,1,2,2,2,1
+LITP-FAIL n=8 K=3 i=3 S=0 rho=1,0,0,1,2,2,2,1 sig=1,0,0,1,2,2,2,1
+LITM-FAIL n=8 K=3 i=3 S=6 rho=1,0,0,1,2,2,2,1 sig=1,0,0,1,2,2,2,1
+LITP-FAIL n=8 K=3 i=5 S=0 rho=1,0,0,0,0,1,2,1 sig=1,0,1,0,0,1,2,1
+LITM-FAIL n=8 K=3 i=5 S=6 rho=1,0,0,0,0,1,2,1 sig=1,0,1,0,0,1,2,1
+enum n=8 K=3 shard 0/1 limit=20000000 sequences=21800
+  T3END instances=174400 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=174400 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=174400 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=174400 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=174400 fails=32 (in 32 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=174400 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=174400 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=324160 fails=32 (in 32 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=324160 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=3 n=9
+LITP-FAIL n=9 K=3 i=6 S=0 rho=1,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,0,1,2,1
+LITM-FAIL n=9 K=3 i=6 S=6 rho=1,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,0,1,2,1
+LITP-FAIL n=9 K=3 i=5 S=0 rho=1,0,0,0,0,1,2,2,1 sig=1,0,0,0,0,1,2,2,1
+LITM-FAIL n=9 K=3 i=5 S=6 rho=1,0,0,0,0,1,2,2,1 sig=1,0,0,0,0,1,2,2,1
+LITP-FAIL n=9 K=3 i=6 S=0 rho=1,0,0,0,0,0,1,2,1 sig=1,0,0,0,1,0,1,2,1
+LITM-FAIL n=9 K=3 i=6 S=6 rho=1,0,0,0,0,0,1,2,1 sig=1,0,0,0,1,0,1,2,1
+LITP-FAIL n=9 K=3 i=6 S=0 rho=1,0,0,0,1,0,1,2,1 sig=1,0,0,0,1,0,1,2,1
+LITM-FAIL n=9 K=3 i=6 S=6 rho=1,0,0,0,1,0,1,2,1 sig=1,0,0,0,1,0,1,2,1
+LITP-FAIL n=9 K=3 i=4 S=0 rho=1,0,0,0,1,2,1,2,1 sig=1,0,0,0,1,2,1,2,1
+LITM-FAIL n=9 K=3 i=4 S=6 rho=1,0,0,0,1,2,1,2,1 sig=1,0,0,0,1,2,1,2,1
+LITP-FAIL n=9 K=3 i=4 S=0 rho=1,0,0,0,1,2,1,2,1 sig=1,0,0,0,1,2,2,2,1
+LITM-FAIL n=9 K=3 i=4 S=6 rho=1,0,0,0,1,2,1,2,1 sig=1,0,0,0,1,2,2,2,1
+LITP-FAIL n=9 K=3 i=4 S=0 rho=1,0,0,0,1,2,2,2,1 sig=1,0,0,0,1,2,2,2,1
+LITM-FAIL n=9 K=3 i=4 S=6 rho=1,0,0,0,1,2,2,2,1 sig=1,0,0,0,1,2,2,2,1
+LITP-FAIL n=9 K=3 i=6 S=0 rho=1,0,0,0,0,0,1,2,1 sig=1,0,0,1,0,0,1,2,1
+LITM-FAIL n=9 K=3 i=6 S=6 rho=1,0,0,0,0,0,1,2,1 sig=1,0,0,1,0,0,1,2,1
+enum n=9 K=3 shard 0/1 limit=20000000 sequences=85008
+  T3END instances=765072 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=765072 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=765072 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=765072 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=765072 fails=82 (in 82 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=765072 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=765072 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=1458936 fails=82 (in 82 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=1458936 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=3 n=10
+LITP-FAIL n=10 K=3 i=7 S=0 rho=1,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,0,0,1,2,1
+LITM-FAIL n=10 K=3 i=7 S=6 rho=1,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,0,0,1,2,1
+LITP-FAIL n=10 K=3 i=6 S=0 rho=1,0,0,0,0,0,1,2,2,1 sig=1,0,0,0,0,0,1,2,2,1
+LITM-FAIL n=10 K=3 i=6 S=6 rho=1,0,0,0,0,0,1,2,2,1 sig=1,0,0,0,0,0,1,2,2,1
+LITP-FAIL n=10 K=3 i=7 S=0 rho=1,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,1,0,1,2,1
+LITM-FAIL n=10 K=3 i=7 S=6 rho=1,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,1,0,1,2,1
+LITP-FAIL n=10 K=3 i=7 S=0 rho=1,0,0,0,0,1,0,1,2,1 sig=1,0,0,0,0,1,0,1,2,1
+LITM-FAIL n=10 K=3 i=7 S=6 rho=1,0,0,0,0,1,0,1,2,1 sig=1,0,0,0,0,1,0,1,2,1
+LITP-FAIL n=10 K=3 i=5 S=0 rho=1,0,0,0,0,1,2,1,2,1 sig=1,0,0,0,0,1,2,1,2,1
+LITM-FAIL n=10 K=3 i=5 S=6 rho=1,0,0,0,0,1,2,1,2,1 sig=1,0,0,0,0,1,2,1,2,1
+LITP-FAIL n=10 K=3 i=5 S=0 rho=1,0,0,0,0,1,2,1,2,1 sig=1,0,0,0,0,1,2,2,2,1
+LITM-FAIL n=10 K=3 i=5 S=6 rho=1,0,0,0,0,1,2,1,2,1 sig=1,0,0,0,0,1,2,2,2,1
+LITP-FAIL n=10 K=3 i=5 S=0 rho=1,0,0,0,0,1,2,2,2,1 sig=1,0,0,0,0,1,2,2,2,1
+LITM-FAIL n=10 K=3 i=5 S=6 rho=1,0,0,0,0,1,2,2,2,1 sig=1,0,0,0,0,1,2,2,2,1
+LITP-FAIL n=10 K=3 i=7 S=0 rho=1,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,1,0,0,1,2,1
+LITM-FAIL n=10 K=3 i=7 S=6 rho=1,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,1,0,0,1,2,1
+enum n=10 K=3 shard 0/1 limit=20000000 sequences=324864
+  T3END instances=3248640 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=3248640 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=3248640 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=3248640 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=3248640 fails=188 (in 188 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=3248640 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=3248640 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=6307920 fails=188 (in 188 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=6307920 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=3 n=11
+LITP-FAIL n=11 K=3 i=8 S=0 rho=1,0,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,0,0,0,1,2,1
+LITM-FAIL n=11 K=3 i=8 S=6 rho=1,0,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,0,0,0,1,2,1
+LITP-FAIL n=11 K=3 i=7 S=0 rho=1,0,0,0,0,0,0,1,2,2,1 sig=1,0,0,0,0,0,0,1,2,2,1
+LITM-FAIL n=11 K=3 i=7 S=6 rho=1,0,0,0,0,0,0,1,2,2,1 sig=1,0,0,0,0,0,0,1,2,2,1
+LITP-FAIL n=11 K=3 i=8 S=0 rho=1,0,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,0,1,0,1,2,1
+LITM-FAIL n=11 K=3 i=8 S=6 rho=1,0,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,0,1,0,1,2,1
+LITP-FAIL n=11 K=3 i=8 S=0 rho=1,0,0,0,0,0,1,0,1,2,1 sig=1,0,0,0,0,0,1,0,1,2,1
+LITM-FAIL n=11 K=3 i=8 S=6 rho=1,0,0,0,0,0,1,0,1,2,1 sig=1,0,0,0,0,0,1,0,1,2,1
+LITP-FAIL n=11 K=3 i=6 S=0 rho=1,0,0,0,0,0,1,2,1,2,1 sig=1,0,0,0,0,0,1,2,1,2,1
+LITM-FAIL n=11 K=3 i=6 S=6 rho=1,0,0,0,0,0,1,2,1,2,1 sig=1,0,0,0,0,0,1,2,1,2,1
+LITP-FAIL n=11 K=3 i=6 S=0 rho=1,0,0,0,0,0,1,2,1,2,1 sig=1,0,0,0,0,0,1,2,2,2,1
+LITM-FAIL n=11 K=3 i=6 S=6 rho=1,0,0,0,0,0,1,2,1,2,1 sig=1,0,0,0,0,0,1,2,2,2,1
+LITP-FAIL n=11 K=3 i=6 S=0 rho=1,0,0,0,0,0,1,2,2,2,1 sig=1,0,0,0,0,0,1,2,2,2,1
+LITM-FAIL n=11 K=3 i=6 S=6 rho=1,0,0,0,0,0,1,2,2,2,1 sig=1,0,0,0,0,0,1,2,2,2,1
+LITP-FAIL n=11 K=3 i=8 S=0 rho=1,0,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,1,0,0,1,2,1
+LITM-FAIL n=11 K=3 i=8 S=6 rho=1,0,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,1,0,0,1,2,1
+enum n=11 K=3 shard 0/1 limit=20000000 sequences=1223336
+  T3END instances=13456696 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=13456696 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=13456696 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=13456696 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=13456696 fails=438 (in 438 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=13456696 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=13456696 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=26477352 fails=438 (in 438 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=26477352 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=3 n=12
+LITP-FAIL n=12 K=3 i=9 S=0 rho=1,0,0,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,0,0,0,0,1,2,1
+LITM-FAIL n=12 K=3 i=9 S=6 rho=1,0,0,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,0,0,0,0,1,2,1
+LITP-FAIL n=12 K=3 i=8 S=0 rho=1,0,0,0,0,0,0,0,1,2,2,1 sig=1,0,0,0,0,0,0,0,1,2,2,1
+LITM-FAIL n=12 K=3 i=8 S=6 rho=1,0,0,0,0,0,0,0,1,2,2,1 sig=1,0,0,0,0,0,0,0,1,2,2,1
+LITP-FAIL n=12 K=3 i=9 S=0 rho=1,0,0,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,0,0,1,0,1,2,1
+LITM-FAIL n=12 K=3 i=9 S=6 rho=1,0,0,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,0,0,1,0,1,2,1
+LITP-FAIL n=12 K=3 i=9 S=0 rho=1,0,0,0,0,0,0,1,0,1,2,1 sig=1,0,0,0,0,0,0,1,0,1,2,1
+LITM-FAIL n=12 K=3 i=9 S=6 rho=1,0,0,0,0,0,0,1,0,1,2,1 sig=1,0,0,0,0,0,0,1,0,1,2,1
+LITP-FAIL n=12 K=3 i=7 S=0 rho=1,0,0,0,0,0,0,1,2,1,2,1 sig=1,0,0,0,0,0,0,1,2,1,2,1
+LITM-FAIL n=12 K=3 i=7 S=6 rho=1,0,0,0,0,0,0,1,2,1,2,1 sig=1,0,0,0,0,0,0,1,2,1,2,1
+LITP-FAIL n=12 K=3 i=7 S=0 rho=1,0,0,0,0,0,0,1,2,1,2,1 sig=1,0,0,0,0,0,0,1,2,2,2,1
+LITM-FAIL n=12 K=3 i=7 S=6 rho=1,0,0,0,0,0,0,1,2,1,2,1 sig=1,0,0,0,0,0,0,1,2,2,2,1
+LITP-FAIL n=12 K=3 i=7 S=0 rho=1,0,0,0,0,0,0,1,2,2,2,1 sig=1,0,0,0,0,0,0,1,2,2,2,1
+LITM-FAIL n=12 K=3 i=7 S=6 rho=1,0,0,0,0,0,0,1,2,2,2,1 sig=1,0,0,0,0,0,0,1,2,2,2,1
+LITP-FAIL n=12 K=3 i=9 S=0 rho=1,0,0,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,0,1,0,0,1,2,1
+LITM-FAIL n=12 K=3 i=9 S=6 rho=1,0,0,0,0,0,0,0,0,1,2,1 sig=1,0,0,0,0,0,1,0,0,1,2,1
+enum n=12 K=3 shard 0/1 limit=20000000 sequences=4555928
+  T3END instances=54671136 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=54671136 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=54671136 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=54671136 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=54671136 fails=984 (in 984 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=54671136 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=54671136 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=108649824 fails=984 (in 984 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=108649824 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0

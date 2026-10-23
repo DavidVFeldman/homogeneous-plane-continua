@@ -1,0 +1,12 @@
+search-batch54: a counterexample hunt over faithful pairs outside Bing's family.
+rounds=200 seed=5401 walk-steps=60
+
+generator A (random concatenations of Bing blocks): 53 faithful of 159 drawn
+generator B (random recursive chains): 2 faithful of 57 drawn
+generator C (free depth-first walks of 200 links): 91 produced of 200 tried; levels visited 0..9
+
+faithful pairs scanned: 8287; links 4041230, non-thin 18379 (0.00455); pairs skipped for not attaining both ends: 5913
+branch L+4: basepoints 435018, unserved 130437; branch L+5: basepoints 552724, unserved 130548
+the ceiling configuration: an arm fails Leg3Ceil 21354 times, of those the pair misses the Lambda-walk 36 times
+residues seen at branch basepoints: ValleyResidual 110724, CeilPeakResidual 104528, CeilHighResidual 0
+COUNTEREXAMPLES: cross_ceil_sentence 0, cross_valley_profile 0, unserved_three_walks 0; branch L+5 served by none of the three reflected walks 0

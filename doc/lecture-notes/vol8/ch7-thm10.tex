@@ -1,0 +1,196 @@
+%======================================================================
+\chapter{Theorem 10}\label{ch:thm10}
+%======================================================================
+
+\begin{theorem}[Bing and Jones, Theorem~10]\label{thm:bj10}
+Let $X$, $Y$ be snake-like compact metric spaces and $f\colon X\to\I$, $g\colon Y\to\I$ continuous arcs of pseudo-arcs. Let $h_0\colon\fib f0\to\fib g0$ and
+$h_1\colon\fib f1\to\fib g1$ be homeomorphisms. There is a homeomorphism $H\colon X\to Y$ with $g\circ H=f$ which extends $h_0$ and $h_1$.
+\end{theorem}
+
+\formal{\lean{HPC.BJ59.bjThm10}, a proof of the statement \lean{HPC.BJ59.BJThm10}.}
+
+The homeomorphism is produced by Theorem~\ref{thm:zigzag}, from chains built by one construction (the \emph{step}) made alternately on the two sides. We write
+$p_x=\fib fx$, $q_x=\fib gx$, $P(J)=\fib fJ$ and $Q(J)=\fib gJ$. A family of links \emph{properly covers} a set if each of its links meets the set and their union
+contains it.
+
+\section{The conditions carried along}
+
+\begin{definition}[Bing and Jones, p.~188]\label{def:conditions}
+Let $D$ be a chain on $X$, $E$ a chain on $Y$, and $H$ a map of the indices of $D$ to those of $E$.
+\begin{description}
+\item[\textnormal{(A)}] $H$ is a chain map of $D$ onto $E$; if $D_j$ meets $p_x$ then $E_{H(j)}$ meets $q_x$; and if a run of $D$ properly covers $p_x$, the images
+of its links cover $q_x$.
+\item[\textnormal{(C)}] If $x\in p_0\cap D_j$ then $h_0(x)\in E_{H(j)}$; if $x\in p_1\cap D_j$ then $h_1(x)\in E_{H(j)}$.
+\end{description}
+\end{definition}
+
+\formal{\lean{HPC.BJ59.IsFibreChainMap} (Condition A), \lean{HPC.BJ59.EndCompat} (Condition C).}
+
+Recall private points (Definition~\ref{def:private}) and fibre-fineness (Definition~\ref{def:fibre-fine}). We also need a name for the conclusion of the
+corollary to Theorem~8: a map $R$ of the indices of a chain $F$ \emph{runs through $[\sigma,\sigma']$ on the run $[t,u]$} if every $j\in[\sigma,\sigma']$ is the value of $R$ at
+three consecutive indices of $[t,u]$.
+
+\formal{\lean{HPC.BJ59.IsPatternOn}.}
+
+\section{The step}
+
+\begin{theorem}[The step]\label{thm:step}
+Let $X$, $Y$, $f$, $g$, $h_0$, $h_1$ be as in Theorem~\ref{thm:bj10}. Let $D$ be a chain covering $X$ with private points, $E$ a chain covering $Y$ which is
+fibre-fine for $g$, and $H$ satisfying (A) and (C). For every $\delta>0$ there are a BJ-chain $E'$ covering $Y$, of mesh $<\delta$, with private points, and a map
+$K$ of its indices to those of $D$ such that:
+\begin{enumerate}[label=(\roman*)]
+\item (A$'$) $K$ satisfies (A) with the roles of $X$ and $Y$ exchanged;
+\item (C$'$) $K$ satisfies (C) for $h_0^{-1}$, $h_1^{-1}$;
+\item (B$'$) $E'_k\subseteq E_{H(K(k))}$ for every $k$.
+\end{enumerate}
+\end{theorem}
+
+\formal{The statement is \lean{HPC.BJ59.BJStep}, proved as \lean{HPC.BJ59.bj_step}.}
+
+Applied with $X$ and $Y$ exchanged (to $E'$, $D$, $K$, $h_0^{-1}$, $h_1^{-1}$), the step returns a chain $D'$ on $X$ and a chain map $H'$ of $D'$ onto $E'$
+with (A), (C) and $D'_j\subseteq D_{K(H'(j))}$, which is Condition~(B) of Chapter~\ref{ch:zigzag}. So one statement serves both halves of the induction.
+
+The construction follows Bing and Jones's Steps~2 and~3 (pp.~183--188), with two differences: the homeomorphisms $h_0$, $h_1$ are used only on the end fibres,
+and at an interior cut the construction passes from the map of one sub-arc to the map of the next through an overlap of the sub-arcs. We first assemble the
+pieces.
+
+\begin{lemma}[The map at an end; Step~2(b)]\label{lem:end-piece}
+Let $c\in\set{0,1}$ and let $h\colon p_c\to q_c$ be a homeomorphism. Let $W=[w_1,w_2]$ be a run of $D$ covering $p_c$ from which neither end link can be dropped. There
+is $\varepsilon>0$ such that for every $\varepsilon$-chain $F$ covering $Y$ there is a chain map $R$ of $F$ into $W$ with
+\begin{itemize}
+\item $h^{-1}(\cl{F_a}\cap q_c)\subseteq D_{R(a)}$ for every link $F_a$;
+\item every $j\in W$ is the value of $R$ at three consecutive links meeting $q_c$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:runs}(c) every $j\in W$ has a point $\varphi(z)$, $z\in q_c$, $\varphi=h^{-1}$, lying in $D_j$ and in no other link of $W$. Let $\lambda$ be a Lebesgue number of the
+cover of $p_c$ by the links of $W$, and choose $\varepsilon$ below a third of $\diam q_c$ and such that $\varphi$ maps subsets of $q_c$ of diameter $<5\varepsilon$ to sets of
+diameter $<\lambda$. Let $T$ be the run of links of $F$ meeting $q_c$. For $a\in T$ let $S_a$ be the set of $j\in W$ with $\varphi(\cl{F_a}\cap q_c)\subseteq D_j$: a run of one
+or two indices, nonempty. Call $a$ \emph{decided} if $S_a=\set j$. If $a$ is decided with value $j$, then $j\in S_{a'}$ for every $a'\in T$ within distance $4$ of $a$ (the
+closures of the links from $a$ to $a'$ meet $q_c$ in a set of diameter $<5\varepsilon$, whose image lies in one link of $W$, necessarily $D_j$); so decided positions at most four
+apart have the same value. Put $R(a)=j$ if some decided position within distance $2$ of $a$ has value $j$, and $R(a)=\min S_a$ otherwise; extend $R$ outside $T$ by its values at the
+ends of $T$. Then $R(a)\in S_a$, and $R$ is a chain map. For $j\in W$, take $z$ as above and $a\in T$ with $z\in F_a$: $a$ is decided with value $j$, so $R=j$ at the
+positions of $T$ within distance $2$ of $a$, at least three of them.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.exists_end_piece}, from \lean{HPC.BJ59.exists_pattern}.}
+
+\begin{lemma}[The map of a sub-arc]\label{lem:subarc-piece}
+Let $a<b$ and suppose every run of $D$ covering $P[a,b]$ minimally has all its links meeting every fibre over $[a,b]$ (Theorem~\ref{thm:step1b}). Then there is a run
+$[r,s]$ of $D$ properly covering every $p_x$, $x\in[a,b]$, and $\varepsilon>0$ such that for every $\varepsilon$-chain $F$ covering $Y$ there is a chain map $R$ of $F$ into $[r,s]$
+with
+\begin{description}
+\item[\textnormal{(R1)}] $F_k\cap Q[a,b]\subseteq E_{H(R(k))}$ for every $k$;
+\item[\textnormal{(R2)}] for $x\in[a,b]$, $R$ runs through $[r,s]$ on every run of $F$ covering $q_x$.
+\end{description}
+\end{lemma}
+
+\begin{proof}
+Take a minimal covering run $[r,s]$ of $P[a,b]$. By (A), its image $H([r,s])$ (a run, Lemma~\ref{lem:chainmap-ivt}) consists of links meeting every $q_x$, $x\in[a,b]$, and covers
+$Q[a,b]$. By fibre-fineness it has one link or at least three. Apply the corollary to Theorem~8 on the sub-arc $Q[a,b]$ (Corollary~\ref{cor:bj8} and the remark after
+it) with this run as $E$ and $H$ restricted to $[r,s]$ as $H_1$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.exists_subarc_piece}.}
+
+\begin{lemma}[Stability near a fibre]\label{lem:tau}
+If a run of a chain properly covers $\fib\varphi c$ for a continuous open $\varphi$ onto $\I$, it properly covers $\fib\varphi x$ for all $x$ near $c$. If the closure of
+every link $F_k$ meets $\fib\varphi c$ inside an open set $V_k$, there is $\tau>0$ with $F_k\cap\fib\varphi{[c-\tau,c+\tau]}\subseteq V_k$ for all $k$.
+\end{lemma}
+
+\formal{\lean{HPC.BJ59.exists_tau_run}, \lean{HPC.BJ59.exists_tau_incl}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:step} in outline]
+\emph{(a) Sub-arcs.} Let $\delta_D$ be given by Theorem~\ref{thm:step1b} for $f$ and $D$. Choose $N_0\ge1$ and $\eta>0$ with $1/N_0+2\eta\le\delta_D$ and $\eta<1/(4N_0)$. Put
+$c_i=i/N_0$ and $J_i=[c_i-\eta,c_{i+1}+\eta]\cap\I$ for $i<N_0$; consecutive $J_i$ overlap around $c_{i+1}$.
+
+\emph{(b), (c) The pieces.} Lemma~\ref{lem:subarc-piece} on each $J_i$ gives runs $[r_i,s_i]$ and numbers $\varepsilon_i$; Lemma~\ref{lem:end-piece} at $c=0$, $1$ (with $h=h_0$,
+$h_1$) gives runs $W^0$, $W^1$ and numbers $\varepsilon^0$, $\varepsilon^1$.
+
+\emph{(d) The chain $F$.} Let $F$ be an $\varepsilon$-chain covering $Y$, with $\varepsilon$ below all $\varepsilon_i$, $\varepsilon^c$ and so small that $g$ maps each link of $F$
+to a set of diameter $<\eta/4$. We obtain chain maps $R_i\colon F\to[r_i,s_i]$ with (R1), (R2) on $J_i$, and $R^c\colon F\to W^c$ as in Lemma~\ref{lem:end-piece}.
+
+\emph{(e) Windows.} Let $T^0$, $T^1$ be the runs of $F$ meeting $q_0$, $q_1$, and $T_i$ ($0<i<N_0$) the run meeting $q_{c_i}$. By Lemma~\ref{lem:tau} choose $\tau\in(0,\eta/4)$ such
+that these runs properly cover the fibres within $\tau$ of $0$, $1$, $c_i$; $W^c$ properly covers $p_x$ for $\abs{x-c}\le\tau$; and $F_a\cap Q(\set{\abs{x-c}\le\tau})\subseteq
+E_{H(R^c(a))}$ for $F_a\in T^c$ (at $x=c$ this follows from Lemma~\ref{lem:end-piece} and (C)). The windows are $L^0=[\tau/4,\tau/2]$, $L^1=[1-\tau/2,1-\tau/4]$ and
+$L_i=[c_i,c_i+\tau/2]$. At each window two maps meet: $R^0$ and $R_0$ at $L^0$, $R_{i-1}$ and $R_i$ at $L_i$, $R_{N_0-1}$ and $R^1$ at $L^1$. Both carry the run $T$ of
+that window onto runs of $D$ properly covering the fibre at the centre, so Theorem~\ref{thm:bj6} gives a \emph{transition link} $F_y\in T$ at which their values are adjacent.
+Lemma~\ref{lem:window-set} gives a transition set $U\subseteq F_y$ over the interior of the window, and Theorem~\ref{thm:bj5-window} splits $Y\setminus U$ into closed sides
+$A$ (left) and $B$ (right) such that, for each $x$ in the window, every link of $T$ meets $A\cap q_x$ or every link meets $B\cap q_x$. Intersecting consecutive sides gives
+closed, pairwise disjoint regions
+\[
+Z^0=A^0,\qquad Z_i=B_i\cap A_{i+1}\ (i<N_0,\ B_0:=B^0,\ A_{N_0}:=A^1),\qquad Z^1=B^1,
+\]
+covering the complement of the transition sets, with $Z_i\subseteq Q(J_i)$; region $Z_i$ carries the map $R_i$, and $Z^c$ the map $R^c$.
+
+\emph{(f) $E'$ and $K$.} Choose $\mu>0$ below $\delta$, a Lebesgue number of $F$, the distances between distinct regions, between each transition set and the regions not next
+to it, between the two sides of each window and from each transition set to the complement of its link $F_y$, and so small that a set of diameter $<\mu$ has image under $g$
+of diameter $<\tau/4$. Then a set of diameter $<\mu$ meets at most one transition set, and none if it meets $q_0\cup q_1$. Let $G$ be a BJ-chain of mesh $<\mu$ covering $Y$
+(Theorem~\ref{thm:shrink}). For a link $e$ of $G$: if $e$ meets a transition set $U\subseteq F_y$, then $e\subseteq F_y$, and $K(e)$ is the left map at $y$ if $e$ meets the side $A$,
+otherwise the right map at $y$; if not, $e$ meets exactly one region, and $K(e)$ is that region's map at a link of $F$ containing $e$.
+
+\emph{(g) Verification.}
+\begin{enumerate}
+\item $K$ is a chain map: inside a region adjacent links of $G$ lie in equal or adjacent links of $F$; a link meeting $U$ and an adjacent link not meeting it meet on the same side
+and use the same map; two links meeting $U$ lie in $F_y$, where the two maps are adjacent.
+\item (B$'$) follows from (R1) in the regions $Z_i$ and at interior transitions (where $e\subseteq F_y\cap Q(J_{i-1}\cap J_i)$), and from the choice of $\tau$ in $Z^c$.
+\item (C$'$): a link meeting $q_c$ meets no transition set, so it lies in $Z^c$, and Lemma~\ref{lem:end-piece} applies.
+\item (A$'$), first clause: if $e$ meets $q_x$, $x$ lies in the range of the map used, whose values all name links meeting $p_x$.
+\item (A$'$), second clause. Let a run $C$ of $G$ properly cover $q_x$. We find a run $S$ of $D$ properly covering $p_x$, a map $M$ among the $R_i$, $R^c$, a run $T$ of $F$
+and a set $\Gamma\subseteq q_x$ meeting every link of $T$, such that every $j\in S$ is the value of $M$ at three consecutive links $F_{a-1},F_a,F_{a+1}$ of $T$ and every
+link of $G$ meeting $\Gamma$ takes its value from $M$. Then for $j\in S$, a point $z\in\Gamma\cap F_a$ lies in some $e\in C$, the link of $F$ used for $e$ contains $z$, so it is
+$F_{a-1}$, $F_a$ or $F_{a+1}$, and $K(e)=j$. Between windows, $q_x$ lies in one region $Z_i$: take $M=R_i$, $\Gamma=q_x$, $S=[r_i,s_i]$ and (R2). In a window, the dichotomy of
+Theorem~\ref{thm:bj5-window} says that every link of $T$ meets $A\cap q_x$ (take the left map, $\Gamma=A\cap q_x$) or every link meets $B\cap q_x$ (the right map); (R2) at the
+centre of the window, or Lemma~\ref{lem:end-piece} at the ends, gives the three consecutive links. Near $0$ and $1$ use $R^c$ and $W^c$.
+\item $K$ is onto: for a private point $z$ of $D_j$ and $x=f(z)$, the run $S$ of item~5 covers $z$, so $j\in S$ is a value of $K$.
+\item Private points: shrink $G$ by Proposition~\ref{prop:private-shrink} and keep $K$. Every property survives, since links only shrink and a run of shrunk links properly
+covering $q_x$ comes from a run of $G$ properly covering it.\qedhere
+\end{enumerate}
+\end{proof}
+
+\formal{The gluing (e)--(g) is \lean{HPC.BJ59.bj_glue}; the pieces are \lean{HPC.BJ59.exists_subarc_piece}, \lean{HPC.BJ59.exists_end_piece}; the windows use
+\lean{HPC.BJ59.adjacent_of_properCover}, \lean{HPC.BJ59.exists_window_set}, \lean{HPC.BJ59.bj_theorem5_window}.}
+
+\section{The induction}
+
+\begin{proof}[Proof of Theorem~\ref{thm:bj10}]
+By Lemma~\ref{lem:fibre-spread} let $\kappa_X$, $\kappa_Y$ bound the spreads of the fibres of $f$ and $g$ from below. A \emph{stage} is a triple $(D,E,H)$ of chains covering
+$X$ and $Y$, BJ-chains with private points, $D$ fibre-fine for $f$ and $E$ for $g$, and $H$ satisfying (A) and (C), with both meshes below a given $\varepsilon$.
+
+\emph{Stage $0$}: the one-link chains $(X)$, $(Y)$ and the identity map. All conditions hold trivially (a one-link chain is fibre-fine, its link has private points, (A) and
+(C) hold because the only link of $E$ is $Y$).
+
+\emph{From stage $i$ to stage $i+1$}: apply Theorem~\ref{thm:step} to $(D^i,E^i,H_i)$ with $\delta_i=\min(2^{-i-1},\kappa_X/3,\kappa_Y/3)$, obtaining $E^{i+1}$ and $K_i$;
+then apply it with $X$ and $Y$ exchanged to $(E^{i+1},D^i,K_i)$, obtaining $D^{i+1}$ and $H_{i+1}$. By Lemma~\ref{lem:fibre-fine} the new chains are fibre-fine. Condition
+(B$'$) of Chapter~\ref{ch:zigzag} is (iii) of the first application and (B) is (iii) of the second.
+
+\emph{The homeomorphism.} Theorem~\ref{thm:zigzag} with $P=X$, $Q=Y$ gives a homeomorphism $H\colon X\to Y$ with $H(p)\in\cl{\st_i(p)}$ for every $i$.
+Proposition~\ref{prop:zigzag-fibre}, whose hypothesis is the first clause of (A), gives $g\circ H=f$. For $x\in p_0$, Condition (C) gives $h_0(x)\in\st_i(x)$ for every $i$, so
+$h_0(x)=H(x)$ by the characterization; likewise for $h_1$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.bjThm10_of_step}, with \lean{HPC.BJ59.BJStage}, \lean{HPC.BJ59.BJStage.exists_init}, \lean{HPC.BJ59.BJStage.exists_next}.}
+
+\begin{remark}
+Bing and Jones extend $h$ at every step to the fibres over the cut points $i/n$ (arbitrarily in Step~1(c), by their Theorem~9 in Step~2(i)) and build the maps near those
+fibres from it. In the proof above $h_0$ and $h_1$ are used only on $p_0$ and $p_1$, and Theorem~9 is not needed. There is also no separate first step: the induction starts
+from one-link chains, and for a one-link chain the corollary to Theorem~8 is the zigzag map of their Step~2(b).
+\end{remark}
+
+\formal{Bing and Jones's Theorem~9 is nevertheless proved: \lean{HPC.BJ59.bj_theorem9}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Check that the one-link stage satisfies (A): what does ``a run of $D$ properly covering $p_x$'' mean when $D$ has one link?
+\end{exercise}
+
+\begin{exercise}
+In Lemma~\ref{lem:end-piece}, show that two runs $S_a$, $S_{a+1}$ of length at most two that meet have least elements at most one apart, and deduce that $R$ is a chain map.
+\end{exercise}
+
+\begin{exercise}
+Show that Theorem~\ref{thm:bj10} gives, for any homeomorphism $h_0\colon p_0\to p_0$ of the end fibre of a continuous snake-like arc of pseudo-arcs, a self-homeomorphism of $X$
+preserving every fibre and extending $h_0$.
+\end{exercise}

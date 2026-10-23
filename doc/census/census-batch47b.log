@@ -1,0 +1,21 @@
+census-batch47b: the GENERAL model; generator: shavings of bing 0 9 (n = 986).
+  the thin sequence bing 0 9 verifies IsCrookedIvF: 1
+
+-- single shavings --
+faithful shaved pairs: 288 (each with 1 non-thin link of 986)
+branch basepoints: 22280; folding onto neither canonical walk: 6340
+of those, the thin sequence IS served at the same basepoint by a canonical walk: 0 (and that walk serves the shaved pair: 0)
+covered by L+3 -> L+a -> L+1 -> L+8: 6340   [a=5: 0]   [a=6: 6340]   [a=7: 6326]
+not covered by that family but by some three-leg walk: 0
+unserved pairs whose two arms both meet the profile criterion of census-batch47c.c: 6340 (failing: 0)
+fold transfer, over all 22280 branch basepoints:
+  L+3 -> L+8 -> L+1 (Lambda)   thin serves     54, of which lost after shaving      0; gained      0
+  L+5 -> L+1 -> L+8 (V)        thin serves  15864, of which lost after shaving      0; gained     22
+  L+3 -> L+6 -> L+1 -> L+8     thin serves  15596, of which lost after shaving     16; gained     60
+  L+3 -> L+7 -> L+1 -> L+8     thin serves   8142, of which lost after shaving     20; gained     10
+
+-- random multi-shavings (20 rounds, seed 11) --
+faithful pairs: 20; non-thin links 1935/19720 (0.0981)
+branch basepoints: 2175; unserved by a canonical walk: 451
+of those, thin served at the same basepoint: 36 (same walk serves the pair: 0)
+covered by L+3 -> L+a -> L+1 -> L+8 (a in 5..7): 451; by some other three-leg walk: 0; by none: 0

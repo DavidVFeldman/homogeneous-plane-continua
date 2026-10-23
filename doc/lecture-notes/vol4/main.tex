@@ -1,0 +1,103 @@
+% Lecture notes on the classification of homogeneous plane continua,
+% following the formal (Lean 4) proof in this repository.
+% Volume 4: Plane topology I.
+%
+% Compile with:  pdflatex main && pdflatex main   (two runs for the contents and references)
+\documentclass[11pt,oneside]{book}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tikz}
+\usepackage[hidelinks]{hyperref}
+
+% ---------------------------------------------------------------- theorem styles
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ---------------------------------------------------------------- notation
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\interior}{\operatorname{int}}
+\newcommand{\cl}[1]{\overline{#1}}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\fl}[1]{\left\lfloor #1\right\rfloor}
+\newcommand{\C}{\mathbb{C}}
+% the principal logarithm and argument
+\newcommand{\Log}{\operatorname{Log}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+% the sup norm of the plane and the euclidean modulus
+\newcommand{\nrm}[1]{\lVert #1\rVert}
+% the interior of a compact set of the plane (union of the bounded complementary components)
+\newcommand{\inn}{\operatorname{ins}}
+% crossing parity of a polygon or graph at a point
+\newcommand{\parity}{\operatorname{par}}
+% the component of x in the complement of A
+\newcommand{\comp}[2]{\operatorname{C}_{#1}(#2)}
+% the point set of a graph
+\newcommand{\gs}[1]{\lvert #1\rvert}
+% the degree of a vertex
+\newcommand{\dg}{\operatorname{deg}}
+% the odd set of a graph
+\newcommand{\odd}{\operatorname{odd}}
+
+% Names of declarations in the Lean development (typewriter, underscores allowed).
+\newcommand{\lean}[1]{\texttt{\detokenize{#1}}}
+% A Lean name ending in a subscript digit (such as IsEssentialSum with subscript 2).
+\newcommand{\leansub}[2]{\texttt{\detokenize{#1}}\ensuremath{_{#2}}}
+% A paragraph pointing to the formal counterpart of a result.
+\newcommand{\formal}[1]{\par\smallskip\noindent{\small\textit{Formal counterpart:} #1}\par\smallskip}
+% References to numbered results of Volumes 1 and 2.
+\newcommand{\vone}[1]{Volume~1, #1}
+\newcommand{\vtwo}[1]{Volume~2, #1}
+\newcommand{\vthree}[1]{Volume~3, #1}
+
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{\textbf{Homogeneous Plane Continua}\\[6pt]
+\Large Lecture notes following the formal proof\\[18pt]
+\large Volume 4\\[4pt]
+\Large Plane topology I: logarithms, polygons\\ and tree-like continua}
+\author{}
+\date{}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+% The introduction is Chapter 0, as in Volumes 1--3.
+\setcounter{chapter}{-1}
+\input{ch0-intro}
+\input{ch1-logarithms}
+\input{ch2-separation}
+\input{ch3-polygons}
+\input{ch4-enclosing}
+\input{ch5-treelike}
+
+\appendix
+\input{appA-formal}
+
+\end{document}

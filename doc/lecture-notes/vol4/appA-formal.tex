@@ -1,0 +1,135 @@
+%======================================================================
+\chapter{Correspondence with the formal proof}\label{app:formal}
+%======================================================================
+
+The table lists the definitions and results of this volume that carry a ``Formal counterpart''
+line, together with the corresponding declarations of the Lean development. All declaration
+names start with \lean{HPC.}, except the Mathlib names marked as such. The formal statements are
+sometimes slightly more general, or are split differently into lemmas; the table points to the
+place where the content of each result is proved. Rows are in the order of the text.
+
+The main theorems of the volume are, in the Lean development (prefix \lean{HPC.} omitted):
+\begin{center}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.54\textwidth}@{}}
+\toprule
+Unicoherence of the plane (Theorem~\ref{thm:unicoherent}) & \lean{Moore.plane_unicoherent}\\
+Brouwer's theorem (Theorem~\ref{thm:brouwer}) & \lean{Moore.brouwer_boundary}\\
+Janiszewski's theorem (Theorem~\ref{thm:janiszewski}) & \lean{Moore.janiszewski_compact}\\
+Borsuk's theorem (Theorem~\ref{thm:borsuk}) & \lean{Moore.borsuk_exists_log}\\
+Invariance of plane separation (Theorem~\ref{thm:sep-invariant}) & \lean{Jones.separatesPlane_of_homeomorph}\\
+Jordan curve theorem for polygons (Theorem~\ref{thm:jct-poly}) & \lean{Plane.jct_polygon}\\
+Enclosing polygons (Theorem~\ref{thm:enclose}) & \lean{Plane.enclose_holds}\\
+Tree-like continua contain no separating continuum (Theorem~\ref{thm:treelike-nonsep}) &
+\lean{Plane.treeLike_nonseparating}\\
+Logarithms on tree-like continua (Theorem~\ref{thm:log-treelike}) & \lean{Hagopian.exists_log_of_isTreeLike}\\
+Bing's Theorem~6 (Theorem~\ref{thm:bing6}) & \lean{Plane.theorem6_direct}, \lean{Plane.theorem6_1951}\\
+Bing's characterization (Corollary~\ref{cor:treelike-iff}) & \lean{Plane.isTreeLike_iff_nonseparating}\\
+Weak invariance (Theorem~\ref{thm:weak-invariance}) &
+\lean{Hagopian.exists_separating_subcontinuum_of_homeomorph}\\
+Bing's Theorem~7 (Theorem~\ref{thm:bing7}) & \lean{Plane.theorem7_1951}\\
+\bottomrule
+\end{tabular}
+\end{center}
+All of them are proved in the Lean development without \lean{sorry} and without axioms beyond the
+standard ones of Lean and Mathlib. The direct proof of Theorem~\ref{thm:bing6}
+(\lean{Plane.theorem6_direct} and the lemmas \lean{Plane.janiszewski_polygonal_of_compact},
+\lean{Plane.exists_theta_point_open}, \lean{Plane.compFamily_no_circular_open},
+\lean{Plane.treeChain_of_cover_open}) is in the file \texttt{HPC/Plane/Theorem6Direct.lean}, which was
+written for these notes.
+
+\begin{longtable}{@{}p{0.40\textwidth}p{0.56\textwidth}@{}}
+\toprule
+In these notes & In the Lean development\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:log}}}\\
+Lemma~\ref{lem:int-valued} & \lean{HPC.Plane.eq_of_isPreconnected_int_valued}.\\
+Uniqueness (Lemma~\ref{lem:log-unique}) & \lean{HPC.Plane.sub_const_of_exp_eq}.\\
+Principal logarithm (Section~\ref{sec:log-unique}) & Mathlib's \lean{Complex.log}, \lean{Complex.arg}; the second fact is \lean{HPC.Hagopian.log_mul_near_one}.\\
+Nearby functions (Lemma~\ref{lem:log-near}) & \lean{HPC.Moore.exists_log_of_near}.\\
+Homotopy lifting; quoted (Theorem~\ref{thm:lifting}) & Mathlib's \lean{IsCoveringMap.liftHomotopy} applied to \lean{Complex.isCoveringMap_exp}.\\
+Logarithms on contractible spaces (Theorem~\ref{thm:contractible}) & \lean{HPC.Plane.exists_exp_lift}.\\
+Corollary~\ref{cor:log-exist} & (a) \lean{HPC.Moore.exists_log_pt}; (b) \lean{HPC.Moore.exists_log_of_convex}; (c) \lean{HPC.Moore.exists_exp_lift_of_homotopy}.\\
+A logarithm of $z-p$ on a small ball (Lemma~\ref{lem:log-ball}) & \lean{HPC.Plane.exists_log_on_ball}.\\
+Unicoherence of the plane (Theorem~\ref{thm:unicoherent}) & \lean{HPC.Moore.plane_unicoherent}; the same argument for a compact space contractible by an explicit homotopy is \lean{HPC.Plane.isUnicoherent_univ_of_contraction}.\\
+Lemma~\ref{lem:frontier-component} & \lean{HPC.Moore.frontier_connectedComponentIn_subset}, \lean{HPC.Plane.isOpen_connectedComponentIn_of_isOpen}.\\
+Brouwer (Theorem~\ref{thm:brouwer}) & \lean{HPC.Moore.brouwer_boundary}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:sep}}}\\
+Definition~\ref{def:separates} & \lean{HPC.Plane.SeparatesPlane}, \lean{HPC.Plane.SeparatesPts} (\lean{connectedComponentIn} for $\comp Ax$).\\
+Remarks after Definition~\ref{def:separates} & \lean{IsOpen.isConnected_iff_isPathConnected} (Mathlib); \lean{HPC.Plane.separatesPts_mono}.\\
+Lemma~\ref{lem:compl-square} & \lean{HPC.Plane.isConnected_compl_closedBall_pt}, \lean{HPC.Plane.isPreconnected_compl_closedBall}.\\
+Lemma~\ref{lem:unbounded-comp} & (a) \lean{HPC.Moore.mem_component_of_unbounded}; (b) \lean{HPC.Plane.exists_bounded_component_of_separates}.\\
+Same component $\Rightarrow$ logarithm (Theorem~\ref{thm:log-same-comp}) & \lean{HPC.Moore.exists_log_of_mem_component}.\\
+Bounded component $\Rightarrow$ no logarithm (Theorem~\ref{thm:nolog-bounded}) & \lean{HPC.Moore.no_log_pow_of_bounded_component}.\\
+Corollary~\ref{cor:nolog-bounded} & \lean{HPC.Moore.no_log_of_bounded_component} (proved directly, by the same argument).\\
+Janiszewski (Theorem~\ref{thm:janiszewski}) & \lean{HPC.Moore.janiszewski_compact}.\\
+Janiszewski for polygonal sets (Corollary~\ref{cor:janiszewski-poly}) & \lean{HPC.Plane.janiszewski_polygonal_of_compact}. The formal development also contains an independent combinatorial proof, \lean{HPC.Plane.janiszewski_polygonal}, by mod-2 cycles of straight-line graphs; see Remark~\ref{rem:jan-cycles}.\\
+Definition~\ref{def:good-zero} & \lean{HPC.Moore.IsGoodZero}, \lean{HPC.Moore.sgnConj}.\\
+Lemma~\ref{lem:good-zero} & (a) \lean{HPC.Moore.IsGoodZero.isolated}; (b) \lean{HPC.Moore.isGoodZero_of_hasFDerivAt}; (c) \lean{HPC.Moore.IsGoodZero.mul}; (d) \lean{HPC.Moore.finite_zeros_of_goodZeros}.\\
+Removing a good zero (Lemma~\ref{lem:remove-zero}) & \lean{HPC.Moore.IsGoodZero.remove}.\\
+Lemma~\ref{lem:log-factor} & \lean{HPC.Moore.exists_log_sgnConj}.\\
+Induction on the zeros (Lemma~\ref{lem:zeros-induction}) & \lean{HPC.Moore.exists_log_of_goodZeros}.\\
+Stone--Weierstrass and Sard (quoted) & Mathlib's \lean{ContinuousMap.exists_mem_subalgebra_near_continuous_of_isCompact_of_separatesPoints} and \lean{MeasureTheory.addHaar_image_eq_zero_of_det_fderivWithin_eq_zero}; in the development \lean{HPC.Moore.exists_contDiff_near} and \lean{HPC.Moore.exists_small_regular_value}.\\
+Borsuk (Theorem~\ref{thm:borsuk}) & \lean{HPC.Moore.borsuk_exists_log}.\\
+Theorem~\ref{thm:sep-invariant} & \lean{HPC.Jones.separatesPlane_of_homeomorph}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:poly}}}\\
+Definition~\ref{def:polygon} & \lean{HPC.Plane.polygonOf}, \lean{HPC.Plane.polyEdge}, \lean{HPC.Plane.IsSimpleVertices}, \lean{HPC.Plane.IsSimpleClosedPolygon} (with \lean{HPC.Plane.isSimpleClosedPolygon_iff}).\\
+Definition~\ref{def:ins} & \lean{HPC.Plane.polyInterior}.\\
+Lemma~\ref{lem:ins-basic} & (a) \lean{HPC.Plane.polyInterior_disjoint_of_unbounded}; (b) \lean{HPC.Plane.polyInterior_eq_of_split} (with \lean{HPC.Plane.connectedComponentIn_eq_of_split}).\\
+The half-open crossing rule (Definition~\ref{def:crosses}) & \lean{HPC.Plane.CrossesEast}, \lean{HPC.Plane.crossCount}, \lean{HPC.Plane.parity}.\\
+Vertex jumps & \lean{HPC.Plane.vJump}, \lean{HPC.Plane.ceInd}.\\
+The vertex rule (Lemma~\ref{lem:vertex-rule}) & \lean{HPC.Plane.crossesEast_jump} (with \lean{HPC.Plane.crossesEast_jump_end}).\\
+Local constancy of the parity (Theorem~\ref{thm:parity-loc-const}) & \lean{HPC.Plane.parity_eventually_eq}, \lean{HPC.Plane.parity_locallyConstant}, \lean{HPC.Plane.sum_vJump_telescope}, \lean{HPC.Plane.parity_eq_of_isPreconnected}, \lean{HPC.Plane.isOpen_parity_set}, \lean{HPC.Plane.parity_far}, \lean{HPC.Plane.parity_eq_zero_of_far}.\\
+Lemma~\ref{lem:local-rays} & \lean{HPC.Plane.polygon_local_rays}, \lean{HPC.Plane.rayFrom}.\\
+Two rays cut a square into two pieces (Lemma~\ref{lem:ball-rays}) & \lean{HPC.Plane.ball_diff_rays}.\\
+Local sides from a splitting (Lemma~\ref{lem:local-side}) & \lean{HPC.Plane.local_side_of_split}.\\
+Gluing local pieces (Lemma~\ref{lem:local-meet}) & \lean{HPC.Plane.isPreconnected_biUnion_of_local_meet}.\\
+Flips (Lemma~\ref{lem:flip}) & (a) \lean{HPC.Plane.parity_flip_at} (and \lean{HPC.Plane.exists_parity_flip}); (b) \lean{HPC.Plane.parity_flip_vertical}.\\
+Proposition~\ref{prop:both-parities} & \lean{HPC.Plane.mem_closure_parity_set} (with \lean{HPC.Plane.exists_near_on_segment}).\\
+First hit (Lemma~\ref{lem:first-hit}) & \lean{HPC.Plane.exists_first_hit}.\\
+Jordan curve theorem for simple closed polygons (Theorem~\ref{thm:jct-poly}) & \lean{HPC.Plane.jct_polygon}; the steps are \lean{HPC.Plane.polygon_separates}, \lean{HPC.Plane.frontier_parity_set}, \lean{HPC.Plane.local_piece}, \lean{HPC.Plane.sideNbhd}, \lean{HPC.Plane.sideNbhd_isConnected}, \lean{HPC.Plane.exists_segment_to_sideNbhd}, \lean{HPC.Plane.isConnected_parity_set}.\\
+Corollary~\ref{cor:jct-consequences} & (a) \lean{HPC.Plane.polyInterior_eq_oddSet}, \lean{HPC.Plane.PlaneFacts.polyInterior_eq}; (b) \lean{HPC.Plane.PlaneFacts.compl_polyInterior}; (c) \lean{HPC.Plane.PlaneFacts.local_side}; (d) \lean{HPC.Plane.sides_of_split} and \lean{HPC.Plane.PlaneFacts.sides}. The bundle of plane facts \lean{HPC.Plane.PlaneFacts} is proved as \lean{HPC.Plane.planeFacts_holds}.\\
+Definition~\ref{def:polypath} & \lean{HPC.Plane.polyPathOf}, \lean{HPC.Plane.IsSimplePolyArc} (and the vertex-function form \lean{HPC.Plane.vpath}, \lean{HPC.Plane.IsSArc}).\\
+Proposition~\ref{prop:polypath} & (a) \lean{HPC.Plane.exists_vpath_of_isConnected}, \lean{HPC.Plane.exists_polyPath_of_isConnected}; (b) \lean{HPC.Plane.exists_simplePolyArc_of_polyPath} (\lean{HPC.Plane.exists_sarc_of_vpath}); (c) \lean{HPC.Plane.IsSimplePolyArc.exists_first_mem}.\\
+Closed chains of arcs (Lemma~\ref{lem:closed-chain}) & \lean{HPC.Plane.closed_chain_polygon}; for three arcs, the threaded form \lean{HPC.Plane.IsThreaded.isSimpleClosedPolygon}.\\
+Proposition~\ref{prop:open-minus-point} & \lean{HPC.Plane.isConnected_diff_singleton_of_isOpen} (with \lean{HPC.Plane.isPreconnected_ball_diff_singleton}).\\
+Theorem~\ref{thm:nolog-polygon} & \lean{HPC.Plane.no_log_on_polygon}, from \lean{HPC.Plane.log_diff_edge}, \lean{HPC.Plane.arg_div_jump}, \lean{HPC.Plane.crossesEast_iff_cross} and \lean{HPC.Plane.edge_jump}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:enc}}}\\
+Definition~\ref{def:graph} & \lean{HPC.Plane.Seg}, \lean{HPC.Plane.graphSet}, \lean{HPC.Plane.vertices}, \lean{HPC.Plane.deg}, \lean{HPC.Plane.IsProper}, \lean{HPC.Plane.IsCycle}.\\
+Parity of a graph & \lean{HPC.Plane.cycParity}.\\
+Additivity of the parity & \lean{HPC.Plane.cycParity_symmDiff}, \lean{HPC.Plane.cycParity_foldr}, \lean{HPC.Plane.cycParity_far}, \lean{HPC.Plane.cycParity_polyEdges}.\\
+Proposition~\ref{prop:cycle-parity} & \lean{HPC.Plane.sum_vJump_even}, \lean{HPC.Plane.cycParity_locallyConstant}, \lean{HPC.Plane.cycParity_eq_of_isPreconnected}, \lean{HPC.Plane.separatesPts_of_cycParity_ne}; the necessity of nondegeneracy is \lean{HPC.Plane.not_sum_vJump_even_skeleton}.\\
+Flip across an edge of a cycle (Lemma~\ref{lem:cycle-flip}) & \lean{HPC.Plane.cycParity_flip} (from \lean{HPC.Plane.cycParity_flip_horizontal_shift} and \lean{HPC.Plane.cycParity_flip_vertical_shift}).\\
+Lemma~\ref{lem:side-strip} & \lean{HPC.Plane.sideRadius}, \lean{HPC.Plane.edge_local}, \lean{HPC.Plane.sideStrip}, \lean{HPC.Plane.sideStrip_isPreconnected}, \lean{HPC.Plane.sideStrip_subset_compl}, \lean{HPC.Plane.subset_or_disjoint_component}.\\
+Odd set & \lean{HPC.Plane.oddSet}.\\
+Lemma~\ref{lem:odd-even} & \lean{HPC.Plane.even_deg_oddSet}, \lean{HPC.Plane.isCycle_oddSet}; the circle argument is \lean{HPC.Plane.vertex_arcs} and \lean{HPC.Plane.zmod2_jump_sum}.\\
+Theorem~\ref{thm:odd-cycle} & \lean{HPC.Plane.gFun}, \lean{HPC.Plane.gFun_eq_across_edge}, \lean{HPC.Plane.gFun_const}, \lean{HPC.Plane.cycParity_oddSet_ne}.\\
+Proposition~\ref{prop:simple-cycles} & \lean{HPC.Plane.exists_cycle_vertices}, \lean{HPC.Plane.simpleCycle_of_vertices}, \lean{HPC.Plane.exists_simpleCycle_decomposition}, \lean{HPC.Plane.IsSimpleCycle}, \lean{HPC.Plane.polyInterior_eq_oddSet}.\\
+Lemma~\ref{lem:grid} & \lean{HPC.Plane.gsq}, \lean{HPC.Plane.sqUnion}, \lean{HPC.Plane.bdryOf}, \lean{HPC.Plane.isProper_bdryOf}, \lean{HPC.Plane.mem_frontier_sqUnion_iff}, \lean{HPC.Plane.mem_graphSet_bdryOf_iff}, \lean{HPC.Plane.frontier_sqUnion}, \lean{HPC.Plane.mem_interior_sqUnion}.\\
+Lemma~\ref{lem:grid-union} & \lean{HPC.Plane.sqIdx}, \lean{HPC.Plane.gridUnion}, \lean{HPC.Plane.bdryGraph}, \lean{HPC.Plane.subset_interior_gridUnion}, \lean{HPC.Plane.disjoint_frontier_gridUnion}, \lean{HPC.Plane.gridUnion_subset_cthickening}, \lean{HPC.Plane.frontier_gridUnion}, \lean{HPC.Plane.farPt}, \lean{HPC.Plane.halfPlane_subset_component}, \lean{HPC.Plane.not_isBounded_component}, \lean{HPC.Plane.interior_gridUnion_disjoint_component}.\\
+Theorem~\ref{thm:enclosing-polygon} & \lean{HPC.Plane.cycParity_oddSet_eq_one_on}, \lean{HPC.Plane.exists_enclosing_polygon}, \lean{HPC.Plane.exists_enclosing_polygon_pt}.\\
+Enclosing polygons (Theorem~\ref{thm:enclose}) & \lean{HPC.Plane.enclose_holds}, from \lean{HPC.Plane.subset_component_of_far}, \lean{HPC.Plane.eastRay_subset_component}, \lean{HPC.Plane.compl_closedBall_subset_component}, \lean{HPC.Plane.exists_far_piece}, \lean{HPC.Plane.exists_uniform_pieces} and \lean{HPC.Plane.exists_mesh_compl_subset}.\\
+Theorem~\ref{thm:polygon-around} & \lean{HPC.Plane.exists_polygon_around}; the splitting is \lean{HPC.Plane.exists_split_of_no_continuum}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:tree}}}\\
+Definition~\ref{def:treechain} & \lean{HPC.Plane.IsCoherent}, \lean{HPC.Plane.IsCircularChain}, \lean{HPC.Plane.IsTreeChain}, \lean{HPC.Plane.IsTreeLike}.\\
+Lemma~\ref{lem:coherent-cover} & \lean{HPC.Plane.isCoherent_of_minimal_cover}.\\
+Lemma~\ref{lem:filter-meet} & \lean{HPC.Plane.isTreeChain_filter_meet}.\\
+Leaves (Lemma~\ref{lem:leaf}) & \lean{HPC.Plane.exists_leaf}, from \lean{HPC.Plane.ChainConn}, \lean{HPC.Plane.isCoherent_of_chainConn}, \lean{HPC.Plane.exists_chainConn_card}, \lean{HPC.Plane.circularChain_of_minimal} and \lean{HPC.Plane.no_two_nbrs}.\\
+A logarithm on a fine tree chain (Theorem~\ref{thm:log-treechain}) & \lean{HPC.Plane.exists_log_on_treeChain}, by induction (\lean{HPC.Plane.exists_log_inv}) with \lean{HPC.Plane.exists_ball_branch}.\\
+Theorem~\ref{thm:treelike-nonsep} & \lean{HPC.Plane.treeLike_nonseparating}.\\
+Theorem~\ref{thm:log-treelike} & \lean{HPC.Hagopian.exists_log_of_isTreeLike}, from \lean{HPC.Hagopian.branchAt}, \lean{HPC.Hagopian.LogData}, \lean{HPC.Hagopian.LogData.branch_sub}, \lean{HPC.Hagopian.LogData.exp_const}, \lean{HPC.Hagopian.LogData.exists_glue} and \lean{HPC.Hagopian.log_mul_near_one}.\\
+Lemma~\ref{lem:no-interior} & \lean{HPC.Plane.interior_eq_empty_of_noSeparating}.\\
+Bing's offset (Lemma~\ref{lem:offset}) & \lean{HPC.Plane.gridSq}, \lean{HPC.Plane.gridVertices}, \lean{HPC.Plane.exists_grid_offset}.\\
+Lemma~\ref{lem:notched} & \lean{HPC.Plane.notched}, \lean{HPC.Plane.isOpen_notched}, \lean{HPC.Plane.diam_notched_le}, \lean{HPC.Plane.inter_gridSq_subset_notched}, \lean{HPC.Plane.notched_diag1}, \lean{HPC.Plane.notched_diag2}, \lean{HPC.Plane.notched_adj}, \lean{HPC.Plane.notched_no_triple}.\\
+Corollary~\ref{cor:notched-cover} & \lean{HPC.Plane.exists_far}, \lean{HPC.Plane.exists_notched_cover_bdd}.\\
+Lemma~\ref{lem:compfamily} & \lean{HPC.Plane.compFamily}, \lean{HPC.Plane.compFamily_props}, \lean{HPC.Plane.connectedComponentIn_eq_of_meet}, \lean{HPC.Plane.compFamily_no_triple}.\\
+A theta polygon (Lemma~\ref{lem:theta-polygon}) & \lean{HPC.Plane.exists_theta_polygon} (proved as \lean{HPC.Plane.theta_polygon_of_three}). The general threading of a circular chain of $m$ connected open sets, \lean{HPC.Plane.exists_threaded}, is not needed here.\\
+Bing's point (Lemma~\ref{lem:bing-point}) & \lean{HPC.Plane.exists_theta_point_open}. The variant with polygonal $h_1,h_2$, where the polygonal form of Janiszewski's theorem suffices, is \lean{HPC.Plane.PlaneFacts.exists_theta_point}.\\
+Proposition~\ref{prop:no-circular} & \lean{HPC.Plane.compFamily_no_circular_open}.\\
+Bing's Theorem~6 (Theorem~\ref{thm:bing6}) & \lean{HPC.Plane.theorem6_direct}, via \lean{HPC.Plane.treeChain_of_cover_open}. The formal development also proves the theorem as a corollary of Theorem~7 below (\lean{HPC.Plane.theorem6_1951}); the two statements are identical.\\
+Corollary~\ref{cor:treelike-iff} & \lean{HPC.Plane.isTreeLike_iff_nonseparating}.\\
+Theorem~\ref{thm:weak-invariance} & \lean{HPC.Hagopian.exists_separating_subcontinuum_of_homeomorph}, with \lean{HPC.Hagopian.no_log_of_separates} for the point $p$.\\
+Bing's Theorem~7 (Theorem~\ref{thm:bing7}) & \lean{HPC.Plane.theorem7_1951}; with the hypothesis ``$M$ tree-like'', as Bing states it, \lean{HPC.Plane.theorem7_1951_treeLike} (by Theorem~\ref{thm:treelike-nonsep}). A weak form with links that are open, connected, bounded, regular and non-separating is \lean{HPC.Plane.theorem7_weak}.\\
+\end{longtable}

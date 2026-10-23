@@ -1,0 +1,254 @@
+%======================================================================
+\chapter{Homogeneity and aposyndesis}\label{ch:spread}
+%======================================================================
+
+This chapter proves three facts about a homogeneous continuum $X$. The first is a consequence of the
+Effros theorem that the formal proof calls \emph{spreading}: a continuum with nonempty interior that
+misses a point $x$ can be enlarged to a continuum that still misses $x$ and contains a neighbourhood of
+any given one of its points. The second is the Lemma of Jones's 1951 paper: the sets $\Us x$ are never
+properly nested. The third is Bing's theorem (1948) that some point of a nondegenerate continuum does
+not cut any two open sets from each other; with homogeneity, no point does. These three facts replace
+most of the long case analysis of Jones's 1955 paper.
+
+Throughout, $X$ is a compact metric space; from Section~\ref{sec:bing5} on it is also connected.
+\emph{Homogeneous} means that for all $x,y\in X$ some homeomorphism $T\colon X\to X$ has $Tx=y$.
+
+\formal{\lean{HPC.Jones.IsHomogeneous}; it is the hypothesis of \lean{HPC.Effros.effros_homogeneous}
+(\lean{HPC.Jones.isHomogeneous_iff_isPretransitive}).}
+
+\section{Spreading}
+
+\begin{theorem}[Spreading]\label{thm:spreading}
+Let $X$ be a homogeneous compact metric space and $K\subseteq X$ a continuum with nonempty interior. If
+$o\in K$ and $x\notin K$, then $X$ is aposyndetic at $o$ with respect to $x$.
+\end{theorem}
+
+\begin{proof}
+Let $b$ be an interior point of $K$ and choose $\varepsilon_0>0$ with $B(b,\varepsilon_0)\subseteq K$. Let
+\[
+\varepsilon=\min\bigl(\varepsilon_0,\ \tfrac12\dist(x,K)\bigr)>0 ,
+\]
+and let $\mathcal S$ be the set of homeomorphisms $h$ of $X$ with $d(h(z),z)<\varepsilon$ for all $z$. Put
+\[
+Z=\cl{\bigcup_{h\in\mathcal S}\bigl(K\cup h(K)\bigr)} .
+\]
+\begin{itemize}
+\item \emph{$Z$ is a continuum.} Each $K\cup h(K)$ is connected: $h(b)\in B(b,\varepsilon)\subseteq K$, so the
+connected sets $K$ and $h(K)$ meet. All these sets contain $o$, so their union is connected, and so is its
+closure. $Z$ is closed in the compact space $X$.
+\item \emph{$x\notin Z$.} Every point of $h(K)$ is within $\varepsilon$ of $K$, so every point of $Z$ is at
+distance $\le\varepsilon\le\frac12\dist(x,K)$ from $K$.
+\item \emph{$Z$ contains a neighbourhood of $o$.} By the Effros theorem (\vthree{Theorem~7.15}) there is
+$\delta>0$ such that every $y$ with $d(o,y)<\delta$ is $h(o)$ for some $h\in\mathcal S$; then $y\in h(K)\subseteq Z$. So
+$B(o,\delta)\subseteq Z$.\qedhere
+\end{itemize}
+\end{proof}
+
+\formal{\lean{HPC.Jones.aposAt_of_isContinuum_interior}, from \lean{HPC.Effros.effros_homogeneous}.}
+
+\begin{corollary}[Non-aposyndesis is transitive]\label{cor:trans}
+Let $X$ be homogeneous. If $X$ is not aposyndetic at $z$ with respect to $y$, nor at $y$ with respect to
+$x$, then it is not aposyndetic at $z$ with respect to $x$. In terms of the sets of
+Definition~\ref{def:apos}: if $z\in\Ls y$ and $y\in\Ls x$, then $z\in\Ls x$.
+\end{corollary}
+
+\begin{proof}
+Suppose $K$ is a continuum missing $x$ that contains an open $V\ni z$. Then $y\in K$, for otherwise $(K,V)$
+would make $X$ aposyndetic at $z$ with respect to $y$. Now $K$ has nonempty interior, contains $y$ and misses
+$x$; by Theorem~\ref{thm:spreading}, $X$ is aposyndetic at $y$ with respect to $x$, a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Jones.not_aposAt_trans}.}
+
+\section{The Lemma of Jones 1951}
+
+\begin{lemma}\label{lem:open-subset-U}
+For every closed $K\subseteq X$, the set $\set{w\in X : K\subseteq\Us w}$ is open.
+\end{lemma}
+
+\begin{proof}
+Let $K\subseteq\Us w$, that is, $X$ is aposyndetic at every point of $K$ with respect to $w$. By
+Lemma~\ref{lem:heine-borel}(a), finitely many continua $H_i$ missing $w$ have interiors covering $K$. For $w'$
+in the open set $X\setminus\bigcup_iH_i$ the same continua show $K\subseteq\Us{w'}$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.isOpen_setOf_subset_aposSet}.}
+
+\begin{theorem}[Jones 1951, Lemma]\label{thm:jones51-lemma}
+If $X$ is homogeneous, then $\Us y$ is not a proper subset of $\Us x$, for any $x,y\in X$.
+\end{theorem}
+
+\begin{proof}
+Let $B_0,B_1,\dots$ be a countable basis of $X$ and define
+\[
+g(w)=\sum_{k\ge0}2^{-k}\,\chi_k(w),\qquad \chi_k(w)=\begin{cases}1&\text{if }\cl{B_k}\subseteq\Us w,\\ 0&\text{otherwise.}\end{cases}
+\]
+By Lemma~\ref{lem:open-subset-U} each $\chi_k$ is the indicator function of an open set, hence lower
+semicontinuous, and so is the sum $g$. A lower semicontinuous function on a compact space attains its
+minimum, say at $w_0$.
+
+If $\Us a\subsetneq\Us b$, then $g(a)<g(b)$: every term of $g(a)$ is at most the corresponding term of $g(b)$;
+and for $z\in\Us b\setminus\Us a$ there is $k$ with $z\in B_k\subseteq\cl{B_k}\subseteq\Us b$ (the set $\Us b$ is open,
+Theorem~\ref{thm:jones48-1}), and then $\chi_k(b)=1$, $\chi_k(a)=0$ because $z\in\cl{B_k}\setminus\Us a$.
+
+Now suppose $\Us y\subsetneq\Us x$ and let $T$ be a homeomorphism with $Tx=w_0$. By
+Lemma~\ref{lem:apos-basic}(b), $\Us{Ty}=T(\Us y)\subsetneq T(\Us x)=\Us{w_0}$, so $g(Ty)<g(w_0)$, against the
+minimality of $w_0$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.jones51_lemma}, with the function $g$ from
+\lean{HPC.Jones.exists_lsc_strictMono_aposSet}. Jones's proof runs a transfinite sequence of points
+$x_0,x_1,\dots$ through the countable ordinals with $\Us{x_i}$ strictly decreasing, and contradicts second
+countability; the lower semicontinuous function replaces the transfinite recursion.}
+
+\section{Bing's theorem on non-cutting points}\label{sec:bing5}
+
+From now on $X$ is a nondegenerate continuum. Bing's paper \emph{Some characterizations of arcs and simple
+closed curves} (1948) contains the following theorem, which Jones's 1955 paper quotes as
+``Corollary~2 of [Bing]''.
+
+\begin{theorem}[Bing 1948, Theorem~5, point form]\label{thm:bing5}
+For every $r\in X$ there is a point $p\ne r$ such that the union of the subcontinua of $X$ which contain $r$
+and miss $p$ is dense in $X$.
+\end{theorem}
+
+The proof needs a definition and three lemmas. Call a subcontinuum $N$ of $X$ \emph{tight} if there are no
+proper subcontinuum $K$ of $X$ and open set $O$ with $N\subseteq O\subseteq K$; that is, $N$ lies in the interior of no
+proper subcontinuum.
+
+\begin{lemma}\label{lem:tight-conn}
+Let $N\subseteq E$ be subcontinua of $X$ with $N$ tight. Then $\cl{X\setminus E}\cup N$ is connected.
+\end{lemma}
+
+\begin{proof}
+Let $G=\cl{X\setminus E}\cup N$ and suppose $G=A\cup B$ with $A$, $B$ closed, disjoint and nonempty; as $N$ is
+connected we may take $N\subseteq A$. Choose disjoint open sets $u\supseteq A$, $v\supseteq B$ and put $Q=A\cup E$, a closed set.
+
+\emph{$Q$ is connected.} Otherwise $Q=a\cup b$ with $a$, $b$ closed, disjoint and nonempty, and $E\subseteq a$; then
+$b\subseteq A\setminus E$. Every point of $X\setminus Q$ lies in $X\setminus E\subseteq G$ but not in $A$, hence in $B$. So
+$X=b\cup(a\cup B)$, where $b$ and $a\cup B$ are closed, nonempty and disjoint (because $b\subseteq A$). This
+contradicts the connectedness of $X$.
+
+\emph{$Q\ne X$.} $B$ is nonempty and contained in $\cl{X\setminus E}$ (as $B\cap N=\emptyset$), so the open set $v\supseteq B$
+contains a point $z\notin E$; and $z\notin A$ since $A\subseteq u$. So $z\notin Q$.
+
+\emph{$u\subseteq Q$.} A point of $u$ outside $E$ lies in $G=A\cup B$ but not in $B\subseteq v$, so it lies in $A$.
+
+Thus $Q$ is a proper subcontinuum containing the open set $u\supseteq N$, against the tightness of $N$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.Arcs48.isPreconnected_closure_diff_union} (Bing: ``$F_i+N$ is a continuum'').}
+
+\begin{lemma}\label{lem:tight-piece}
+Let $N$ be a tight subcontinuum and $D$ a nonempty open set with $D\cap N=\emptyset$. There is a closed set $Z\subseteq X$
+with empty interior such that for every $p\in X\setminus(N\cup Z)$ some continuum $G\supseteq N$ misses $p$ and meets $\cl
+D$.
+\end{lemma}
+
+\begin{proof}
+Fix $n_0\in N$. The closed set $X\setminus D$ is proper and contains $n_0$. By boundary bumping
+(\vthree{Theorem~1.10}) the component $K$ of $n_0$ in $X\setminus D$ meets $\cl D$. Let $E=K\cup N$, a continuum
+contained in $X\setminus D$, and $Z=E\cap\cl{X\setminus E}$. A nonempty open set inside $Z$ would lie in $E$ and meet
+$X\setminus E$ (being inside $\cl{X\setminus E}$); so $Z$ has empty interior. Let $p\notin N\cup Z$. If $p\notin E$,
+take $G=E$. If $p\in E$, then $p\notin\cl{X\setminus E}$; take $G=\cl{X\setminus E}\cup N$, a continuum by
+Lemma~\ref{lem:tight-conn}, which contains $D\subseteq X\setminus E$ and misses $p$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.Arcs48.exists_nowhereDense_piece}.}
+
+\begin{lemma}[The tight case]\label{lem:tight-case}
+If $N$ is a tight proper subcontinuum, there is $p\in X\setminus N$ such that the union of the continua containing $N$
+and missing $p$ is dense in $X$.
+\end{lemma}
+
+\begin{proof}
+Let $b_0,b_1,\dots$ be a countable basis. For each $k$ with $b_k\ne\emptyset$ and $\cl{b_k}\cap N=\emptyset$ let $Z_k$ be the
+set of Lemma~\ref{lem:tight-piece} for $D=b_k$. The sets $Z_k$ are closed with empty interior and $X\setminus N$ is a
+nonempty open set, so by the Baire category theorem some $p\in X\setminus N$ lies in no $Z_k$. Let $x\in X$ and $W\ni x$
+open. If $x\in N$, the continuum $N$ itself meets $W$. Otherwise choose $k$ with $x\in b_k\subseteq\cl{b_k}\subseteq W\setminus N$; the
+continuum $G$ given by Lemma~\ref{lem:tight-piece} contains $N$, misses $p$ and meets $\cl{b_k}\subseteq W$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.Arcs48.exists_point_of_tight}.}
+
+\begin{lemma}[Bing's sequence]\label{lem:bing-seq}
+Let $N$ be a nonempty proper subcontinuum. Either there is $p\in X\setminus N$ such that the continua containing $N$ and
+missing $p$ have dense union, or some tight proper subcontinuum contains $N$.
+\end{lemma}
+
+\begin{proof}
+Let $b_0,b_1,\dots$ be a countable basis. Put $N_0=N$, and let $N_{j+1}$ be a proper subcontinuum $K$ such that some
+open $O$ has $N_j\cup b_j\subseteq O\subseteq K$, if such a $K$ exists; otherwise $N_{j+1}=N_j$. The $N_j$ form an increasing
+sequence of proper subcontinua containing $N$; let $U=\bigcup_jN_j$, a connected set.
+
+\emph{If $U$ is dense, then $U\ne X$.} Suppose $U=X$, and let $W_n$ be the interior of $N_n$; the $W_n$ increase. If
+$x\in N_i$, some $j\ge i$ is a step at which $K$ exists (otherwise $N_j=N_i$ for all $j\ge i$ and $N_i=U=X$), and then
+$x\in N_j\subseteq O\subseteq N_{j+1}$, so $x\in W_{j+1}$. By compactness $X=W_n$ for some $n$, so $N_n=X$, which is false. Any $p\notin
+U$ then satisfies the first alternative, with the continua $N_n$.
+
+\emph{If $U$ is not dense, $N'=\cl U$ is tight.} $N'$ is a proper subcontinuum containing $N$. Let $K$ be a proper
+subcontinuum and $O$ open with $N'\subseteq O\subseteq K$. Some $q\in O$ is not in $N'$: otherwise $N'=O$ would be open and closed,
+nonempty and not all of $X$. Choose $j$ with $q\in b_j\subseteq O\setminus N'$. Then $N_j\cup b_j\subseteq O\subseteq K$, so at step $j$ a
+continuum $N_{j+1}$ was chosen with $b_j\subseteq N_{j+1}$, and $q\in U\subseteq N'$, a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Plane.Arcs48.tight_or_point}, \lean{HPC.Plane.Arcs48.exists_point_dense}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:bing5}]
+$N=\set r$ is a proper subcontinuum. In the first case of Lemma~\ref{lem:bing-seq} we are done; in the second,
+apply Lemma~\ref{lem:tight-case} to the tight continuum $N'\ni r$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.arcs_theorem5_point}; the general form for a proper subset $R$ in place of $\set r$ is
+\lean{HPC.Plane.arcs_theorem5}.}
+
+\begin{corollary}[Bing 1948, Corollary~2]\label{cor:bing2}
+A nondegenerate continuum $X$ contains two points $p\ne q$ with the following property: for any nonempty open sets
+$D,E\subseteq X$ there is a continuum that meets $D$ and $E$ and misses $p$ (respectively $q$).
+\end{corollary}
+
+\begin{proof}
+Let $r\in X$ and let $p$ be given by Theorem~\ref{thm:bing5}. Continua $K_1,K_2$ containing $r$ and missing $p$ meet $D$,
+respectively $E$; their union is the required continuum. Then let $q\ne p$ be given by Theorem~\ref{thm:bing5} for
+$r=p$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.arcs_corollary2}, with Bing's relation ``$R$ cuts $A$ from $B$ in $M$'' as
+\lean{HPC.Plane.Cuts}.}
+
+\section{Consequences for homogeneous continua}
+
+\begin{proposition}[Jones 1955, claims (3) and (5)]\label{prop:claim35}
+Let $X$ be a nondegenerate homogeneous continuum and $p\in X$.
+\begin{enumerate}[label=(\alph*)]
+\item For any nonempty open sets $D,E$ there is a continuum meeting $D$ and $E$ and missing $p$.
+\item Any two points $a,b\in\Us p$ lie in a continuum missing $p$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Let $p_0$ be a point given by Corollary~\ref{cor:bing2} and $T$ a homeomorphism with $Tp_0=p$. A continuum
+meeting $T^{-1}(D)$ and $T^{-1}(E)$ and missing $p_0$ is carried by $T$ to the required continuum.
+
+(b) Let $A\supseteq V\ni a$ and $B\supseteq W\ni b$ be continua missing $p$ containing open sets $V$, $W$. By (a) a continuum $K$
+missing $p$ meets $V$ and $W$. Then $A\cup K\cup B$ is a continuum containing $a$, $b$ and missing $p$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.exists_continuum_meets_of_open}, \lean{HPC.Jones.jones55_claim3},
+\lean{HPC.Jones.exists_continuum_of_mem_aposSet}, \lean{HPC.Jones.jones55_claim5}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that Theorem~\ref{thm:spreading} fails for the arc $[0,1]$ (which is not homogeneous): find a continuum $K$ with
+nonempty interior, $o\in K$ and $x\notin K$ such that every continuum containing a neighbourhood of $o$ contains $x$.
+\end{exercise}
+
+\begin{exercise}
+In the arc $[0,1]$, which points $p$ satisfy the conclusion of Corollary~\ref{cor:bing2}? Show that in the circle every
+point does.
+\end{exercise}
+
+\begin{exercise}
+Prove that a lower semicontinuous function $g\colon X\to[0,\infty]$ on a compact space attains its minimum.
+\end{exercise}

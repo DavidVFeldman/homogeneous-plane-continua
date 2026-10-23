@@ -1,0 +1,23 @@
+== the Lambda-walk 3,8,1
+walk (13 times): 3 4 5 6 7 8 7 6 5 4 3 2 1
+NO FOLD: 4 3 2 2 1
+NO FOLD: 4 3 2 2 2 1
+NO FOLD: 4 3 2 2 2 2 1
+NO FOLD: 4 3 2 2 2 2 2 1
+NO FOLD: 4 3 2 2 2 2 2 2 1
+NO FOLD: 4 3 2 2 2 2 2 2 2 1
+NO FOLD: 4 3 2 2 2 2 2 2 2 2 1
+NO FOLD: 4 3 2 2 2 2 2 2 2 2 2 1
+arms of length <= 14 in the branch at P = 4 : 736682, not folding: 14450
+
+== the V-walk 3,1,8
+walk (10 times): 3 2 1 2 3 4 5 6 7 8
+NO FOLD: 4 3 3 3 3 3 3 3 3 3 3 3 4 5
+NO FOLD: 4 3 3 3 3 3 3 3 3 3 3 4 4 5
+NO FOLD: 4 3 3 3 3 3 3 3 3 3 3 4 5
+NO FOLD: 4 3 3 3 3 3 3 3 3 3 4 3 4 5
+NO FOLD: 4 3 3 3 3 3 3 3 3 3 4 4 4 5
+NO FOLD: 4 3 3 3 3 3 3 3 3 3 4 4 5
+NO FOLD: 4 3 3 3 3 3 3 3 3 3 4 5
+NO FOLD: 4 3 3 3 3 3 3 3 3 4 3 3 4 5
+arms of length <= 14 in the branch at P = 4 : 263275, not folding: 4096

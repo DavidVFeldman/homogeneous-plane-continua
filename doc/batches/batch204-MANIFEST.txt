@@ -1,0 +1,104 @@
+# batch204-MANIFEST.txt: files added (A), modified (M) or deleted (D) in batch 204,
+# relative to the tree as received (/tmp/start-tree.txt, 2272 files; ARISTOTLE_SUMMARY.md, .git
+# and .lake not counted). A moved file is a D line at its old path, with its destination, and an
+# A line at its new path, with its origin.
+# A 30, M 45, D 24.
+M  Axioms.lean
+D  BJ59A(1).lean  (deleted: identical to doc/batches/skeletons/BJ59A.lean)
+D  BJ59B.lean  (deleted: identical to doc/batches/skeletons/BJ59B.lean)
+D  BJ59C.lean  (deleted: identical to doc/batches/skeletons/BJ59C.lean)
+D  BJ59D.lean  (deleted: identical to doc/batches/skeletons/BJ59D.lean)
+D  BJ59E.lean  (deleted: identical to doc/batches/skeletons/BJ59E.lean)
+D  COMMISSION-batch196.md  (deleted: identical to doc/batches/COMMISSION-batch196.md)
+D  COMMISSION-batch197.md  (deleted: identical to doc/batches/COMMISSION-batch197.md)
+D  COMMISSION-batch198(1).md  (deleted: identical to doc/batches/COMMISSION-batch198.md)
+D  COMMISSION-batch199.md  (deleted: identical to doc/batches/COMMISSION-batch199.md)
+D  COMMISSION-batch200.md  (deleted: identical to doc/batches/COMMISSION-batch200.md)
+D  COMMISSION-batch201.md  (deleted: identical to doc/batches/COMMISSION-batch201.md)
+D  COMMISSION-batch202.md  (deleted: identical to doc/batches/COMMISSION-batch202.md)
+D  COMMISSION-batch203.md  (deleted: identical to doc/batches/COMMISSION-batch203.md)
+D  COMMISSION-batch204.md  (moved to doc/batches/COMMISSION-batch204.md)
+D  DEFECTS-LEDGER.md  (moved to doc/defects/DEFECTS-LEDGER.md)
+D  HO16D.lean  (deleted: identical to doc/batches/skeletons/HO16D.lean)
+D  HO16E.lean  (deleted: identical to doc/batches/skeletons/HO16E.lean)
+M  HPC.lean
+M  HPC/Fold/Theorem7.lean
+M  HPC/Moore/M25BRefute.lean
+M  HPC/Plane/Atriodic51.lean
+M  HPC/Plane/Atriodic51Counter.lean
+M  HPC/Plane/Atriodic51CounterBing.lean
+A  HPCExtra.lean
+M  LEDGER.md
+M  OPEN.md
+M  README.md
+D  bingjones1959-1.pdf  (deleted: same content as doc/sources/bing-jones1959.pdf)
+D  defects-by-severity.pdf  (moved to doc/defects/defects-by-severity.pdf)
+D  defects-by-severity.tex  (moved to doc/defects/defects-by-severity.tex)
+A  doc/HISTORY.md  (from README.md as received, with a first line; quotations: none moved)
+M  doc/batches/COMMISSION-batch100.md
+M  doc/batches/COMMISSION-batch101.md
+M  doc/batches/COMMISSION-batch104.md
+M  doc/batches/COMMISSION-batch108.md
+M  doc/batches/COMMISSION-batch114.md
+M  doc/batches/COMMISSION-batch117.md
+M  doc/batches/COMMISSION-batch121.md
+M  doc/batches/COMMISSION-batch132.md
+M  doc/batches/COMMISSION-batch134.md
+M  doc/batches/COMMISSION-batch183.md
+M  doc/batches/COMMISSION-batch191.md
+M  doc/batches/COMMISSION-batch200.md
+A  doc/batches/COMMISSION-batch204.md  (from COMMISSION-batch204.md (root))
+D  doc/batches/COMMISSION-batch78(1).md  (renamed to doc/batches/COMMISSION-batch78.md)
+A  doc/batches/COMMISSION-batch78.md  (from doc/batches/COMMISSION-batch78(1).md (renamed))
+M  doc/batches/COMMISSION-batch79.md
+M  doc/batches/COMMISSION-batch80.md
+M  doc/batches/COMMISSION-batch81.md
+M  doc/batches/COMMISSION-batch82.md
+M  doc/batches/COMMISSION-batch83.md
+M  doc/batches/COMMISSION-batch84.md
+M  doc/batches/COMMISSION-batch85.md
+M  doc/batches/COMMISSION-batch88.md
+M  doc/batches/COMMISSION-batch89.md
+M  doc/batches/COMMISSION-batch90.md
+M  doc/batches/COMMISSION-batch92.md
+M  doc/batches/COMMISSION-batch96.md
+M  doc/batches/COMMISSION-batch99.md
+D  doc/batches/DEFECTS-LEDGER.md  (deleted: old copy of the defects ledger (commission 204 §2))
+A  doc/batches/REPORT-batch204.md
+A  doc/batches/batch204-MANIFEST.txt
+A  doc/batches/batch204-TREE.txt  (the listing, written last)
+A  doc/batches/batch204-files.tar.gz  (the tarball, written last)
+M  doc/batches/skeletons/Hagopian76I.lean
+A  doc/defects/DEFECTS-LEDGER.md  (from DEFECTS-LEDGER.md (root))
+A  doc/defects/README.md
+A  doc/defects/defects-by-severity.pdf  (from defects-by-severity.pdf (root))
+A  doc/defects/defects-by-severity.tex  (from defects-by-severity.tex (root))
+M  doc/depcensus/README.md
+M  doc/notes/hagopian84.md
+M  doc/notes/jones75.md
+M  doc/notes/ot82.md
+A  doc/sources/README.md
+A  doc/sources/transcriptions/bing1960.md  (passages moved from the documentation (commission 204 §2))
+A  doc/sources/transcriptions/bing48.md  (passages moved from the documentation (commission 204 §2))
+A  doc/sources/transcriptions/bing48arcs.md  (passages moved from the documentation (commission 204 §2))
+A  doc/sources/transcriptions/bing51duke.md  (passages moved from the documentation (commission 204 §2))
+A  doc/sources/transcriptions/bing51pacific.md  (passages moved from the documentation (commission 204 §2))
+A  doc/sources/transcriptions/bingjones59.md  (passages moved from the documentation (commission 204 §2))
+A  doc/sources/transcriptions/fugate66.md  (passages moved from the documentation (commission 204 §2))
+A  doc/sources/transcriptions/fugate69.md  (passages moved from the documentation (commission 204 §2))
+A  doc/sources/transcriptions/hagopian76.md  (passages moved from the documentation (commission 204 §2))
+A  doc/sources/transcriptions/hagopian84.md  (passages moved from the documentation (commission 204 §2))
+A  doc/sources/transcriptions/ingram68.md  (passages moved from the documentation (commission 204 §2))
+A  doc/sources/transcriptions/jones75.md  (passages moved from the documentation (commission 204 §2))
+A  doc/sources/transcriptions/lehner61.md  (passages moved from the documentation (commission 204 §2))
+A  doc/sources/transcriptions/ot82.md  (passages moved from the documentation (commission 204 §2))
+A  doc/sources/transcriptions/vanmill04.md  (passages moved from the documentation (commission 204 §2))
+D  doc/theorems-3-4-scheduling.md  (deleted (commission 204 §2))
+D  domokos-prajs2022.pdf  (deleted: same content as doc/sources/domokos-prajs2022.pdf)
+M  lakefile.toml
+M  scripts/DepCensus.lean
+A  scripts/HPCModules.lean
+M  scripts/Replay.lean
+M  scripts/report_tables.py
+M  scripts/rootfiles.sh
+A  scripts/split.py

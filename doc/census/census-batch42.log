@@ -1,0 +1,23 @@
+== census-batch42 0 12 (exhaustive count of the faithful model, levels 0..9)
+== counts by length (prefixes surviving the crookedness prune) ==
+  len  1 : 20
+  len  2 : 76
+  len  3 : 310
+  len  4 : 1268
+  len  5 : 4978
+  len  6 : 19120
+  len  7 : 73150
+  len  8 : 279904
+  len  9 : 1071774
+  len 10 : 4103504
+  len 11 : 15695934
+  len 12 : 59945816
+span-nine complete sequences examined: 0
+
+== census-batch42 2 40 300 1 (random members of length 40)
+random sequences of length 40 built: 300
+span-nine among them: 0
+branch L+4 inhabited: 0
+branch L+5 inhabited: 0
+unserved (no zigzag walk with <= 5 turning targets): 0
+least-turn histogram:

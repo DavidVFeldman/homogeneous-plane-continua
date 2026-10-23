@@ -1,0 +1,545 @@
+census-batch58: the branch L+5 by the criteria of the four-leg engine.
+rounds=40 seed=58 walk-steps=200 concat-draws=12
+the four-leg family of the wide engine: 58 walks (29 parameter sets and their reflections)
+
+==== base chain bing 0 9 (n = 986 links); IsCrookedIvF: 1 ====
+
+======== witness (a): no four-leg criterion at a basepoint of the branch ========
+  window [811, 985] of 986 links; basepoint 0 of 175 links
+  rho: 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 7 8 7 6 7 8 7 8 9
+  sig: 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 7 8 7 6 7 8 7 8 9
+  rho as a base-sixteen numeral (most significant digit last link): 0x9878767876765676787676567656545656765676787676567656545656765654565454345456545656765654565676567678767656765654565676565456545434545654565676565456545434545654543454343234345
+  sig as a base-sixteen numeral: 0x9878767876765676787676567656545656765676787676567656545656765654565454345456545656765654565676567678767656765654565676565456545434545654565676565456545434545654543454343234345
+  the window is faithful (IsCrookedIvF): 1
+==================================================================
+
+======== witness (b): the interval reading of the engine is not sufficient ========
+  the forward arm at the basepoint 149 of a chain of 986 links, cut to its shortest
+  non-folding prefix: 9 links
+  parameter set: direct P=6 K=7 M=4, walk 5 -> 7 -> 4 -> 8 -> 1 (17 times)
+  rho: 5 4 5 5 5 4 5 4 3
+  sig: 5 4 5 6 5 4 5 4 3
+  rho as a base-sixteen numeral (most significant digit last link): 0x345455545
+  sig as a base-sixteen numeral: 0x345456545
+  the prefix is faithful (IsCrookedIvF): 1; it folds onto the walk: 0
+  its criterion in point form fails with mask 2, in interval form 0
+==================================================================
+
+  ---- sample 1: an arm fails the reflected valley clause and the pair misses the reflected V-walk (n = 986, basepoint 872) ----
+    rho: 0 1 1 1 2 3 2 1 2 3 2 3 4 3 2 2 2 1 2 3 2 3 4 3 2 3 3 3 4 5 4 3 3 3 2 3 4 3 2 2 2 1 2 2 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 3 3 3 2 3 4 3 4 4 4 3 4 3 2 3 3 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 4 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 3 3 4 4 4 3 4 5 4 5 5 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 6 6 5 5 5 4 5 5 5 4 5 4 3 4 4 4 5 5 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 3 3 4 4 4 3 4 3 2 3 3 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 3 4 3 2 3 4 3 4 4 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 4 3 4 4 4 3 3 3 2 3 4 3 4 5 4 3 4 5 4 5 5 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 4 4 3 4 5 4 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 6 6 6 5 6 6 6 7 8 7 6 6 6 5 6 7 6 5 5 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 4 4 4 3 4 5 4 5 5 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 4 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 4 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 4 4 3 4 4 4 5 6 5 4 5 4 3 4 4 4 3 4 3 2 3 3 3 4 4 4 3 4 4 4 5 5 5 4 5 4 3 4 4 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 3 3 2 3 2 1 2 2 2 3 3 3 2 3 4 3 4 5 4 3 3 3 2 3 4 3 4 4 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 3 3 4 5 4 3 4 4 4 5 6 5 4 5 4 3 4 4 4 5 5 5 4 5 5 5 6 7 6 5 6 5 4 5 5 5 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 3 3 3 2 3 4 3 4 5 4 3 4 5 4 5 5 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 4 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 5 5 6 6 6 5 6 6 6 7 7 7 6 6 6 5 6 7 6 5 5 5 4 5 6 5 6 7 6 5 6 5 4 5 5 5 4 5 4 3 4 4 4 5 5 5 4 5 6 5 6 6 6 5 5 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 4 4 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 5 5 4 5 6 5 6 7 6 5 5 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 5 5 4 5 6 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 5 4 5 5 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 6 6 5 6 7 6 5 5 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 7 8 7 6 7 8 7 8 9
+    sig: 0 1 2 1 2 3 2 2 2 3 2 3 4 3 3 3 2 1 2 3 3 3 4 3 2 3 4 4 4 5 4 3 4 3 3 3 4 3 3 3 2 1 2 3 3 3 4 3 2 3 4 3 4 5 4 4 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 3 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 4 4 5 4 3 4 3 2 3 4 4 4 5 4 4 4 5 5 5 6 5 4 5 4 4 4 5 4 3 4 3 2 3 4 3 4 5 4 4 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 5 5 6 6 6 7 6 6 6 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 4 3 4 5 4 4 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 4 4 3 3 3 4 3 4 5 4 3 4 3 3 3 4 3 2 3 2 2 2 3 2 3 4 3 2 3 4 4 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 5 5 6 5 5 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 4 4 5 5 5 6 5 4 5 4 3 4 5 4 5 6 5 5 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 4 4 4 5 4 4 4 3 3 3 4 4 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 6 5 6 7 6 6 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 6 6 7 6 7 8 7 6 7 6 6 6 7 6 5 6 5 4 5 6 6 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 6 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 4 4 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 5 5 6 5 4 5 4 4 4 5 4 4 4 3 3 3 4 3 4 5 4 4 4 3 3 3 4 3 2 3 2 2 2 3 2 3 4 3 2 3 4 4 4 5 4 3 4 3 3 3 4 4 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 4 4 3 2 3 4 3 4 5 4 4 4 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 6 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 4 4 4 3 2 3 4 4 4 5 4 3 4 5 5 5 6 5 5 5 4 3 4 5 5 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 6 6 6 7 6 5 6 5 5 5 6 6 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 5 5 5 4 3 4 5 5 5 6 5 4 5 6 5 6 7 6 6 6 5 5 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 5 5 4 4 4 5 4 5 6 5 5 5 6 6 6 7 6 5 6 5 4 5 6 5 5 5 4 3 4 5 5 5 6 5 5 5 6 5 6 7 6 5 6 5 4 5 6 6 6 7 6 5 6 7 6 7 8 7 6 7 6 6 6 7 6 5 6 5 4 5 6 6 6 7 6 5 6 5 5 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 6 6 7 6 5 6 7 6 7 8 7 7 7 6 6 6 7 6 6 6 5 5 5 6 5 6 7 6 6 6 7 6 7 8 7 7 7 6 5 6 7 6 7 8 7 6 7 8 8 8 9
+    reflected forward arm (114): 4 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 4 4 5 4 3 4 3 2 3 4 3 4 5 4 4 4 5 5 5 6 5 4 5 4 4 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 3 3 4 3 2 3 4 4 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 1 2 1 0
+    reflected backward arm (873): 4 4 3 2 3 4 3 4 5 4 4 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 5 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 4 4 4 3 3 3 4 3 4 5 4 4 4 5 5 5 6 5 4 5 4 4 4 5 4 3 4 3 2 3 4 3 4 5 4 4 4 3 2 3 4 3 3 3 2 2 2 3 3 3 4 3 3 3 4 4 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 6 5 6 7 6 6 6 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 3 4 3 2 3 4 4 4 5 4 4 4 5 5 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 6 6 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 5 5 6 5 6 7 6 6 6 5 4 5 6 5 6 7 6 6 6 7 7 7 8 7 6 7 6 6 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 5 4 5 4 4 4 5 5 5 6 5 5 5 6 6 6 7 6 5 6 5 5 5 6 5 4 5 4 3 4 5 5 5 6 5 5 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 5 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 4 4 5 4 5 6 5 5 5 4 3 4 5 4 3 4 3 2 3 4 4 4 5 4 4 4 3 2 3 4 3 3 3 2 1 2 3 3 3 4 3 3 3 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 6 5 6 7 6 6 6 5 5 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 5 5 6 5 6 7 6 5 6 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 6 6 7 6 5 6 5 5 5 6 6 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 4 4 5 5 5 6 5 4 5 4 4 4 5 4 4 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 5 5 6 6 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 6 6 7 6 5 6 5 5 5 6 5 6 7 6 6 6 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 7 7 8 7 7 7 6 5 6 7 6 6 6 5 4 5 6 6 6 7 6 5 6 7 6 7 8 7 7 7 6 5 6 7 6 7 8 7 6 7 8 8 8 9
+
+======== the counterexample window (mix) ========
+  window [816, 886] of 986 links; basepoint 56 of 71 links; arms 15 and 57
+  rho: 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 4 4 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 5 5 4 5 6 5 6 7 6 5 5 5 4 5 6 5 6 7 6 5 6 7 6 7 8
+  sig: 3 3 4 3 4 5 4 3 4 5 4 5 6 5 5 5 4 4 4 5 4 5 6 5 5 5 6 6 6 7 6 5 6 5 4 5 6 5 5 5 4 3 4 5 5 5 6 5 5 5 6 5 6 7 6 5 6 5 4 5 6 6 6 7 6 5 6 7 6 7 8
+  rho as a base-sixteen numeral (most significant digit last link): 0x87676567656545556765654555454345456545656665654565444344456545434543432
+  sig as a base-sixteen numeral: 0x87676567666545656765655565554345556545656766655565454445556545434543433
+  the reflected forward arm (15): 4 4 5 4 3 4 3 2 3 4 3 2 3 2 1
+  the reflected backward arm (57): 4 4 3 2 3 4 3 4 5 4 4 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 5 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7
+  reflected forward arm fails Leg3Valley: 1; backward: 0
+  reflected forward arm folds onto the V-walk: 1; backward: 0
+  reflected arms HighAt (L+1) (L+8): 1 and 1
+  the window is faithful (IsCrookedIvF): 1
+========================================================
+
+  ---- sample 2: an arm fails the reflected valley clause and the pair misses the reflected V-walk (n = 986, basepoint 395) ----
+    rho: 0 1 2 1 2 2 2 1 2 3 2 3 3 3 2 3 2 1 2 2 2 3 3 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 2 2 3 4 3 2 3 3 3 4 4 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 4 4 3 4 3 2 3 4 3 4 4 4 3 3 3 2 3 4 3 2 2 2 1 2 2 2 3 4 3 2 3 4 3 4 4 4 3 4 3 2 3 4 3 4 4 4 3 4 4 4 5 6 5 4 4 4 3 4 4 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 5 5 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 5 5 4 4 4 3 4 4 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 3 3 2 3 3 3 4 4 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 5 5 4 5 4 3 4 4 4 3 4 3 2 3 4 3 4 4 4 3 4 5 4 5 5 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 4 3 4 5 4 3 3 3 2 3 3 3 4 5 4 3 4 5 4 5 5 5 4 5 4 3 4 5 4 5 5 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 4 4 3 4 5 4 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 5 4 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 4 4 5 5 5 4 4 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 4 4 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 3 4 3 2 3 3 3 4 4 4 3 4 4 4 5 5 5 4 4 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 3 3 2 2 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 3 3 2 3 3 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 4 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 5 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 5 5 4 5 4 3 4 4 4 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 5 5 4 4 4 3 4 4 4 3 3 3 2 3 4 3 4 4 4 3 4 4 4 5 6 5 4 4 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 4 4 5 5 5 4 5 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 6 7 6 7 7 7 6 7 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 5 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 6 7 6 7 7 7 6 6 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 6 6 7 8 7 6 7 6 5 6 6 6 7 7 7 6 7 8 7 8 9
+    sig: 0 1 2 1 2 3 2 2 2 3 2 3 4 3 3 3 2 1 2 3 3 3 4 3 2 3 4 4 4 5 4 3 4 3 3 3 4 3 2 3 2 2 2 3 2 3 4 3 2 3 4 3 4 5 4 4 4 3 2 3 4 4 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 3 3 4 3 2 3 4 3 4 5 4 4 4 3 2 3 4 3 4 5 4 3 4 5 5 5 6 5 5 5 4 3 4 5 4 4 4 3 3 3 4 4 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 4 4 4 3 2 3 4 3 4 5 4 3 4 3 3 3 4 3 2 3 2 1 2 3 3 3 4 3 2 3 4 4 4 5 4 4 4 3 2 3 4 3 4 5 4 4 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 5 5 6 6 6 7 6 5 6 5 5 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 5 5 6 5 6 7 6 5 6 5 5 5 6 5 4 5 4 4 4 5 5 5 6 5 4 5 6 5 6 7 6 6 6 5 4 5 6 5 6 7 6 6 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 5 4 5 4 3 4 5 5 5 6 5 5 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 4 4 3 3 3 4 3 4 5 4 4 4 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 5 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 4 4 5 4 5 6 5 5 5 4 4 4 5 4 3 4 3 2 3 4 4 4 5 4 3 4 3 3 3 4 3 2 3 2 2 2 3 3 3 4 3 3 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 4 4 3 2 3 4 3 4 5 4 4 4 5 5 5 6 5 5 5 4 3 4 5 5 5 6 5 4 5 6 6 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 3 4 3 2 3 4 4 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 6 6 7 6 5 6 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 5 5 6 5 6 7 6 5 6 5 5 5 6 5 6 7 6 5 6 7 6 7 8 7 7 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 5 5 4 4 4 5 4 5 6 5 4 5 6 6 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 4 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 6 6 7 6 6 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 6 6 6 7 6 6 6 5 4 5 6 5 6 7 6 5 6 7 7 7 8 7 6 7 6 5 6 7 6 6 6 5 5 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 7 7 8 7 7 7 6 5 6 7 6 5 6 5 5 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 6 6 7 7 7 8 7 7 7 8 7 8 9
+    reflected forward arm (591): 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 4 4 3 2 3 4 3 4 5 4 4 4 5 5 5 6 5 4 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 5 5 4 4 4 5 5 5 6 5 4 5 4 3 4 5 4 4 4 3 3 3 4 3 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 6 5 6 7 6 6 6 5 5 5 6 5 5 5 4 4 4 5 5 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 6 6 7 7 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 6 6 7 6 6 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 4 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 5 5 4 3 4 5 4 4 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 4 4 3 3 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 5 5 6 5 5 5 6 6 6 7 6 5 6 5 5 5 6 5 5 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 5 5 4 4 4 5 4 3 4 3 2 3 4 3 4 5 4 4 4 3 2 3 4 3 2 3 2 2 2 3 2 3 4 3 2 3 4 3 4 5 4 4 4 3 2 3 4 4 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 4 4 3 2 3 4 3 4 5 4 4 4 3 2 3 4 3 2 3 2 2 2 3 3 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 3 3 2 1 2 3 2 3 4 3 3 3 2 2 2 3 2 1 2 1 0
+    reflected backward arm (396): 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 4 4 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 6 6 6 7 6 6 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 5 5 6 5 6 7 6 5 6 5 5 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 6 6 7 6 6 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 5 5 5 4 4 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 3 4 3 3 3 4 4 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 5 5 5 4 3 4 5 5 5 6 5 5 5 6 5 6 7 6 5 6 5 5 5 6 5 6 7 6 5 6 7 7 7 8 7 7 7 6 5 6 7 6 6 6 5 5 5 6 5 6 7 6 5 6 5 5 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 6 6 7 6 5 6 7 7 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 6 6 7 7 7 8 7 6 7 6 6 6 7 6 7 8 7 7 7 8 7 8 9
+
+  ---- sample 3: an arm fails the reflected valley clause and the pair misses the reflected V-walk (n = 986, basepoint 397) ----
+    rho: 0 1 2 1 2 2 2 1 2 3 2 3 3 3 2 3 2 1 2 2 2 3 3 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 2 2 3 4 3 2 3 3 3 4 4 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 4 4 3 4 3 2 3 4 3 4 4 4 3 3 3 2 3 4 3 2 2 2 1 2 2 2 3 4 3 2 3 4 3 4 4 4 3 4 3 2 3 4 3 4 4 4 3 4 4 4 5 6 5 4 4 4 3 4 4 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 5 5 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 5 5 4 4 4 3 4 4 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 3 3 2 3 3 3 4 4 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 5 5 4 5 4 3 4 4 4 3 4 3 2 3 4 3 4 4 4 3 4 5 4 5 5 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 4 3 4 5 4 3 3 3 2 3 3 3 4 5 4 3 4 5 4 5 5 5 4 5 4 3 4 5 4 5 5 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 4 4 3 4 5 4 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 5 4 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 4 4 5 5 5 4 4 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 4 4 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 3 4 3 2 3 3 3 4 4 4 3 4 4 4 5 5 5 4 4 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 3 3 2 2 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 3 3 2 3 3 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 4 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 5 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 5 5 4 5 4 3 4 4 4 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 5 5 4 4 4 3 4 4 4 3 3 3 2 3 4 3 4 4 4 3 4 4 4 5 6 5 4 4 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 4 4 5 5 5 4 5 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 6 7 6 7 7 7 6 7 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 5 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 6 7 6 7 7 7 6 6 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 6 6 7 8 7 6 7 6 5 6 6 6 7 7 7 6 7 8 7 8 9
+    sig: 0 1 2 1 2 3 2 2 2 3 2 3 4 3 3 3 2 1 2 3 3 3 4 3 2 3 4 4 4 5 4 3 4 3 3 3 4 3 2 3 2 2 2 3 2 3 4 3 2 3 4 3 4 5 4 4 4 3 2 3 4 4 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 3 3 4 3 2 3 4 3 4 5 4 4 4 3 2 3 4 3 4 5 4 3 4 5 5 5 6 5 5 5 4 3 4 5 4 4 4 3 3 3 4 4 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 4 4 4 3 2 3 4 3 4 5 4 3 4 3 3 3 4 3 2 3 2 1 2 3 3 3 4 3 2 3 4 4 4 5 4 4 4 3 2 3 4 3 4 5 4 4 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 5 5 6 6 6 7 6 5 6 5 5 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 5 5 6 5 6 7 6 5 6 5 5 5 6 5 4 5 4 4 4 5 5 5 6 5 4 5 6 5 6 7 6 6 6 5 4 5 6 5 6 7 6 6 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 5 4 5 4 3 4 5 5 5 6 5 5 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 4 4 3 3 3 4 3 4 5 4 4 4 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 5 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 4 4 5 4 5 6 5 5 5 4 4 4 5 4 3 4 3 2 3 4 4 4 5 4 3 4 3 3 3 4 3 2 3 2 2 2 3 3 3 4 3 3 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 4 4 3 2 3 4 3 4 5 4 4 4 5 5 5 6 5 5 5 4 3 4 5 5 5 6 5 4 5 6 6 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 3 4 3 2 3 4 4 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 6 6 7 6 5 6 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 5 5 6 5 6 7 6 5 6 5 5 5 6 5 6 7 6 5 6 7 6 7 8 7 7 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 5 5 4 4 4 5 4 5 6 5 4 5 6 6 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 4 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 6 6 7 6 6 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 6 6 6 7 6 6 6 5 4 5 6 5 6 7 6 5 6 7 7 7 8 7 6 7 6 5 6 7 6 6 6 5 5 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 7 7 8 7 7 7 6 5 6 7 6 5 6 5 5 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 6 6 7 7 7 8 7 7 7 8 7 8 9
+    reflected forward arm (589): 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 4 4 3 2 3 4 3 4 5 4 4 4 5 5 5 6 5 4 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 5 5 4 4 4 5 5 5 6 5 4 5 4 3 4 5 4 4 4 3 3 3 4 3 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 6 5 6 7 6 6 6 5 5 5 6 5 5 5 4 4 4 5 5 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 6 6 7 7 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 6 6 7 6 6 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 4 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 5 5 4 3 4 5 4 4 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 4 4 3 3 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 5 5 6 5 5 5 6 6 6 7 6 5 6 5 5 5 6 5 5 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 5 5 4 4 4 5 4 3 4 3 2 3 4 3 4 5 4 4 4 3 2 3 4 3 2 3 2 2 2 3 2 3 4 3 2 3 4 3 4 5 4 4 4 3 2 3 4 4 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 4 4 3 2 3 4 3 4 5 4 4 4 3 2 3 4 3 2 3 2 2 2 3 3 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 3 3 2 1 2 3 2 3 4 3 3 3 2 2 2 3 2 1 2 1 0
+    reflected backward arm (398): 4 5 4 3 4 3 3 3 4 3 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 3 4 3 3 3 4 3 4 5 4 4 4 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 6 6 6 7 6 6 6 5 4 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 5 6 5 5 5 6 5 6 7 6 5 6 5 5 5 6 5 4 5 4 4 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 6 6 7 6 6 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 5 5 5 4 4 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 4 4 4 5 4 3 4 3 3 3 4 4 4 5 4 3 4 5 4 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 5 5 5 4 3 4 5 5 5 6 5 5 5 6 5 6 7 6 5 6 5 5 5 6 5 6 7 6 5 6 7 7 7 8 7 7 7 6 5 6 7 6 6 6 5 5 5 6 5 6 7 6 5 6 5 5 5 6 5 5 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 5 5 6 6 6 7 6 5 6 7 7 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 6 6 7 7 7 8 7 6 7 6 6 6 7 6 7 8 7 7 7 8 7 8 9
+  the total mixture is faithful
+  faithful perturbation walk: 21 accepted steps
+
+==== base chain bing 9 0 (n = 986 links); IsCrookedIvF: 1 ====
+  the total mixture is faithful
+  faithful perturbation walk: 21 accepted steps
+
+  vpath 0 9 (1,2) (n = 174): NOT faithful
+
+  vpath 0 9 (2,1) (n = 174): NOT faithful
+
+  vpath 0 9 (2,2) (n = 66): NOT faithful
+
+  vpath 9 0 (2,2) (n = 66): NOT faithful
+
+==== chain outside Bing's family: bing 0 9 + bing 9 0 (n = 1971 links) ====
+
+==== chain outside Bing's family: bing 9 0 + bing 0 9 (n = 1971 links) ====
+
+chains outside Bing's family: 2 faithful of 6 tried
+
+random concatenations of Bing blocks: 7 faithful of 10 drawn
+
+================ totals ================
+
+---- the thin chains ----
+  faithful pairs 2, links 1972, non-thin 0
+  branch L+4: basepoints 364
+    valley failures 70; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 18, of them missing the Lambda-walk 0;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 92, CeilPeakResidual 88, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 110; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 464, served by a reflected walk 464, residue 0
+    of the residue: served by a walk of the four-leg family 0, by none 0
+    the reflection of LowAt is HighAt: fails at 100 (must be 0)
+    reflected valley failures 70; pairs then missing the reflected V-walk: 0
+      the V-criterion on the partner arm: fails in point form 0, in interval form 0;
+      interval form saves it 0 times
+    reflected ceiling failures 118, of them missing the reflected Lambda-walk 0;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at 0
+    unserved by the two reflected canonical walks 110; served by none of w3R, w4R, w5R: 0
+  batch 58, the criteria of the four-leg engine at the branch L+5:
+    a parameter set whose *criterion* holds on both arms: 460; none: 4
+    the same with the landmarks read on the interval: 460; none: 4
+    the point criterion holds on an arm that does not fold (must be 0): 0
+      (the sound direction is sampled; samples taken so far: 400000 of a cap of 400000)
+    the interval criterion holds on an arm that does not fold: 0
+    the walk L+4 -> L+7 -> L+1 -> L+8 -> L+1, over 928 arms:
+      point form   -- base fails 0, hfloor 130, hdeep 684, hceil 134; all three hold 100
+      interval form-- base fails 0, hfloor 130, hdeep 684, hceil 134; all three hold 100
+      both arms meet it: point 0, interval 0; both arms fold onto it 264
+
+---- single shavings ----
+  faithful pairs 576, links 567936, non-thin 576
+  branch L+4: basepoints 105004
+    valley failures 20194; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 5184, of them missing the Lambda-walk 18;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 26412, CeilPeakResidual 25416, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 31596; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 133462, served by a reflected walk 133462, residue 0
+    of the residue: served by a walk of the four-leg family 0, by none 0
+    the reflection of LowAt is HighAt: fails at 28770 (must be 0)
+    reflected valley failures 20132; pairs then missing the reflected V-walk: 0
+      the V-criterion on the partner arm: fails in point form 0, in interval form 0;
+      interval form saves it 0 times
+    reflected ceiling failures 33948, of them missing the reflected Lambda-walk 78;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at 0
+    unserved by the two reflected canonical walks 31692; served by none of w3R, w4R, w5R: 0
+  batch 58, the criteria of the four-leg engine at the branch L+5:
+    a parameter set whose *criterion* holds on both arms: 132306; none: 1156
+    the same with the landmarks read on the interval: 132314; none: 1148
+    the point criterion holds on an arm that does not fold (must be 0): 0
+      (the sound direction is sampled; samples taken so far: 400000 of a cap of 400000)
+    the interval criterion holds on an arm that does not fold: 1172
+    the walk L+4 -> L+7 -> L+1 -> L+8 -> L+1, over 266924 arms:
+      point form   -- base fails 0, hfloor 37418, hdeep 196662, hceil 38634; all three hold 28752
+      interval form-- base fails 0, hfloor 37288, hdeep 196662, hceil 38614; all three hold 28782
+      both arms meet it: point 0, interval 0; both arms fold onto it 75848
+
+---- single fills ----
+  faithful pairs 576, links 567936, non-thin 576
+  branch L+4: basepoints 104832
+    valley failures 20160; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 5184, of them missing the Lambda-walk 0;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 26496, CeilPeakResidual 25344, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 31680; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 133632, served by a reflected walk 133632, residue 0
+    of the residue: served by a walk of the four-leg family 0, by none 0
+    the reflection of LowAt is HighAt: fails at 28800 (must be 0)
+    reflected valley failures 20160; pairs then missing the reflected V-walk: 0
+      the V-criterion on the partner arm: fails in point form 0, in interval form 0;
+      interval form saves it 0 times
+    reflected ceiling failures 33984, of them missing the reflected Lambda-walk 0;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at 0
+    unserved by the two reflected canonical walks 31680; served by none of w3R, w4R, w5R: 0
+  batch 58, the criteria of the four-leg engine at the branch L+5:
+    a parameter set whose *criterion* holds on both arms: 132480; none: 1152
+    the same with the landmarks read on the interval: 132480; none: 1152
+    the point criterion holds on an arm that does not fold (must be 0): 0
+      (the sound direction is sampled; samples taken so far: 400000 of a cap of 400000)
+    the interval criterion holds on an arm that does not fold: 0
+    the walk L+4 -> L+7 -> L+1 -> L+8 -> L+1, over 267264 arms:
+      point form   -- base fails 0, hfloor 37440, hdeep 196992, hceil 38592; all three hold 28800
+      interval form-- base fails 0, hfloor 37440, hdeep 196992, hceil 38592; all three hold 28800
+      both arms meet it: point 0, interval 0; both arms fold onto it 76032
+
+---- random mixtures (rate 1/3) ----
+  faithful pairs 80, links 78880, non-thin 15287
+  branch L+4: basepoints 17038
+    valley failures 3376; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 762, of them missing the Lambda-walk 177;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 2527, CeilPeakResidual 3925, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 3397; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 16641, served by a reflected walk 16340, residue 301
+    of the residue: served by a walk of the four-leg family 301, by none 0
+    the reflection of LowAt is HighAt: fails at 3870 (must be 0)
+    reflected valley failures 2200; pairs then missing the reflected V-walk: 173
+      the V-criterion on the partner arm: fails in point form 173, in interval form 0;
+      interval form saves it 173 times
+    reflected ceiling failures 4554, of them missing the reflected Lambda-walk 918;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at 297
+    unserved by the two reflected canonical walks 4528; served by none of w3R, w4R, w5R: 301
+  batch 58, the criteria of the four-leg engine at the branch L+5:
+    a parameter set whose *criterion* holds on both arms: 15984; none: 657
+    the same with the landmarks read on the interval: 16530; none: 111
+    the point criterion holds on an arm that does not fold (must be 0): 0
+      (the sound direction is sampled; samples taken so far: 400000 of a cap of 400000)
+    the interval criterion holds on an arm that does not fold: 17691
+    the walk L+4 -> L+7 -> L+1 -> L+8 -> L+1, over 33282 arms:
+      point form   -- base fails 0, hfloor 5451, hdeep 23628, hceil 6016; all three hold 3303
+      interval form-- base fails 0, hfloor 3488, hdeep 23628, hceil 5612; all three hold 3804
+      both arms meet it: point 0, interval 0; both arms fold onto it 8452
+
+---- heavy mixtures (rate 1/2, and the total mixture) ----
+  faithful pairs 82, links 80852, non-thin 24259
+  branch L+4: basepoints 18890
+    valley failures 3769; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 686, of them missing the Lambda-walk 269;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 1877, CeilPeakResidual 3591, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 3497; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 16011, served by a reflected walk 15457, residue 554
+    of the residue: served by a walk of the four-leg family 554, by none 0
+    the reflection of LowAt is HighAt: fails at 4353 (must be 0)
+    reflected valley failures 2023; pairs then missing the reflected V-walk: 306
+      the V-criterion on the partner arm: fails in point form 306, in interval form 0;
+      interval form saves it 306 times
+    reflected ceiling failures 5110, of them missing the reflected Lambda-walk 1361;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at 519
+    unserved by the two reflected canonical walks 4399; served by none of w3R, w4R, w5R: 554
+  batch 58, the criteria of the four-leg engine at the branch L+5:
+    a parameter set whose *criterion* holds on both arms: 14596; none: 1415
+    the same with the landmarks read on the interval: 15941; none: 70
+    the point criterion holds on an arm that does not fold (must be 0): 0
+      (the sound direction is sampled; samples taken so far: 400000 of a cap of 400000)
+    the interval criterion holds on an arm that does not fold: 32703
+    the walk L+4 -> L+7 -> L+1 -> L+8 -> L+1, over 32022 arms:
+      point form   -- base fails 0, hfloor 5811, hdeep 22261, hceil 6742; all three hold 2740
+      interval form-- base fails 0, hfloor 2690, hdeep 22261, hceil 5988; all three hold 3635
+      both arms meet it: point 0, interval 0; both arms fold onto it 7673
+
+---- random faithful perturbation walks ----
+  faithful pairs 4, links 3944, non-thin 48
+  branch L+4: basepoints 722
+    valley failures 132; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 36, of them missing the Lambda-walk 6;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 175, CeilPeakResidual 176, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 200; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 929, served by a reflected walk 929, residue 0
+    of the residue: served by a walk of the four-leg family 0, by none 0
+    the reflection of LowAt is HighAt: fails at 241 (must be 0)
+    reflected valley failures 140; pairs then missing the reflected V-walk: 0
+      the V-criterion on the partner arm: fails in point form 0, in interval form 0;
+      interval form saves it 0 times
+    reflected ceiling failures 277, of them missing the reflected Lambda-walk 26;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at 0
+    unserved by the two reflected canonical walks 242; served by none of w3R, w4R, w5R: 0
+  batch 58, the criteria of the four-leg engine at the branch L+5:
+    a parameter set whose *criterion* holds on both arms: 921; none: 8
+    the same with the landmarks read on the interval: 921; none: 8
+    the point criterion holds on an arm that does not fold (must be 0): 0
+      (the sound direction is sampled; samples taken so far: 400000 of a cap of 400000)
+    the interval criterion holds on an arm that does not fold: 200
+    the walk L+4 -> L+7 -> L+1 -> L+8 -> L+1, over 1858 arms:
+      point form   -- base fails 0, hfloor 265, hdeep 1371, hceil 269; all three hold 198
+      interval form-- base fails 0, hfloor 260, hdeep 1371, hceil 269; all three hold 198
+      both arms meet it: point 0, interval 0; both arms fold onto it 528
+
+---- chains outside Bing's family and concatenations ----
+  faithful pairs 3604, links 5297419, non-thin 7172
+  branch L+4: basepoints 981496
+    valley failures 188957; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 48620, of them missing the Lambda-walk 60;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 247178, CeilPeakResidual 236919, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 295760; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 1244583, served by a reflected walk 1244571, residue 12
+    of the residue: served by a walk of the four-leg family 12, by none 0
+    the reflection of LowAt is HighAt: fails at 269183 (must be 0)
+    reflected valley failures 187207; pairs then missing the reflected V-walk: 6
+      the V-criterion on the partner arm: fails in point form 6, in interval form 0;
+      interval form saves it 6 times
+    reflected ceiling failures 317771, of them missing the reflected Lambda-walk 262;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at 13
+    unserved by the two reflected canonical walks 294570; served by none of w3R, w4R, w5R: 12
+  batch 58, the criteria of the four-leg engine at the branch L+5:
+    a parameter set whose *criterion* holds on both arms: 1233897; none: 10686
+    the same with the landmarks read on the interval: 1234008; none: 10575
+    the point criterion holds on an arm that does not fold (must be 0): 0
+      (the sound direction is sampled; samples taken so far: 400000 of a cap of 400000)
+    the interval criterion holds on an arm that does not fold: 9878
+    the walk L+4 -> L+7 -> L+1 -> L+8 -> L+1, over 2489166 arms:
+      point form   -- base fails 0, hfloor 349609, hdeep 1812555, hceil 354611; all three hold 291740
+      interval form-- base fails 0, hfloor 348849, hdeep 1812073, hceil 354509; all three hold 292389
+      both arms meet it: point 145, interval 157; both arms fold onto it 709613
+
+---- EVERYTHING ----
+  faithful pairs 4924, links 6598939, non-thin 47918
+  branch L+4: basepoints 1228346
+    valley failures 236658; pairs not folding onto the V-walk (must be 0): 0
+    witness at arm index 12 or later fails at (must be 0): 0; least witness index seen 12
+    ceiling failures 60490, of them missing the Lambda-walk 530;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at (must be 0): 0
+      Valley5 with index 5 fails at 0; TopW5 with index 12 fails at 0
+    residues: ValleyResidual 304757, CeilPeakResidual 295459, CeilHighResidual 0 (the last is empty by theorem)
+    unserved pairs 366240; served by none of w3, w4, w5 (must be 0): 0
+  branch L+5: basepoints 1545722, served by a reflected walk 1544855, residue 867
+    of the residue: served by a walk of the four-leg family 867, by none 0
+    the reflection of LowAt is HighAt: fails at 335317 (must be 0)
+    reflected valley failures 231932; pairs then missing the reflected V-walk: 485
+      the V-criterion on the partner arm: fails in point form 485, in interval form 0;
+      interval form saves it 485 times
+    reflected ceiling failures 395762, of them missing the reflected Lambda-walk 2645;
+      the gap (TopW5 on the failing arm, Valley5 on the other) fails at 829
+    unserved by the two reflected canonical walks 367221; served by none of w3R, w4R, w5R: 867
+  batch 58, the criteria of the four-leg engine at the branch L+5:
+    a parameter set whose *criterion* holds on both arms: 1530644; none: 15078
+    the same with the landmarks read on the interval: 1532654; none: 13068
+    the point criterion holds on an arm that does not fold (must be 0): 0
+      (the sound direction is sampled; samples taken so far: 400000 of a cap of 400000)
+    the interval criterion holds on an arm that does not fold: 61644
+    the walk L+4 -> L+7 -> L+1 -> L+8 -> L+1, over 3091444 arms:
+      point form   -- base fails 0, hfloor 436124, hdeep 2254153, hceil 444998; all three hold 355633
+      interval form-- base fails 0, hfloor 430145, hdeep 2253671, hceil 443718; all three hold 357708
+      both arms meet it: point 145, interval 157; both arms fold onto it 878410
+
+---- the four-leg family at the residue of the branch L+5 ----
+  residual basepoints recorded: 867
+  reflected P=4 K=6 M=2 : 6 -> 3 -> 7 -> 1 -> 8  serves 503
+  reflected P=4 K=7 M=2 : 6 -> 2 -> 7 -> 1 -> 8  serves 167
+  reflected P=5 K=6 M=1 : 5 -> 3 -> 8 -> 1 -> 8  serves 32
+  reflected P=5 K=6 M=2 : 5 -> 3 -> 7 -> 1 -> 8  serves 408
+  direct   P=5 K=7 M=1 : 4 -> 7 -> 1 -> 8 -> 1  serves 713
+  direct   P=5 K=7 M=2 : 4 -> 7 -> 2 -> 8 -> 1  serves 642
+  reflected P=5 K=7 M=2 : 5 -> 2 -> 7 -> 1 -> 8  serves 119
+  direct   P=5 K=7 M=3 : 4 -> 7 -> 3 -> 8 -> 1  serves 252
+  reflected P=6 K=6 M=2 : 4 -> 3 -> 7 -> 1 -> 8  serves 213
+  direct   P=6 K=7 M=1 : 5 -> 7 -> 1 -> 8 -> 1  serves 404
+  direct   P=6 K=7 M=2 : 5 -> 7 -> 2 -> 8 -> 1  serves 419
+  reflected P=6 K=7 M=2 : 4 -> 2 -> 7 -> 1 -> 8  serves 39
+  direct   P=6 K=7 M=3 : 5 -> 7 -> 3 -> 8 -> 1  serves 252
+  direct   P=6 K=8 M=1 : 5 -> 8 -> 1 -> 8 -> 1  serves 38
+  direct   P=6 K=8 M=2 : 5 -> 8 -> 2 -> 8 -> 1  serves 38
+  direct   P=6 K=8 M=3 : 5 -> 8 -> 3 -> 8 -> 1  serves 27
+
+  greedy cover of the 867 coverable residual basepoints:
+    pick 1: direct P=5 K=7 M=1 (4 -> 7 -> 1 -> 8 -> 1) covers 713, left 154
+    pick 2: reflected P=4 K=6 M=2 (6 -> 3 -> 7 -> 1 -> 8) covers 80, left 74
+    pick 3: direct P=5 K=7 M=2 (4 -> 7 -> 2 -> 8 -> 1) covers 74, left 0
+    walks needed: 3
+
+---- batch 58: the criteria of the four-leg engine over the whole branch ----
+  basepoints of the branch L+5 recorded: 200000
+  reflected P=4 K=6 M=1 : 6 -> 3 -> 8 -> 1 -> 8  criterion on both arms: point 271438, interval 276381
+  reflected P=4 K=6 M=2 : 6 -> 3 -> 7 -> 1 -> 8  criterion on both arms: point 933197, interval 936032
+  reflected P=4 K=7 M=1 : 6 -> 2 -> 8 -> 1 -> 8  criterion on both arms: point 403424, interval 409843
+  reflected P=4 K=7 M=2 : 6 -> 2 -> 7 -> 1 -> 8  criterion on both arms: point 730596, interval 735560
+  reflected P=4 K=8 M=1 : 6 -> 1 -> 8 -> 1 -> 8  criterion on both arms: point 10176, interval 10263
+  reflected P=4 K=8 M=2 : 6 -> 1 -> 7 -> 1 -> 8  criterion on both arms: point 331951, interval 338311
+  direct   P=5 K=6 M=1 : 4 -> 6 -> 1 -> 8 -> 1  criterion on both arms: point 0, interval 1900
+  reflected P=5 K=6 M=1 : 5 -> 3 -> 8 -> 1 -> 8  criterion on both arms: point 1342, interval 3117
+  direct   P=5 K=6 M=2 : 4 -> 6 -> 2 -> 8 -> 1  criterion on both arms: point 121671, interval 127122
+  reflected P=5 K=6 M=2 : 5 -> 3 -> 7 -> 1 -> 8  criterion on both arms: point 96522, interval 98469
+  direct   P=5 K=6 M=3 : 4 -> 6 -> 3 -> 8 -> 1  criterion on both arms: point 697208, interval 705704
+  reflected P=5 K=6 M=3 : 5 -> 3 -> 6 -> 1 -> 8  criterion on both arms: point 234992, interval 237343
+  direct   P=5 K=7 M=1 : 4 -> 7 -> 1 -> 8 -> 1  criterion on both arms: point 145, interval 157
+  reflected P=5 K=7 M=1 : 5 -> 2 -> 8 -> 1 -> 8  criterion on both arms: point 418, interval 1352
+  direct   P=5 K=7 M=2 : 4 -> 7 -> 2 -> 8 -> 1  criterion on both arms: point 260422, interval 267016
+  reflected P=5 K=7 M=2 : 5 -> 2 -> 7 -> 1 -> 8  criterion on both arms: point 41062, interval 43287
+  direct   P=5 K=7 M=3 : 4 -> 7 -> 3 -> 8 -> 1  criterion on both arms: point 793095, interval 803881
+  reflected P=5 K=7 M=3 : 5 -> 2 -> 6 -> 1 -> 8  criterion on both arms: point 101160, interval 103207
+  direct   P=5 K=8 M=1 : 4 -> 8 -> 1 -> 8 -> 1  criterion on both arms: point 4968, interval 5004
+  reflected P=5 K=8 M=1 : 5 -> 1 -> 8 -> 1 -> 8  criterion on both arms: point 40, interval 40
+  direct   P=5 K=8 M=2 : 4 -> 8 -> 2 -> 8 -> 1  criterion on both arms: point 4968, interval 5004
+  reflected P=5 K=8 M=2 : 5 -> 1 -> 7 -> 1 -> 8  criterion on both arms: point 40, interval 586
+  direct   P=5 K=8 M=3 : 4 -> 8 -> 3 -> 8 -> 1  criterion on both arms: point 507512, interval 515896
+  reflected P=5 K=8 M=3 : 5 -> 1 -> 6 -> 1 -> 8  criterion on both arms: point 1152, interval 2417
+  direct   P=6 K=6 M=1 : 5 -> 6 -> 1 -> 8 -> 1  criterion on both arms: point 0, interval 2
+  direct   P=6 K=6 M=2 : 5 -> 6 -> 2 -> 8 -> 1  criterion on both arms: point 99, interval 832
+  direct   P=6 K=6 M=3 : 5 -> 6 -> 3 -> 8 -> 1  criterion on both arms: point 54127, interval 57247
+  direct   P=6 K=7 M=1 : 5 -> 7 -> 1 -> 8 -> 1  criterion on both arms: point 29, interval 38
+  direct   P=6 K=7 M=2 : 5 -> 7 -> 2 -> 8 -> 1  criterion on both arms: point 29, interval 38
+  direct   P=6 K=7 M=3 : 5 -> 7 -> 3 -> 8 -> 1  criterion on both arms: point 91489, interval 93949
+  direct   P=6 K=7 M=4 : 5 -> 7 -> 4 -> 8 -> 1  criterion on both arms: point 362663, interval 369002
+  direct   P=6 K=8 M=1 : 5 -> 8 -> 1 -> 8 -> 1  criterion on both arms: point 505, interval 516
+  direct   P=6 K=8 M=2 : 5 -> 8 -> 2 -> 8 -> 1  criterion on both arms: point 505, interval 516
+  direct   P=6 K=8 M=3 : 5 -> 8 -> 3 -> 8 -> 1  criterion on both arms: point 505, interval 516
+  direct   P=6 K=8 M=4 : 5 -> 8 -> 4 -> 8 -> 1  criterion on both arms: point 184031, interval 187674
+
+  the clauses, counted per arm (base / hfloor / hdeep / hceil, point form then interval form):
+  direct   P=3 K=6 M=1 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  reflected P=3 K=6 M=1 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  direct   P=3 K=7 M=1 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  reflected P=3 K=7 M=1 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  direct   P=3 K=8 M=1 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  reflected P=3 K=8 M=1 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  direct   P=4 K=6 M=1 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  reflected P=4 K=6 M=1 over 3091444 arms: point 0/313046/672990/668252, interval 0/311189/672136/659617
+  direct   P=4 K=6 M=2 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  reflected P=4 K=6 M=2 over 3091444 arms: point 0/313046/511199/0, interval 0/311189/509087/0
+  direct   P=4 K=7 M=1 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  reflected P=4 K=7 M=1 over 3091444 arms: point 0/790596/806880/134396, interval 0/787488/800696/130764
+  direct   P=4 K=7 M=2 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  reflected P=4 K=7 M=2 over 3091444 arms: point 0/790596/512053/448, interval 0/787488/509087/0
+  direct   P=4 K=8 M=1 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  reflected P=4 K=8 M=1 over 3091444 arms: point 0/1514845/1512227/0, interval 0/1512245/1511877/0
+  direct   P=4 K=8 M=2 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  reflected P=4 K=8 M=2 over 3091444 arms: point 0/1514845/516225/0, interval 0/1512245/509087/0
+  direct   P=5 K=6 M=1 over 3091444 arms: point 0/87643/1174260/1350238, interval 0/85652/1162994/1348607
+  reflected P=5 K=6 M=1 over 3091444 arms: point 0/951745/1908473/569163, interval 0/947025/1907619/560814
+  direct   P=5 K=6 M=2 over 3091444 arms: point 0/87643/870504/789550, interval 0/85652/860431/787488
+  reflected P=5 K=6 M=2 over 3091444 arms: point 0/951745/1907619/0, interval 0/947025/1904255/0
+  direct   P=5 K=6 M=3 over 3091444 arms: point 0/87643/667026/313046, interval 0/85652/659617/311189
+  reflected P=5 K=6 M=3 over 3091444 arms: point 0/951745/1514845/0, interval 0/947025/1512245/0
+  direct   P=5 K=7 M=1 over 3091444 arms: point 0/436124/2254153/444998, interval 0/430145/2253671/443718
+  reflected P=5 K=7 M=1 over 3091444 arms: point 0/1721025/2641511/133749, interval 0/1716345/2636816/130764
+  direct   P=5 K=7 M=2 over 3091444 arms: point 0/436124/1180773/181239, interval 0/430145/1162994/180291
+  reflected P=5 K=7 M=2 over 3091444 arms: point 0/1721025/1914212/143, interval 0/1716345/1904255/0
+  direct   P=5 K=7 M=3 over 3091444 arms: point 0/436124/670666/47589, interval 0/430145/659617/46787
+  reflected P=5 K=7 M=3 over 3091444 arms: point 0/1721025/1514845/0, interval 0/1716345/1512245/0
+  direct   P=5 K=8 M=1 over 3091444 arms: point 0/1303459/2535475/0, interval 0/1294735/2535475/0
+  reflected P=5 K=8 M=1 over 3091444 arms: point 0/2379385/2791939/0, interval 0/2376792/2791459/0
+  direct   P=5 K=8 M=2 over 3091444 arms: point 0/1303459/2254153/0, interval 0/1294735/2253671/0
+  reflected P=5 K=8 M=2 over 3091444 arms: point 0/2379385/2641511/0, interval 0/2376792/2627542/0
+  direct   P=5 K=8 M=3 over 3091444 arms: point 0/1303459/672692/0, interval 0/1294735/659617/0
+  reflected P=5 K=8 M=3 over 3091444 arms: point 0/2379385/1516475/0, interval 0/2376792/1512245/0
+  direct   P=6 K=6 M=1 over 3091444 arms: point 0/512917/1904741/1317284, interval 0/507048/1893783/1316150
+  reflected P=6 K=6 M=1 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  direct   P=6 K=6 M=2 over 3091444 arms: point 0/512917/1904741/696068, interval 0/507048/1893783/694771
+  reflected P=6 K=6 M=2 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  direct   P=6 K=6 M=3 over 3091444 arms: point 0/512917/1733851/312084, interval 0/507048/1726031/311189
+  reflected P=6 K=6 M=3 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  direct   P=6 K=7 M=1 over 3091444 arms: point 0/1195719/2733650/425207, interval 0/1188425/2733420/424177
+  reflected P=6 K=7 M=1 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  direct   P=6 K=7 M=2 over 3091444 arms: point 0/1195719/2733650/160822, interval 0/1188425/2733420/160376
+  reflected P=6 K=7 M=2 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  direct   P=6 K=7 M=3 over 3091444 arms: point 0/1195719/1910851/47029, interval 0/1188425/1893783/46787
+  reflected P=6 K=7 M=3 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  direct   P=6 K=7 M=4 over 3091444 arms: point 0/1195719/1304483/6902, interval 0/1188425/1294735/6664
+  reflected P=6 K=7 M=4 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  direct   P=6 K=8 M=1 over 3091444 arms: point 0/2035325/2853584/0, interval 0/2028639/2853584/0
+  reflected P=6 K=8 M=1 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  direct   P=6 K=8 M=2 over 3091444 arms: point 0/2035325/2853584/0, interval 0/2028639/2853584/0
+  reflected P=6 K=8 M=2 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  direct   P=6 K=8 M=3 over 3091444 arms: point 0/2035325/2733650/0, interval 0/2028639/2733420/0
+  reflected P=6 K=8 M=3 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+  direct   P=6 K=8 M=4 over 3091444 arms: point 0/2035325/1306092/0, interval 0/2028639/1294735/0
+  reflected P=6 K=8 M=4 over 3091444 arms: point 3091444/0/0/0, interval 3091444/0/0/0
+
+  greedy cover of the branch by point criteria: 197196 of 200000 basepoints are reachable
+    pick 1: reflected P=4 K=6 M=2 (6 -> 3 -> 7 -> 1 -> 8) covers 118184, left 79012
+    pick 2: direct P=5 K=7 M=3 (4 -> 7 -> 3 -> 8 -> 1) covers 64200, left 14812
+    pick 3: direct P=5 K=6 M=3 (4 -> 6 -> 3 -> 8 -> 1) covers 8117, left 6695
+    pick 4: direct P=6 K=8 M=4 (5 -> 8 -> 4 -> 8 -> 1) covers 6168, left 527
+    pick 5: reflected P=5 K=6 M=3 (5 -> 3 -> 6 -> 1 -> 8) covers 326, left 201
+    pick 6: direct P=6 K=7 M=4 (5 -> 7 -> 4 -> 8 -> 1) covers 201, left 0
+    criteria needed: 6
+
+  greedy cover of the branch by interval criteria: 198338 of 200000 basepoints are reachable
+    pick 1: reflected P=4 K=6 M=2 (6 -> 3 -> 7 -> 1 -> 8) covers 119577, left 78761
+    pick 2: direct P=5 K=7 M=3 (4 -> 7 -> 3 -> 8 -> 1) covers 65676, left 13085
+    pick 3: direct P=5 K=6 M=3 (4 -> 6 -> 3 -> 8 -> 1) covers 6948, left 6137
+    pick 4: direct P=5 K=8 M=3 (4 -> 8 -> 3 -> 8 -> 1) covers 6137, left 0
+    criteria needed: 4
+
+======== the shortest arm of the branch meeting no four-leg criterion ========
+  the forward arm at the basepoint 811 of a chain of 986 links, cut to 175 links
+  rho: 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 7 8 7 6 7 8 7 8 9
+  sig: 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 7 8 7 6 7 8 7 8 9
+  rho as a base-sixteen numeral (most significant digit last link): 0x9878767876765676787676567656545656765676787676567656545656765654565454345456545656765654565676567678767656765654565676565456545434545654565676565456545434545654543454343234345
+  sig as a base-sixteen numeral: 0x9878767876765676787676567656545656765676787676567656545656765654565454345456545656765654565676567678767656765654565676565456545434545654565676565456545434545654543454343234345
+  faithful (IsCrookedIvF): 1; LowAt on the arm: 1
+  the clause that fails, per parameter set (1 base, 2 hfloor, 4 hdeep, 8 hceil):
+    direct   P=3 K=6 M=1 : 1
+    reflected P=3 K=6 M=1 : 1
+    direct   P=3 K=7 M=1 : 1
+    reflected P=3 K=7 M=1 : 1
+    direct   P=3 K=8 M=1 : 1
+    reflected P=3 K=8 M=1 : 1
+    direct   P=4 K=6 M=1 : 1
+    reflected P=4 K=6 M=1 : 4
+    direct   P=4 K=6 M=2 : 1
+    reflected P=4 K=6 M=2 : 4
+    direct   P=4 K=7 M=1 : 1
+    reflected P=4 K=7 M=1 : 4
+    direct   P=4 K=7 M=2 : 1
+    reflected P=4 K=7 M=2 : 4
+    direct   P=4 K=8 M=1 : 1
+    reflected P=4 K=8 M=1 : 6
+    direct   P=4 K=8 M=2 : 1
+    reflected P=4 K=8 M=2 : 6
+    direct   P=5 K=6 M=1 : 10
+    reflected P=5 K=6 M=1 : 4
+    direct   P=5 K=6 M=2 : 2
+    reflected P=5 K=6 M=2 : 4
+    direct   P=5 K=6 M=3 : 2
+    reflected P=5 K=6 M=3 : 4
+    direct   P=5 K=7 M=1 : 10
+    reflected P=5 K=7 M=1 : 4
+    direct   P=5 K=7 M=2 : 2
+    reflected P=5 K=7 M=2 : 4
+    direct   P=5 K=7 M=3 : 2
+    reflected P=5 K=7 M=3 : 4
+    direct   P=5 K=8 M=1 : 2
+    reflected P=5 K=8 M=1 : 6
+    direct   P=5 K=8 M=2 : 2
+    reflected P=5 K=8 M=2 : 6
+    direct   P=5 K=8 M=3 : 2
+    reflected P=5 K=8 M=3 : 6
+    direct   P=6 K=6 M=1 : 14
+    reflected P=6 K=6 M=1 : 1
+    direct   P=6 K=6 M=2 : 6
+    reflected P=6 K=6 M=2 : 1
+    direct   P=6 K=6 M=3 : 6
+    reflected P=6 K=6 M=3 : 1
+    direct   P=6 K=7 M=1 : 14
+    reflected P=6 K=7 M=1 : 1
+    direct   P=6 K=7 M=2 : 6
+    reflected P=6 K=7 M=2 : 1
+    direct   P=6 K=7 M=3 : 6
+    reflected P=6 K=7 M=3 : 1
+    direct   P=6 K=7 M=4 : 6
+    reflected P=6 K=7 M=4 : 1
+    direct   P=6 K=8 M=1 : 6
+    reflected P=6 K=8 M=1 : 1
+    direct   P=6 K=8 M=2 : 6
+    reflected P=6 K=8 M=2 : 1
+    direct   P=6 K=8 M=3 : 6
+    reflected P=6 K=8 M=3 : 1
+    direct   P=6 K=8 M=4 : 6
+    reflected P=6 K=8 M=4 : 1
+==================================================================
+
+---- the definition audit ----
+  every predicate below is evaluated by its own definition, none by a proxy:
+    IsCrookedIvF (le, width, adj, crooked with interval triggers); IsLip via the
+    adjacency clause; HighAt (L+1) (L+8); LowAt (L+1) (L+8); Leg3Valley; Leg3Ceil;
+    Valley5; TopW5; FoldsOnto (the dynamic program of HPC/Fold/Decide.lean) for the
+    Lambda-walk, the V-walk, w3, w4, w5, their reflections and every walk of the
+    four-leg family; ValleyResidual; CeilPeakResidual; CeilHighResidual.
+  the strengthened criteria (witness at index 12, Valley5 at index 5, TopW5 at
+  index 12) are the definitions with the index bound raised to the value the
+  timing law of Theorem 7 gives; they are reported as such.
+  the criteria of the four-leg engine are the three announcements of
+  foldsOnto_leg4W together with its base condition, written out at L = 0,
+  H = 9 and the parameter set (P, K, M); the interval form is the same with
+  every high landmark read on sig and every low landmark on rho of the link,
+  the triggers left on the point sequence, and is reported as such.

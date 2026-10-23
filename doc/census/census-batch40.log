@@ -1,0 +1,22 @@
+######## span 8, basepoint 4 ########
+  [split (0,3): LowAt branch needs a deeper tree]
+  [split (0,4): LowAt branch needs a deeper tree]
+  [split (0,5): LowAt branch needs a deeper tree]
+  [split (0,6): LowAt branch needs a deeper tree]
+  [split (0,7): LowAt branch needs a deeper tree]
+  [split (0,8): LowAt branch needs a deeper tree]
+    SPLIT at (1,7):
+      LowAt  branch: [3,4,5,6,5,4,3,2,3,4,5,6,7,6,5,4,3,2,1]
+      HighAt branch: [5,4,3,2,3,4,5,6,7,6,5,4,3,2,1]
+  [split (0,8): HighAt branch needs a deeper tree]
+    SPLIT at (1,7):
+      LowAt  branch: [3,4,5,6,5,4,3,2,1,2,3,4,5,6,7]
+      HighAt branch: [5,4,3,2,3,4,5,6,5,4,3,2,1,2,3,4,5,6,7]
+  SPLIT at (0,8):
+
+######## three-leg shapes only, depth 3: not solved ########
+    [split (3,8): HighAt branch needs a deeper tree]
+    [split (4,7): LowAt branch needs a deeper tree]
+    [split (4,8): HighAt branch needs a deeper tree]
+    [split (5,8): HighAt branch needs a deeper tree]
+  NOT SOLVED at depth 3, maxlen 22

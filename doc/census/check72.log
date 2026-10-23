@@ -1,0 +1,54 @@
+check72.py -- the independent re-check of the batch-72 census.
+Every predicate is written out from its own definition; nothing is
+taken from the C of the census or from the Lean.
+
+== witness-batch72-c0.txt: 986 links, basepoint 909, the running arm is the forward arm
+   IsCrookedIvF: True
+   the band: [0, 9];  rho i = 5
+   LowAt on the forward arm: True; on the backward arm: True
+   the running arm runs high: True (first ascent at arm index 76)
+   Valley3BeforeNine on the running arm: False
+   Ceil72 on the running arm: False; on the partner: True
+   w3/w8/wb on the forward arm: (False, True, True); on the backward arm: (True, True, True)
+   walks of the trichotomy serving both arms: ['w8', 'wb']
+   walks of the four-leg family serving both arms: 9
+
+== witness-batch72-c1.txt: 986 links, basepoint 909, the running arm is the forward arm
+   IsCrookedIvF: True
+   the band: [0, 9];  rho i = 5
+   LowAt on the forward arm: True; on the backward arm: True
+   the running arm runs high: True (first ascent at arm index 76)
+   Valley3BeforeNine on the running arm: False
+   Ceil72 on the running arm: False; on the partner: True
+   w3/w8/wb on the forward arm: (False, True, True); on the backward arm: (True, True, True)
+   walks of the trichotomy serving both arms: ['w8', 'wb']
+   walks of the four-leg family serving both arms: 9
+
+== witness-batch72-c2.txt: 986 links, basepoint 909, the running arm is the forward arm
+   IsCrookedIvF: True
+   the band: [0, 9];  rho i = 5
+   LowAt on the forward arm: True; on the backward arm: True
+   the running arm runs high: True (first ascent at arm index 76)
+   Valley3BeforeNine on the running arm: False
+   Ceil72 on the running arm: False; on the partner: True
+   w3/w8/wb on the forward arm: (False, True, True); on the backward arm: (True, True, True)
+   walks of the trichotomy serving both arms: ['w8', 'wb']
+   walks of the four-leg family serving both arms: 9
+
+== witness-batch72-min.txt: 78 links, basepoint 1, the running arm is the forward arm
+   IsCrookedIvF: True
+   the band: [3, 9];  rho i = 5
+   LowAt on the forward arm: True; on the backward arm: True
+   the running arm runs high: True (first ascent at arm index 76)
+   Valley3BeforeNine on the running arm: False
+   Ceil72 on the running arm: False; on the partner: True
+   w3/w8/wb on the forward arm: (False, True, True); on the backward arm: (True, True, True)
+   walks of the trichotomy serving both arms: ['w8', 'wb']
+   walks of the four-leg family serving both arms: 15
+  (witness-batch72-break.txt is absent)
+
+The reading of the result: a running arm of a faithful pair, at a basepoint
+of the branch (LowAt on both arms), can fail Valley3BeforeNine -- so the
+statement is not a fact about a running arm of a faithful pair with the
+branch hypothesis.  At every such failure the two arms share the walk w8,
+so the basepoint is not a crossing; on the corpus no crossing fails.

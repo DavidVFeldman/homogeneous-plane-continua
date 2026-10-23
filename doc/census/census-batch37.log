@@ -1,0 +1,35 @@
+== 1. the dichotomy on stretches of Bing's chains ==
+   bing 0 6 (71 links): both 15, high 20, instances 25, low 20
+   bing 0 7 (170 links): both 4486, high 6304, instances 8122, low 6304
+   bing 0 8 (409 links): both 1814863, high 2473584, instances 3132305, low 2473584
+   total: both 1819364, high 2479908, instances 3140452, low 2479908
+   dichotomy failures: 0
+
+== 2. the explicit assignment, all LowLate arms of length <= 14 ==
+   arms tested 1271062, failures 0
+
+== 3. LowLate implies folding onto walk6, for arms of every length ==
+   walk6  serves every LowLate  arm: True
+   walk6' serves every HighLate arm: True
+   walks of length <= 11 serving every LowLate arm: 12
+   shortest of them: [2, 3, 4, 5, 4, 3, 2, 1]
+
+== 4. the one-clause form has no walk, even with local crookedness ==
+   no window, reaches H-2 before L: 0 serving walks of length <= 10
+   no window, reaches L+2 before H: 0 serving walks of length <= 10
+   window 3, reaches H-2 before L: 0 serving walks of length <= 10
+   window 3, reaches L+2 before H: 0 serving walks of length <= 10
+   window 4, reaches H-2 before L: 0 serving walks of length <= 10
+   window 4, reaches L+2 before H: 0 serving walks of length <= 10
+   window 5, reaches H-2 before L: 0 serving walks of length <= 10
+   window 5, reaches L+2 before H: 0 serving walks of length <= 10
+   window 6, reaches H-2 before L: 0 serving walks of length <= 10
+   window 6, reaches L+2 before H: 0 serving walks of length <= 10
+
+== 5. the walk cannot depend on the band alone; arms do not serve each other ==
+   corpus: 8097 distinct arm pairs at level 3, band [0, 6]
+   walks of length <= 12 serving every instance: 0
+   walk6 alone serves 6615 of 8097; walk6' alone serves 6615
+   the pair (walk6, walk6') serves 8097 of 8097
+   instances where neither arm folds onto the other arm's trace: 870
+

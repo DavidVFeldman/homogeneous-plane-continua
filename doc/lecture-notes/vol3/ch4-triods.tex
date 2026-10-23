@@ -1,0 +1,548 @@
+%======================================================================
+\chapter{Triods and Sorgenfrey's theorem}\label{ch:triods}
+%======================================================================
+
+Throughout this chapter $S$ is a compact metric space and all continua lie in $S$. The chapter
+follows Nadler, \emph{Continuum Theory}, 11.22--11.35, as the formal proof does, with the
+corrections listed in Section~\ref{sec:intro-diff}.
+
+\section{Triods, unicoherence and essential sums}
+
+\begin{definition}\label{def:triod}
+A \emph{triod} is a continuum $T$ containing a subcontinuum $N$ (the \emph{core}) such that
+$T\setminus N=A\cup B\cup C$ with $A,B,C$ nonempty and pairwise separated
+(Definition~\ref{def:separated}). A continuum is \emph{atriodic} if no subcontinuum of it is a
+triod.
+\end{definition}
+
+\formal{\lean{HPC.Plane.IsTriod}, \lean{HPC.Plane.IsAtriodic} (in
+\lean{HPC/Plane/Atriodic51Defs.lean}); for a triod in a non-compact space,
+\lean{HPC.Hagopian.IsTriodSet}.}
+
+The letter T is a triod (with core its centre point). An arc and a circle are atriodic; this will
+follow from Chapter~\ref{ch:snake} for the arc.
+
+\begin{definition}\label{def:unicoherent}
+A continuum $M$ is \emph{unicoherent} if whenever $M=H\cup K$ with $H,K$ subcontinua, $H\cap K$ is
+connected. It is \emph{hereditarily unicoherent} if every nondegenerate subcontinuum of $M$ is
+unicoherent.
+\end{definition}
+
+\formal{\lean{HPC.Plane.IsUnicoherent}, \lean{HPC.Plane.IsHereditarilyUnicoherent}.}
+
+An arc is unicoherent; a circle is not (two closed half-circles meet in two points).
+
+\begin{definition}\label{def:esum}
+Let $X,Y,Z,X_1,X_2,X_3$ be continua.
+\begin{enumerate}[label=(\alph*)]
+\item $X=Y\oplus Z$ (an \emph{essential sum}) means $X=Y\cup Z$, $Y\ne X$ and $Z\neq X$. So $X$ is
+decomposable if and only if it is an essential sum of two subcontinua.
+\item $X=X_1\oplus X_2\oplus X_3$ means $X=X_1\cup X_2\cup X_3$ and no $X_i$ is contained in the union
+of the other two.
+\item $X$ is a \emph{weak triod} if $X=X_1\oplus X_2\oplus X_3$ with $X_1\cap X_2\cap X_3\ne\emptyset$.
+\end{enumerate}
+\end{definition}
+
+\formal{\leansub{HPC.Plane.IsEssentialSum}{2}, \leansub{HPC.Plane.IsEssentialSum}{3},
+\lean{HPC.Plane.IsWeakTriod} (in \lean{HPC/Plane/SorgenfreyDefs.lean}); the constructor used in
+all proofs below is \lean{HPC.Plane.isWeakTriod_of}.}
+
+To prove that $X$ is a weak triod it suffices to give three continua $X_1,X_2,X_3$ with union $X$,
+a common point, and for each $i$ a point of $X_i$ outside the other two. The union is then
+automatically a continuum (Lemma~\ref{lem:union-continua}). This is how weak triods are produced in
+every proof of this chapter.
+
+\paragraph{Notation for an essential sum.} When $X=Y\oplus Z$ we write
+\[
+U=X\setminus Z,\qquad V=X\setminus Y .
+\]
+
+\begin{lemma}\label{lem:esum-basic}
+Let $X=Y\oplus Z$. Then:
+\begin{enumerate}[label=(\alph*)]
+\item $U$ and $V$ are nonempty, $U\subseteq Y$, $V\subseteq Z$, $\cl U\subseteq Y$ and $\cl V\subseteq Z$;
+\item $X=\cl U\cup Z$, $\cl U\ne X$, and $\cl U$ misses $Z\setminus Y=V$;
+\item $\cl U\cap Z\ne\emptyset$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) If $U=\emptyset$ then $X\subseteq Z$, so $Z=X$; similarly for $V$. A point of $X$ not in $Z$ is in
+$Y$, so $U\subseteq Y$, and $\cl U\subseteq Y$ as $Y$ is closed. Symmetrically for $V$.
+(b) A point of $X$ outside $Z$ is in $U$. Since $\cl U\subseteq Y$, $\cl U$ misses $X\setminus Y=V$, which
+is nonempty and contained in $X$; so $\cl U\neq X$.
+(c) $X=\cl U\cup Z$ with both sets closed and nonempty, and $X$ is connected.
+\end{proof}
+
+\formal{The lemmas in the namespace \leansub{HPC.Plane.IsEssentialSum}{2}
+(\lean{diff_nonempty}, \lean{closure_diff_subset_left}, \lean{eq_closure_union},
+\lean{closure_diff_ne}, \lean{closure_diff_disjoint}, \lean{closure_inter_nonempty}).}
+
+\section{Triods and weak triods}
+
+\begin{lemma}[A triod with a given core]\label{lem:core}
+Let $N,X_1,X_2,X_3$ be continua such that each $X_i$ meets $N$, $X_i\cap X_j\subseteq N$ for $i\ne j$,
+and no $X_i$ is contained in $N$. Then $N\cup X_1\cup X_2\cup X_3$ is a triod with core $N$.
+\end{lemma}
+
+\begin{proof}
+The union is a continuum by Lemma~\ref{lem:union-continua}. Its complement of $N$ is the union of
+the three nonempty sets $X_i\setminus N$. Since $\cl{X_i\setminus N}\subseteq X_i$, a point of
+$\cl{X_i\setminus N}\cap(X_j\setminus N)$ would lie in $X_i\cap X_j\subseteq N$; so the three sets are
+pairwise separated.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isTriod_of_core}.}
+
+\begin{proposition}\label{prop:triod-weak}
+Every triod is a weak triod.
+\end{proposition}
+
+\begin{proof}
+Let $T\setminus N=A\cup B\cup C$ be as in Definition~\ref{def:triod}. By Lemma~\ref{lem:piece} (with
+$M=T$ and $R=B\cup C$, which is separated from $A$) the set $X_1=N\cup A$ is a continuum; likewise
+$X_2=N\cup B$ and $X_3=N\cup C$. Their union is $T$, and they share the points of $N$. A point $a\in A$ is
+not in $N$, and not in $B\cup C$ because $A$ is separated from $B$ and $C$; so $a\notin X_2\cup X_3$.
+Similarly for $B$ and $C$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isWeakTriod_of_isTriod} (Nadler 11.25).}
+
+\begin{corollary}\label{cor:indec-not-triod}
+An indecomposable continuum is not a triod.
+\end{corollary}
+
+\begin{proof}
+If $X=X_1\oplus X_2\oplus X_3$ with a common point $c$, then $X_2\cup X_3$ is a continuum
+(Lemma~\ref{lem:union-continua}) and $X=X_1\cup(X_2\cup X_3)$. Here $X_1\ne X$, since otherwise
+$X_2\subseteq X_1\cup X_3$; and $X_2\cup X_3\ne X$, since otherwise $X_1\subseteq X_2\cup X_3$. So $X$ is
+decomposable. Apply Proposition~\ref{prop:triod-weak}.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.not_isTriod_univ_of_indecomposable} (for the whole space, which is all
+that is used).}
+
+\begin{lemma}\label{lem:weak-not-irr}
+A weak triod is not irreducible between any two points.
+\end{lemma}
+
+\begin{proof}
+Let $X=X_1\oplus X_2\oplus X_3$ with a common point $c$, and $p,q\in X$. Each of $p,q$ lies in some
+$X_i$, so there are $i\neq j$ with $p,q\in X_i\cup X_j$. This is a continuum (it contains $c$) and is
+not $X$: with $k$ the third index, $X_k\not\subseteq X_i\cup X_j$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.not_irreducible_of_isWeakTriod}.}
+
+\begin{proposition}\label{prop:uni-triod}
+A unicoherent continuum is a triod if and only if it is a weak triod.
+\end{proposition}
+
+\begin{proof}
+One direction is Proposition~\ref{prop:triod-weak}. Conversely let $X=X_1\oplus X_2\oplus X_3$ be
+unicoherent, with a common point $c$. For $\set{i,j,k}=\set{1,2,3}$ the set $X_j\cup X_k$ is a
+continuum, and $X=X_i\cup(X_j\cup X_k)$, so by unicoherence $Z_i=X_i\cap(X_j\cup X_k)$ is a continuum.
+The $Z_i$ contain $c$, so $N=Z_1\cup Z_2\cup Z_3$ is a continuum. Let $A_i=X\setminus(X_j\cup X_k)$,
+the set of points lying in $X_i$ only; it is nonempty because $X_i\not\subseteq X_j\cup X_k$.
+
+A point of $X$ outside $N$ lies in some $X_i$ and in no other $X_j$ (otherwise it would be in $Z_i$),
+so $X\setminus N=A_1\cup A_2\cup A_3$; and the $A_i$ miss $N$. Finally $\cl{A_i}\subseteq X_i$, and $A_j$
+misses $X_i$ for $j\ne i$, so the $A_i$ are pairwise separated. Thus $X$ is a triod with core $N$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isTriod_iff_isWeakTriod} (Nadler 11.26).}
+
+\begin{remark}
+Without unicoherence the converse of Proposition~\ref{prop:triod-weak} fails: the union of a circle
+and an arc meeting it in one end point $c$ is a weak triod (the arc and two arcs of the circle
+through $c$), but it is not a triod. Sorgenfrey proved that every weak triod \emph{contains} a
+triod. The formal proof does not use this theorem and does not prove it; the
+later volumes produce triods by Lemma~\ref{lem:core} instead.
+\end{remark}
+
+\section{Connected differences}
+
+\begin{theorem}\label{thm:diff-connected}
+Let $X=Y\oplus Z$, and suppose $X$ is not a weak triod. Then $U=X\setminus Z$ and $V=X\setminus Y$ are
+connected. In particular $\cl U$ and $\cl V$ are continua.
+\end{theorem}
+
+\begin{proof}
+By symmetry we prove that $V$ is connected; it is nonempty by Lemma~\ref{lem:esum-basic}.
+
+\emph{Step 1. If $V=P\cup Q$ with $P,Q$ separated and $Q\neq\emptyset$, then $P$ is preconnected.}
+Otherwise $P=W_1\cup W_2$ with $W_1,W_2$ nonempty and separated (Lemma~\ref{lem:sep-of-not-conn}). The
+three sets $W_1$, $W_2$, $Q$ are pairwise separated (for instance $\cl{W_1}\cap Q\subseteq\cl P\cap
+Q=\emptyset$), and $X\setminus Y=W_1\cup W_2\cup Q$. By Lemma~\ref{lem:piece} the sets $Y\cup W_1$,
+$Y\cup W_2$ and $Y\cup Q$ are continua. Their union is $X$, they share the points of $Y$, and a point
+of $W_1$ lies neither in $Y\cup W_2$ nor in $Y\cup Q$; similarly for $W_2$ and $Q$. So $X$ is a weak
+triod, which is excluded.
+
+\emph{Step 2. Suppose $V$ is not preconnected}, and write $V=E\cup F$ with $E,F$ nonempty and
+separated. By Step~1 both $E$ and $F$ are preconnected, so $\cl E$ and $\cl F$ are continua, contained
+in $Z$ (since $V\subseteq Z$). We claim: \emph{no preconnected subset $K'$ of $Y\cap Z$ meets both
+$\cl E$ and $\cl F$.} Suppose $K'$ does, and let $K=\cl{K'}\subseteq Y\cap Z$, a continuum. Then $K\cup\cl
+E$, $K\cup\cl F$ and $Y$ are continua with union $X$ (it contains $Y\cup E\cup F=Y\cup V$), with a common
+point (any point of $K'$). A point $a\in E$ is not in $Y$, hence not in $K$, and not in $\cl F$; so
+$a\notin(K\cup\cl F)\cup Y$. Similarly a point of $F$ is outside the other two. A point $y\in U$ lies in
+$Y$, but not in $Z\supseteq K\cup\cl E\cup\cl F$. So $X$ is a weak triod, which is excluded.
+
+By the claim and Theorem~\ref{thm:closed-split} (with $K=Y\cap Z$, $P=\cl E\cap Y\cap Z$, $Q=\cl F\cap
+Y\cap Z$) there are disjoint closed sets $H,L$ with $H\cup L=Y\cap Z$, $\cl E\cap Y\cap Z\subseteq H$ and
+$\cl F\cap Y\cap Z\subseteq L$.
+
+\emph{Step 3.} The closed sets $H\cup\cl E$ and $L\cup\cl F$ cover $Z$: a point of $Z\cap Y$ is in
+$H\cup L$, and a point of $Z\setminus Y=V$ is in $E\cup F$. They have no common point $x\in Z$: $H\cap
+L=\emptyset$; a point of $H\cap\cl F$ lies in $\cl F\cap Y\cap Z\subseteq L$, impossible, and similarly
+for $\cl E\cap L$; and a point $x\in\cl E\cap\cl F\cap Z$ either lies in $Y$, and then in $H\cap L$, or
+lies in $V=E\cup F$, and then in $E\cap\cl F$ or in $\cl E\cap F$, both empty. Since $Z$ is
+connected, it lies in one of the two sets, say $Z\subseteq H\cup\cl E$. Take $b\in F\subseteq Z$; then
+$b\notin H\subseteq Y$ and $b\notin\cl E$, a contradiction. The other case is symmetric.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isConnected_diff_of_not_weakTriod} (Nadler 11.27), with the two halves
+in \lean{HPC.Plane.isConnected_diff_left_of_not_weakTriod}; the continuum $\cl U$ is
+\lean{HPC.Plane.isContinuum_closure_diff}.}
+
+\begin{lemma}\label{lem:1128}
+Let $X=Y\oplus Z$ not be a weak triod, and let $H$ be a subcontinuum of $\cl U$ with $\cl U\cap
+Z\subseteq H$ and $U\setminus H\ne\emptyset$. Then $U\setminus H$ is connected.
+\end{lemma}
+
+\begin{proof}
+$Z\cup H$ is a continuum: by Lemma~\ref{lem:esum-basic}(c) there is $w\in\cl U\cap Z\subseteq H$. We
+claim $X=(Z\cup H)\oplus\cl U$. The union is $X$ because $X=\cl U\cup Z$ and $H\subseteq\cl U\subseteq X$. A
+point of $U\setminus H$ is in neither $Z$ nor $H$, so $Z\cup H\ne X$. And $\cl U\neq X$ by
+Lemma~\ref{lem:esum-basic}(b). By Theorem~\ref{thm:diff-connected} the set $X\setminus(Z\cup
+H)=U\setminus H$ is connected.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isConnected_diff_of_superset'} (Nadler 11.28, corrected).}
+
+\begin{remark}\label{rem:1128-false}
+Nadler states Lemma~\ref{lem:1128} without the hypothesis $U\setminus H\neq\emptyset$, and then it is
+false: for the arc $[0,1]=[0,\frac12]\oplus[\frac12,1]$ (not a weak triod, being irreducible) and
+$H=\cl U=[0,\frac12]$, the set $U\setminus H$ is empty, hence not connected. His proof tacitly
+assumes the extra hypothesis. Formally: \lean{HPC.Plane.isConnected_diff_of_superset_false}.
+\end{remark}
+
+\section{Three lemmas on irreducibility}
+
+\begin{proposition}\label{prop:1131}
+Let $X=Y\oplus Z$ not be a weak triod. Let $A,B$ be continua with $A\subseteq\cl U$ and $\cl U\cap
+Z\subseteq A$, let $p\in U\setminus A$, let $B=\irr(\set p,A)$, and suppose $U\subseteq A\cup B$. Then
+$\cl U=\irr(\set p,\cl U\cap Z)$.
+\end{proposition}
+
+\begin{proof}
+$\cl U$ is a continuum (Theorem~\ref{thm:diff-connected}) containing $p$ and meeting $\cl U\cap Z$
+(Lemma~\ref{lem:esum-basic}(c)). Let $L\subseteq\cl U$ be a subcontinuum containing $p$ and a point
+$w\in\cl U\cap Z$; note $w\in A$. We must show $L=\cl U$.
+
+\emph{First, $B\subseteq L$.} Apply Corollary~\ref{cor:bump-open} to $L$ and the open set $O=S\setminus
+A$: $p\in L\setminus A$ and $w\in L\cap A$, so there is a subcontinuum $K$ of $L$ with $p\in
+K\subseteq\cl{L\setminus A}$ and $K\cap A\ne\emptyset$. Every point $y\in L\setminus A$ lies in $B$: it
+is not in $Z$ (otherwise $y\in\cl U\cap Z\subseteq A$), so $y\in U\subseteq A\cup B$, so $y\in B$. As $B$ is
+closed, $K\subseteq\cl{L\setminus A}\subseteq B$. Then $K$ is a subcontinuum of $B$ meeting $\set p$ and
+$A$, so $K=B$, and $B=K\subseteq L$.
+
+\emph{Second, $L=\cl U$.} Otherwise $U\not\subseteq L$ (else $\cl U\subseteq L$). Take $x\in U\setminus L$;
+then $x\in A$, because $x\in A\cup B$ and $B\subseteq L$. Take $q\in Z\setminus Y$
+(Lemma~\ref{lem:esum-basic}(a)). Then $X=A\oplus L\oplus Z$ is a weak triod: the union is $X$ (a point
+of $X$ is in $Z$ or in $U\subseteq A\cup B\subseteq A\cup L$); $w$ is a common point; $x\in A$ is not in
+$L$ nor in $Z$; $p\in L$ is not in $A$ nor in $Z$; and $q\in Z$ is not in $A\cup L\subseteq\cl U$, because
+$\cl U$ misses $Z\setminus Y$. This is excluded.
+\end{proof}
+
+\formal{\lean{HPC.Plane.nadler_11_31} (Nadler 11.31, without the unused hypothesis $B\subseteq\cl
+U$).}
+
+\begin{proposition}\label{prop:1132}
+Let $X=Y\oplus Z$ be unicoherent and not a weak triod. Let $A$ be a subcontinuum of $\cl U$ with
+$\cl U\cap Z\subseteq A$, and put $W=U\setminus A$. If $\cl W=E\oplus F$, then one of $E,F$ misses $A$
+and the other meets $A$.
+\end{proposition}
+
+\begin{proof}
+$Z\cup A$ is a continuum (it contains a point of $\cl U\cap Z$), and $X=\cl W\cup(Z\cup A)$: a point of
+$X$ not in $Z\cup A$ lies in $U\setminus A=W$. Fix $q\in Z\setminus Y$; then $q\notin\cl U\supseteq\cl W$.
+Points of $W$ are not in $Z\cup A$. Since $E\neq\cl W$ and $E$ is closed, $W\not\subseteq E$; so there is
+$y\in W\setminus E$, and then $y\in F$. Likewise there is $x\in W\setminus F$, and $x\in E$.
+
+\emph{(*) $E\cap F\cap(Z\cup A)=\emptyset$.} A common point $c$ would make $X=E\oplus F\oplus(Z\cup A)$
+a weak triod: $x\in E$ is in neither $F$ nor $Z\cup A$; $y\in F$ is in neither $E$ nor $Z\cup A$;
+$q\in Z\cup A$ is in neither $E$ nor $F$.
+
+By unicoherence $D=\cl W\cap(Z\cup A)$ is connected. It lies in $E\cup F$, and by (*) it splits into
+the disjoint closed sets $D\cap E$ and $D\cap F$; so it lies in one of them, say $D\subseteq E$. Then
+$F\cap(Z\cup A)=\emptyset$, since a point of it would lie in $D\subseteq E$, contradicting (*). In
+particular $F\cap A=\emptyset$. Finally $D\ne\emptyset$ (as $X=\cl W\cup(Z\cup A)$ is connected and both
+sets are closed and nonempty), so $E$ meets $Z\cup A$ at some point $e\in\cl W\subseteq\cl U$; if $e\in Z$
+then $e\in\cl U\cap Z\subseteq A$. So $E\cap A\ne\emptyset$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.nadler_11_32} (Nadler 11.32, without the hypothesis $A\ne\cl U$, which
+follows from the others).}
+
+\begin{lemma}\label{lem:1133a}
+Let $X=Y\oplus Z$ be unicoherent, $p\in U$, $q\in V$, and suppose $\cl U=\irr(\set p,\cl U\cap Z)$. If
+$K\subseteq X$ is a subcontinuum containing $p$ and $q$, then $U\subseteq K$.
+\end{lemma}
+
+\begin{proof}
+$K\cup Z$ is a continuum ($q\in K\cap Z$), and $X=(K\cup Z)\cup\cl U$. By unicoherence
+$L=(K\cup Z)\cap\cl U$ is connected; it is closed and contains $p$, so it is a subcontinuum of $\cl U$.
+It meets $\cl U\cap Z$: otherwise $L\cap Z=\emptyset$, and $K\cup Z\subseteq L\cup Z$ (a point of $K$ not in
+$Z$ lies in $U\subseteq\cl U$, hence in $L$), splitting the connected set $K\cup Z$ into the disjoint
+closed sets $L\ni p$ and $Z\ni q$. By irreducibility $L=\cl U$. Hence $U\subseteq L\subseteq K\cup Z$, and since
+$U\cap Z=\emptyset$, $U\subseteq K$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.diff_subset_of_irr}.}
+
+\begin{proposition}\label{prop:1133}
+Let $X=Y\oplus Z$ be unicoherent and not a weak triod, $p\in U$, $q\in V$, and suppose
+$\cl U=\irr(\set p,\cl U\cap Z)$ and $\cl V=\irr(\set q,\cl V\cap Y)$. Then $X$ is irreducible between
+$p$ and $q$.
+\end{proposition}
+
+\begin{proof}
+Let $K\subseteq X$ be a subcontinuum containing $p$ and $q$, and suppose $K\ne X$. By
+Lemma~\ref{lem:1133a} and its mirror image, $U\subseteq K$ and $V\subseteq K$, hence $\cl U\subseteq K$ and
+$\cl V\subseteq K$. Note $q\notin\cl U$ (as $\cl U\subseteq Y$).
+
+Apply Corollary~\ref{cor:bump-open} to $K$ and $O=S\setminus\cl U$: there is a subcontinuum $J_0$ of
+$K$ with $q\in J_0\subseteq\cl{K\setminus\cl U}$ meeting $\cl U$ at some point $w$. \emph{$J_0$ misses
+$U$:} if $x\in J_0\cap U$, the open neighbourhood $S\setminus Z$ of $x$ contains a point $y\in
+K\setminus\cl U$, and then $y\in X\setminus Z=U\subseteq\cl U$, which is absurd. Put $J=J_0\cup\cl V$, a
+continuum (Theorem~\ref{thm:diff-connected}; both contain $q$); $J$ misses $U$ because $\cl V\subseteq Z$.
+$Y\cap Z$ is a continuum by unicoherence.
+
+Take $x\in X\setminus K$. Then $x\in Z$ (else $x\in U\subseteq K$) and $x\in Y$ (else $x\in V\subseteq K$). Also
+$w\in X$, $w\notin U$, so $w\in Z$; and $w\in\cl U\subseteq Y$.
+
+Now $X=J\oplus\cl U\oplus(Y\cap Z)$ is a weak triod. The union is $X$: a point of $Z\setminus Y$ is in
+$V\subseteq J$, a point of $Z\cap Y$ is in $Y\cap Z$, and a point not in $Z$ is in $U$. The point $w$ is
+common to the three sets. $q\in J$ is not in $\cl U$ and not in $Y$. $p\in\cl U$ is not in $J$ (which
+misses $U$) and not in $Z$. $x\in Y\cap Z$ is not in $J\cup\cl U\subseteq K$. This is excluded.
+\end{proof}
+
+\formal{\lean{HPC.Plane.nadler_11_33} (Nadler 11.33).}
+
+\section{Sorgenfrey's theorem}
+
+The heart of the proof is the following theorem.
+
+\begin{theorem}\label{thm:irr-point}
+Let $X=Y\oplus Z$ be unicoherent and not a weak triod. Then there is $p\in U$ with $\cl
+U=\irr(\set p,\cl U\cap Z)$.
+\end{theorem}
+
+The proof is by contradiction, and occupies the rest of this section. Suppose that \emph{no}
+$p\in U$ has $\cl U=\irr(\set p,\cl U\cap Z)$. Write $T=\cl U$, a continuum
+(Theorem~\ref{thm:diff-connected}) contained in $Y$, and fix $w\in T\cap Z$ and $q\in Z\setminus Y$
+(Lemma~\ref{lem:esum-basic}). Note that $T\subseteq Y$ misses $q$.
+
+\begin{lemma}\label{lem:sorg-proper}
+Every $p\in U$ lies in a subcontinuum $L$ of $T$ with $L\ne T$ and $L\cap Z\ne\emptyset$.
+\end{lemma}
+
+\begin{proof}
+$T$ contains $p$ and meets $T\cap Z$, so, since $T\ne\irr(\set p,T\cap Z)$, some subcontinuum $L\ne T$
+of $T$ contains $p$ and meets $T\cap Z$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_proper_of_not_irr}.}
+
+Call a set $K$ \emph{good} if $K$ is a subcontinuum of $T$, $K\neq T$, and $T\cap Z\subseteq K$.
+
+\begin{lemma}\label{lem:sorg-step}
+\begin{enumerate}[label=(\alph*)]
+\item $T\cap Z$ is good.
+\item If $K$ is good and $d\in U$, there is a good $K'\supseteq K$ with $d\in K'$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $X=T\cup Z$ (Lemma~\ref{lem:esum-basic}), so $T\cap Z$ is a continuum by unicoherence; it misses
+$U\ne\emptyset$, while $U\subseteq T$, so $T\cap Z\neq T$.
+
+(b) If $d\in K$ take $K'=K$. Otherwise Theorem~\ref{thm:irr-exists} gives a subcontinuum
+$C=\irr(\set d,K)$ of $T$. Put $K'=K\cup C$, a continuum contained in $T$ and containing $T\cap Z$ and
+$d$. If $K'=T$, then $U\subseteq K\cup C$, and Proposition~\ref{prop:1131} (with $A=K$, $B=C$, $p=d$)
+gives $T=\irr(\set d,T\cap Z)$, contrary to our supposition. So $K'$ is good.
+\end{proof}
+
+\formal{\lean{HPC.Plane.SorgGood}, \lean{HPC.Plane.sorgGood_base}, \lean{HPC.Plane.sorgGood_step}.}
+
+The compact metric space $S$ is separable, and so is its subset $U$: choose $d_0,d_1,\dots\in U$ with
+$U\subseteq\cl{\set{d_k:k\in\N}}$. Using Lemma~\ref{lem:sorg-step} define good sets
+\[
+K_0=T\cap Z\subseteq K_1\subseteq K_2\subseteq\cdots,\qquad d_n\in K_{n+1}.
+\]
+(Nadler absorbs at each stage the first $d_k$ not yet absorbed; absorbing $d_n$ at stage $n$ is
+simpler and suffices.) Put
+\[
+U_n=U\setminus K_n .
+\]
+
+\begin{lemma}\label{lem:sorg-facts}
+For every $n$:
+\begin{enumerate}[label=(\alph*)]
+\item $U_n\ne\emptyset$, $\cl{U_n}$ is a continuum contained in $T$, and $U_{n+1}\subseteq U_n$;
+\item $X=Z\cup K_n\cup U_n$ and $\cl{U_n}\subseteq U_n\cup K_n$;
+\item $\cl{U_n}\cap K_n$ is a continuum;
+\item $\cl{U_n}$ is decomposable.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) If $U_n=\emptyset$ then $U\subseteq K_n$ and $T=\cl U\subseteq K_n$, contradicting $K_n\ne T$. By
+Lemma~\ref{lem:1128} (with $H=K_n$) $U_n$ is connected, so $\cl{U_n}$ is a continuum; it lies in
+$T$. The $K_n$ increase, so the $U_n$ decrease.
+
+(b) A point of $X$ not in $Z$ is in $U$, hence in $K_n$ or $U_n$. A point $x\in\cl{U_n}$ not in $K_n$ is
+not in $Z$ (else $x\in T\cap Z\subseteq K_n$), so $x\in U\setminus K_n=U_n$.
+
+(c) $Z\cup K_n$ is a continuum ($w$ is in both), and $X=\cl{U_n}\cup(Z\cup K_n)$ by (b). By
+unicoherence $\cl{U_n}\cap(Z\cup K_n)$ is connected, and it equals $\cl{U_n}\cap K_n$ because
+$\cl{U_n}\cap Z\subseteq T\cap Z\subseteq K_n$. It is closed, so it is a continuum.
+
+(d) Suppose $I=\cl{U_m}$ is indecomposable. $P=I\cap K_m$ is a continuum by (c); take $a\in P$. By
+\vtwo{Theorem~1.4} there is $r\in I$ lying in no proper subcontinuum of $I$ containing $a$. Fix $u\in
+U_m$; then $u\in I\setminus P$, so $P\ne I$.
+
+\emph{If $C\subseteq I$ is a subcontinuum containing $r$ and meeting $P$, then $C=I$.} Indeed $C\cup P$ is a
+continuum containing $a$ and $r$, so $C\cup P=I$; by indecomposability $C=I$ or $P=I$, and $P\neq I$.
+
+\emph{$r\notin K_m$}: otherwise $C=\set r$ meets $P$, so $\set r=I$, and $u=r\in K_m$, which is false.
+By (b), $r\in U_m\subseteq U$. By Lemma~\ref{lem:sorg-proper} there is a subcontinuum $L\ne T$ of $T$
+containing $r$ and a point $z\in Z$. Apply Corollary~\ref{cor:bump-open} to $L$ and $O=S\setminus(Z\cup
+K_m)$ (note $r\in O$, $z\notin O$): there is a subcontinuum $C$ of $L$ with $r\in C\subseteq\cl{L\cap O}$
+meeting $Z\cup K_m$ at some point $x$. Now $L\cap O\subseteq U_m$ (a point of $L\subseteq X$ outside $Z$ is
+in $U$), so $C\subseteq I$; and $x\in P$ (if $x\in Z$ then $x\in T\cap Z\subseteq K_m$). So $C=I$, and
+$I\subseteq L$.
+
+$K_m\not\subseteq Z\cup L$: otherwise every point of $U$ lies in $L$ (a point of $U\cap K_m$ is in $L$ as
+it is not in $Z$, and $U_m\subseteq I\subseteq L$), so $T=\cl U\subseteq L$, contradicting $L\ne T$. Take $k\in
+K_m\setminus(Z\cup L)$. Then $X=Z\oplus L\oplus K_m$ is a weak triod: the union is $X$ by (b), since
+$U_m\subseteq I\subseteq L$; the point $z$ lies in $Z\cap L$ and in $T\cap Z\subseteq K_m$; $q\in Z$ is not in
+$L\cup K_m\subseteq T$; $u\in L$ is not in $Z\cup K_m$; $k\in K_m$ is not in $Z\cup L$. This is excluded.
+\end{proof}
+
+\begin{lemma}\label{lem:sorg-star}
+For every $\ell$ there is $n>\ell$ with $K_\ell\cap\cl{U_n}=\emptyset$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $K_\ell\cap\cl{U_n}\neq\emptyset$ for all $n>\ell$. By Lemma~\ref{lem:sorg-facts}(d)
+write $\cl{U_\ell}=E\oplus F$. By Proposition~\ref{prop:1132} (with $A=K_\ell$, $W=U_\ell$) one of $E,F$
+meets $K_\ell$ and the other misses it; by symmetry say $E\cap K_\ell\ne\emptyset$ and $F\cap
+K_\ell=\emptyset$. Then $F\subseteq U_\ell$ by Lemma~\ref{lem:sorg-facts}(b), and $U_\ell\subseteq E\cup F$.
+
+Since $E\ne\cl{U_\ell}$, there is $y\in\cl{U_\ell}\setminus E$; then $y\in F\subseteq U_\ell$. The open set
+$S\setminus(E\cup K_\ell)$ contains $y\in U\subseteq\cl{\set{d_k}}$, so it contains some $d_k$. Then
+$d_k\in U\setminus K_\ell=U_\ell$ and $d_k\notin E$, so $d_k\in F$. Let $j=\max(k+1,\ell+1)>\ell$; then
+$d_k\in K_{k+1}\subseteq K_j$ and $K_\ell\subseteq K_j$. Fix $a\in K_\ell$.
+
+Apply Corollary~\ref{cor:bump-open} to $K_j$ and $O=S\setminus F$ ($a\in K_j\setminus F$, $d_k\in K_j\cap
+F$): there is a subcontinuum $J_0$ of $K_j$ with $a\in J_0\subseteq\cl{K_j\setminus F}$ meeting $F$ at some
+point $f$. Put $J=J_0\cup K_\ell$, a continuum contained in $K_j$.
+
+\emph{Every point of $J\cap F$ lies in $E$.} Points of $K_\ell$ are not in $F$. Let $x\in J_0\cap F$
+with $x\notin E$. Then $x\in U_\ell$, so $x\notin Z\cup K_\ell$, and the open set $S\setminus(Z\cup
+K_\ell\cup E)$ contains $x\in\cl{K_j\setminus F}$, hence a point $y'\in K_j\setminus F$. This $y'$ is in
+$U$ (not in $Z$), not in $K_\ell$, so in $U_\ell\subseteq E\cup F$; but it is in neither $E$ nor $F$.
+
+The sets $Z\cup J$, $E\cup J$ and $F\cup J$ are continua (they meet at $w\in K_\ell$, at a point of
+$E\cap K_\ell$, and at $f$, respectively).
+
+\emph{Some point $z\in E$ lies outside $Z$, $J$ and $F$.} Otherwise every point of $E\setminus F$ lies in
+$K_j$ (a point of $E\cap Z$ lies in $T\cap Z\subseteq K_j$, and $J\subseteq K_j$). Then $U_j\subseteq F$: a point
+of $U_j\subseteq U_\ell\subseteq E\cup F$ in $E\setminus F$ would be in $K_j$, but $U_j$ misses $K_j$. So
+$\cl{U_j}\subseteq F$, and by our supposition ($j>\ell$) $K_\ell$ meets $\cl{U_j}\subseteq F$, contradicting
+$F\cap K_\ell=\emptyset$.
+
+Now $X=(Z\cup J)\oplus(E\cup J)\oplus(F\cup J)$ is a weak triod. The union is $X$ by
+Lemma~\ref{lem:sorg-facts}(b), as $K_\ell\subseteq J$ and $U_\ell\subseteq E\cup F$. The point $a$ is common
+to the three sets. A point $v\in V$ lies in $Z$ but not in $T\supseteq E\cup F\cup J$. The point $z$ lies in
+$E$ but not in $Z\cup J$ nor $F\cup J$. The point $y$ lies in $F$, not in $Z$ (as $y\in U$), not in $E$,
+and not in $J$ (a point of $J\cap F$ lies in $E$). This is excluded.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:irr-point}]
+The continua $\cl{U_n}$ decrease, so by Cantor's theorem there is $t\in\bigcap_n\cl{U_n}$. By
+Lemma~\ref{lem:sorg-star} $t$ lies in no $K_\ell$. By Lemma~\ref{lem:sorg-facts}(b) (with $n=0$),
+$t\in U$. By Lemma~\ref{lem:sorg-proper} there is a subcontinuum $Q\ne T$ of $T$ containing $t$ and a
+point $y\in Z$.
+
+\emph{Some $K_\ell$ has a point $x\notin Z\cup Q$.} Otherwise every $d_k$ (which lies in $K_{k+1}$ and
+not in $Z$) lies in $Q$, so $U\subseteq\cl{\set{d_k}}\subseteq Q$ and $T\subseteq Q$, contradicting $Q\neq T$.
+
+By Lemma~\ref{lem:sorg-star} take $n>\ell$ with $K_\ell\cap\cl{U_n}=\emptyset$; so $x\in K_n$ and
+$x\notin\cl{U_n}$. The set $Q\cup\cl{U_n}$ is a continuum (both contain $t$). Now
+$X=Z\oplus K_n\oplus(Q\cup\cl{U_n})$ is a weak triod: the union is $X$ by
+Lemma~\ref{lem:sorg-facts}(b); $y\in Z\cap Q$, and $y\in T\cap Z\subseteq K_n$, is a common point; $q\in Z$
+is not in $K_n\cup Q\cup\cl{U_n}\subseteq T$; $x\in K_n$ is not in $Z$ nor in $Q\cup\cl{U_n}$; and $t\in Q$
+is not in $Z$ nor in $K_n$. This contradiction proves the theorem.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_irrFromTo_point} (Nadler 11.34(a)); the body of the proof by
+contradiction is \lean{HPC.Plane.sorgenfrey_contra}.}
+
+\begin{theorem}[Sorgenfrey]\label{thm:sorgenfrey}
+A nondegenerate unicoherent continuum that is not a triod is irreducible between two (distinct)
+points.
+\end{theorem}
+
+\begin{proof}
+Let $X$ be such a continuum. If $X$ is indecomposable, apply Theorem~\ref{thm:indec-irr}. Otherwise
+$X=Y\oplus Z$ for some subcontinua $Y,Z$. By Proposition~\ref{prop:uni-triod} $X$ is not a weak triod.
+Theorem~\ref{thm:irr-point}, applied to $X=Y\oplus Z$ and to $X=Z\oplus Y$, gives $p\in U$ with $\cl
+U=\irr(\set p,\cl U\cap Z)$ and $q\in V$ with $\cl V=\irr(\set q,\cl V\cap Y)$. By
+Proposition~\ref{prop:1133} $X$ is irreducible between $p$ and $q$; and $p\ne q$ because $p\notin Z$
+and $q\in V\subseteq Z$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.sorgenfrey} (Nadler 11.34).}
+
+\begin{corollary}\label{cor:irr-iff}
+A nondegenerate unicoherent continuum is irreducible if and only if it is not a triod.
+\end{corollary}
+
+\begin{proof}
+A triod is a weak triod (Proposition~\ref{prop:triod-weak}), and a weak triod is not irreducible
+(Lemma~\ref{lem:weak-not-irr}). The converse is Theorem~\ref{thm:sorgenfrey}.
+\end{proof}
+
+\formal{\lean{HPC.Plane.irreducible_iff_not_isTriod} (Nadler 11.35).}
+
+\begin{corollary}\label{cor:atriodic-irr}
+A nondegenerate, atriodic, hereditarily unicoherent continuum is irreducible between two of its
+points.
+\end{corollary}
+
+\formal{\lean{HPC.Plane.exists_irreducibleBetween_of_atriodic}.}
+
+\begin{remark}
+Corollary~\ref{cor:atriodic-irr} is the form used for snake-like continua (which are atriodic and
+hereditarily unicoherent by Chapter~\ref{ch:snake}); with it, the formal proof derives Fugate's
+characterization of terminal subcontinua (\lean{HPC.Plane.isTerminalSub_iff_irreducible}).
+\end{remark}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that the union of three arcs with a common end point and otherwise disjoint (a simple triod)
+is a triod, is unicoherent, and is not irreducible.
+\end{exercise}
+
+\begin{exercise}
+Show that the $\sin(1/x)$-continuum is unicoherent and atriodic, and find two points between which
+it is irreducible.
+\end{exercise}
+
+\begin{exercise}
+Show that the hypothesis of unicoherence cannot be dropped from Theorem~\ref{thm:sorgenfrey}: a
+circle is not a triod and not irreducible.
+\end{exercise}

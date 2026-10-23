@@ -1,0 +1,54 @@
+import HPC.Fold.Recon121
+
+-- batch 121 audit: every theorem of HPC/Fold/Recon121.lean
+
+#print axioms HPC.Fold.Recon121.unionRange_mono
+#print axioms HPC.Fold.Recon121.theorem3EndTwo_of_literal
+#print axioms HPC.Fold.Recon121.theorem3EndStmt_of_literalOr
+#print axioms HPC.Fold.Recon121.theorem3LiteralOr_of_literal
+#print axioms HPC.Fold.Recon121.endClause_or_iff
+#print axioms HPC.Fold.Recon121.theorem3EndStmt_of_endTwo
+#print axioms HPC.Fold.Recon121.theorem3Stmt_of_endStmt
+#print axioms HPC.Fold.Recon121.theorem3Stmt_holds
+#print axioms HPC.Fold.Recon121.k3Rect_inter
+#print axioms HPC.Fold.Recon121.k3_refines
+#print axioms HPC.Fold.Recon121.k3_crooked
+#print axioms HPC.Fold.Recon121.k3_mem
+#print axioms HPC.Fold.Recon121.strip_unionRange_fst
+#print axioms HPC.Fold.Recon121.mem_ofBlocks_self
+#print axioms HPC.Fold.Recon121.not_theorem3Literal
+#print axioms HPC.Fold.Recon121.k3_unforced_meeting
+#print axioms HPC.Fold.Recon121.link_subset_neighbours
+#print axioms HPC.Fold.Recon121.only_of_linkRect
+#print axioms HPC.Fold.Recon121.linkChain_only
+#print axioms HPC.Fold.Recon121.only_clause_not_automatic
+#print axioms HPC.Fold.Recon121.maxIdx_le_one_of_meets_first
+#print axioms HPC.Fold.Recon121.le_minIdx_of_meets_last
+#print axioms HPC.Fold.Recon121.link_subset_of_between
+#print axioms HPC.Fold.Recon121.meets_of_forced
+#print axioms HPC.Fold.Recon121.chain_of_modelEndP
+#print axioms HPC.Fold.Recon121.exists_chain_iff_isCrookedIvF
+#print axioms HPC.Fold.Recon121.theorem3_end_of_model
+#print axioms HPC.Fold.Recon121.seam_isCrookedIvF
+#print axioms HPC.Fold.Recon121.seamBig_crooked
+#print axioms HPC.Fold.Recon121.seamD_crooked
+#print axioms HPC.Fold.Recon121.seamD_link
+#print axioms HPC.Fold.Recon121.seamD_meet_iff
+#print axioms HPC.Fold.Recon121.seamD_subset_iff
+#print axioms HPC.Fold.Recon121.seamD_special
+#print axioms HPC.Fold.Recon121.seamD_hk
+#print axioms HPC.Fold.Recon121.seamD_minIdx_maxIdx
+#print axioms HPC.Fold.Recon121.exists_switch
+#print axioms HPC.Fold.Recon121.seam_every_H_fails
+#print axioms HPC.Fold.Recon121.IsCrookedIn'.sub_right
+#print axioms HPC.Fold.Recon121.seamC_link
+#print axioms HPC.Fold.Recon121.seamE'_link
+#print axioms HPC.Fold.Recon121.seamC_crooked
+#print axioms HPC.Fold.Recon121.seamC_link_subset
+#print axioms HPC.Fold.Recon121.ofBlocks_subset_of
+#print axioms HPC.Fold.Recon121.seamH0_isBlockMap
+#print axioms HPC.Fold.Recon121.seamH1_isBlockMap
+#print axioms HPC.Fold.Recon121.seamC_only
+#print axioms HPC.Fold.Recon121.seamIH_H0
+#print axioms HPC.Fold.Recon121.seamIH_H1
+#print axioms HPC.Fold.Recon121.seam_Cbot_fails

@@ -1,0 +1,204 @@
+census of the inventory
+  level-pinned declarations: 304
+  span-generic declarations: 167
+  found in the sources: 303 pinned, 167 generic
+  named in the inventory but not found by the source scan: κ
+
+---- 1a. the engine: the span-generic declarations by family ----
+  the timing law                         19   z z_pos z_pos_aux z_mono z_mono_aux minGap ivGap ivGap4 ivGap5 ivSep ivSep3 ivSep4 ivSep5 ArmSep armG_armSep armT_armSep isLip_gap isLip_index_gap isLip_index_gap'
+  the exact fold criteria                14   foldsOnto_vee_iff_profile profile_of_foldsOnto_lam ascReach_iff_of_isLip foldsOnto_landmark1 foldsOnto_landmark2 foldsOnto_walk7_of_val7 foldsOnto_leg4W_refl foldsOnto_neg AscReach CritLamProfile CritVeeProfile beta_dist beta_hits beta_le_val
+      (named here but not in the span-generic list: critLamProfile_iff_of_isLip)
+  the crookedness pairing                16   CrookUp CrookDown CrookUp.levels crookUp_armG crookUp_armT crookDown_armG crookDown_armT crookUp_climb3 crookUp_climb4 crookUp_climb5 crookDown_fall3 crookDown_fall4 IsCrookedIvF IsCrookedIvF.isLip IsCrookedIvF.near isCrookedIvF_restrict
+  the arms and the walks                 27   armG armT armG_isLip armT_isLip armG_zero armT_zero armRefl armRefl_isLip FoldsOnto IsLip lamCenter lamCenter_asc lamCenter_desc veeCenter veeLen le_κ leg3Walk leg3Walk' leg4Walk' bumpWalk bumpWalk' bumpWalk_up bumpWalk_down offVee_self_walk offVee_self_len exists_least_index abs_sub_le_of_isLip
+  the announcements and the dichotomy    17   LowAt HighAt NonAscAt not_lowAt_highAt dichotomy_at lowAt_armG_of_not_highAt_armT lowAt_armT_of_not_highAt_armG highRunG_of_not_deepFirst2 highRunT_of_not_deepFirst2 nineBeforeDeep_of_highRunG nineBeforeDeep_of_highRunT highFirst_or_deepFirst BothHighRunL5 CeilCrossGap topOnTime_of_ge bottomOnTime_of_le TopOnTime
+  the rest (local scaffolding)           74   Val7 aVal_le_three aVal_lip aVal_nonneg ascVal ascVal_le ascVal_lip ascVal_nonneg ascVal_window bVal_bounds bVal_lip bottomW4Min_of_bottomW4 decidableNonAscAt descVal_lip exists_eq_between_isLip exists_eq_between_isLip' exists_eq_strict_isLip exists_eq_strict_isLip' gseq gseq3 gseq3_succ gseq3_zero gseq4 gseq4_le_index gseq4_succ gseq4_zero gseq_inv gseq_succ gseq_zero gstep3 gstep3_dist gstep3_elim gstep3_facts gstep3_factsM gstep4 gstep4_dist gstep4_lower gstep4_lower2 gstep7 gstep7_dist gstep7_down gstep7_elim gstep7_facts gstep7_mid gstep7_up le_runMin le_runMin_of_isLip leg3CeilMin_of_leg3Ceil leg4TriCrossL5_holds midW4Min_of_midW4 nasc1 nasc2 nascPhase nascPhase_eq_two_of_drop nascPhase_le_two nascPhase_mono nascPhase_nonneg nascPhase_step nascPhase_zero prog7 pseq pseq_succ pseq_zero runMin runMin_le runMin_mono runMin_step topW5Min_of_topW5 val4_gstep_of val7_bounds val7_gstep val7_walk7 valley4_of_leg3Valley valley5Min_of_valley5
+
+---- 1. the span-generic declarations, by file ----
+  HPC/Fold/Span7.lean                    20   ascVal ascVal_le ascVal_lip ascVal_nonneg ascVal_window bumpWalk bumpWalk' bumpWalk_down bumpWalk_up descVal_lip dichotomy_at le_runMin le_runMin_of_isLip lowAt_armG_of_not_highAt_armT lowAt_armT_of_not_highAt_armG not_lowAt_highAt runMin runMin_le runMin_mono runMin_step
+  HPC/Fold/Leaf.lean                     19   HighAt LowAt Val7 foldsOnto_walk7_of_val7 gseq gseq_inv gseq_succ gseq_zero gstep7 gstep7_dist gstep7_down gstep7_elim gstep7_facts gstep7_mid gstep7_up prog7 val7_bounds val7_gstep val7_walk7
+  HPC/Fold/Itinerary.lean                15   FoldsOnto IsLip NonAscAt armG armG_isLip armT armT_isLip exists_least_index foldsOnto_neg lamCenter lamCenter_asc lamCenter_desc le_κ veeCenter veeLen
+  HPC/Fold/Profile.lean                  14   AscReach CritLamProfile CritVeeProfile ascReach_iff_of_isLip crookDown_fall3 crookDown_fall4 crookUp_climb3 crookUp_climb4 crookUp_climb5 foldsOnto_vee_iff_profile profile_of_foldsOnto_lam pseq pseq_succ pseq_zero
+  HPC/Fold/Span6.lean                    14   aVal_le_three aVal_lip aVal_nonneg bVal_bounds bVal_lip nasc1 nasc2 nascPhase nascPhase_eq_two_of_drop nascPhase_le_two nascPhase_mono nascPhase_nonneg nascPhase_step nascPhase_zero
+  HPC/Fold/OffCenter.lean                 9   TopOnTime abs_sub_le_of_isLip armG_zero armT_zero offVee_self_len offVee_self_walk z z_pos z_pos_aux
+  HPC/Fold/Deep70.lean                    8   exists_eq_between_isLip exists_eq_between_isLip' exists_eq_strict_isLip exists_eq_strict_isLip' highRunG_of_not_deepFirst2 highRunT_of_not_deepFirst2 nineBeforeDeep_of_highRunG nineBeforeDeep_of_highRunT
+  HPC/Fold/Leg3.lean                      8   gseq3 gseq3_succ gseq3_zero gstep3 gstep3_dist gstep3_elim gstep3_facts leg3Walk
+  HPC/Fold/Crook.lean                     7   CrookDown CrookUp CrookUp.levels crookDown_armG crookDown_armT crookUp_armG crookUp_armT
+  HPC/Fold/Leg4.lean                      7   gseq4 gseq4_succ gseq4_zero gstep4 gstep4_dist gstep4_lower val4_gstep_of
+  HPC/Fold/ValleyFar.lean                 7   ivGap ivGap4 ivGap5 ivSep ivSep3 ivSep4 ivSep5
+  HPC/Fold/Landmark.lean                  5   beta_dist beta_hits beta_le_val foldsOnto_landmark1 foldsOnto_landmark2
+  HPC/Fold/Mid2Wb66.lean                  3   ArmSep armG_armSep armT_armSep
+  HPC/Fold/Minimal.lean                   3   IsCrookedIvF.isLip isCrookedIvF_restrict minGap
+  HPC/Fold/LandLowAt.lean                 3   isLip_gap isLip_index_gap isLip_index_gap'
+  HPC/Fold/ArmReflect.lean                2   armRefl armRefl_isLip
+  HPC/Fold/Dichotomy.lean                 2   bottomOnTime_of_le topOnTime_of_ge
+  HPC/Fold/ProfileP.lean                  2   bottomW4Min_of_bottomW4 midW4Min_of_midW4
+  HPC/Fold/Leg4Land.lean                  2   gseq4_le_index gstep4_lower2
+  HPC/Fold/ProfileK.lean                  2   topW5Min_of_topW5 valley5Min_of_valley5
+  HPC/Fold/Timing.lean                    2   z_mono z_mono_aux
+  HPC/Fold/Distance71.lean                1   BothHighRunL5
+  HPC/Fold/CeilArm.lean                   1   CeilCrossGap
+  HPC/Fold/Closure.lean                   1   decidableNonAscAt
+  HPC/Fold/Leg4Wide.lean                  1   foldsOnto_leg4W_refl
+  HPC/Fold/Leg3Mid.lean                   1   gstep3_factsM
+  HPC/Fold/Mid2Mixed67.lean               1   highFirst_or_deepFirst
+  HPC/Fold/ClosureF.lean                  1   IsCrookedIvF
+  HPC/Fold/Faithful.lean                  1   IsCrookedIvF.near
+  HPC/Fold/Leg3Profile.lean               1   leg3CeilMin_of_leg3Ceil
+  HPC/Fold/Span8.lean                     1   leg3Walk'
+  HPC/Fold/Descent73.lean                 1   leg4TriCrossL5_holds
+  HPC/Fold/Span8Mid4.lean                 1   leg4Walk'
+  HPC/Fold/LandmarkW.lean                 1   valley4_of_leg3Valley
+
+---- 2. level-pinned declarations whose proof is a direct application of span-generic ones ----
+  proofs whose only project-level *theorem* references are span-generic: 68 of the 304
+  of those, proofs of at most six lines (a direct instance): 8
+     aVal                                         HPC/Fold/Span6.lean                 2 lines <- nascPhase
+     HighLate                                     HPC/Fold/Span6.lean                 5 lines <- nascPhase
+     HighRunG                                     HPC/Fold/Deep70.lean                3 lines <- armG
+     HighRunT                                     HPC/Fold/Deep70.lean                2 lines <- armT
+     leg3Walk_branch_val                          HPC/Fold/Landmark.lean              5 lines <- leg3Walk
+     leg3Walk_deep_val                            HPC/Fold/Landmark.lean              4 lines <- leg3Walk
+     notW8_base3                                  HPC/Fold/LandTri.lean               5 lines <- isLip_index_gap'
+     Zig                                          HPC/Fold/Leaf.lean                  6 lines <- Val7
+
+  the longer ones (only span-generic theorems, more than six lines):
+     armG_index_of_sig8                           HPC/Fold/Mid2Index67.lean           22 lines
+     armT_index_of_sig8                           HPC/Fold/Mid2Index67.lean           26 lines
+     ceil_cross_high_bwd_far                      HPC/Fold/CeilFar.lean               35 lines
+     ceil_cross_high_fwd_far                      HPC/Fold/CeilFar.lean               32 lines
+     ceil_cross_peak_bwd_far                      HPC/Fold/CeilFar.lean               42 lines
+     ceil_cross_peak_fwd_far                      HPC/Fold/CeilFar.lean               41 lines
+     ceilChain_of_highFirst_armG                  HPC/Fold/Mid2Mixed67.lean           23 lines
+     critLamProfile_iff_of_isLip                  HPC/Fold/Profile.lean               12 lines
+     crooked_peak_valley_high8                    HPC/Fold/Mid2Ascent66.lean          34 lines
+     crooked_peak_valley_high9                    HPC/Fold/Mid2Mixed67.lean           31 lines
+     crooked_peak_valley_high9_mid                HPC/Fold/Ceil68.lean                29 lines
+     crooked_valley_peak_high8                    HPC/Fold/Mid2Fold66.lean            33 lines
+     crooked_valley_peak_high9                    HPC/Fold/Mid2Mixed67.lean           33 lines
+     crooked_valley_peak_high9_mid                HPC/Fold/Ceil68.lean                32 lines
+     cross_valley_low_bwd_far                     HPC/Fold/ValleyFar.lean             23 lines
+     cross_valley_low_fwd_far                     HPC/Fold/ValleyFar.lean             24 lines
+     foldsOnto_offLam_self                        HPC/Fold/OffCenter.lean             83 lines
+     foldsOnto_walk7'_of_leaf                     HPC/Fold/Leaf.lean                 123 lines
+     foldsOnto_walk7_of_leaf                      HPC/Fold/Leaf.lean                 119 lines
+     land_w71_floor_low1_of_w3                    HPC/Fold/CrossW71.lean              10 lines
+     land_w71_floor_low1_of_wb                    HPC/Fold/CrossW71.lean              10 lines
+     Leg4Land                                     HPC/Fold/Leg4Land.lean              13 lines
+     leg4Land_w3_armG_of_ceilChain                HPC/Fold/Mid2Mixed67.lean           22 lines
+     leg4Land_w3_armT_of_ceilChain                HPC/Fold/Mid2Mixed67.lean           24 lines
+     leg4Land_w8_of_run                           HPC/Fold/Valley72.lean              37 lines
+     leg4Land_wb_of_land_of_deepFirst             HPC/Fold/Mid2Wb66.lean              73 lines
+     lowLate_armG_of_not_highLate_armT            HPC/Fold/Span6.lean                 58 lines
+     lowLate_armT_of_not_highLate_armG            HPC/Fold/Span6.lean                 58 lines
+     mid2Fail_witness3                            HPC/Fold/Mid2Index67.lean           13 lines
+     notW8_ceilWb                                 HPC/Fold/LandTri.lean               13 lines
+     notW8_hi_after                               HPC/Fold/LandTri.lean               28 lines
+     OffDichotomyAt                               HPC/Fold/Dichotomy.lean              7 lines
+     offDichotomyAt_near_extreme                  HPC/Fold/Dichotomy.lean             20 lines
+     prog3                                        HPC/Fold/Leg3.lean                  32 lines
+     prog3_profile                                HPC/Fold/Leg3Profile.lean           20 lines
+     prog3_profileK                               HPC/Fold/ProfileK.lean              26 lines
+     prog3_profileP                               HPC/Fold/ProfileP.lean              23 lines
+     prog3M                                       HPC/Fold/Leg3Mid.lean               33 lines
+     prog4_E                                      HPC/Fold/Leg4.lean                   8 lines
+     prog4_E2                                     HPC/Fold/Leg4.lean                   8 lines
+     prog4_R                                      HPC/Fold/Leg4.lean                   8 lines
+     prog4_S                                      HPC/Fold/Leg4.lean                   8 lines
+     prog4_S2                                     HPC/Fold/Leg4.lean                   8 lines
+     prog4_T                                      HPC/Fold/Leg4.lean                   8 lines
+     progLand_1                                   HPC/Fold/Leg4Land.lean              18 lines
+     progLand_2                                   HPC/Fold/Leg4Land.lean              18 lines
+     progLand_2'                                  HPC/Fold/Leg4Land.lean              18 lines
+     progLand_3                                   HPC/Fold/Leg4Land.lean              18 lines
+     progLand_3'                                  HPC/Fold/Leg4Land.lean              18 lines
+     progLand_4                                   HPC/Fold/Leg4Land.lean              19 lines
+     switch'_of_highAt                            HPC/Fold/Span7.lean                 29 lines
+     switch_of_lowAt                              HPC/Fold/Span7.lean                 25 lines
+     TriCrossL5                                   HPC/Fold/CrossMid2Fail65.lean        9 lines
+     val3_gstep                                   HPC/Fold/Leg3.lean                   7 lines
+     val3_gstep_deep                              HPC/Fold/Leg3Deep.lean               8 lines
+     val3_gstepM                                  HPC/Fold/Leg3Mid.lean                7 lines
+     val3_gstepP                                  HPC/Fold/ProfileP.lean               9 lines
+     val4_gstep                                   HPC/Fold/Leg4.lean                  11 lines
+     val4_gstepLand                               HPC/Fold/Leg4Land.lean              22 lines
+     valley5_of_not_leg3Ceil                      HPC/Fold/CeilArm.lean               38 lines
+
+  proof sizes of the level-pinned declarations: 303 bodies, 7748 lines in all, median 14, longest 218 (foldsOnto_leg4)
+
+  the span-generic declarations they instantiate, by how often:
+     nascPhase                              2
+     leg3Walk                               2
+     armG                                   1
+     armT                                   1
+     isLip_index_gap'                       1
+     Val7                                   1
+
+---- 3. mirror pairs among the level-pinned declarations ----
+  16 pairs (32 declarations) differ only by the arm they are read on
+     ceil71_at_of_low1_armG                       ceil71_at_of_low1_armT
+     ceil71_of_deepFirst2_armG                    ceil71_of_deepFirst2_armT
+     ceil72_of_deepFirst2_armG                    ceil72_of_deepFirst2_armT
+     ceil72_partner_of_cross_highRunG             ceil72_partner_of_cross_highRunT
+     ceil72_run_of_cross_highRunG                 ceil72_run_of_cross_highRunT
+     ceilChain_of_highFirst_armG                  ceilChain_of_highFirst_armT
+     deep72_at_of_nine_armG                       deep72_at_of_nine_armT
+     deep72_of_nineBeforeDeep_armG                deep72_of_nineBeforeDeep_armT
+     deepFirst2_partner_of_cross_highRunG         deepFirst2_partner_of_cross_highRunT
+     HighRunG                                     HighRunT
+     mid2fail_high_late_armG                      mid2fail_high_late_armT
+     s3_span_nine_mid5_of_cross_highRun_ceil_armG s3_span_nine_mid5_of_cross_highRun_ceil_armT
+     s3_span_nine_mid5_of_cross_highRun_ceilRun_armG s3_span_nine_mid5_of_cross_highRun_ceilRun_armT
+     s3_span_nine_mid5_of_cross_highRunG          s3_span_nine_mid5_of_cross_highRunT
+     w3_or_wb_of_mid2floorFailG                   w3_or_wb_of_mid2floorFailT
+     zig_armG                                     zig_armT
+
+---- 4. the level-pinned declarations, by file ----
+  HPC/Fold/Ceil68.lean                   19
+  HPC/Fold/Span6.lean                    17
+  HPC/Fold/Span7.lean                    15
+  HPC/Fold/Landmark.lean                 15
+  HPC/Fold/Leg4.lean                     15
+  HPC/Fold/LandTri.lean                  14
+  HPC/Fold/Mid2Mixed67.lean              13
+  HPC/Fold/Mid2Index67.lean              12
+  HPC/Fold/ProfileP.lean                 11
+  HPC/Fold/Profile.lean                  11
+  HPC/Fold/Deep70.lean                   11
+  HPC/Fold/Valley72.lean                 10
+  HPC/Fold/Leg4Land.lean                 10
+  HPC/Fold/Leg3.lean                      9
+  HPC/Fold/Leg3Profile.lean               9
+  HPC/Fold/LandmarkW.lean                 8
+  HPC/Fold/CeilFar.lean                   8
+  HPC/Fold/ProfileK.lean                  7
+  HPC/Fold/Span9.lean                     7
+  HPC/Fold/Span8.lean                     6
+  HPC/Fold/OffCenter.lean                 5
+  HPC/Fold/Descent73.lean                 5
+  HPC/Fold/ValleyFar.lean                 5
+  HPC/Fold/Leaf.lean                      5
+  HPC/Fold/Dichotomy.lean                 4
+  HPC/Fold/Leg3Mid.lean                   4
+  HPC/Fold/Span9Mid5.lean                 4
+  HPC/Fold/CrossW71.lean                  4
+  HPC/Fold/Mixed.lean                     4
+  HPC/Fold/CeilArm.lean                   3
+  HPC/Fold/Span8Mid.lean                  3
+  HPC/Fold/Leg4Wide.lean                  3
+  HPC/Fold/Span9Mid.lean                  3
+  HPC/Fold/Itinerary.lean                 3
+  HPC/Fold/Unserved.lean                  3
+  HPC/Fold/CrossPartner64.lean            2
+  HPC/Fold/Span8Mid4.lean                 2
+  HPC/Fold/Span8Full.lean                 2
+  HPC/Fold/CoverL5Land.lean               2
+  HPC/Fold/CrossArm.lean                  2
+  HPC/Fold/Mid2Ascent66.lean              1
+  HPC/Fold/Mid2Fold66.lean                1
+  HPC/Fold/Mid2Wb66.lean                  1
+  HPC/Fold/Leg4Crit.lean                  1
+  HPC/Fold/Ceil69.lean                    1
+  HPC/Fold/Span.lean                      1
+  HPC/Fold/General.lean                   1
+  HPC/Fold/CrossMid2Fail65.lean           1
+  HPC/Fold/Leg3Deep.lean                  1

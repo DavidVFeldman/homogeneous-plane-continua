@@ -1,0 +1,11 @@
+crooked arms from level 4 in [0,9], length <= 17
+  least index at level 4 (= P + 0) : 0
+  least index at level 5 (= P + 1) : 1
+  least index at level 6 (= P + 2) : 2
+  least index at level 7 (= P + 3) : 4
+  least index at level 8 (= P + 4) : 7
+  least index at level 9 (= P + 5) : 13
+  least index at level 3 (= P - 1) : 1
+  least index at level 2 (= P - 2) : 2
+  least index at level 1 (= P - 3) : 4
+  least index at level 0 (= P - 4) : 7

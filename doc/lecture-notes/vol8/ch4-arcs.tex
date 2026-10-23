@@ -1,0 +1,217 @@
+%======================================================================
+\chapter{Snake-like arcs of continua}\label{ch:arcs}
+%======================================================================
+
+This chapter treats Sections~3--5 of Bing and Jones: chains running from one end of a snake-like arc of continua to the other, open sets that separate the
+two ends, and the repaired form of their Theorem~5. Throughout, $X$ is a compact metric space and $f\colon X\to\I$ is an arc of continua
+(Definition~\ref{def:arc-continua}); $g_0=\fib f0$ and $g_1=\fib f1$ are the end fibres and $\G ab=\fib f{[a,b]}$, a continuum for $a\le b$
+(Corollary~\ref{cor:G-connected}).
+
+\section{Theorem 3: chains from end to end}
+
+\begin{theorem}[Bing and Jones, Theorem~3]\label{thm:bj3}
+If $X$ is snake-like, then for every $\varepsilon>0$ there is an $\varepsilon$-chain covering $X$ whose first link meets $g_0$ and whose last link meets
+$g_1$.
+\end{theorem}
+
+\begin{proof}
+We may assume $\varepsilon$ is small compared with the distance from $g_0$ to $g_1$. Take an $\varepsilon$-chain $E$ covering $X$. The links meeting $g_0$ form a run $E^0$ (Lemma~\ref{lem:runs}(b)), with union $V_0$; likewise the links meeting
+$g_1$ form a run $E^1$ with union $V_1$; for small $\varepsilon$ these runs are disjoint and not adjacent. Choose $0<a<b<1$ with $\G0a\subseteq V_0$ and $\G
+b1\subseteq V_1$ (possible since $f$ is closed). Let $F=(F_0,\dots,F_{N-1})$ be a chain covering $X$ of mesh $\gamma$, smaller than a Lebesgue number of $E$ and
+than the distances from $g_0$ to $\G a1$ and from $g_1$ to $\G0b$; orient it so that its links meeting $g_0$ come before those meeting $g_1$.
+
+The links of $F$ before the first link meeting $g_0$ lie in $\G0a$: the continuum $\G a1$ meets $g_1$, and if it met such a link it would meet every link
+between it and a link meeting $g_1$, including a link meeting $g_0$, against the choice of $\gamma$. So these links lie in $V_0$. Let $F_{v+1}$ be the first link
+after the links meeting $g_0$ that is not contained in $V_0$, and $F_{w-1}$ the last link before the links meeting $g_1$ that is not contained in $V_1$. Then
+$F_v$ lies in a link of $E^0$ and meets a set outside $V_0$, so it lies in an end link of $E^0$; orient $E^0=(e^0_0,\dots,e^0_{n_0})$ so that $F_v\subseteq
+e^0_{n_0}$. Likewise $F_w$ lies in the first link $e^1_0$ of $E^1=(e^1_0,\dots,e^1_{n_1})$. For small $\gamma$, $w\ge v+4$. Put $A=F_0\cup\dots\cup F_v$ and
+$B=F_w\cup\dots\cup F_{N-1}$; then $A\subseteq V_0$ and $B\subseteq V_1$. The sequence
+\[
+A\cap e^0_0,\ \dots,\ A\cap e^0_{n_0-1},\ (A\cap e^0_{n_0})\cup F_{v+1},\ F_{v+2},\ \dots,\ F_{w-2},\ (B\cap e^1_0)\cup F_{w-1},\ B\cap e^1_1,\ \dots,\ B\cap
+e^1_{n_1}
+\]
+covers $X$, has mesh $<\varepsilon$, starts with a link meeting $g_0$ and ends with one meeting $g_1$. It is a chain: the only nontrivial point is that
+$F_{v+1}$ meets $A$ only inside $F_v\subseteq e^0_{n_0}$, so merged into the last $A$-link it creates no new intersections; likewise at the other end. Empty links
+are removed.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.theorem3_arc} (with explicit hypotheses), \lean{HPC.BJ59.bj_theorem3}; the chain is \lean{HPC.BJ59.chain_assembly}.}
+
+\begin{remark}
+Bing and Jones print the chain with $A\cap e^0_{n_0}$ and $F_{v+1}$ as two separate links. Then $A\cap e^0_{n_0-1}$ may meet $F_{v+1}$ (both can meet $F_v$), and
+the sequence is not a chain. Merging the two links repairs it, at both junctions.
+\end{remark}
+
+Bing and Jones's Theorem~2 (for $0<a<b<c<d<1$, in every fine enough chain covering $X$, links meeting $\G0a$, $\G bc$ and $\G d1$ occur in this order or the
+reverse) is also proved, but not used below.
+
+\formal{\lean{HPC.BJ59.theorem2_arc}, \lean{HPC.BJ59.bj_theorem2}.}
+
+\section{Theorem 4: open sets separate the ends}
+
+\begin{theorem}[Bing and Jones, Theorem~4]\label{thm:bj4}
+Let $X$ be snake-like and $U\neq\emptyset$ an open set missing $g_0\cup g_1$. Then $X\setminus U=A\cup B$ with $A$, $B$ disjoint and closed, $g_0\subseteq A$
+and $g_1\subseteq B$.
+\end{theorem}
+
+\begin{proof}
+Pick $p\in U$ and, by Theorem~\ref{thm:bj3}, a chain $D=(D_0,\dots,D_m)$ covering $X$ from $g_0$ to $g_1$ with mesh less than the distance from $p$ to $X\setminus U$.
+The link $D_l$ containing $p$ lies in $U$. Let $A=(X\setminus U)\setminus(D_{l+1}\cup\dots\cup D_m)$ and $B=(X\setminus U)\setminus(D_0\cup\dots\cup D_{l-1})$. They
+are closed. Since $D_l\subseteq U$, every point of $X\setminus U$ lies in a link before or after $l$, and no point lies in both (such links would be
+nonadjacent), so $A\cup B=X\setminus U$ and $A\cap B=\emptyset$. The connected set $g_0$ misses $U$, so it lies in $A$ or in $B$; it meets $D_0$, and $l\ne0$
+since $D_0$ meets $g_0$, which misses $U$; so $g_0\subseteq A$. Likewise $g_1\subseteq B$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.bj_theorem4}, from \lean{HPC.BJ59.theorem4_of_chain} and \lean{HPC.BJ59.theorem4_explicit}.}
+
+\begin{corollary}[Located form]\label{cor:bj-cut}
+Let $X$ be snake-like, $0<\alpha<\beta<1$, and $V\neq\emptyset$ open with $\alpha<f<\beta$ on $V$. Then $X\setminus V=L\cup R$ with $L$, $R$ disjoint and
+closed, $f<\beta$ on $L$ and $f>\alpha$ on $R$.
+\end{corollary}
+
+\begin{proof}
+Take $L=A$, $R=B$ from Theorem~\ref{thm:bj4}. The continuum $\G\beta1$ misses $V$ and contains $g_1$, so it lies in $B$; hence $f<\beta$ on $A$. Likewise
+$\G0\alpha\subseteq A$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.bj_cut}.}
+
+Two compactness facts about open sets meeting every fibre will be needed in Chapter~\ref{ch:thm78}.
+
+\begin{lemma}[Deep points]\label{lem:deep}
+Let $f$ be open and let $d$ be an open set meeting every fibre. There is $\rho>0$ such that every fibre contains a point $y$ with $B(y,3\rho)\subseteq d$.
+If moreover $d\neq X$, there are open sets $U$, $U'$ with $\cl U\subseteq d$, $\cl{U'}\subseteq U$, and $U'$ meeting every fibre.
+\end{lemma}
+
+\begin{proof}
+For each $t$ choose $y_t\in\fib ft$ and $r_t>0$ with $B(y_t,r_t)\subseteq d$. The open sets $f(B(y_t,r_t/2))$ cover $\I$; take a finite subcover and let $3\rho$
+be the least corresponding $r_t/2$. A fibre over a point of $f(B(y_t,r_t/2))$ contains a point $y$ within $r_t/2$ of $y_t$, and $B(y,r_t/2)\subseteq d$. For the
+second statement let $U'=\set{y:\dist(y,X\setminus d)>2\rho}$ and $U=\set{y:\dist(y,X\setminus d)>\rho}$; the deep points lie in $U'$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.exists_deep_radius}, \lean{HPC.BJ59.exists_deep_sets}.}
+
+\section{Theorem 5}
+
+Bing and Jones's Theorem~5 reads: if the fibres are indecomposable, $E$ is a chain properly covering each fibre (every link meets every fibre), and $U$ is a
+nonempty open set missing $g_0\cup g_1$ whose closure lies in a link of $E$, then the decomposition $X\setminus U=A\cup B$ of Theorem~4 can be chosen so that,
+for every $t$, $A\cap\fib ft$ meets every link of $E$ or $B\cap\fib ft$ does.
+
+\begin{proposition}[Theorem~5 is false as printed]\label{prop:bj5-false}
+Let $f\colon X\to\I$ be continuous and $E$ a chain of $n\ge3$ links covering $X$, each link meeting every fibre. Merging the last link into the
+next-to-last gives a chain $E'$ with the same properties, and there is an open $U$ satisfying the hypotheses of Theorem~5 for $E'$, containing no fibre,
+such that some fibre meets some link of $E'$ only inside $U$. For this $E'$ and $U$ the conclusion of Theorem~5 fails for every decomposition $X\setminus
+U=A\cup B$.
+\end{proposition}
+
+\begin{proof}
+Let $E'=(e_0,\dots,e_{n-3},e_{n-2}\cup e_{n-1},e_{n-1})$. Let $K$ be the closure of $\fib f{1/2}\cap e_{n-1}$; it is compact, lies in $e_{n-2}\cup e_{n-1}$ and
+misses $g_0\cup g_1$. For small $\delta>0$ let $U$ be the $\delta$-neighbourhood of $K$ minus $\cl{e_0}$. Then $\cl U$ lies in the merged link and misses
+$g_0\cup g_1$; $U$ contains $\fib f{1/2}\cap e_{n-1}$ minus $\cl{e_0}$, which (as $n\ge3$) is all of it; and $U$ misses $e_0$, which meets every fibre, so no
+fibre lies in $U$. The fibre over $1/2$ meets the last link of $E'$ only inside $U$, so neither $A\cap\fib f{1/2}$ nor $B\cap\fib f{1/2}$ meets it.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.bj_theorem5_printed_false_general}; a concrete instance on $\I$ is \lean{HPC.BJ59.bj_theorem5_printed_false}.}
+
+The repair replaces the hypothesis on $\cl U$ by one that excludes exactly this situation.
+
+\begin{theorem}[Theorem~5, repaired]\label{thm:bj5}
+Let $X$ be snake-like, $f$ open, and the fibres indecomposable. Let $E$ be a chain and $U\ne\emptyset$ an open set missing $g_0\cup g_1$, such that no fibre meets
+a link of $E$ only inside $\cl U$. Then there is a decomposition $X\setminus U=A\cup B$ as in Theorem~4 such that for every $t$, $A\cap\fib ft$ meets every link
+of $E$, or $B\cap\fib ft$ does.
+\end{theorem}
+
+\begin{proof}
+Let $p\in U$, and for $k\ge1$ let $D^k$ be chains as in Theorem~\ref{thm:bj3} with mesh $\delta_k\to0$ and a link $d_k\ni p$ inside $U$, and $A_k$, $B_k$ the
+decomposition built from $D^k$ in the proof of Theorem~\ref{thm:bj4}. Suppose every $A_k,B_k$ fails: there are $t_k$ and links $e_{\alpha_k}$, $e_{\beta_k}$ of
+$E$ with $A_k\cap\fib f{t_k}\cap e_{\alpha_k}=\emptyset$ and $B_k\cap\fib f{t_k}\cap e_{\beta_k}=\emptyset$. Passing to a subsequence, $\alpha_k=\alpha$,
+$\beta_k=\beta$ and $t_k\to c$.
+
+Let $P_k$ be $\fib f{t_k}$ minus the links after $d_k$, and $Q_k$ the fibre minus the links before $d_k$. They are closed, cover the fibre, and meet only inside
+$d_k$. By clopen boundary bumping, $P_k\cup\set p$ is $\delta_k$-chained, and so is $Q_k\cup\set p$. Their topological limits superior $P$, $Q$ are therefore
+continua; they lie in $\fib fc$ by continuity of $f$, and they cover $\fib fc$ because $f$ is open. As $\fib fc$ is indecomposable, $P=\fib fc$ or $Q=\fib
+fc$; say $P$. By hypothesis $\fib fc\cap e_\alpha$ has a point $q\notin\cl U$. Near $q$, for some large $k$, $P_k$ meets $e_\alpha$ outside $U$, at a point of
+$A_k\cap\fib f{t_k}\cap e_\alpha$: a contradiction. The case $Q=\fib fc$ is the same with $e_\beta$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.theorem5_repaired}, \lean{HPC.BJ59.bj_theorem5}; the chained parts are \lean{HPC.BJ59.chainedAt_union_point}. The hypotheses
+``$\cl U$ in a link'' and ``$E$ covers $X$'' are not used.}
+
+\section{Windows}
+
+In the proof of Theorem~10, Theorem~5 is applied not to the whole arc but to a window $\G ab$, and to a run of a chain.
+
+\begin{lemma}[Transfer to a window]\label{lem:window-transfer}
+If $f$ is a continuous arc of pseudo-arcs on the snake-like compact space $X$ and $a<b$, then $\G ab$ with the map $x\mapsto(f(x)-a)/(b-a)$ is again a
+continuous arc of pseudo-arcs on a snake-like compact space, and its fibre over $s$ is $\fib f{a+s(b-a)}$.
+\end{lemma}
+
+\formal{\lean{HPC.BJ59.window_transfer}, with \lean{HPC.BJ59.winScale}, \lean{HPC.BJ59.winInv}.}
+
+\begin{theorem}[Theorem~5 on a window]\label{thm:bj5-window}
+Let $f$ be a continuous arc of pseudo-arcs on a snake-like compact $X$, $a<b$, $F$ a chain and $[t,u]$ a run of $F$ covering $\G ab$ whose links meet every fibre
+over $[a,b]$. Let $U\neq\emptyset$ be open with $a<f<b$ on $U$, $\cl U$ inside a link of the run, and suppose no fibre over $[a,b]$ meets a link of the run only
+inside $\cl U$. Then $X\setminus U=A\cup B$ with $A$, $B$ disjoint and closed, $\G0a\subseteq A$, $\G b1\subseteq B$, and for every $s\in[a,b]$ either
+$A\cap\fib fs$ meets every link of the run, or $B\cap\fib fs$ does.
+\end{theorem}
+
+\begin{proof}
+Apply Theorem~\ref{thm:bj5} on the window (Lemma~\ref{lem:window-transfer}) to the run, traced on $\G ab$, and add $\G0a$ to $A$ and $\G b1$ to $B$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.bj_theorem5_window}, \lean{HPC.BJ59.bj_theorem5_window_aux}.}
+
+\begin{lemma}\label{lem:window-set}
+In the situation of Theorem~\ref{thm:bj5-window}, for every link $F_y$ of the run there is an open $U\ne\emptyset$ with $a<f<b$ on $U$ and $\cl U\subseteq F_y$
+such that no fibre over $[a,b]$ meets a link of the run only inside $\cl U$.
+\end{lemma}
+
+\begin{proof}[Proof in outline]
+Take $U$ a small ball about a point of $F_y$ over $(a+b)/2$, so small that its image lies in a short interval about $(a+b)/2$ and its diameter is less than a
+lower bound, obtained by compactness and openness of $f$ as in Lemma~\ref{lem:fibre-spread}, for the size of the traces of the links of the run on the fibres
+over that interval.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.exists_window_set}.}
+
+\section{Step 1(b): short sub-arcs}
+
+\begin{lemma}\label{lem:meets-all}
+A connected set covered by the run $[u,v]$ of a chain and meeting $D_u$ and $D_v$ meets every link of the run.
+\end{lemma}
+
+\formal{\lean{HPC.BJ59.meets_all_of_meets_ends}.}
+
+\begin{theorem}[Bing and Jones, p.~182, Step~1(b)]\label{thm:step1b}
+Let $f$ be open and $E$ a chain covering $X$. There is $\delta>0$ such that whenever $b-a\le\delta$ and the run $[u,v]$ covers $\G ab$ while neither $[u+1,v]$ nor
+$[u,v-1]$ does, every link of the run meets every fibre over $[a,b]$.
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1.} About each $c\in\I$ there is an open $N_c\ni c$ such that every point over $N_c$ lies in a link meeting every fibre over $N_c$. Indeed, for each of
+the finitely many links $E_w$ meeting $\fib fc$, $f(E_w)$ is an open set containing $c$ ($f$ is open); and the union of these links is an open set containing
+$\fib fc$, so it contains $\fib fx$ for $x$ near $c$ ($f$ is closed). Intersect these finitely many neighbourhoods of $c$.
+
+\emph{Step 2.} Let $2\delta$ be a Lebesgue number of the cover $\set{N_c}$, so $[a,b]\subseteq N=N_c$ for some $c$. Let $x\in[a,b]$; we show $\fib fx$ meets $E_u$.
+Since $[u+1,v]$ does not cover $\G ab$, some $z\in\G ab$ lies in $E_u$ and in no other link of the run. By Step~1, $z\in E_w$ for a link $E_w$ meeting every fibre
+over $N$, so $\abs{w-u}\le1$. If $w=u$ we are done. If $w=u+1\le v$, $z$ would lie in another link of the run. So $w=u-1$. Then $E_{u-1}$ meets $\fib fx$ at a
+point $y\in\G ab$, which lies in a link of the run adjacent to $E_{u-1}$, that is, in $E_u$. Likewise $\fib fx$ meets $E_v$, and Lemma~\ref{lem:meets-all}
+finishes the proof.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.bj_step1b}, with Step~1 as \lean{HPC.BJ59.exists_nhd_step1b}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that Theorem~\ref{thm:bj4} fails for $X=\I\times\I$ with the first projection if ``snake-like'' is dropped: an open disc in the middle does not separate the
+two ends.
+\end{exercise}
+
+\begin{exercise}
+Check that the sets $A$ and $B$ in the proof of Theorem~\ref{thm:bj4} are closed.
+\end{exercise}
+
+\begin{exercise}
+Write out Proposition~\ref{prop:bj5-false} for $X=\I$, $f=\mathrm{id}$ and a chain of three links. (Here every fibre is a point.)
+\end{exercise}

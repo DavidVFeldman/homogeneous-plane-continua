@@ -1,0 +1,296 @@
+%======================================================================
+\chapter{Composants}\label{ch:composants}
+%======================================================================
+
+The uniqueness theorem compares two pseudo-arcs through two chosen points of each, and these
+points must lie in different composants. This chapter proves that such points exist: in an
+indecomposable continuum no composant is the whole continuum. It also records how the
+notions of Volume~1 behave when a continuum $M\subseteq X$ is regarded as a metric space in
+its own right; Part~II of the proof takes place inside that space. Throughout, $X$ is a metric
+space.
+
+\section{Composants}
+
+\begin{definition}\label{def:composant}
+Let $M\subseteq X$ and $p\in X$. The \emph{composant} of $p$ in $M$ is
+\[
+\cmp{M}{p}=\bigcup\set{K : K\text{ is a continuum},\ K\subseteq M,\ K\neq M,\ p\in K}.
+\]
+\end{definition}
+
+\formal{\lean{HPC.composant} (in \lean{HPC/PseudoArc/Statements79.lean}).}
+
+If $M$ is a nondegenerate continuum and $p\in M$, then $\set p$ is a proper subcontinuum of $M$,
+so $p\in\cmp{M}{p}$. In particular:
+
+\begin{lemma}\label{lem:ne-of-composant}
+Let $M$ be a set with at least two points, $p\in M$, and $q\notin\cmp{M}{p}$. Then $p\neq q$.
+\end{lemma}
+
+\begin{proof}
+$\set p$ is compact and connected, lies in $M$, contains $p$, and is not $M$ because $M$ has
+two points. So $p\in\cmp Mp$, and $q\notin\cmp Mp$ gives $q\neq p$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.ne_of_not_mem_composant}.}
+
+\begin{example}
+Let $M=[0,1]$. For $0<p<1$ every $y\in[0,1]$ lies in one of the proper subcontinua $[0,p]$ and
+$[p,1]$, both containing $p$; so $\cmp Mp=M$. For $p=0$, every $y<1$ lies in the proper subcontinuum
+$[0,y]$, while a subcontinuum containing $0$ and $1$ is all of $[0,1]$; so $\cmp M0=[0,1)$.
+\end{example}
+
+The example shows that for decomposable continua a composant may be everything. The goal of
+this chapter is:
+
+\begin{theorem}\label{thm:composant-proper}
+Let $M$ be an indecomposable continuum and $p\in M$. Then $\cmp Mp\neq M$; that is, there is a
+point $q\in M$ which lies in no proper subcontinuum of $M$ containing $p$.
+\end{theorem}
+
+The proof (Section~\ref{sec:baire}) shows that $\cmp Mp$ is contained in a countable union of
+proper subcontinua of $M$, and that a proper subcontinuum of an indecomposable continuum is
+``thin'': it contains no nonempty relatively open subset of $M$. The Baire category theorem
+then finishes the proof.
+
+\section{Boundary bumping}
+
+We need two facts from point-set topology. In both, a subset $W$ of a set $L$ is called
+\emph{closed and relatively open in $L$} if $W$ is closed in $X$ and $W=L\cap O$ for some open
+set $O\subseteq X$.
+
+\begin{lemma}[Boundary bumping, clopen form]\label{lem:bumping}
+Let $M$ be preconnected, $L\subseteq M$ with $L\neq M$, and let $W\subseteq L$ be nonempty, closed,
+and relatively open in $L$. Then $W$ meets $\cl{M\setminus L}$.
+\end{lemma}
+
+\begin{proof}
+Write $W=L\cap O$ with $O$ open, and suppose $W\cap\cl{M\setminus L}=\emptyset$. Consider the open
+sets
+\[
+U=O\setminus\cl{M\setminus L},\qquad V=X\setminus W .
+\]
+They cover $M$: a point $y\in M$ either lies outside $W$, so in $V$, or lies in $W$, so in $O$ and
+(by assumption) outside $\cl{M\setminus L}$, so in $U$. The set $M\cap U$ contains any point of the
+nonempty set $W$. The set $M\cap V$ contains any point $x\in M\setminus L$ (there is one since
+$L\neq M$), because $W\subseteq L$. Since $M$ is preconnected, some $z\in M$ lies in $U\cap V$. As
+$z\in U$, $z\notin\cl{M\setminus L}$, so $z\notin M\setminus L$, that is, $z\in L$. Also $z\in O$,
+so $z\in L\cap O=W$, contradicting $z\in V$.
+\end{proof}
+
+\formal{\lean{HPC.T13.clopen_meets_closure_diff}.}
+
+\begin{lemma}\label{lem:union-clopen}
+Let $K$ be closed and preconnected, let $L_1\subseteq L$ be closed and relatively open in $L$, and
+suppose that every nonempty subset of $L$ that is closed and relatively open in $L$ meets $K$.
+Then $K\cup L_1$ is preconnected.
+\end{lemma}
+
+\begin{proof}
+$K\cup L_1$ is closed, so by \vone{(K2)} it suffices to show: if $K\cup L_1\subseteq F\cup G$ with
+$F,G$ closed and disjoint, then $K\cup L_1$ lies in $F$ or in $G$. Since $K$ is preconnected, $K$
+lies in one of them, say $K\subseteq F$ (the other case is symmetric). We show $L_1\subseteq F$.
+Write $L_1=L\cap O_1$ with $O_1$ open, and put $W=L_1\cap G$. Then $W$ is closed, and $W\subseteq L$
+is relatively open in $L$: indeed $W=L\cap(O_1\setminus F)$, because a point of $L_1$ lies in $G$
+exactly when it does not lie in $F$. If $W$ were nonempty it would meet $K\subseteq F$, which is
+impossible as $W\subseteq G$ and $F\cap G=\emptyset$. So $W=\emptyset$, that is, $L_1\subseteq F$.
+\end{proof}
+
+\formal{\lean{HPC.T13.isPreconnected_union_clopen}.}
+
+\section{Proper subcontinua of indecomposable continua are thin}
+
+\begin{theorem}\label{thm:thin}
+Let $M$ be an indecomposable continuum and $K$ a subcontinuum of $M$ with $K\neq M$. Then no open
+set $O\subseteq X$ satisfies $O\cap M\neq\emptyset$ and $O\cap M\subseteq K$.
+\end{theorem}
+
+\begin{proof}
+Suppose $O$ is such a set. Let $L=\cl{M\setminus K}$. We collect some facts.
+\begin{enumerate}[label=(\roman*)]
+\item $L\subseteq M$ (as $M$ is closed), $K\cup L=M$, and $L$ is nonempty: there is $x\in
+M\setminus K$, and $x\in L$.
+\item $L\neq M$. Take $z\in O\cap M$. If $z\in L$, the neighbourhood $O$ of $z$ meets $M\setminus K$,
+contradicting $O\cap M\subseteq K$.
+\item $\cl{M\setminus L}\subseteq K$: a point of $M\setminus L$ is not in $M\setminus K$, so it is
+in $K$; and $K$ is closed.
+\item Every nonempty subset $W$ of $L$ that is closed and relatively open in $L$ meets $K$: by
+Lemma~\ref{lem:bumping} (applied to $M$, $L$, $W$; $M$ is connected) $W$ meets $\cl{M\setminus
+L}\subseteq K$.
+\end{enumerate}
+\emph{Case 1: $L$ is connected.} Then $L$ is a continuum (closed in the compact set $M$), and
+$M=K\cup L$ with $K\ne M$ and $L\neq M$, contradicting indecomposability.
+
+\emph{Case 2: $L$ is not connected.} Since $L$ is nonempty and closed, \vone{(K2)} gives closed sets
+$F,G$ with $L=(L\cap F)\cup(L\cap G)$, $L\cap F\cap G=\emptyset$, and both $L\cap F$ and $L\cap G$
+nonempty. Then $L\cap F=L\cap(X\setminus G)$ and $L\cap G=L\cap(X\setminus F)$, so both are closed and
+relatively open in $L$. Put
+\[
+A=K\cup(L\cap F),\qquad B=K\cup(L\cap G).
+\]
+By Lemma~\ref{lem:union-clopen} and~(iv) both are preconnected; they are closed subsets of $M$,
+hence compact, and nonempty. So $A$ and $B$ are subcontinua of $M$, and $A\cup B=K\cup L=M$. We show
+$A\neq M$; similarly $B\neq M$, and this contradicts indecomposability. Pick $b\in L\cap G$. Then
+$b\notin F$, and $X\setminus F$ is an open neighbourhood of $b\in\cl{M\setminus K}$, so it contains a
+point $y\in M\setminus K$. This $y$ is not in $K$, and not in $L\cap F$ because $y\notin F$. So
+$y\in M\setminus A$.
+\end{proof}
+
+\formal{\lean{HPC.T13.false_of_interior}.}
+
+\section{The Baire argument}\label{sec:baire}
+
+\begin{lemma}[Baire category theorem for compact spaces]\label{lem:baire}
+Let $Y$ be a nonempty compact metric space and $Y=\bigcup_{k\in\N}F_k$ with every $F_k$ closed.
+Then some $F_k$ contains a nonempty open subset of $Y$.
+\end{lemma}
+
+\begin{proof}
+Suppose not. We choose nonempty open sets $Y\supseteq V_0\supseteq V_1\supseteq\cdots$ with
+$\cl{V_{k}}\cap F_k=\emptyset$ and $\cl{V_{k+1}}\subseteq V_k$. Since $F_0\neq Y$, the open set
+$Y\setminus F_0$ is nonempty; choose a point $y_0$ in it and a small open ball $V_0$ around $y_0$
+whose closure misses the closed set $F_0$. Given $V_k$, the open set $V_k$ is not contained in
+$F_{k+1}$, so there is $y_{k+1}\in V_k\setminus F_{k+1}$; choose a small open ball $V_{k+1}$ around
+$y_{k+1}$ whose closure lies in $V_k$ and misses $F_{k+1}$. By Cantor's intersection theorem
+\vone{(C3)} some point lies in every $\cl{V_k}$; it lies in no $F_k$, contradicting
+$Y=\bigcup_kF_k$.
+\end{proof}
+
+We also use the \emph{component} of a point $p$ in a set $F$: the union $C$ of all preconnected
+subsets of $F$ containing $p$ (and $C=\emptyset$ if $p\notin F$). It is preconnected (a union of
+preconnected sets with a common point is preconnected), so it is the largest preconnected subset
+of $F$ containing $p$. If $F$ is closed then $C$ is closed: the closure of a preconnected set is
+preconnected, and $\cl C\subseteq F$ contains $p$, so $\cl C\subseteq C$ by maximality.
+
+Finally, a compact metric space $Y$ has a \emph{countable basis}: a countable family $\mathcal B$
+of open sets such that every open set is a union of members of $\mathcal B$. (Cover $Y$ by
+finitely many balls of radius $1/m$ for each $m\ge1$, and take all these balls.)
+
+\begin{proof}[Proof of Theorem~\ref{thm:composant-proper}]
+We work in the compact metric space $Y=M$. (A subset of $M$ is a continuum in $M$ if and only if it
+is a continuum in $X$, so composants are the same.) Let $\mathcal B$ be a countable basis of $M$,
+and let $\mathcal B'$ be the family of nonempty members of $\mathcal B$. For $b\in\mathcal B'$ let
+$C_b$ be the component of $p$ in the closed set $M\setminus b$. Each $C_b$ is closed.
+
+Suppose, for a contradiction, that every $y\in M$ lies in a proper subcontinuum $K$ of $M$ containing
+$p$. Choose $x\in M\setminus K$. Since $M\setminus K$ is open in $M$, there is $b\in\mathcal B$ with
+$x\in b\subseteq M\setminus K$; then $b\in\mathcal B'$, and $K$ is a preconnected subset of
+$M\setminus b$ containing $p$, so $K\subseteq C_b$ and $y\in C_b$. Thus
+$M=\bigcup_{b\in\mathcal B'}C_b$, a countable union of closed sets. By Lemma~\ref{lem:baire} some
+$C_b$ contains a nonempty open subset of $M$. This $C_b$ is nonempty, so it contains $p$; it is
+compact (closed in $M$) and connected, so it is a subcontinuum of $M$; and $C_b\neq M$, because
+$C_b$ misses the nonempty set $b$. This contradicts Theorem~\ref{thm:thin}.
+\end{proof}
+
+\formal{\lean{HPC.T13.exists_not_mem_proper_subcontinua} (in a compact ambient space) and
+\lean{HPC.composant_ne_of_indecomposable}.}
+
+\begin{corollary}\label{cor:other-composant}
+Let $M$ be a pseudo-arc and $p\in M$. Then there is $q\in M$ with $q\notin\cmp Mp$, and then
+$q\neq p$.
+\end{corollary}
+
+\begin{proof}
+$M$ is an indecomposable continuum (it is hereditarily indecomposable, and a subcontinuum of itself).
+Theorem~\ref{thm:composant-proper} gives $q$, and Lemma~\ref{lem:ne-of-composant} gives $q\neq p$,
+since a pseudo-arc is nondegenerate.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_not_mem_composant}. Formally the theorem is applied in the compact
+space $M$, and the subcontinuum found there is transported back to $X$.}
+
+\section{A continuum as a space in its own right}\label{sec:subspace}
+
+Let $M\subseteq X$ be a continuum. Part~II of the proof constructs a description \emph{inside the
+compact metric space $M$} (with the metric of $X$). This section checks that the hypotheses
+transfer. The open sets of the space $M$ are the sets $U\cap M$ with $U$ open in $X$, and diameters
+are computed with the same metric.
+
+\begin{lemma}\label{lem:sub-HI}
+\begin{enumerate}[label=(\alph*)]
+\item The subcontinua of the space $M$ are exactly the subcontinua of $M$ in $X$. Hence if $M$ is
+hereditarily indecomposable in $X$, every subcontinuum of the space $M$ is indecomposable.
+\item If $p,q\in M$ and $q\notin\cmp Mp$ (composant in $X$), then $q$ is not in the composant of $p$
+in the space $M$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Compactness and connectedness of a subset $K\subseteq M$ do not depend on whether $K$ is regarded as
+a subset of $M$ or of $X$ (the inclusion $M\to X$ is continuous, and so is its inverse on its
+image). Both statements follow at once.
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.hI_sub}, \lean{HPC.Plane.PA51.not_mem_composant_sub}.}
+
+Snake-likeness needs an argument, because the links of an $\varepsilon$-chain covering $M$ need not
+all meet $M$, and consecutive links need not meet inside $M$.
+
+\begin{lemma}\label{lem:cover-meeting}
+Let $M$ be preconnected and nonempty, and let $D$ be a chain of length $n$ with $M\subseteq\bigcup D$.
+\begin{enumerate}[label=(\alph*)]
+\item The indices $i$ with $D_i\cap M\neq\emptyset$ form an interval $a\le i\le b$ of integers, and
+$(D_a,\dots,D_b)$ is a chain covering $M$ all of whose links meet $M$.
+\item If every link of $D$ meets $M$, then $D_i\cap D_{i+1}\cap M\neq\emptyset$ for every $i<n-1$, and
+$(D_0\cap M,\dots,D_{n-1}\cap M)$ is a chain in the space $M$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Suppose $i<j<k$ with $D_i$ and $D_k$ meeting $M$ but $D_j\cap M=\emptyset$. Let $U$ be the union of
+the links with index $<j$ and $V$ the union of the links with index $>j$. These are open, they cover
+$M$ (as $D_j$ contributes nothing to $M$), both meet $M$, and they are disjoint, because a link with
+index $<j$ and a link with index $>j$ have indices differing by at least $2$. This contradicts the
+preconnectedness of $M$. So the set of indices of links meeting $M$ (nonempty, as $M\ne\emptyset$) is an
+interval $[a,b]$. A run of consecutive links of a chain is a chain, and it covers $M$ since the other
+links do not meet $M$.
+
+(b) Fix $i<n-1$. Let $U$ be the union of the links with index $\le i$ and $V$ the union of those with
+index $\ge i+1$. Both are open, they cover $M$, $U$ meets $M$ (in $D_i\cap M$) and $V$ meets $M$ (in
+$D_{i+1}\cap M$). Since $M$ is preconnected there is $z\in M\cap U\cap V$: $z\in D_l\cap D_{l'}$ with
+$l\le i<i+1\le l'$. As $D_l$ and $D_{l'}$ meet, $l'\le l+1$, which forces $l=i$ and $l'=i+1$. So
+$z\in D_i\cap D_{i+1}\cap M$. Now the sets $D_i\cap M$ are open in $M$; if $\abs{i-j}\ge2$ they are
+disjoint because $D_i\cap D_j=\emptyset$; if $j=i\pm1$ they meet by what we just proved; and each is
+nonempty. So they form a chain in $M$.
+\end{proof}
+
+\formal{(a) is \lean{HPC.Plane.exists_cover_meeting}; (b) is \lean{HPC.Plane.PA51.inter_inter_nonempty}
+and \lean{HPC.Plane.PA51.subChain}.}
+
+\begin{corollary}\label{cor:sub-snake}
+If $M\subseteq X$ is a snake-like continuum, then for every $\varepsilon>0$ the space $M$ is covered
+by an $\varepsilon$-chain of the space $M$. Consequently, if $M$ is a pseudo-arc in $X$, then the
+space $M$ is a pseudo-arc in itself, and points $p,q\in M$ with $q\notin\cmp Mp$ lie in different
+composants of the space $M$.
+\end{corollary}
+
+\begin{proof}
+Take an $\varepsilon$-chain covering $M$, cut it down by Lemma~\ref{lem:cover-meeting}(a), and restrict
+it by Lemma~\ref{lem:cover-meeting}(b). Diameters do not increase on intersecting with $M$. The rest
+is Lemma~\ref{lem:sub-HI}.
+\end{proof}
+
+\formal{\lean{HPC.Plane.PA51.snake_sub}.}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Show that two composants of an indecomposable continuum are disjoint or equal. (Hint: if $K\ni p$ and
+$K'\ni q$ are proper subcontinua with a common point, then $K\cup K'$ is a continuum, and it is not
+$M$ by indecomposability.)
+\end{exercise}
+
+\begin{exercise}
+Show that every composant of an indecomposable continuum $M$ is dense in $M$. (Hint: use
+Theorem~\ref{thm:thin} on the component of $p$ in the complement of a small open set.)
+\end{exercise}
+
+\begin{exercise}
+Show that if a continuum $M$ is decomposable, $M=A\cup B$ with $A,B$ proper subcontinua, then
+$A\cap B\neq\emptyset$ and $\cmp Mp=M$ for every $p\in A\cap B$.
+\end{exercise}
+
+\begin{exercise}
+Show by an example that Lemma~\ref{lem:cover-meeting}(b) fails if $M$ is not assumed preconnected.
+\end{exercise}

@@ -1,0 +1,370 @@
+%======================================================================
+\chapter{Graphs, mod-2 cycles and enclosing polygons}\label{ch:enc}
+%======================================================================
+
+The main theorem of this chapter is the existence of enclosing polygons
+(Theorem~\ref{thm:enclose}): a continuum $M$ that does not separate the plane lies, inside any
+given open set $G\supseteq M$, in the inside of a simple closed polygon contained in $G$ and
+missing $M$. The polygon is found on the boundary of a union of small grid squares around $M$.
+That boundary is a finite union of segments, but it need not be a single polygon; the right one
+is extracted with the help of mod-2 cycles. The crossing parity of Chapter~\ref{ch:poly} makes sense
+for any finite set of segments, and for a graph separating two points it singles out a cycle that
+already separates them (Theorem~\ref{thm:odd-cycle}).
+
+\section{Straight-line graphs and their parity}
+
+\begin{definition}\label{def:graph}
+A \emph{straight-line graph} is a finite set $G$ of ordered pairs $(a,b)$ of points of $\R^2$, each
+standing for the segment $[a,b]$; its \emph{point set} is $\gs G=\bigcup_{(a,b)\in G}[a,b]$ and its
+\emph{vertices} are the ends of its segments. The \emph{degree} $\dg_G(w)$ of a point $w$ is the
+number of segments of $G$ having $w$ as an end. $G$ is \emph{proper} if every segment is
+nondegenerate ($a\neq b$), distinct elements have distinct point sets, and two segments with
+distinct point sets meet at most in a common end. A \emph{(mod-2) cycle} is a proper graph all of
+whose degrees are even.
+\end{definition}
+
+\formal{\lean{HPC.Plane.Seg}, \lean{HPC.Plane.graphSet}, \lean{HPC.Plane.vertices},
+\lean{HPC.Plane.deg}, \lean{HPC.Plane.IsProper}, \lean{HPC.Plane.IsCycle}.}
+
+Every subset of a proper graph is proper. A point of a segment $e$ of a proper graph which is not
+a vertex lies on no other segment.
+
+\begin{definition}
+The \emph{parity} of a graph $G$ at $x$ is
+$\parity_G(x)=\sum_{(a,b)\in G}[\mathrm{CE}(x;a,b)]\in\Z/2$ (Definition~\ref{def:crosses}).
+\end{definition}
+
+\formal{\lean{HPC.Plane.cycParity}.}
+
+Parity is additive: if $G\triangle H$ is the symmetric difference, then
+$\parity_{G\triangle H}=\parity_G+\parity_H$ (common segments are counted twice); in particular the
+parity of a disjoint union of graphs is the sum of the parities. It vanishes at points to the east of
+all vertices. For the edge list of a simple closed polygon, it is the parity of
+Definition~\ref{def:crosses}.
+
+\formal{\lean{HPC.Plane.cycParity_symmDiff}, \lean{HPC.Plane.cycParity_foldr},
+\lean{HPC.Plane.cycParity_far}, \lean{HPC.Plane.cycParity_polyEdges}.}
+
+\begin{proposition}\label{prop:cycle-parity}
+Let $G$ be a graph with nondegenerate segments and all degrees even. Then $\parity_G$ is locally
+constant on $\R^2\setminus\gs G$, hence constant on preconnected subsets of $\R^2\setminus\gs G$. In
+particular, if $x,y\notin\gs G$ and $\parity_G(x)\neq\parity_G(y)$, then $\gs G$ separates $x$ from
+$y$.
+\end{proposition}
+
+\begin{proof}
+As in Theorem~\ref{thm:parity-loc-const}: by the vertex rule the parity jumps below $x$ by
+$\sum_{(a,b)\in G}(j_x(a)+j_x(b))=\sum_w\dg_G(w)j_x(w)$, which is even. (Nondegeneracy is needed: a
+segment $(a,a)$ contributes $2j_x(a)$ to the jump but only $1$ to the degree of $a$.)
+\end{proof}
+
+\formal{\lean{HPC.Plane.sum_vJump_even}, \lean{HPC.Plane.cycParity_locallyConstant},
+\lean{HPC.Plane.cycParity_eq_of_isPreconnected}, \lean{HPC.Plane.separatesPts_of_cycParity_ne};
+the necessity of nondegeneracy is \lean{HPC.Plane.not_sum_vJump_even_skeleton}.}
+
+\begin{lemma}[Flip across an edge of a cycle]\label{lem:cycle-flip}
+Let $G$ be a cycle, $e\in G$, and $p$ a point of $e$ which is not a vertex and, if $e$ is not
+horizontal, not at the height of a vertex. Then arbitrarily close to $p$, on the two sides of $e$,
+there are points off $\gs G$ with different parities.
+\end{lemma}
+
+\begin{proof}
+The proof of Lemma~\ref{lem:flip}, which only used that $p$ lies on no other segment and (for (b))
+that the vertex jumps sum to zero.
+\end{proof}
+
+\formal{\lean{HPC.Plane.cycParity_flip} (from \lean{HPC.Plane.cycParity_flip_horizontal_shift} and
+\lean{HPC.Plane.cycParity_flip_vertical_shift}).}
+
+\section{A separating graph contains an odd cycle}
+
+Fix a proper graph $G$ and a point $x\notin\gs G$, and let $C=\comp{\gs G}x$.
+
+\paragraph{Local structure at an edge.} For $e\in G$ and a point $p\in e$ which is not a vertex, let
+$\rho_e(p)$ be half the distance from $p$ to the union of the other segments of $G$ and the two ends
+of $e$; it is positive, and $\rho_e(q)\le\rho_e(p)+\frac12d(p,q)$. The ball $B(p,\rho_e(p))$ meets
+$\gs G$ only in points of $e$ other than its ends, and the ball minus $e$ consists of two open
+\emph{half-discs}, the points of the ball strictly on each side of the line of $e$. These are convex.
+The \emph{side strip} $\Sigma_e^\pm$ of $e$ is the union of the half-discs on the side $\pm$ over all
+non-vertex points $p$ of $e$.
+
+\begin{lemma}\label{lem:side-strip}
+Each side strip $\Sigma^\pm_e$ is nonempty, preconnected and disjoint from $\gs G$. Consequently it
+lies in $C$ or is disjoint from $C$.
+\end{lemma}
+
+\begin{proof}
+Half-discs at nearby points of the open segment overlap (by the Lipschitz bound on $\rho_e$ and the
+convexity of the half-planes), so Lemma~\ref{lem:local-meet} over the open segment, which is
+connected, shows preconnectedness. A preconnected set missing $\gs G$ and meeting the component $C$
+lies in $C$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.sideRadius}, \lean{HPC.Plane.edge_local}, \lean{HPC.Plane.sideStrip},
+\lean{HPC.Plane.sideStrip_isPreconnected}, \lean{HPC.Plane.sideStrip_subset_compl},
+\lean{HPC.Plane.subset_or_disjoint_component}.}
+
+\begin{definition}
+The \emph{odd set} $\odd(G,x)$ is the set of edges $e\in G$ exactly one of whose side strips lies in
+$C$.
+\end{definition}
+
+\formal{\lean{HPC.Plane.oddSet}.}
+
+So membership in $C$ changes across an edge $e$ (from one side strip to the other) exactly when
+$e\in\odd(G,x)$.
+
+\begin{lemma}\label{lem:odd-even}
+$\odd(G,x)$ is a cycle.
+\end{lemma}
+
+\begin{proof}
+It is proper as a subset of $G$. Let $w$ be a vertex. Take a small euclidean circle about $w$, of
+radius less than the distance from $w$ to the segments not ending at $w$ and to the other ends of
+the segments at $w$. Each segment $e$ ending at $w$ crosses the circle exactly once, at an angle
+$\theta_e$ (distinct edges at distinct angles), and nothing else of $\gs G$ meets the circle; just
+before $\theta_e$ the circle runs in one side strip of $e$, just after it in the other. Parametrise
+the circle by angles in $[\alpha,\alpha+2\pi]$ with $\alpha$ not a crossing angle, and let
+$F(t)\in\Z/2$ be $1$ if the point at angle $t$ lies in $C$ and $0$ otherwise. Off the crossing angles
+$F$ is locally constant (components of the open set $\R^2\setminus\gs G$ are open), and at $\theta_e$ it
+jumps by $1$ exactly when $e\in\odd(G,x)$. Since $F(\alpha)=F(\alpha+2\pi)$, the sum of the jumps is
+$0$ in $\Z/2$; that is, the number of edges of $\odd(G,x)$ at $w$ is even.
+\end{proof}
+
+\formal{\lean{HPC.Plane.even_deg_oddSet}, \lean{HPC.Plane.isCycle_oddSet}; the circle argument is
+\lean{HPC.Plane.vertex_arcs} and \lean{HPC.Plane.zmod2_jump_sum}.}
+
+\begin{theorem}\label{thm:odd-cycle}
+Let $g(z)=[z\in C]+\parity_{\odd(G,x)}(z)\in\Z/2$ for $z\notin\gs G$. Then $g$ is constant on
+$\R^2\setminus\gs G$. Consequently, if $\gs G$ separates $x$ from $y$, then
+$\parity_{\odd(G,x)}(x)\neq\parity_{\odd(G,x)}(y)$.
+\end{theorem}
+
+\begin{proof}
+Write $Z=\odd(G,x)$, a cycle (Lemma~\ref{lem:odd-even}). Its parity is constant on each side strip
+of every $e\in G$ (Proposition~\ref{prop:cycle-parity}), and it differs on the two side strips of $e$
+if and only if $e\in Z$: for $e\in Z$ by Lemma~\ref{lem:cycle-flip} at a generic point of $e$; for
+$e\notin Z$ because the midpoint of $e$ is off $\gs Z$ and the parity is locally constant there. The
+indicator $[z\in C]$ differs on the two side strips of $e$ exactly when $e\in Z$, by definition. So
+$g$ takes the same value on the two side strips of each edge.
+
+Let $W$ be the plane minus the finitely many vertices of $G$; it is connected (two points of $W$
+can be joined by two segments through a point chosen off finitely many lines). Every $w\in W$ has a
+ball $B_w\subseteq W$ on which $g$ is constant off $\gs G$: if $w\notin\gs G$ by local constancy, and
+if $w$ is a non-vertex point of an edge $e$ because $B(w,\rho_e(w))\setminus\gs G$ is the union of
+two half-discs lying in the two side strips of $e$. Every ball contains points off $\gs G$, so
+overlapping balls carry the same constant, and since $W$ is connected, $g$ is constant on
+$\R^2\setminus\gs G$.
+
+If $\gs G$ separates $x$ from $y$, then $g(x)=1+\parity_Z(x)$ and $g(y)=0+\parity_Z(y)$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.gFun}, \lean{HPC.Plane.gFun_eq_across_edge}, \lean{HPC.Plane.gFun_const},
+\lean{HPC.Plane.cycParity_oddSet_ne}.}
+
+\section{Simple cycles}
+
+\begin{proposition}\label{prop:simple-cycles}
+Every cycle $Z$ is the disjoint union of finitely many subsets $C_1,\dots,C_k$, each of which is
+the edge list of a simple closed polygon $\Gamma_j=\gs{C_j}$, with $\parity_{C_j}=\parity$ of
+$\Gamma_j$. Hence $\parity_Z=\sum_j\parity_{C_j}$, and $\parity_{C_j}(x)=1$ if and only if
+$x\in\inn\Gamma_j$, for $x\notin\Gamma_j$.
+\end{proposition}
+
+\begin{proof}
+If $Z\neq\emptyset$, walk along edges of $Z$ without repeating a vertex: a walk ending at a vertex
+$w$ reached along an edge can be continued along another edge at $w$, since $\dg_Z(w)$ is even and
+positive. As there are finitely many vertices, eventually the next vertex is one already visited;
+the vertices from that one on form a cyclic sequence of $\ge3$ distinct points, consecutive ones
+joined by edges of $Z$. Since $Z$ is proper, these edges form a simple closed polygon (adjacent edges
+share one end; non-adjacent ones share no end and therefore are disjoint), and every vertex has
+degree $2$ in it. Removing these edges from $Z$ leaves a cycle with fewer edges; induct. The last
+statement is Corollary~\ref{cor:jct-consequences}(a).
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_cycle_vertices}, \lean{HPC.Plane.simpleCycle_of_vertices},
+\lean{HPC.Plane.exists_simpleCycle_decomposition}, \lean{HPC.Plane.IsSimpleCycle},
+\lean{HPC.Plane.polyInterior_eq_oddSet}.}
+
+\begin{remark}[Janiszewski by cycles]\label{rem:jan-cycles}
+Theorem~\ref{thm:odd-cycle} is also the heart of the formal development's first proof of
+Janiszewski's theorem for polygonal sets, which predates the proof by logarithms of
+Chapter~\ref{ch:sep}. Subdivide $A\cup B$ into a proper graph $K$ with subgraphs $A',B'$ carrying
+$A$ and $B$. If $A\cup B$ separates $x$ from $y$, Theorem~\ref{thm:odd-cycle} gives a cycle $Z$ in
+$K$ with different parities at $x$ and $y$. A Mayer--Vietoris argument, using that $A\cap B$ is
+connected or empty, writes $Z=Z_A\triangle Z_B$ with cycles $Z_A\subseteq A'$, $Z_B\subseteq B'$; by
+additivity one of them has different parities at $x$ and $y$, so $A$ or $B$ separates them
+(Proposition~\ref{prop:cycle-parity}). Isolated points of $A$ and $B$ need separate care. These
+notes do not need this proof. (\lean{HPC.Plane.exists_proper_subdivision},
+\lean{HPC.Plane.exists_cycle_decomposition}, \lean{HPC.Plane.janiszewskiPoly_holds},
+\lean{HPC.Plane.janiszewski_polygonal}.)
+\end{remark}
+
+\section{Grid unions}
+
+Fix a mesh $\delta>0$. For $a,b\in\Z$ the \emph{grid square} is
+$Q_{ab}=[\delta a,\delta(a+1)]\times[\delta b,\delta(b+1)]$. For a finite set $S\subseteq\Z^2$ let
+$Q_S=\bigcup_{(a,b)\in S}Q_{ab}$, and let $\partial S$ be the graph of those edges of grid squares
+that are edges of exactly one square of $S$ (an edge is shared by the two squares on either side of
+it).
+
+\begin{lemma}\label{lem:grid}
+$\partial S$ is a proper graph, and $\operatorname{fr}Q_S=\gs{\partial S}$: both are the set of
+points lying in a square of $S$ and in a square not in $S$. A point all of whose grid squares
+belong to $S$ is interior to $Q_S$.
+\end{lemma}
+
+\begin{proof}
+Grid edges of one mesh meet at most in common ends, so every set of them is proper. A neighbourhood
+of a point $z$ is covered by the (at most four) grid squares containing $z$; so $z$ is interior to
+$Q_S$ if all of them are in $S$, and a frontier point of $Q_S$ otherwise, provided $z\in Q_S$ (points
+strictly inside a square not in $S$ lie outside $Q_S$ and come arbitrarily close to every point of
+that square). If $z$ lies in a square of $S$ and in a square not in $S$, these two squares can be
+chosen in one row or one column, sharing an edge through $z$ which then belongs to exactly one
+square of $S$; conversely the two squares on the sides of an edge of $\partial S$ are one in $S$ and
+one not.
+\end{proof}
+
+\formal{\lean{HPC.Plane.gsq}, \lean{HPC.Plane.sqUnion}, \lean{HPC.Plane.bdryOf},
+\lean{HPC.Plane.isProper_bdryOf}, \lean{HPC.Plane.mem_frontier_sqUnion_iff},
+\lean{HPC.Plane.mem_graphSet_bdryOf_iff}, \lean{HPC.Plane.frontier_sqUnion},
+\lean{HPC.Plane.mem_interior_sqUnion}.}
+
+For a bounded set $M$ let $S(M,\delta)$ be the (finite) set of indices of the grid squares meeting
+the closed $\delta$-neighbourhood $M^{\delta}=\set{z:\dist(z,M)\le\delta}$, and write
+$Q(M,\delta)=Q_{S(M,\delta)}$ and $\partial(M,\delta)=\partial S(M,\delta)$.
+
+\begin{lemma}\label{lem:grid-union}
+Let $M$ be bounded and $\delta>0$.
+\begin{enumerate}[label=(\alph*)]
+\item $M\subseteq\interior Q(M,\delta)$; in particular $M$ misses $\gs{\partial(M,\delta)}$.
+\item $Q(M,\delta)\subseteq M^{2\delta}$.
+\item Let $R$ be the largest abscissa of a point of $Q(M,\delta)$, $f=(R+1,0)$ and $K$ the component
+of $f$ in $\R^2\setminus\gs{\partial(M,\delta)}$. Then $K$ is unbounded, contains the half-plane
+$\set{z_1>R}$, and is disjoint from $\interior Q(M,\delta)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Every grid square containing a point of $M$ meets $M^\delta$. (b) A square of side $\delta$
+meeting $M^\delta$ lies in $M^{2\delta}$ (sup metric). (c) The half-plane is connected, misses
+$Q(M,\delta)\supseteq\gs{\partial(M,\delta)}$ and contains $f$. The connected set $K$ misses
+$\operatorname{fr}Q(M,\delta)$ and contains $f\notin Q(M,\delta)$, so it misses $\interior
+Q(M,\delta)$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.sqIdx}, \lean{HPC.Plane.gridUnion}, \lean{HPC.Plane.bdryGraph},
+\lean{HPC.Plane.subset_interior_gridUnion}, \lean{HPC.Plane.disjoint_frontier_gridUnion},
+\lean{HPC.Plane.gridUnion_subset_cthickening}, \lean{HPC.Plane.frontier_gridUnion},
+\lean{HPC.Plane.farPt}, \lean{HPC.Plane.halfPlane_subset_component},
+\lean{HPC.Plane.not_isBounded_component},
+\lean{HPC.Plane.interior_gridUnion_disjoint_component}.}
+
+\section{The enclosing polygon}
+
+\begin{theorem}\label{thm:enclosing-polygon}
+Let $M$ be a continuum and $\delta>0$, and let $K$ be as in Lemma~\ref{lem:grid-union}(c). There is a
+simple closed polygon $J\subseteq\gs{\partial(M,\delta)}$ with $J\cap M=\emptyset$, $M\subseteq\inn J$
+and $\inn J\cap K=\emptyset$. If $M$ is merely bounded, then for each $x\in M$ there is a simple closed
+polygon $J\subseteq\gs{\partial(M,\delta)}$ with $x\in\inn J$.
+\end{theorem}
+
+\begin{proof}
+Write $G=\partial(M,\delta)$ and $Z=\odd(G,f)$. Let $x\in M$. Then $x\notin\gs G$ and $x\notin K$
+(Lemma~\ref{lem:grid-union}). Choose $y$ in the half-plane of Lemma~\ref{lem:grid-union}(c) so far
+east that $\parity_Z(y)=0$; then $y\in K$. By Theorem~\ref{thm:odd-cycle}, $g(x)=g(y)$ with $g$ as
+there (and the base point $f$), that is $0+\parity_Z(x)=1+0$: so $\parity_Z(x)=1$.
+
+Decompose $Z$ into simple cycles $C_1,\dots,C_k$ (Proposition~\ref{prop:simple-cycles}). By
+additivity $\sum_j\parity_{C_j}(x)=1$, so $\parity_{C_j}(x)=1$ for some $j$. Let $J=\gs{C_j}$, a simple
+closed polygon contained in $\gs G$; hence $J\cap M=\emptyset$ and $x\in\inn J$. If $M$ is a
+continuum, the parity of $C_j$ is constant on the connected set $M$ (Proposition~\ref{prop:cycle-parity};
+the index $j$ was chosen for one point $x_0\in M$), so $M\subseteq\inn J$. Finally $K$ is connected,
+unbounded and misses $J\subseteq\gs G$, so it misses $\inn J$ (Lemma~\ref{lem:ins-basic}(a)).
+\end{proof}
+
+\formal{\lean{HPC.Plane.cycParity_oddSet_eq_one_on}, \lean{HPC.Plane.exists_enclosing_polygon},
+\lean{HPC.Plane.exists_enclosing_polygon_pt}.}
+
+Note that Theorem~\ref{thm:enclosing-polygon} does not need $M$ to be non-separating. That
+hypothesis enters when the polygon is to lie in a given neighbourhood of $M$.
+
+\section{Enclosing polygons inside a given open set}
+
+\begin{theorem}[Enclosing polygons]\label{thm:enclose}
+Let $M$ be a continuum that does not separate the plane and $G\supseteq M$ open. There is a simple
+closed polygon $J$ with $J\cap M=\emptyset$ and $M\subseteq\inn J\subseteq G$.
+\end{theorem}
+
+\begin{proof}
+Write $K_\delta$ for the component of Lemma~\ref{lem:grid-union}(c) at mesh $\delta$. By
+Theorem~\ref{thm:enclosing-polygon} it suffices to find $\delta>0$ with $\R^2\setminus G\subseteq
+K_\delta$: then $\inn J\subseteq\R^2\setminus K_\delta\subseteq G$.
+
+\emph{Far sets lie in $K_\delta$.} If $S$ is preconnected, every point of $S$ has distance $>2\delta$
+from $M$, and $S$ meets $K_\delta$, then $S\subseteq K_\delta$: indeed $S$ misses
+$M^{2\delta}\supseteq Q(M,\delta)\supseteq\gs{\partial(M,\delta)}$ (Lemma~\ref{lem:grid-union}(b)).
+
+Choose $R$ with $M\subseteq B(0,R)$. The ray $\set{(t,0):t\ge R+1}$ and the complement of
+$\bar B(0,R+1)$ (four open half-planes) are at distance $\ge1$ from $M$; the ray meets the eastern
+half-plane of Lemma~\ref{lem:grid-union}(c), and each of the four half-planes meets the ray or one of
+its neighbours. So for $2\delta<1$ both lie in $K_\delta$.
+
+\emph{Uniform pieces.} The set $\R^2\setminus M$ is open and connected, hence path-connected. For
+each $x\notin M$ choose a path $\gamma_x$ in $\R^2\setminus M$ from $x$ to $f_0=(R+1,0)$; its range is
+compact and misses $M$, so it has distance $d_x>0$ from $M$. With $r_x=d_x/2$, the set
+$P_x=\bar B(x,r_x)\cup\gamma_x([0,1])$ is preconnected, contains $f_0$, and all its points have
+distance $\ge r_x$ from $M$. The compact set $(\R^2\setminus G)\cap\bar B(0,R+1)$ misses $M$ and is
+covered by finitely many balls $B(x_i,r_{x_i})$. Let $d=\min(1,r_{x_1},\dots,r_{x_k})$ and
+$\delta=d/3$, so $2\delta<d$. Each $P_{x_i}$ meets $K_\delta$ (at $f_0$, which is on the ray), so
+$P_{x_i}\subseteq K_\delta$. Hence $(\R^2\setminus G)\cap\bar B(0,R+1)\subseteq K_\delta$, and the rest of
+$\R^2\setminus G$ lies outside $\bar B(0,R+1)$, also in $K_\delta$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.enclose_holds}, from \lean{HPC.Plane.subset_component_of_far},
+\lean{HPC.Plane.eastRay_subset_component}, \lean{HPC.Plane.compl_closedBall_subset_component},
+\lean{HPC.Plane.exists_far_piece}, \lean{HPC.Plane.exists_uniform_pieces} and
+\lean{HPC.Plane.exists_mesh_compl_subset}.}
+
+\section{Polygons around points}
+
+\begin{theorem}\label{thm:polygon-around}
+Let $W\subseteq\R^2$ be open, $p\notin W$, and suppose the component of $p$ in $\R^2\setminus W$ is
+bounded. Then there is a simple closed polygon $J\subseteq W$ with $p\in\inn J$.
+\end{theorem}
+
+\begin{proof}
+Let $\comp{}{}$ denote the component of $p$ in $\R^2\setminus W$, contained in $B(0,R)$. The set
+$X=(\R^2\setminus W)\cap\bar B(0,R)$ is compact. No continuum in $X$ meets both $\set p$ and the square
+$E=\set{z\in X:\nrm z=R}$: such a continuum would be a connected subset of $\R^2\setminus W$
+containing $p$, hence inside $B(0,R)$. By \vthree{Theorem~1.9} (in the compact space $X$, applied to
+the closed sets $\set p$ and $E$; a preconnected set meeting both has a continuum as closure),
+$X=F_1\cup F_2$ with $F_1,F_2$ disjoint and closed, $p\in F_1$, $E\subseteq F_2$. Then $F_1\subseteq
+B(0,R)$, and $F_1$ has positive distance from the closed set $Z=F_2\cup\set{\nrm z\ge R}$; choose
+$\delta>0$ with $F_1^{\delta}\cap Z=\emptyset$.
+
+Apply the second part of Theorem~\ref{thm:enclosing-polygon} to $M=F_1$, the point $p$ and mesh
+$\delta/2$: there is a simple closed polygon $J\subseteq\gs{\partial(F_1,\delta/2)}$ with $p\in\inn J$.
+By Lemma~\ref{lem:grid-union}(a,b), $J$ lies in $F_1^{\delta}$ and misses $F_1$. A point of
+$F_1^{\delta}$ is not in $Z$; if it is not in $F_1$ either, it is not in $X$ but has norm $<R$, so it
+lies in $W$. Hence $J\subseteq W$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_polygon_around}; the splitting is \lean{HPC.Plane.exists_split_of_no_continuum}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Draw a finite set $S$ of grid squares whose boundary graph $\partial S$ is not a single simple
+closed polygon, and identify $\odd(\partial S,f)$ for a far point $f$.
+\end{exercise}
+
+\begin{exercise}
+Show that Theorem~\ref{thm:enclose} fails for a circle $M$. Which step of the proof fails?
+\end{exercise}
+
+\begin{exercise}
+Deduce from Theorems~\ref{thm:polygon-around} and~\ref{thm:nolog-polygon} that if $K$ is compact and
+$\comp Kp$ is bounded, then $z-p$ has no logarithm on any open set $W\supseteq K$ with $p\notin W$.
+Compare with Theorem~\ref{thm:nolog-bounded}.
+\end{exercise}

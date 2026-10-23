@@ -1,0 +1,43 @@
+folds but criterion fails: 2 3 4 5 6 7 6 5 4 3 2 1
+folds but criterion fails: 2 3 4 5 6 7 6 5 4 3 2 1 0
+folds but criterion fails: 2 3 4 5 6 7 6 5 4 3 2 1 1
+folds but criterion fails: 2 3 4 5 6 7 6 5 4 3 2 1 2
+folds but criterion fails: 2 3 4 5 6 7 6 5 4 3 2 2 1
+p=3 L=0 H=9, arms of length <= 13 from level 2: 564978
+folds but criterion fails: 9 ; criterion holds but no fold: 0
+folds but profile fails: 0 ; profile holds but no fold: 0
+p=3 L=0 H=9, arms of length <= 13 from level 3: 664935
+folds but criterion fails: 0 ; criterion holds but no fold: 0
+folds but profile fails: 0 ; profile holds but no fold: 0
+criterion holds but no fold: 4 4 5 6 7 6 5 4 3 2 1
+criterion holds but no fold: 4 4 5 6 7 6 5 4 3 2 1 0
+criterion holds but no fold: 4 4 5 6 7 6 5 4 3 2 1 0 0
+criterion holds but no fold: 4 4 5 6 7 6 5 4 3 2 1 0 1
+criterion holds but no fold: 4 4 5 6 7 6 5 4 3 2 1 1
+p=3 L=0 H=9, arms of length <= 13 from level 4: 713817
+folds but criterion fails: 0 ; criterion holds but no fold: 204
+folds but profile fails: 0 ; profile holds but no fold: 0
+criterion holds but no fold: 5 5 6 7 6 5 4 3 2
+criterion holds but no fold: 5 5 6 7 6 5 4 3 2 1
+criterion holds but no fold: 5 5 6 7 6 5 4 3 2 1 0
+criterion holds but no fold: 5 5 6 7 6 5 4 3 2 1 0 0
+criterion holds but no fold: 5 5 6 7 6 5 4 3 2 1 0 1
+p=4 L=0 H=9, arms of length <= 12 from level 5: 243218
+folds but criterion fails: 0 ; criterion holds but no fold: 543
+folds but profile fails: 0 ; profile holds but no fold: 0
+criterion holds but no fold: 6 6 7 6 5 4 3
+criterion holds but no fold: 6 6 7 6 5 4 3 2
+criterion holds but no fold: 6 6 7 6 5 4 3 2 1
+criterion holds but no fold: 6 6 7 6 5 4 3 2 1 0
+criterion holds but no fold: 6 6 7 6 5 4 3 2 1 0 0
+p=5 L=0 H=9, arms of length <= 12 from level 6: 227380
+folds but criterion fails: 0 ; criterion holds but no fold: 3222
+folds but profile fails: 0 ; profile holds but no fold: 0
+criterion holds but no fold: 4 4 5 4 3 2 1
+criterion holds but no fold: 4 4 5 4 3 2 1 0
+criterion holds but no fold: 4 4 5 4 3 2 1 0 0
+criterion holds but no fold: 4 4 5 4 3 2 1 0 0 0
+criterion holds but no fold: 4 4 5 4 3 2 1 0 0 0 0
+p=3 L=0 H=7, arms of length <= 12 from level 4: 213122
+folds but criterion fails: 0 ; criterion holds but no fold: 2756
+folds but profile fails: 0 ; profile holds but no fold: 0

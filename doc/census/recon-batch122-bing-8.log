@@ -1,0 +1,2 @@
+bing KK=8 (length 170): subchain/frame pairs=14365 instances=833170 failures=0
+# branch statistics: {'base': 124303, 'general/IH-high': 811093, 'general/IH-low': 976014, 'general/special': 559100, 'level': 462987, 'special/branch1': 223808, 'special/branch3': 223808, 'special/middle': 111484}

@@ -1,0 +1,399 @@
+census-batch54: inside the residues, with a generator outside Bing's family.
+rounds=40 seed=5403 walk-steps=200 concat-draws=60
+
+==== base chain bing 0 9 (n = 986 links); IsCrookedIvF: 1 ====
+  [mix 3] no three-turn walk at the branch L+5, basepoint 347; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 3] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 3] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 12] no three-turn walk at the branch L+5, basepoint 873; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 12] no three-turn walk at the branch L+5, basepoint 875; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 12] no three-turn walk at the branch L+5, basepoint 877; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 13] no three-turn walk at the branch L+5, basepoint 343; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 13] no three-turn walk at the branch L+5, basepoint 347; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 13] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 13] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 18] no three-turn walk at the branch L+5, basepoint 873; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 18] no three-turn walk at the branch L+5, basepoint 875; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 18] no three-turn walk at the branch L+5, basepoint 877; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 23] no three-turn walk at the branch L+5, basepoint 873; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 23] no three-turn walk at the branch L+5, basepoint 875; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 23] no three-turn walk at the branch L+5, basepoint 877; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 2] no three-turn walk at the branch L+5, basepoint 873; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 2] no three-turn walk at the branch L+5, basepoint 875; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 2] no three-turn walk at the branch L+5, basepoint 877; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 2] no three-turn walk at the branch L+5, basepoint 881; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 4] no three-turn walk at the branch L+5, basepoint 347; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 4] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 4] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 5] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 5] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 7] no three-turn walk at the branch L+5, basepoint 873; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 7] no three-turn walk at the branch L+5, basepoint 875; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 7] no three-turn walk at the branch L+5, basepoint 876; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 7] no three-turn walk at the branch L+5, basepoint 877; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 12] no three-turn walk at the branch L+5, basepoint 873; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 12] no three-turn walk at the branch L+5, basepoint 875; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 12] no three-turn walk at the branch L+5, basepoint 876; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 12] no three-turn walk at the branch L+5, basepoint 877; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 12] no three-turn walk at the branch L+5, basepoint 881; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 27] no three-turn walk at the branch L+5, basepoint 873; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 27] no three-turn walk at the branch L+5, basepoint 875; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 27] no three-turn walk at the branch L+5, basepoint 876; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 27] no three-turn walk at the branch L+5, basepoint 877; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 29] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 29] no three-turn walk at the branch L+5, basepoint 350; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 29] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 29] no three-turn walk at the branch L+5, basepoint 353; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 29] no three-turn walk at the branch L+5, basepoint 359; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 29] no three-turn walk at the branch L+5, basepoint 360; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 29] no three-turn walk at the branch L+5, basepoint 361; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 29] no three-turn walk at the branch L+5, basepoint 363; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 29] no three-turn walk at the branch L+5, basepoint 364; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 29] no three-turn walk at the branch L+5, basepoint 365; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 31] no three-turn walk at the branch L+5, basepoint 873; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 31] no three-turn walk at the branch L+5, basepoint 875; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 31] no three-turn walk at the branch L+5, basepoint 876; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 31] no three-turn walk at the branch L+5, basepoint 877; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 32] no three-turn walk at the branch L+5, basepoint 343; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 32] no three-turn walk at the branch L+5, basepoint 349; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 32] no three-turn walk at the branch L+5, basepoint 351; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 34] no three-turn walk at the branch L+5, basepoint 873; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 34] no three-turn walk at the branch L+5, basepoint 875; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 34] no three-turn walk at the branch L+5, basepoint 876; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 34] no three-turn walk at the branch L+5, basepoint 877; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  the total mixture is faithful
+  random perturbation walk: 200 steps tried, 30 accepted
+
+==== base chain bing 9 0 (n = 986 links); IsCrookedIvF: 1 ====
+  [mix 2] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 2] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 2] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 3] no three-turn walk at the branch L+5, basepoint 104; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 3] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 3] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 3] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 4] no three-turn walk at the branch L+5, basepoint 104; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 4] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 4] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 4] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 8] no three-turn walk at the branch L+5, basepoint 104; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 8] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 8] no three-turn walk at the branch L+5, basepoint 109; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 8] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 8] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 9] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 9] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 9] no three-turn walk at the branch L+5, basepoint 642; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 10] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 10] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 10] no three-turn walk at the branch L+5, basepoint 638; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 16] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 16] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 16] no three-turn walk at the branch L+5, basepoint 638; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 16] no three-turn walk at the branch L+5, basepoint 642; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 20] no three-turn walk at the branch L+5, basepoint 104; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 20] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [mix 20] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 20] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [mix 24] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 24] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 24] no three-turn walk at the branch L+5, basepoint 642; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 29] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 29] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 29] no three-turn walk at the branch L+5, basepoint 642; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 31] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 31] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 31] no three-turn walk at the branch L+5, basepoint 638; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 31] no three-turn walk at the branch L+5, basepoint 642; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 33] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 33] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 33] no three-turn walk at the branch L+5, basepoint 638; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 33] no three-turn walk at the branch L+5, basepoint 642; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [mix 35] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 35] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [mix 35] no three-turn walk at the branch L+5, basepoint 638; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 109; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 620; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 621; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 622; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 624; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 625; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 626; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 628; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 635; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 638; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 3] no three-turn walk at the branch L+5, basepoint 642; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 13] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 13] no three-turn walk at the branch L+5, basepoint 109; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 13] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 13] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 14] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 14] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 14] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 22] no three-turn walk at the branch L+5, basepoint 624; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 22] no three-turn walk at the branch L+5, basepoint 626; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 22] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 22] no three-turn walk at the branch L+5, basepoint 635; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 22] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 22] no three-turn walk at the branch L+5, basepoint 638; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 624; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 626; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 635; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 25] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 26] no three-turn walk at the branch L+5, basepoint 104; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 26] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 26] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 26] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 26] no three-turn walk at the branch L+5, basepoint 624; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 26] no three-turn walk at the branch L+5, basepoint 626; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 26] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 26] no three-turn walk at the branch L+5, basepoint 635; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 26] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 35] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 35] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 35] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 36] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 36] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 104; shortest four-turn walk (18 times): 6 -> 7 -> 3 -> 8 -> 1
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 108; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 109; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 110; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 112; shortest four-turn walk (19 times): 5 -> 7 -> 3 -> 8 -> 1
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 624; shortest four-turn walk (21 times): 6 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 626; shortest four-turn walk (20 times): 5 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 628; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 632; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 634; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 635; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 636; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 638; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  [heavy 37] no three-turn walk at the branch L+5, basepoint 642; shortest four-turn walk (19 times): 4 -> 3 -> 7 -> 1 -> 8
+  the total mixture is faithful
+  random perturbation walk: 200 steps tried, 25 accepted
+
+  vpath 0 9 (1,2) (n = 174): NOT faithful
+
+  vpath 0 9 (2,1) (n = 174): NOT faithful
+
+  vpath 0 9 (2,2) (n = 66): NOT faithful
+
+  vpath 9 0 (2,2) (n = 66): NOT faithful
+
+==== chain outside Bing's family: bing 0 9 + bing 9 0 (n = 1971 links) ====
+
+==== chain outside Bing's family: bing 9 0 + bing 0 9 (n = 1971 links) ====
+
+random chains: 2 faithful of 6 tried
+
+random concatenations of Bing blocks: 13 faithful of 45 drawn
+
+================ totals ================
+
+-- the thin chains --
+faithful pairs: 2; non-thin links 0/1972 (0.00000)
+branch L+4: basepoints 364, unserved 110; served by w3 110, w4 16, w5 110; by one of the three 110; BY NONE 0
+  sentence holds at 110 unserved pairs; equivalence failures 0; exactness checks 2184 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 18; of those, pairs missing the Lambda-walk 0
+  there: w4 sentence on both arms 0, w5 sentence on both arms 0, one of the two 0, NEITHER 0
+  with the pair unserved by both canonical walks: 0; w4 sentence 0, w5 sentence 0, NEITHER 0
+  arm dichotomies over 728 arms of the branch: arms failing Valley5 182 (fold onto the V-walk 182, FAILURES 0); failing TopW5 0 (fold onto the Lambda-walk 0, others 0); failing MidW4 360 (fold onto a canonical walk 360, others 0); failing BottomW4 110 (fold onto a canonical walk 110, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 0, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 0, CeilHighResidual 0, one of the two 0, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 0
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 70, of which both arms fold onto the V-walk 70
+  ValleyResidual at a branch basepoint: 92 (narrow: 92); with a failing arm: 38 (narrow: 38); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 464, unserved 110; served by the reflection of w3 110, of w4 16, of w5 110; by one of the three 110; BY NONE 0
+  of those, served by some walk of at most three turns based within one of L+5: 0; by none: 0
+BATCH 54, the sharpened residues: ValleyNarrowResidual 92 (with a failing arm 38); CeilFarFlatG 0, CeilFarFlatT 0 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 0; covered by cross_ceil_sentence_of_not_narrow_residual 0
+  walks inside the valley residue with a failing arm (38 basepoints): Lambda 0, V 38, w3 0, w4 16, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (38 basepoints): Lambda 0, V 38, w3 0, w4 16, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue: the residue is empty
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom): the residue is empty
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 464, of which both tau-arms are HighAt: 364; there one of the five walks serves the tau-pair 364 times, NONE 0
+
+-- single shavings --
+faithful pairs: 576; non-thin links 576/567936 (0.00101)
+branch L+4: basepoints 105004, unserved 31596; served by w3 31590, w4 4602, w5 31526; by one of the three 31596; BY NONE 0
+  sentence holds at 31596 unserved pairs; equivalence failures 0; exactness checks 630024 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 5184; of those, pairs missing the Lambda-walk 18
+  there: w4 sentence on both arms 6, w5 sentence on both arms 18, one of the two 18, NEITHER 0
+  with the pair unserved by both canonical walks: 6; w4 sentence 6, w5 sentence 6, NEITHER 0
+  arm dichotomies over 210008 arms of the branch: arms failing Valley5 52536 (fold onto the V-walk 52536, FAILURES 0); failing TopW5 12 (fold onto the Lambda-walk 12, others 0); failing MidW4 103768 (fold onto a canonical walk 103768, others 0); failing BottomW4 31776 (fold onto a canonical walk 31776, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 6, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 0, CeilHighResidual 0, one of the two 0, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 18
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 20194, of which both arms fold onto the V-walk 20194
+  ValleyResidual at a branch basepoint: 26412 (narrow: 26412); with a failing arm: 10934 (narrow: 10934); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 133462, unserved 31692; served by the reflection of w3 31626, of w4 4592, of w5 31622; by one of the three 31692; BY NONE 0
+  of those, served by some walk of at most three turns based within one of L+5: 0; by none: 0
+BATCH 54, the sharpened residues: ValleyNarrowResidual 26412 (with a failing arm 10934); CeilFarFlatG 18, CeilFarFlatT 18 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 0; covered by cross_ceil_sentence_of_not_narrow_residual 18
+  walks inside the valley residue with a failing arm (10934 basepoints): Lambda 0, V 10934, w3 0, w4 4600, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (10934 basepoints): Lambda 0, V 10934, w3 0, w4 4600, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue: the residue is empty
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom): the residue is empty
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 133304, of which both tau-arms are HighAt: 104684; there one of the five walks serves the tau-pair 104684 times, NONE 0
+
+-- single fills --
+faithful pairs: 576; non-thin links 576/567936 (0.00101)
+branch L+4: basepoints 104832, unserved 31680; served by w3 31680, w4 4608, w5 31680; by one of the three 31680; BY NONE 0
+  sentence holds at 31680 unserved pairs; equivalence failures 0; exactness checks 628992 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 5184; of those, pairs missing the Lambda-walk 0
+  there: w4 sentence on both arms 0, w5 sentence on both arms 0, one of the two 0, NEITHER 0
+  with the pair unserved by both canonical walks: 0; w4 sentence 0, w5 sentence 0, NEITHER 0
+  arm dichotomies over 209664 arms of the branch: arms failing Valley5 52416 (fold onto the V-walk 52416, FAILURES 0); failing TopW5 0 (fold onto the Lambda-walk 0, others 0); failing MidW4 103680 (fold onto a canonical walk 103680, others 0); failing BottomW4 31680 (fold onto a canonical walk 31680, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 0, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 0, CeilHighResidual 0, one of the two 0, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 0
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 20160, of which both arms fold onto the V-walk 20160
+  ValleyResidual at a branch basepoint: 26496 (narrow: 26496); with a failing arm: 10944 (narrow: 10944); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 133632, unserved 31680; served by the reflection of w3 31680, of w4 4608, of w5 31680; by one of the three 31680; BY NONE 0
+  of those, served by some walk of at most three turns based within one of L+5: 0; by none: 0
+BATCH 54, the sharpened residues: ValleyNarrowResidual 26496 (with a failing arm 10944); CeilFarFlatG 0, CeilFarFlatT 0 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 0; covered by cross_ceil_sentence_of_not_narrow_residual 0
+  walks inside the valley residue with a failing arm (10944 basepoints): Lambda 0, V 10944, w3 0, w4 4608, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (10944 basepoints): Lambda 0, V 10944, w3 0, w4 4608, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue: the residue is empty
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom): the residue is empty
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 133530, of which both tau-arms are HighAt: 104820; there one of the five walks serves the tau-pair 104820 times, NONE 0
+
+-- random mixtures (rate 1/3) --
+faithful pairs: 80; non-thin links 15314/78880 (0.19414)
+branch L+4: basepoints 16842, unserved 3442; served by w3 3404, w4 507, w5 2714; by one of the three 3442; BY NONE 0
+  sentence holds at 3442 unserved pairs; equivalence failures 0; exactness checks 101052 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 691; of those, pairs missing the Lambda-walk 228
+  there: w4 sentence on both arms 83, w5 sentence on both arms 228, one of the two 228, NEITHER 0
+  with the pair unserved by both canonical walks: 38; w4 sentence 32, w5 sentence 38, NEITHER 0
+  arm dichotomies over 33684 arms of the branch: arms failing Valley5 9017 (fold onto the V-walk 9017, FAILURES 0); failing TopW5 181 (fold onto the Lambda-walk 181, others 0); failing MidW4 15278 (fold onto a canonical walk 15278, others 0); failing BottomW4 5844 (fold onto a canonical walk 5844, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 87, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 18, CeilHighResidual 0, one of the two 18, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 210
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 3399, of which both arms fold onto the V-walk 3399
+  ValleyResidual at a branch basepoint: 2509 (narrow: 2509); with a failing arm: 1294 (narrow: 1294); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 16772, unserved 4639; served by the reflection of w3 3598, of w4 428, of w5 3634; by one of the three 4275; BY NONE 364
+  of those, served by some walk of at most three turns based within one of L+5: 301; by none: 63
+BATCH 54, the sharpened residues: ValleyNarrowResidual 2509 (with a failing arm 1294); CeilFarFlatG 228, CeilFarFlatT 228 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 18; covered by cross_ceil_sentence_of_not_narrow_residual 210
+  walks inside the valley residue with a failing arm (1294 basepoints): Lambda 0, V 1294, w3 0, w4 480, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (1294 basepoints): Lambda 0, V 1294, w3 0, w4 480, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue (18 basepoints): Lambda 0, V 18, w3 0, w4 0, w5 18; served by NONE of the five 0
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom) (18 basepoints): Lambda 0, V 18, w3 0, w4 0, w5 18; served by NONE of the five 0
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 13648, of which both tau-arms are HighAt: 12146; there one of the five walks serves the tau-pair 12146 times, NONE 0
+
+-- heavy mixtures (rate 1/2, and the total mixture) --
+faithful pairs: 82; non-thin links 24190/80852 (0.29919)
+branch L+4: basepoints 19280, unserved 3418; served by w3 3387, w4 478, w5 2546; by one of the three 3418; BY NONE 0
+  sentence holds at 3418 unserved pairs; equivalence failures 0; exactness checks 115680 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 617; of those, pairs missing the Lambda-walk 237
+  there: w4 sentence on both arms 74, w5 sentence on both arms 237, one of the two 237, NEITHER 0
+  with the pair unserved by both canonical walks: 31; w4 sentence 23, w5 sentence 31, NEITHER 0
+  arm dichotomies over 38560 arms of the branch: arms failing Valley5 10487 (fold onto the V-walk 10487, FAILURES 0); failing TopW5 423 (fold onto the Lambda-walk 423, others 0); failing MidW4 16918 (fold onto a canonical walk 16918, others 0); failing BottomW4 7499 (fold onto a canonical walk 7499, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 184, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 16, CeilHighResidual 0, one of the two 16, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 221
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 3729, of which both arms fold onto the V-walk 3729
+  ValleyResidual at a branch basepoint: 1912 (narrow: 1912); with a failing arm: 1002 (narrow: 1002); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 16059, unserved 3978; served by the reflection of w3 2789, of w4 264, of w5 2932; by one of the three 3485; BY NONE 493
+  of those, served by some walk of at most three turns based within one of L+5: 388; by none: 105
+BATCH 54, the sharpened residues: ValleyNarrowResidual 1912 (with a failing arm 1002); CeilFarFlatG 237, CeilFarFlatT 237 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 16; covered by cross_ceil_sentence_of_not_narrow_residual 221
+  walks inside the valley residue with a failing arm (1002 basepoints): Lambda 0, V 1002, w3 0, w4 311, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (1002 basepoints): Lambda 0, V 1002, w3 0, w4 311, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue (16 basepoints): Lambda 0, V 16, w3 0, w4 0, w5 16; served by NONE of the five 0
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom) (16 basepoints): Lambda 0, V 16, w3 0, w4 0, w5 16; served by NONE of the five 0
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 11437, of which both tau-arms are HighAt: 10772; there one of the five walks serves the tau-pair 10772 times, NONE 0
+
+-- random faithful perturbation walks --
+faithful pairs: 55; non-thin links 748/54230 (0.01379)
+branch L+4: basepoints 10030, unserved 2998; served by w3 2998, w4 421, w5 2998; by one of the three 2998; BY NONE 0
+  sentence holds at 2998 unserved pairs; equivalence failures 0; exactness checks 60180 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 495; of those, pairs missing the Lambda-walk 0
+  there: w4 sentence on both arms 0, w5 sentence on both arms 0, one of the two 0, NEITHER 0
+  with the pair unserved by both canonical walks: 0; w4 sentence 0, w5 sentence 0, NEITHER 0
+  arm dichotomies over 20060 arms of the branch: arms failing Valley5 5409 (fold onto the V-walk 5409, FAILURES 0); failing TopW5 0 (fold onto the Lambda-walk 0, others 0); failing MidW4 9832 (fold onto a canonical walk 9832, others 0); failing BottomW4 2993 (fold onto a canonical walk 2993, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 0, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 0, CeilHighResidual 0, one of the two 0, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 0
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 1905, of which both arms fold onto the V-walk 1905
+  ValleyResidual at a branch basepoint: 2465 (narrow: 2465); with a failing arm: 1025 (narrow: 1025); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 12739, unserved 3029; served by the reflection of w3 3029, of w4 440, of w5 3029; by one of the three 3029; BY NONE 0
+  of those, served by some walk of at most three turns based within one of L+5: 0; by none: 0
+BATCH 54, the sharpened residues: ValleyNarrowResidual 2465 (with a failing arm 1025); CeilFarFlatG 0, CeilFarFlatT 0 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 0; covered by cross_ceil_sentence_of_not_narrow_residual 0
+  walks inside the valley residue with a failing arm (1025 basepoints): Lambda 0, V 1025, w3 0, w4 426, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (1025 basepoints): Lambda 0, V 1025, w3 0, w4 426, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue: the residue is empty
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom): the residue is empty
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 12677, of which both tau-arms are HighAt: 9934; there one of the five walks serves the tau-pair 9934 times, NONE 0
+
+-- chains outside Bing's family --
+faithful pairs: 3637; non-thin links 7214/5124247 (0.00141)
+branch L+4: basepoints 895992, unserved 268388; served by w3 268373, w4 39359, w5 268207; by one of the three 268388; BY NONE 0
+  sentence holds at 268388 unserved pairs; equivalence failures 0; exactness checks 5375952 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 45401; of those, pairs missing the Lambda-walk 45
+  there: w4 sentence on both arms 15, w5 sentence on both arms 45, one of the two 45, NEITHER 0
+  with the pair unserved by both canonical walks: 15; w4 sentence 15, w5 sentence 15, NEITHER 0
+  arm dichotomies over 1791984 arms of the branch: arms failing Valley5 446543 (fold onto the V-walk 446543, FAILURES 0); failing TopW5 94 (fold onto the Lambda-walk 94, others 0); failing MidW4 886467 (fold onto a canonical walk 886467, others 0); failing BottomW4 265864 (fold onto a canonical walk 265864, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 45, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 0, CeilHighResidual 0, one of the two 0, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 45
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 172198, of which both arms fold onto the V-walk 172198
+  ValleyResidual at a branch basepoint: 225388 (narrow: 225388); with a failing arm: 93426 (narrow: 93426); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 1229053, unserved 295741; served by the reflection of w3 295576, of w4 41844, of w5 295524; by one of the three 295741; BY NONE 0
+  of those, served by some walk of at most three turns based within one of L+5: 0; by none: 0
+BATCH 54, the sharpened residues: ValleyNarrowResidual 225388 (with a failing arm 93426); CeilFarFlatG 45, CeilFarFlatT 45 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 0; covered by cross_ceil_sentence_of_not_narrow_residual 45
+  walks inside the valley residue with a failing arm (93426 basepoints): Lambda 0, V 93426, w3 0, w4 39322, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (93426 basepoints): Lambda 0, V 93426, w3 0, w4 39322, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue: the residue is empty
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom): the residue is empty
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 1227521, of which both tau-arms are HighAt: 984291; there one of the five walks serves the tau-pair 984291 times, NONE 0
+
+-- EVERYTHING --
+faithful pairs: 5008; non-thin links 48618/6476053 (0.00751)
+branch L+4: basepoints 1152344, unserved 341632; served by w3 341542, w4 49991, w5 339781; by one of the three 341632; BY NONE 0
+  sentence holds at 341632 unserved pairs; equivalence failures 0; exactness checks 6914064 / failures 0
+TARGET 1 (cross_ceil_sentence): basepoints with an arm failing Leg3Ceil 57590; of those, pairs missing the Lambda-walk 528
+  there: w4 sentence on both arms 178, w5 sentence on both arms 528, one of the two 528, NEITHER 0
+  with the pair unserved by both canonical walks: 90; w4 sentence 76, w5 sentence 90, NEITHER 0
+  arm dichotomies over 2304688 arms of the branch: arms failing Valley5 576590 (fold onto the V-walk 576590, FAILURES 0); failing TopW5 710 (fold onto the Lambda-walk 710, others 0); failing MidW4 1136303 (fold onto a canonical walk 1136303, others 0); failing BottomW4 345766 (fold onto a canonical walk 345766, others 0)
+  arms failing Leg3Ceil that also fail Valley5: 0, TopW5: 322, both: 0
+  of the Lambda-free ceiling configurations: CeilPeakResidual 34, CeilHighResidual 0, one of the two 34, NEITHER (so covered by cross_ceil_sentence_of_not_residual) 494
+  the two clauses the reduction still needs, over those configurations: TopW5 fails on the failing arm 0 times, Valley5 fails on the other arm 0 times
+TARGET 2 (cross_valley_profile): basepoints with an arm failing Leg3Valley 221655, of which both arms fold onto the V-walk 221655
+  ValleyResidual at a branch basepoint: 285274 (narrow: 285274); with a failing arm: 118663 (narrow: 118663); conclusion FAILS there: 0
+QUESTION 1 (the branch L+5): basepoints 1542181, unserved 370869; served by the reflection of w3 368408, of w4 52192, of w5 368531; by one of the three 370012; BY NONE 857
+  of those, served by some walk of at most three turns based within one of L+5: 689; by none: 168
+BATCH 54, the sharpened residues: ValleyNarrowResidual 285274 (with a failing arm 118663); CeilFarFlatG 528, CeilFarFlatT 528 over the Lambda-free ceiling configurations; CeilPeakResidual together with one of the two 34; covered by cross_ceil_sentence_of_not_narrow_residual 494
+  walks inside the valley residue with a failing arm (118663 basepoints): Lambda 0, V 118663, w3 0, w4 49763, w5 0; served by NONE of the five 0
+  walks inside the narrow valley residue with a failing arm (118663 basepoints): Lambda 0, V 118663, w3 0, w4 49763, w5 0; served by NONE of the five 0
+  walks inside the ceiling peak residue (34 basepoints): Lambda 0, V 34, w3 0, w4 0, w5 34; served by NONE of the five 0
+  walks inside the ceiling high residue: the residue is empty
+  walks inside the sharpened ceiling residue (peak and a flat narrow bottom) (34 basepoints): Lambda 0, V 34, w3 0, w4 0, w5 34; served by NONE of the five 0
+  the sigma-route: basepoints where tau = 9 - sig stands at L+4: 1532581, of which both tau-arms are HighAt: 1227011; there one of the five walks serves the tau-pair 1227011 times, NONE 0
+
+---- the walks that serve the pairs of the branch L+5 the three reflected walks miss ----
+  5 -> 6 -> 8 -> 1  (11 times): shortest serving walk at 41 pairs
+  4 -> 7 -> 1 -> 8  (17 times): shortest serving walk at 290 pairs
+  5 -> 7 -> 1 -> 8  (16 times): shortest serving walk at 314 pairs
+  5 -> 3 -> 8 -> 1  (15 times): shortest serving walk at 32 pairs
+  6 -> 7 -> 8 -> 1  (10 times): shortest serving walk at 12 pairs
+
+---- the definition audit ----
+  every predicate below is evaluated by its own definition, none by a proxy:
+    IsCrookedIvF (le, width, adj, crooked with interval triggers); IsLip via the
+    adjacency clause; HighAt (L+1) (L+8); LowAt (L+1) (L+8); Leg3Valley; Leg3Ceil;
+    Valley4; Valley5; TopW5; MidW4; CeilW4; BottomW4; FoldsOnto (the dynamic program of
+    HPC/Fold/Decide.lean) for the Lambda-walk, the V-walk, w3, w4, w5 and their
+    reflections; ValleyResidual; ValleyNarrowResidual; CeilPeakResidual;
+    CeilHighResidual; CeilFarFlatG; CeilFarFlatT.
+  the one proxy, reported as a proxy: the *narrow* valley residue of batch 53
+  (valleyResidualNarrow) reads the interval pair, and is kept beside the Lean
+  predicate ValleyNarrowResidual, which reads rho alone.

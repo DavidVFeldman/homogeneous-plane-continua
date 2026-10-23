@@ -1,0 +1,1198 @@
+rank	name	module	directory	dependents	depends_on	docstring_first_line
+1	HPC.Plane.IsCircleLike	HPC.Plane.Ingram68	HPC/Plane	27	0	**Circle-like** (circularly chainable): a continuum covered by an `ε`-circular chain for every
+2	HPC.Chain	HPC.Chains.Basic	HPC/Chains	165	0	**D1.** A chain of length `n`: open links, with `link i` meeting `link j` iff `|i - j| ≤ 1`.
+3	HPC.Chain.union	HPC.Chains.Basic	HPC/Chains	117	1	**D2.** The union of the links.
+4	HPC.Plane.IsSnakeLike	HPC.Plane.Snake51	HPC/Plane	73	2	**Snake-like** (Bing 1951, §1): a (compact) continuum that is covered by an `ε`-chain for every
+5	HPC.Plane.IsPseudoArc	HPC.Plane.PseudoArc51	HPC/Plane	58	3	**A pseudo-arc**: a nondegenerate chainable hereditarily indecomposable (compact) continuum
+6	HPC.BJ59.IsCircleOfPA	HPC.BJ59.Defs	HPC/BJ59	16	5	**A circle of pseudo-arcs** (Bing–Jones p. 173): "a circle-like continuum `M` such that there
+7	HPC.BJ59.BJPlaneExample	HPC.BJ59.Defs	HPC/BJ59	9	6	**A plane circle of pseudo-arcs** (Bing–Jones §7, pp. 189–191). Named `Prop`; to be proved
+8	HPC.BJ59.CircDescr	HPC.BJ59.CircDescr	HPC/BJ59	9	0	**A circular description** in `X` (commission §2). Level `k` is a circular chain of `N k`
+9	HPC.BJ59.cover	HPC.BJ59.CircCover	HPC/BJ59	6	0	**The shear on the universal cover** (commission §5): a homeomorphism of `ℝ × ℝ` for every
+10	HPC.BJ59.CircJ.jointZ	HPC.BJ59.CircJoints	HPC/BJ59	6	0	**The joint position of an integer index** (commission §5, "Joint positions").
+11	HPC.BJ59.CircJ.P_shift	HPC.BJ59.CircJoints	HPC/BJ59	6	0	**Joint positions are local**: a pattern that repeats, shifted by `c`, around the joints `t`
+12	HPC.BJ59.Ramp.phat	HPC.BJ59.CircCover	HPC/BJ59	6	0	**The interpolated joint positions** `P̂`.
+13	HPC.BJ59.Descent.descHomeo	HPC.BJ59.CircDescent	HPC/BJ59	6	0	**The descended homeomorphism** of `ℂ`: `descHomeo (E N₁ p) = E N₂ (G p)`.
+14	HPC.BJ59.circ_step	HPC.BJ59.CircStep	HPC/BJ59	5	5	**The circular planar step** (commission §5), the analogue of `real_step`: a slow lifted
+15	HPC.BJ59.sweepX	HPC.BJ59.SweepPattern	HPC/BJ59	6	0	**The sweep pattern.**
+16	HPC.Fold.bingF_crooked	HPC.Fold.BingCrook	HPC/Fold	12	0	**Bing's pattern is crooked.**
+17	HPC.BJ59.sweep_lemma	HPC.BJ59.Sweep	HPC/BJ59	6	0	**The sweep lemma** (commission 202 §4.1, shape adjusted: fixed block length `L`, at most two
+18	HPC.BJ59.exists_sweepPattern	HPC.BJ59.SweepPattern	HPC/BJ59	5	3	**The sweep pattern** (commission 202 §4.2–4.3): period; unit steps; `S`-slow; nesting
+19	HPC.BJ59.planeDescr	HPC.BJ59.CircPlane	HPC/BJ59	4	11	**The circular description in the plane** (commission §6.2), as a definition.
+20	HPC.BJ59.exists_circDescr_plane	HPC.BJ59.BJ59E	HPC/BJ59	3	12	**A circular description in the plane** (commission §6.1–6.2): levels built alternately by
+21	HPC.Plane.Mono.isConnected_inter_preimage	HPC.Plane.Monotone51	HPC/Plane	40	0	**The preimage of a connected set under a monotone map of a compact set is connected.**
+22	HPC.BJ59.isHereditarilyIndecomposable_of_homeomorph	HPC.BJ59.Transfer	HPC/BJ59	38	1	**Hereditary indecomposability is topological**: a set homeomorphic to a hereditarily
+23	HPC.BJ59.exists_epsMap_of_chain	HPC.BJ59.Transfer	HPC/BJ59	39	2	**An `ε`-chain gives an `ε`-map.** If `K` is covered by an `ε`-chain `D`, the weighted mean of
+24	HPC.Plane.isSnakeLike_of_epsMap	HPC.Plane.EpsMap98	HPC/Plane	39	3	**The `ε`-map criterion, for a subcontinuum.** A continuum `M` in a compact metric space such
+25	HPC.BJ59.isSnakeLike_of_homeomorph	HPC.BJ59.Transfer	HPC/BJ59	38	5	**Snake-likeness is topological** (into a compact space): a set homeomorphic to a snake-like
+26	HPC.BJ59.isPseudoArc_of_homeomorph	HPC.BJ59.Transfer	HPC/BJ59	37	9	**Being a pseudo-arc is topological** (into a compact space).
+27	HPC.BJ59.CircDescr.fmap	HPC.BJ59.CircMap	HPC/BJ59	4	1	**The base map** `M → S¹`, `p ↦ exp(2πi y)` for `p` in the fibre over `y`.
+28	HPC.Chain.Refines	HPC.Chains.Basic	HPC/Chains	82	1	**D5.** `E` refines `D`: every link of `E` lies inside some link of `D`.
+29	HPC.Chain.IsCrookedIn'	HPC.Chains.Basic	HPC/Chains	69	2	**D9.** Crookedness, 1948 form (Bing, *A homogeneous indecomposable plane continuum*, §1).
+30	HPC.Chain.dist_le_of_mem_link	HPC.PseudoArc.Theorem10	HPC/PseudoArc	10	1	**Distance along a chain.** If every link has diameter at most `ε`, points of the links `a`
+31	HPC.Chain.inter_link_nonempty_between	HPC.PseudoArc.Theorem10	HPC/PseudoArc	38	2	**Separation by a link.** A preconnected set inside the union of a chain that meets the links
+32	HPC.Description.theorem10_core	HPC.PseudoArc.Theorem10	HPC/PseudoArc	10	5	**The core of Theorem 10**, for one ordering of the two points. `K` is preconnected and
+33	HPC.BJ59.CircDescr.runChain	HPC.BJ59.CircFibre	HPC/BJ59	5	2	**The run chain** of `y` at level `k` (commission (3.8)).
+34	HPC.BJ59.CircDescr.runChain_crooked	HPC.BJ59.CircFibre	HPC/BJ59	4	5	**A run of level `k + 1` is crooked in the run of level `k`** (commission (3.9)).
+35	HPC.BJ59.CircDescr.isCircleOfPA	HPC.BJ59.CircMap	HPC/BJ59	3	21	**The recognition theorem** (commission §3): a circular description describes a circle of
+36	HPC.BJ59.bjPlaneExample	HPC.BJ59.BJ59E	HPC/BJ59	2	35	**A plane circle of pseudo-arcs** (Bing–Jones §7, by the construction of this batch).
+37	HPC.BJ59.IsContArcPA	HPC.BJ59.Defs	HPC/BJ59	34	4	**A continuous arc of pseudo-arcs** (Bing–Jones p. 173): a continuous open map of `X` onto
+38	HPC.BJ59.BJThm10	HPC.BJ59.Defs	HPC/BJ59	20	5	**Bing–Jones, Theorem 10** (pp. 181–182), fibre-preserving form: between two continuous
+39	HPC.BJ59.EndCompat	HPC.BJ59.Thm10Defs	HPC/BJ59	9	1	**Condition C of p. 188**: agreement with the given homeomorphisms of the end fibres.
+40	HPC.BJ59.IsBJChain	HPC.BJ59.BJChains	HPC/BJ59	21	1	**A chain in Bing–Jones's sense** (p. 172): nonadjacent links are at positive distance.
+41	HPC.BJ59.IsChainMap	HPC.BJ59.Defs	HPC/BJ59	22	0	**A chain map** (Bing–Jones p. 173), on indices: images of adjacent links are adjacent.
+42	HPC.BJ59.IsFibreChainMap	HPC.BJ59.Thm10Defs	HPC/BJ59	10	2	**Condition A of p. 188, in the form carried through the induction.** `H` is a chain map of
+43	HPC.BJ59.BJStep	HPC.BJ59.Thm10Induct	HPC/BJ59	7	9	**One step of Bing–Jones's induction** (Steps 2, 3, 4, ⋯ of the proof of Theorem 10): from a
+44	HPC.BJ59.exists_fibre_spread	HPC.BJ59.Thm8Cor	HPC/BJ59	10	0	**Uniform spread of the fibres**: if `f` is open and every fibre is non-degenerate, every fibre
+45	HPC.BJ59.zigzag_fibre	HPC.BJ59.Zigzag	HPC/BJ59	6	1	**Condition A of p. 188, in the form used**: if each link of `D i` through `p` goes to a link
+46	HPC.BJ59.zigzag_homeomorph	HPC.BJ59.Zigzag	HPC/BJ59	6	4	**Bing–Jones, pp. 188–189, "Definition of homeomorphism h"**, abstracted from Theorem 10:
+47	HPC.BJ59.bjThm10_of_step	HPC.BJ59.Thm10Induct	HPC/BJ59	5	14	**Theorem 10 from the step lemma**: alternate the step, starting from one-link chains, and
+48	HPC.BJ59.IsArcOfContinua	HPC.BJ59.Defs	HPC/BJ59	18	0	**An arc of continua** (Bing–Jones p. 173): the fibres of a continuous map of `X` onto
+49	HPC.BJ59.adjacent_of_properCover	HPC.BJ59.Thm10Defs	HPC/BJ59	7	2	**Theorem 6 in the form Step 2(c) uses** (p. 185): two chain maps that carry a run onto
+50	HPC.T13.clopen_meets_closure_diff	HPC.PseudoArc.T13Topo	HPC/PseudoArc	204	0	**Boundary bumping, clopen form.** A nonempty subset `W` of a proper subset `L` of a
+51	HPC.BJ59.chainedAt_union_point	HPC.BJ59.Thm5	HPC/BJ59	9	1	**The parts are finely chained.** If closed `P`, `Q` cover a connected `g`, meet only inside
+52	HPC.BJ59.fibre_subset_limSup_union	HPC.BJ59.Thm5	HPC/BJ59	9	0	**The limit fibre lies in the union of the limits** (openness of `f`).
+53	HPC.BJ59.limSup_subset_fibre	HPC.BJ59.Thm5	HPC/BJ59	9	0	**The limit lies in the limit fibre** (continuity of `f`).
+54	HPC.Chain.sub	HPC.Chains.Basic	HPC/Chains	51	1	**D3.** The subchain from index `i` to index `j` (inclusive), for `i ≤ j`.
+55	HPC.Plane.consec_meet	HPC.Plane.Theorem11Gen	HPC/Plane	20	2	**Consecutive links meet inside the covered set.** If every link of a chain meets a
+56	HPC.BJ59.chain_assembly	HPC.BJ59.Thm3Assembly	HPC/BJ59	19	4	**The chain of Theorem 3, assembled** (see the module docstring).
+57	HPC.BJ59.isPreconnected_preimage_of_monotone'	HPC.BJ59.Arc	HPC/BJ59	36	0	**Preimages under a monotone map** (as `HPC.Hagopian.isPreconnected_preimage_of_monotone`,
+58	HPC.BJ59.theorem3_of_chains	HPC.BJ59.Thm3	HPC/BJ59	18	7	**The oriented case of Theorem 3**, given the coarse chain and the fine chain.
+59	HPC.BJ59.theorem3_arc	HPC.BJ59.Thm3	HPC/BJ59	17	9	**Bing–Jones, Theorem 3** (pp. 174–175), with explicit hypotheses.
+60	HPC.BJ59.theorem4_explicit	HPC.BJ59.Arc	HPC/BJ59	18	2	**Bing–Jones, Theorem 4** (p. 175), from a chain as in Theorem 3: with an `ε`-chain from `g₀`
+61	HPC.T13.isPreconnected_limSup	HPC.PseudoArc.T13Topo	HPC/PseudoArc	45	0	**Limits of finely chained sets are connected.**
+62	HPC.BJ59.theorem5_repaired	HPC.BJ59.Thm5	HPC/BJ59	8	17	**Bing–Jones, Theorem 5, repaired** (the skeleton's `bj_theorem5` without its unused
+63	HPC.Plane.isSnakeLike_of_subcontinuum_aux	HPC.Plane.Theorem11Nec	HPC/Plane	18	4	**Nadler 12.5.** A subcontinuum of a snake-like continuum is snake-like: the links of an
+64	HPC.BJ59.window_transfer	HPC.BJ59.Thm10Window	HPC/BJ59	10	14	**Transfer to a window**: `g ⁻¹' [a, b]`, with `g` rescaled to `[0, 1]`, is again a
+65	HPC.BJ59.bj_theorem5_window	HPC.BJ59.Thm10Window	HPC/BJ59	7	28	**Theorem 5 (repaired) on a window** `[a, b]`, extended to the whole space (Step 2(c),
+66	HPC.BJ59.exists_bjChain_shrink'	HPC.BJ59.BJChains	HPC/BJ59	15	3	**Shrinking a family of open sets to a chain in Bing–Jones's sense.** Open sets `V i` covering a
+67	HPC.BJ59.exists_bjChain_shrink	HPC.BJ59.BJChains	HPC/BJ59	13	4	**Shrinking to a chain in Bing–Jones's sense** (Barrett's argument, as in
+68	HPC.BJ59.exists_privatePoint_shrink	HPC.BJ59.Private	HPC/BJ59	7	3	**Private points.** A chain in Bing–Jones's sense properly covering a non-degenerate continuum
+69	HPC.BJ59.bj_glue	HPC.BJ59.Thm10Glue	HPC/BJ59	6	37	**The gluing of the pieces** (commission 201 §4 (e)–(g)).
+70	HPC.BJ59.bj_step1b	HPC.BJ59.Step1b	HPC/BJ59	6	3	**Bing–Jones p. 182, Step 1(b)**, for any chain covering a continuous arc of continua: over a
+71	HPC.BJ59.exists_pattern	HPC.BJ59.Thm10Pattern	HPC/BJ59	7	4	**The pattern of a map of a fibre** (Step 2(b), p. 184): a fine chain covering `Q` maps into
+72	HPC.BJ59.exists_end_piece	HPC.BJ59.Thm10Pieces	HPC/BJ59	6	8	**The map at an end** (commission 201 §4 (c), (d)): the minimal run `W` of `D` covering the
+73	HPC.BJ59.theorem4_of_chain	HPC.BJ59.Arc	HPC/BJ59	14	3	**Bing–Jones, Theorem 4** (p. 175), from a chain as in Theorem 3 (`theorem4_explicit`).
+74	HPC.BJ59.bj_theorem4	HPC.BJ59.BJ59A	HPC/BJ59	13	13	**Bing–Jones, Theorem 4** (p. 175): a non-empty open set missing the end elements separates
+75	HPC.BJ59.bj_cut	HPC.BJ59.Thm8Lib	HPC/BJ59	12	14	**Theorem 4 over an interval**: an open set `V` over `(α, β)` separates `X − V` into closed
+76	HPC.Plane.exists_subcontinuum_meeting_closedBall	HPC.Plane.Composant91	HPC/Plane	126	1	**Boundary bumping** (metric form). If `M` is a continuum, `p, x ∈ M` and `p ∉ B(x, s)`, some
+77	HPC.Plane.exists_proper_subcontinuum_meeting	HPC.Plane.Composant91	HPC/Plane	119	2	**The composant of `p` is dense.** Every open set meeting a nondegenerate continuum `M` meets
+78	HPC.Hagopian.composant_dense'	HPC.Hagopian.H75Composants	HPC/Hagopian	118	3	**Moore 135.**
+79	HPC.Hagopian.composant_eq_or_disjoint'	HPC.Hagopian.H75Composants	HPC/Hagopian	117	0	**Moore 138.**
+80	HPC.T13.false_of_interior	HPC.PseudoArc.T13Topo	HPC/PseudoArc	141	1	**A proper subcontinuum of an indecomposable continuum has empty interior** relative to the
+81	HPC.T13.exists_not_mem_proper_subcontinua	HPC.PseudoArc.T13Topo	HPC/PseudoArc	30	2	**Some point of an indecomposable continuum lies in no proper subcontinuum through `p`**
+82	HPC.composant_ne_of_indecomposable	HPC.PseudoArc.Theorem13	HPC/PseudoArc	29	3	**Composants are proper.** In an indecomposable continuum `M` the composant of any point is
+83	HPC.BJ59.exists_not_mem_composant_of_isOpen	HPC.BJ59.Thm7Core	HPC/BJ59	15	12	**Points outside a composant in every open set.**
+84	HPC.Chain.IsFrom	HPC.Chains.Basic	HPC/Chains	54	1	**D4.** A chain from `P` to `Q`: `P` in the first link only, `Q` in the last link only.
+85	HPC.BJ59.exists_chain_isFrom	HPC.BJ59.Thm7Core	HPC/BJ59	14	14	**A chain from `p` to `q`, with `p`, `q` in different composants**, inside a given chain
+86	HPC.BJ59.collar_data	HPC.BJ59.Thm7Ends	HPC/BJ59	15	2	**Collar data at the first link.**
+87	HPC.BJ59.exists_collar_chain	HPC.BJ59.Thm7Ends	HPC/BJ59	14	3	**The collar chain.**
+88	HPC.BJ59.prependDesc	HPC.BJ59.Thm7Core	HPC/BJ59	15	4	**The description `T, D_k, D_{k+1}, …`** (Bing–Jones p. 177: "a sequence of chains from `p₁`
+89	HPC.Chain.FollowsPattern	HPC.Chains.Basic	HPC/Chains	37	1	**D7.** `D` follows the pattern `x` in `E`: `D.link i ⊆ E.link (x i)`.
+90	HPC.Chain.IsConsolidationOf	HPC.Chains.Basic	HPC/Chains	42	2	**D6.** `F` is a consolidation of `D`: `D` refines `F` and every link of `F` is a union of
+91	HPC.Description.eventually_thick	HPC.PseudoArc.PatGeom	HPC/PseudoArc	32	5	**Thick readings.** For every `w`, at every deep enough level `m`, each position `p` has a
+92	HPC.Chain.diam_le_length_mul	HPC.Chains.Basic	HPC/Chains	37	2	**T7.** A chain of bounded links of diameter `< ε` covering a set `A` has at least
+93	HPC.PatCore.realize	HPC.PseudoArc.PatMain	HPC/PseudoArc	32	0	**The combinatorial core of pattern following.** Let `x` be a pattern of length `N`
+94	HPC.Description.theorem6Pos_of_ne	HPC.PseudoArc.PatGeom	HPC/PseudoArc	31	10	**Theorem 6 with `j > 0`**, for every description with `P ≠ Q` of a compact space.
+95	HPC.Chain.exists_value_between	HPC.Chains.Basic	HPC/Chains	40	1	**Interpolation along a chain.**  If every link of `F` lies in the link of `D` named by
+96	HPC.Plane.PA51.failData_of_not_crooked	HPC.Plane.PA51Crook	HPC/Plane	34	4	**A failure of crookedness yields `FailData`** at some pair `(h, k)`.
+97	HPC.Plane.PA51.limit_false	HPC.Plane.PA51Crook	HPC/Plane	34	2	**The limit argument.** Sequences of `FailData` at a fixed pair `(h, k)` with the constant
+98	HPC.Plane.PA51.eventually_crookedIn	HPC.Plane.PA51Crook	HPC/Plane	33	7	**Crookedness eventually** (Bing 1951, proof of Theorem 1, first paragraph). In a compact
+99	HPC.Plane.PA51.PreDesc	HPC.Plane.PA51Pre	HPC/Plane	35	3	**Bing's sequence of mutually crooked chains** covering the space `X`.
+100	HPC.Plane.PA51.exists_crooked_next	HPC.Plane.PA51Pre	HPC/Plane	32	9	**One step**: a chain covering the compact hereditarily indecomposable chainable space has a
+101	HPC.Plane.PA51.exists_preDesc	HPC.Plane.PA51Pre	HPC/Plane	31	11	**Bing's sequence exists** in a compact chainable hereditarily indecomposable space.
+102	HPC.Chain.isCrookedIn'_of_isConsolidationOf	HPC.Chains.Basic	HPC/Chains	32	5	**T4** (Bing 1948, Theorem 1). Crookedness passes down a consolidation.
+103	HPC.Chain.exists_between_of_pattern	HPC.Chains.Basic	HPC/Chains	34	1	**Transfer of the `Between` condition along a refinement.**  If every link of `F` lies in the
+104	HPC.Chain.isCrookedIn'_of_refines	HPC.Chains.Basic	HPC/Chains	33	4	**T5** (Bing 1948, Theorem 2). Crookedness passes down a refinement.
+105	HPC.Fold.B79.assemble_pair	HPC.Fold.Pair79Assemble	HPC/Fold	37	1	**From a schedule to the conclusion, with two-link basepoints.**
+106	HPC.Fold.B79.pair_windows	HPC.Fold.Pair79Assemble	HPC/Fold	35	2	**Two windows suffice when every link lies in one of them**, two-link basepoints.
+107	HPC.Fold.Z77.Fit	HPC.Fold.Zig77Walk	HPC/Fold	47	0	**The phase condition.** `Fit f m τ a ts`: from time `τ`, the arm `f` (read on `[0, m)`) runs
+108	HPC.Fold.Z77.jwalk	HPC.Fold.Zig77Walk	HPC/Fold	44	0	**The jump walk.**
+109	HPC.Fold.Z77.fold_of_fit_zero	HPC.Fold.Pair79Fold	HPC/Fold	43	2	**`fold_of_fit`, with time `0` recorded**: every index of the arm up to which the arm has
+110	HPC.Fold.Z77.transfer	HPC.Fold.Zig77Step	HPC/Fold	48	0	**The transfer of one arm.** If every drop below `b - 1` is preceded by a visit to `t - 1`,
+111	HPC.Fold.Z77.up_step	HPC.Fold.Zig77Step	HPC/Fold	47	1	**One up phase, two arms.**
+112	HPC.Fold.Z77.down_step	HPC.Fold.Zig77Step	HPC/Fold	46	2	**One down phase, two arms**: the reflection of `up_step`.
+113	HPC.Fold.Z77.CrkOn.reverse	HPC.Fold.Zig77Crook	HPC/Fold	49	0	**Crookedness read backwards.**
+114	HPC.Fold.Z77.down_core	HPC.Fold.Zig77Crook	HPC/Fold	47	0	**The down core.** The left arm is at `b` or above before `τb`, at `a - 2` or below on
+115	HPC.Fold.Z77.nofail_down	HPC.Fold.Zig77Main	HPC/Fold	46	2	**A down phase is never stuck.**
+116	HPC.Fold.Z77.up_core	HPC.Fold.Zig77Crook	HPC/Fold	48	0	**The up core.** The left arm, from its time `τ` on, stays at `a - 1` or below until it
+117	HPC.Fold.Z77.nofail_up	HPC.Fold.Zig77Main	HPC/Fold	46	2	**An up phase is never stuck.**
+118	HPC.Fold.Z77.main_up	HPC.Fold.Zig77Main	HPC/Fold	45	9	**The greedy zigzag, from an up phase.** From a state at bottom `b` (previous top `a`) in
+119	HPC.Fold.Z77.greedy_fit_above	HPC.Fold.Pair79Fold	HPC/Fold	43	10	**The greedy zigzag started just above the basepoint.**
+120	HPC.Fold.Z77.greedy_fit_below	HPC.Fold.Pair79Fold	HPC/Fold	43	10	**The greedy zigzag started just below the basepoint.**
+121	HPC.Fold.B79.fold_high_end_mode	HPC.Fold.Pair79Ends	HPC/Fold	39	14	**The fold with a fake high end, start chosen.** As `fold_low_end_mode` with a fake link at
+122	HPC.Fold.B79.finfold_high	HPC.Fold.Pair79Fin	HPC/Fold	38	15	**The fold with a fake high end on `Fin n`.**
+123	HPC.Fold.B79.fold_low_end_mode	HPC.Fold.Pair79Ends	HPC/Fold	40	14	**The fold with a fake low end, start chosen.**
+124	HPC.Fold.B79.finfold_low	HPC.Fold.Pair79Fin	HPC/Fold	38	15	**The fold with a fake low end on `Fin n`.**
+125	HPC.Fold.Z77.first_direction	HPC.Fold.Zig77Main	HPC/Fold	39	2	**The first phase can go one way or the other.**
+126	HPC.Fold.B79.finfold_low_any	HPC.Fold.Pair79Fin	HPC/Fold	38	16	**The fold with a fake low end on `Fin n`**, first direction whichever is available.
+127	HPC.Fold.B79.meet_low_gen	HPC.Fold.Pair79Chain	HPC/Fold	38	3	**The crookedness clause at a link meeting the first coarse link**, with the level of the
+128	HPC.Fold.isCrookedIvF_minIdx_maxIdx	HPC.Fold.Faithful	HPC/Fold	38	3	**Necessity.** A crooked chain lands in the faithful model.
+129	HPC.Fold.Z77.crkOn_of_isCrookedIvF	HPC.Fold.Zig77Crook	HPC/Fold	38	0	**Crookedness of the faithful model, read on the levels.**
+130	HPC.Fold.B79.pair_prefix_fold	HPC.Fold.Pair79Chain	HPC/Fold	37	26	**The prefix fold for two-link basepoints.**
+131	HPC.Fold.B79.pair_suffix_fold	HPC.Fold.Pair79Assemble	HPC/Fold	36	27	**The suffix fold for two-link basepoints**: `pair_prefix_fold` for the reversed chains.
+132	HPC.Fold.B79.theorem4_pair_core	HPC.Fold.Pair79Assemble	HPC/Fold	35	29	**Theorem 4 with two-link basepoints, the main case**: at least six coarse links, a link
+133	HPC.Fold.theorem4_pair	HPC.Fold.Theorem4Pair	HPC/Fold	34	31	**Theorem 4, two-link basepoints.** As `theorem4`, with the first block containing both
+134	HPC.Chain.exists_blockChain	HPC.PseudoArc.T13Step	HPC/PseudoArc	33	34	**Theorem 4 applied to a subchain from `R` to `S`.**
+135	HPC.Plane.PA51.PreDesc.false_of_disjoint_limit	HPC.Plane.PA51Pre	HPC/Plane	34	1	**The limit step** (as `Description.false_of_disjoint_limit`).
+136	HPC.Plane.PA51.PreDesc.exists_subchain_meets_ends	HPC.Plane.PA51Pre	HPC/Plane	33	9	**Reaching both ends** (Bing: "the subchain of `C_{n_k}` from `p` to `q` has a link that
+137	HPC.Plane.PA51.PreDesc.exists_step	HPC.Plane.PA51Pre	HPC/Plane	32	44	**One step** (as `Description.exists_step`).
+138	HPC.Plane.PA51.PreDesc.exists_description	HPC.Plane.PA51Pre	HPC/Plane	31	47	**A description of the whole space from `R` to `S`** (Bing's sequence `D_1, D_2, …`), for
+139	HPC.Plane.PA51.exists_description_univ	HPC.Plane.PA51Pre	HPC/Plane	30	53	**Bing 1951, Theorem 1, the body of the proof, for the whole space.** A compact chainable
+140	HPC.BJ59.exists_follow_pattern	HPC.BJ59.Thm7Core	HPC/BJ59	14	61	**Following a pattern in a given chain** (Bing 1948 Theorem 6 for the description
+141	HPC.BJ59.foldChain	HPC.BJ59.Thm7Fold	HPC/BJ59	15	1	**Folding a chain** along an index map `π` that moves adjacent indices to adjacent indices and
+142	HPC.BJ59.bj7_ends_compact	HPC.BJ59.Thm7Ends2	HPC/BJ59	13	76	**Bing–Jones Theorem 7, second sentence, in a compact pseudo-arc** (`n ≥ 3`, `A`, `B`
+143	HPC.BJ59.bj_theorem7_ends'	HPC.BJ59.Thm7Ends2	HPC/BJ59	12	85	**Bing–Jones, Theorem 7, second sentence, for chains of at least three links.**
+144	HPC.BJ59.exists_deep_radius	HPC.BJ59.Thm8Lib	HPC/BJ59	13	0	**Deep points** (commission 200 §4, step 1): an open set meeting every fibre of an open map of
+145	HPC.BJ59.exists_deep_sets	HPC.BJ59.Thm8Lib	HPC/BJ59	12	1	**The sets `U_A ⊇ cl U′_A`** of commission 200 §4 (steps 1 and 7): inside an open set meeting
+146	HPC.BJ59.bj_theorem8_ends	HPC.BJ59.Thm8	HPC/BJ59	11	101	**Theorem 8, the case `H(y₀) = d₀`, `H(y_{m−1}) = d_{n−1}`** (commission 200 §4, steps
+147	HPC.BJ59.isBJChain_foldChain	HPC.BJ59.Thm8Lib	HPC/BJ59	11	3	**Folding keeps chains in Bing–Jones's sense.**
+148	HPC.BJ59.bj_theorem8_le	HPC.BJ59.Thm8	HPC/BJ59	10	103	**Theorem 8, general case with `r ≤ s`**, by folding along the walk
+149	HPC.BJ59.bj_theorem8	HPC.BJ59.Thm8	HPC/BJ59	9	104	**Bing–Jones, Theorem 8** (p. 177), for continuous snake-like arcs of pseudo-arcs and chains of
+150	HPC.BJ59.bj_theorem8_cor	HPC.BJ59.Thm8Cor	HPC/BJ59	8	106	**Corollary to Theorem 8** (p. 178), with `D(r, s)` an abstract chain of `ℓ` indices mapped
+151	HPC.BJ59.bj_theorem8_cor_sub	HPC.BJ59.Thm10Sub	HPC/BJ59	7	109	**The corollary to Theorem 8 on a sub-arc** `Q(a, b)` (pp. 178, 187), for a chain of one link
+152	HPC.BJ59.exists_subarc_piece	HPC.BJ59.Thm10Pieces	HPC/BJ59	6	111	**The map of a sub-arc** (commission 201 §4 (a), (b), (d)): the run `[r, s]` of `D` over
+153	HPC.BJ59.exists_tube	HPC.BJ59.Thm10Lib	HPC/BJ59	8	0	**Tube lemma** for a fibre: a compact set meeting the fibre over `c` inside an open set `V`
+154	HPC.BJ59.exists_tau_incl	HPC.BJ59.Thm10Pieces	HPC/BJ59	6	2	**Choice of `τ`, inclusions**: if the closure of every link meets the fibre over `c` inside
+155	HPC.BJ59.exists_tau_run	HPC.BJ59.Thm10Pieces	HPC/BJ59	6	2	**Choice of `τ`, runs**: a run all of whose links meet the fibre over `c` and covering it
+156	HPC.BJ59.bj_step	HPC.BJ59.Thm10Step	HPC/BJ59	5	128	**The step lemma** (main item).
+157	HPC.BJ59.bjThm10	HPC.BJ59.BJ59D	HPC/BJ59	4	133	**Bing–Jones, Theorem 10** (pp. 181–189), fibre-preserving form.
+158	HPC.BJ59.HOCircleLike	HPC.BJ59.Defs	HPC/BJ59	10	1	**The circle-likeness step** (not in Bing–Jones; commission 198 §1): a decomposable
+159	HPC.BJ59.exists_plane_circle	HPC.BJ59.CircleFacts	HPC/BJ59	4	0	**A plane simple closed curve.**
+160	HPC.Jones.IsUSCDecomp	HPC.Jones.Decomp	HPC/Jones	75	0	**Upper semicontinuous decomposition into closed sets** (Moore 1925, p. 416, restated with open
+161	HPC.Jones.LSCAt	HPC.Jones.Decomp	HPC/Jones	90	0	**Lower semicontinuity at an element** ("`G` is continuous at `g`" for an u.s.c. `G`): every
+162	HPC.BJ59.isOpenMap_quotient_mk_of_continuous	HPC.BJ59.Decomp	HPC/BJ59	12	2	**The quotient map of a continuous decomposition is open.** For `U` open, the saturation
+163	HPC.HO16.IsPLGraph	HPC.HO16.Defs	HPC/HO16	101	0	**PL graph** (H–O p. 183, "graph", in piecewise linear form): a finite union of
+164	HPC.HO16.SeparatesIn	HPC.HO16.Defs	HPC/HO16	47	0	**`M` separates `P` from `Q` in `Y`**: two open sets cover `Y \ M`, are disjoint on `Y \ M`,
+165	HPC.HO16.HOThm20	HPC.HO16.Defs	HPC/HO16	18	2	**H–O Theorem 20, forward direction ("only if"), for PL graphs** (p. 209). A map `f` of a
+166	HPC.HO16.HasConsCompl	HPC.HO16.StairDefs	HPC/HO16	59	0	**H–O Definition 9, first bullet** (p. 189): `A` has consistent complement relative to `B` if
+167	HPC.HO16.IsGeneric	HPC.HO16.StairDefs	HPC/HO16	52	0	**H–O Definition 12 (1)** (p. 192): a collection `⟨B₁, …, Bₙ⟩` of finite subsets of `G` is
+168	HPC.HO16.IsStraight	HPC.HO16.StairDefs	HPC/HO16	53	1	**H–O Definition 12 (2)** (p. 192): `S ⊆ G⋆` is straight if `S` is closed, `π` is one-to-one
+169	HPC.HO16.endSet	HPC.HO16.StairDefs	HPC/HO16	53	0	**H–O Definition 12 (2)**: the end set `𝓔(S) = S ∩ π⁻¹(∂π(S))`.
+170	HPC.HO16.IsStairwellStr	HPC.HO16.StairDefs	HPC/HO16	34	5	**H–O Definition 13** (p. 192): `⟨T 1, …, T k⟩` is a stairwell structure of height `k` for
+171	HPC.HO16.HOThm15	HPC.HO16.P19Defs	HPC/HO16	18	7	**H–O Theorem 15** (p. 194), for PL graphs: "For any set M⊆G×(0,1) which separates G×{0}
+172	HPC.HO16.IsLadder	HPC.HO16.LadderDefs	HPC/HO16	22	0	**Ladder data** on `G` (commission 197 §2): an oriented decomposition `S` of `G`; at each
+173	HPC.HO16.exists_sign_fn	HPC.HO16.LadderSep	HPC/HO16	18	1	**A sign function for a separator** (commission 197 §5, step 1).
+174	HPC.HO16.chg_flip	HPC.HO16.LadderSign	HPC/HO16	21	0	**One flip**: two sign sequences differing only at the level `q` have change lists
+175	HPC.HO16.LData.isLadder	HPC.HO16.LadderExists	HPC/HO16	19	2	**The construction is a ladder.**
+176	HPC.HO16.heightOK_of_mem_piece	HPC.HO16.LadderSign	HPC/HO16	19	1	**Heights on a flip edge.**
+177	HPC.HO16.LData.sheet_corners	HPC.HO16.LadderExists	HPC/HO16	18	4	**Every point of a sheet lies near two corners of an edge of `S₁` with both signs.**
+178	HPC.HO16.exists_ladder_aux	HPC.HO16.LadderExists	HPC/HO16	17	8	**§5. Claim 15.1, replaced**: inside any open `U` containing a separator there is a
+179	HPC.HO16.exists_ladder	HPC.HO16.HO16E	HPC/HO16	16	9	**§5 (stretch). Claim 15.1, replaced**: inside any open `U` containing a separator there is a
+180	HPC.HO16.injOn_fst_ladderPiece	HPC.HO16.LadderPiece	HPC/HO16	18	0	**`π` is injective on a piece.**
+181	HPC.HO16.image_fst_ladderPiece	HPC.HO16.LadderPiece	HPC/HO16	18	0	**`π` of a piece** is the image of the parameter set `eP`.
+182	HPC.HO16.Subdiv.exists_piece_cover	HPC.HO16.Subdiv	HPC/HO16	71	0	**Covering**: every point of a segment of `T` lies on a piece inside it, and is an endpoint
+183	HPC.HO16.Subdiv.piece_cross	HPC.HO16.Subdiv	HPC/HO16	71	0	**Cross lemma**: a piece in `t` sharing an inner point with `t'` lies in `t'`.
+184	HPC.HO16.Subdiv.piece_same	HPC.HO16.Subdiv	HPC/HO16	71	0	**Same-line lemma**: two pieces in the same segment sharing a point inner to the first are
+185	HPC.HO16.Subdiv.exists_common_subdivision	HPC.HO16.Subdiv	HPC/HO16	70	3	**Common subdivision** (commission 194, §3.1, in the form used for §3.0).
+186	HPC.HO16.isPLGraph_biUnion	HPC.HO16.PLLib	HPC/HO16	61	5	**§3.1**: a finite union of nondegenerate segments is a PL graph (common subdivision).
+187	HPC.HO16.IsPLGraph.union	HPC.HO16.PLLib	HPC/HO16	60	6	**§3.2**
+188	HPC.HO16.IsFanAt	HPC.HO16.Defs	HPC/HO16	58	0	**A fan at `y` in `A` of diameter `< r`** (H–O p. 187): finitely many segments `[y, z k]`,
+189	HPC.HO16.ladder_isStairwellStr	HPC.HO16.LadderStair2	HPC/HO16	17	16	**§3 (assembled)**: the sheets of a ladder, with `α = ladderAlphaSet`, form a stairwell
+190	HPC.HO16.ho16_stairwell_of_ladder	HPC.HO16.HO16E	HPC/HO16	16	17	**§3. A ladder has a stairwell structure of odd height** (the construction of H–O
+191	HPC.HO16.ho16_theorem15	HPC.HO16.HO16E	HPC/HO16	15	27	**H–O Theorem 15** for connected PL graphs.
+192	HPC.HO16.IsBrokenStairwellStr	HPC.HO16.StairDefs	HPC/HO16	42	5	**H–O Definition 16** (pp. 199–200): `⟨T 1, …, T k; P₁, P₂⟩` is a broken stairwell structure
+193	HPC.HO16.IsFoldTriple	HPC.HO16.FoldDefs	HPC/HO16	60	1	**H–O Definition 5, (F1)–(F3)**, with "regular" read as "PL graph": the sets `G₁, G₂, G₃` of
+194	HPC.HO16.IsSimpleFoldOf	HPC.HO16.FoldDefs	HPC/HO16	53	2	**H–O Definition 5: a simple fold on `G`**, realized inside `E × ℝ` with projection
+195	HPC.HO16.HOProp19	HPC.HO16.P19Defs	HPC/HO16	19	9	**H–O Proposition 19** (p. 202), the statement of the skeleton's `ho16_prop19` quantified over
+196	HPC.HO16.sideOf	HPC.HO16.StairDefs	HPC/HO16	47	0	**H–O Definition 9, second bullet** (p. 190): the `A` side of `B`, `σ_B(A)`, the closure of
+197	HPC.HO16.IsPLGraph.exists_refinement	HPC.HO16.PLLib	HPC/HO16	63	5	**§3.0, refinement**: a decomposition of `G` in which each of finitely many PL subgraphs
+198	HPC.HO16.IsPLGraph.relFrontier_finite	HPC.HO16.PLLib	HPC/HO16	54	6	**§3.4**: a PL subgraph has finite frontier (H–O p. 184: "a regular set always has finite
+199	HPC.HO16.IsPLGraph.exists_pieces	HPC.HO16.PLLib2	HPC/HO16	48	6	**§2.1, the pieces**: in a refinement in which `K` is a union of edges and `P` consists of
+200	HPC.HO16.IsPLGraph.closure_comp_diff	HPC.HO16.PLLib2	HPC/HO16	46	7	**§2.1**: the closure of a component of `G \ (K ∪ P)` is a PL graph.
+201	HPC.HO16.IsPLGraph.finite_components_diff	HPC.HO16.PLLib2	HPC/HO16	46	7	**§2.1**: `G \ (K ∪ P)` has finitely many components (`K` a PL graph, `P` finite).
+202	HPC.HO16.IsPLGraph.sideOf_char_aux	HPC.HO16.SidesLib	HPC/HO16	45	15	**The characterization of p. 190, existence part**, without connectedness and
+203	HPC.HO16.ho16_obs9_nhds	HPC.HO16.Sides	HPC/HO16	41	16	**p. 190, first observation**: for `G` connected, `A`, `B` nonempty, `A` with consistent
+204	HPC.HO16.ho16_obs9_emptyB	HPC.HO16.Sides	HPC/HO16	41	3	**p. 190**: "If B is empty, then σ_B(A) is simply equal to the union of all components of G
+205	HPC.HO16.ho16_prop10	HPC.HO16.Sides	HPC/HO16	40	18	**H–O Proposition 10** (p. 190).
+206	HPC.HO16.ho16_prop11	HPC.HO16.Sides	HPC/HO16	40	17	**H–O Proposition 11** (pp. 190–191): `σ_{B₁}(A)`, `A`, `σ_{B₂}(A)` satisfy (F1)–(F3).
+207	HPC.HO16.ho16_claim14_1	HPC.HO16.Stairwell	HPC/HO16	20	25	**Claim 14.1** (p. 193): for connected `G` and odd `k`, every `x ∈ G` lies in `π(T i)` for
+208	HPC.HO16.ho16_odd_image	HPC.HO16.Stairwell	HPC/HO16	19	26	**p. 193**: "if k is odd then π(S) = G", for connected `G`.
+209	HPC.HO16.ho16_height_one	HPC.HO16.Stairwell	HPC/HO16	18	27	**p. 194, height 1**: for connected `G`, `π` maps `S` homeomorphically onto `G`.
+210	HPC.HO16.ho16_prop17	HPC.HO16.Stairwell	HPC/HO16	18	7	**H–O Proposition 17** (p. 200), with H–O's relabelling: `P₁ = S₁`, `P₂ = S₂`,
+211	HPC.HO16.ho16_rem17_P1	HPC.HO16.Stairwell	HPC/HO16	18	7	**p. 201, second remark**: if `𝓔(P₁) = ∅` and `G` is connected, then `π(P₁) = G` and `⟨P₁⟩`
+212	HPC.HO16.ho16_rem17_gamma	HPC.HO16.Stairwell	HPC/HO16	18	7	**p. 201, first remark**: if `γ_{i₀} = ∅`, then `⟨S₁, …, S_k⟩` is a stairwell structure for
+213	HPC.Jones.exists_clopen_of_connectedComponentIn_disjoint	HPC.Jones.Jones49Chain	HPC/Jones	36	0	**Cut wire in a compact set** (Šura-Bura): if the component of `p` in a compact set `F` misses
+214	HPC.Plane.exists_split_of_no_continuum	HPC.Plane.Ingram68Star	HPC/Plane	44	0	**The cut-wire theorem.** If no subcontinuum of the closed set `F`
+215	HPC.HO16.km77_lemma2	HPC.HO16.KM77	HPC/HO16	20	2	**Krasinkiewicz–Minc 1977, Lemma 2**, for hereditarily indecomposable compacta, in the form
+216	HPC.HO16.ho16_theorem8_core	HPC.HO16.Thm8	HPC/HO16	19	4	**H–O Theorem 8, (1) ⇒ (2), before lifting to a fold** (pp. 187–189). From `f : X → G` and
+217	HPC.HO16.ho16_theorem8	HPC.HO16.Thm8Fold	HPC/HO16	18	16	**H–O Theorem 8, (1) ⇒ (2)** (pp. 187–189): a map of a hereditarily indecomposable compactum
+218	HPC.HO16.ho16_lift_stairwell_of_prop19	HPC.HO16.Thm20	HPC/HO16	17	39	**The induction of Theorem 20** (pp. 209–210): a map of a hereditarily indecomposable
+219	HPC.HO16.IsPLGraph.connectedComponentIn	HPC.HO16.PLLib	HPC/HO16	30	1	**§3.5**: components of a PL graph are PL graphs, ...
+220	HPC.HO16.ho16_theorem20_of_thm15_prop19	HPC.HO16.Thm20	HPC/HO16	16	44	**H–O Theorem 20, forward direction**, from Theorem 15 and Proposition 19.
+221	HPC.HO16.exists_midpoint_subdivision	HPC.HO16.FoldExists	HPC/HO16	19	0	**Midpoint subdivision** of a decomposition.
+222	HPC.HO16.exists_simpleFold	HPC.HO16.FoldExists	HPC/HO16	18	12	**The construction of pp. 185–186**, inside `E × ℝ`: every triple satisfying (F1)–(F3) is
+223	HPC.HO16.IsPLGraph.inter_connectedComponentIn	HPC.HO16.PLLib	HPC/HO16	21	6	**§3.5**: ... and a PL subgraph meets each in a PL graph.
+224	HPC.HO16.ho16_obs13_comp	HPC.HO16.Stairwell	HPC/HO16	18	14	**p. 193, observation after Definition 13**, relative to the component `C` (the form used in
+225	HPC.HO16.ho16_obs16_comp	HPC.HO16.Stairwell	HPC/HO16	18	14	**p. 200, observation after Definition 16**, relative to the component `C`.
+226	HPC.HO16.ho16_obs9_unique	HPC.HO16.Sides	HPC/HO16	35	16	**p. 190, characterization, uniqueness**: a closed `D ⊆ G` with `∂D = B` and `D ∩ V = A ∩ V`
+227	HPC.HO16.ho16_prop19_fold	HPC.HO16.Stairwell	HPC/HO16	34	26	**Stretch (§8): the fold of Proposition 19** (pp. 202–203): `G₁ = π(P₁)`, `G₂ = π(P₂)`,
+228	HPC.HO16.isPLGraph_union_finite	HPC.HO16.PLLib2	HPC/HO16	29	1	**§2.3**: a PL graph plus finitely many points, none of them isolated, is a PL graph.
+229	HPC.HO16.ho16_lemma6	HPC.HO16.Lemma6	HPC/HO16	36	12	**H–O Lemma 6**, items (1), (2), (4), (5), (6), (7); item (3) is part of `IsSimpleFoldOf`
+230	HPC.HO16.lemma18_claim	HPC.HO16.Lemma18	HPC/HO16	27	3	**H–O's claim in the proof of Lemma 18** (p. 202), over `∂F₁ = F₁ ∩ F₂`: a neighbourhood of
+231	HPC.HO16.IsPLGraph.inter_eq_union_finite	HPC.HO16.PLLib2	HPC/HO16	30	8	**§2.3**: the intersection of two PL graphs is a PL graph plus finitely many points.
+232	HPC.HO16.IsPLGraph.inter_preimage_fst	HPC.HO16.PLLib2	HPC/HO16	29	9	**§2.3**: `F ∩ π⁻¹(A)` is a PL graph plus finitely many points.
+233	HPC.HO16.ho16_lemma18	HPC.HO16.Lemma18	HPC/HO16	26	19	**H–O Lemma 18** (pp. 201–202). `F = F₁ ∪ F₂ ∪ F₃`; `S' = φ⋆⁻¹(S)` (inside `F⋆`);
+234	HPC.HO16.P19.straight_T	HPC.HO16.Prop19A	HPC/HO16	21	35	**(19.4)**: for `i ≠ i₀`, `S′ᵢ = φ⋆⁻¹(Sᵢ)` is straight with `𝓔(S′ᵢ) = φ⋆⁻¹(αᵢ) ∪ φ⋆⁻¹(βᵢ)`.
+235	HPC.HO16.ho16_obs9_char	HPC.HO16.Sides	HPC/HO16	22	16	**p. 190, characterization, existence**: `σ_B(A)` is a closed regular set `D ⊆ G` with
+236	HPC.HO16.P19.endSet_T'₀	HPC.HO16.Prop19B	HPC/HO16	21	34	**(19.6) with (S6′)** (pp. 205–206): `𝓔(S′_{i₀}) = α′_{i₀} ∪ β′_{i₀}`, where
+237	HPC.HO16.P19.straight_P'₁	HPC.HO16.Prop19A	HPC/HO16	22	35	**(19.8)**: `P′₁ = φ⋆⁻¹(P₂) ∩ (F₁ ∪ F₂)⋆` is straight with `𝓔(P′₁) = φ⋆⁻¹(γ_{i₀})`.
+238	HPC.HO16.P19.S3'P	HPC.HO16.Prop19C	HPC/HO16	20	36	**(S3′) for `P′₁`, `P′₂`** (p. 207).
+239	HPC.HO16.P19.S3'T	HPC.HO16.Prop19C	HPC/HO16	21	28	**(S3′) for the levels** (p. 207).
+240	HPC.HO16.P19.S3'γ	HPC.HO16.Prop19C	HPC/HO16	20	28	**(S3′) for `P′₂` and `S′_{i₀+1}` near `γ′_{i₀+1}`** (p. 207).
+241	HPC.HO16.hasConsCompl_pullback	HPC.HO16.P19Lib	HPC/HO16	22	3	**Consistent complements pulled back along `φ = π`** (pp. 207–208). `X ⊆ F` is closed, the
+242	HPC.HO16.P19.split_i₀1	HPC.HO16.Prop19D	HPC/HO16	22	30	**(S4′) at level `i₀ + 1`** (pp. 207–208): by Proposition 10 (second part) and Lemma 6 (6), the
+243	HPC.HO16.P19.S4'T	HPC.HO16.Prop19D	HPC/HO16	21	35	**(S4′) for the levels** (pp. 207–208).
+244	HPC.HO16.P19.split_P'₂	HPC.HO16.Prop19D	HPC/HO16	20	30	**(S4′) for `P′₂`** (p. 208), by the case split of commission §3: the frontier of a component
+245	HPC.HO16.P19.S6'	HPC.HO16.Prop19C	HPC/HO16	20	28	**(S6′)** (p. 208): `π(α′_{i₀+1}) ∩ π(P′₁ ∪ P′₂) = ∅`.
+246	HPC.HO16.IsOrdinaryPt.of_local	HPC.HO16.OrdFold	HPC/HO16	24	0	**Ordinary points are local**: if `K` and `K'` agree near `z`, then `z` is ordinary in `K`
+247	HPC.HO16.isOrdinaryPt_iff_order	HPC.HO16.PLLib2	HPC/HO16	25	0	**§2.2**: ordinary points are the points of order 2 of any decomposition.
+248	HPC.HO16.isOrdinaryPt_image_fst_iff	HPC.HO16.OrdFold	HPC/HO16	24	2	**Ordinary points and `π`**: on a PL graph `K` on which `π` is injective, `z` is ordinary in
+249	HPC.HO16.one_side_of_relFrontier	HPC.HO16.OrdFold	HPC/HO16	25	2	**Commission §2, second bullet**: over an ordinary point `y ∈ ∂G₁` of `G`, the sheet `G₁` lies
+250	HPC.HO16.IsSimpleFoldOf.isOrdinaryPt_of_mem_inter	HPC.HO16.OrdFold	HPC/HO16	24	15	**Commission §2, second bullet**: a glueing point `z ∈ F₁ ∩ F₂` over an ordinary point of `G`
+251	HPC.HO16.IsSimpleFoldOf.isOrdinaryPt_iff	HPC.HO16.OrdFold	HPC/HO16	23	19	**p. 208**: "Since ∂π(P₂) is disjoint from the set Z of branch points and endpoints of G, we
+252	HPC.HO16.P19.gen'_broken	HPC.HO16.Prop19C	HPC/HO16	20	42	**(S5′)** (p. 208) for the broken stairwell with a pit at level `i₀ + 1`.
+253	HPC.HO16.P19.straight_P'₂	HPC.HO16.Prop19A	HPC/HO16	20	35	**(19.9)**: `P′₂ = φ⋆⁻¹(S_{i₀}) ∩ (F₁ ∪ F₂)⋆` is straight with
+254	HPC.HO16.P19.broken	HPC.HO16.Prop19	HPC/HO16	19	55	**Proposition 19, `i₀ < k`**: a broken stairwell structure with a pit at level `i₀ + 1`.
+255	HPC.HO16.P19.gen'_stair	HPC.HO16.Prop19C	HPC/HO16	20	36	**(S5)** for the stairwell of height `k` (`i₀ = k`).
+256	HPC.HO16.P19.stair	HPC.HO16.Prop19	HPC/HO16	19	50	**Proposition 19, `i₀ = k`**: a stairwell structure of height `k`.
+257	HPC.HO16.ho16_prop19_full	HPC.HO16.Prop19	HPC/HO16	18	59	**H–O Proposition 19 in the full fold** (pp. 202–208): for any simple fold with the
+258	HPC.HO16.comp_not_disjoint_both	HPC.HO16.Prop7	HPC/HO16	20	3	**Lemma (L)(c)**: a component of `G₂` cannot miss both `∂G₁` and `∂G₃`.
+259	HPC.HO16.IsPLGraph.finite_components	HPC.HO16.PLLib	HPC/HO16	21	1	**§3.5**: ... there are finitely many of them, ...
+260	HPC.HO16.exists_comp_meets_both	HPC.HO16.Prop7	HPC/HO16	19	6	**Proposition 7, existence**: some component of `F` has projection meeting `∂G₁` and `∂G₃`.
+261	HPC.HO16.disjoint_lift_of_disjoint_right	HPC.HO16.Prop7	HPC/HO16	24	4	**Lemma (L)(a)**: if the component `K` of `G₂` through `y` misses `∂G₃`, then `K₁ ∪ K₂` misses
+262	HPC.HO16.lift_subset_of_meets_both	HPC.HO16.Prop7	HPC/HO16	24	3	**Lemma (L)(b)**: if the component `K` of `G₂` through `y` meets `∂G₁` and `∂G₃`, its three
+263	HPC.HO16.left_diff_subset_Z	HPC.HO16.Prop7	HPC/HO16	20	6	**(M3)**: `G₁' \ G₂' ⊆ cl (G₁ \ G₂) ∪ (components of G₂ missing ∂G₁)`.
+264	HPC.HO16.mem_comp_of_mid	HPC.HO16.Prop7	HPC/HO16	20	6	**(M1)**: if the `F₂`-point over `y` is in `C`, so are all points of `F` over `y`.
+265	HPC.HO16.frontier_clause	HPC.HO16.Prop7	HPC/HO16	19	15	**The frontier clause** of `F′`: `φ(F′₁ ∩ F′₂) = ∂G′₁`.
+266	HPC.HO16.image_comp_eq	HPC.HO16.Prop7	HPC/HO16	19	16	**Proposition 7, `φ(C) = G`** for a component `C` whose projection meets `∂G₁` and `∂G₃`.
+267	HPC.HO16.mem_comp_of_sides	HPC.HO16.Prop7	HPC/HO16	19	6	**(M2)**: if the `F₁`- and `F₃`-points over `y` are in `C`, so are all points of `F` over `y`.
+268	HPC.HO16.IsPLGraph.image_fst	HPC.HO16.PLLib	HPC/HO16	19	1	**§3.6**: the projection of a PL graph in `E × ℝ` on which `Prod.fst` is injective.
+269	HPC.HO16.ho16_prop7	HPC.HO16.Prop7	HPC/HO16	18	26	**H–O Proposition 7** (pp. 186–187): for connected `G` with `∂G₁ ≠ ∅ ≠ ∂G₃`, some component
+270	HPC.HO16.ho16_prop19	HPC.HO16.Prop19Conn	HPC/HO16	17	78	**H–O Proposition 19** (p. 202): \"Then there exists a simple fold φ: F→G such that F is
+271	HPC.HO16.hoProp19_holds	HPC.HO16.Prop19Conn	HPC/HO16	16	80	**Proposition 19 as a named `Prop` holds.**
+272	HPC.HO16.ho16_theorem20_of_thm15	HPC.HO16.HO16D	HPC/HO16	15	96	**H–O Theorem 20, forward direction**, from Theorem 15.
+273	HPC.HO16.ho16_theorem20	HPC.HO16.HO16E	HPC/HO16	14	110	**H–O Theorem 20, forward direction.**
+274	HPC.Span.plPath_piece	HPC.Span.OT82Strip	HPC/Span	22	0	**The piece formula**: on `[j/s, (j+1)/s]`, `plPath a` is affine.
+275	HPC.HO16.exists_path_approx	HPC.HO16.Plane	HPC/HO16	15	1	**§6.3**: a path close to a plane continuum.
+276	HPC.HO16.exists_plGraph_approx	HPC.HO16.Grid	HPC/HO16	15	1	**§6.2, grid graphs**: radial projections in the squares of a fine grid map a compact plane
+277	HPC.HO16.thm4_continuum_of_not_separates	HPC.HO16.Thm4	HPC/HO16	16	2	**Step 1** (commission §5): if `M` does not separate, the cut-wire theorem in
+278	HPC.Span.HOSpanZero	HPC.Span.Defs	HPC/Span	22	0	**Span zero in the sense of Hoehn–Oversteegen** (2016, p. 184): every subcontinuum
+279	HPC.HO16.thm4_limit_contra	HPC.HO16.Thm4	HPC/HO16	16	1	**Steps 2–4** (commission §5): continua `Wₙ ⊆ E × E` with `dist ≥ ε` on them, first and
+280	HPC.HO16.ho16_theorem4	HPC.HO16.Thm4	HPC/HO16	15	5	**H–O Theorem 4** (p. 184), with the arc `I` replaced by a path `γ` on `[0, 1]` and
+281	HPC.HO16.interior_eq_empty_of_hi	HPC.HO16.Plane	HPC/HO16	15	0	**§6.1**: a hereditarily indecomposable plane set has empty interior.
+282	HPC.Plane.isSnakeLike_univ_of_epsMap	HPC.Plane.EpsMap98	HPC/Plane	15	3	**The `ε`-map criterion.** A compact connected metric space with, for every `ε > 0`, a
+283	HPC.HO16.ho16_theorem1_plane	HPC.HO16.HO16A	HPC/HO16	14	16	**H–O Theorem 1, "if" direction, for plane continua**, from `HOThm20`: a hereditarily
+284	HPC.Hagopian.Hagopian76Thm1	HPC.Hagopian.H76Defs	HPC/Hagopian	23	0	**Hagopian 1976, Theorem 1** (p. 345), as a statement: "If `M` is an indecomposable homogeneous
+285	HPC.Hagopian.NoArcIndecHomPlane	HPC.Hagopian.Hagopian84A	HPC/Hagopian	24	0	**The arc step** (Bing 1960, the indecomposable case; F. B. Jones, Houston J. Math. 1 (1975)):
+286	HPC.Hagopian.Hagopian84Decomp	HPC.Hagopian.Hagopian84A	HPC/Hagopian	25	0	**Jones's decomposition** (Hagopian 1984, p. 346: "Find a monotone decomposition `𝔇` of `M`
+287	HPC.Hagopian.fibreSetoid	HPC.Hagopian.H84Quot	HPC/Hagopian	26	0	**The decomposition of the plane** into the fibres of `q` and the points off `M` (commission 184
+288	HPC.Hagopian.fibre_usc	HPC.Hagopian.H84Quot	HPC/Hagopian	26	0	**Upper semicontinuity of the fibres**, in Moore's form (as `layer_usc`, with any Hausdorff
+289	HPC.Hagopian.composant_isMeagre'	HPC.Hagopian.H75Composants	HPC/Hagopian	119	2	**Moore 136–137.**
+290	HPC.Hagopian.disjoint_components_missing	HPC.Hagopian.H75Lemma1	HPC/Hagopian	102	0	**Disjoint complementary domains.** Let `F₁`, `F₂` be disjoint subsets of `M` (`F₁` closed and
+291	HPC.Plane.no_two_nbrs	HPC.Plane.TreeLikeNSGraph	HPC/Plane	32	0	**A link outside a chain-connected subcollection meets at most one of its links**, when no
+292	HPC.Hagopian.LogData.branch_sub	HPC.Hagopian.H76SepInv	HPC/Hagopian	32	0	**The overlap constant.** Two branches centred at `δ`-close points of `K` differ by a constant
+293	HPC.Hagopian.LogData.exists_glue	HPC.Hagopian.H76SepInv	HPC/Hagopian	31	2	**The gluing induction** (the pattern of `exists_log_inv`, batch 133): on a tree chain of links
+294	HPC.Hagopian.exists_log_of_isTreeLike	HPC.Hagopian.H76SepInv	HPC/Hagopian	30	3	**Logarithms on tree-like continua.** On a tree-like plane continuum `K`, every function
+295	HPC.Plane.bdryOf	HPC.Plane.Enc1Grid	HPC/Plane	152	0	**The boundary graph of a union of squares**: the grid edges belonging to exactly one square
+296	HPC.Plane.bdryGraph	HPC.Plane.Enc1	HPC/Plane	149	1	**The boundary graph**: the edges of the squares of `sqIdx` that belong to exactly one
+297	HPC.Plane.exists_nbhd_cover_1d	HPC.Plane.Enc1Grid	HPC/Plane	152	0	**Covering**: a neighbourhood of `z` is covered by the squares containing `z` (1-D form).
+298	HPC.Plane.mem_frontier_sqUnion_iff	HPC.Plane.Enc1Grid	HPC/Plane	151	1	**The frontier of a union of squares**: the points lying in a square of `S` and in a square
+299	HPC.Plane.disjoint_frontier_gridUnion	HPC.Plane.Enc1	HPC/Plane	146	2	**`M` misses the frontier of the grid union**: a point of `M` lies in every square containing
+300	HPC.Plane.CrossesEast	HPC.Plane.Jct1	HPC/Plane	181	0	**The half-open east-ray crossing rule** for the segment from `a` to `b` and the point `x`:
+301	HPC.Plane.mem_graphSet_bdryOf_iff	HPC.Plane.Enc1Grid	HPC/Plane	150	1	**Boundary edges** carry exactly the points lying in a square of `S` and in a square not in
+302	HPC.Plane.frontier_sqUnion	HPC.Plane.Enc1Grid	HPC/Plane	149	4	**The frontier of a union of squares is its boundary graph.**
+303	HPC.Plane.frontier_gridUnion	HPC.Plane.Enc1	HPC/Plane	148	6	**The frontier of the grid union is the boundary graph.** (Hypothesis `hM` of the skeleton
+304	HPC.Plane.sideStrip	HPC.Plane.Cyc2	HPC/Plane	155	0	**The side strip** of `e` on side `s`: the union of the half-disks on side `s` at the
+305	HPC.Plane.oddSet	HPC.Plane.Cyc2	HPC/Plane	153	1	**The candidate cycle**: the edges of `G` having the component of `x` on exactly one side.
+306	HPC.Plane.IsProper	HPC.Plane.Cyc1	HPC/Plane	162	0	**Proper position**: every segment nondegenerate, two distinct segments have distinct point
+307	HPC.Plane.crossesEast_jump	HPC.Plane.Jct1	HPC/Plane	173	1	**The vertex rule** (the statement proved for item 2 of the commission). For a single segment
+308	HPC.Plane.sum_vJump_even	HPC.Plane.Cyc1	HPC/Plane	155	0	**The telescoping of vertex jumps over an even-degree graph** (the generalisation of
+309	HPC.Plane.circPt_mem_segment_iff	HPC.Plane.Cyc2Circle	HPC/Plane	154	0	**The circle meets a segment from its centre** exactly in the direction of the segment.
+310	HPC.Plane.vertex_arcs	HPC.Plane.Cyc2	HPC/Plane	153	3	**The arcs at a vertex** (the form of the sector lemma used here). For a point `w` which is
+311	HPC.Plane.zmod2_jump_sum	HPC.Plane.Cyc2Circle	HPC/Plane	153	0	**The jump formula** (by induction on `#T`, cutting off the smallest jump).
+312	HPC.Plane.even_deg_oddSet	HPC.Plane.Cyc2	HPC/Plane	152	6	**Even degree of the odd set at every vertex**: the `C`-membership along the circle about `w`
+313	HPC.Plane.cycParity_flip	HPC.Plane.Cyc1	HPC/Plane	152	4	**The flip across an edge of a cycle**, at a point `p` of `segSet s` (`s ∈ G`) lying on no other
+314	HPC.Plane.cycParity_sideStrip_ne_iff	HPC.Plane.Cyc2	HPC/Plane	151	11	**The parity of the odd set flips across `e` iff `e ∈ oddSet`.** For `e ∈ oddSet` this is
+315	HPC.Plane.gFun_const	HPC.Plane.Cyc2	HPC/Plane	150	12	**`gFun` is constant on `(graphSet G)ᶜ`**: it is locally constant across every non-vertex
+316	HPC.Plane.interior_gridUnion_disjoint_component	HPC.Plane.Enc1	HPC/Plane	146	7	**The interior of the grid union lies outside the unbounded component**. (Hypothesis `hM` of
+317	HPC.Plane.isProper_of_gridSeg	HPC.Plane.Enc1Grid	HPC/Plane	146	1	**Any finite set of grid edges of one mesh is a proper graph.**
+318	HPC.Plane.cycParity_oddSet_eq_one_on	HPC.Plane.Enc1	HPC/Plane	145	23	**Points of `M` have odd parity for the outer cycle.**
+319	HPC.Plane.exists_cycle_vertices	HPC.Plane.Enc1Cyc	HPC/Plane	146	1	**A nonempty cycle contains a simple cycle**, as a cyclic sequence of at least three distinct
+320	HPC.Plane.exists_simpleCycle_decomposition	HPC.Plane.Enc1Cyc	HPC/Plane	145	3	**Every cycle is an edge-disjoint union of simple cycles.**
+321	HPC.Plane.exists_first_hit	HPC.Plane.Jct2	HPC/Plane	149	0	**The first hit.** From `x ∉ Γ`, the segment towards any `y ∈ Γ` meets `Γ` first at a point `p`:
+322	HPC.Plane.parity_eventually_eq	HPC.Plane.Jct1	HPC/Plane	159	2	**The parity is locally constant on `Γᶜ`** (eventually form). No simplicity is needed.
+323	HPC.Plane.ball_diff_rays	HPC.Plane.Tree6Local	HPC/Plane	156	0	**Two rays cut a square into (at most) two connected pieces.** For `w`, nonzero `a`, `b` not
+324	HPC.Plane.local_side_of_split	HPC.Plane.Tree6Local	HPC/Plane	155	1	**Local two-sidedness, from a split of the complement.** If `Γᶜ = U ∪ V` with `U`, `V` open
+325	HPC.Plane.parity_flip_at	HPC.Plane.Jct2	HPC/Plane	151	2	**The flip at a point of generic height of a non-horizontal edge** (`exists_parity_flip` at a
+326	HPC.Plane.parity_flip_vertical	HPC.Plane.Jct2	HPC/Plane	151	2	**The flip across a horizontal edge**: at a non-vertex point `p` of a horizontal edge, the
+327	HPC.Plane.mem_closure_parity_set	HPC.Plane.Jct2	HPC/Plane	150	4	**Both parities accumulate at every point of `Γ`.**
+328	HPC.Plane.sideNbhd	HPC.Plane.Jct2	HPC/Plane	149	1	**The parity-`e` neighbourhood of `Γ`**: the union of all the preconnected local pieces
+329	HPC.Plane.isConnected_parity_set	HPC.Plane.Jct2	HPC/Plane	148	10	**Each parity class is connected.**
+330	HPC.Plane.exists_parity_flip	HPC.Plane.Jct1	HPC/Plane	149	2	**Parity flips across a non-horizontal edge.** For some `p` in the relative interior of a
+331	HPC.Plane.parity_far	HPC.Plane.Jct1	HPC/Plane	157	1	**Parity is `0` far to the east**: beyond the largest abscissa of a vertex no edge is crossed.
+332	HPC.Plane.polygon_separates	HPC.Plane.Jct1	HPC/Plane	148	5	**The complement of a simple closed polygon is not connected**, and the odd-parity set is a
+333	HPC.Plane.exists_enclosing_polygon_pt	HPC.Plane.TreeLikeNS	HPC/Plane	32	38	**Batch 130 for a point.** For bounded `M`, `x ∈ M` and `δ > 0`, some simple closed polygon on
+334	HPC.Plane.exists_polygon_around	HPC.Plane.TreeLikeNS	HPC/Plane	31	40	**A polygon in `W` around `p`.** Suppose `W` is open, `p ∉ W`, and the component of `p` in
+335	HPC.Plane.arg_div_jump	HPC.Plane.TreeLikeNSLog	HPC/Plane	33	0	**The jump of the argument across the negative real axis.**
+336	HPC.Plane.edge_jump	HPC.Plane.TreeLikeNSLog	HPC/Plane	32	2	**One edge**: the argument of `(p − b) / (p − a)` is `arg (p − b) − arg (p − a) + 2π j` with
+337	HPC.Plane.sub_const_of_exp_eq	HPC.Plane.TreeLikeNSLog	HPC/Plane	181	0	**Two continuous logarithms differ by a constant** on a preconnected set: `f − g` is
+338	HPC.Plane.log_diff_edge	HPC.Plane.TreeLikeNSLog	HPC/Plane	32	1	**The change of a logarithm along an edge.**
+339	HPC.Plane.no_log_on_polygon	HPC.Plane.TreeLikeNS	HPC/Plane	31	18	**No logarithm on a simple closed polygon around `p`.** The angle sum is `0` by telescoping
+340	HPC.Hagopian.no_log_of_separates	HPC.Hagopian.H76SepInv	HPC/Hagopian	30	46	**A separating compactum.** If the compact set `K` separates the plane, some `p ∉ K` has the
+341	HPC.Plane.PlaneFacts	HPC.Plane.Tree67	HPC/Plane	152	0	**The plane-topology facts used by Bing's proof of Theorem 6, as hypotheses** (weakened to
+342	HPC.Plane.exists_enclosing_polygon	HPC.Plane.Enc1	HPC/Plane	141	38	**The enclosing polygon, inside the complement of the unbounded component.**
+343	HPC.Plane.exists_far_piece	HPC.Plane.Enc2	HPC/Plane	143	0	**The local piece.** For `x ∉ M` and `f₀ ∉ M`, with `Mᶜ` connected: a radius `r > 0` and a
+344	HPC.Plane.exists_uniform_pieces	HPC.Plane.Enc2	HPC/Plane	142	1	**The uniform constant.** For a compact `C ⊆ Mᶜ` and `f₀ ∉ M`: a `d > 0` and finitely many
+345	HPC.Plane.exists_mesh_compl_subset	HPC.Plane.Enc2	HPC/Plane	141	9	**The complement of `G` lies in the outer component for small mesh.** `R` with `M ⊆ ball 0 R`;
+346	HPC.Plane.enclose_holds	HPC.Plane.Enc2	HPC/Plane	140	42	**The field `enclose` of `PlaneFacts` holds**: a continuum that does not separate the plane,
+347	HPC.Plane.inter_split_connected	HPC.Plane.JanPoly	HPC/Plane	142	0	**The intersection after splitting.** If `A ∩ B` is connected or empty, so is `A' ∩ B'`, where
+348	HPC.Plane.JaniszewskiPoly	HPC.Plane.Cyc1	HPC/Plane	144	0	**Janiszewski for polygonal compacta** (the weakened field, batch 129): `A`, `B` finite unions
+349	HPC.Plane.SeparatingGraphHasOddCycle	HPC.Plane.Cyc1	HPC/Plane	144	2	**A separating graph contains an odd cycle** (batch 128): if the proper graph `G` separates
+350	HPC.Plane.exists_cycle_decomposition	HPC.Plane.Cyc1	HPC/Plane	144	1	**Mayer–Vietoris.** `K` proper; `A, B ⊆ K`; `Z ⊆ A ∪ B` a cycle; `graphSet A ∩ graphSet B`
+351	HPC.Plane.subdiv	HPC.Plane.Cyc1	HPC/Plane	145	0	**The canonical subdivision**: the pairs `(u, v)` of cut points, ordered lexicographically,
+352	HPC.Plane.exists_proper_subdivision	HPC.Plane.Cyc1	HPC/Plane	144	2	**Subdivision.** Every finite set of nondegenerate segments has a proper refinement with the
+353	HPC.Plane.separatesPts_of_cycParity_ne	HPC.Plane.Cyc1	HPC/Plane	144	3	**Different parity ⇒ separated**: if `cycParity G x ≠ cycParity G y` (with `G` of even degrees
+354	HPC.Plane.janiszewskiPoly_of_oddCycle	HPC.Plane.Cyc1	HPC/Plane	143	10	**Janiszewski from the odd cycle** (this batch, given the batch-128 statement as a hypothesis):
+355	HPC.Plane.cycParity_oddSet_ne	HPC.Plane.Cyc2	HPC/Plane	143	13	**A separating graph has an odd cycle.**
+356	HPC.Plane.janiszewskiPoly_holds	HPC.Plane.Cyc2	HPC/Plane	142	21	**Janiszewski for polygonal compacta.**
+357	HPC.Plane.isConnected_diff_singleton_of_isOpen	HPC.Plane.JanPoly	HPC/Plane	165	0	**An open connected subset of the plane minus a point is connected.** Take a punctured ball
+358	HPC.Plane.separatesPts_insert_iff	HPC.Plane.JanPoly	HPC/Plane	142	1	**Adding a point to a closed set does not change which pairs of other points it separates.**
+359	HPC.Plane.IsPolygonal.exists_split	HPC.Plane.JanPoly	HPC/Plane	142	0	**Splitting off the isolated points**: a polygonal set is the union of the `graphSet` of its
+360	HPC.Plane.janiszewski_polygonal	HPC.Plane.JanPoly	HPC/Plane	141	26	**Janiszewski for polygonal sets** (degenerate segments allowed), from `janiszewskiPoly_holds`
+361	HPC.Plane.frontier_parity_set	HPC.Plane.Jct2	HPC/Plane	142	6	**The frontier of each parity class is `Γ`.**
+362	HPC.Plane.jct_polygon	HPC.Plane.Jct2	HPC/Plane	141	15	**The Jordan curve theorem for simple closed polygons** — the field `PlaneFacts.jct`, verbatim.
+363	HPC.Plane.planeFacts_of_enclose	HPC.Plane.JanPoly	HPC/Plane	140	42	**`PlaneFacts` from `enclose` alone**: `jct` is `jct_polygon` (batch 126), `janiszewski` (in its
+364	HPC.Plane.planeFacts_holds	HPC.Plane.Enc2	HPC/Plane	139	61	**`PlaneFacts` holds.** All three fields proved: `jct_polygon` (batch 126),
+365	HPC.Plane.InGeneralPosition	HPC.Plane.Tree7	HPC/Plane	35	0	**General position** of two closed polygons given by their vertices: no vertex of either lies
+366	HPC.Plane.notched	HPC.Plane.Tree67	HPC/Plane	37	0	**The notched enlargement** of a grid square: the open square, together with open strips of
+367	HPC.Plane.notched_eq_polyInterior	HPC.Plane.Tree7	HPC/Plane	33	1	**The notched square is the interior of its boundary polygon** — unconditional, by
+368	HPC.Plane.compFamily_no_triple	HPC.Plane.Tree6	HPC/Plane	35	0	**No three members of `compFamily` share a point** (distinct components of one `d₀ ∩ d` are
+369	HPC.Plane.exists_sarc_of_vpath	HPC.Plane.Tree6Arcs	HPC/Plane	51	0	**Loop erasure.** A polygonal path from `p` to `q ≠ p` contains a simple polygonal arc from
+370	HPC.Plane.exists_vpath_of_isConnected	HPC.Plane.Tree6Arcs	HPC/Plane	50	0	**A connected open set of the plane is polygonally connected.**
+371	HPC.Plane.isSimpleClosedPolygon_of_two_arcs	HPC.Plane.Tree6Arcs	HPC/Plane	42	0	**Two simple arcs `a → c` and `c → a` meeting only at `a` and `c` form a simple closed
+372	HPC.Plane.IsSArc.concat	HPC.Plane.Tree6Arcs	HPC/Plane	81	0	**Concatenation**: simple arcs `a → b` and `b → c` meeting only at `b` form a simple arc
+373	HPC.Plane.IsSArc.exists_first_mem	HPC.Plane.Tree6Arcs	HPC/Plane	38	0	**The first point of a simple arc in a closed set** (walking from `v 0`): the arc up to it is
+374	HPC.Plane.IsSArc.exists_suffix	HPC.Plane.Tree6Arcs	HPC/Plane	37	1	**The final part of a simple arc** from one of its points: a simple arc from `x` to the end,
+375	HPC.Plane.theta_polygon_of_three	HPC.Plane.Tree6Arcs	HPC/Plane	36	6	**Threading through three sets.** Three connected open sets, pairwise meeting, with no point
+376	HPC.Plane.exists_theta_polygon	HPC.Plane.Tree6	HPC/Plane	35	7	**A simple closed polygon through three connected open sets** (the case `m = 3` of
+377	HPC.Plane.eventually_mem_closure_of_not_special	HPC.Plane.Polygonal	HPC/Plane	39	0	**The local step.** At a non-special parameter `t ∈ (0, 1)`, if `linePt a b t` lies in
+378	HPC.Plane.isPolygonal_segment_inter_closure	HPC.Plane.Polygonal	HPC/Plane	38	1	**Polygonality of one segment's part.**
+379	HPC.Plane.isPolygonal_inter_closure_inter	HPC.Plane.Polygonal	HPC/Plane	37	2	**`Γ₁ ∩ closure (W₁ ∩ W₂)` is polygonal** for polygonal `Γ₁`, `Γ₂` and saturated `W₁`, `W₂`.
+380	HPC.Plane.isPolygonal_inter_closure_polyInterior₃	HPC.Plane.PolygonalPoly	HPC/Plane	36	3	**The form used by `exists_theta_point`**: for polygonal `Γ`, `Γ₁`, `Γ₂`, the set
+381	HPC.Plane.sides_of_split	HPC.Plane.Tree6Local	HPC/Plane	36	2	**Two-sidedness along a connected part of the polygon, from a split of the complement.** If
+382	HPC.Plane.PlaneFacts.exists_theta_point	HPC.Plane.Tree6	HPC/Plane	35	8	**Bing's point `q`** (batch 129 form: `h₁`, `h₂` are interiors of simple closed polygons `Γ₁`,
+383	HPC.Plane.compFamily_no_circular	HPC.Plane.Tree6	HPC/Plane	34	18	**No circular chain in `compFamily`** (the third paragraph): a circular chain `h_1, …, h_m`
+384	HPC.Plane.treeChain_of_cover	HPC.Plane.Tree7	HPC/Plane	33	19	**The tail of the proof of Theorem 6, factored out**: for any simple closed polygon `J` with
+385	HPC.Plane.isSimplePolyArc_iff	HPC.Plane.Tree6	HPC/Plane	162	0	**The list form and the vertex-function form of simple polygonal arcs agree.**
+386	HPC.Plane.IsSArc.split	HPC.Plane.Tree6Cut	HPC/Plane	78	0	**Splitting a simple arc at a point** other than its ends: the part before and the part
+387	HPC.Plane.IsSimpleClosedPolygon.split_two'	HPC.Plane.Tree7Arcs	HPC/Plane	76	3	**Splitting a simple closed polygon at two of its points.**
+388	HPC.Plane.IsSimpleClosedPolygon.split_two	HPC.Plane.Tree7	HPC/Plane	72	4	**Splitting a simple closed polygon at two of its points** into two simple polygonal arcs
+389	HPC.Plane.isSimpleClosedPolygon_of_arcs'	HPC.Plane.Tree7Arcs	HPC/Plane	37	2	**Joining two simple polygonal arcs** with the same ends, meeting only at the ends.
+390	HPC.Plane.PlaneFacts.crosscut'	HPC.Plane.Tree7Cross	HPC/Plane	36	7	**The cross-cut theorem** (auxiliary form).
+391	HPC.Plane.PlaneFacts.crosscut	HPC.Plane.Tree7	HPC/Plane	35	8	**The cross-cut theorem.** A simple polygonal arc `c` from `a` to `b` (`a ≠ b`) meeting `J`
+392	HPC.Plane.PlaneFacts.components_of_crosscuts	HPC.Plane.Tree7Comp	HPC/Plane	34	9	**The cross-cut induction.** For a cross-cut family `C` of `J`, every component of
+393	HPC.Plane.exists_arc_decomposition	HPC.Plane.Tree7Comp	HPC/Plane	36	2	**Decomposing a simple arc at a finite set `X` of interior points**: finitely many simple
+394	HPC.Plane.exists_polygon_decomposition	HPC.Plane.Tree7Comp	HPC/Plane	35	6	**Decomposing a simple closed polygon at a finite set `X ⊆ P` with at least two points** into
+395	HPC.Plane.PlaneFacts.exists_crosscutFamily	HPC.Plane.Tree7Comp	HPC/Plane	34	8	**The pieces of `P` inside `polyInterior J`.** If `J`, `P` are simple closed polygons with
+396	HPC.Plane.PlaneFacts.component_inter_eq_polyInterior	HPC.Plane.Tree7Comp	HPC/Plane	33	14	**The main theorem: components of the intersection of two polygon interiors whose boundaries
+397	HPC.Plane.exists_gp_translation	HPC.Plane.Tree7	HPC/Plane	34	1	**A small translation puts the notched squares in general position with a given polygon.**
+398	HPC.Plane.exists_grid_offset	HPC.Plane.Tree67	HPC/Plane	34	0	**An offset with no grid vertex on `M`** (Bing: "no point of `M` is on the vertex of any of
+399	HPC.Plane.inter_gridSq_subset_notched	HPC.Plane.Tree67	HPC/Plane	34	1	**`M ∩ q̄ ⊆ d`** (corrected: `r < dist p v`): if `M` keeps distance `> r` from every grid
+400	HPC.Plane.notched_no_triple	HPC.Plane.Tree67	HPC/Plane	34	1	**No three notched squares share a point** (`η < r`, `2 r < ε`): two notched squares meet
+401	HPC.Plane.subset_translate_of_compact	HPC.Plane.Tree7	HPC/Plane	34	0	**Lebesgue number for translation**: a compact `K` inside an open `G` stays inside every
+402	HPC.Plane.PlaneFacts.exists_gp_cover	HPC.Plane.Tree7	HPC/Plane	33	8	**The general-position cover** (the input of batch 120): a simple closed polygon `J =
+403	HPC.Plane.theorem7_1951_rel	HPC.Plane.Tree7Comp	HPC/Plane	32	41	**Theorem 7 (Bing 1951, Duke, p. 657)**, with the hypothesis its proof uses: a bounded plane
+404	HPC.Plane.theorem6_1951_rel	HPC.Plane.Tree7Comp	HPC/Plane	31	42	**Bing 1951 (Duke), Theorem 6**, relative to `PlaneFacts`: a bounded plane continuum
+405	HPC.Plane.theorem6_1951	HPC.Plane.Enc2	HPC/Plane	30	102	**Bing 1951 (Duke), Theorem 6**: a bounded plane continuum containing no continuum that
+406	HPC.Hagopian.exists_separating_subcontinuum_of_homeomorph	HPC.Hagopian.H76SepInv	HPC/Hagopian	29	116	**Separation up to subcontinua is a topological invariant.** If the compact set `K` separates
+407	HPC.Hagopian.separating_in_copy	HPC.Hagopian.H76NoSep	HPC/Hagopian	28	117	**A homeomorphic copy of a separating continuum contains a separating continuum.**
+408	HPC.Hagopian.uncountable_composants'	HPC.Hagopian.H75Composants	HPC/Hagopian	105	3	**Moore 139.**
+409	HPC.Hagopian.no_proper_subcontinuum_separates_aux	HPC.Hagopian.H76NoSep	HPC/Hagopian	27	127	**No proper subcontinuum of `M` separates the plane** (Hagopian 1976, p. 344, citing [5, Lemma 1
+410	HPC.Hagopian.no_proper_subcontinuum_separates	HPC.Hagopian.Hagopian76B	HPC/Hagopian	26	128	**"Since `M` is indecomposable and homogeneous, no proper subcontinuum of `M` separates `R²` [5,
+411	HPC.Moore.MooreDecomp	HPC.Moore.M25Defs	HPC/Moore	107	0	**The standing hypothesis of §I.**
+412	HPC.Hagopian.fibreSetoid_mooreDecomp	HPC.Hagopian.H84Quot	HPC/Hagopian	25	132	**The decomposition satisfies Moore 1925's hypotheses**: its elements are the fibres of `q`,
+413	HPC.Moore.Space.Axiom5	HPC.Moore.Defs	HPC/Moore	127	0	**Axiom 5.** There is an infinite set of points with no limit point.
+414	HPC.Moore.Space.Axiom5₁	HPC.Moore.Defs	HPC/Moore	136	0	**Axiom 5₁** (footnote p. 133): there exist at least three points.
+415	HPC.Moore.Space.Axiom1	HPC.Moore.Defs	HPC/Moore	175	0	**Axiom 1.** There is a sequence of regions `K₁, K₂, …` such that (1) every point lies in `Kₙ`
+416	HPC.Moore.fa_theorem6	HPC.Moore.Basic	HPC/Moore	170	1	**Theorem 6.** Two regions with a common point `P` contain a common region about `P`.
+417	HPC.Moore.isTopologicalBasis_region	HPC.Moore.Bridge	HPC/Moore	167	2	**The regions form a basis** (Axiom 1: Theorem 6 and condition (1)).
+418	HPC.Moore.cl_eq_closure	HPC.Moore.Bridge	HPC/Moore	164	3	**Moore's `M'` is the topological closure.** *Axioms used: 1.*
+419	HPC.Moore.exists_simpleChain_sublist	HPC.Moore.Chains	HPC/Moore	137	0	**Simplification.** A weak chain of regions from `A` to `B ≠ A` has a sublist which is a
+420	HPC.Moore.exists_weakChain_of_isPreconnected	HPC.Moore.Thm15	HPC/Moore	137	0	**Theorem 10, weak form, topologically.** In a preconnected set covered by a family of open
+421	HPC.Moore.exists_refine	HPC.Moore.Thm15	HPC/Moore	136	2	**The refinement step** (Moore, p. 137). Given a weak chain `Ls` of connected open sets from
+422	HPC.Moore.exists_chains	HPC.Moore.Thm15	HPC/Moore	135	3	**The sequence of chains** `C₁, C₂, …` (Moore, p. 137, conditions (1)–(3)).
+423	HPC.Moore.exists_irreducible	HPC.Moore.Thm15	HPC/Moore	134	4	**Theorem 15, core** (Moore's proof, parts I–III): in the setting of a metric space whose
+424	HPC.Moore.fa_theorem3	HPC.Moore.Basic	HPC/Moore	162	1	**Theorem 3.** If `M` is finite and `P ∉ M`, some region contains `P` and no point of `M`.
+425	HPC.Moore.exists_region_cl_subset	HPC.Moore.Basic	HPC/Moore	159	2	**Regularity** (Axiom 1): every region about `P` contains, with its boundary, a region about
+426	HPC.Moore.heineBorel_iff	HPC.Moore.Bridge	HPC/Moore	158	0	**Heine–Borel is compactness.** *Axioms used: none* (Alexander's subbasis theorem gives one
+427	HPC.Moore.Space.Axiom4	HPC.Moore.Defs	HPC/Moore	158	0	**Axiom 4.** If `R` is a region, `R'` has the Heine–Borel property.
+428	HPC.Moore.isClosedM_iff	HPC.Moore.Bridge	HPC/Moore	151	4	**Moore's closed is closed.** *Axioms used: 1.*
+429	HPC.Moore.fa_theorem12	HPC.Moore.Sec4	HPC/Moore	150	7	**Theorem 12.** Every closed bounded set has the Heine–Borel property. *Axioms used: 1, 4.*
+430	HPC.Moore.isLimitPt_iff	HPC.Moore.Bridge	HPC/Moore	158	3	**Moore's limit point is the accumulation point.** *Axioms used: 1.*
+431	HPC.Moore.isConn_iff	HPC.Moore.Bridge	HPC/Moore	154	5	**Moore's connected is preconnected.** *Axioms used: 1.* (Moore's definition allows the empty
+432	HPC.Moore.regularSpace	HPC.Moore.Bridge	HPC/Moore	156	6	**Regular** (Axiom 1 (2): regions about `P` with their closures inside a given region).
+433	HPC.Moore.t1Space	HPC.Moore.Bridge	HPC/Moore	156	2	**T1** (Theorem 3). *Axioms used: 1.*
+434	HPC.Moore.isArc_iff_topological	HPC.Moore.Thm15	HPC/Moore	149	14	**Moore arcs, topologically** (Axioms 1, 4): an arc from `A` to `B` is a compact connected set
+435	HPC.Moore.fa_theorem2	HPC.Moore.Basic	HPC/Moore	136	3	**Theorem 2.** If `P` is a limit point of `M`, every region containing `P` contains infinitely
+436	HPC.Moore.Space.Axiom3	HPC.Moore.Defs	HPC/Moore	140	0	**Axiom 3.** If `R` is a region, `S − R'` is connected.
+437	HPC.Moore.fa_theorem4	HPC.Moore.Basic	HPC/Moore	135	7	**Theorem 4.** Every (nonempty) region contains infinitely many points.
+438	HPC.Moore.isTopologicalBasis_fund	HPC.Moore.Bridge	HPC/Moore	133	9	**The fundamental regions form a basis.** *Axioms used: 1, 3, 5₁* (Theorem 4: a region about
+439	HPC.Moore.metrizable	HPC.Moore.Bridge	HPC/Moore	132	13	**The generated topology is metrizable** (T1 and regular, hence T3; second countable; then
+440	HPC.Moore.Space.Axiom2	HPC.Moore.Defs	HPC/Moore	141	0	**Axiom 2.** Every region is connected.
+441	HPC.Moore.ac_exists_strictMono	HPC.Moore.ArcChar	HPC/Moore	194	0	**The map to `[0, 1]`.** A compact connected separable space with a linear order whose open
+442	HPC.Moore.ac_homeomorph	HPC.Moore.ArcChar	HPC/Moore	193	1	**An irreducible continuum is an arc** (in the subspace form): a compact, connected, separable
+443	HPC.Moore.isIrreducibleConnected_iff_arc	HPC.Moore.ArcChar	HPC/Moore	192	2	**Arc characterization (topological form).** In a metrizable space, a compact connected set
+444	HPC.Moore.isArc_iff	HPC.Moore.Arcs	HPC/Moore	130	24	**Moore arcs are arcs** (Lennes's definition = embedded `[0, 1]`). *Axioms used: 1, 3, 4, 5₁.*
+445	HPC.Moore.Gen.ArcConn	HPC.Moore.Sec6Plane	HPC/Moore	127	0	**Theorem 15, topologically:** two distinct points of a connected open set are joined by an
+446	HPC.Moore.arcConn	HPC.Moore.Sec6A	HPC/Moore	104	32	**Theorem 15**, in the form used in §6. *Axioms used: 1, 2, 3, 4, 5₁.*
+447	HPC.Moore.Gen.Ax8Prop	HPC.Moore.Sec6Plane	HPC/Moore	118	0	**Axiom 8** for a family of sets.
+448	HPC.Moore.Space.Axiom8	HPC.Moore.Defs	HPC/Moore	105	0	**Axiom 8.** Every simple closed curve is the boundary of at least one region.
+449	HPC.Moore.Space.IsArc.union	HPC.Moore.Arcs	HPC/Moore	99	15	**Gluing.** Two arcs `PQ`, `QR` meeting only in `Q` form an arc `PR`.
+450	HPC.Moore.Space.Axiom6	HPC.Moore.Defs	HPC/Moore	83	0	**Axiom 6.** If `R`, `R̄` are regions and `P ∈ R̄` is on the boundary of `R`, then there are
+451	HPC.Moore.Space.Axiom7	HPC.Moore.Defs	HPC/Moore	124	0	**Axiom 7.** As Axiom 6, with `L ⊆ S − R'` in place of `K ⊆ R`.
+452	HPC.Moore.Gen.TArc.first_point	HPC.Moore.Sec6Arc	HPC/Moore	157	0	**The first point** of the arc `AB` (from `A`) on a closed set `Z` not containing `A`: a point
+453	HPC.Moore.Gen.TArc.union	HPC.Moore.Sec6Arc	HPC/Moore	242	0	**Gluing.** Two arcs `PQ`, `QR` meeting only in `Q` form an arc `PR`.
+454	HPC.Moore.Gen.TArc.join	HPC.Moore.Sec6Arc	HPC/Moore	140	2	**Joining.** If the arcs `PQ` and `RT` meet and `P ≠ R`, their union contains an arc
+455	HPC.Moore.fa_theorem28	HPC.Moore.Sec6Th28	HPC/Moore	80	39	**Theorem 28.** *Axioms used: 1, 2, 3, 4, 5₁, and 6 (for `M` the interior) or 7 (for `M` the
+456	HPC.Moore.fa_theorem20	HPC.Moore.Sec6A	HPC/Moore	120	1	**Theorem 20.** Every point of the boundary of a region is a limit point of its exterior.
+457	HPC.Moore.fa_theorem21	HPC.Moore.Sec6A	HPC/Moore	107	12	**Theorem 21.** If `K`, `R` are regions and the boundary of `R` lies in `K'`, then `R ⊆ K`.
+458	HPC.Moore.Gen.Th21Prop	HPC.Moore.Sec6Plane	HPC/Moore	124	0	**Theorem 21** for a family of sets.
+459	HPC.Moore.Gen.order_of_arc_sub	HPC.Moore.Sec6Th31	HPC/Moore	80	0	**Order on an arc.** If an arc `P` lying on the arc `g` passes through `g b`, other than its
+460	HPC.Moore.Gen.th24_disj	HPC.Moore.Sec6Th24	HPC/Moore	118	0	**Theorem 24 (3)**: `R₁ ∩ R₂ = ∅` (Axiom 2).
+461	HPC.Moore.Gen.th24_sub	HPC.Moore.Sec6Th24	HPC/Moore	119	1	**Theorem 24 (1)**: `R₁ ⊆ R` (Theorem 21).
+462	HPC.Moore.Gen.th24_ext	HPC.Moore.Sec6Th24	HPC/Moore	118	0	**Theorem 24 (2)**: the open arc `ADB` is without `R₁` (Theorem 1).
+463	HPC.Moore.Gen.exists_access	HPC.Moore.Sec6Plane	HPC/Moore	119	4	**Accessibility.** From a point `F` of a connected open set `W`, and for a boundary point `Q`
+464	HPC.Moore.Gen.exists_cross	HPC.Moore.Sec6Plane	HPC/Moore	117	5	**Crossing arcs.** Through a nonempty connected open set `W`, an arc `HK` with `H`, `K` on the
+465	HPC.Moore.Gen.th25	HPC.Moore.Sec6Th25	HPC/Moore	115	11	**Theorem 25**, topologically.
+466	HPC.Moore.Gen.image_notMem_of_pieces	HPC.Moore.Sec6Th26	HPC/Moore	99	0	**An arc misses an open set** whose boundary meets it in two intervals `f[a, b]`, `f[c, d]`,
+467	HPC.Moore.Gen.tscc_theta	HPC.Moore.Sec6Th26	HPC/Moore	99	1	**The closed curve of two crossing arcs** (used in Theorems 25 and 26): if `α` joins
+468	HPC.Moore.Gen.th26	HPC.Moore.Sec6Th26	HPC/Moore	98	11	**Theorem 26**, topologically.
+469	HPC.Moore.Gen.th27	HPC.Moore.Sec6Th27	HPC/Moore	97	15	**Theorem 27**, topologically.
+470	HPC.Moore.th31_pocket	HPC.Moore.Sec6Th31	HPC/Moore	79	57	**The pocket construction** (steps 1–4 of Moore's proof of Theorem 31). At a point `f b`
+471	HPC.Moore.sides	HPC.Moore.Sec6Th32	HPC/Moore	77	58	**The two sides of an arc** near one of its interior points (from the construction of
+472	HPC.Moore.side_propagate	HPC.Moore.Sec6Th32	HPC/Moore	76	59	**Propagation along the arc** (Moore's covering of `DP` by chains of the closed curves of
+473	HPC.Moore.Gen.tarc_of_seq	HPC.Moore.Sec6Lim	HPC/Moore	77	4	**Limit arcs.** If the arcs `εₙ` from `yₙ` to `yₙ₊₁` meet only consecutively, in the points
+474	HPC.Moore.Gen.exists_tarc_of_seq	HPC.Moore.Sec6Lim	HPC/Moore	76	6	**Limit arcs, with trimming** (Moore's \"first point\" construction in the proof of Theorem
+475	HPC.Moore.accessible	HPC.Moore.Sec6Th32	HPC/Moore	70	62	**Accessibility of the end `B`** (the substance of Theorem 32). If `O` is open, the arc
+476	HPC.Moore.access	HPC.Moore.Sec7A	HPC/Moore	62	63	**Accessibility of a closed curve.** If `M` is the interior `I` or the exterior `S − I'` of the
+477	HPC.Moore.interior_unique	HPC.Moore.M19GCuts	HPC/Moore	34	29	**A closed curve has only one interior.** *Axioms used: 1–5, 7.*
+478	HPC.Moore.fa_theorem24	HPC.Moore.Sec6B	HPC/Moore	77	34	**Theorem 24.** If `A`, `B` separate `C`, `D` on `J` (arcs `ACB`, `ADB`), `R` is the interior of
+479	HPC.Moore.fa_theorem25	HPC.Moore.Sec6B	HPC/Moore	77	49	**Theorem 25.** Under the hypothesis of Theorem 24, `R = AXB (open) + R₁ + R₂`.
+480	HPC.Moore.split_interior_of	HPC.Moore.M19CDSplit	HPC/Moore	69	51	**Splitting the interior of a closed curve by a cross-cut, with the two arcs named**
+481	HPC.Moore.half_split	HPC.Moore.M19GSplit	HPC/Moore	33	53	**Cutting a half along an arc of `J`.** Let `R` be the interior of `γ + b`, where
+482	HPC.Moore.annulus_decomp	HPC.Moore.M19GSplit	HPC/Moore	32	69	**The annulus cut into two quadrilaterals.** With the cuts `c₁ = PP'`, `c₂ = QQ'` of
+483	HPC.Moore.exists_quad	HPC.Moore.M19GCuts	HPC/Moore	34	29	**Every closed curve is a quadrilateral**: four points can be chosen on it.
+484	HPC.Moore.Space.Quad.Cut	HPC.Moore.M19CDRuling	HPC/Moore	68	0	**The cut of `ABCDA` along an arc `x` from `AB` to `CD`**: `x` runs from `X ∈ AB` to
+485	HPC.Moore.Space.Quad.splitX	HPC.Moore.M19CDSplit	HPC/Moore	64	52	**Cutting a quadrilateral along a cross-cut from `AB` to `CD`.** Let `f` parametrize `AB` from
+486	HPC.Moore.lr_mono	HPC.Moore.M19ELines	HPC/Moore	46	30	**Nesting of lines.** Of two disjoint arcs, the one starting first on `AB` has the smaller
+487	HPC.Moore.lineFam	HPC.Moore.M19EFamily	HPC/Moore	45	55	**The family of lines** of `𝒜`.
+488	HPC.Moore.Space.Quad.refl	HPC.Moore.M19CDRuling	HPC/Moore	61	0	**Reflection**: `ABCDA` is also the quadrilateral `BADCB`.
+489	HPC.Moore.Space.Quad.Cut.glue	HPC.Moore.M19CDGlue	HPC/Moore	58	30	**Gluing.** Rulings of the two halves give, together with `x`, a ruling of `ABCDA` whose arcs
+490	HPC.Moore.Space.Quad.rot	HPC.Moore.M19CDSplit	HPC/Moore	63	0	**Rotation**: `ABCDA` is also the quadrilateral `BCDAB`.
+491	HPC.Moore.Space.ArcRuling.restrict_half	HPC.Moore.M19CDRuling	HPC/Moore	58	29	**Restriction of a ruling to one half of a cut.** If `x` is an arc of the ruling `(𝒳, 𝒴)` of
+492	HPC.Moore.Space.ArcRuling.rot	HPC.Moore.M19CDRuling	HPC/Moore	59	8	**Rotation of a ruling**: a ruling of `ABCDA` is a ruling of `BCDAB`, the two sets of arcs
+493	HPC.Moore.Space.ArcRuling.extendY	HPC.Moore.M19CDExt	HPC/Moore	57	74	**Adding an arc to a ruling.** Through a point `P` of the open side `BC` on no arc of `𝒴`
+494	HPC.Moore.Space.ArcRuling.extendY_finite	HPC.Moore.M19CDExt	HPC/Moore	56	75	**Adding arcs through finitely many points.** Every finite set `E` of points of the open side
+495	HPC.Moore.Space.ArcRuling.refine	HPC.Moore.M19CDRefine	HPC/Moore	48	76	**Refinement of a double ruling** (item E; used without proof on pp. 175 and 176). Let `Good` be a
+496	HPC.Moore.Space.ArcRuling.param_mono	HPC.Moore.M19CDOrder	HPC/Moore	49	55	**Planarity of a ruling.** If the arc `x′` of a ruling starts after the arc `x` on `AB`, it ends
+497	HPC.Moore.Space.ArcRuling.sortX	HPC.Moore.M19CDOrder	HPC/Moore	48	56	**Indexing the arcs `X` of a ruling** by the order of their ends on `AB`: their ends on `DC` are
+498	HPC.Moore.Space.ArcRuling.toDoubleRuling	HPC.Moore.M19CDOrder	HPC/Moore	47	59	**A ruling by sets of arcs is a double ruling**, with `#𝒳` and `#𝒴` arcs, indexed by the order
+499	HPC.Moore.Space.DoubleRuling.toArcRuling	HPC.Moore.M19CDOrder	HPC/Moore	45	26	**A double ruling is a ruling by sets of arcs.**
+500	HPC.Moore.doubleRuling_refine	HPC.Moore.M19CDMain	HPC/Moore	44	81	**Refinement of a double ruling** (item E; used without proof on pp. 175 and 176). Let `Good`
+501	HPC.Moore.exists_gap	HPC.Moore.M19DCorner	HPC/Moore	51	26	**A gap on the side `CD`**: if the bases are mutually exclusive closed sets each containing at
+502	HPC.Moore.split_interior	HPC.Moore.M19CDTile	HPC/Moore	58	52	**Splitting the interior of a closed curve by a cross-cut** (Theorems 24 and 25). If `γ` is an
+503	HPC.Moore.Space.Pocket.disj_facts	HPC.Moore.M19DPocket	HPC/Moore	53	29	**Two pockets with no common point.**
+504	HPC.Moore.outer_tile	HPC.Moore.M19DOuter	HPC/Moore	52	54	**The outer tile.** For a finite set of chords with mutually exclusive pockets,
+505	HPC.Moore.outer_arc	HPC.Moore.M19DOuter	HPC/Moore	51	69	**An arc through the outer tile** from a point of the open arc of one of the chords to a point
+506	HPC.Moore.Space.Pocket.nest	HPC.Moore.M19DPocket	HPC/Moore	51	29	**Pockets are nested or exclusive**, when each base contains at most one point of a set `K` of
+507	HPC.Moore.Space.Quad.Cut.chord_half	HPC.Moore.M19DWeight	HPC/Moore	53	30	**A chord missing the cut lies in one half**, and is a chord of that half.
+508	HPC.Moore.Space.Quad.Cut.rulable	HPC.Moore.M19DGlue	HPC/Moore	53	76	**Gluing rulings along a cut.** If both halves of the cut of `ABCDA` along `x` have rulings
+509	HPC.Moore.Space.Quad.Cut.glue_chords	HPC.Moore.M19DWeight	HPC/Moore	52	77	**Gluing rulings missing chords.**
+510	HPC.Moore.Space.Quad.Cut.halves	HPC.Moore.M19DChords	HPC/Moore	52	31	**Distributing chords to the two halves.**
+511	HPC.Moore.absorb_step	HPC.Moore.M19DChords	HPC/Moore	50	86	**Absorbing a chord with maximal pocket and an end on `AB`.**
+512	HPC.Moore.opp_step	HPC.Moore.M19DChords	HPC/Moore	50	80	**A chord joining `AB` and `CD`** is the arc of a cut.
+513	HPC.Moore.pocket_of_not_opp	HPC.Moore.M19DCorner	HPC/Moore	50	54	**A chord not joining opposite sides** has a pocket whose base contains at most one vertex.
+514	HPC.Moore.chords_rulable	HPC.Moore.M19DChords	HPC/Moore	49	89	**Chords in the carrier.** For a finite set of mutually exclusive chords of `ABCDA` there is a
+515	HPC.Moore.extract_chords	HPC.Moore.M19DExtract	HPC/Moore	48	30	**The chords of a closed curve touching `ABCDA` from within nowhere.**
+516	HPC.Moore.hair_isPreconnected	HPC.Moore.M19D	HPC/Moore	49	63	**Theorem 33 for any connected open set** (Kline's proof, as in `fa_theorem33`, which uses only
+517	HPC.Moore.Space.Quad.side_access	HPC.Moore.M19DInside	HPC/Moore	49	38	**Access to the open side `AB`** from a connected open subset `R` of `I` whose boundary lies on
+518	HPC.Moore.inside_rulable	HPC.Moore.M19DInside	HPC/Moore	48	92	**A closed curve within `ABCDA`**: there is a ruling of `ABCDA` none of whose subdivisions
+519	HPC.Moore.curve_rulable	HPC.Moore.M19DThm	HPC/Moore	47	94	**Theorem C, corrected** (ruling form): a closed curve meeting `ABCDA` in finitely many points,
+520	HPC.Moore.exists_conn_compact	HPC.Moore.M19DNice	HPC/Moore	48	34	**A connected compact set between `F` and `V`.**
+521	HPC.Moore.fa_theorem13	HPC.Moore.Sec4	HPC/Moore	54	11	**Theorem 13.** Every infinite bounded set has a limit point. (Moore: "see Hausdorff,
+522	HPC.Moore.fa_theorem17	HPC.Moore.Sec4	HPC/Moore	53	13	**Theorem 17.** The exterior of a region contains an infinite set with no limit point.
+523	HPC.Moore.fa_theorem19	HPC.Moore.Sec4	HPC/Moore	52	18	**Theorem 19.** Every (nonempty) region has at least one boundary point.
+524	HPC.Moore.fa_theorem33	HPC.Moore.Sec6Th33	HPC/Moore	52	63	**Theorem 33.** If `A` is on the boundary of a region `R`, `B ∈ R`, and `AB` is an arc with
+525	HPC.Moore.fa_theorem34_region	HPC.Moore.Sec6Th33	HPC/Moore	52	63	**Theorem 34, for any region** (the form of Moore's second proof): if `AB` is an arc in a region
+526	HPC.Moore.fa_theorem16	HPC.Moore.Thm15	HPC/Moore	53	27	**Theorem 16.** Two points of a region are joined by an arc in the region; two points without
+527	HPC.Moore.fa_theorem35	HPC.Moore.Sec7A	HPC/Moore	52	59	**Theorem 35.** Every (nonempty) region contains a simple closed curve. *Axioms used: 1–8.*
+528	HPC.Moore.fa_theorem36	HPC.Moore.Sec7B	HPC/Moore	51	70	**Theorem 36.** If `O` is a point in a region `R`, there exists a simple closed curve which lies
+529	HPC.Moore.fa_theorem36_interior_subset	HPC.Moore.Sec7B	HPC/Moore	49	71	**Theorem 36, with the interior inside `R`** (unnumbered; commission check 2). Moore 1925,
+530	HPC.Moore.crosses_of_lens	HPC.Moore.M19DLens	HPC/Moore	49	8	**A lens crosses `J` at its ends.**
+531	HPC.Moore.fa_theorem27	HPC.Moore.Sec6B	HPC/Moore	49	53	**Theorem 27.** If `A`, `B` separate `C`, `D` on `J` and the open arc `AXB` is without `J`,
+532	HPC.Moore.lens_data	HPC.Moore.M19DLens	HPC/Moore	48	66	**Lenses about a point of `J`.**
+533	HPC.Moore.lens_family	HPC.Moore.M19DNice	HPC/Moore	48	0	**A finite family of lenses with distinct ends.**
+534	HPC.Moore.fa_theorem41_caseI_nested	HPC.Moore.Sec7Th41	HPC/Moore	53	32	**Theorem 41, Case I** (p. 155: "it easily follows that either `I₁` is in `I₂` or `I₂` is in
+535	HPC.Moore.fa_theorem41_caseI	HPC.Moore.Sec7Th41	HPC/Moore	52	33	**Theorem 41 in Case I**: if the closed curves `J₁`, `J₂` have at most one point in common and
+536	HPC.Moore.chord_side	HPC.Moore.M41Side	HPC/Moore	53	60	**The side of a chord.** *Axioms used: 1–8.*
+537	HPC.Moore.chord_subset	HPC.Moore.M41Geom	HPC/Moore	55	26	**Two chords whose open arcs meet.** If `Z` is an arc of `J₁` with ends on `K`, and `Z'` an arc
+538	HPC.Moore.chord_through	HPC.Moore.M41Geom	HPC/Moore	53	28	**A chord through a point.** A point `x` of the closed curve `J₁` not on the closed set `K`,
+539	HPC.Moore.existsUnique_interior	HPC.Moore.Sec6A	HPC/Moore	54	14	**The interior of a closed curve** (unnumbered; the convention \"the interior of `J`\" is used
+540	HPC.Moore.curve_of_frontier_subset	HPC.Moore.M41	HPC/Moore	53	32	**The last step of Case II.** A closed curve `J ⊆ J₁ + J₂` containing the boundary of the
+541	HPC.Moore.Gen.crossing	HPC.Moore.M19A	HPC/Moore	57	0	**The crossing lemma** behind Theorem A. `L` is the union of two arcs `D₁ = h₁[0,1]`,
+542	HPC.Moore.m19_theoremA	HPC.Moore.M19A	HPC/Moore	56	27	**Theorem A** (p. 170). If `L` is a simple closed curve and `M`, `N` are disjoint closed sets,
+543	HPC.Moore.chords_null	HPC.Moore.M41Geom	HPC/Moore	55	28	**The chords of a closed curve form a null family** (Theorem A of 1919): arcs of a closed curve
+544	HPC.Moore.Gen.arc_replace	HPC.Moore.M41Replace	HPC/Moore	55	0	**Replacement of a null family of arcs.**
+545	HPC.Moore.half_replace_gen	HPC.Moore.M41Half	HPC/Moore	54	31	**Replacing the chords over one arc of a closed curve `J₂`**, given the pocket property: the
+546	HPC.Moore.pocket	HPC.Moore.M41Side	HPC/Moore	54	54	**The pocket of a chord.** *Axioms used: 1–5, 7, 8.*
+547	HPC.Moore.half_replace	HPC.Moore.M41Half	HPC/Moore	53	61	**Replacing the chords over one arc of `J₂`** (Theorem 41). *Axioms used: 1–5, 7, 8.*
+548	HPC.Moore.Gen.exists_unbounded_component	HPC.Moore.M41Geom	HPC/Moore	53	0	**An unbounded component.** If the closed set `K` lies in the interior of a compact set `N`,
+549	HPC.Moore.fa_theorem41_caseII	HPC.Moore.M41	HPC/Moore	52	73	**Theorem 41, Case II** (`J₁ ∩ J₂` has two points and `J₂` has a point without `J₁`).
+550	HPC.Moore.fa_theorem41_of_subset	HPC.Moore.Sec7Th41	HPC/Moore	52	14	**Theorem 41, first sub-case of Case II** (p. 155: "If every point of `J₁` is within or on
+551	HPC.Moore.fa_theorem41	HPC.Moore.M41	HPC/Moore	51	77	**Theorem 41** (p. 155). If the interiors `I₁`, `I₂` of the closed curves `J₁`, `J₂` meet, there
+552	HPC.Moore.fa_theorem42_of_41	HPC.Moore.Sec7Th42	HPC/Moore	51	28	**Theorem 42 from Theorem 41.** If Theorem 41 holds, then Theorem 42 holds. *Axioms used: 1, 2,
+553	HPC.Moore.fa_theorem42	HPC.Moore.M41	HPC/Moore	50	79	**Theorem 42** (p. 156). If the union of the interiors of a finite nonempty set `G` of closed
+554	HPC.Moore.merge_nice	HPC.Moore.M19DNice	HPC/Moore	48	80	**Merging curves.** Finitely many closed curves within `V`, each meeting `J` in finitely many
+555	HPC.Moore.exists_nice_curve	HPC.Moore.M19DNice	HPC/Moore	47	99	**A nice closed curve about a compact set.**
+556	HPC.Moore.rulable_of_cover	HPC.Moore.M19DThm	HPC/Moore	46	132	**Theorem D for a finite cover**, by induction on the number of curves.
+557	HPC.Moore.m19_theoremD	HPC.Moore.M19DThm	HPC/Moore	45	136	**Moore 1919, Theorem D** (p. 173). If each point on or within the closed curve `ABCDA` is
+558	HPC.Moore.m19_theoremD_regions_of_curves	HPC.Moore.M19CDRegion	HPC/Moore	45	72	**Theorem D, region form, from the curve form.** If the conclusion of Theorem D holds for every
+559	HPC.Moore.m19_theoremD_regions	HPC.Moore.M19CD2	HPC/Moore	44	138	**Theorem D, region form** (as used in Theorem E): if each point on or within `ABCDA` lies in a
+560	HPC.Moore.nested_rulings	HPC.Moore.M19ESeq	HPC/Moore	43	141	**The nested double rulings** (Theorem E, steps 1–3, \"This process may be continued\").
+561	HPC.Moore.preGrid	HPC.Moore.M19EGrid	HPC/Moore	44	57	**The pre-grid** of the two families of cross-cuts.
+562	HPC.Moore.Space.Tiling.components	HPC.Moore.M19CDTile	HPC/Moore	45	29	**The tiles are the components.** For a tiling of `U` relative to `G`, the components of
+563	HPC.Moore.Space.Tiling.add_arc	HPC.Moore.M19CDTile	HPC/Moore	47	53	**Adding a cross-cut to a tiling** adds one tile.
+564	HPC.Moore.Space.Tiling.add_arc_finite	HPC.Moore.M19CDTile	HPC/Moore	46	54	**Adding an arc meeting `G` in finitely many points.** If the arc `γ` has its ends on `G`, its
+565	HPC.Moore.Space.DoubleRuling.tiling	HPC.Moore.M19CDCells	HPC/Moore	45	55	**The tiling by the subdivisions**: `I − ⋃ arcs` is tiled by exactly `(n + 1)(m + 1)`
+566	HPC.Moore.doubleRuling_cells_ncard	HPC.Moore.M19CDCells	HPC/Moore	44	57	**Subdivision lemma**, the count: there are exactly `(n + 1)(m + 1)` subdivisions.
+567	HPC.Sq.PreGrid.mem_closure_box	HPC.Moore.GridSquare	HPC/Moore	52	0	**Localization.** A point between two consecutive lines of each family, not at a crossing of
+568	HPC.Sq.PreGrid.box_sub_component	HPC.Moore.GridMesh	HPC/Moore	44	1	**Counting.** If the complement in `U` of the lines of a finite subgrid has as many components
+569	HPC.Moore.preGrid_box_sub_cell	HPC.Moore.M19EMesh	HPC/Moore	43	67	**Boxes are subdivisions.** For a double ruling whose arcs belong to the two families, the
+570	HPC.Sq.Grid.dense_t	HPC.Moore.GridSquare	HPC/Moore	46	1	**Density** of the positions of the lines.
+571	HPC.Sq.Grid.continuousOn_pos	HPC.Moore.GridSquare	HPC/Moore	45	2	**Continuity** of the position on `K`.
+572	HPC.Sq.Grid.mem_L_of_pos_eq	HPC.Moore.GridSquare	HPC/Moore	46	1	**The limit lemma**, `L`-side.
+573	HPC.Sq.Grid.mem_R_of_pos_eq	HPC.Moore.GridSquare	HPC/Moore	46	1	**The limit lemma**, `R`-side: a point at the position of a line is on its `R`-side.
+574	HPC.Sq.Grid.eq_of_pos_eq	HPC.Moore.GridSquare	HPC/Moore	45	3	**Injectivity** of the pair of positions.
+575	HPC.Sq.Grid.exists_square	HPC.Moore.GridSquare	HPC/Moore	35	6	**A compact grid is a square.** If `K` is compact and carries a grid, there is an embedding of
+576	HPC.Moore.m19_schoenflies_proof	HPC.Moore.M19ESchoenflies	HPC/Moore	34	159	**The Schoenflies form of Theorem E.** `ABCDA` together with its interior is homeomorphic to
+577	HPC.Moore.exists_square_of_interior	HPC.Moore.M19GCuts	HPC/Moore	33	161	**Schoenflies for a closed curve**: an embedding of the square onto `J ∪ I` sending a point
+578	HPC.Moore.extreme_points	HPC.Moore.M19GCuts	HPC/Moore	33	0	**The extreme points on a horizontal line.** Let `f` embed the square, and let `Jin ∪ Iin`
+579	HPC.Moore.exists_cuts	HPC.Moore.M19GCuts	HPC/Moore	32	163	**Two cuts of the annulus.** If `J ∪ I` lies within `J'`, there are disjoint arcs `PP'` and
+580	HPC.Sq.Grid.exists_square_param	HPC.Moore.M19GSquare	HPC/Moore	40	6	**A compact grid is a square, with prescribed parametrizations on two lines.** As
+581	HPC.Moore.m19_schoenflies_param	HPC.Moore.M19GBoundary	HPC/Moore	39	159	**Schoenflies with two sides prescribed.** As `m19_schoenflies_proof`, for given
+582	HPC.Sq.exists_square_reparam	HPC.Moore.M19GSquare	HPC/Moore	39	0	**Homeomorphisms of the square fixing two sides.** Given homeomorphisms `a`, `b` of `[0, 1]`
+583	HPC.Moore.m19_schoenflies_boundary_proof	HPC.Moore.M19GBoundary	HPC/Moore	38	161	**Schoenflies with prescribed boundary** (item A). Given parametrizations of the four sides
+584	HPC.Moore.exists_collar	HPC.Moore.M19GCollar	HPC/Moore	31	171	**The annulus lemma, collar form.** If the closed curve `J'` encloses the closed curve `J`
+585	HPC.Moore.m19_theoremF_proof	HPC.Moore.M19F	HPC/Moore	31	91	**Theorem F** (p. 176), as shaped in the skeleton (`HPC/Moore/M19EF.lean`). *Axioms used:
+586	HPC.Sq.exhaust_homeomorph	HPC.Moore.M19GPaste	HPC/Moore	32	0	**Pasting.** Compatible embeddings of the squares `[-(n+1), n+1]²` onto an exhaustion
+587	HPC.Sq.radial_step	HPC.Moore.M19GPaste	HPC/Moore	32	0	**The radial step.** A stage of radius `r` and a collar of its boundary give a stage of radius
+588	HPC.Sq.plane_of_collars	HPC.Moore.M19GPaste	HPC/Moore	31	2	**A plane from an exhaustion with collars.** If `Jₙ ∪ Iₙ ⊆ Iₙ₊₁` (with `Iₙ` open and disjoint
+589	HPC.Sq.stage_of_square	HPC.Moore.M19GPaste	HPC/Moore	31	0	**The base stage.** An embedding of the unit square onto `J ∪ I` sending exactly its boundary
+590	HPC.Moore.m19_plane_exhaust	HPC.Moore.M19GPlane	HPC/Moore	30	177	**A space satisfying Axioms 1–8 is homeomorphic to `ℝ²`**, by a homeomorphism sending the
+591	HPC.Moore.m19_plane_proof	HPC.Moore.M19GPlane	HPC/Moore	29	178	**Main theorem** (Moore 1919). A space satisfying Axioms 1–8 of F.A. is homeomorphic, in the
+592	HPC.Moore.m19_plane	HPC.Moore.M19G	HPC/Moore	28	179	**Main theorem** (Moore 1919: "every space `S` that satisfies Σ₁ or Σ₂ is a number plane"). A
+593	HPC.Moore.exists_dist_tube	HPC.Moore.M25Quot	HPC/Moore	105	1	**The u.s.c. in tube form.** If the element of `x` lies in the open set `U`, so do the elements
+594	HPC.Moore.isClosedMap_mk_plane	HPC.Moore.M25Quot	HPC/Moore	104	2	**Moore's u.s.c. gives the open-set form: the quotient map is closed.** Uses the compactness of
+595	HPC.Moore.isPreconnected_ptsOf	HPC.Moore.M25Quot	HPC/Moore	95	3	**The point set of a preconnected set of elements is preconnected** (the fibres are connected
+596	HPC.Moore.ptsOf_connectedComponentIn	HPC.Moore.M25Quot	HPC/Moore	94	4	**Components correspond.** For any set `W` of elements, the point set of the component of `[x]` in `W` is the
+597	HPC.Moore.mooreRegion	HPC.Moore.M25Defs	HPC/Moore	63	0	**Moore's region** (p. 419): a bounded domain of elements with a connected boundary. "Bounded":
+598	HPC.Plane.exists_exp_lift	HPC.Plane.Fugate66BMiller	HPC/Plane	187	0	**Lifting through `exp`** on a space contracted to a point by a homotopy `Hc`: every continuous
+599	HPC.Moore.exists_log_pt	HPC.Moore.M25Plane	HPC/Moore	186	1	**Every continuous nonvanishing map of the plane to `ℂ` has a continuous logarithm.**
+600	HPC.Moore.plane_unicoherent	HPC.Moore.M25Plane	HPC/Moore	93	2	**The plane is unicoherent** (for closed preconnected sets, bounded or not): if
+601	HPC.Moore.brouwer_boundary	HPC.Moore.M25Plane	HPC/Moore	92	3	**Brouwer's theorem** (Math. Ann. 69; used in Moore's Theorem 3): the frontier of a
+602	HPC.Moore.quot_brouwer	HPC.Moore.M25Quot	HPC/Moore	90	9	**Brouwer's theorem for sets of elements.** The frontier of a component of the complement of
+603	HPC.Moore.exists_region_in_tube	HPC.Moore.M25Thm	HPC/Moore	60	78	**Theorem 3, tube form.** Every element `p` lies in a Moore region contained in the tube of
+604	HPC.Moore.mem_nhds_iff_tube	HPC.Moore.M25Quot	HPC/Moore	61	3	**The tubes of thickenings of `q̄` form a neighbourhood basis of `q`.**
+605	HPC.Moore.isTopologicalBasis_mooreRegion	HPC.Moore.M25Thm	HPC/Moore	57	80	**Moore's regions form a basis of the quotient topology.**
+606	HPC.Moore.quotient_metrizable_plane	HPC.Moore.M25Quot	HPC/Moore	87	3	**The quotient is metrizable**: T1, regular, second countable (Urysohn).
+607	HPC.Moore.m25_axiom1	HPC.Moore.M25Ax	HPC/Moore	54	83	**Axiom 1** for the space of elements.
+608	HPC.Moore.spaceOfElts_topology	HPC.Moore.M25Thm	HPC/Moore	55	81	**The region topology of `spaceOfElts r` is the quotient topology.**
+609	HPC.Moore.m25_axiom4	HPC.Moore.M25Ax	HPC/Moore	53	84	**Axiom 4** for the space of elements: `R'` has the Heine–Borel property.
+610	HPC.Moore.m25_axiom2	HPC.Moore.M25Ax	HPC/Moore	53	91	**Axiom 2** for the space of elements: every region is connected.
+611	HPC.Moore.m25_fa_theorem15	HPC.Moore.M25FA	HPC/Moore	52	107	**F.A. Theorem 15 for the space of elements.** Two distinct elements of a domain of elements
+612	HPC.Moore.arcConn_quot	HPC.Moore.M25CInt	HPC/Moore	51	112	**F.A. Theorem 15 for the quotient, topologically**: two distinct elements of a connected open
+613	HPC.Moore.IsCutArc	HPC.Moore.CutArc	HPC/Moore	93	0	**Cut-point arc** from `A` to `B`.
+614	HPC.Plane.subset_side_of_isPreconnected	HPC.Plane.NonCut51Gen	HPC/Plane	98	0	**A preconnected set inside a union of two separated sets lies in one of them.**
+615	HPC.Plane.isConnected_union_of_separation	HPC.Plane.NonCut51Gen	HPC/Plane	97	1	**Nadler 6.3.** If `S` is connected, `C ⊆ S` connected and `S ∖ C = A | B`, then `A ∪ C` is
+616	HPC.Plane.nadler_6_4	HPC.Plane.NonCut51Gen	HPC/Plane	96	2	**Nadler 6.4.** If `S ∖ {x} = K | L`, `S ∖ {y} = M | N`, `x ∈ M`, `y ∈ K`, then
+617	HPC.Plane.exists_nonCutPoint_of_cut	HPC.Plane.NonCut51Gen	HPC/Plane	95	3	**Nadler 6.6 (Moore's non-cut-point existence theorem).** In a nondegenerate compact connected
+618	HPC.Plane.exists_two_nonCutPoints	HPC.Plane.NonCut51Gen	HPC/Plane	83	4	**Nadler 6.6, second clause**: a nondegenerate compact connected `T₁` space has two non-cut
+619	HPC.Moore.exists_nonCut_ne	HPC.Moore.CutArc	HPC/Moore	79	5	**Two non-cut points, in set form** (Nadler 6.6): a nondegenerate continuum has, for any `y`,
+620	HPC.Moore.circle_char_space	HPC.Moore.CutArc	HPC/Moore	78	7	**The circle characterization in a space.**
+621	HPC.Moore.circle_char	HPC.Moore.CutArc	HPC/Moore	77	8	**Moore 1920, Theorem 4** (for compact sets in a Hausdorff space): a nondegenerate continuum
+622	HPC.Moore.m25_theorem10	HPC.Moore.M25B9	HPC/Moore	76	13	**Theorem 10** (p. 421), for the corrected simple closed curve. ("In view of results established
+623	HPC.Moore.locallyConnectedSpace_quot	HPC.Moore.M25Quot	HPC/Moore	79	5	**The space of elements is locally connected.**
+624	HPC.Moore.exists_exp_lift_of_homotopy	HPC.Moore.M25Plane	HPC/Moore	189	0	**Homotopy lifting from the constant `1`.** If `Hg` is a homotopy of nonvanishing maps with
+625	HPC.Moore.exists_log_of_mem_component	HPC.Moore.M25Plane	HPC/Moore	185	1	**Same component ⇒ logarithm.** If `y` lies in the component of `x` in `Kᶜ` (`K` closed),
+626	HPC.Moore.no_log_of_bounded_component	HPC.Moore.M25Plane	HPC/Moore	166	3	**Bounded component ⇒ no logarithm.** If the component `U` of `x` in `Kᶜ` is bounded and
+627	HPC.Moore.janiszewski_compact	HPC.Moore.M25Plane	HPC/Moore	165	6	**Janiszewski's theorem** (1913; used in Moore's Theorems 2 and 13): if `A`, `B` are compact,
+628	HPC.Moore.m25_theorem2	HPC.Moore.M25Thm2	HPC/Moore	77	16	**Theorem 2** (p. 418). If `D` is a bounded complementary domain of a bounded continuum of
+629	HPC.Moore.eq_image_Icc_of_subset_range	HPC.Moore.CutArc	HPC/Moore	78	0	**Subcontinua of an embedded arc are intervals.**
+630	HPC.Moore.isCutArc_image_Icc	HPC.Moore.CutArc	HPC/Moore	83	1	**The image of a nondegenerate interval under an embedding of `[0, 1]` is a cut-point arc.**
+631	HPC.Moore.exists_nonCut_off	HPC.Moore.CutArc	HPC/Moore	88	4	**Nadler 6.6, set form**: if `x` cuts the continuum `C` and `L ⊆ C − x` is preconnected, there
+632	HPC.Moore.IsCutArc.irreducible	HPC.Moore.CutArc	HPC/Moore	87	6	**A cut-point arc is irreducible** between its extremities.
+633	HPC.Moore.IsCutArc.exists_embedding	HPC.Moore.CutArc	HPC/Moore	85	10	**A cut-point arc is an embedded `[0, 1]`** (metrizable ambient space).
+634	HPC.Moore.m25_theorem6	HPC.Moore.M25B5	HPC/Moore	77	17	**Theorem 6** (p. 420). Every closed and connected subset of a simple continuous arc which
+635	HPC.Moore.m25_theorem9	HPC.Moore.M25B9	HPC/Moore	76	32	**Theorem 9** (p. 421). If `pq` is a simple continuous arc of elements, then `G − pq` is
+636	HPC.Moore.frontier_eq_of_scc	HPC.Moore.M25B11	HPC/Moore	72	38	**`J` is the boundary of each complementary domain** (the repaired step of Moore's proof).
+637	HPC.Moore.no_log_pow_of_bounded_component	HPC.Moore.Mullikin	HPC/Moore	76	3	**Bounded component ⇒ no logarithm, with powers.** If the component `U` of `x` in `Kᶜ` is
+638	HPC.Moore.compl_union_two_components	HPC.Moore.Mullikin	HPC/Moore	73	6	**At most two components** (Eilenberg's bound for two pieces).
+639	HPC.Moore.IsGoodZero.remove	HPC.Moore.Borsuk	HPC/Moore	151	0	**Removing one good zero.**
+640	HPC.Moore.exists_log_of_goodZeros	HPC.Moore.Borsuk	HPC/Moore	150	3	**Induction on the zeros.**
+641	HPC.Moore.borsuk_exists_log	HPC.Moore.Borsuk	HPC/Moore	149	4	**Borsuk's theorem (plane, the direction used here).** If `K` is compact and its complement is
+642	HPC.Moore.not_isConnected_compl_union	HPC.Moore.Mullikin	HPC/Moore	73	6	**Separation** (the Janiszewski direction, via Borsuk's theorem). If `M₁ ∩ M₂` is the union of
+643	HPC.Moore.mullikin_theorem5	HPC.Moore.Mullikin	HPC/Moore	72	11	**Mullikin 1922, Theorem 5, corrected** (`K₁`, `K₂` closed). This is the form Moore uses in
+644	HPC.Moore.m25_theorem11	HPC.Moore.M25B11	HPC/Moore	71	46	**Theorem 11** (pp. 421–422), for the corrected simple closed curve: `G − J` is the sum of two
+645	HPC.Moore.m25_theorem12	HPC.Moore.M25B9	HPC/Moore	47	6	**Theorem 12** (p. 422). If `D₁` and `D₂` are bounded domains of elements, `D₁` has a connected
+646	HPC.Moore.isCutArc_range	HPC.Moore.CutArc	HPC/Moore	77	2	**The range of an embedding of `[0, 1]` is a cut-point arc.**
+647	HPC.Moore.isArcElt_iff_tarc	HPC.Moore.M25CInt	HPC/Moore	75	17	**Moore's arcs of elements are the topological arcs of the quotient.**
+648	HPC.Moore.m25_region_infinite	HPC.Moore.M25Ax	HPC/Moore	49	4	**F.A. Theorem 4** for the space of elements: every nonempty region is infinite.
+649	HPC.Moore.quot_janiszewski	HPC.Moore.M25C13	HPC/Moore	50	12	**Janiszewski's theorem for sets of elements.**
+650	HPC.Moore.m25_theorem13	HPC.Moore.M25C13	HPC/Moore	48	38	**Theorem 13** (p. 422). If `R` is a region and `k` is either a single element or an arc every
+651	HPC.Moore.exists_tscc_of_arcs	HPC.Moore.M25C13	HPC/Moore	48	0	**The sub-arc argument of Theorem 14.** If `x` is a point of the arc `X` (from `p` to `q`) not on
+652	HPC.Moore.Gen.tscc_cut	HPC.Moore.TSCCCut	HPC/Moore	72	0	**Two arcs with only their ends in common are cut by any two of their points.**
+653	HPC.Moore.isSCCElt_iff_tscc	HPC.Moore.M25CInt	HPC/Moore	71	24	**Moore's simple closed curves of elements are the topological closed curves.**
+654	HPC.Moore.m25_theorem14	HPC.Moore.M25C13	HPC/Moore	47	145	**Theorem 14** (p. 423). Every region contains a simple closed curve of elements.
+655	HPC.Moore.ax8Prop_restricted	HPC.Moore.M25CInt	HPC/Moore	48	52	**Axiom 8 for the restricted regions**, topologically.
+656	HPC.Moore.th21Prop_restricted	HPC.Moore.M25CInt	HPC/Moore	49	48	**F.A. Theorem 21 for the restricted regions** (from Theorem 11 alone): if the boundary of `R`
+657	HPC.Moore.m25_theorem18	HPC.Moore.M25C15	HPC/Moore	47	167	**Theorem 18** (pp. 423–424). `pxq`, `pyq` arcs with only their extremities in common, `J` the
+658	HPC.Moore.m25_theorem19	HPC.Moore.M25C19	HPC/Moore	46	174	**Theorem 19** (p. 424). If `R` is a region and `p ∈ R`, there is a simple closed curve of
+659	HPC.Moore.isTopologicalBasis_restricted	HPC.Moore.M25C20	HPC/Moore	43	175	**The restricted regions form a basis of the quotient topology.**
+660	HPC.Moore.m25r_axiom1	HPC.Moore.M25C20	HPC/Moore	41	176	**Axiom 1** for the restricted regions (as `m25_axiom1`, with Theorem 19).
+661	HPC.Moore.m25r_axiom2	HPC.Moore.M25C20	HPC/Moore	36	177	**Axiom 2** for the restricted regions.
+662	HPC.Moore.m25r_axiom3	HPC.Moore.M25C20	HPC/Moore	37	178	**Axiom 3** for the restricted regions (Theorem 11: `S − R'` is the exterior).
+663	HPC.Moore.m25r_axiom4	HPC.Moore.M25C20	HPC/Moore	37	176	**Axiom 4** for the restricted regions.
+664	HPC.Moore.isLimitElt_iff	HPC.Moore.M25Quot	HPC/Moore	41	4	**Moore's limit element is accumulation in the quotient topology.**
+665	HPC.Moore.m25_theorem20	HPC.Moore.M25C20	HPC/Moore	38	176	**Theorem 20** (p. 424). `p` is a limit element of `H` iff every region in the restricted sense
+666	HPC.Moore.m25_theorem4	HPC.Moore.M25Thm	HPC/Moore	39	81	**Theorem 4** (p. 420). `p` is a limit element of `K` iff every region containing `p` contains
+667	HPC.Moore.m25_axiom5	HPC.Moore.M25Ax	HPC/Moore	38	83	**Axiom 5** for the space of elements: the elements containing the points `(n, 0)` form an
+668	HPC.Moore.m25r_axiom5	HPC.Moore.M25C20	HPC/Moore	37	180	**Axiom 5** for the restricted regions.
+669	HPC.Moore.exists_access	HPC.Moore.M25C6	HPC/Moore	39	114	**Accessible elements.** Near any element `y` of the boundary `J` of an open set `D` there is an
+670	HPC.Moore.exists_crosscut	HPC.Moore.M25C6	HPC/Moore	38	139	**Cross-cuts near an element of a closed curve.**
+671	HPC.Moore.m25_theorem15	HPC.Moore.M25C15	HPC/Moore	36	56	**Theorem 15** (p. 423). `pxq`, `pyq` arcs from `p` to `q` with only `p`, `q` in common,
+672	HPC.Moore.m25r_axiom6	HPC.Moore.M25C6	HPC/Moore	35	181	**Axiom 6** for the restricted regions, proved directly.
+673	HPC.Moore.m25r_axiom7	HPC.Moore.M25C6	HPC/Moore	36	180	**Axiom 7** for the restricted regions, proved directly.
+674	HPC.Moore.m25r_axiom8	HPC.Moore.M25C20	HPC/Moore	36	193	**Axiom 8** for the restricted regions (Theorem 11).
+675	HPC.Moore.m25_theorem21	HPC.Moore.M25C	HPC/Moore	28	202	**Theorem 21** (pp. 424–425). With the restricted regions, the space of elements satisfies
+676	HPC.Moore.m25_theorem22	HPC.Moore.M25C	HPC/Moore	27	332	**Theorem 22** (p. 425), topological form: the space of elements is homeomorphic to the plane.
+677	HPC.Hagopian.exists_plane_quotient_of_monotone_aux	HPC.Hagopian.H84Quot	HPC/Hagopian	24	397	**The plane quotient** (Moore 1925 Theorem 22, as in `exists_quotient_plane`): `π` is the
+678	HPC.Hagopian.exists_plane_quotient_of_monotone	HPC.Hagopian.Hagopian84A	HPC/Hagopian	23	398	**§3, the plane quotient** (Moore 1925 Theorem 22, as in `exists_quotient_plane`): for `q` as
+679	HPC.Hagopian.isPreconnected_preimage_of_monotone	HPC.Hagopian.H84Quot	HPC/Hagopian	26	0	**Preimages under a monotone map.** For a continuous surjection `q` of a compact space onto a
+680	HPC.Hagopian.isContinuum_preimage_of_monotone	HPC.Hagopian.H84Quot	HPC/Hagopian	25	1	**Preimages of subcontinua** under a monotone map are subcontinua.
+681	HPC.Hagopian.isDecomposableSpace_of_monotone_image	HPC.Hagopian.H84Quot	HPC/Hagopian	24	2	**§3, monotone images.** If a compact metric space `X` maps onto a metric space `Y` by a
+682	HPC.Hagopian.indecomposable_of_monotone_image	HPC.Hagopian.Hagopian84A	HPC/Hagopian	23	3	**§3, monotone images**: a monotone image of an indecomposable continuum is indecomposable.
+683	HPC.Hagopian.hagopian76_theorem1_of_jones	HPC.Hagopian.Hagopian84A	HPC/Hagopian	22	406	**§3, the assembly** (Hagopian 1984, p. 346, Corollary 3 by Jones's plan): Theorem 1 of 1976
+684	HPC.Hagopian.Omega5	HPC.Hagopian.Hagopian84A	HPC/Hagopian	62	0	**`Ω(𝒫)`** (p. 341): the elements of the decompositions of the closures of the components of
+685	HPC.Hagopian.Delta5	HPC.Hagopian.Hagopian84A	HPC/Hagopian	60	1	**`Δ(𝒫)`** (p. 341): the elements of `Ω(𝒫)` that miss `Cl(P₁ ∪ P₅)`.
+686	HPC.Hagopian.IsFree5	HPC.Hagopian.Hagopian84A	HPC/Hagopian	58	0	**Free** (p. 338): "`Bd(L₁ ∪ L₅)∖Cl ⋃𝔏′` contains `Bd ⋃𝔏`" (boundary and closure in `M`).
+687	HPC.Hagopian.IsNormal5	HPC.Hagopian.Hagopian84A	HPC/Hagopian	65	0	**Normal** (p. 338): "`Cl Lᵢ ∩ Cl Lⱼ = ∅` whenever `|i − j| > 1`".
+688	HPC.Hagopian.RunsStraight	HPC.Hagopian.Hagopian84A	HPC/Hagopian	79	0	**Runs straight through** (pp. 338–339), conditions (1)–(5).
+689	HPC.Hagopian.IsRegular5	HPC.Hagopian.Hagopian84A	HPC/Hagopian	69	1	**Regular** (p. 339): "for each component `K` of `⋃𝔏′`, the set `Cl K` is a continuum of type λ
+690	HPC.Hagopian.CoverData84	HPC.Hagopian.Hagopian84D	HPC/Hagopian	34	6	**§3.1, the data of p. 343 after the finite subcover** (`hagopian84_cover`): the chain `𝒫`
+691	HPC.Hagopian.IsJonesDecomp84	HPC.Hagopian.Hagopian84B	HPC/Hagopian	25	1	**§2.1, a Jones decomposition** (what Theorem 1 of 1984 produces with `N = M`): upper
+692	HPC.Hagopian.IsEssential84	HPC.Hagopian.Hagopian84A	HPC/Hagopian	55	0	**Essential subcontinuum** (Hagopian 1984, p. 336): "A continuum `H` in `E` is an *essential
+693	HPC.Hagopian.IsTypeA'	HPC.Hagopian.H75Defs	HPC/Hagopian	86	0	**Type A′** (p. 36): type A, with an admissible decomposition each of whose elements has void
+694	HPC.exists_irreducible	HPC.PseudoArc.Theorem14	HPC/PseudoArc	85	0	**Irreducible subcontinua exist.** A continuum containing `A` and `B` contains a subcontinuum
+695	HPC.Plane.exists_continuum_bump_closed	HPC.Plane.SorgenfreyDefs	HPC/Plane	114	1	**Boundary bumping, closed form** (Nadler 5.4). If `F` is a proper closed subset of a continuum
+696	HPC.Plane.exists_continuum_bump_open	HPC.Plane.SorgenfreyDefs	HPC/Plane	94	2	**Boundary bumping, open form** (Nadler 5.7). If `L` is a continuum, `O` is open, `p ∈ L ∩ O`
+697	HPC.Hagopian.irr_compl_continuum	HPC.Hagopian.H75Kur	HPC/Hagopian	93	3	**Kuratowski II, Theorem 3** (in the form used): for a subcontinuum `K` containing `a` but not
+698	HPC.Hagopian.IsDElt.chain	HPC.Hagopian.H75Kur	HPC/Hagopian	86	4	**Kuratowski III: `D` is a chain.**
+699	HPC.Hagopian.irr_no_hole	HPC.Hagopian.H75Kur	HPC/Hagopian	89	4	**No hole.** Let `K ∋ a` be a subcontinuum not containing `b`, and `U ⊆ K` a nonempty open set
+700	HPC.Hagopian.isDElt_closure_interior	HPC.Hagopian.H75Kur	HPC/Hagopian	88	5	**Kuratowski III, Theorem 1 (the subcontinuum lemma).** If `K ∋ a` is a subcontinuum with
+701	HPC.Hagopian.IsDElt.closure_diff	HPC.Hagopian.H75Kur	HPC/Hagopian	88	4	**Kuratowski VII, proof of Theorem 2.** If `D₁ ⊊ D₂` in `D`, then `cl (D₂ − D₁)` is a
+702	HPC.Hagopian.IsDElt.exists_between	HPC.Hagopian.H75Kur	HPC/Hagopian	86	7	**Kuratowski VII, Theorems 1–2: no jumps.** If every subcontinuum with nonempty interior is
+703	HPC.Hagopian.exists_scale	HPC.Hagopian.H75KurScale	HPC/Hagopian	85	9	**A scale exists** when every subcontinuum with interior is decomposable.
+704	HPC.Hagopian.IsDElt.subset_interior	HPC.Hagopian.H75Kur	HPC/Hagopian	86	4	**Strictness.** If `D₁ ⊊ D₂` in `D`, then `D₁ ⊆ int D₂`.
+705	HPC.Hagopian.scaleMap_spec	HPC.Hagopian.H75KurMap	HPC/Hagopian	85	8	**From a scale to a type A′ map.**
+706	HPC.Hagopian.exists_typeA'_map	HPC.Hagopian.H75KurScale	HPC/Hagopian	84	12	**Sufficiency in Lemma 2, intrinsic form.** If `Y` is irreducible between `a` and `b` and every
+707	HPC.Hagopian.isTypeA'_of_decomposable	HPC.Hagopian.H75Transfer	HPC/Hagopian	83	14	**Sufficiency in Lemma 2** for a subset `E` of `X`.
+708	HPC.Effros.vanMill_3_2	HPC.Effros.OpenMapping	HPC/Effros	130	0	**van Mill, Lemma 3.2.** If the action is transitive and `X` is a nonempty Baire space, then
+709	HPC.Effros.vanMill_3_4	HPC.Effros.OpenMapping	HPC/Effros	128	1	**van Mill, Lemma 3.4, second sentence.** `x` lies in the interior of `closure (U n • x)`.
+710	HPC.Effros.exists_eq_of_core	HPC.Effros.Fat	HPC/Effros	129	0	**The nested construction of Proposition 2.2.** `P`, `Q` complete metric spaces, `α`, `β`
+711	HPC.Effros.exists_reduced_param	HPC.Effros.Fat	HPC/Effros	129	0	**The reduction of Proposition 2.2.** Let `f : (ℕ → ℕ) → Y` be any map (continuity is not needed here). Remove from
+712	HPC.Effros.inter_nonempty_of_nowhereMeagre	HPC.Effros.Fat	HPC/Effros	128	2	**van Mill, Proposition 2.2, relative form.** Two analytic nowhere meager subsets `S`, `T`
+713	HPC.Effros.vanMill_3_1	HPC.Effros.OpenMapping	HPC/Effros	129	0	**van Mill, Lemma 3.1.** Suppose `V` is open and `z ∈ V ∩ U n • x`. Then
+714	HPC.Effros.vanMill_3_3	HPC.Effros.OpenMapping	HPC/Effros	128	2	**van Mill, Corollary 3.3.** `U n • x` is nowhere meager. (The hypothesis `U 0 = univ` of the
+715	HPC.Effros.vanMill_3_5	HPC.Effros.OpenMapping	HPC/Effros	127	7	**van Mill, Proposition 3.5** (as printed, with the closure bar). `interior (closure (U (n+1) • x)) ⊆ U n • x`.
+716	HPC.Effros.effros_open_mapping	HPC.Effros.OpenMapping	HPC/Effros	126	8	**The open mapping principle** (Effros 1965; van Mill 2004, Theorem 1.2 for a Polish group).
+717	HPC.Effros.homeoGroup	HPC.Effros.HomeoGroup	HPC/Effros	131	0	**C.1.** The group of self-homeomorphisms; multiplication is composition.
+718	HPC.Effros.homeoMulAction	HPC.Effros.HomeoGroup	HPC/Effros	127	1	**C.3.** The evaluation action.
+719	HPC.Effros.homeoTopology	HPC.Effros.HomeoGroup	HPC/Effros	131	0	**C.1.** The topology of the homeomorphism group: induced by `homeoEmb` (Arens).
+720	HPC.Effros.homeo_continuousSMul	HPC.Effros.HomeoGroup	HPC/Effros	126	3	**C.3.** The evaluation action is continuous (locally compact `Y`).
+721	HPC.Effros.homeo_isTopologicalGroup	HPC.Effros.HomeoGroup	HPC/Effros	126	2	**C.1.** For locally compact `Y` the homeomorphism group is a topological group.
+722	HPC.Effros.homeo_polishSpace	HPC.Effros.HomeoGroup	HPC/Effros	126	1	**C.2.** The homeomorphism group of a compact metric space is Polish.
+723	HPC.Effros.hasBasis_supMove	HPC.Effros.HomeoGroup	HPC/Effros	127	2	**C.3.** The `supMove`-balls form a basis of the neighbourhoods of `1`.
+724	HPC.Effros.supMove_ball_mem_nhds	HPC.Effros.HomeoGroup	HPC/Effros	126	3	**C.3.** `{h | supMove h < r}` is a neighbourhood of `1` for `r > 0`.
+725	HPC.Effros.effros_homogeneous	HPC.Effros.Effros	HPC/Effros	125	17	**Effros–Ungar.** Let `Y` be a homogeneous compact metric space. For every `ε > 0` there is
+726	HPC.Plane.isTriod_of_core	HPC.Plane.Ingram68Core	HPC/Plane	128	0	**A triod with a given core.**
+727	HPC.Hagopian.no_indecomposable_interior_core	HPC.Hagopian.H75Thm1A	HPC/Hagopian	84	23	**Paragraph 2, the case `I ⊆ B`.**
+728	HPC.Hagopian.no_indecomposable_interior_aux	HPC.Hagopian.H75Thm1A	HPC/Hagopian	83	24	**Paragraph 2.**
+729	HPC.Hagopian.exists_typeA'_aux	HPC.Hagopian.H75Thm1A	HPC/Hagopian	25	39	**Paragraphs 1–3.** A decomposable subcontinuum contains a continuum of type A′.
+730	HPC.Hagopian.MooreTriodStatement	HPC.Hagopian.H75Triod	HPC/Hagopian	94	0	**Moore's triod theorem** (Moore 1962, Theorem 84, p. 222), as a proposition: every family of
+731	HPC.Hagopian.isTriodSet_image	HPC.Hagopian.H75Triod	HPC/Hagopian	94	0	**The bridge** from `HPC.Plane.IsTriod` to `IsTriodSet`.
+732	HPC.Plane.IsEssentialSum₃	HPC.Plane.SorgenfreyDefs	HPC/Plane	97	0	**Nadler 11.23**, three summands: `X = X₁ ⊕ X₂ ⊕ X₃` — continua whose union is `X`, none
+733	HPC.Plane.IsWeakTriod	HPC.Plane.SorgenfreyDefs	HPC/Plane	96	1	**Nadler 11.24.** A *weak triod*: an essential sum of three continua with a common point.
+734	HPC.Plane.isPreconnected_union_piece	HPC.Plane.Fugate66	HPC/Plane	101	0	**A piece of the complement of a subcontinuum, with the subcontinuum, is connected** (a
+735	HPC.Plane.isContinuum_union_piece	HPC.Plane.SorgenfreyDefs	HPC/Plane	100	1	**Nadler 6.3.** If `N ⊆ X` are continua and `X ∖ N = A ∪ R` with `A`, `R` separated and `A`
+736	HPC.Plane.isWeakTriod_of	HPC.Plane.SorgenfreyDefs	HPC/Plane	95	2	**Constructor for weak triods.**
+737	HPC.Plane.isWeakTriod_of_isTriod	HPC.Plane.SorgenfreyLemmas	HPC/Plane	94	5	**11.25.** Every triod is a weak triod.
+738	HPC.Hagopian.atriodic_of_homogeneous_indecomposable	HPC.Hagopian.H75Lemma1	HPC/Hagopian	93	13	**Lemma 1, first paragraph**, from Moore's triod theorem: a homogeneous indecomposable plane
+739	HPC.Hagopian.hereditarilyUnicoherent_of_homogeneous_indecomposable	HPC.Hagopian.H75Lemma1	HPC/Hagopian	95	14	**Lemma 1, second paragraph.** A homogeneous indecomposable plane continuum is hereditarily
+740	HPC.Jones.exists_continuum_bump_compact	HPC.Jones.Jones49Why	HPC/Jones	112	1	**Boundary bumping for a compact piece of a connected set.** If `F` is a compact proper subset
+741	HPC.Plane.isPreconnected_union_of_separated	HPC.Plane.Theorem11Nec	HPC/Plane	97	0	**Nadler 6.3 for a subset.** If `T = N ∪ A ∪ R` is preconnected, `N` is preconnected and
+742	HPC.Hagopian.exists_leg	HPC.Hagopian.H75MooreB	HPC/Hagopian	96	3	**A leg reaching the boundary.** If `T = Z ∪ P ∪ R` with `P`, `R` separated, the core `Z` inside
+743	HPC.Hagopian.exists_cross_continuum	HPC.Hagopian.H75MooreB	HPC/Hagopian	95	4	**The continuum crossing to the boundary** (the continuum Moore takes in Theorem 84: a
+744	HPC.Jones.tarc_of_isSimplePolyArc'	HPC.Jones.Jones49EArc	HPC/Jones	107	2	**Item A.** A simple polygonal arc is a topological arc.
+745	HPC.Hagopian.interlace	HPC.Hagopian.H75MooreA	HPC/Hagopian	96	7	**The interlacing lemma** (Moore 1962, Theorem 76, p. 220, separation form). Let `J` be a closed
+746	HPC.Hagopian.interlace_param	HPC.Hagopian.H75MooreA	HPC/Hagopian	95	8	**The interlacing lemma for parameters.** If `s < u < t < v < 2`, `γ s, γ t ∈ x` and
+747	HPC.Hagopian.interlace_three	HPC.Hagopian.H75MooreA	HPC/Hagopian	95	0	**Moore's Theorem 76 in parameter form** (combinatorial step). Let `P`, `Q` be predicates on
+748	HPC.Hagopian.countable_of_nonseparating	HPC.Hagopian.H75MooreB	HPC/Hagopian	94	80	**Moore's Theorems 79, 78 and 76**, the case of non-separating cores: mutually disjoint triods
+749	HPC.Hagopian.countable_of_separating	HPC.Hagopian.H75MooreB	HPC/Hagopian	94	0	**Moore's Theorem 73** (p. 217), in the form used: mutually disjoint connected sets `Kᵢ`, each
+750	HPC.Hagopian.moore_triod_theorem'	HPC.Hagopian.H75MooreB	HPC/Hagopian	93	82	**Moore's triod theorem** (Moore 1962, Theorem 84, p. 222): every family of mutually disjoint
+751	HPC.Hagopian.hagopian75_lemma1	HPC.Hagopian.Hagopian75	HPC/Hagopian	92	104	**Lemma 1** (p. 36). "If `M` is a homogeneous indecomposable plane continuum, then `M` is
+752	HPC.Hagopian.hagopian75_lemma1_hu	HPC.Hagopian.Hagopian75	HPC/Hagopian	90	15	**Lemma 1, second paragraph**, unconditionally: a homogeneous indecomposable plane continuum is
+753	HPC.Hagopian.hagopian75_exists_typeA'	HPC.Hagopian.Hagopian75	HPC/Hagopian	24	143	**Theorem 1, paragraphs 1–3** (p. 38), the part Hagopian 1976 cites ("[5, Theorem 1
+754	HPC.Hagopian.IsAdmissibleMap.isPreconnected_preimage	HPC.Hagopian.H75Basic	HPC/Hagopian	132	0	**Preimages of preconnected sets are preconnected** under an admissible map of a compact set
+755	HPC.Hagopian.layer_subset_of_meets'	HPC.Hagopian.H75Basic	HPC/Hagopian	126	1	**The interval lemma** (both orientations of the ends). A subcontinuum of an irreducible `E`
+756	HPC.Hagopian.fibre_subset_fibre	HPC.Hagopian.H75Basic	HPC/Hagopian	71	2	**Lemma 3, the type A′ case** (Kuratowski §48 VII, proof of Theorem 4): a layer of a type A′
+757	HPC.Hagopian.fibre_eq_iff	HPC.Hagopian.H75Basic	HPC/Hagopian	70	3	**Uniqueness of the type A′ decomposition.**
+758	HPC.Hagopian.hagopian75_lemma3_unique	HPC.Hagopian.Hagopian75	HPC/Hagopian	69	4	**Uniqueness.** Two admissible maps of a type A′ continuum whose layers have void interior have
+759	HPC.Hagopian.exists_layer_eq_of_minimal	HPC.Hagopian.H84Delta	HPC/Hagopian	55	5	**Uniqueness, layer form**: every layer of one minimal admissible map of `G` is a layer of any
+760	HPC.Hagopian.layer_subset_link	HPC.Hagopian.H84Delta	HPC/Hagopian	70	1	**A layer meeting a link lies in it** (running straight, condition (4)).
+761	HPC.Hagopian.omega_not_delta_side_aux	HPC.Hagopian.H84Bridge	HPC/Hagopian	36	12	**§4.2**: a member of `Ω(𝒫) ∖ Δ(𝒫)` lies in `Cl P 0` or in `Cl P 4`, and misses `Cl P 2`.
+762	HPC.Hagopian.bridge_setup	HPC.Hagopian.H84Bridge	HPC/Hagopian	28	13	**§4.1–§4.2, the set-up of the bridge.** For `Z ∈ Ω(𝒫) ∖ Δ(𝒫)`: a strand `Cl K` having `Z` as a
+763	HPC.Hagopian.delta_subset_component	HPC.Hagopian.H84Delta	HPC/Hagopian	44	2	**A member of `Δ(𝒫)` lies in the component it comes from.** Commission 186 §4.1: `K ∪ Z` lies
+764	HPC.Hagopian.eq_of_meets_ends	HPC.Hagopian.H75Basic	HPC/Hagopian	96	2	**End sets with type A′ layers.** A subcontinuum meeting both end layers is everything.
+765	HPC.Hagopian.exists_image_map	HPC.Hagopian.H76NoMaxBasic	HPC/Hagopian	74	0	**Homeomorphic images.** A homeomorphism `h` carries a minimal admissible map of `F` to one of
+766	HPC.Hagopian.ext_of_branch	HPC.Hagopian.H76Lemma4Ext	HPC/Hagopian	74	42	**The extension step, given the branching continuum.** If `F` has a minimal admissible map `d`
+767	HPC.Hagopian.ext_of_irreducible_union	HPC.Hagopian.H76NoMaxBasic	HPC/Hagopian	76	40	**The extension step from an irreducible union.** Let `C` be a continuum missing `d⁻¹(0)`, with
+768	HPC.Hagopian.ext_of_side	HPC.Hagopian.H76NoMaxCases	HPC/Hagopian	74	42	**The configuration where a layer of `B` contains a tail of `F`.**
+769	HPC.Hagopian.false_of_layer_open	HPC.Hagopian.H76NoMaxBasic	HPC/Hagopian	75	0	**A layer cannot swallow an open tail.** If `F ⊇ b⁻¹(β₁, β₂)` with `β₁ < u < β₂` and the layer
+770	HPC.Hagopian.tail_subset	HPC.Hagopian.H76NoMaxBasic	HPC/Hagopian	76	2	**Tails.** A continuum `K` through a point of `d⁻¹(1)` and through a point `y` of `F` with
+771	HPC.Hagopian.ext_of_subset	HPC.Hagopian.H76NoMaxCases	HPC/Hagopian	74	44	**Case `F ⊆ B`.**
+772	HPC.Hagopian.hagopian75_lemma4	HPC.Hagopian.Hagopian75	HPC/Hagopian	83	18	**Lemma 4** (p. 37). "Suppose `M` is a homogeneous continuum, `ε` is a given positive number,
+773	HPC.Hagopian.lemma2_aux	HPC.Hagopian.H76Lemma2	HPC/Hagopian	82	19	**Lemma 2**, for a homogeneous compact metric space.
+774	HPC.Hagopian.three_continua	HPC.Hagopian.H76NoMaxBasic	HPC/Hagopian	76	1	**Three continua.** In an atriodic, hereditarily unicoherent space, of three continua with a
+775	HPC.Hagopian.exists_proper_extension	HPC.Hagopian.H76NoMax	HPC/Hagopian	73	52	**No maximal element.** Every continuum with a minimal admissible map has a proper extension
+776	HPC.Hagopian.ext_chain	HPC.Hagopian.H76Lemma4	HPC/Hagopian	61	4	**Lemma 4, linear order.** Two extensions of `E` away from `X` are comparable.
+777	HPC.Hagopian.lemma4_aux	HPC.Hagopian.H76NoMax	HPC/Hagopian	57	54	**Lemma 4** (p. 340), from `exists_proper_extension` and `ext_chain`.
+778	HPC.Hagopian.hagopian76_lemma4	HPC.Hagopian.Hagopian76A	HPC/Hagopian	54	158	**Lemma 4** (p. 340). "The collection `𝓕` of extensions of `E` away from the end set `X` is
+779	HPC.Hagopian.admissible_end_sets'	HPC.Hagopian.Hagopian75	HPC/Hagopian	85	3	**End sets, corrected.** *Shape change:* the type A′ hypothesis `hk0` is added (it is satisfied
+780	HPC.Hagopian.end_sets_aux	HPC.Hagopian.H76Lemma2	HPC/Hagopian	84	4	**End sets** (Thomas Theorem 8): a subcontinuum of `E` meeting both end sets is `E`.
+781	HPC.Hagopian.lemma4_layers_aux	HPC.Hagopian.H76Lemma4Layers	HPC/Hagopian	74	2	**Lemma 4, first paragraph** (the part that follows from minimality).
+782	HPC.Hagopian.hagopian76_lemma2	HPC.Hagopian.Hagopian76A	HPC/Hagopian	76	20	**Lemma 2** (p. 340). "Suppose `ε` is a given positive number and `x` is a point of `M`. Then
+783	HPC.Hagopian.homeo_image_subset_of_meets	HPC.Hagopian.H75Thm1B	HPC/Hagopian	86	2	**Paragraph 9, the second inclusion.**
+784	HPC.Hagopian.lemma3_half	HPC.Hagopian.H76Lemma3	HPC/Hagopian	83	4	**Lemma 3, the half `h[Y] ⊆ U`.**
+785	HPC.Hagopian.lemma3_aux	HPC.Hagopian.H76Lemma3	HPC/Hagopian	82	5	**Lemma 3.** Both halves.
+786	HPC.Hagopian.hagopian76_lemma3	HPC.Hagopian.Hagopian76A	HPC/Hagopian	81	112	**Lemma 3** (p. 340). "Let `Y` be an element of the decomposition of `E` distinct from the end
+787	HPC.Hagopian.lemma5_interior_aux	HPC.Hagopian.H76Lemma5	HPC/Hagopian	75	135	**Lemma 5 at the layers other than the end sets** (lower semicontinuity).
+788	HPC.Hagopian.far_layer_aux	HPC.Hagopian.H76Far	HPC/Hagopian	73	140	**Item A, the far layer** (commission 158 §1), with all the bookkeeping of
+789	HPC.Hagopian.ext_layers	HPC.Hagopian.H76Lemma5End	HPC/Hagopian	72	141	**The layers of `E` are layers of a proper extension** (item A, packaged): for an extension
+790	HPC.Hagopian.initial_segment_aux	HPC.Hagopian.H76Lemma5End	HPC/Hagopian	35	142	**`E` is an initial segment of every extension** (item A, the strong form): `d⁻¹[[0, s]] = E`
+791	HPC.Hagopian.hagopian76_initial_segment	HPC.Hagopian.Hagopian76C	HPC/Hagopian	34	143	**`E` is an initial segment of every extension** (the strong form; the batch-156 rendering
+792	HPC.Hagopian.hagopian76_lemma4_chain	HPC.Hagopian.Hagopian76A	HPC/Hagopian	35	111	**Lemma 4, linear order** (the first half of `hagopian76_lemma4`). The proof is Hagopian's triod
+793	HPC.Hagopian.exists_strictMono_seq_of_chain	HPC.Hagopian.H76Lemma4	HPC/Hagopian	35	0	**The countable form.** In a second-countable space, a nonempty chain of closed sets with no
+794	HPC.Hagopian.lemma4_seq_aux	HPC.Hagopian.H76NoMax	HPC/Hagopian	34	56	**Lemma 4, the countable form** (p. 342).
+795	HPC.Hagopian.hagopian76_lemma4_seq	HPC.Hagopian.Hagopian76A	HPC/Hagopian	33	160	**Lemma 4, the countable form used in Lemma 6** (p. 342). "Since `M` is second countable, there
+796	HPC.Hagopian.lemma6_step2	HPC.Hagopian.H76Lemma6	HPC/Hagopian	33	114	**Step 2.** "The sets `X` and `C` are disjoint."
+797	HPC.Hagopian.lemma6_step3	HPC.Hagopian.H76Lemma6	HPC/Hagopian	33	147	**Step 3.** "Let `K` be an element of `𝓕` that meets `C − B`. Note that `B − C` is contained in
+798	HPC.Hagopian.ext_of_irreducible_union_eq	HPC.Hagopian.H76Absorb	HPC/Hagopian	35	40	**The extension step from an irreducible union**, for the union itself.
+799	HPC.Hagopian.absorb_point	HPC.Hagopian.H76Absorb	HPC/Hagopian	34	46	**Absorption.** A continuum `G` missing the end set `d⁻¹(0)` of `F` and meeting `F`: each of its
+800	HPC.Hagopian.subset_extUnion_of_meets	HPC.Hagopian.H76Absorb	HPC/Hagopian	33	47	**A continuum missing `X` that meets an extension away from `X` lies in `R(X, E)`.**
+801	HPC.Hagopian.lemma6_main	HPC.Hagopian.H76Lemma6	HPC/Hagopian	32	182	**Steps 4 and 5.** Under the hypothesis `Cl R(X, E) = B ∪ C` with `B`, `C` proper subcontinua
+802	HPC.Hagopian.layer_zero_subset_of_meets	HPC.Hagopian.H76Lemma6	HPC/Hagopian	33	5	**The interval lemma at `0`.** A subcontinuum of `F` meeting `d⁻¹(0)` and a point `y` with
+803	HPC.Hagopian.lemma6_step1	HPC.Hagopian.H76Lemma6	HPC/Hagopian	32	6	**Step 1.** "Since `E` is irreducible and `M` is hereditarily unicoherent, and since `X` does
+804	HPC.Hagopian.lemma6_X_aux	HPC.Hagopian.H76Lemma6	HPC/Hagopian	31	185	**Lemma 6, first part.** `Cl R(X, E)` is indecomposable.
+805	HPC.Hagopian.hagopian76_lemma6_X	HPC.Hagopian.Hagopian76E	HPC/Hagopian	30	186	**Lemma 6, first part** (pp. 342–343, steps 1–7): "First we prove that `Cl R(X, E)` is
+806	HPC.Hagopian.hagopian84_lemma11	HPC.Hagopian.Hagopian84A	HPC/Hagopian	29	187	**Lemma 11 with `N = M`** (p. 338): "If `N` is an indecomposable subcontinuum of `M` that
+807	HPC.Hagopian.exists_interval_in_P2	HPC.Hagopian.H84Delta	HPC/Hagopian	45	3	**§4.4, an interval of layers inside `P 2`.** A continuum `G` with a minimal admissible map `c`
+808	HPC.Hagopian.exists_ext_meeting_P2	HPC.Hagopian.H84Bridge	HPC/Hagopian	28	193	**§4.3** ("Thus `⋃𝔖(X(Z), Cl K(Z))` intersects `P₃∖K(Z)`. Hence there is an element `F(Z)` of
+809	HPC.Hagopian.layer_disjoint_closure_of_mem	HPC.Hagopian.H84Delta	HPC/Hagopian	59	2	**A layer through a point outside `Cl Pᵢ` misses `Cl Pᵢ`.**
+810	HPC.Hagopian.layer_subset_closure_Ioo	HPC.Hagopian.H76Sub	HPC/Hagopian	66	2	**Lower semicontinuity at `d⁻¹(a)`**: every point of `d⁻¹(a)` is a limit of points of the layers
+811	HPC.Hagopian.eq_layerSet_of_subcontinuum	HPC.Hagopian.H76Sub	HPC/Hagopian	65	7	**A subcontinuum meeting the extreme layers `d⁻¹(a)`, `d⁻¹(b)` is `d⁻¹[[a, b]]`.**
+812	HPC.Hagopian.isTypeA'_of_subcontinuum	HPC.Hagopian.H76Sub	HPC/Hagopian	58	9	**A subcontinuum of `G` meeting two layers is of type A′** (the part of Hagopian's p. 343 remark
+813	HPC.Hagopian.isUSCDecomp_ker	HPC.Hagopian.H76Lemma5	HPC/Hagopian	64	1	**Upper semicontinuity** of the decomposition into the fibres of a continuous map on a compact
+814	HPC.Hagopian.lemma5_of_ends_aux	HPC.Hagopian.H76Lemma5	HPC/Hagopian	63	138	**Lemma 5, reduced to the end sets.** With `lemma5_interior_aux` and `isUSCDecomp_ker`, the
+815	HPC.Hagopian.lscAt_of_ext	HPC.Hagopian.H76Lemma5End	HPC/Hagopian	64	1	**Lower semicontinuity passes to a subcontinuum whose layers are layers of the larger one.**
+816	HPC.Hagopian.lscAt_end_aux	HPC.Hagopian.H76Lemma5End	HPC/Hagopian	63	169	**Lemma 5 at an end set**, in the form: lower semicontinuity of `E` at a point of the layer that
+817	HPC.Hagopian.lemma5_aux	HPC.Hagopian.H76Lemma5End	HPC/Hagopian	62	173	**Lemma 5** (p. 341): the decomposition of `E` is continuous.
+818	HPC.Hagopian.hagopian76_lemma5	HPC.Hagopian.Hagopian76C	HPC/Hagopian	61	174	**Lemma 5** (p. 341). At an end set `X` of `E`, take an extension of `E` away from `Z` (Lemma 4,
+819	HPC.Hagopian.minimalAdmissible_restrict_of_lsc	HPC.Hagopian.H76Restrict	HPC/Hagopian	58	8	**§2.3, `minimalAdmissible_restrict` (general form).** If `d` is a minimal admissible map on
+820	HPC.Hagopian.minimalAdmissible_restrict	HPC.Hagopian.H76Restrict	HPC/Hagopian	57	178	**§2.3, `minimalAdmissible_restrict`** (commission 183 §2 step 3; batch-182 proposal). In a
+821	HPC.Hagopian.hagopian84_lemma6	HPC.Hagopian.Hagopian84A	HPC/Hagopian	53	184	**Lemma 6** (p. 336): "If `H` is an essential subcontinuum of `E`, then `H` is a continuum of
+822	HPC.Hagopian.ext_inter_ext_subset	HPC.Hagopian.H84TwoSided	HPC/Hagopian	49	16	**Step 2** (commission 185 §1): an extension `F₁` of `E` away from `X = k⁻¹(0)` and an extension
+823	HPC.Hagopian.eq_of_meets_end_layers	HPC.Hagopian.H84TwoSided	HPC/Hagopian	50	178	**A subcontinuum meeting both end layers is everything** (irreducibility of a type λ continuum
+824	HPC.Hagopian.glue_minimalAdmissible	HPC.Hagopian.H84TwoSided	HPC/Hagopian	49	179	**Gluing** (commission 185 §1, step 3): two minimal admissible `(A, a)`, `(B, b)` meeting exactly
+825	HPC.Hagopian.piece_end_layers	HPC.Hagopian.H76HalfRay	HPC/Hagopian	50	8	**End layers on a piece.** Every minimal admissible map `p` of the piece `P = d⁻¹[[a, b]]` has
+826	HPC.Hagopian.piece_map	HPC.Hagopian.H76HalfRay	HPC/Hagopian	49	11	**A piece carries a minimal admissible map with the expected end layers.**
+827	HPC.Hagopian.hagopian84_two_sided_aux	HPC.Hagopian.H84TwoSided	HPC/Hagopian	48	187	**§1, the two-sided extension** (commission 185 §1; report 184 §11). `F₁` an extension of `E`
+828	HPC.Hagopian.layer_common_of_essential	HPC.Hagopian.H84Lemma7	HPC/Hagopian	48	185	**Common layers** (Lemma 6 twice): if `K = G₁ ∩ G₂` is a continuum meeting two layers of `G₁`
+829	HPC.Hagopian.no_arm_at_interior_layer	HPC.Hagopian.H84Lemma7	HPC/Hagopian	48	106	**The triod at an interior layer.** `(G, g)` minimal admissible, `0 < u < 1`, `A` a continuum
+830	HPC.Hagopian.hagopian84_lemma7_aux	HPC.Hagopian.H84Lemma7	HPC/Hagopian	47	196	**Lemma 7** (Hagopian 1984, p. 336), from the two-sided extension. Let `H ⊇ E` and `I ⊇ F` be
+831	HPC.Hagopian.layers_agree_aux	HPC.Hagopian.H84Rigid	HPC/Hagopian	46	197	**§3.1, rigidity.** `(E, k)`, `(G, d)` minimal admissible, `E ∩ G` meeting two layers of `E`.
+832	HPC.Hagopian.layers_agree	HPC.Hagopian.Hagopian76AC	HPC/Hagopian	45	198	**§3.1, rigidity**. *Shape:* `(E, k)`, `(G, d)` minimal admissible, `E ∩ G` meeting two layers
+833	HPC.Hagopian.strand_dichotomy	HPC.Hagopian.H84Strand	HPC/Hagopian	42	201	**§3.3, the dichotomy.** `(F, d)` type λ with `d⁻¹(0)` missing `midUnion P`; `y ∈ d⁻¹(u)` a
+834	HPC.Hagopian.not_strand_subset_extension_layer_aux	HPC.Hagopian.H84Strand	HPC/Hagopian	41	207	**§3.4, the degenerate alternative is impossible.** Route of commission 187 §3.4, with one
+835	HPC.Hagopian.strand_layer_of_extension_aux	HPC.Hagopian.H84Strand	HPC/Hagopian	40	208	**§3.1, Lemma 16′.**
+836	HPC.Hagopian.exists_bridge84_aux	HPC.Hagopian.H84Bridge	HPC/Hagopian	27	233	**§4.4, the bridge.** Route of commission 187 §4.4, with two simplifications.
+837	HPC.Hagopian.exists_bridge84	HPC.Hagopian.Hagopian84C	HPC/Hagopian	26	234	**§4.4, the bridge** (p. 343, "Hence there is an essential subcontinuum `J(Z)` of `F(Z)` that
+838	HPC.Hagopian.IsOrderedRefinement5	HPC.Hagopian.Hagopian84A	HPC/Hagopian	30	0	**Ordered refinement** (p. 339): "for each `i`, the link `Lᵢ` contains `Pᵢ`" (and `𝒫` is a
+839	HPC.Hagopian.Wset84	HPC.Hagopian.Hagopian84A	HPC/Hagopian	41	0	**`W(x, ε)`** (p. 335): "`{y ∈ M: an ε-homeomorphism of M onto M takes x to y}`", where an
+840	HPC.Hagopian.strand_of_runsStraight84	HPC.Hagopian.H84Regular13	HPC/Hagopian	29	188	**Regularity, general form** (p. 340: "Since `M` is atriodic, it follows from (6) and Lemma 6
+841	HPC.Hagopian.chainLinks84_regular_aux	HPC.Hagopian.H84Lemma13	HPC/Hagopian	28	191	**Lemma 13, regularity** in the batch-186 shape `chainLinks84_regular`: for links through which
+842	HPC.Hagopian.hagopian84_lemma1	HPC.Hagopian.Hagopian84A	HPC/Hagopian	36	19	**Lemma 1** (p. 335): "For every positive number `ε` and every point `x` of `M`, the set
+843	HPC.Hagopian.chainLinks84_chain_aux	HPC.Hagopian.H84Chain13	HPC/Hagopian	28	21	**§2, the chain part of Lemma 13.** For `x` strictly increasing with `x 0 = 0`, `x 15 = 1` and
+844	HPC.Hagopian.exists_gap84	HPC.Hagopian.H84Runs13	HPC/Hagopian	28	0	**The gap bounds** (p. 339: "the minimum of `{½ρ(k⁻¹[[0, xᵢ]], k⁻¹[[xᵢ₊₁, 1]]): 1 ≤ i ≤ 13}`"),
+845	HPC.Hagopian.exists_x84	HPC.Hagopian.H84Chain13	HPC/Hagopian	28	0	**§2.4, the choice of `x`.** Upper semicontinuity gives `η > 0` with
+846	HPC.Hagopian.runsStraight_refine	HPC.Hagopian.H84Lemma12	HPC/Hagopian	30	4	**Running straight transfers to the refinement.**
+847	HPC.Plane.exists_clopen_split	HPC.Plane.Surgery91	HPC/Plane	39	0	**Separating a compact set along the component of a point.** If every preconnected subset of
+848	HPC.Plane.exists_closed_split_of_no_connected	HPC.Plane.Fugate66BHU	HPC/Plane	34	1	**Separation of two closed sets in a compact set** (Moore, Theorem 44): if no preconnected
+849	HPC.Hagopian.hagopian84_lemma12_aux	HPC.Hagopian.H84Lemma12	HPC/Hagopian	29	119	**Lemma 12** (p. 339). Shape of the skeleton; the conclusion is strengthened by "every component
+850	HPC.Hagopian.hagopian84_lemma12	HPC.Hagopian.Hagopian84B	HPC/Hagopian	28	120	**§3.2, Lemma 12** (p. 339). Shape of the commented-out block of `Hagopian84A.lean`, with the
+851	HPC.Hagopian.FoldAux.sweep_step	HPC.Hagopian.H84Fold	HPC/Hagopian	33	0	**The sweep step.**
+852	HPC.Hagopian.FoldAux.exists_fold_nat	HPC.Hagopian.H84Fold	HPC/Hagopian	32	1	**Folds, `ℕ`-indexed form.**
+853	HPC.Hagopian.exists_fold_aux	HPC.Hagopian.H84Fold	HPC/Hagopian	31	2	**§3.1 step 4(a), folds.** Statement of the skeleton, unchanged.
+854	HPC.Hagopian.exists_fold	HPC.Hagopian.Hagopian84B	HPC/Hagopian	30	3	**§3.1 step 4(a), folds** (combinatorics; the reduction "By (1), (2), and (3), there exist
+855	HPC.Hagopian.link_dichotomy84	HPC.Hagopian.H84Runs13	HPC/Hagopian	32	114	**Hagopian's (3)** (p. 340: "if `h[k⁻¹(r)] ∩ Lᵢ ≠ ∅`, then `h[k⁻¹(r)] ⊆ Lᵢ`"), for every
+856	HPC.Hagopian.no_fold84	HPC.Hagopian.H84Runs13	HPC/Hagopian	30	181	**The fold is impossible** (p. 340, the proof of (5); commission 187 §2.3, kinds D and U).
+857	HPC.Hagopian.layer_convex84	HPC.Hagopian.H84Runs13	HPC/Hagopian	29	186	**Hagopian's (5)** in parameter form: the parameters `u` with `h[k⁻¹(u)] ⊆ L i` form an
+858	HPC.Hagopian.layer_frontier84	HPC.Hagopian.H84Runs13	HPC/Hagopian	29	134	**Hagopian's (4)** (p. 340: "if `h[k⁻¹(r)] ∩ Bd Lᵢ ≠ ∅`, then `h[k⁻¹(r)] ⊆ Bd Lᵢ`").
+859	HPC.Hagopian.translate_runsStraight84	HPC.Hagopian.H84Runs13	HPC/Hagopian	28	190	**Hagopian's (6)** (p. 340: "It follows from (1), (2), (4), and (5) that (6) `h[E]` runs
+860	HPC.Hagopian.hagopian84_lemma13_aux	HPC.Hagopian.H84Lemma13	HPC/Hagopian	27	213	**Lemma 13** (pp. 339–341), in the batch-186 shape, assembled as in the batch-186 note:
+861	HPC.Hagopian.hagopian84_lemma13	HPC.Hagopian.Hagopian84C	HPC/Hagopian	26	214	**Lemma 13** (p. 339): "Suppose `ε` is a positive number, `A` is a closed set that misses `E`,
+862	HPC.Hagopian.delta5_partition_aux	HPC.Hagopian.H84Delta	HPC/Hagopian	41	13	**§4.1** (p. 341): `Δ(𝒫)` is a decomposition of `(⋃𝒫) ∖ Cl(P 0 ∪ P 4)`. Only openness of the
+863	HPC.Hagopian.delta5_partition	HPC.Hagopian.Hagopian84B	HPC/Hagopian	34	14	**§4.1** (p. 341: "Note that since `𝒫` is regular, `Δ(𝒫)` is a decomposition of
+864	HPC.Hagopian.mem_delta_of_bridge_chain_aux	HPC.Hagopian.H84Bridge	HPC/Hagopian	27	213	**§5.1, `Z ∈ Δ(𝒫(Z))`.** If `Q` is a free normal regular chain through which the bridge `(J, j)`
+865	HPC.Hagopian.mem_delta_of_bridge_chain	HPC.Hagopian.Hagopian84C	HPC/Hagopian	26	214	**§5.1, `Z ∈ Δ(𝒫(Z))`** (commission 187 §5.1). Let `(J, j)` be a bridge of `Z ∈ Ω(𝒫) ∖ Δ(𝒫)`
+866	HPC.Hagopian.exists_chainZ84	HPC.Hagopian.Hagopian84C	HPC/Hagopian	25	263	**§5.1, the chain `𝒫(Z)`** (p. 343: "By Lemma 13, `J(Z)` runs straight through a free normal
+867	HPC.Hagopian.exists_finite_cover84_aux	HPC.Hagopian.H84Cover	HPC/Hagopian	26	17	**§5.2, the cover, finite form.** For a free normal regular chain `𝒫` and any choice
+868	HPC.Hagopian.exists_finite_cover84	HPC.Hagopian.Hagopian84C	HPC/Hagopian	25	18	**§5.2, the cover, finite form** (p. 343: "it follows that `⋃𝔅` is a closed open subset of `M`.
+869	HPC.Hagopian.hagopian84_cover	HPC.Hagopian.Hagopian84C	HPC/Hagopian	24	266	**§5.2, the finite cover, unconditional** (p. 343: "there exists a finite subcollection
+870	HPC.Hagopian.exists_coverData84	HPC.Hagopian.Hagopian84D	HPC/Hagopian	23	270	**§3.1**: the data exist (a type λ continuum by `hagopian75_exists_typeA'`; Lemma 13 with
+871	HPC.Hagopian.exists_comp_small_homeo	HPC.Hagopian.Hagopian84B	HPC/Hagopian	24	20	**§2.2, homogeneity**: finite compositions of `δ`-homeomorphisms act transitively on `M`
+872	HPC.Jones.exists_homeomorph_quotient	HPC.Jones.Decomp	HPC/Jones	28	0	**Homeomorphisms that permute the elements descend to the decomposition space.**
+873	HPC.Jones.metrizableSpace_quotient	HPC.Jones.Decomp	HPC/Jones	28	1	**The decomposition space is compact metrizable.**
+874	HPC.Hagopian.hagopian84Decomp_of_package	HPC.Hagopian.Hagopian84B	HPC/Hagopian	23	26	**§2.1, the reduction**: `Hagopian84Decomp` from Jones decompositions (route: commission 186
+875	HPC.Hagopian.exists_interval_in_delta_aux	HPC.Hagopian.H84Delta	HPC/Hagopian	25	6	**§4.4, the arc** (p. 344): the closure of a component of `⋃𝒫′`, running straight through the
+876	HPC.Hagopian.exists_interval_in_delta	HPC.Hagopian.Hagopian84B	HPC/Hagopian	24	7	**§4.4, the arc** (p. 344: "Since `M/𝔇` is an atriodic homogeneous continuum that contains an
+877	HPC.Hagopian.delta5_dist_pos_aux	HPC.Hagopian.H84Delta	HPC/Hagopian	30	15	**§4.1, positivity**: the distance from `⋃Δ(𝒫)` to `M ∖ ⋃𝒫′` is positive. Normality is not
+878	HPC.Hagopian.delta_translate_eq	HPC.Hagopian.H84Lemma1415	HPC/Hagopian	26	121	**Translates inside `Δ(𝒫)`** (the use of Lemma 3 in Lemmas 14 and 15, with its hypotheses
+879	HPC.Hagopian.hagopian84_lemma14_aux	HPC.Hagopian.H84Lemma1415	HPC/Hagopian	25	148	**Lemma 14** (p. 341): the decomposition `Δ(𝒫)` is continuous (Hausdorff form).
+880	HPC.Hagopian.hagopian84_lemma14	HPC.Hagopian.Hagopian84B	HPC/Hagopian	24	149	**§4.2, Lemma 14** (p. 341). Shape of the commented-out block (Hausdorff form).
+881	HPC.Hagopian.CoverData84.members	HPC.Hagopian.Hagopian84D	HPC/Hagopian	32	7	**§3.2, `𝔇`** (p. 343: "For convenience we define `𝒫(Z₀)` to be `𝒫`"; "Let `𝔇` be
+882	HPC.Hagopian.strand_layer_of_extension	HPC.Hagopian.Hagopian84C	HPC/Hagopian	32	209	**§3.1, Lemma 16′** (p. 343: "By Lemmas 7 and 16, each element of the decomposition of `F(Z)`
+883	HPC.Hagopian.omega_layer_of_mem_mid	HPC.Hagopian.Hagopian84D	HPC/Hagopian	31	212	**§2, the transfer lemma** (replaces "by (2), (3), and Lemma 7" and "by (3) and Lemma 7",
+884	HPC.Hagopian.strand_layer_mem_delta_aux	HPC.Hagopian.H84Strand	HPC/Hagopian	31	12	**§3.2, identification.** For `x ∈ midUnion P ∖ Cl(P 0 ∪ P 4)`, the layer through `x` of the
+885	HPC.Hagopian.strand_layer_mem_delta	HPC.Hagopian.Hagopian84C	HPC/Hagopian	30	13	**§3.2, identification**: for `x ∈ ⋃𝒫∖Cl(P 0 ∪ P 4)`, the layer through `x` of the strand
+886	HPC.Hagopian.omega_mem_delta_of_mem_mid	HPC.Hagopian.Hagopian84D	HPC/Hagopian	29	216	**§2, second part**: if moreover `z ∉ Cl(Q 0 ∪ Q 4)`, then `Z ∈ Δ(Q)`
+887	HPC.Hagopian.CoverData84.members_disjoint	HPC.Hagopian.Hagopian84D	HPC/Hagopian	26	222	**§3.4, disjointness** (pp. 343–344: "We must show that `𝔇` is a decomposition of `M`. Since
+888	HPC.Hagopian.CoverData84.rel	HPC.Hagopian.Hagopian84D	HPC/Hagopian	26	8	**§3.5, the relation**: `x ~ y` iff some member of `𝔇` contains both.
+889	HPC.Hagopian.CoverData84.exists_mem	HPC.Hagopian.Hagopian84D	HPC/Hagopian	26	8	**§3.3**: every point lies in a member.
+890	HPC.Hagopian.CoverData84.setoid	HPC.Hagopian.Hagopian84D	HPC/Hagopian	25	225	**§3.5**: the relation is an equivalence (3.3 and 3.4).
+891	HPC.Hagopian.CoverData84.cls_eq	HPC.Hagopian.Hagopian84D	HPC/Hagopian	24	226	**§3.5**: the class of `x` is the member through `x`.
+892	HPC.Hagopian.delta5_dist_pos	HPC.Hagopian.Hagopian84B	HPC/Hagopian	25	16	**§4.1, positivity** (unargued: the `ε = ½ρ(⋃Δ(𝒫), M∖⋃𝒫′)` of Lemmas 14 and 15 is
+893	HPC.Hagopian.hagopian84_lemma15_aux	HPC.Hagopian.H84Lemma1415	HPC/Hagopian	26	211	**Lemma 15** (p. 341), with `ε` smaller than Hagopian's (commission 186 §4.3): less than the
+894	HPC.Hagopian.hagopian84_lemma15	HPC.Hagopian.Hagopian84B	HPC/Hagopian	25	212	**§4.3, Lemma 15** (p. 341). Shape of the commented-out block, with normality added; `ε` is
+895	HPC.Hagopian.omega_not_delta_side	HPC.Hagopian.Hagopian84C	HPC/Hagopian	27	13	**§4.2**: a member of `Ω(𝒫)∖Δ(𝒫)` lies in `Cl (P 0)` or in `Cl (P 4)`, and misses `Cl (P 2)`.
+896	HPC.Hagopian.CoverData84.omega_mem_members	HPC.Hagopian.Hagopian84D	HPC/Hagopian	25	218	**§4.2, claim (5) for `i ≥ 1`**, for members inside `⋃𝒫(Zᵢ)′`.
+897	HPC.Hagopian.CoverData84.omega_subset_members	HPC.Hagopian.Hagopian84D	HPC/Hagopian	25	224	**§4.1, claim (5) for `i = 0`** (p. 344: "(5) for each integer `i` (`0 ≤ i ≤ n`),
+898	HPC.Hagopian.CoverData84.invariant	HPC.Hagopian.Hagopian84D	HPC/Hagopian	24	230	**§4.3, claim (6)** (p. 344: "(6) if `Z ∈ 𝔇` and `h` is a δ-homeomorphism of `M` onto `M`, then
+899	HPC.Hagopian.CoverData84.isJonesDecomp	HPC.Hagopian.Hagopian84D	HPC/Hagopian	23	244	**§5.1–§5.5**: `𝔇` is a Jones decomposition (usc from Lemma 14; connected, proper classes;
+900	HPC.Hagopian.hagopian84_decomp	HPC.Hagopian.Hagopian84D	HPC/Hagopian	22	302	**§5.6, Theorem 1 of 1984 with `N = M`, in the form used** (`Hagopian84Decomp`).
+901	HPC.Hagopian.hagopian76_theorem1_jones	HPC.Hagopian.Hagopian84D	HPC/Hagopian	21	626	**§5.7, Theorem 1 of 1976 on the 1984 route**, from the arc step alone.
+902	HPC.Jones.tscc_rot	HPC.Jones.Jones49ETheta	HPC/Jones	41	1	**Rotation.** In a simple closed curve `C₁ ∪ C₂` (ends `s`, `t`), the end `t` may be moved to
+903	HPC.Jones.tscc_split	HPC.Jones.Jones49ETheta	HPC/Jones	40	2	**Splitting a simple closed curve at two points.**
+904	HPC.Jones.AposAt	HPC.Jones.Defs	HPC/Jones	63	0	**`X` is aposyndetic at `x` with respect to `y`** (Jones 1941, 1948 p. 404). There are a
+905	HPC.Plane.exists_simplePolyArc_of_polyPath	HPC.Plane.Tree6	HPC/Plane	34	2	**Loop erasure**: a polygonal path from `p` to `q ≠ p` contains a simple polygonal arc from
+906	HPC.Jones.exists_finite_apos_cover	HPC.Jones.Defs	HPC/Jones	47	1	**Heine–Borel, first form.** If `X` is aposyndetic at every point of the compact `K` with
+907	HPC.Jones.exists_open_subset_component	HPC.Jones.Defs	HPC/Jones	47	0	**Finitely many components.** If an open `O ∋ x` is covered by finitely many components of a
+908	HPC.Jones.theorem0	HPC.Jones.Basic	HPC/Jones	43	3	**Theorem 0.** `X` is semi-locally-connected at `p` iff it is aposyndetic at each point of
+909	HPC.Jones.whyburn_6_2	HPC.Jones.Whyburn	HPC/Jones	40	4	**Whyburn (6.2).** If `x` does not separate `a` and `b` (they lie in one component of
+910	HPC.Jones.whyburn39_6_22_sec14	HPC.Jones.Jones49C	HPC/Jones	39	5	**(6.22), §14 form** (p. 747: "Then by (6.22) there exists a `δ > 0` and a component `N` of
+911	HPC.Jones.Sec14.join_in_domain	HPC.Jones.Jones49DSep	HPC/Jones	39	7	**The joining lemma** (replaces Whyburn's θ-curve step and Moore's curve `C`). `M` compact, `N`
+912	HPC.Jones.Sec14.local_join_of_noncut	HPC.Jones.Jones49DSep	HPC/Jones	38	14	**Step 3 of Whyburn's proof, in joining form.** Near a non-cut point `p` of a compact
+913	HPC.Jones.accessible_of_cyclic'	HPC.Jones.Jones49EAcc	HPC/Jones	26	28	**Item C (accessibility).**
+914	HPC.Jones.accessible_of_cyclic	HPC.Jones.Jones49E	HPC/Jones	25	29	**Accessibility.** For `M` compact, connected, semi-locally connected and cyclic, every boundary
+915	HPC.Jones.semiLocConn_of_isAposyndetic	HPC.Jones.Whyburn	HPC/Jones	30	4	**Jones 1941, Theorem 4 (compact case).** An aposyndetic compact continuum is
+916	HPC.Hagopian.exists_side_arc	HPC.Hagopian.H76Moore28	HPC/Hagopian	24	33	**Every point of a simple closed curve is accessible from each side**; in particular two points
+917	HPC.Hagopian.quad_split_pt	HPC.Hagopian.H76Schoen	HPC/Hagopian	27	12	**The quadrilateral.** A simple closed curve `J` and an arc `φ` in it: the complementary arc,
+918	HPC.Hagopian.plane_schoenflies_aux	HPC.Hagopian.H76Schoen	HPC/Hagopian	26	316	**Item C: the Schoenflies theorem in the plane, with one side prescribed.**
+919	HPC.Hagopian.isHalfCollar_bounded	HPC.Hagopian.H76Invert	HPC/Hagopian	24	317	**The half-collar on the bounded side.**
+920	HPC.Hagopian.isHalfCollar_unbounded	HPC.Hagopian.H76Invert	HPC/Hagopian	24	317	**The half-collar on the unbounded side.** `J` a simple closed curve, `I` and `E` its bounded and
+921	HPC.Hagopian.plane_split	HPC.Hagopian.H76Schoen	HPC/Hagopian	24	205	**The cross-cut theorem in the plane** (Moore 1919, Theorems 24 and 25, `split_interior_of`,
+922	HPC.Jones.jordan_curve_theorem	HPC.Jones.Jones55T2A	HPC/Jones	44	52	**The Jordan curve theorem**, from `m25_theorem11` for the decomposition into points and the
+923	HPC.Jones.glue_circle	HPC.Jones.Jones49Circle	HPC/Jones	46	0	**Gluing two arcs along their ends** gives a copy of `Circle`.
+924	HPC.Hagopian.accessible_of_noncut	HPC.Hagopian.H76Collar	HPC/Hagopian	25	28	**Accessibility at a non-cut point.** As `accessible_of_cyclic'`, for a point `p` which does not
+925	HPC.Hagopian.TArc.exists_closing_arc	HPC.Hagopian.H76Collar	HPC/Hagopian	24	55	**Every arc of the plane lies on a simple closed curve**: its end points are joined by an arc
+926	HPC.Hagopian.exists_collar_aux	HPC.Hagopian.H76Collar	HPC/Hagopian	23	340	**Every arc in the plane has a two-sided collar.**
+927	HPC.Hagopian.exists_collar	HPC.Hagopian.Hagopian76D	HPC/Hagopian	22	341	**Every arc in the plane has a two-sided collar.** Shape: the skeleton's, unchanged. Route
+928	HPC.Hagopian.IsPass.disjoint	HPC.Jones.Jones75Pass	HPC/Jones	30	0	**§2.1, (P1)**: distinct passes have disjoint closed parameter intervals.
+929	HPC.Hagopian.IsPass.finite	HPC.Jones.Jones75Pass	HPC/Jones	24	1	**§2.1, (P2)**: only finitely many passes meet a bounded parameter interval.
+930	HPC.Hagopian.sub_arc_param	HPC.Jones.Jones75Arcs	HPC/Jones	41	0	**Arcs inside an arc.** An arc `S` inside the range of an embedding `f` of `[0, 1]` is
+931	HPC.Plane.not_core_of_isAtriodic	HPC.Plane.Ingram68Core	HPC/Plane	41	1	**The core lemma inside an atriodic set**: the configuration of `isTriod_of_core` cannot
+932	HPC.Hagopian.JonesSetting.union_arc	HPC.Jones.Jones75Arcs	HPC/Jones	38	4	**§2.1, Jones (c), first half** (p. 57: \"If two arcs `A` and `B` of `M` intersect then
+933	HPC.Hagopian.JonesSetting.line_arc	HPC.Jones.Jones75Rev	HPC/Jones	35	0	**§2.4**: the arcs inside a line are its parameter intervals; here, the parameter intervals
+934	HPC.Hagopian.JonesSetting.exists_arc_through	HPC.Jones.Jones75Arcs	HPC/Jones	36	0	**§2.2**: every point is an interior point of an arc (homogeneity).
+935	HPC.Hagopian.JonesSetting.homeo_on_line_gen	HPC.Jones.Jones75Rev	HPC/Jones	34	8	**§2.4**, general form: a homeomorphism carrying one point of `ℓ` into `ℓ'` acts by a
+936	HPC.Hagopian.JonesSetting.nested	HPC.Jones.Jones75Arcs	HPC/Jones	36	3	**§2.1, Jones (c), second half** (\"where they have a common end point and intersect somewhere
+937	HPC.Hagopian.JonesSetting.no_reversal_arc	HPC.Jones.Jones75Rev	HPC/Jones	30	4	**§3.1, (R0)**: a homeomorphism fixing an interior point `p` of an arc `A ∪ C` and moving no
+938	HPC.Hagopian.JonesSetting.local_no_reversal	HPC.Jones.Jones75Rev	HPC/Jones	29	30	**§3.2, (R), local form**: near each point `q`, one `ε` for all fixed points and lines.
+939	HPC.Hagopian.JonesSetting.exists_no_reversal	HPC.Jones.Jones75Rev	HPC/Jones	28	31	**§3.2, (R), uniform**: one `ε` for all fixed points and all lines.
+940	HPC.Hagopian.JonesSetting.homeo_on_line	HPC.Jones.Jones75Rev	HPC/Jones	31	9	**§2.4**: a homeomorphism acts on lines by monotone continuous bijections of the
+941	HPC.Hagopian.JonesSetting.orientation	HPC.Jones.Jones75Rev	HPC/Jones	27	33	**§3.3, (O), orientation**: a small homeomorphism that carries a point of a line into the same
+942	HPC.Hagopian.shadow_pass	HPC.Jones.Jones75Shadow	HPC/Jones	26	34	**§3.1, the shadow lemma** (Effros + (O)), in the middle band only.
+943	HPC.Hagopian.JonesSetting.extend	HPC.Jones.Jones75Line	HPC/Jones	29	6	**No largest arc** (commission 189 §2.3, step 2): an arc from `x` extends beyond its other
+944	HPC.Hagopian.JonesSetting.exists_ray_seq	HPC.Jones.Jones75Line	HPC/Jones	28	8	**Countable cofinality** (commission 189 §2.3, step 3): a strictly increasing sequence of
+945	HPC.Hagopian.JonesSetting.exists_line	HPC.Jones.Jones75Line	HPC/Jones	27	9	**§2.3, every arc component is a line** (Jones (d), first sentence, for both rays at a
+946	HPC.Hagopian.JonesSetting.omegaLim_saturated	HPC.Jones.Jones75A	HPC/Jones	26	33	**§4.1**: limit sets are arc-saturated (Effros).
+947	HPC.Hagopian.JonesSetting.zero_mem_omegaLim	HPC.Jones.Jones75A	HPC/Jones	25	34	**§4.2**, at the base point: `ℓ 0` lies in the forward limit set (Effros with
+948	HPC.Hagopian.JonesSetting.line_recurrent	HPC.Jones.Jones75A	HPC/Jones	24	35	**§4.2**: every line lies in its own forward limit set (commission 189 §4.2: Effros with
+949	HPC.Hagopian.exists_late_thin_pass	HPC.Jones.Jones75Shadow	HPC/Jones	23	42	**§3.3, late thin passes** (recurrence): passes inside the thin box start arbitrarily late.
+950	HPC.Hagopian.flow_box	HPC.Jones.Jones75Shadow	HPC/Jones	23	35	**§3.2, the flow box (FB)**, in the middle band only: for the box of height `η ≤ ½` there is
+951	HPC.Hagopian.isOpen_collar_image	HPC.Hagopian.H76Translate	HPC/Hagopian	26	0	**The collar maps open subsets of the open rectangle onto open sets.**
+952	HPC.Hagopian.rect_domain_aux	HPC.Hagopian.H76Domain	HPC/Hagopian	25	55	**The domain under a crossing arc** (statement of `rect_domain`).
+953	HPC.Hagopian.rect_domain_low	HPC.Hagopian.H76Domain	HPC/Hagopian	26	0	**The low strip lies in the domain.** If `D` is open, lies in the open rectangle and has the
+954	HPC.Hagopian.rect_domain_crosscut	HPC.Hagopian.H76Crosscut	HPC/Hagopian	26	55	**The low vertical segment is a cross-cut of `D′`.**
+955	HPC.Hagopian.IsPass.lc_left_mem_closure	HPC.Jones.Jones75Region	HPC/Jones	28	0	**N4, end points**: the end points of a pass are limits of its interior, in collar
+956	HPC.Hagopian.region_cross	HPC.Jones.Jones75Region	HPC/Jones	25	57	**§4, (R2)**: under the conclusion of (R1), the interior of the pass meets every low vertical
+957	HPC.Hagopian.isPass_base	HPC.Jones.Jones75Pass	HPC/Jones	28	0	**§2.1, (P3)**: the base pass `ℓ[¼, ¾]`.
+958	HPC.Hagopian.region_pass	HPC.Jones.Jones75Region	HPC/Jones	26	3	**§4, (R1)**: a pass other than the base pass and `P_m` whose interior meets `D_m` has its
+959	HPC.Hagopian.region_thin_above	HPC.Jones.Jones75Region	HPC/Jones	26	0	**§4, (R1).3**: such a pass is thin and lies above the base arc.
+960	HPC.Hagopian.region_lemmaA	HPC.Jones.Jones75Region	HPC/Jones	25	5	**§5, Lemma A**: no point of `ℓ((¾, a_m))` lies in `R_m` with first coordinate in the middle
+961	HPC.Hagopian.seg_subset_rect_domain	HPC.Hagopian.H76PairSep	HPC/Hagopian	25	1	**The low vertical segment lies in `D′`.**
+962	HPC.Hagopian.tarc_lowest	HPC.Jones.Jones75Region	HPC/Jones	25	0	**N2, lowest point on a vertical.**
+963	HPC.Hagopian.thinPass_arc	HPC.Jones.Jones75Region	HPC/Jones	25	0	**N1, the collar preimage of a thin upper pass**: an arc from `(¼, r₂)` to `(¾, s₂)` in
+964	HPC.Hagopian.two_sides	HPC.Jones.Jones75Trap	HPC/Jones	26	0	**N3, two sides at a point of `J`.**
+965	HPC.Hagopian.trap_jordan	HPC.Jones.Jones75Trap	HPC/Jones	25	56	**§5, Steps 2–5**: the Jordan curve `J = σ ∪ ℓ[½, t_m]` and the two components `W_L ⊇ T_L`,
+966	HPC.Hagopian.trap_pass	HPC.Jones.Jones75Trap	HPC/Jones	24	71	**§5, the trapping lemma** (commission 190 §5). Let `P_m = ℓ[a_m, b_m]` be a thin pass above
+967	HPC.Hagopian.IsPass.above_or_below	HPC.Jones.Jones75Pass	HPC/Jones	24	2	**§2.1, (P4)**: a pass other than the base pass lies, end points included, strictly above or
+968	HPC.Hagopian.jones75_final_aux	HPC.Jones.Jones75B	HPC/Jones	23	74	**§6, C2–C5**, once the first thin pass after `¾` lies above the base arc.
+969	HPC.Hagopian.scale_two	HPC.Jones.Jones75Shadow	HPC/Jones	23	35	**§3.3, scale 2**: points of the line near `o = ℓ(½)` lie inside thin passes.
+970	HPC.Hagopian.jones75_contra	HPC.Jones.Jones75B	HPC/Jones	22	118	**§6, the contradiction**: a line of a `JonesSetting` plane continuum has no collar of its arc
+971	HPC.Hagopian.jonesSetting_of_plane	HPC.Jones.Jones75Arcs	HPC/Jones	22	105	**§1**: a homogeneous indecomposable plane continuum containing an arc is a `JonesSetting`
+972	HPC.Hagopian.jones75_noArc	HPC.Jones.Jones75B	HPC/Jones	21	436	**§6.1, the arc step** (Bing 1960, indecomposable case; Jones 1975, Theorem, by the route of
+973	HPC.Hagopian.hagopian76_theorem1	HPC.Jones.Jones75B	HPC/Jones	20	698	**§6.2, Theorem 1 of Hagopian 1976** ("Every indecomposable homogeneous plane continuum is
+974	HPC.Span.TheoremC	HPC.Span.Thm36	HPC/Span	17	1	**Theorem C** (Hoehn–Oversteegen 2016, p. 180): "Every homogeneous indecomposable plane
+975	HPC.Span.SurjSpanPos	HPC.Span.Defs	HPC/Span	23	0	**Positive surjective span** of `A` (O–T p. 129, `σ*(A) > 0`), topological form: a continuum
+976	HPC.Span.OTThm32	HPC.Span.OT82A	HPC/Span	19	1	**O–T Theorem 3.2, strip form** (commission §6.3), as a named claim: copies of `Y` hanging from
+977	HPC.Span.parity_eq_zero_of_not_mem_convex	HPC.Span.OT82Parity	HPC/Span	22	4	**§3.1**: the parity vanishes off a compact convex set containing the vertices.
+978	HPC.Span.crossing_traces_separated	HPC.Span.OT82Order	HPC/Span	16	5	**§6** (commission 191 §7): two disjoint continua crossing the closed strip `[a, b] × ℝ` meet
+979	HPC.Span.common_zero_rect	HPC.Span.OT82Zero	HPC/Span	17	1	**§4**: two functions on `[0, 1] × [p, q]`, both `≥ 0` on the left side and `≤ 0` on the right
+980	HPC.Span.parity_flip_vertical_edge	HPC.Span.OT82Parity	HPC/Span	19	1	**§3.3, the flip across a vertical edge.** If edge `i` is a nondegenerate segment on the line
+981	HPC.Span.parity_eq_of_perturb	HPC.Span.OT82Parity	HPC/Span	20	5	**§3.2, vertex perturbation**: moving every vertex by at most `ρ` does not change the parity at
+982	HPC.Span.parity_strip_eventually	HPC.Span.OT82Strip	HPC/Span	19	6	**§5.2, O–T Lemma 2.2**: near `(t₀, z₀)` with `z₀ ∉ S_{t₀}`, the point `z` is off `S_t` and the
+983	HPC.Span.stripPoly_edge_cases	HPC.Span.OT82Strip	HPC/Span	19	1	**The edges of `S_t`.**
+984	HPC.Span.stripInner_eventually	HPC.Span.OT82Strip	HPC/Span	18	10	**§5.3, the key lemma**: near a point off `f[0, 1]`, `g[0, 1]` and `B_{t₀}`, in `{x ≥ 0}` and
+985	HPC.Span.stripSign	HPC.Span.OT82Strip	HPC/Span	18	1	**The sign function** `φ_h(t, u) = ∓ dist(h u, B_t)`, negative when `h u` is inner.
+986	HPC.Span.stripSign_continuousOn	HPC.Span.OT82Strip	HPC/Span	17	12	**§5.3, continuity of the sign function** for a path `h` in `{x ≥ 0}`, off `f[0, 1]` and
+987	HPC.Span.strip_lemma	HPC.Span.OT82Strip	HPC/Span	16	15	**§5.4, the strip lemma** (O–T Theorem 2.7, in the form used): a continuum `W` in the strip
+988	HPC.Span.ot82_theorem32	HPC.Span.OT82B	HPC/Span	15	19	**O–T Theorem 3.2, strip form.** Statement as in the skeleton. Departure in the proof
+989	HPC.Span.SurjSemiSpanPos	HPC.Span.Defs	HPC/Span	24	0	**Positive surjective semi-span** of `A` (`σ₀*(A) > 0`): the first projection onto `A`.
+990	HPC.Span.OTCor35	HPC.Span.Thm36	HPC/Span	19	1	**O–T Corollary 3.5** (p. 139), as a named claim: "If `X` is an indecomposable, homogeneous
+991	HPC.Hagopian.composant_dense	HPC.Hagopian.Hagopian75	HPC/Hagopian	23	4	**Moore Theorem 135.** Every composant of a nondegenerate compact continuum is dense.
+992	HPC.Hagopian.composant_eq_or_disjoint	HPC.Hagopian.Hagopian75	HPC/Hagopian	19	1	**Moore Theorem 138.** Two composants of an indecomposable continuum are equal or disjoint.
+993	HPC.Hagopian.uncountable_composants	HPC.Hagopian.Hagopian75	HPC/Hagopian	19	4	**Moore Theorem 139.** An indecomposable nondegenerate compact continuum has uncountably many
+994	HPC.Span.exists_crossing_subcontinuum	HPC.Span.Crossing	HPC/Span	19	1	**§6.2 (cut wire)**: a continuum with points left of `x = a` and right of `x = b` contains a
+995	HPC.Span.exists_uncountable_crossing	HPC.Span.Crossing	HPC/Span	18	13	**§6.2**: an indecomposable plane continuum with points on both sides of a closed strip contains
+996	HPC.Span.isContinuum_sInter_chain	HPC.Span.Cook	HPC/Span	24	0	**§4.1, helper**: the intersection of a nonempty chain of continua is a continuum, and
+997	HPC.Span.SurjSpanPos.image	HPC.Span.Defs	HPC/Span	18	1	**§2.2**: positivity is carried by maps injective on `A`.
+998	HPC.Span.SurjSpanPos.of_image	HPC.Span.OT82A	HPC/Span	18	1	**Pull-back of positive span** along an injective inducing map.
+999	HPC.Span.cor35_core	HPC.Span.OT82A	HPC/Span	17	709	**§6.4, steps 6–9** (the core): the plane continuum `N`, in `x ≥ 0` with the unique point `x₀`
+1000	HPC.Span.exists_homeomorph_push	HPC.Span.Reembed	HPC/Span	17	0	**§6.1 (E2), the finger move**: in a connected open set, any point can be carried to any other
+1001	HPC.Span.exists_homeomorph_unique_leftmost	HPC.Span.Reembed	HPC/Span	17	0	**§6.1 (E1)**: a plane homeomorphism making a point of a compact set its unique leftmost point,
+1002	HPC.Span.brouwer_reduction	HPC.Span.Cook	HPC/Span	22	1	**§4.1, Brouwer reduction.**
+1003	HPC.Span.cook67_theorem4	HPC.Span.Cook	HPC/Span	21	2	**Cook 1967, Theorem 4** (p. 243).
+1004	HPC.Span.exists_surjSpanPos_of_surjSemiSpanPos	HPC.Span.Cook	HPC/Span	17	7	**§4.2, Davis 1984 (O–T Theorem 1.1) for hereditarily indecomposable `A`**.
+1005	HPC.Span.isConnected_rightHalf_diff	HPC.Span.Reembed	HPC/Span	17	7	**§6.1 (E3)**: a non-separating continuum that meets the line `x = 0` at most in one point
+1006	HPC.Span.ot82_cor35_of_thm32	HPC.Span.OT82A	HPC/Span	16	718	**O–T Corollary 3.5** from Theorem 3.2 (commission §6.4).
+1007	HPC.Span.SemiSpanZero	HPC.Span.Defs	HPC/Span	19	1	**Semi-span zero** (`σ₀(X) = 0`).
+1008	HPC.Span.exists_dense_proper_subcontinuum	HPC.Span.Thm36	HPC/Span	19	5	**§5.4** (a variant of the commission's sequence `Kᵢ`): a nondegenerate indecomposable
+1009	HPC.Span.exists_reduced_witness	HPC.Span.Thm36	HPC/Span	19	2	**§5.2, the reduction**: a witness of positive semi-span of the whole space can be chosen
+1010	HPC.Span.not_surjSemiSpanPos_univ	HPC.Span.Thm36	HPC/Span	18	30	**O–T Theorem 3.6, core** (commission §5.1–§5.8), for an abstract compact metric continuum:
+1011	HPC.Span.ot82_theorem36_of_cor35	HPC.Span.Thm36	HPC/Span	17	709	**O–T Theorem 3.6, second sentence** (p. 140), from Corollary 3.5.
+1012	HPC.Span.semiSpanZero_iff_hoSpanZero	HPC.Span.Defs	HPC/Span	17	3	**§2.3**: O–T's semi-span zero is H–O's span zero.
+1013	HPC.Span.theoremC_of_cor35	HPC.Span.Thm36	HPC/Span	16	713	**§5.9**: Theorem C from Corollary 3.5.
+1014	HPC.Span.theoremC_of_thm32	HPC.Span.OT82A	HPC/Span	15	728	**Theorem C from Theorem 3.2.**
+1015	HPC.Span.theoremC	HPC.Span.OT82B	HPC/Span	14	742	**Theorem C** (Hoehn–Oversteegen 2016, p. 180): every homogeneous indecomposable plane
+1016	HPC.Jones.isOpen_setOf_aposAt	HPC.Jones.Defs	HPC/Jones	24	1	**The pairs of aposyndesis form an open set** (the content of Jones 1948, Theorem 1).
+1017	HPC.Jones.OrderLE	HPC.Jones.Jones49Order	HPC/Jones	37	0	**Menger–Urysohn order `≤ n`**: `p` has arbitrarily small open neighbourhoods whose frontier has
+1018	HPC.Jones.Jones49Thm1	HPC.Jones.Jones55T2A	HPC/Jones	16	1	**Jones 1949, Theorem 1** (p. 113): "If a compact, plane continuum `M` is both homogeneous and
+1019	HPC.Jones.countable_complDomains	HPC.Jones.Jones49FCase1	HPC/Jones	17	0	**Case 1, step 3: `G` is countable** (its elements are disjoint nonempty open subsets of the
+1020	HPC.Jones.frontier_cc_of_jordan	HPC.Jones.Jones49FCase1	HPC/Jones	18	54	**Case 1, step 2 (the gap of §3.1 of the commission).** If `J' ⊆ M` is a simple closed curve and
+1021	HPC.Jones.exists_frontier_through	HPC.Jones.Jones49FCase1	HPC/Jones	17	55	**Case 1, steps 1–2.** If `J`, the boundary of a complementary domain of the homogeneous `M`, is
+1022	HPC.Jones.isLocalSepPoint_of_open_sub_tscc	HPC.Jones.Jones49FLocal	HPC/Jones	19	3	**A point on an open arc of `M` is a local separating point** (Case 1, step 5). If `p` has a
+1023	HPC.Jones.jones49_some_order_two_of_whyburn_9_2	HPC.Jones.Jones49A	HPC/Jones	18	1	**The consequence Jones uses, from (9.2).** In an uncountable homogeneous compact metric space
+1024	HPC.Jones.countable_not_mem_closure_of_lt	HPC.Jones.Jones49Chain	HPC/Jones	27	0	**The counting argument of Whyburn's (2.1).** If `lt` compares any two distinct points of `T`
+1025	HPC.Jones.SepChain.exists_open_frontier_pair	HPC.Jones.Jones49Chain	HPC/Jones	27	1	**Cut wire in a compact ball.** If an interval `M x y` about `p` lies in the open ball
+1026	HPC.Jones.SepChain.exists_small_interval	HPC.Jones.Jones49Chain	HPC/Jones	27	0	**Small intervals.** About a good point with empty residue, if a closed ball about `p` is
+1027	HPC.Jones.SepChain.countable_of_not_orderLE_two	HPC.Jones.Jones49Chain	HPC/Jones	26	5	**A chain of points none of which is of order `≤ 2` is countable** (locally compact separable
+1028	HPC.Jones.countable_sepPoint_not_orderLE_two	HPC.Jones.Jones49Sep	HPC/Jones	25	6	**All but countably many separating points of an open set are of order `≤ 2`.**
+1029	HPC.Jones.not_orderLE_one_of_isSepPointOf	HPC.Jones.Jones49Sep	HPC/Jones	25	1	**A separating point is not of order `≤ 1`.** Both sides of the separation, with `p`, are
+1030	HPC.Jones.countable_sepPoint_not_hasOrder_two	HPC.Jones.Jones49Sep	HPC/Jones	24	8	**Whyburn's separating point-order theorem for an open set.**
+1031	HPC.Jones.whyburn_9_1	HPC.Jones.Jones49Why	HPC/Jones	19	2	**Whyburn (9.1).** "If `p` is a separating point of an open set `R` in `L` then it is also of
+1032	HPC.Jones.whyburn_9_2	HPC.Jones.Jones49B	HPC/Jones	18	12	**Whyburn (9.2)** — the statement left open in batch 149 (`OPEN.md`), restated verbatim.
+1033	HPC.Jones.jones49_some_order_two	HPC.Jones.Jones49B	HPC/Jones	17	14	**What Jones 1949 uses** — left open in batch 149, restated verbatim. From `whyburn_9_2`
+1034	HPC.Jones.frontier_cyclic'	HPC.Jones.Jones49EPlane	HPC/Jones	21	7	**Item D: the boundary is cyclic.** Every cut point of the boundary `B` of a complementary
+1035	HPC.Jones.frontier_cyclic	HPC.Jones.Jones49E	HPC/Jones	20	8	**The boundary is cyclic.** Every cut point of `B = ∂R` is a cut point of `M`; `M` is cyclic.
+1036	HPC.Jones.theta_not_subset_closure	HPC.Jones.Jones49EPlane	HPC/Jones	20	54	**The θ-curve lemma.** Three arcs with common ends `a ≠ b`, any two meeting only in `a` and
+1037	HPC.Jones.exists_tarc_in_open	HPC.Jones.Jones49EArc	HPC/Jones	23	8	**The arc theorem for connected open subsets of Peano continua.** In a compact, locally
+1038	HPC.Jones.exists_scc_of_cyclic	HPC.Jones.Jones49ETheta	HPC/Jones	22	10	**A simple closed curve in a cyclic Peano continuum.** A compact, locally connected metric
+1039	HPC.Jones.exists_theta_of_cyclic	HPC.Jones.Jones49ETheta	HPC/Jones	21	14	**Item E: a θ-curve in a cyclic Peano continuum that is not a simple closed curve.** A
+1040	HPC.Jones.theta_of_cyclic_peano	HPC.Jones.Jones49E	HPC/Jones	20	15	**A θ-curve in a cyclic Peano continuum that is not a circle.** *Shape chosen (batch 153):* a
+1041	HPC.Jones.locallyConnectedSpace_of_cikAt	HPC.Jones.Moore22T4	HPC/Jones	21	0	**Connected im kleinen at every point implies locally connected.** For a set `M` of the
+1042	HPC.Jones.Sec14.not_orderLE_of_accumulating	HPC.Jones.Jones49DCross	HPC/Jones	22	1	**Accumulating continua exclude finite order** (item B; it replaces Whyburn's curve `K` and his
+1043	HPC.Jones.whyburn39_curve_from_order_two	HPC.Jones.Jones49D	HPC/Jones	21	2	**The curve `K` from order 2** (p. 748, unargued). *The shape is left to you.* Whyburn's
+1044	HPC.Jones.whyburn39_local_noncut	HPC.Jones.Jones49D	HPC/Jones	21	15	**Step 3** (`p` not a cut point, pp. 747–748): Whyburn's local condition holds at a boundary
+1045	HPC.Jones.whyburn_3_2	HPC.Jones.Jones49B	HPC/Jones	21	9	**Whyburn (3.2) for continua** (the "generalized continuum … order" reading; Whyburn's
+1046	HPC.Jones.Sec14.BadAt	HPC.Jones.Jones49DCross	HPC/Jones	22	0	**Whyburn's failure at `p`** (p. 747): a sequence of points of `R` converging to `p`, no two of
+1047	HPC.Jones.Sector.exists_log_cross	HPC.Jones.Jones49CAnn	HPC/Jones	24	2	**A crossing continuum has a continuous argument about the centre**, provided another crossing
+1048	HPC.Jones.Sector.exists_lift	HPC.Jones.Jones49CAnn	HPC/Jones	23	3	**Lifting.** A crossing continuum missed by another crossing continuum lifts to the strip.
+1049	HPC.Jones.Sector.no_cross_join	HPC.Jones.Jones49CStrip	HPC/Jones	27	2	**No compact connected set in `Strip a b \ L` joins the far left to the far right**, `L` a
+1050	HPC.Jones.Sector.lc_disjoint_rc	HPC.Jones.Jones49CStrip	HPC/Jones	26	3	**Strip separation.** A crossing set separates the far left of the strip from the far right:
+1051	HPC.Jones.Sector.LiftFam.sec_cover	HPC.Jones.Jones49COrder	HPC/Jones	24	4	**The sectors cover.** If `A < B < A + T`, every point of the strip off the translates of `A`
+1052	HPC.Jones.Sector.LiftFam.sec_disjoint	HPC.Jones.Jones49COrder	HPC/Jones	24	4	**Disjoint sectors.** If `A < B ≤ A' < B' ≤ A + T` cyclically, the sector `(A, B)` misses
+1053	HPC.Jones.Sector.two_piece_lift	HPC.Jones.Jones49CAnn	HPC/Jones	23	6	**Two pieces, in lifted form.** For lifts `A < B < A + 2π` of disjoint crossing continua `K`,
+1054	HPC.Jones.Sector.sector_cyclic	HPC.Jones.Jones49CAnn	HPC/Jones	22	9	**The cyclic order of infinitely many disjoint crossing continua.** From pairwise disjoint
+1055	HPC.Jones.Sec14.exists_bad_point_of_crossing	HPC.Jones.Jones49DCross	HPC/Jones	21	11	**Bad points at every middle radius** (Moore's p. 236 argument, `Sector.sufficiency_local`, at the
+1056	HPC.Jones.Sector.exists_crossing_continua_closed	HPC.Jones.Jones49CMoore	HPC/Jones	21	2	**The PNAS step for closed sets.** `exists_crossing_continua` (batch 150) with `IsClosed M` in
+1057	HPC.Jones.whyburn39_theorem14	HPC.Jones.Jones49D	HPC/Jones	20	44	**Theorem 14** (p. 747). If `M` is a compact semi-locally-connected plane continuum, the boundary
+1058	HPC.Jones.whyburn39_corollary1	HPC.Jones.Jones49E	HPC/Jones	19	106	**Whyburn 1939, Corollary 1.** `B = ∂R` is a locally connected continuum
+1059	HPC.Jones.jones49_case1_core	HPC.Jones.Jones49FCase1	HPC/Jones	16	115	**Case 1 of Jones 1949** (`M − J` connected, no point of order 2: a contradiction). By
+1060	HPC.Jones.jones49_setting	HPC.Jones.Jones49F	HPC/Jones	17	10	**The setting** (p. 113): a nondegenerate homogeneous aposyndetic compact plane continuum is
+1061	HPC.Jones.jones49_case1	HPC.Jones.Jones49F	HPC/Jones	15	118	**Case 1** (p. 113). "If `M − J` is connected, then each point of `M` belongs to some such
+1062	HPC.Jones.exists_domain_meeting	HPC.Jones.Jones49FCase2	HPC/Jones	17	7	**Case 2, steps 1–2: the arc `T` and the element `U`.** `M` is closed, `M − J = H + K` with `H`,
+1063	HPC.Moore.Gen.TArc.first_point_split	HPC.Jones.Jones49FCase2	HPC/Jones	18	0	**The first point, with both pieces.** On an arc from `x` to `y`, neither in the closed set `Z`,
+1064	HPC.Jones.exists_theta_arcs	HPC.Jones.Jones49FCase2	HPC/Jones	17	4	**Case 2, step 4: the arc `AxB`.** In a simple closed curve `C` through `x`, `y ∉ J` such that
+1065	HPC.Jones.isLocalSepPoint_of_separation	HPC.Jones.Jones49FLocal	HPC/Jones	17	0	**A separation of `M − {a, b}` with `M − b` connected makes `a` a local separating point**
+1066	HPC.Jones.theta_no_common_side	HPC.Jones.Jones49FTheta	HPC/Jones	19	54	**No common side.** For a θ-curve `K₁ + K₂ + K₃` (arcs from `a` to `b` meeting pairwise in
+1067	HPC.Jones.theta_separation_core	HPC.Jones.Jones49FTheta	HPC/Jones	18	55	**Item C, step 5: the separation of `M − (A + B)`.** `J₁`, `J₂`, `L` are arcs from `A` to `B`
+1068	HPC.Jones.theta_separation	HPC.Jones.Jones49FTheta	HPC/Jones	17	56	**Item C, step 5** (both orientations): as `theta_separation_core`, with the side of `U`
+1069	HPC.Jones.jones49_case2_core	HPC.Jones.Jones49FCase2	HPC/Jones	16	120	**Case 2 of Jones 1949, from cyclicity and semi-local connectedness.** If `M − J` is not
+1070	HPC.Jones.jones49_case2	HPC.Jones.Jones49F	HPC/Jones	15	123	**Case 2** (p. 114). "If `M − J` is not connected, then `M − J = H + K` such that
+1071	HPC.Jones.locallyConnectedSpace_of_orderLE	HPC.Jones.Jones49Order	HPC/Jones	19	3	**Local connectedness from finite order.** A compact metric continuum each of whose points has
+1072	HPC.Jones.exists_tarc_of_orderLE	HPC.Jones.Jones49Menger	HPC/Jones	18	16	**Arcs in a curve of finite order.** If every point of the compact metric space `X` has finite
+1073	HPC.Jones.not_orderLE_two_of_triod	HPC.Jones.Jones49Order	HPC/Jones	18	1	**Triods raise the order.** Three preconnected sets through `p`, pairwise meeting only in `p`,
+1074	HPC.Jones.arc_eq_of_legs	HPC.Jones.Jones49Menger	HPC/Jones	17	19	**An arc with legs at both ends fills the continuum.** In a compact metric space all of whose
+1075	HPC.Jones.menger_order_two	HPC.Jones.Jones49Menger	HPC/Jones	16	22	**Menger, p. 267 (the circle half):** a nondegenerate compact metric continuum all of whose
+1076	HPC.Jones.jones49_order_two	HPC.Jones.Jones49Menger	HPC/Jones	15	23	**Jones 1949, p. 113, first sentence of the proof:** "If a point of `M` is of order 2 in `M`,
+1077	HPC.Jones.jones49_theorem1	HPC.Jones.Jones49F	HPC/Jones	14	142	**Jones 1949, Theorem 1** (corrected: nondegenerate). "If a compact, plane continuum `M` is both
+1078	HPC.Jones.aposAt_of_frontier	HPC.Jones.Defs	HPC/Jones	16	5	**Aposyndesis from the frontier.** Let `V` be open, `b ∈ V` and `y ∉ closure V`. If `X` is
+1079	HPC.Jones.theorem3	HPC.Jones.Basic	HPC/Jones	15	7	**Theorem 3.** The set `L` of points `x ≠ y` such that `X` is not aposyndetic at `x` with
+1080	HPC.Jones.exists_lsc_strictMono_aposSet	HPC.Jones.Jones51	HPC/Jones	22	2	**The replacement for Jones's transfinite sequence.** A lower semicontinuous function, strictly
+1081	HPC.Jones.jones51_lemma	HPC.Jones.Jones51	HPC/Jones	21	3	**Jones 1951, Lemma.** If `X` is homogeneous, then `U_y` is not a proper subset of `U_x`.
+1082	HPC.Jones.aposAt_of_isContinuum_interior	HPC.Jones.Jones55Core	HPC/Jones	22	19	**Spreading.** In a homogeneous compact metric space, if a continuum `K` with nonempty interior
+1083	HPC.Jones.not_aposAt_trans	HPC.Jones.Jones55Core	HPC/Jones	21	20	**Non-aposyndesis is transitive** in a homogeneous compact metric space.
+1084	HPC.Jones.mem_Lset_iff_Lset_eq	HPC.Jones.Jones55Core	HPC/Jones	20	24	**Theorem 1 (b), general form.** In a homogeneous compact metric continuum, `y ∈ L_x` iff
+1085	HPC.Jones.jones55_b	HPC.Jones.Jones55	HPC/Jones	17	25	**Jones 1955, Theorem 1 (b).** The sets `L_x` are mutually exclusive: `y ∈ L_x` iff
+1086	HPC.Plane.exists_separated_of_not_isPreconnected	HPC.Plane.SorgenfreyDefs	HPC/Plane	18	0	**Nadler 6.2.** A set which is not preconnected is the union of two separated nonempty sets.
+1087	HPC.Jones.theorem8	HPC.Jones.Basic	HPC/Jones	17	4	**Theorem 8.** `X` is decomposable iff there are distinct `x`, `y` with `X` aposyndetic at `x`
+1088	HPC.Plane.Cuts	HPC.Plane.Arcs48	HPC/Plane	19	0	**Bing's "cuts"** (p. 497): `R` *cuts `A` from `B` in `M`* if `M` contains a continuum
+1089	HPC.Plane.Arcs48.isPreconnected_closure_diff_union	HPC.Plane.Arcs48	HPC/Plane	22	0	**Bing: "`F_i + N` is a continuum".** If `N ⊆ E ⊆ M` are continua and `N` is tight in `M`,
+1090	HPC.Plane.Arcs48.exists_nowhereDense_piece	HPC.Plane.Arcs48	HPC/Plane	21	3	**One open set `D` of Bing's sequence, for tight `N`.** There is a closed set `Z` (Bing's
+1091	HPC.Plane.Arcs48.exists_point_of_tight	HPC.Plane.Arcs48	HPC/Plane	20	4	**Bing's second case, for tight `N`** (the Baire argument).
+1092	HPC.Plane.Arcs48.tight_or_point	HPC.Plane.Arcs48	HPC/Plane	20	0	**Bing's sequence `N₁ ⊆ N₂ ⊆ …`.** For a nonempty proper subcontinuum `N` of `M`: either the
+1093	HPC.Plane.Arcs48.exists_point_dense	HPC.Plane.Arcs48	HPC/Plane	19	6	**The second case of Theorem 5, with `R` replaced by `N`.** For a nonempty proper
+1094	HPC.Plane.arcs_corollary2	HPC.Plane.Arcs48	HPC/Plane	18	8	**Arcs paper, Corollary 2.** Each nondegenerate compact continuum contains two points neither
+1095	HPC.Jones.exists_continuum_meets_of_open	HPC.Jones.Jones55Core	HPC/Jones	17	9	**Claim (3), Bing's form transferred.** In a homogeneous nondegenerate compact metric
+1096	HPC.Jones.exists_continuum_of_mem_aposSet	HPC.Jones.Jones55Core	HPC/Jones	16	11	**Claim (5), continuum form.** Two points of `U_p` lie in a continuum missing `p`.
+1097	HPC.Jones.Lset_subset_of_meets	HPC.Jones.Jones55Core	HPC/Jones	18	25	**Theorem 1 (c), general form.** In a homogeneous compact metric continuum, a subcontinuum
+1098	HPC.Jones.jones55_c	HPC.Jones.Jones55	HPC/Jones	17	26	**Jones 1955, Theorem 1 (c).** A subcontinuum meeting `L_x` and its complement contains
+1099	HPC.Jones.jones55_prop_e	HPC.Jones.Jones55Core	HPC/Jones	16	1	**Property (e)** (p. 739): `M − g = U(g)`.
+1100	HPC.Jones.separatesPlane_of_homeomorph	HPC.Jones.Jones55T2A	HPC/Jones	16	9	**Borsuk-type invariance** ("Since each two elements of `G` are homeomorphic, it follows that if
+1101	HPC.Jones.residual_lscAt	HPC.Jones.Decomp	HPC/Jones	17	2	**The theorem Jones 1955 uses without statement:** an u.s.c. decomposition of a compact metric
+1102	HPC.Jones.isUSCDecomp_of_isClosed	HPC.Jones.Decomp	HPC/Jones	17	1	**A closed equivalence relation on a compact metric space is an u.s.c. decomposition into
+1103	HPC.Jones.lscAt_homeomorph	HPC.Jones.Decomp	HPC/Jones	17	1	**Continuity at an element is a topological property of the decomposition:** a homeomorphism
+1104	HPC.Jones.jones55_a	HPC.Jones.Jones55	HPC/Jones	16	39	**Jones 1955, Theorem 1 (a).** "With respect to its elements (as points) `G` is a homogeneous,
+1105	HPC.Jones.jones55_elt_not_separates	HPC.Jones.Jones55T2D	HPC/Jones	15	63	**Theorem 2 (2), non-separation**: no element of `G` separates the plane.
+1106	HPC.Moore.usc_of_isClosedMap	HPC.Moore.M25Quot	HPC/Moore	15	0	**The converse of `isClosedMap_mk_plane`** (check 10 of the commission): if the elements are
+1107	HPC.Jones.jones55_theorem2	HPC.Jones.Jones55T2	HPC/Jones	14	393	**Jones 1955, Theorem 2**, assuming Jones 1949 Theorem 1. `G` is a continuous decomposition of
+1108	HPC.Jones.jones55_theorem2'	HPC.Jones.Jones49F	HPC/Jones	13	471	**Jones 1955, Theorem 2**, with `h49` discharged.
+1109	HPC.BJ59.isPseudoArc_Lset'	HPC.BJ59.Decomp	HPC/BJ59	12	964	**Jones's elements are pseudo-arcs** (Jones 1955 Theorem 2 with Part F), unconditional.
+1110	HPC.BJ59.circle_or_circPAMap_of_decomposable	HPC.BJ59.Decomp	HPC/BJ59	9	967	**The decomposable case**, with circle-likeness as a hypothesis.
+1111	HPC.BJ59.circle_or_circleOfPA_of_decomposable	HPC.BJ59.BJ59A	HPC/BJ59	8	970	**The decomposable case**: a decomposable homogeneous plane continuum is a simple closed curve
+1112	HPC.Plane.isSnakeLike_of_subset_circleLike	HPC.Plane.Ingram68	HPC/Plane	16	4	**Nadler 12.51.** A proper subcontinuum of a circle-like continuum is chainable. Pick
+1113	HPC.BJ59.exists_half_homeomorph	HPC.BJ59.Glue	HPC/BJ59	13	15	**One half.** `BJThm10` applied to the halves over `A_s`, with end maps induced by `kP` (over
+1114	HPC.BJ59.exists_homeomorph_glue	HPC.BJ59.Glue	HPC/BJ59	12	16	**Gluing.** Homeomorphisms of the fibres over `1` and over `exp π` extend to a homeomorphism of
+1115	HPC.Chain.pattern_matching	HPC.PseudoArc.Uniqueness	HPC/PseudoArc	20	2	**The matching lemma.** If `Y₁` follows the pattern `x` in `Z₁` and `Y₂` follows the same
+1116	HPC.Description.PatternFollowing	HPC.PseudoArc.Description	HPC/PseudoArc	21	6	**Pattern following** (Bing 1948, Theorem 6), stated as a property of a description:
+1117	HPC.Description.link_inter_M_nonempty	HPC.PseudoArc.Description	HPC/PseudoArc	20	6	**Every link of every level meets `M`.** Needed for condition (2) of Theorem 11; not
+1118	HPC.closure_fat_subset_fat	HPC.Covers.Matching	HPC/Covers	29	0	**The nesting lemma.** If `B` has diameter `≤ ε (i+1)`, and some point of `B` is within
+1119	HPC.MatchingCovers.step1₂	HPC.Covers.Matching	HPC/Covers	28	1	**Step 1.** If two elements of consecutive levels meet on side 1, the corresponding
+1120	HPC.MatchingCovers.exists_limit_point	HPC.Covers.Matching	HPC/Covers	26	2	**Step 4.** For an index sequence whose consecutive elements meet, the nested sequence of
+1121	HPC.MatchingCovers.toFun	HPC.Covers.Matching	HPC/Covers	25	3	**Steps 4 and 5.** Bing's map `T`, defined on points of `M₁` via a chosen tracking
+1122	HPC.MatchingCovers.toFun_mem_y₂	HPC.Covers.Matching	HPC/Covers	24	4	**Step 5.** The value of `T` at `p` lies in *every* fattened element containing `p`, not
+1123	HPC.MatchingCovers.continuous_toMap	HPC.Covers.Matching	HPC/Covers	22	5	**Step 6.** `T` is continuous.
+1124	HPC.MatchingCovers.step2₂	HPC.Covers.Matching	HPC/Covers	22	2	**Step 2.** If an element of level `i` and one of a later level `j` meet in a point of `M₁`,
+1125	HPC.MatchingCovers.injective_toMap	HPC.Covers.Matching	HPC/Covers	21	6	**Step 8.** `T` is injective.
+1126	HPC.MatchingCovers.surjective_toMap	HPC.Covers.Matching	HPC/Covers	21	6	**Step 7.** `T` is surjective.
+1127	HPC.MatchingCovers.exists_homeomorph	HPC.Covers.Matching	HPC/Covers	20	9	**Bing 1948, Theorem 11**, with the point-tracking clause Theorem 12 needs.
+1128	HPC.Chain.exists_consolidation_isFrom	HPC.Chains.Basic	HPC/Chains	20	4	**T6.** A chain from `P` to `Q` of length `n` consolidates, still from `P` to `Q`, to any
+1129	HPC.Description.exists_half_step	HPC.PseudoArc.Uniqueness	HPC/PseudoArc	21	6	**One half-step of the construction.** Side `B`, a consolidation of a level of `ΔB`, is
+1130	HPC.Rung.exists_next	HPC.PseudoArc.Uniqueness	HPC/PseudoArc	20	8	**The step of the construction.** The side that can follow patterns keeps its mesh bound
+1131	HPC.Description.exists_homeomorph	HPC.PseudoArc.Uniqueness	HPC/PseudoArc	19	25	**Bing 1948, Theorem 12**, conditional on pattern following.
+1132	HPC.Description.theorem6Pos_shift	HPC.PseudoArc.Theorem5	HPC/PseudoArc	19	11	**Bing 1948, Theorem 6**, with the deep level Bing's proof produces, for every tail of the
+1133	HPC.theorem12	HPC.PseudoArc.Theorem5	HPC/PseudoArc	18	30	**Bing 1948, Theorem 12**, unconditional: two descriptions give homeomorphic continua, with
+1134	HPC.Plane.exists_chain_of_weak	HPC.Plane.EndPointsAux	HPC/Plane	27	2	**Trimming a weak chain.** Let `L 0, …, L (n-1)` be open sets with `L i ∩ L j = ∅` whenever
+1135	HPC.Plane.PA51.exists_description_sub	HPC.Plane.PA51Lift	HPC/Plane	18	56	**The description of the subspace** (Bing 1951, Theorem 1, body of the proof).
+1136	HPC.Plane.theorem1_HIC	HPC.Plane.PseudoArc51	HPC/Plane	17	81	**Bing 1951 (Pacific J. Math.), Theorem 1, the "in fact" clause.**
+1137	HPC.Plane.theorem1_HIC'	HPC.Plane.PseudoArc51	HPC/Plane	14	86	**Theorem 1**: any two pseudo-arcs are homeomorphic. (Also *Snake-like continua*, Theorem 1.)
+1138	HPC.BJ59.isHomogeneous_of_isCircPAMap	HPC.BJ59.Homog	HPC/BJ59	9	100	**Each circle of pseudo-arcs is homogeneous**, from `BJThm10`.
+1139	HPC.BJ59.isHomogeneous_of_isCircleOfPA	HPC.BJ59.BJ59A	HPC/BJ59	8	102	**Each circle of pseudo-arcs is homogeneous** (Bing–Jones pp. 173, 189, "It follows from
+1140	HPC.HO16.ho16_pseudoArc_indec_homogeneous	HPC.HO16.HO16E	HPC/HO16	9	86	**The converse** (not part of the stretch): a pseudo-arc is homogeneous (Bing;
+1141	HPC.HO16.ho16_indec_homogeneous_iff	HPC.HO16.HO16E	HPC/HO16	8	946	**The indecomposable case of the classification, both directions** (stretch): a
+1142	HPC.BJ59.ho16_classification	HPC.BJ59.BJ59A	HPC/BJ59	7	1062	**The classification, both directions** (H–O p. 180, with Bing–Jones for the third class).
+1143	HPC.BJ59.homeomorph_of_isCircPAMap	HPC.BJ59.Homog	HPC/BJ59	5	100	**Any two circles of pseudo-arcs are homeomorphic**, from `BJThm10`.
+1144	HPC.BJ59.homeomorph_of_isCircleOfPA	HPC.BJ59.BJ59A	HPC/BJ59	4	102	**Any two circles of pseudo-arcs are homeomorphic** (Bing–Jones pp. 173, 189).
+1145	HPC.BJ59.isDecomposableSpace_circle	HPC.BJ59.CircleFacts	HPC/BJ59	4	0	**The circle is decomposable**: the two half-circles.
+1146	HPC.BJ59.isDecomposableSpace_of_isCircPAMap	HPC.BJ59.CircleFacts	HPC/BJ59	4	6	**A circle of pseudo-arcs is decomposable**: the two halves.
+1147	HPC.BJ59.not_isPseudoArc_of_ne_univ_circle	HPC.BJ59.CircleFacts	HPC/BJ59	4	5	**No proper subset of the circle is a pseudo-arc.**
+1148	HPC.Plane.std_step	HPC.Plane.StdStep	HPC/Plane	8	0	**The planar step, standard coordinates.**
+1149	HPC.Plane.real_step	HPC.Plane.RealStep	HPC/Plane	7	2	**The planar step for tame chains.**
+1150	HPC.Plane.planeDescription	HPC.Plane.Descr	HPC/Plane	6	7	**The description of the pseudo-arc in the plane.**
+1151	HPC.Plane.exists_description_plane	HPC.Plane.Snake51	HPC/Plane	5	8	**A description exists in the plane** (COMMISSION-batch84.md §3.4): tame chains following
+1152	HPC.Description.isConnected_M	HPC.PseudoArc.T13Chains	HPC/PseudoArc	6	6	**The described continuum is connected.**
+1153	HPC.Fold.Q78.Theorem10Statement	HPC.Fold.Questions78	HPC/Fold	7	5	**Bing 1948, Theorem 10** (statement only): every subcontinuum of the described
+1154	HPC.Description.theorem10	HPC.PseudoArc.Theorem10	HPC/PseudoArc	6	9	**Bing 1948, Theorem 10.** Every subcontinuum of the described continuum `M` is
+1155	HPC.Plane.isPseudoArc_of_description	HPC.Plane.PseudoArc51	HPC/Plane	5	14	**The continuum of a description is a pseudo-arc** (reshaped: the links lie in a compact
+1156	HPC.Plane.isPseudoArc_plane	HPC.Plane.PseudoArc51	HPC/Plane	4	20	**A pseudo-arc in the plane**: the continuum of `Plane.exists_description_plane`.
+1157	HPC.BJ59.ho16_classification_plane	HPC.BJ59.BJ59A	HPC/BJ59	3	1083	**The classification of homogeneous plane continua**: there are three plane continua, the
+1158	HPC.BJ59.IsAtomicMap	HPC.BJ59.Atomic	HPC/BJ59	15	0	**Atomic** (Domokos–Prajs p. 13): every fibre is terminal, i.e. a continuum that meets a fibre
+1159	HPC.BJ59.IsAtomicCircPAMap	HPC.BJ59.Atomic	HPC/BJ59	10	5	**An open atomic map onto the circle with pseudo-arc fibres** (the right-hand side of
+1160	HPC.BJ59.circle_or_atomic_of_decomposable	HPC.BJ59.BJ59B	HPC/BJ59	7	968	**The decomposable case without circle-likeness**: a decomposable homogeneous plane continuum
+1161	HPC.BJ59.isCircleLike_circle	HPC.BJ59.CircleLike	HPC/BJ59	7	1	**The circle is circle-like.**
+1162	HPC.BJ59.isCircleLike_univ_of_homeomorph	HPC.BJ59.CircleLike	HPC/BJ59	7	1	**Circle-likeness passes along homeomorphisms** (pull back the links; uniform continuity).
+1163	HPC.BJ59.exists_half_homeomorph'	HPC.BJ59.AtomicCircle	HPC/BJ59	9	12	**One half** (batch 198's `exists_half_homeomorph` for maps with snake-like halves).
+1164	HPC.BJ59.exists_homeomorph_glue'	HPC.BJ59.AtomicCircle	HPC/BJ59	8	13	**Gluing** (batch 198's `exists_homeomorph_glue` for maps with snake-like halves).
+1165	HPC.BJ59.subset_fibre_or_saturated	HPC.BJ59.Atomic	HPC/BJ59	12	1	**The saturation lemma**: a continuum lies in a fibre of an atomic map, or it is the full
+1166	HPC.Plane.CondB	HPC.Plane.EndPoints51	HPC/Plane	12	0	**Condition B**: of two subcontinua of `M` containing `p`, one contains the other.
+1167	HPC.BJ59.condB_preimage_Icc	HPC.BJ59.Atomic	HPC/BJ59	10	3	**Terminal points.** A point of an end fibre of `f ⁻¹' [a, b]` satisfies Bing's condition B
+1168	HPC.Plane.chain_ivt	HPC.Plane.Theorem11Nec	HPC/Plane	13	1	**Discrete intermediate value theorem along a chain.** If `f` is `1`-Lipschitz, `Y` meets
+1169	HPC.Plane.chain_two_sets	HPC.Plane.Theorem11Nec	HPC/Plane	12	2	**Two sets crossing the same stretch of a chain** contain points `y`, `z` in a common link
+1170	HPC.Plane.isUnicoherent_of_isSnakeLike_aux	HPC.Plane.Theorem11Nec	HPC/Plane	11	6	**Nadler 12.2.** A snake-like continuum is unicoherent. If `M = H ∪ K` and `H ∩ K = P ⊔ Q`
+1171	HPC.BJ59.isHereditarilyUnicoherent_of_atomic	HPC.BJ59.Atomic	HPC/BJ59	10	12	**Hereditary unicoherence.**
+1172	HPC.Plane.IsTerminalSub	HPC.Plane.Fugate66	HPC/Plane	14	0	**Fugate, Definition 4.** `A` is a *terminal subcontinuum* of `M`: for subcontinua `K`, `L` of
+1173	HPC.Plane.claim2	HPC.Plane.Theorem11B	HPC/Plane	11	0	**Claim 2 (Fugate, p. 392).** No continuum in `M ∖ O` meets both `A ∖ O` and `M ∖ E*`, when
+1174	HPC.Plane.epsCoverable_of_halves	HPC.Plane.Theorem11B	HPC/Plane	10	6	**Claim 2 + the chain (Fugate, p. 392), abstracted.** `A`, `C` continua with `A ∪ C = M`;
+1175	HPC.Plane.exists_minimal_of_seq	HPC.Plane.Atriodic51BNine	HPC/Plane	11	0	**Brouwer reduction** for a property of closed sets that passes to intersections of decreasing
+1176	HPC.Plane.exists_minimal_notCoverable	HPC.Plane.Theorem11	HPC/Plane	10	3	**Bing's minimal counterexample.** If a continuum is not `ε`-coverable, it contains a
+1177	HPC.Plane.exists_minimal_T10Chain	HPC.Plane.LastLink99	HPC/Plane	12	3	**Item 3.** A Theorem-10 chain of least length exists as soon as one exists.
+1178	HPC.Plane.exists_proper_superset_meeting_all_links	HPC.Plane.Fugate66Lemma1	HPC/Plane	12	4	**The composant step for a terminal subcontinuum** (replacing Fugate's use of Lemma 3 and of
+1179	HPC.Plane.exists_extreme_repeat	HPC.Plane.LastLink99	HPC/Plane	13	0	**A tail with an extreme first term and a repeated value.** Let `g` move by at most one per
+1180	HPC.Plane.exists_shorter_T10Chain	HPC.Plane.LastLink99	HPC/Plane	13	3	**Shortening a Theorem-10 chain.** Let `a` choose for each link of `F` a link of `D`
+1181	HPC.Plane.lastLink_of_minimal	HPC.Plane.LastLink99	HPC/Plane	12	6	**The last-link claim** (Bing: "the last link of `F` intersects `M''·(d₁ + d_m)` or else a
+1182	HPC.Plane.surgery_of_sep	HPC.Plane.Fugate66Lemma1	HPC/Plane	13	5	**Bing's surgery, with the separation property in place of condition B.** As
+1183	HPC.Plane.surgery_of_sep'	HPC.Plane.Fugate66Lemma1	HPC/Plane	12	6	**The surgery, mirror form**: the point lies in the **last** link of `D`.
+1184	HPC.Plane.t10Chain_of_mem_first	HPC.Plane.Fugate66Lemma1	HPC/Plane	12	4	**The end-link case.** If `p ∈ M` lies in the first link of a chain `D` covering the continuum
+1185	HPC.Plane.lemma1_aux	HPC.Plane.Fugate66Lemma1	HPC/Plane	11	18	**Lemma 1, the induction** (batch 99's `theorem10_aux` with the terminal subcontinuum `A` in
+1186	HPC.Plane.fugate_lemma1	HPC.Plane.Fugate66Lemma1	HPC/Plane	10	19	**Fugate, Lemma 1** (Bing's Theorem 10 for terminal subcontinua). `A` terminal in the
+1187	HPC.Plane.isTerminalSub_singleton_iff	HPC.Plane.Fugate66	HPC/Plane	10	2	**Definition 4 at a point is condition B.** Shape change: the skeleton's hypothesis that `M`
+1188	HPC.BJ59.isSnakeLike_of_atomic'	HPC.BJ59.Atomic	HPC/BJ59	9	37	**An atomic arc of snake-like hereditarily indecomposable continua is snake-like**, by Bing's
+1189	HPC.BJ59.isSnakeLike_halfSet_of_atomic	HPC.BJ59.AtomicCircle	HPC/BJ59	8	47	**The halves are snake-like**, without circle-likeness (compare `isSnakeLike_halfSet`).
+1190	HPC.BJ59.dp22_theorem61	HPC.BJ59.AtomicCircle	HPC/BJ59	7	133	**Domokos–Prajs, Theorem 6.1, "if"** (p. 14), given Bing–Jones Theorem 10: a compact space with
+1191	HPC.BJ59.hoCircleLike	HPC.BJ59.BJ59B	HPC/BJ59	6	1090	**`HOCircleLike`**, from Bing–Jones Theorem 10 and a plane circle of pseudo-arcs.
+1192	HPC.BJ59.ho16_classification_plane₂	HPC.BJ59.BJ59B	HPC/BJ59	2	1119	**The classification of homogeneous plane continua**, from Theorem 10 and §7.
+1193	HPC.BJ59.ho16_classification_plane₃	HPC.BJ59.BJ59D	HPC/BJ59	1	1175	**The plane form of the classification**, given only the plane example.
+1194	HPC.BJ59.ho16_classification_plane₄	HPC.BJ59.BJ59E	HPC/BJ59	0	1193	**The plane form of the classification**, with no named hypothesis.
+1195	HPC.BJ59.ho16_classification₂	HPC.BJ59.BJ59B	HPC/BJ59	2	1100	**The classification with Bing–Jones's third class**, from Theorem 10 and §7.
+1196	HPC.BJ59.ho16_classification₃	HPC.BJ59.BJ59D	HPC/BJ59	1	1156	**The classification with Bing–Jones's third class**, given only the plane example.
+1197	HPC.BJ59.ho16_classification₄	HPC.BJ59.BJ59E	HPC/BJ59	0	1177	**The classification of homogeneous plane continua with Bing–Jones's third class**, with no

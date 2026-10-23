@@ -1,0 +1,200 @@
+%======================================================================
+\chapter{The strip theorem}\label{ch:strips}
+%======================================================================
+
+This chapter proves the strip theorem of Definition~\ref{def:otthm32}, completing the proof of Theorem~C. The idea of
+Oversteegen and Tymchatyn is that a continuum lying in a thin strip between two paths cannot have large surjective span: two
+points running over it while staying far apart would have to pass each other inside the strip. The formal proof replaces their
+Lemmas~2.3, 2.4, Remark~2.5 and the zero-set continua of their Theorem~2.7 by a common-zero lemma on a rectangle and a direct
+parity argument, and uses no Jordan curve theorem: the crossing parity of closed polygons from Volume~4 (which need not be
+simple) is enough.
+
+Throughout, the parity $\parity(P,z)\in\set{0,1}$ of a closed polygon $P$ at a point $z$ off $P$ is the number of edges crossed by
+the eastward ray from $z$, counted by the half-open rule of \vfour{Definition~3.4}, modulo~$2$. It is locally constant off $P$
+(\vfour{Theorem~3.7}) and $0$ far away. $L_0$ denotes the line $x=0$.
+
+\formal{\lean{HPC.Plane.parity}, \lean{HPC.Plane.polygonOf}.}
+
+\section{Parity tools}
+
+\begin{lemma}\label{lem:parity-tools}
+Let $P$ be a closed polygon with vertices $v_0,\dots,v_n$.
+\begin{enumerate}[label=(\alph*)]
+\item If $P$ lies in a compact convex set $C$ and $z\notin C$, then $\parity(P,z)=0$.
+\item \emph{(Perturbation.)} If $w_0,\dots,w_n$ satisfy $\nrm{w_k-v_k}\le\rho$ and $\rho<\dist(z,P)$, then the polygon $P'$ with vertices $w_k$ has
+$\parity(P',z)=\parity(P,z)$.
+\item \emph{(Flip across a vertical edge.)} If edge $i$ is a nondegenerate vertical segment through $b=(c,b_2)$ with $b_2$ strictly between the heights of its
+ends, and no other edge comes within $r$ of $b$, then for $0<\xi<r$ the parities at $(c+\xi,b_2)$ and $(c-\xi,b_2)$ differ.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Separate $z$ from $C$ by an open half-plane $H\ni z$; $H$ is connected, misses $P$, and contains far points, where the parity is $0$.
+
+(b) Move one vertex at a time. Replacing $v_k$ by $w_k$ changes the parity by the parities of the two closed triangles $[v_{k-1},v_k,w_k]$ and
+$[v_k,v_{k+1},w_k]$ (the edge $[v_k,w_k]$ is counted twice); each lies in the closed $\rho$-neighbourhood of an edge of $P$, a compact convex set
+not containing $z$, so by (a) both parities vanish at $z$.
+
+(c) The two eastward rays are at the same height; an edge is crossed by exactly one of them iff it straddles the height $b_2$ at a point
+with first coordinate in $(c-\xi,c+\xi]$. Edge $i$ qualifies, and no other edge does.
+\end{proof}
+
+\formal{\lean{HPC.Span.parity_eq_zero_of_not_mem_convex}, \lean{HPC.Span.parity_eq_of_perturb},
+\lean{HPC.Span.parity_flip_vertical_edge}.}
+
+\section{A common zero on a rectangle}
+
+\begin{lemma}\label{lem:common-zero}
+Let $R=[0,1]\times[p,q]$ and $\varphi,\psi\colon R\to\R$ continuous with: $\varphi\ge0$ on the left side $\set0\times[p,q]$, $\varphi\le0$ on the right side, $\varphi\le0$ on
+the bottom row $[0,1]\times\set p$, and $\psi\ge0$ on the left side, $\psi\le0$ on the right side, $\psi\le0$ on the top row $[0,1]\times\set q$. Then $\varphi$ and
+$\psi$ have a common zero.
+\end{lemma}
+
+\begin{proof}
+Suppose not. Then $\Phi=\varphi+i\psi$ is continuous and nowhere zero on the convex set $R$, so it has a continuous logarithm, and $\theta=\Im\log\Phi$ is a
+continuous argument. At $(0,p)$, $\varphi=0$ ($\ge0$ from the left side, $\le0$ from the bottom), so $\psi>0$ and $\theta\equiv\pi/2$; at $(0,q)$, $\psi=0$, so
+$\varphi>0$ and $\theta\equiv0$ (mod $2\pi$). On each side $\Phi$ lies in a closed quarter- or half-plane, so by connectedness $\theta$ stays in one interval of
+length less than $2\pi$:
+\begin{itemize}
+\item left side (first quadrant): $\theta\in[2\pi k_1,2\pi k_1+\frac\pi2]$, so $\theta(0,p)=2\pi k_1+\frac\pi2$, $\theta(0,q)=2\pi k_1$;
+\item top row ($\psi\le0$): $\theta\in[2\pi k_2-\pi,2\pi k_2]$, and at $(0,q)$ this forces $k_2=k_1$;
+\item right side (third quadrant): $\theta\in[2\pi k_3-\pi,2\pi k_3-\frac\pi2]$, and at $(1,q)$ this forces $k_3=k_1$;
+\item bottom row ($\varphi\le0$): $\theta\in[2\pi k_4+\frac\pi2,2\pi k_4+\frac{3\pi}2]$, and at $(1,p)$ this forces $k_4=k_1-1$.
+\end{itemize}
+Then $\theta(0,p)=2\pi k_1+\frac\pi2$ would lie in $[2\pi k_1-\frac{3\pi}2,2\pi k_1-\frac\pi2]$, which it does not.
+\end{proof}
+
+\formal{\lean{HPC.Span.common_zero_rect}, using \lean{HPC.Moore.exists_log_of_convex}.}
+
+\section{The strip lemma}
+
+\emph{Data.} Let $s\ge1$ and $a_0,\dots,a_s$, $b_0,\dots,b_s$ points of $\set{x\ge0}$ with $a_0,b_0\in L_0$. Let $f$ and $g$ be the piecewise linear paths on
+$[0,1]$ through the $a_j$ and the $b_j$ at the times $j/s$. Put $B_t=[f(t),g(t)]$, so that $B_0=[a_0,b_0]\subseteq L_0$, and let $S_t$ be the closed polygon
+$B_0\cup f[0,t]\cup B_t\cup g[0,t]$ (traversed: $B_0$, along $f$, across $B_t$, back along $g$), $U_t$ the set of points off $S_t$ of parity $1$, and $\varepsilon\ge\max_j\nrm{a_j-b_j}$,
+so that $\nrm{f(t)-g(t)}\le\varepsilon$.
+
+\formal{\lean{HPC.Span.plPath}, \lean{HPC.Span.plPath_piece}, \lean{HPC.Span.stripPoly}.}
+
+\begin{lemma}\label{lem:strip-basic}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item $U_0=\emptyset$, and $U_t\subseteq\set{x>0}$ for all $t$.
+\item \emph{(Oversteegen--Tymchatyn, Lemma~2.2.)} If $z_0\notin S_{t_0}$, then for $(t,z)$ near $(t_0,z_0)$, $z\notin S_t$ and $\parity(S_t,z)=\parity(S_{t_0},z_0)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $S_0$ is the segment $B_0$ traversed twice, so its edges cancel. On $\set{x<0}$ the parity vanishes by Lemma~\ref{lem:parity-tools}(a) (the convex hull of
+the vertices lies in $\set{x\ge0}$), and a point of $L_0$ off $S_t$ has a disc off $S_t$ meeting $\set{x<0}$. (b) By uniform continuity the vertices of $S_t$ are
+within $\rho<\dist(z_0,S_{t_0})/4$ of those of $S_{t_0}$ for $t$ near $t_0$; apply Lemma~\ref{lem:parity-tools}(b) and local constancy.
+\end{proof}
+
+\formal{\lean{HPC.Span.parity_strip_eventually}.}
+
+\emph{The sign function.} Let $V=U_1\cup(B_0\setminus(f[0,1]\cup g[0,1]\cup B_1))$ and $h\colon[0,1]\to V$ continuous. Define on $[0,1]^2$
+\[
+\varphi_h(t,u)=\begin{cases}-\dist(h(u),B_t)&\text{if }h(u)\in U_t\text{ or }h(u)\in L_0,\\ +\dist(h(u),B_t)&\text{otherwise.}\end{cases}
+\]
+
+\formal{\lean{HPC.Span.StripInner}, \lean{HPC.Span.stripSign}.}
+
+\begin{lemma}\label{lem:sign}
+$\varphi_h$ is continuous; $\varphi_h(0,u)\ge0$, $\varphi_h(1,u)\le0$, and $\varphi_h(t,u_0)\le0$ for all $t$ if $h(u_0)\in L_0$; and $\varphi_h(t,u)=0$ iff $h(u)\in B_t$.
+\end{lemma}
+
+\begin{proof}
+Let $\delta_0>0$ be the distance from the compact set $h([0,1])\subseteq V$ to $f[0,1]\cup g[0,1]\cup B_1$. Continuity at $(t_0,u_0)$: if $h(u_0)\in B_{t_0}$, then
+$\varphi_h(t_0,u_0)=0$ and $\abs{\varphi_h}$ is continuous. If $h(u_0)\notin B_{t_0}$ and $h(u_0)\notin L_0$, then $h(u_0)\in U_1$ is off $S_{t_0}$, and by
+Lemma~\ref{lem:strip-basic}(b) the sign is locally constant. If $h(u_0)\notin B_{t_0}$ and $h(u_0)\in L_0$, then $t_0>0$, and near $h(u_0)$ the only edge of $S_t$
+($t$ near $t_0$) is $B_0$; by Lemma~\ref{lem:parity-tools}(c) and (a), nearby points right of $L_0$ have parity $1$, so they lie in $U_t$ and the sign is $-$ near
+$(t_0,u_0)$. The boundary signs follow from $U_0=\emptyset$, $h(u)\in L_0\Rightarrow h(u)\in B_0$, and $h(u)\in V$.
+\end{proof}
+
+\begin{theorem}[The strip lemma]\label{thm:strip-lemma}
+Let $W\subseteq\set{x\ge0}$ be a continuum meeting $L_0$ with $W\cap L_0\subseteq B_0\setminus\set{a_0,b_0}$, disjoint from $f[0,1]$, $g[0,1]$ and $B_1$. If $Z\subseteq W\times W$ is a
+continuum with $\pr1(Z)=\pr2(Z)=W$, then $Z$ contains a pair at distance at most $\varepsilon$. In particular the surjective span of $W$ is at most $\varepsilon$.
+\end{theorem}
+
+\begin{proof}
+\emph{1. $W\setminus L_0\subseteq U_1$.} Let $C$ be a component of $W\setminus L_0$. By boundary bumping $\cl C$ meets $W\cap L_0$ at a point $b$ interior to $B_0$ and away from
+the other edges of $S_1$. By Lemma~\ref{lem:parity-tools}(c),(a) the parity is $1$ on a half-disc right of $L_0$ near $b$, which $C$ meets; $C$ is connected and off
+$S_1$, so $C\subseteq U_1$.
+
+\emph{2.} Suppose $\alpha=\min_Zd>\varepsilon$, and take $\eta>0$ with $2\eta<\alpha-\varepsilon$ and $\eta$ less than the distance from $W$ to $f[0,1]\cup g[0,1]\cup B_1$.
+
+\emph{3. Two paths.} Pick $z_A\in Z$ with $\pr1(z_A)\in L_0$ and $z_B\in Z$ with $\pr2(z_B)\in L_0$, and an $\eta$-chain $z_A=z_0,z_1,\dots,z_m=z_B$ in $Z$. Let $h$ and $k$ be the
+piecewise linear paths through the points $\pr1(z_j)$ and $\pr2(z_j)$. Each segment joins points of $W$ less than $\eta$ apart, so it misses $f$, $g$, $B_1$ and stays in
+$\set{x\ge0}$; it either lies in $B_0\setminus\set{a_0,b_0}$ or its part off $L_0$ lies in $U_1$ (by step 1). So $h,k$ map into $V$, $h(0)\in L_0$ and $k(1)\in L_0$, and
+$d(h(u),k(u))>\alpha-2\eta>\varepsilon$ for all $u$ ($h(u)-k(u)$ is a convex combination of two consecutive differences).
+
+\emph{4.} Apply Lemma~\ref{lem:common-zero} on $[0,1]\times[0,1]$ (coordinates $(t,u)$) to $\varphi=\varphi_h$ and $\psi=\varphi_k$, whose boundary signs are those of
+Lemma~\ref{lem:sign} (the bottom row $u=0$ for $h$, the top row $u=1$ for $k$). At a common zero $(t,u)$, $h(u),k(u)\in B_t$, so $d(h(u),k(u))\le\varepsilon$, contradicting
+step 3.
+\end{proof}
+
+\formal{\lean{HPC.Span.strip_lemma}.}
+
+\section{Disjoint crossing continua are ordered}
+
+\begin{proposition}\label{prop:ordered}
+Let $K,K'$ be disjoint continua in the strip $S=[a,b]\times\R$, each meeting both lines $L_a$ and $L_b$. Then the traces $K\cap L_a$ and $K'\cap L_a$ are separated
+by height: one lies strictly below the other.
+\end{proposition}
+
+\begin{proof}
+Otherwise, after exchanging $K$ and $K'$, there are $p,q\in K\cap L_a$ and $w\in K'\cap L_a$ with $p_2<w_2<q_2$. Let $W$ be the component of $S\setminus K$ containing $K'$;
+it is relatively open in $S$, and contains a point $e\in K'\cap L_b$. Small balls about points of $W$, intersected with $S$, are convex and miss $K$, so $W$ is
+polygonally connected: there is a polygonal path $\beta$ in $W$ from $w$ to $e$ (not necessarily simple). Close it outside the strip: from $e$ to $(b+1,e_2)$, down to
+$(b+1,-N)$, across to $(a-1,-N)$, up to $(a-1,w_2)$, back to $w$, with $N$ larger than all heights involved. $K$ misses this closed polygon $P$, so $\parity(P,p)=\parity(P,q)$.
+The segments from $p$ and $q$ to $(a-\frac12,p_2)$ and $(a-\frac12,q_2)$ miss $P$. On the line $x=a-2$ the parity is $0$. Moving from $(a-2,p_2)$ to $(a-\frac12,p_2)$
+one crosses only the vertical edge $x=a-1$, whose height range $[-N,w_2]$ contains $p_2$; moving from $(a-2,q_2)$ one crosses nothing, as $q_2>w_2$. So the parities at
+$p$ and $q$ are $1$ and $0$: a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Span.crossing_traces_separated}.}
+
+\section{Proof of the strip theorem}
+
+\begin{theorem}\label{thm:ot32}
+The strip theorem (Definition~\ref{def:otthm32}) holds.
+\end{theorem}
+
+\begin{proof}
+Let $J$ be the set of $i$ with $W_i=h_i(X)$ of positive surjective span, and suppose $J$ is uncountable.
+
+\emph{1. One scale.} For $i\in J$ let $\alpha_i$ be the minimum of $d$ on a witness $Z_i$, and $g_i=\pr1h_i(y)-\max_{z\in X}\pr1h_i(z)>0$. For some $n\ge1$ the set $J_1$ of
+$i$ with $\alpha_i,g_i\ge\frac1{n+1}$ is uncountable.
+
+\emph{2. Clustering.} Put $\rho=\frac1{4(n+1)}$. Some $m$ is a modulus of uniform continuity of $h_i$ for $\rho$ for uncountably many $i$; on a finite $\frac1m$-net
+of $Y$ the maps take values in a separable metric space, so an uncountable $J_3\subseteq J_1$ has $\nrm{h_i(c)-h_j(c)}<3\rho$ for all $i,j\in J_3$ and all $c\in Y$.
+
+\emph{3. Order.} By Proposition~\ref{prop:ordered}, the traces of the $K_i$ on $L_0$ are linearly ordered; take $i_1,i_2,i_3\in J_3$ with the trace of $K_{i_2}$ strictly between
+$h_{i_1}(x)$ and $h_{i_3}(x)$.
+
+\emph{4. The strip.} Let $\rho_0$ be a third of the least distance between $K_{i_1},K_{i_2},K_{i_3}$, and take an $\eta'$-chain $x=c_0,\dots,c_s=y$ in $Y$ ($s\ge1$ because
+$y\notin X$) fine enough that consecutive images under $h_{i_1}$ and $h_{i_3}$ are less than $\rho_0$ apart. Put $a_j=h_{i_1}(c_j)$, $b_j=h_{i_3}(c_j)$, $\varepsilon=3\rho$.
+
+\emph{5. Hypotheses of the strip lemma for $W=W_{i_2}$.} $\nrm{a_j-b_j}<3\rho$; $a_0,b_0\in L_0$; everything lies in $[0,1]\times\R$; $h_{i_2}(x)\in W\cap L_0$, and $W\cap L_0$ lies
+strictly inside $B_0$ by step 3; $f[0,1]$ lies within $\rho_0$ of $K_{i_1}$, so it misses $W\subseteq K_{i_2}$, and likewise $g$; the first coordinates on $B_1=[h_{i_1}(y),h_{i_3}(y)]$
+exceed $\pr1h_{i_2}(y)-3\rho\ge\max_W\pr1+\frac1{n+1}-3\rho>\max_W\pr1$, so $B_1$ misses $W$.
+
+\emph{6.} Theorem~\ref{thm:strip-lemma} gives a pair in $Z_{i_2}$ at distance at most $3\rho<\frac1{n+1}\le\alpha_{i_2}$: a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Span.exists_not_countable_of_cover}, \lean{HPC.Span.exists_between_three}, \lean{HPC.Span.ot82_theorem32}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:theoremC}]
+Theorem~\ref{thm:ot32}, Theorem~\ref{thm:ot35} and Corollary~\ref{cor:C-from-35}.
+\end{proof}
+
+\formal{\lean{HPC.Span.theoremC}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show by an example that Lemma~\ref{lem:common-zero} fails if the sign condition for $\varphi$ on the bottom row is dropped.
+\end{exercise}
+
+\begin{exercise}
+Show that the closed polygon $P$ in the proof of Proposition~\ref{prop:ordered} need not be simple, and explain why this does not matter.
+\end{exercise}

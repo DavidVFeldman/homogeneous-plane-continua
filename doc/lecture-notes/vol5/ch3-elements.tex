@@ -1,0 +1,200 @@
+%======================================================================
+\chapter{Arcs and simple closed curves of elements}\label{ch:elements}
+%======================================================================
+
+We keep the standing hypothesis of Chapter~\ref{ch:usc}: $G$ is the space of elements of a Moore
+decomposition of the plane, a connected, locally connected metrizable space
+(Theorem~\ref{thm:quot-metrizable}, Proposition~\ref{prop:pts-conn}). This chapter covers Moore's
+Theorems~5--10 and~12. The central one is Theorem~9: \emph{an arc of elements does not separate
+$G$}. With the general topology of Chapter~\ref{ch:arcs} most of the others become short.
+
+\section{Moore's definitions}
+
+\begin{definition}\label{def:arc-elt}
+Let $A\ne B$ be elements.
+\begin{itemize}
+\item A \emph{simple continuous arc of elements from $A$ to $B$} is a closed, connected, bounded set
+$H\subseteq G$ containing $A$ and $B$ such that $H\setminus\set x$ is not connected for every $x\in
+H\setminus\set{A,B}$.
+\item A \emph{simple closed curve of elements} is a closed, connected, bounded set $J\subseteq G$ with
+at least two elements such that $J\setminus\set{x,y}$ is not connected for any two distinct $x,y\in
+J$.
+\end{itemize}
+\end{definition}
+
+\formal{\lean{HPC.Moore.IsArcElt}, \lean{HPC.Moore.IsSCCElt}.}
+
+Moore's printed definition of a simple closed curve of elements (p.~417) asks only that $J$ be
+bounded and disconnected by the omission of any two of its elements. Then two disjoint segments
+(in the decomposition into points) form a ``simple closed curve'', and Theorems~10 and~11 fail for
+it (\lean{HPC.Moore.not_m25_theorem10_printed}, \lean{HPC.Moore.not_m25_theorem11_printed}); a single
+element must also be excluded (\lean{HPC.Moore.not_m25_theorem11_singleton}). The corrected
+definition above adds ``closed, connected, with at least two elements''.
+
+\begin{proposition}\label{prop:arc-elt-top}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item A closed bounded set of elements is compact.
+\item $H$ is a simple continuous arc of elements from $A$ to $B$ if and only if $H$ is an arc from $A$
+to $B$ in the space $G$ (Definition~\ref{def:arc}).
+\item $J$ is a simple closed curve of elements if and only if $J$ is a simple closed curve in the
+space $G$; equivalently, $J$ is homeomorphic to the circle.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) If $H$ is closed and bounded, $\pts H$ is closed and bounded, hence compact, and $H=\pi(\pts H)$.
+
+(b) A simple continuous arc of elements is, by (a), a cut-point arc in the metrizable space $G$, hence
+an arc (Proposition~\ref{prop:cutarc}(b)). Conversely an arc $H$ in $G$ is a cut-point arc, compact and
+so closed; its point set is compact, because a compact set of elements has compact point set (cover
+$\pts H$ by open sets; each element of $H$ is covered by finitely many, whose union contains a tube
+about that element, Proposition~\ref{prop:closed-map}; finitely many tubes cover $H$), hence bounded.
+
+(c) If $J$ is a simple closed curve of elements and $p\ne q$ are in $J$, Theorem~\ref{thm:circle-char}
+writes $J$ as the union of two cut-point arcs from $p$ to $q$ meeting only in $p,q$; they are arcs by
+(b). Conversely a simple closed curve in $G$ is compact (hence closed and, as in (b), bounded),
+connected, has two points, and is cut by every pair of points (Proposition~\ref{prop:scc-cut}). The
+last equivalence is Proposition~\ref{prop:scc-cut}.
+\end{proof}
+
+\formal{\lean{HPC.Moore.isCompact_of_isClosed_bounded}, \lean{HPC.Moore.isArcElt_iff_tarc},
+\lean{HPC.Moore.isSCCElt_iff_tscc}.}
+
+From now on we use ``arc'' and ``simple closed curve'' for sets of elements as well.
+
+\section{Theorems 5--8 and 10}
+
+\begin{theorem}[Moore, Theorems 5--8 and 10]\label{thm:m25-5-10}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(Theorem~5.)} An arc of elements minus one of its ends is connected.
+\item \emph{(Theorem~6.)} A closed connected subset of an arc of elements with at least two elements
+is an arc of elements.
+\item \emph{(Theorem~7.)} Let $pq$ be an arc of elements, $x\in pq$ with $x\ne p,q$, and $H\subseteq
+pq$. Then $x$ is a limit element of $H$ if and only if every arc of elements $L\subseteq pq$ containing
+$x$, $x$ not an end of $L$, contains an element of $H$ other than $x$.
+\item \emph{(Theorem~8.)} If $K$ is a closed, connected, bounded set of elements and $H\subsetneq K$ is
+connected, some element $x\in K\setminus H$ has $K\setminus\set x$ connected.
+\item \emph{(Theorem~10.)} If $J$ is a simple closed curve of elements and $p\ne q$ are in $J$, then
+$J=a\cup b$ with $a,b$ arcs of elements from $p$ to $q$ and $a\cap b=\set{p,q}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:arc-elt-top} we may work with topological arcs. (a) Lemma~\ref{lem:subarc}(c).
+(b) Proposition~\ref{prop:cutarc}(c): such a set is $f([s,t])$, $s<t$, for a parametrization $f$.
+(c) The sub-arcs of $pq$ having $x=f(u)$ as an interior point are the sets $f([s,t])$ with $s<u<t$
+(Proposition~\ref{prop:cutarc}(c)), and these form a neighbourhood base of $x$ in $pq$; and $x$ is a
+limit element of $H$ iff it is an accumulation point of $H$ (Proposition~\ref{prop:moore-notions}).
+(d) Proposition~\ref{prop:cutarc}(d), since $K$ is compact. (e) Proposition~\ref{prop:arc-elt-top}(c).
+\end{proof}
+
+\formal{\lean{HPC.Moore.m25_theorem5}, \lean{HPC.Moore.m25_theorem6}, \lean{HPC.Moore.m25_theorem7},
+\lean{HPC.Moore.m25_theorem8}, \lean{HPC.Moore.m25_theorem10}.}
+
+\begin{remark}
+In Theorem~7 Moore prints ``then $p$ is a limit element of the set $H$''; with $p$ an end of the arc
+the statement is false (\lean{HPC.Moore.not_m25_theorem7_printed}), and $x$ is meant. Moore's proof of
+Theorem~8 appeals to Theorem~5 for the claim that a certain set ``would be a simple continuous arc'';
+the formal proof replaces this by the non-cut point theorem of Volume~3.
+\end{remark}
+
+\section{Theorem 9: arcs of elements do not separate}
+
+\begin{theorem}[Moore, Theorem~9]\label{thm:m25-9}
+If $K$ is an arc of elements, then $G\setminus K$ is connected.
+\end{theorem}
+
+\begin{proof}
+$K$ is bounded, so by Corollary~\ref{cor:quot-tools}(c) the complement $G\setminus K$ has exactly one
+unbounded component. It is enough to show that \emph{no component of $G\setminus K$ is bounded}: then
+all components coincide with the unbounded one, and $G\setminus K$ (nonempty, since $\pts K$ is
+bounded) is connected.
+
+Suppose the component $D$ of some $x$ in $G\setminus K$ is bounded. Then $\fr D\subseteq K$ is bounded;
+let $E$ be the unbounded component of $G\setminus\fr D$ and $K'=\fr E$. By Theorem~\ref{thm:m25-2}
+(applied with $M=K$), $K'$ is closed and connected and $K'\setminus\set r$ is connected for every $r\in
+K'$. As in the proof of Theorem~\ref{thm:m25-2}, $D\cap E=\emptyset$.
+
+$K'$ has at least two elements. It is nonempty: otherwise $E$ would be open and closed in the
+connected space $G$, so $E=G\supseteq D$. It is not a single element $p$: otherwise $E$ would be open
+and closed in the connected set $G\setminus\set p$ (Corollary~\ref{cor:quot-tools}(d)), so
+$E=G\setminus\set p\supseteq D$ (note $p\in\fr D$, so $p\notin D$).
+
+Now $K'\subseteq\fr D\subseteq K$ is a closed connected subset of the arc $K$ with two elements, so it is
+an arc by Theorem~\ref{thm:m25-5-10}(b). An arc has an interior point (Lemma~\ref{lem:subarc}(c)), and
+removing it disconnects the arc; but $K'\setminus\set r$ is connected for every $r\in K'$. This
+contradiction proves the theorem.
+\end{proof}
+
+\formal{\lean{HPC.Moore.m25_theorem9}.}
+
+Moore gives no proof of Theorem~9, only the remark that it ``may be established by an argument
+largely similar to that used in the proof of Lemma~8'' of an earlier paper, ``with the help of
+Theorems~2 and~6''. The argument above uses exactly Theorems~2 and~6.
+
+\begin{corollary}\label{cor:pts-nonsep}
+If $H\subseteq G$ and $G\setminus H$ is connected, then $\pts H$ does not separate the plane. In
+particular the point set of an arc of elements does not separate the plane.
+\end{corollary}
+
+\begin{proof}
+$\pts{(G\setminus H)}=\R^2\setminus\pts H$ is connected by Proposition~\ref{prop:pts-conn}(a).
+\end{proof}
+
+\formal{\lean{HPC.Moore.not_separatesPlane_ptsOf}.}
+
+\section{Theorem 12}
+
+\begin{theorem}[Moore, Theorem~12]\label{thm:m25-12}
+Let $D_1,D_2$ be bounded connected open sets of elements such that $\fr D_1$ is connected and $\fr
+D_2\subseteq D_1$. Then $D_2\subseteq D_1$.
+\end{theorem}
+
+\begin{proof}
+$D_2$ is nonempty (it is connected) and not all of $G$ (it is bounded), so $\fr D_2\ne\emptyset$ ($G$ is
+connected). Since $D_1$ is open, $\fr D_1\cap D_1=\emptyset$, hence $\fr D_1\cap\fr D_2=\emptyset$. The
+connected set $\fr D_1$ misses $\fr D_2$, so by Lemma~\ref{lem:conn-frontier} it lies either in $D_2$ or
+in $G\setminus\cl{D_2}$.
+
+If $\fr D_1\subseteq D_2$: then $\cl{D_1\cup D_2}\subseteq D_1\cup\fr D_1\cup D_2\cup\fr D_2\subseteq D_1\cup
+D_2$, so $D_1\cup D_2$ is a nonempty open and closed subset of $G$, hence equal to $G$; but it is
+bounded, and $G$ is not.
+
+So $\fr D_1\cap D_2=\emptyset$. The connected set $D_2$ misses $\fr D_1$ and meets $D_1$ (near a point
+of $\fr D_2\subseteq D_1$, which is a limit of points of $D_2$, and $D_1$ is open). By
+Lemma~\ref{lem:conn-frontier}, $D_2\subseteq D_1$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.m25_theorem12}.}
+
+\section{The decomposition into points}\label{sec:points}
+
+The decomposition of the plane into its single points satisfies the standing hypothesis, and the
+quotient map is a homeomorphism $\R^2\to G$. So every theorem of this and the next chapters, applied to
+this decomposition, is a theorem about the plane; and every counterexample in the plane to a printed
+statement is a counterexample to that statement in Moore's setting. This is how the formal development
+refutes the printed forms of Theorems~2, 7, 10 and~11, and how it obtains the Jordan curve theorem in
+Chapter~\ref{ch:jordan}.
+
+\formal{\lean{HPC.Moore.mooreDecomp_ptSetoid}, \lean{HPC.Moore.ptHomeo}.}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Deduce from Theorem~\ref{thm:m25-9} that no arc in the plane separates the plane. (This is a
+classical theorem; compare the proof with the one by logarithms: an arc is contractible, so every
+nonvanishing function on it has a logarithm, and \vfour{Theorem~2.5} applies.)
+\end{exercise}
+
+\begin{exercise}
+Show that in Theorem~\ref{thm:m25-12} the hypothesis that $\fr D_1$ is connected cannot be omitted:
+in the decomposition into points take $D_1=\set{z:1<\nrm z<3}$ and $D_2=\set{z:\nrm z<2}$.
+\end{exercise}
+
+\begin{exercise}
+Prove Theorem~\ref{thm:m25-5-10}(c) directly from the definitions, without using the identification
+of arcs of elements with topological arcs.
+\end{exercise}

@@ -1,0 +1,184 @@
+census-batch74: the fold at span 12.  L = 0, H = 12.
+seed=74 windows-per-chain=4 mixtures-per-chain=1 kmax=5 cover-cap=250 max-pair-length=14000
+walks of at most 5 legs, based within one of a level: 307265 in all
+   0 legs: 13 walks
+   1 legs: 132 walks
+   2 legs: 880 walks
+   3 legs: 5830 walks
+   4 legs: 39094 walks
+   5 legs: 261316 walks
+the pinned four-leg family (leg4Walk and its reflection): 266 walks
+
+---- the corpus, chain by chain ----
+  bing 0 12: 13861 links
+  least 4 legs [1] bing             n=13861 i= 343 level=5 |G|=13518 |T|= 344  walk 4 -> 2 -> 7 -> 1 -> 11
+  least 4 legs [2] bing             n=13861 i= 347 level=5 |G|=13514 |T|= 348  walk 4 -> 3 -> 7 -> 1 -> 11
+  least 4 legs [3] bing             n=13861 i= 349 level=5 |G|=13512 |T|= 350  walk 5 -> 2 -> 7 -> 1 -> 11
+  least 4 legs [4] bing             n=13861 i= 351 level=5 |G|=13510 |T|= 352  walk 5 -> 2 -> 7 -> 1 -> 11
+  least 4 legs [5] bing             n=13861 i= 465 level=5 |G|=13396 |T|= 466  walk 5 -> 2 -> 7 -> 1 -> 11
+  least 4 legs [6] bing             n=13861 i= 467 level=5 |G|=13394 |T|= 468  walk 5 -> 2 -> 7 -> 1 -> 11
+  least 4 legs [7] bing             n=13861 i= 469 level=5 |G|=13392 |T|= 470  walk 4 -> 3 -> 7 -> 1 -> 11
+  least 4 legs [8] bing             n=13861 i= 473 level=5 |G|=13388 |T|= 474  walk 4 -> 2 -> 7 -> 1 -> 11
+  least 4 legs [9] bing             n=13861 i= 681 level=5 |G|=13180 |T|= 682  walk 4 -> 2 -> 7 -> 1 -> 11
+  least 4 legs [10] bing             n=13861 i= 685 level=5 |G|=13176 |T|= 686  walk 4 -> 3 -> 7 -> 1 -> 11
+  FIVE LEGS OR MORE: least 5 legs [1] bing             n=13861 i=2027 level=5 |G|=11834 |T|=2028  walk 4 -> 7 -> 2 -> 9 -> 1 -> 11
+  FIVE LEGS OR MORE: least 5 legs [2] bing             n=13861 i=2029 level=5 |G|=11832 |T|=2030  walk 4 -> 7 -> 2 -> 9 -> 1 -> 11
+  FIVE LEGS OR MORE: least 5 legs [3] bing             n=13861 i=2031 level=5 |G|=11830 |T|=2032  walk 4 -> 7 -> 2 -> 9 -> 1 -> 11
+  FIVE LEGS OR MORE: least 5 legs [4] bing             n=13861 i=2035 level=5 |G|=11826 |T|=2036  walk 4 -> 7 -> 2 -> 9 -> 1 -> 11
+  FIVE LEGS OR MORE: least 5 legs [5] bing             n=13861 i=11825 level=7 |G|=2036 |T|=11826  walk 6 -> 4 -> 9 -> 2 -> 11 -> 1
+  FIVE LEGS OR MORE: least 5 legs [6] bing             n=13861 i=11829 level=7 |G|=2032 |T|=11830  walk 6 -> 5 -> 9 -> 2 -> 11 -> 1
+  FIVE LEGS OR MORE: least 5 legs [7] bing             n=13861 i=11831 level=7 |G|=2030 |T|=11832  walk 7 -> 4 -> 9 -> 2 -> 11 -> 1
+  FIVE LEGS OR MORE: least 5 legs [8] bing             n=13861 i=11833 level=7 |G|=2028 |T|=11834  walk 7 -> 4 -> 9 -> 2 -> 11 -> 1
+  FIVE LEGS OR MORE: least 5 legs [9] bing             n=13861 i=2027 level=5 |G|=11834 |T|=2028  walk 4 -> 7 -> 2 -> 9 -> 1 -> 11
+  FIVE LEGS OR MORE: least 5 legs [10] bing             n=13861 i=2029 level=5 |G|=11832 |T|=2030  walk 4 -> 7 -> 2 -> 9 -> 1 -> 11
+    [bing             n=13861] pairs so far 27, distinct basepoints 207915, 304s
+  bing 12 0: 13861 links
+    [bing-rev         n=13861] pairs so far 54, distinct basepoints 415830, 610s
+  bing 0 13: 33462 links    [bing013-grid     n=14000] pairs so far 81, distinct basepoints 625787, 899s
+    [bing013-grid     n=13943] pairs so far 108, distinct basepoints 834932, 1195s
+  -> windows of span 12: 2 at grid offsets, 0 at random offsets
+  bing 0 14: 80783 links    [bing014-grid     n=14000] pairs so far 135, distinct basepoints 848931, 1286s
+    [bing014-grid     n=14000] pairs so far 162, distinct basepoints 1058889, 1566s
+    [bing014-grid     n=14000] pairs so far 189, distinct basepoints 1268859, 1857s
+    [bing014-grid     n=14000] pairs so far 216, distinct basepoints 1478816, 2147s
+  -> windows of span 12: 4 at grid offsets, 0 at random offsets
+  bing 0 15: 195026 links    [bing015-grid     n=14000] pairs so far 243, distinct basepoints 1492815, 2227s
+    [bing015-grid     n=14000] pairs so far 270, distinct basepoints 1506814, 2307s
+    [bing015-grid     n=14000] pairs so far 297, distinct basepoints 1520814, 2399s
+    [bing015-grid     n=14000] pairs so far 324, distinct basepoints 1534813, 2487s
+  -> windows of span 12: 4 at grid offsets, 0 at random offsets
+  bing 0 16: 470833 links    [bing016-grid     n=14000] pairs so far 351, distinct basepoints 1548813, 2579s
+    [bing016-grid     n=14000] pairs so far 378, distinct basepoints 1562811, 2666s
+    [bing016-grid     n=14000] pairs so far 405, distinct basepoints 1576809, 2753s
+    [bing016-grid     n=14000] pairs so far 432, distinct basepoints 1590808, 2841s
+  -> windows of span 12: 4 at grid offsets, 0 at random offsets
+  vpath 0 12 (1,2): 1077 links
+  vpath 12 0 (1,2): 1077 links
+  vpath 0 12 (2,1): 1077 links
+  vpath 12 0 (2,1): 1077 links
+  vpath 0 12 (2,2): 373 links
+  vpath 12 0 (2,2): 373 links
+  vpath 0 12 (1,3): 439 links
+  vpath 12 0 (1,3): 439 links
+  random concatenations of Bing blocks: 0 used
+
+================ the corpus at span 12 ================
+  base level sequences of band [0,12] swept: 24
+  pairs tried: 440;  faithful: 432;  scanned: 432 (198 distinct)
+  links: 6038955, of which not thin: 175146
+  basepoints of the band: 6038955 (1590808 distinct by their pair of whole arms,
+  and it is the distinct ones that are scored)
+  arm lengths seen: 1 to 14000  (whole arms; no arm-length bound)
+  keys in the distinctness table: 1591006; keys past its capacity (counted as distinct): 0
+
+======== the least number of legs, over the distinct basepoints ========
+  least 0 legs: 0 basepoints
+  least 1 legs: 30905 basepoints
+  least 2 legs: 472563 basepoints
+  least 3 legs: 960311 basepoints
+  least 4 legs: 126067 basepoints
+  least 5 legs: 962 basepoints
+  no walk of at most 5 legs: 0 basepoints
+  a walk of the four-leg family (at most four legs) serves both arms at
+  1589846 of the 1590808 distinct basepoints; 962 need more
+  the pinned four-leg family leg4Walk of the engine serves both arms at 1587675,
+  and does not at 3133
+
+  by level (rows: level; columns: least 0,1,...,5 legs, then none):
+   level  0:        0      114        0        0        0        0  | none 0
+   level  1:        0     1607        0        0        0        0  | none 0
+   level  2:        0    12932        0        0        0        0  | none 0
+   level  3:        0        0    40558    20332        0        0  | none 0
+   level  4:        0        0    68059   112732        0        0  | none 0
+   level  5:        0        0    83221   227720    31284      450  | none 0
+   level  6:        0        0    90055   263784    64972       49  | none 0
+   level  7:        0        0    85530   216540    29664      460  | none 0
+   level  8:        0        0    69986   100576      147        3  | none 0
+   level  9:        0     2880    35154    18627        0        0  | none 0
+   level 10:        0    11804        0        0        0        0  | none 0
+   level 11:        0     1462        0        0        0        0  | none 0
+   level 12:        0      106        0        0        0        0  | none 0
+
+======== the structure: how many walks, and how many branches ========
+  a greedy cover, level by level: the fewest walks of at most 4 legs that,
+  between them, serve every sampled basepoint of that level (each basepoint
+  served by one walk on both of its arms).  The cover is greedy, so each
+  count is an upper bound for the least number of walks at that level.
+  level  0: 114 sampled basepoints (of 114 seen) -> 1 walk
+        walk 1: 0 -> 11   (1 legs)
+  level  1: 250 sampled basepoints (of 1607 seen) -> 1 walk
+        walk 1: 0 -> 11   (1 legs)
+  level  2: 250 sampled basepoints (of 12932 seen) -> 1 walk
+        walk 1: 1 -> 11   (1 legs)
+  level  3: 250 sampled basepoints (of 60890 seen) -> 5 walks
+        walk 1: 2 -> 9 -> 1 -> 11   (3 legs)
+        walk 2: 2 -> 6 -> 1 -> 11   (3 legs)
+        walk 3: 2 -> 11 -> 1   (2 legs)
+        walk 4: 4 -> 1 -> 11   (2 legs)
+        walk 5: 2 -> 7 -> 1 -> 11   (3 legs)
+  level  4: 250 sampled basepoints (of 180791 seen) -> 7 walks
+        walk 1: 3 -> 8 -> 1 -> 11   (3 legs)
+        walk 2: 3 -> 10 -> 2 -> 11 -> 1   (4 legs)
+        walk 3: 5 -> 2 -> 6 -> 1 -> 11   (4 legs)
+        walk 4: 3 -> 9 -> 1 -> 11   (3 legs)
+        walk 5: 3 -> 6 -> 1 -> 11   (3 legs)
+        walk 6: 3 -> 11 -> 1   (2 legs)
+        walk 7: 3 -> 1 -> 11   (2 legs)
+  level  5: 250 sampled basepoints (of 342675 seen) -> 11 walks
+        walk 1: 4 -> 8 -> 2 -> 11 -> 1   (4 legs)
+        walk 2: 6 -> 3 -> 9 -> 1 -> 11   (4 legs)
+        walk 3: 4 -> 10 -> 2 -> 11 -> 1   (4 legs)
+        walk 4: 6 -> 2 -> 7 -> 1 -> 11   (4 legs)
+        walk 5: 4 -> 9 -> 1 -> 11   (3 legs)
+        walk 6: 4 -> 7 -> 3 -> 11 -> 1   (4 legs)
+        walk 7: 4 -> 7 -> 1 -> 11   (3 legs)
+        walk 8: 4 -> 5 -> 1 -> 11   (3 legs)
+  level  6: 250 sampled basepoints (of 418860 seen) -> 9 walks
+        walk 1: 7 -> 3 -> 9 -> 1 -> 11   (4 legs)
+        walk 2: 5 -> 9 -> 3 -> 11 -> 1   (4 legs)
+        walk 3: 7 -> 2 -> 10 -> 1 -> 11   (4 legs)
+        walk 4: 5 -> 9 -> 1 -> 11   (3 legs)
+        walk 5: 5 -> 11 -> 1   (2 legs)
+        walk 6: 7 -> 3 -> 11 -> 1   (3 legs)
+        walk 7: 7 -> 1 -> 11   (2 legs)
+        walk 8: 5 -> 8 -> 2 -> 11 -> 1   (4 legs)
+  level  7: 250 sampled basepoints (of 332194 seen) -> 10 walks
+        walk 1: 8 -> 4 -> 10 -> 1 -> 11   (4 legs)
+        walk 2: 8 -> 2 -> 10 -> 1 -> 11   (4 legs)
+        walk 3: 6 -> 10 -> 3 -> 11 -> 1   (4 legs)
+        walk 4: 8 -> 4 -> 11 -> 1   (3 legs)
+        walk 5: 6 -> 9 -> 1 -> 11   (3 legs)
+        walk 6: 8 -> 3 -> 11 -> 1   (3 legs)
+        walk 7: 6 -> 9 -> 4 -> 11 -> 1   (4 legs)
+        walk 8: 6 -> 7 -> 1 -> 11   (3 legs)
+  level  8: 250 sampled basepoints (of 170712 seen) -> 8 walks
+        walk 1: 9 -> 3 -> 10 -> 1 -> 11   (4 legs)
+        walk 2: 9 -> 4 -> 11 -> 1   (3 legs)
+        walk 3: 7 -> 10 -> 6 -> 11 -> 1   (4 legs)
+        walk 4: 9 -> 2 -> 11 -> 1   (3 legs)
+        walk 5: 7 -> 11 -> 1   (2 legs)
+        walk 6: 7 -> 8 -> 1 -> 11   (3 legs)
+        walk 7: 7 -> 10 -> 1 -> 11   (3 legs)
+        walk 8: 7 -> 5 -> 11 -> 1   (3 legs)
+  level  9: 250 sampled basepoints (of 56661 seen) -> 5 walks
+        walk 1: 10 -> 2 -> 11 -> 1   (3 legs)
+        walk 2: 10 -> 6 -> 11 -> 1   (3 legs)
+        walk 3: 8 -> 9 -> 4 -> 11 -> 1   (4 legs)
+        walk 4: 8 -> 9 -> 1 -> 11   (3 legs)
+        walk 5: 8 -> 11 -> 1   (2 legs)
+  level 10: 250 sampled basepoints (of 11804 seen) -> 1 walk
+        walk 1: 11 -> 1   (1 legs)
+  level 11: 250 sampled basepoints (of 1462 seen) -> 1 walk
+        walk 1: 10 -> 11 -> 1   (2 legs)
+  level 12: 106 sampled basepoints (of 106 seen) -> 1 walk
+        walk 1: 11 -> 1   (1 legs)
+  levels with a basepoint: 13; levels needing more than one walk (the branches): 7;
+  walks in the cover, summed over levels: 61
+
+---- the audit sample ----
+  the fold decided by the bitmask propagation against the same fold decided
+  by an array propagation: 0 samples, 0 disagreements
+  every predicate of this census is evaluated by its own definition:
+    IsCrookedIvF, armG, armT, FoldsOnto (twice, independently), and the
+    walk leg4Walk of HPC/Fold/Leg4Wide.lean.  No criterion of the four-leg
+    engine and no landmark sentence is used.

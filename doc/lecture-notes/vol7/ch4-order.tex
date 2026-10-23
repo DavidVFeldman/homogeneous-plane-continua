@@ -1,0 +1,175 @@
+%======================================================================
+\chapter{Order and Menger's theorem}\label{ch:order}
+%======================================================================
+
+The second half of the volume proves Jones's theorem of 1949: a nondegenerate homogeneous aposyndetic plane
+continuum is a simple closed curve. Its proof begins: ``If a point of $M$ is of order~2 in $M$, then $M$ is a
+simple closed curve.'' This chapter supplies that sentence. It introduces the Menger--Urysohn order of a point
+and proves the case of Menger's theorem that is needed: a nondegenerate continuum all of whose points have
+order~2 is a simple closed curve.
+
+\section{Order}
+
+\begin{definition}\label{def:order}
+Let $Y$ be a topological space, $p\in Y$ and $n\in\N$. The point $p$ has \emph{order at most $n$} if every
+neighbourhood $U$ of $p$ contains an open set $V\ni p$ whose frontier $\fr V$ is finite with at most $n$ points. It has
+\emph{order $n$} if it has order at most $n$ but not order at most $n-1$.
+\end{definition}
+
+\formal{\lean{HPC.Jones.OrderLE}, \lean{HPC.Jones.HasOrder}.}
+
+For example, every point of a circle has order~2, the end points of an arc have order~1, and the vertex of a
+simple triod has order~3. In a nondegenerate continuum no point has order~$0$: a small open $V\ni p$ with empty
+frontier would be open and closed.
+
+\begin{lemma}\label{lem:order-basic}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item Order is a topological invariant: if $h\colon Y\to Z$ is a homeomorphism, $p$ has order at most $n$ (order $n$)
+in $Y$ if and only if $h(p)$ does in $Z$.
+\item If $p\in W\subseteq Y$ and $p$ has order at most $n$ in $Y$, then it has order at most $n$ in the subspace $W$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $h$ carries open sets, neighbourhoods and frontiers to the same. (b) Given a neighbourhood $U\cap W$ of $p$ in $W$
+with $U$ open in $Y$, take $V\subseteq U$ for $Y$; the frontier of $V\cap W$ in $W$ lies in $\fr V$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.orderLE_homeomorph}, \lean{HPC.Jones.hasOrder_homeomorph}, \lean{HPC.Jones.orderLE_subtype}.}
+
+\begin{lemma}[Triods raise the order]\label{lem:triod}
+Let $Y$ be a $T_1$ space and $T_1,T_2,T_3$ connected sets containing $p$, each containing a point other than $p$,
+with $T_i\cap T_j\subseteq\set p$ for $i\ne j$. Then $p$ does not have order at most~$2$.
+\end{lemma}
+
+\begin{proof}
+Choose $x_i\in T_i\setminus\set p$ and let $V\ni p$ be open, missing the finite closed set $\set{x_1,x_2,x_3}$. Each $T_i$
+is connected and contains $p\in V$ and $x_i\notin V$, so it meets $\fr V$, at a point $f_i\ne p$ (as $p\in V$ and $V\cap\fr
+V=\emptyset$). The $f_i$ are distinct because the $T_i$ meet only at $p$. So $\fr V$ has at least three points.
+\end{proof}
+
+\formal{\lean{HPC.Jones.not_orderLE_two_of_triod}.}
+
+\section{Curves of finite order}
+
+\begin{proposition}\label{prop:finite-order-lc}
+A continuum $Y$ each of whose points has finite order is locally connected.
+\end{proposition}
+
+\begin{proof}
+Let $p\in Y$ and $\varepsilon>0$. Choose $n$ with $p$ of order at most $n$, and an open $V\ni p$ inside $\bar B(p,\varepsilon/2)$
+with finite frontier. Then $F=\cl V\subseteq B(p,\varepsilon)$. If $F=Y$, the connected set $Y$ is a neighbourhood of $p$ inside
+$B(p,\varepsilon)$. Otherwise, by boundary bumping (\vthree{Theorem~1.10}), the component in $F$ of each $z\in F$ meets
+$\cl{Y\setminus F}$ at a point $w$; and $w\notin V$ because $V$ is open and $V\subseteq\interior F$; so $w\in\fr V$. Hence the
+components of $F$ through the finitely many points of $\fr V$ cover $F$. The union $D$ of those not containing $p$ is
+closed, and $V\setminus D$ is an open set containing $p$ and contained in the component $C$ of $p$ in $F$. So the connected set $C$
+is a neighbourhood of $p$ inside $B(p,\varepsilon)$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.locallyConnectedSpace_of_orderLE}.}
+
+\begin{lemma}\label{lem:open-continuum}
+In a compact, locally connected Hausdorff space, any two points of a connected open set $O$ lie in a continuum
+contained in $O$.
+\end{lemma}
+
+\begin{proof}
+Fix $x\in O$ and let $S$ be the set of $z\in O$ such that some continuum $K\subseteq O$ contains $x$ and $z$. Every $z\in O$ has a
+connected open neighbourhood $N$ with $\cl N\subseteq O$; $\cl N$ is a continuum, so either all points of $N$ are in $S$ (use
+$K\cup\cl N$) or none is. Thus $S$ and $O\setminus S$ are open; $x\in S$, and $O$ is connected, so $S=O$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.exists_continuum_of_isOpen}.}
+
+\begin{proposition}[Arcs in curves of finite order]\label{prop:finite-order-arcs}
+Let $Y$ be a compact metric space each of whose points has finite order. Any two distinct points $a,b$ of a
+subcontinuum $K$ of $Y$ are the end points of an arc in $K$.
+\end{proposition}
+
+\begin{proof}
+Let $J\subseteq K$ be a subcontinuum irreducible between $a$ and $b$ (\vthree{Theorem~2.5}). By Lemma~\ref{lem:order-basic}(b) each
+point of $J$ has finite order in $J$, so $J$ is locally connected (Proposition~\ref{prop:finite-order-lc}). Let $c\in
+J\setminus\set{a,b}$. If $J\setminus\set c$ were connected, then by Lemma~\ref{lem:open-continuum} (applied in $J$) a continuum
+inside $J\setminus\set c$ would contain $a$ and $b$, against irreducibility. So every point of $J$ other than $a,b$ cuts $J$: $J$ is a
+cut-point arc from $a$ to $b$, hence an arc (\vfive{Proposition~1.11}).
+\end{proof}
+
+\formal{\lean{HPC.Jones.exists_tarc_of_orderLE}.}
+
+\begin{lemma}[An arc with legs at both ends]\label{lem:legs}
+Let $Y$ be a compact metric space all of whose points have order at most $2$, $K\subseteq Y$ a continuum and $B\subseteq K$ an arc
+from $a$ to $b$. Suppose there are connected sets $T_a\ni a$ and $T_b\ni b$, each with a second point, such that $T_a\cap
+K\subseteq\set a$ and $T_b\cap K\subseteq\set b$. Then $K=B$.
+\end{lemma}
+
+\begin{proof}
+Suppose $P\in K\setminus B$. By Proposition~\ref{prop:finite-order-arcs} there is an arc in $K$ from $P$ to $a$; let $q$ be its first point
+on $B$, and $C$ the sub-arc from $P$ to $q$, so $C\cap B=\set q$ (\vfive{Lemma~1.4}). If $q=a$, the connected sets $C$, $B$, $T_a$ form a
+triod at $a$: they meet pairwise only in $a$ because $C,B\subseteq K$. This contradicts Lemma~\ref{lem:triod}. The case $q=b$ is the same with
+$T_b$. If $q$ is an interior point of $B$, the two sub-arcs of $B$ from $a$ to $q$ and from $q$ to $b$ together with $C$ form a triod at $q$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.arc_eq_of_legs}.}
+
+\section{Menger's theorem}
+
+\begin{theorem}[Menger]\label{thm:menger}
+A nondegenerate continuum $X$ all of whose points have order $2$ is homeomorphic to the circle.
+\end{theorem}
+
+\begin{proof}
+$X$ is locally connected by Proposition~\ref{prop:finite-order-lc}. Let $u$ be a non-cut point of $X$ (\vthree{Theorem~3.6}). As $u$ is
+not of order at most $1$, some neighbourhood $U_0$ of $u$ contains no open $V\ni u$ with at most one frontier point. Let $V_0\ni u$ be
+open, with $\cl{V_0}\subseteq U_0$, inside a ball about $u$ of radius less than half the diameter of $X$, with at most two frontier points, and
+let $V$ be the component of $u$ in $V_0$. In a locally connected space $V$ is open and $\fr V\subseteq\fr V_0$. By the choice of $U_0$,
+$\fr V=\set{a,b}$ with $a\ne b$; and $\cl V\ne X$ by the choice of radius.
+
+\emph{$\cl V$ is an arc.} $\cl V$ is a continuum, so it contains an arc $B$ from $a$ to $b$ (Proposition~\ref{prop:finite-order-arcs}). Take
+connected open neighbourhoods $N_a$ of $a$ and $N_b$ of $b$ missing $b$, respectively $a$. Since $N_a$ meets $\fr V$ only in $a$, the set
+$T_a=N_a\setminus V$ is connected, and it contains points outside $\cl V$ (as $a\in\cl{X\setminus\cl V}$, for otherwise $a$ would be
+interior to $\cl V$, and $V\cup\set a\subseteq U_0$ would be open with frontier $\set b$). Likewise for $T_b$. Lemma~\ref{lem:legs} gives
+$\cl V=B$. As $u\in V$ is not an end point, $B\setminus\set u$ consists of two half-arcs $[a,u)$ and $(u,b]$.
+
+\emph{$X\setminus V$ is connected.} Suppose $X\setminus V=P\cup Q$ with $P,Q$ closed, disjoint and nonempty. If $a,b\in P$, then $Q$ is closed and
+also open in $X\setminus\set u$, because its complement there is $P\cup(V\setminus\set u)$, whose closure lies in $P\cup V$. If $a\in P$ and
+$b\in Q$, then $X\setminus\set u=(P\cup[a,u))\cup(Q\cup(u,b])$ is a separation. Both contradict that $u$ is not a cut point.
+
+\emph{$X\setminus V$ is an arc.} It is a continuum containing $a$ and $b$; let $B'\subseteq X\setminus V$ be an arc from $a$ to $b$. The legs
+$[a,u]$ and $[u,b]$ (the two halves of $\cl V$) meet $X\setminus V$ only in $a$, respectively $b$. By Lemma~\ref{lem:legs}, $X\setminus V=B'$.
+
+So $X=B\cup B'$ is the union of two arcs from $a$ to $b$ with $B\cap B'=\cl V\cap(X\setminus V)=\set{a,b}$: a simple closed curve,
+homeomorphic to the circle (\vfive{Proposition~1.13}).
+\end{proof}
+
+\formal{\lean{HPC.Jones.menger_order_two}, with \lean{HPC.Jones.frontier_connectedComponentIn_subset},
+\lean{HPC.Jones.isPreconnected_diff_of_frontier} and \lean{HPC.Jones.tscc_homeomorph_circle} (two arcs glued along their ends,
+\lean{HPC.Jones.glue_circle}). Menger's own route goes through his $n$-Beinsatz and the classification of curves of order~2; the
+proof above is his second argument (the first point on an arc is a branch point), applied twice.}
+
+\begin{corollary}[Jones 1949, first sentence of the proof]\label{cor:order-two}
+If a homogeneous continuum $X$ has a point of order $2$, it is homeomorphic to the circle.
+\end{corollary}
+
+\begin{proof}
+By homogeneity and Lemma~\ref{lem:order-basic}(a), every point has order $2$. $X$ is nondegenerate, since a point has order $0$ in a
+one-point space. Apply Theorem~\ref{thm:menger}.
+\end{proof}
+
+\formal{\lean{HPC.Jones.jones49_order_two}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that every point of the $\sin(1/x)$-continuum lying on the limit segment has no finite order, while all other points have
+order at most $2$.
+\end{exercise}
+
+\begin{exercise}
+Prove the converse of Theorem~\ref{thm:menger}: every point of a simple closed curve has order $2$.
+\end{exercise}
+
+\begin{exercise}
+Show that a continuum all of whose points have order at most $2$ is an arc or a simple closed curve. (Use
+Lemma~\ref{lem:legs} with an arc between two points of order $1$.)
+\end{exercise}

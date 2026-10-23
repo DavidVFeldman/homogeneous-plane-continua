@@ -1,0 +1,5 @@
+exhaustive, lengths 1..13: 713817 arms; necessity failures 0; sufficiency failures (commissioned form) 0; sufficiency failures (minimal form) 0
+random, lengths 14..40: 200000 arms; necessity failures 0; sufficiency failures (commissioned form) 0; sufficiency failures (minimal form) 0
+arms satisfying the relaxed clause, lengths 1..11: 63646
+walks of at most three turns serving every such arm: []
+such arms folding onto none of the five walks of the development: 0 []

@@ -1,0 +1,6 @@
+'HPC.Plane.exists_irreducibleAbout' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.arcs_theorem5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.arcs_theorem5_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.arcs_corollary2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.condA_of_condB_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.theorem12_1951_general' depends on axioms: [propext, Classical.choice, Quot.sound]

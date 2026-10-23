@@ -1,0 +1,12 @@
+.lake/
+/doc/sources/*
+!/doc/sources/README.md
+/doc/batches/*.tar.gz
+/doc/depcensus/edges-external.tsv
+/doc/depcensus/edges-external.tsv.gz
+/ARISTOTLE_SUMMARY.md
+/axioms-ci.txt
+/build.log
+__pycache__/
+*.pyc
+.DS_Store

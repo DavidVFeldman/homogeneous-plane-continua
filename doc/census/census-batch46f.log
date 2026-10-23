@@ -1,0 +1,22 @@
+
+=== the valley counterexample: peak 128 shaved (6 -> 5), basepoint 138 ===
+  the pair verifies IsCrookedIvF: 1
+    serves: L+3 -> L+6 -> L+0 -> L+8   (18 links)
+    serves: L+3 -> L+6 -> L+0 -> L+9   (19 links)
+    serves: L+3 -> L+6 -> L+1 -> L+8   (16 links)
+    serves: L+3 -> L+6 -> L+1 -> L+9   (17 links)
+  walks of at most three legs serving both arms: 4
+
+=== the ceiling counterexample: peak 309 shaved (7 -> 6), basepoint 336 ===
+  the pair verifies IsCrookedIvF: 1
+    serves: L+3 -> L+2 -> L+8 -> L+0   (16 links)
+    serves: L+3 -> L+2 -> L+8 -> L+1   (15 links)
+    serves: L+3 -> L+7 -> L+0 -> L+8   (20 links)
+    serves: L+3 -> L+7 -> L+0 -> L+9   (21 links)
+    serves: L+3 -> L+7 -> L+1 -> L+8   (18 links)
+    serves: L+3 -> L+7 -> L+1 -> L+9   (19 links)
+    serves: L+4 -> L+2 -> L+8 -> L+0   (17 links)
+    serves: L+4 -> L+2 -> L+8 -> L+1   (16 links)
+    serves: L+5 -> L+2 -> L+8 -> L+0   (18 links)
+    serves: L+5 -> L+2 -> L+8 -> L+1   (17 links)
+  walks of at most three legs serving both arms: 10

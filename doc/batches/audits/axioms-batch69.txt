@@ -1,0 +1,39 @@
+'HPC.Fold.armT_no_nine_or_bothNine' depends on axioms: [propext, Quot.sound]
+'HPC.Fold.ceil72_at_of_nearLow_armG' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.ceil72_at_of_nearLow_armT' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.ceil72_of_nearLowG_armT' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.ceil72_of_nearLowT_armG' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.cex69_band' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.cex69_beforeClause' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.cex69_chain_level_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.cex69_chain_level_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.cex69_chain_level_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.cex69_chain_level_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.cex69_isLip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.cex69_legAtLeast_four' does not depend on any axioms
+'HPC.Fold.cex69_noShortLeg' depends on axioms: [propext, Quot.sound]
+'HPC.Fold.cex69_no_trigger_ge_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.cex69_served_late' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.cex69_trigger_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.cex69_walkLen' does not depend on any axioms
+'HPC.Fold.cex69_walkLevel_one' does not depend on any axioms
+'HPC.Fold.cex69_walkLevel_three' does not depend on any axioms
+'HPC.Fold.cex69_walkLevel_two' does not depend on any axioms
+'HPC.Fold.cex69_walkLevel_zero' does not depend on any axioms
+'HPC.Fold.cex69_walkStop_ge' depends on axioms: [propext]
+'HPC.Fold.cex69_walkStop_of_ge' depends on axioms: [propext, Quot.sound]
+'HPC.Fold.cex69_walkStop_one' does not depend on any axioms
+'HPC.Fold.cex69_walkStop_three' does not depend on any axioms
+'HPC.Fold.cex69_walkStop_two' does not depend on any axioms
+'HPC.Fold.deep72_at_of_nearLow_of_nine_armG' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.deep72_of_nearLowT_armG' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.landWalkPB_cex69' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.landWalkP_of_landWalkPB' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.nearLowG_of_armG_low' depends on axioms: [propext, Quot.sound]
+'HPC.Fold.nearLowT_of_armT_low' depends on axioms: [propext, Quot.sound]
+'HPC.Fold.not_foldsOnto_cex69' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.not_landWalkPB3Suffices' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.not_landWalkPBLegSuffices_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.not_landWalkPBLegSuffices_le_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.s3_span_nine_mid5_of_cross_highRun_nearLow_armG' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.s3_span_nine_mid5_of_cross_highRun_nearLow_armT' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,77 @@
+=== K=4 n=6
+enum n=6 K=4 shard 0/1 limit=20000000 sequences=32
+  T3END instances=192 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=192 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=192 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=192 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=192 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=192 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=192 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=192 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=192 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=4 n=7
+enum n=7 K=4 shard 0/1 limit=20000000 sequences=352
+  T3END instances=2464 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=2464 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=2464 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=2464 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=2464 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=2464 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=2464 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=2464 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=2464 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=4 n=8
+enum n=8 K=4 shard 0/1 limit=20000000 sequences=2528
+  T3END instances=20224 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=20224 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=20224 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=20224 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=20224 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=20224 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=20224 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=20736 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=20736 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=4 n=9
+enum n=9 K=4 shard 0/1 limit=20000000 sequences=14880
+  T3END instances=133920 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=133920 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=133920 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=133920 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=133920 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=133920 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=133920 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=141408 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=141408 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=4 n=10
+enum n=10 K=4 shard 0/1 limit=20000000 sequences=78016
+  T3END instances=780160 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=780160 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=780160 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=780160 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=780160 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=780160 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=780160 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=850240 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=850240 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=4 n=11
+enum n=11 K=4 shard 0/1 limit=20000000 sequences=379584
+  T3END instances=4175424 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=4175424 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=4175424 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=4175424 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=4175424 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=4175424 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=4175424 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=4698144 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=4698144 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== K=4 n=12
+enum n=12 K=4 shard 0/1 limit=20000000 sequences=1754176
+  T3END instances=21050112 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=21050112 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=21050112 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=21050112 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=21050112 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=21050112 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=21050112 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=24425856 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=24425856 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0

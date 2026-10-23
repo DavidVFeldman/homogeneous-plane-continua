@@ -1,0 +1,42 @@
+'HPC.Fold.B78.fold_low_end' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B78.splice_schedule' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B78.minIdx_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B78.meet_low_before' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B78.reindex_eq' depends on axioms: [propext, Quot.sound]
+'HPC.Fold.B78.prefix_fold' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B78.suffix_fold' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B78.assemble' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B78.link_sub_of_level' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B78.unionRange_reverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B78.theorem4_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.B78.two_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.theorem4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.theorem3_end' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'HPC.Fold.theorem3' depends on axioms: [propext, Classical.choice, Quot.sound]
+@theorem4 : ∀ {X : Type u_1} [inst : MetricSpace X] {n k : ℕ},
+  0 < n →
+    ∀ (hk : 3 ≤ k) {E : HPC.Chain X n} {D : HPC.Chain X k},
+      E.IsCrookedIn' D →
+        ∀ (r s : Fin n),
+          r ≤ s →
+            ∀ (hlow : ∃ h, r ≤ h ∧ h ≤ s ∧ (E.link h ∩ D.link ⟨0, ⋯⟩).Nonempty),
+              (∃ h, r ≤ h ∧ h ≤ s ∧ (E.link h ∩ D.link ⟨k - 1, ⋯⟩).Nonempty) →
+                ∃ q β',
+                  ∃ (hβ' : HPC.Chain.IsBlockMap β'),
+                    ↑(β' r) = 0 ∧ ↑(β' s) = q - 1 ∧ ∀ (u : Fin q), ∃ j, (E.ofBlocks β' hβ').link u ⊆ D.unionRange j 3
+@theorem3_end : ∀ {X : Type u_1} [inst : MetricSpace X] {n k : ℕ},
+  0 < n →
+    ∀ (hk : 3 ≤ k) {E : HPC.Chain X n} {D : HPC.Chain X k},
+      E.IsCrookedIn' D →
+        ∀ (i : Fin n),
+          ∃ q β',
+            ∃ (hβ' : HPC.Chain.IsBlockMap β'),
+              ↑(β' i) = 0 ∧
+                (∀ (u : Fin q), ∃ j, (E.ofBlocks β' hβ').link u ⊆ D.unionRange j 3) ∧
+                  ∀ (t : Fin n),
+                    ↑t = 0 ∨ ↑t = n - 1 →
+                      ((E.link t ∩ D.link ⟨0, ⋯⟩).Nonempty → (E.ofBlocks β' hβ').link (β' t) ⊆ D.unionRange 0 3) ∧
+                        ((E.link t ∩ D.link ⟨k - 1, ⋯⟩).Nonempty →
+                          (E.ofBlocks β' hβ').link (β' t) ⊆ D.unionRange (k - 3) 3)
+'HPC.Fold.Q78.isFrom_ofBlocks_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Q78.isFrom_ofBlocks_of_theorem4' depends on axioms: [propext, Classical.choice, Quot.sound]

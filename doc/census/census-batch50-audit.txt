@@ -1,0 +1,60 @@
+arm thin gen=0 basepoint=12 forward len=64 (of 974)
+  levels: 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3
+  nat16: 0x3454565454345434323434543432343232123234323434543432343232123234
+  highAt=1 leg3Valley=0 leg3Ceil=1 valley4=0 valley5=0 ceilW4=1 bottomW4=1 topW5=1
+  foldsLam=0 foldsVee=1 foldsW3=0 foldsW4=1 foldsW5=0
+arm thin gen=0 basepoint=12 backward len=13 (of 13)
+  levels: 4 3 2 3 2 1 2 3 2 1 2 1 0
+  nat16: 0x0121232123234
+  highAt=1 leg3Valley=0 leg3Ceil=1 valley4=0 valley5=0 ceilW4=1 bottomW4=0 topW5=1
+  foldsLam=0 foldsVee=1 foldsW3=0 foldsW4=0 foldsW5=0
+arm thin gen=0 basepoint=22 forward len=64 (of 964)
+  levels: 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3
+  nat16: 0x3432343454345456545434543432343454343234323212323432343454343234
+  highAt=1 leg3Valley=1 leg3Ceil=1 valley4=1 valley5=0 ceilW4=1 bottomW4=1 topW5=1
+  foldsLam=0 foldsVee=1 foldsW3=1 foldsW4=1 foldsW5=0
+arm shave gen=2 basepoint=28 forward len=64 (of 958)
+  levels: 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3
+  nat16: 0x3434543432343454345456545434543432343454343234323212323432343454
+  highAt=1 leg3Valley=0 leg3Ceil=1 valley4=0 valley5=0 ceilW4=1 bottomW4=1 topW5=1
+  foldsLam=0 foldsVee=1 foldsW3=0 foldsW4=0 foldsW5=0
+arm shave gen=2 basepoint=32 backward len=33 (of 33)
+  levels: 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 1 1 1 0
+  nat16: 0x011123212323432321232343234345434
+  highAt=1 leg3Valley=1 leg3Ceil=1 valley4=1 valley5=0 ceilW4=1 bottomW4=0 topW5=1
+  foldsLam=0 foldsVee=1 foldsW3=1 foldsW4=0 foldsW5=0
+arm shave gen=2 basepoint=46 forward len=64 (of 940)
+  levels: 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3
+  nat16: 0x3432343232123234323434543432343454345456545434543432343454343234
+  highAt=1 leg3Valley=1 leg3Ceil=1 valley4=1 valley5=1 ceilW4=1 bottomW4=1 topW5=1
+  foldsLam=0 foldsVee=1 foldsW3=1 foldsW4=1 foldsW5=1
+arm fill gen=3 basepoint=52 forward len=64 (of 934)
+  levels: 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3
+  nat16: 0x3434543432343232123234323434543432343454345456545434543432343454
+  highAt=1 leg3Valley=1 leg3Ceil=1 valley4=1 valley5=1 ceilW4=1 bottomW4=1 topW5=1
+  foldsLam=0 foldsVee=1 foldsW3=1 foldsW4=0 foldsW5=1
+arm fill gen=3 basepoint=64 backward len=64 (of 65)
+  levels: 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 2 1 2 3 2 1 2 1
+  nat16: 0x1212321232343232123234323434543432343232123234323434543432343454
+  highAt=1 leg3Valley=1 leg3Ceil=1 valley4=1 valley5=0 ceilW4=1 bottomW4=1 topW5=1
+  foldsLam=0 foldsVee=1 foldsW3=1 foldsW4=0 foldsW5=0
+arm fill gen=3 basepoint=104 forward len=64 (of 882)
+  levels: 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5
+  nat16: 0x5654565454345456545434543432343454345456545434543432343454343234
+  highAt=1 leg3Valley=1 leg3Ceil=1 valley4=1 valley5=1 ceilW4=1 bottomW4=1 topW5=1
+  foldsLam=1 foldsVee=1 foldsW3=1 foldsW4=1 foldsW5=1
+arm mix gen=0 basepoint=110 forward len=64 (of 876)
+  levels: 4 5 4 3 4 3 2 3 3 3 4 5 4 3 4 4 4 5 5 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 4 4 5 6 5 4 5 6 5 6 7 6 5 6 5
+  nat16: 0x5656765654565444344456545434543432343454345455544434543332343454
+  highAt=1 leg3Valley=1 leg3Ceil=1 valley4=1 valley5=1 ceilW4=1 bottomW4=1 topW5=1
+  foldsLam=1 foldsVee=1 foldsW3=1 foldsW4=0 foldsW5=1
+arm mix gen=0 basepoint=138 forward len=64 (of 848)
+  levels: 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 4 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 4 4 3 4 5 4 5 6 5 4 4 4 3 4 4 4 3 4 3 2 3 4 3
+  nat16: 0x3432343444344456545434445654565676565456544434445654543454343234
+  highAt=1 leg3Valley=1 leg3Ceil=1 valley4=1 valley5=1 ceilW4=1 bottomW4=1 topW5=1
+  foldsLam=1 foldsVee=0 foldsW3=1 foldsW4=1 foldsW5=1
+arm mix gen=0 basepoint=144 forward len=64 (of 842)
+  levels: 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 4 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 4 4 3 4 5 4 5 6 5 4 4 4 3 4 4 4 3 4 3 2 3 4 3 4 4 4 3 4 5
+  nat16: 0x5434443432343444344456545434445654565676565456544434445654543454
+  highAt=1 leg3Valley=1 leg3Ceil=1 valley4=1 valley5=1 ceilW4=1 bottomW4=1 topW5=1
+  foldsLam=1 foldsVee=0 foldsW3=1 foldsW4=0 foldsW5=1

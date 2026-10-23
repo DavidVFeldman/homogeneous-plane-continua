@@ -1,0 +1,327 @@
+census-batch71: the distance -- the anatomy of the nearest low time.
+seed=70 windows-per-chain=40 mixtures-per-chain=6
+the four-leg family: 64 walks (32 parameter sets and their reflections)
+
+---- the corpus, chain by chain ----
+  bing 0 9: 986 links
+  bing 9 0: 986 links
+  [  1] bing 9 0       n= 986 i= 104 side=T |X|= 105 |Y|= 882 ascent=104  witness k= 34 lev=3 (d-k= 70) peak j= 29 lev=6  near(2,1,0)=(65,304,881) partnerFloor=1 deep72Y=1 bothNine=0
+  [  2] bing 9 0       n= 986 i= 108 side=T |X|= 109 |Y|= 878 ascent=108  witness k= 38 lev=3 (d-k= 70) peak j= 33 lev=6  near(2,1,0)=(61,300,877) partnerFloor=1 deep72Y=1 bothNine=0
+  [  3] bing 9 0       n= 986 i= 110 side=T |X|= 111 |Y|= 876 ascent=110  witness k= 40 lev=3 (d-k= 70) peak j= 35 lev=6  near(2,1,0)=(59,298,875) partnerFloor=1 deep72Y=1 bothNine=0
+  [  4] bing 9 0       n= 986 i= 112 side=T |X|= 113 |Y|= 874 ascent=112  witness k= 42 lev=3 (d-k= 70) peak j= 37 lev=6  near(2,1,0)=(57,296,873) partnerFloor=1 deep72Y=1 bothNine=0
+  bing 0 10: 2379 links  BOTH ARMS REACH 9 [1] bing010-grid   n=2378 i=2026 running side=G |X|=352 |Y|=2027
+    first ascent of the running arm at arm index 113; of the partner at 225
+    served by the four-leg walk direct P=5 K=7 M=2 : 4 -> 7 -> 2 -> 8 -> 1
+    the running arm: 5 5 4 5 5 5 6 7 6 5 6 6 6 7 8 7 6 6 6 5 6 7 6 5 5 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 6 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 6 6 7 7 7 6 6 6 5 6 6 6 7 8 7 6 7 8 7 8 9 8 7 8 7 6 7 8 7 6 7 6 5 6 7 6 7
+    the partner   : 5 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 4 4 5 5 5 4 5 6 5 6 6 6 5 5 5 4 5 6 5 4 5 4 3 4 5 4 5 5 5 4 5 4 3 4 5 4 3 3 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 4 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7
+  [  5] bing010-grid   n=2378 i=2026 side=G |X|= 352 |Y|=2027 ascent=113  witness k= 43 lev=3 (d-k= 70) peak j= 38 lev=6  near(2,1,0)=(56,633,2026) partnerFloor=1 deep72Y=1 bothNine=1
+  BOTH ARMS REACH 9 [2] bing010-grid   n=2378 i=1089 running side=T |X|=1090 |Y|=1289
+    first ascent of the running arm at arm index 104; of the partner at 712
+    served by the four-leg walk direct P=5 K=7 M=2 : 4 -> 7 -> 2 -> 8 -> 1
+    the running arm: 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 4 4 5 5 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 6 6 5 6 7 6 5 5 5 4 5 5 5 6 7 6 5 6 6 6 7 7 7 6 6 6 5 6 6 6 7 8 7 6 7 8 7 8 9 8 7 7 7 6 7 8 7 6 6 6 5 6 7 6 7 8 7 6 6 6 5 6 7 6
+    the partner   : 5 6 7 6 5 5 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 3 3 3 2 3 3 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 5 5 5 4 5 6 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 5 4 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 6 7 6
+  [  6] bing010-grid   n=2378 i=1089 side=T |X|=1090 |Y|=1289 ascent=104  witness k= 34 lev=3 (d-k= 70) peak j= 25 lev=6  near(2,1,0)=(65,304,-1) partnerFloor=0 deep72Y=1 bothNine=1
+  BOTH ARMS REACH 9 [3] bing010-grid   n=2378 i=1093 running side=T |X|=1094 |Y|=1285
+    first ascent of the running arm at arm index 108; of the partner at 708
+    served by the four-leg walk direct P=5 K=7 M=2 : 4 -> 7 -> 2 -> 8 -> 1
+    the running arm: 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 4 4 5 5 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 6 6 5 6 7 6 5 5 5 4 5 5 5 6 7 6 5 6 6 6 7 7 7 6 6 6 5 6 6 6 7 8 7 6 7 8 7 8 9 8 7 7 7 6 7 8 7 6 6 6 5 6 7 6 7 8 7 6 6 6
+    the partner   : 5 5 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 3 3 3 2 3 3 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 5 5 5 4 5 6 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 5 4 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6
+  [  7] bing010-grid   n=2378 i=1093 side=T |X|=1094 |Y|=1285 ascent=108  witness k= 38 lev=3 (d-k= 70) peak j= 29 lev=6  near(2,1,0)=(61,300,-1) partnerFloor=0 deep72Y=1 bothNine=1
+  BOTH ARMS REACH 9 [4] bing010-grid   n=2378 i=1094 running side=T |X|=1095 |Y|=1284
+    first ascent of the running arm at arm index 109; of the partner at 707
+    served by the four-leg walk direct P=5 K=7 M=2 : 4 -> 7 -> 2 -> 8 -> 1
+    the running arm: 5 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 4 4 5 5 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 6 6 5 6 7 6 5 5 5 4 5 5 5 6 7 6 5 6 6 6 7 7 7 6 6 6 5 6 6 6 7 8 7 6 7 8 7 8 9 8 7 7 7 6 7 8 7 6 6 6 5 6 7 6 7 8 7 6 6
+    the partner   : 5 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 3 3 3 2 3 3 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 5 5 5 4 5 6 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 5 4 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7
+  [  8] bing010-grid   n=2378 i=1094 side=T |X|=1095 |Y|=1284 ascent=109  witness k= 39 lev=3 (d-k= 70) peak j= 30 lev=6  near(2,1,0)=(60,299,-1) partnerFloor=0 deep72Y=1 bothNine=1
+  BOTH ARMS REACH 9 [5] bing010-grid   n=2378 i=1095 running side=T |X|=1096 |Y|=1283
+    first ascent of the running arm at arm index 110; of the partner at 706
+    served by the four-leg walk direct P=5 K=7 M=2 : 4 -> 7 -> 2 -> 8 -> 1
+    the running arm: 5 5 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 4 4 5 5 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 6 6 5 6 7 6 5 5 5 4 5 5 5 6 7 6 5 6 6 6 7 7 7 6 6 6 5 6 6 6 7 8 7 6 7 8 7 8 9 8 7 7 7 6 7 8 7 6 6 6 5 6 7 6 7 8 7 6
+    the partner   : 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 3 3 3 2 3 3 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 5 5 5 4 5 6 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 5 4 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 7
+  [  9] bing010-grid   n=2378 i=1095 side=T |X|=1096 |Y|=1283 ascent=110  witness k= 40 lev=3 (d-k= 70) peak j= 31 lev=6  near(2,1,0)=(59,298,-1) partnerFloor=0 deep72Y=1 bothNine=1
+  BOTH ARMS REACH 9 [6] bing010-grid   n=2378 i=1097 running side=T |X|=1098 |Y|=1281
+    first ascent of the running arm at arm index 112; of the partner at 704
+    served by the four-leg walk direct P=5 K=7 M=2 : 4 -> 7 -> 2 -> 8 -> 1
+    the running arm: 5 4 5 5 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 4 4 5 5 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 6 6 5 6 7 6 5 5 5 4 5 5 5 6 7 6 5 6 6 6 7 7 7 6 6 6 5 6 6 6 7 8 7 6 7 8 7 8 9 8 7 7 7 6 7 8 7 6 6 6 5 6 7 6 7 8
+    the partner   : 5 5 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 3 3 3 2 3 3 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 5 5 5 4 5 6 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 5 4 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 7 7 6
+  [ 10] bing010-grid   n=2378 i=1097 side=T |X|=1098 |Y|=1281 ascent=112  witness k= 42 lev=3 (d-k= 70) peak j= 33 lev=6  near(2,1,0)=(57,296,-1) partnerFloor=0 deep72Y=1 bothNine=1
+  BOTH ARMS REACH 9 [7] bing010-grid   n=2378 i=1098 running side=T |X|=1099 |Y|=1280
+    first ascent of the running arm at arm index 113; of the partner at 703
+    served by the four-leg walk reflected P=5 K=6 M=1 : 5 -> 3 -> 8 -> 1 -> 8
+    the running arm: 5 5 4 5 5 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 4 4 5 5 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 6 6 5 6 7 6 5 5 5 4 5 5 5 6 7 6 5 6 6 6 7 7 7 6 6 6 5 6 6 6 7 8 7 6 7 8 7 8 9 8 7 7 7 6 7 8 7 6 6 6 5 6 7 6 7
+    the partner   : 5 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 3 3 3 2 3 3 3 4 5 4 3 4 5 4 5 6 5 4 4 4 3 4 5 4 5 5 5 4 5 6 5 6 7 6 5 6 5 4 5 5 5 4 4 4 3 4 5 4 5 6 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 7 7 6 6
+  [ 11] bing010-grid   n=2378 i=1098 side=T |X|=1099 |Y|=1280 ascent=113  witness k= 43 lev=3 (d-k= 70) peak j= 34 lev=6  near(2,1,0)=(56,295,-1) partnerFloor=0 deep72Y=1 bothNine=1
+  BOTH ARMS REACH 9 [8] bing010-grid   n=2378 i=1089 running side=T |X|=1090 |Y|=1289
+    first ascent of the running arm at arm index 104; of the partner at 1050
+    served by the four-leg walk direct P=5 K=7 M=2 : 4 -> 7 -> 2 -> 8 -> 1
+    the running arm: 5 6 7 6 7 8 7 6 6 6 5 6 7 6 5 6 5 4 5 5 5 6 6 6 5 5 5 4 5 5 5 4 5 4 3 4 5 4 5 5 5 4 5 5 5 6 7 6 5 6 5 4 5 6 5 6 6 6 5 6 6 6 7 7 7 6 7 6 5 6 6 6 5 5 5 4 5 5 5 6 7 6 5 6 6 6 7 8 7 6 6 6 5 6 6 6 7 8 7 6 7 7 7 8 9 8 7 8 7 6 7 8 7 6 6 6 5 6 6 6 7 7 7 6 6 6 5 6 7 6
+    the partner   : 5 6 6 6 5 5 5 4 5 5 5 6 6 6 5 6 5 4 5 5 5 4 5 4 3 4 4 4 5 5 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 4 4 3 4 5 4 3 4 3 2 3 3 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 5 5 4 5 5 5 6 6 6 5 5 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 6 6 5 5 5 4 5 5 5 6 6 6
+  [ 12] bing010-grid   n=2378 i=1089 side=T |X|=1090 |Y|=1289 ascent=104  witness k= 34 lev=3 (d-k= 70) peak j= 23 lev=6  near(2,1,0)=(65,304,-1) partnerFloor=0 deep72Y=1 bothNine=1
+  [ 13] bing010-grid   n=2378 i=1093 side=T |X|=1094 |Y|=1285 ascent=108  witness k= 38 lev=3 (d-k= 70) peak j= 27 lev=6  near(2,1,0)=(61,300,-1) partnerFloor=0 deep72Y=1 bothNine=1
+  [ 14] bing010-grid   n=2378 i=1094 side=T |X|=1095 |Y|=1284 ascent=109  witness k= 39 lev=3 (d-k= 70) peak j= 28 lev=6  near(2,1,0)=(60,299,-1) partnerFloor=0 deep72Y=1 bothNine=1
+  [ 15] bing010-grid   n=2378 i=1095 side=T |X|=1096 |Y|=1283 ascent=110  witness k= 40 lev=3 (d-k= 70) peak j= 29 lev=6  near(2,1,0)=(59,298,-1) partnerFloor=0 deep72Y=1 bothNine=1
+  [ 16] bing010-grid   n=2378 i=1097 side=T |X|=1098 |Y|=1281 ascent=112  witness k= 42 lev=3 (d-k= 70) peak j= 31 lev=6  near(2,1,0)=(57,296,-1) partnerFloor=0 deep72Y=1 bothNine=1
+  [ 17] bing010-grid   n=2378 i=1098 side=T |X|=1099 |Y|=1280 ascent=113  witness k= 43 lev=3 (d-k= 70) peak j= 32 lev=6  near(2,1,0)=(56,295,-1) partnerFloor=0 deep72Y=1 bothNine=1
+  [ 18] bing010-grid   n=2230 i=2117 side=G |X|= 113 |Y|=2118 ascent=112  witness k= 42 lev=3 (d-k= 70) peak j= 37 lev=6  near(2,1,0)=(57,296,873) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 19] bing010-grid   n=2230 i=2119 side=G |X|= 111 |Y|=2120 ascent=110  witness k= 40 lev=3 (d-k= 70) peak j= 35 lev=6  near(2,1,0)=(59,298,875) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 20] bing010-grid   n=2230 i=2121 side=G |X|= 109 |Y|=2122 ascent=108  witness k= 38 lev=3 (d-k= 70) peak j= 33 lev=6  near(2,1,0)=(61,300,877) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 21] bing010-grid   n=2230 i=2125 side=G |X|= 105 |Y|=2126 ascent=104  witness k= 34 lev=3 (d-k= 70) peak j= 29 lev=6  near(2,1,0)=(65,304,881) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 22] bing010-grid   n=2230 i=2117 side=G |X|= 113 |Y|=2118 ascent=112  witness k= 42 lev=3 (d-k= 70) peak j= 33 lev=6  near(2,1,0)=(57,296,873) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 23] bing010-grid   n=2230 i=2119 side=G |X|= 111 |Y|=2120 ascent=110  witness k= 40 lev=3 (d-k= 70) peak j= 31 lev=6  near(2,1,0)=(59,298,875) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 24] bing010-grid   n=2230 i=2120 side=G |X|= 110 |Y|=2121 ascent=109  witness k= 39 lev=3 (d-k= 70) peak j= 30 lev=6  near(2,1,0)=(60,299,876) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 25] bing010-grid   n=2230 i=2121 side=G |X|= 109 |Y|=2122 ascent=108  witness k= 38 lev=3 (d-k= 70) peak j= 29 lev=6  near(2,1,0)=(61,300,877) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 26] bing010-grid   n=2230 i=2125 side=G |X|= 105 |Y|=2126 ascent=104  witness k= 34 lev=3 (d-k= 70) peak j= 25 lev=6  near(2,1,0)=(65,304,881) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 27] bing010-grid   n=1932 i=1818 side=G |X|= 114 |Y|=1819 ascent=113  witness k= 43 lev=3 (d-k= 70) peak j= 38 lev=6  near(2,1,0)=(56,295,872) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 28] bing010-grid   n=1783 i=1670 side=G |X|= 113 |Y|=1671 ascent=112  witness k= 42 lev=3 (d-k= 70) peak j= 37 lev=6  near(2,1,0)=(57,296,873) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 29] bing010-grid   n=1783 i=1672 side=G |X|= 111 |Y|=1673 ascent=110  witness k= 40 lev=3 (d-k= 70) peak j= 35 lev=6  near(2,1,0)=(59,298,875) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 30] bing010-grid   n=1783 i=1674 side=G |X|= 109 |Y|=1675 ascent=108  witness k= 38 lev=3 (d-k= 70) peak j= 33 lev=6  near(2,1,0)=(61,300,877) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 31] bing010-grid   n=1783 i=1678 side=G |X|= 105 |Y|=1679 ascent=104  witness k= 34 lev=3 (d-k= 70) peak j= 29 lev=6  near(2,1,0)=(65,304,881) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 32] bing010-grid   n=1634 i=1521 side=G |X|= 113 |Y|=1522 ascent=112  witness k= 42 lev=3 (d-k= 70) peak j= 37 lev=6  near(2,1,0)=(57,296,873) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 33] bing010-grid   n=1634 i=1523 side=G |X|= 111 |Y|=1524 ascent=110  witness k= 40 lev=3 (d-k= 70) peak j= 35 lev=6  near(2,1,0)=(59,298,875) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 34] bing010-grid   n=1634 i=1525 side=G |X|= 109 |Y|=1526 ascent=108  witness k= 38 lev=3 (d-k= 70) peak j= 33 lev=6  near(2,1,0)=(61,300,877) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 35] bing010-grid   n=1634 i=1529 side=G |X|= 105 |Y|=1530 ascent=104  witness k= 34 lev=3 (d-k= 70) peak j= 29 lev=6  near(2,1,0)=(65,304,881) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 36] bing010-grid   n=1485 i=1372 side=G |X|= 113 |Y|=1373 ascent=112  witness k= 42 lev=3 (d-k= 70) peak j= 31 lev=6  near(2,1,0)=(57,296,873) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 37] bing010-grid   n=1485 i=1374 side=G |X|= 111 |Y|=1375 ascent=110  witness k= 40 lev=3 (d-k= 70) peak j= 29 lev=6  near(2,1,0)=(59,298,875) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 38] bing010-grid   n=1485 i=1375 side=G |X|= 110 |Y|=1376 ascent=109  witness k= 39 lev=3 (d-k= 70) peak j= 28 lev=6  near(2,1,0)=(60,299,876) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 39] bing010-grid   n=1485 i=1376 side=G |X|= 109 |Y|=1377 ascent=108  witness k= 38 lev=3 (d-k= 70) peak j= 27 lev=6  near(2,1,0)=(61,300,877) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 40] bing010-grid   n=1485 i=1380 side=G |X|= 105 |Y|=1381 ascent=104  witness k= 34 lev=3 (d-k= 70) peak j= 23 lev=6  near(2,1,0)=(65,304,881) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 41] bing010-grid   n=1187 i=1073 side=G |X|= 114 |Y|=1074 ascent=113  witness k= 43 lev=3 (d-k= 70) peak j= 38 lev=6  near(2,1,0)=(56,295,872) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 42] bing010-grid   n=1187 i=1073 side=G |X|= 114 |Y|=1074 ascent=113  witness k= 43 lev=3 (d-k= 70) peak j= 32 lev=6  near(2,1,0)=(56,295,872) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 43] bing010-grid   n=1187 i=1073 side=G |X|= 114 |Y|=1074 ascent=113  witness k= 43 lev=3 (d-k= 70) peak j= 38 lev=6  near(2,1,0)=(56,295,872) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 44] bing010-grid   n=1187 i=1074 side=G |X|= 113 |Y|=1075 ascent=112  witness k= 42 lev=3 (d-k= 70) peak j= 37 lev=6  near(2,1,0)=(57,296,873) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 45] bing010-grid   n=1187 i=1076 side=G |X|= 111 |Y|=1077 ascent=110  witness k= 40 lev=3 (d-k= 70) peak j= 35 lev=6  near(2,1,0)=(59,298,875) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 46] bing010-grid   n=1187 i=1078 side=G |X|= 109 |Y|=1079 ascent=108  witness k= 38 lev=3 (d-k= 70) peak j= 33 lev=6  near(2,1,0)=(61,300,877) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 47] bing010-grid   n=1187 i=1082 side=G |X|= 105 |Y|=1083 ascent=104  witness k= 34 lev=3 (d-k= 70) peak j= 29 lev=6  near(2,1,0)=(65,304,881) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 48] bing010-rand   n=1796 i=1683 side=G |X|= 113 |Y|=1684 ascent=112  witness k= 42 lev=3 (d-k= 70) peak j= 37 lev=6  near(2,1,0)=(57,296,873) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 49] bing010-rand   n=1796 i=1685 side=G |X|= 111 |Y|=1686 ascent=110  witness k= 40 lev=3 (d-k= 70) peak j= 35 lev=6  near(2,1,0)=(59,298,875) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 50] bing010-rand   n=1796 i=1686 side=G |X|= 110 |Y|=1687 ascent=109  witness k= 39 lev=3 (d-k= 70) peak j= 34 lev=6  near(2,1,0)=(60,299,876) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 51] bing010-rand   n=1796 i=1687 side=G |X|= 109 |Y|=1688 ascent=108  witness k= 38 lev=3 (d-k= 70) peak j= 33 lev=6  near(2,1,0)=(61,300,877) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 52] bing010-rand   n=1796 i=1691 side=G |X|= 105 |Y|=1692 ascent=104  witness k= 34 lev=3 (d-k= 70) peak j= 29 lev=6  near(2,1,0)=(65,304,881) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 53] bing010-rand   n=1796 i=1682 side=G |X|= 114 |Y|=1683 ascent=113  witness k= 43 lev=3 (d-k= 70) peak j= 38 lev=6  near(2,1,0)=(56,295,872) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 54] bing010-rand   n=1009 i= 896 side=G |X|= 113 |Y|= 897 ascent=112  witness k= 42 lev=3 (d-k= 70) peak j= 33 lev=6  near(2,1,0)=(57,296,873) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 55] bing010-rand   n=1009 i= 898 side=G |X|= 111 |Y|= 899 ascent=110  witness k= 40 lev=3 (d-k= 70) peak j= 31 lev=6  near(2,1,0)=(59,298,875) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 56] bing010-rand   n=1009 i= 900 side=G |X|= 109 |Y|= 901 ascent=108  witness k= 38 lev=3 (d-k= 70) peak j= 29 lev=6  near(2,1,0)=(61,300,877) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 57] bing010-rand   n=1009 i= 904 side=G |X|= 105 |Y|= 905 ascent=104  witness k= 34 lev=3 (d-k= 70) peak j= 25 lev=6  near(2,1,0)=(65,304,881) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 58] bing010-rand   n=2055 i=1942 side=G |X|= 113 |Y|=1943 ascent=112  witness k= 42 lev=3 (d-k= 70) peak j= 37 lev=6  near(2,1,0)=(57,296,873) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 59] bing010-rand   n=2055 i=1944 side=G |X|= 111 |Y|=1945 ascent=110  witness k= 40 lev=3 (d-k= 70) peak j= 35 lev=6  near(2,1,0)=(59,298,875) partnerFloor=1 deep72Y=1 bothNine=0
+  [ 60] bing010-rand   n=2055 i=1946 side=G |X|= 109 |Y|=1947 ascent=108  witness k= 38 lev=3 (d-k= 70) peak j= 33 lev=6  near(2,1,0)=(61,300,877) partnerFloor=1 deep72Y=1 bothNine=0
+  -> windows of span nine: 10 at grid offsets, 20 at random offsets
+  bing 0 11: 5742 links  -> windows of span nine: 10 at grid offsets, 12 at random offsets
+  bing 0 12: 13861 links  -> windows of span nine: 0 at grid offsets, 0 at random offsets
+  bing 0 13: 33462 links  -> windows of span nine: 0 at grid offsets, 0 at random offsets
+  vpath 0 9 (1,2): 174 links
+  vpath 9 0 (1,2): 174 links
+  vpath 0 9 (2,1): 174 links
+  vpath 9 0 (2,1): 174 links
+  vpath 0 9 (2,2): 66 links
+  vpath 9 0 (2,2): 66 links
+  vpath 0 9 (1,3): 104 links
+  vpath 9 0 (1,3): 104 links
+  random concatenations of Bing blocks: 2 used
+
+================ the corpus ================
+  base level sequences of band [0,9] swept: 64
+  pairs tried: 7049;  faithful: 7040;  scanned: 7040 (6796 distinct)
+  links: 12392192, of which not thin: 205420
+  basepoints of the branch L+5: 2444297
+  crossings of the trichotomy: 1351 (1351 distinct by their pair of arms)
+  high-run crossings (exactly one w8 side, that side not deep first at 2): 229 (229 distinct)
+  distinct configurations among the high-run crossings: 52
+  arm lengths at the high-run crossings: 105 to 2211
+  both arms satisfy Mid2Floor at 229 of the 229 high-run crossings
+
+======== statement 1: the distance (NearLowT / NearLowG) ========
+  a time of the pair at 2 or below within 67 steps across the basepoint:
+    holds at 229, fails at 0, no such time at all at 0
+    the distance to the nearest such time ranges over [56, 65]
+  at 1 or below within 166 steps (the reading from a link at L+1, z 7 = 170):
+    holds at 0, fails at 220, none at 9; distance in [295, 642]
+  at the floor 0 within 405 steps (the reading from a link at L, z 8 = 409):
+    holds at 0, fails at 202, none at 27; distance in [872, 2035]
+  at least one of the three readings is available: 229 of 229 (fails at 0)
+  Ceil72 holds at every ascent of the running arm at 229 of 229; a witness at the first ascent at 229
+  the level of the low landmark:  level 3 : 229
+  the distance from the ascent to the low landmark ranges over [70, 152]
+  the peak index ranges over [23, 178], its level over [6, 6]
+
+======== statement 2: the partner's deep-floor clause ========
+  the band reaches the floor at 229 of the 229 high-run crossings
+  the partner's own arm reaches the floor at 202; it does not at 27 (there Deep72 is vacuous)
+  where it does, the partner's Deep72 holds at 202 and fails at 0
+  the running arm reaches the floor at 27; there its Deep72 holds at 27, fails at 0,
+  and NineBeforeDeep holds at 27
+  question 2.3, the reading at the partner's floor descent: 202 cases;
+    the pairing's two landmarks, with a third at 6 or above, can be placed as
+    times of the partner's arm at 202, and cannot at 0;
+    the partner's arm carries 9 at some link at 12
+
+  the same clause also admits landmarks past the basepoint, on the running
+  arm, at 0 of the 202 cases: the pairing by itself does not place them on
+  the partner's arm
+
+======== statement 3: BothNineL5 ========
+  both arms reach 9 at 39 of the 229 high-run crossings
+  both arms reach 9 at 67 of the 1351 crossings of the trichotomy
+  both arms reach 9 at 146409 of the 2444297 basepoints of the branch L+5
+  of the 39 high-run crossings with both arms at 9, the partner is deep first at 2
+  at 39 (its ceiling clause is then the batch-68 theorem) and runs high at 0;
+  where it runs high, the mirror distance holds at 0 and fails at 0;
+  the partner's ceiling clause Ceil72 holds at 39 of the 39
+  of the 39 high-run crossings with both arms at 9: some walk of the four-leg
+  family serves both arms at 39, none does at 0, and both arms satisfy the
+  landmark sentence of w72 at 39; the least |X| + |Y| seen is 2379
+
+======== question 2.5: both arms running high ========
+  both arms reach L+9 with nothing at L+2 or below before the ascent
+  (HighRunG and HighRunT together, BothHighRunL5):
+    at 16235 of the 2444297 basepoints of the branch L+5
+    at 0 of the 1351 crossings of the trichotomy
+    at 0 of the 229 high-run crossings
+  (at a high-run crossing the running arm runs high by definition, so this
+   is the count of crossings where the partner runs high as well)
+
+======== the distance at basepoints that are not high-run crossings ========
+  the nearest time of the pair at 2 or below on either side of the basepoint:
+    over all 2444297 basepoints of the branch: [5, 379]; beyond 67 at 251365; no such time at 0
+    over all 1351 crossings: [56, 65]; beyond 67 at 0
+
+======== question 2.1: the anatomy of the nearest low time ========
+  rows recorded: 229
+
+  each line is one distinct configuration; #  is how many of the
+  high-run crossings carry it.  'arm' is the arm the low time is a time
+  of (P = the partner, the arm across the basepoint from the running
+  arm); 'idx' its arm index; 'lev' its level (rho/sig); the profile
+  columns are over the window from that time to the basepoint.
+
+   #  arm idx lev  sig  min max #3  hi1 hiL | ascent  peak(idx,lev)  valley(idx,lev) | role   read from (lev@idx -> lev@idx) span
+    1   P   65  2   2    2   6   5  -1  -1 |   104  ( 29,6)      ( 34,3)      | valley (4@63 -> 1@304) 241
+    1   P   61  2   2    2   6   5  -1  -1 |   108  ( 33,6)      ( 38,3)      | valley (4@59 -> 1@300) 241
+    1   P   59  2   2    2   6   5  -1  -1 |   110  ( 35,6)      ( 40,3)      | valley (4@57 -> 1@298) 241
+    1   P   57  2   2    2   6   5  -1  -1 |   112  ( 37,6)      ( 42,3)      | valley (4@55 -> 1@296) 241
+    1   P   56  2   2    2   7   6   3   3 |   113  ( 38,6)      ( 43,3)      | none   (-1@-2027 -> -1@-2027) -1
+    1   P   65  2   2    2   7   6   2   2 |   104  ( 25,6)      ( 34,3)      | valley (4@63 -> 1@304) 241
+    1   P   61  2   2    2   6   6  -1  -1 |   108  ( 29,6)      ( 38,3)      | valley (4@59 -> 1@300) 241
+    1   P   60  2   2    2   6   6  -1  -1 |   109  ( 30,6)      ( 39,3)      | valley (4@58 -> 1@299) 241
+    1   P   59  2   2    2   6   6  -1  -1 |   110  ( 31,6)      ( 40,3)      | valley (4@57 -> 1@298) 241
+    1   P   57  2   2    2   6   6  -1  -1 |   112  ( 33,6)      ( 42,3)      | valley (4@55 -> 1@296) 241
+    1   P   56  2   2    2   6   6  -1  -1 |   113  ( 34,6)      ( 43,3)      | valley (4@54 -> 1@295) 241
+    1   P   65  2   3    2   6   5  -1  -1 |   104  ( 23,6)      ( 34,3)      | valley (4@63 -> 1@304) 241
+    1   P   61  2   3    2   6   5  -1  -1 |   108  ( 27,6)      ( 38,3)      | valley (4@59 -> 1@300) 241
+    1   P   60  2   3    2   6   5  -1  -1 |   109  ( 28,6)      ( 39,3)      | valley (4@58 -> 1@299) 241
+    1   P   59  2   3    2   6   5  -1  -1 |   110  ( 29,6)      ( 40,3)      | valley (4@57 -> 1@298) 241
+    1   P   57  2   3    2   6   5  -1  -1 |   112  ( 31,6)      ( 42,3)      | valley (4@55 -> 1@296) 241
+    1   P   56  2   3    2   6   5  -1  -1 |   113  ( 32,6)      ( 43,3)      | valley (4@54 -> 1@295) 241
+    6   P   57  2   3    2   6   5  -1  -1 |   112  ( 37,6)      ( 42,3)      | valley (1@-296 -> 9@112) 408
+    6   P   59  2   3    2   6   5  -1  -1 |   110  ( 35,6)      ( 40,3)      | valley (1@-298 -> 9@110) 408
+    6   P   61  2   3    2   6   5  -1  -1 |   108  ( 33,6)      ( 38,3)      | valley (1@-300 -> 9@108) 408
+    3   P   65  2   3    2   6   5  -1  -1 |   104  ( 29,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    4   P   57  2   3    2   6   5  -1  -1 |   112  ( 33,6)      ( 42,3)      | valley (1@-296 -> 9@112) 408
+    4   P   59  2   3    2   6   5  -1  -1 |   110  ( 31,6)      ( 40,3)      | valley (1@-298 -> 9@110) 408
+    3   P   60  2   3    2   6   5  -1  -1 |   109  ( 30,6)      ( 39,3)      | valley (1@-299 -> 9@109) 408
+    4   P   61  2   3    2   6   5  -1  -1 |   108  ( 29,6)      ( 38,3)      | valley (1@-300 -> 9@108) 408
+    2   P   65  2   3    2   7   5   2   2 |   104  ( 25,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    5   P   56  2   2    2   7   5   3   3 |   113  ( 38,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    5   P   57  2   3    2   6   6  -1  -1 |   112  ( 37,6)      ( 42,3)      | valley (1@-296 -> 9@112) 408
+    5   P   59  2   3    2   6   6  -1  -1 |   110  ( 35,6)      ( 40,3)      | valley (1@-298 -> 9@110) 408
+    5   P   61  2   3    2   6   6  -1  -1 |   108  ( 33,6)      ( 38,3)      | valley (1@-300 -> 9@108) 408
+    2   P   65  2   3    2   6   6  -1  -1 |   104  ( 29,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    8   P   57  2   2    2   6   5  -1  -1 |   112  ( 37,6)      ( 42,3)      | valley (1@-296 -> 9@112) 408
+    8   P   59  2   2    2   6   5  -1  -1 |   110  ( 35,6)      ( 40,3)      | valley (1@-298 -> 9@110) 408
+    8   P   61  2   2    2   6   5  -1  -1 |   108  ( 33,6)      ( 38,3)      | valley (1@-300 -> 9@108) 408
+    5   P   65  2   2    2   7   5   2   2 |   104  ( 29,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    3   P   57  2   3    2   6   5  -1  -1 |   112  ( 31,6)      ( 42,3)      | valley (1@-296 -> 9@112) 408
+    3   P   59  2   3    2   6   5  -1  -1 |   110  ( 29,6)      ( 40,3)      | valley (1@-298 -> 9@110) 408
+    2   P   60  2   3    2   6   5  -1  -1 |   109  ( 28,6)      ( 39,3)      | valley (1@-299 -> 9@109) 408
+    3   P   61  2   3    2   6   5  -1  -1 |   108  ( 27,6)      ( 38,3)      | valley (1@-300 -> 9@108) 408
+    2   P   65  2   3    2   6   5  -1  -1 |   104  ( 23,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    3   P   56  2   2    2   7   5   3   3 |   113  ( 32,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    3   P   56  2   2    2   6   5  -1  -1 |   113  ( 38,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    3   P   65  2   2    2   6   5  -1  -1 |   104  ( 29,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    3   P   60  2   3    2   6   5  -1  -1 |   109  ( 34,6)      ( 39,3)      | valley (1@-299 -> 9@109) 408
+    1   P   56  2   3    2   7   5   3   3 |   113  ( 38,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    2   P   57  2   2    2   6   6  -1  -1 |   112  ( 33,6)      ( 42,3)      | valley (1@-296 -> 9@112) 408
+    2   P   59  2   2    2   6   6  -1  -1 |   110  ( 31,6)      ( 40,3)      | valley (1@-298 -> 9@110) 408
+    2   P   61  2   2    2   6   6  -1  -1 |   108  ( 29,6)      ( 38,3)      | valley (1@-300 -> 9@108) 408
+    2   P   65  2   2    2   6   6  -1  -1 |   104  ( 25,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    1   P   56  2   2    2   6   5  -1  -1 |   113  ( 32,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    1   P   57  2   2    2   6   5  -1  -1 |   112  ( 31,6)      ( 42,3)      | valley (1@-296 -> 9@112) 408
+    1   P   59  2   2    2   6   5  -1  -1 |   110  ( 29,6)      ( 40,3)      | valley (1@-298 -> 9@110) 408
+    1   P   60  2   2    2   6   5  -1  -1 |   109  ( 28,6)      ( 39,3)      | valley (1@-299 -> 9@109) 408
+    1   P   61  2   2    2   6   5  -1  -1 |   108  ( 27,6)      ( 38,3)      | valley (1@-300 -> 9@108) 408
+    1   P   65  2   2    2   6   5  -1  -1 |   104  ( 23,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    3   P   65  2   3    2   7   5   2   2 |   104  ( 29,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    3   P   60  2   2    2   6   5  -1  -1 |   109  ( 34,6)      ( 39,3)      | valley (1@-299 -> 9@109) 408
+    3   P   56  2   2    2   7   5   3   3 |   113  ( 34,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    1   P   65  2   3    2   7   5   2   2 |   104  ( 23,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    2   P   57  2   2    2   6   6  -1  -1 |   112  ( 31,6)      ( 42,3)      | valley (1@-296 -> 9@112) 408
+    2   P   59  2   2    2   6   6  -1  -1 |   110  ( 29,6)      ( 40,3)      | valley (1@-298 -> 9@110) 408
+    1   P   60  2   2    2   6   6  -1  -1 |   109  ( 28,6)      ( 39,3)      | valley (1@-299 -> 9@109) 408
+    2   P   61  2   2    2   6   6  -1  -1 |   108  ( 27,6)      ( 38,3)      | valley (1@-300 -> 9@108) 408
+    2   P   65  2   2    2   7   6   2   2 |   104  ( 23,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    1   P   56  2   3    2   6   6  -1  -1 |   113  ( 38,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    3   P   65  2   3    2   7   6   2   2 |   104  ( 29,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    2   P   56  2   3    2   7   6   3   3 |   113  ( 38,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    2   P   56  2   2    2   7   6   3   3 |   113  ( 38,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    3   P   56  2   3    2   6   5  -1  -1 |   113  ( 34,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    2   P   65  2   3    2   6   5  -1  -1 |   104  ( 25,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    2   P   56  2   3    2   6   5  -1  -1 |   113  ( 38,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    1   P   56  2   3    2   6   6  -1  -1 |   113  ( 32,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    1   P   57  2   3    2   6   6  -1  -1 |   112  ( 31,6)      ( 42,3)      | valley (1@-296 -> 9@112) 408
+    1   P   59  2   3    2   6   6  -1  -1 |   110  ( 29,6)      ( 40,3)      | valley (1@-298 -> 9@110) 408
+    1   P   60  2   3    2   6   6  -1  -1 |   109  ( 28,6)      ( 39,3)      | valley (1@-299 -> 9@109) 408
+    1   P   61  2   3    2   6   6  -1  -1 |   108  ( 27,6)      ( 38,3)      | valley (1@-300 -> 9@108) 408
+    1   P   65  2   3    2   7   6   2   2 |   104  ( 23,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    1   P   56  2   2    2   7   6   3   3 |   113  ( 38,6)      ( 43,3)      | valley (4@54 -> 1@295) 241
+    1   P   65  2   2    2   7   6   2   2 |   104  ( 29,6)      ( 34,3)      | valley (4@63 -> 1@304) 241
+    1   P   61  2   2    2   6   6  -1  -1 |   108  ( 33,6)      ( 38,3)      | valley (4@59 -> 1@300) 241
+    1   P   59  2   2    2   6   6  -1  -1 |   110  ( 35,6)      ( 40,3)      | valley (4@57 -> 1@298) 241
+    1   P   57  2   2    2   6   6  -1  -1 |   112  ( 37,6)      ( 42,3)      | valley (4@55 -> 1@296) 241
+    1   P   56  2   2    2   6   6  -1  -1 |   113  ( 38,6)      ( 43,3)      | valley (4@54 -> 1@295) 241
+    1   P   56  2   3    2   7   5   3   3 |   113  ( 32,6)      ( 43,3)      | none   (-1@-2027 -> -1@-2027) -1
+    1   P   56  2   3    2   6   5  -1  -1 |   113  ( 32,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    1   P   56  2   2    2   6   6  -1  -1 |   113  ( 32,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    1   P   56  2   3    2   7   5   3   3 |   113  ( 34,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    1   P   56  2   2    2   6   6  -1  -1 |   113  ( 38,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    1   P   57  2   2    2   6   6  -1  -1 |   112  ( 37,6)      ( 42,3)      | valley (1@-296 -> 9@112) 408
+    1   P   59  2   2    2   6   6  -1  -1 |   110  ( 35,6)      ( 40,3)      | valley (1@-298 -> 9@110) 408
+    1   P   60  2   2    2   6   6  -1  -1 |   109  ( 34,6)      ( 39,3)      | valley (1@-299 -> 9@109) 408
+    1   P   61  2   2    2   6   6  -1  -1 |   108  ( 33,6)      ( 38,3)      | valley (1@-300 -> 9@108) 408
+    1   P   65  2   2    2   7   6   2   2 |   104  ( 29,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    2   P   57  2   3    2   6   6  -1  -1 |   112  ( 33,6)      ( 42,3)      | valley (1@-296 -> 9@112) 408
+    2   P   59  2   3    2   6   6  -1  -1 |   110  ( 31,6)      ( 40,3)      | valley (1@-298 -> 9@110) 408
+    2   P   60  2   3    2   6   6  -1  -1 |   109  ( 30,6)      ( 39,3)      | valley (1@-299 -> 9@109) 408
+    2   P   61  2   3    2   6   6  -1  -1 |   108  ( 29,6)      ( 38,3)      | valley (1@-300 -> 9@108) 408
+    1   P   65  2   3    2   6   6  -1  -1 |   104  ( 25,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+    2   P   56  2   2    2   7   6   3   3 |   113  ( 34,6)      ( 43,3)      | valley (1@-295 -> 9@113) 408
+    1   P   65  2   3    2   7   5   2   2 |   104  ( 29,6)      ( 34,3)      | none   (-1@-1909 -> -1@-1909) -1
+    1   P   61  2   3    2   6   5  -1  -1 |   108  ( 33,6)      ( 38,3)      | none   (-1@-1913 -> -1@-1913) -1
+    1   P   59  2   3    2   6   5  -1  -1 |   110  ( 35,6)      ( 40,3)      | none   (-1@-1915 -> -1@-1915) -1
+    1   P   57  2   3    2   6   5  -1  -1 |   112  ( 37,6)      ( 42,3)      | none   (-1@-1917 -> -1@-1917) -1
+    1   P   57  2   3    2   6   6  -1  -1 |   112  ( 37,6)      ( 42,3)      | none   (-1@-2031 -> -1@-2031) -1
+    1   P   59  2   3    2   6   6  -1  -1 |   110  ( 35,6)      ( 40,3)      | none   (-1@-2033 -> -1@-2033) -1
+    1   P   60  2   3    2   6   6  -1  -1 |   109  ( 34,6)      ( 39,3)      | none   (-1@-2034 -> -1@-2034) -1
+    1   P   61  2   3    2   6   6  -1  -1 |   108  ( 33,6)      ( 38,3)      | none   (-1@-2035 -> -1@-2035) -1
+    1   P   65  2   3    2   6   6  -1  -1 |   104  ( 29,6)      ( 34,3)      | none   (-1@-2039 -> -1@-2039) -1
+    1   P   65  2   2    2   6   6  -1  -1 |   104  ( 29,6)      ( 34,3)      | none   (-1@-1909 -> -1@-1909) -1
+    1   P   61  2   2    2   6   6  -1  -1 |   108  ( 33,6)      ( 38,3)      | none   (-1@-1913 -> -1@-1913) -1
+    1   P   60  2   2    2   6   6  -1  -1 |   109  ( 34,6)      ( 39,3)      | none   (-1@-1914 -> -1@-1914) -1
+    1   P   59  2   2    2   6   6  -1  -1 |   110  ( 35,6)      ( 40,3)      | none   (-1@-1915 -> -1@-1915) -1
+    1   P   57  2   2    2   6   6  -1  -1 |   112  ( 37,6)      ( 42,3)      | none   (-1@-1917 -> -1@-1917) -1
+    1   P   56  2   3    2   7   5   3   3 |   335  (178,6)      (183,3)      | none   (-1@-2030 -> -1@-2030) -1
+    1   P   65  2   3    2   7   6   2   2 |   104  ( 25,6)      ( 34,3)      | valley (1@-304 -> 9@104) 408
+
+  the row of every high-run crossing is in census-batch71-rows.csv
+
+======== question 2.4: the seeds of the construction attempt ========
+  one stored pair per fresh configuration of a high-run crossing: 64
+  written to seeds-batch71.txt; the construction attempt itself is
+  break-batch71.c (log break-batch71.log)
+
+---- the audit sample ----
+  the landmark sentence read greedily against the same sentence with its
+  existentials searched literally: 596 samples, 0 disagreements
+  every predicate of this census is evaluated by its own definition:
+    IsCrookedIvF, LowAt, Leg4Land (greedy and literal), DeepFirst2, Ceil72,
+    Deep72, Mid2Floor, NineBeforeDeep, and the crookedness clause read as
+    crooked_peak_valley_high9_mid reads it.  No criterion of the engine is used.

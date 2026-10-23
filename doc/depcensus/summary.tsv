@@ -1,0 +1,6 @@
+target	raw_closure	used_declarations	library_declarations	modules_used	library_modules	used_lines	lines_of_modules_used	library_lines
+primary	17643	4689	11697	446	863	92845	138480	255835
+HPC.BJ59.ho16_classification_atomic'	16078	4176	11697	419	863	87172	130918	255835
+HPC.BJ59.bjThm10	4669	526	11697	82	863	14014	25262	255835
+HPC.BJ59.bjPlaneExample	2663	395	11697	32	863	4473	9813	255835
+HPC.Plane.isPseudoArc_plane	1742	213	11697	21	863	2312	6131	255835

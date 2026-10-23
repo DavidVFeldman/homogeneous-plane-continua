@@ -1,0 +1,29 @@
+# Batch 181 manifest
+# git diff --name-status b191dbc (run's initial commit) .. final commit, plus uncommitted changes (none),
+# plus this manifest and the files the report names that this run did not change
+
+M	Axioms.lean
+M	HPC.lean
+A	HPC/Hagopian/H76Block3c.lean
+A	HPC/Hagopian/H76Cap.lean
+A	HPC/Hagopian/H76CapLow.lean
+A	HPC/Hagopian/H76Mid.lean
+M	HPC/Hagopian/H76Thm1Setup.lean
+A	HPC/Hagopian/H76TipRel.lean
+M	HPC/Hagopian/Hagopian76W.lean
+M	HPC/Hagopian/Hagopian76X.lean
+M	HPC/Hagopian/Hagopian76Y.lean
+A	HPC/Hagopian/Hagopian76Z.lean
+M	LEDGER.md
+M	OPEN.md
+M	README.md
+M	axioms.txt
+R100	COMMISSION-batch181.md	doc/batches/COMMISSION-batch181.md
+A	doc/batches/REPORT-batch181.md
+A	doc/batches/audits/axioms-batch181.txt
+R100	Hagopian76Z.lean	doc/batches/skeletons/Hagopian76Z.lean
+M	doc/notes/hagopian76-cases.md
+A	doc/batches/batch181-MANIFEST.txt
+
+# named in the report, unchanged in this run
+=	HPC/Hagopian/H76Tip.lean

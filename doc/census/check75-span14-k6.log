@@ -1,0 +1,12 @@
+==============================================================================
+witness-batch75-span14-k6.txt: 80783 links, basepoint 11825, the census's least leg count 6, its walk [6, 4, 9, 2, 11, 1, 13]
+  band [0, 14], span 14; basepoint level 7; thin (sig = rho): True
+  IsCrookedIvF (linear decision): True
+  (the quadratic decision over all index pairs is not run at this length)
+  the whole arms: |armG| = 68958, |armT| = 11826
+  walks of fewer than 6 legs tried: 190019
+  none of them serves both arms: the least leg count 6 is reproduced
+  the census's walk [6, 4, 9, 2, 11, 1, 13] folds both arms: True
+  least walks of 6 legs found (up to 16): [(6, 4, 9, 2, 11, 1, 13), (6, 4, 9, 2, 12, 1, 13), (6, 4, 9, 3, 11, 1, 13), (6, 4, 9, 3, 12, 1, 13), (6, 4, 10, 2, 11, 1, 13), (6, 4, 10, 2, 12, 1, 13), (6, 4, 10, 3, 11, 1, 13), (6, 4, 10, 3, 12, 1, 13), (6, 5, 9, 2, 11, 1, 13), (6, 5, 9, 2, 12, 1, 13), (6, 5, 9, 3, 11, 1, 13), (6, 5, 9, 3, 12, 1, 13), (6, 5, 10, 2, 11, 1, 13), (6, 5, 10, 2, 12, 1, 13), (6, 5, 10, 3, 11, 1, 13), (6, 5, 10, 3, 12, 1, 13)]
+  S2.1: the least walk (6, 4, 9, 2, 12, 1, 13) extends the walk (6, 4, 9, 2, 12, 1), which serves this basepoint
+        read in the sub-band of span 11 (3 levels dropped); truncated arms 21636 and 11825 links; 0 legs prepended, 1 appended

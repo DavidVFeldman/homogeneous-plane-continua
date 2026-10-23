@@ -1,0 +1,438 @@
+%======================================================================
+\chapter{Arcs, cut points and simple closed curves}\label{ch:arcs}
+%======================================================================
+
+Everything in this chapter is general topology: no plane and no axioms of Moore's enter. We
+develop the facts about arcs and simple closed curves that the rest of the volume uses constantly:
+sub-arcs, first points, gluing, the characterization of arcs as irreducible continua and as
+continua cut by each of their interior points, the characterization of simple closed curves as
+continua cut by every pair of points, limits of sequences of arcs, and the replacement of a null
+family of sub-arcs of an arc.
+
+Throughout, $X$ is a Hausdorff space and $I=[0,1]$.
+
+\section{Arcs and simple closed curves}
+
+\begin{definition}\label{def:arc}
+Let $A\ne B$ be points of $X$. A set $C\subseteq X$ is an \emph{arc from $A$ to $B$} if there is an
+embedding $f\colon I\to X$ (a homeomorphism onto its image) with $f(I)=C$, $f(0)=A$ and $f(1)=B$.
+$A$ and $B$ are the \emph{ends} of $C$; $\oarc C=C\setminus\set{A,B}$ is the \emph{open arc}. A
+\emph{simple closed curve} is a set $J=C_1\cup C_2$ where $C_1,C_2$ are arcs from $A$ to $B$ with
+$C_1\cap C_2=\set{A,B}$.
+\end{definition}
+
+\formal{\lean{HPC.Moore.Gen.TArc}, \lean{HPC.Moore.Gen.TSCC}.}
+
+Since $I$ is compact and $X$ Hausdorff, a continuous injective $f\colon I\to X$ is automatically an
+embedding (a continuous bijection from a compact space onto a Hausdorff space is a homeomorphism);
+so to produce an arc it suffices to produce a continuous injection (\lean{HPC.Moore.Gen.TArc.of_inj}).
+An arc from $A$ to $B$ is an arc from $B$ to $A$ (use $t\mapsto f(1-t)$), and it is compact,
+closed and connected.
+
+\begin{lemma}[Sub-arcs]\label{lem:subarc}
+Let $f\colon I\to X$ be an embedding.
+\begin{enumerate}[label=(\alph*)]
+\item For $s<t$ in $I$, $f([s,t])$ is an arc from $f(s)$ to $f(t)$.
+\item If $C$ is an arc from $A$ to $B$ and $P\ne Q$ are points of $C$, there is an arc from $P$ to
+$Q$ contained in $C$.
+\item The open arc $\oarc C$ of an arc $C$ is nonempty, connected and dense in $C$; so are
+$C\setminus\set A$ and $C\setminus\set B$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Compose $f$ with the affine homeomorphism $u\mapsto s+u(t-s)$ of $I$ onto $[s,t]$. (b) Write
+$P=f(s)$, $Q=f(t)$ and apply (a) to $[\min(s,t),\max(s,t)]$, reversing if $s>t$. (c)
+$\oarc C=f((0,1))$ is the image of a nonempty connected set, dense in $I$; similarly for
+$f((0,1])$ and $f([0,1))$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.Gen.TArc.image_Icc}, \lean{HPC.Moore.Gen.TArc.exists_sub},
+\lean{HPC.Moore.Gen.TArc.nonempty_diff}, \lean{HPC.Moore.Gen.TArc.isPreconnected_diff},
+\lean{HPC.Moore.Gen.TArc.subset_closure_diff}.}
+
+The next lemma is used dozens of times in Chapters~\ref{ch:curves}--\ref{ch:quotient}.
+
+\begin{lemma}\label{lem:conn-frontier}
+Let $C,U\subseteq X$ with $C$ connected and $C\cap\fr U=\emptyset$. If $C$ meets $U$ then
+$C\subseteq U$; if $C$ meets $X\setminus\cl U$ then $C\subseteq X\setminus\cl U$.
+\end{lemma}
+
+\begin{proof}
+$C$ lies in $X\setminus\fr U=\interior U\cup(X\setminus\cl U)$, a union of two disjoint open sets,
+so it lies in one of them.
+\end{proof}
+
+\formal{\lean{HPC.Moore.Gen.conn_sub_of_frontier}, \lean{HPC.Moore.Gen.conn_sub_ext_of_frontier}.}
+
+\begin{lemma}[First points, gluing, joining]\label{lem:arc-ops}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(First point.)} Let $C$ be an arc from $A$ to $B$ and $Z$ a closed set meeting $C$ with
+$A\notin Z$. There are $P\in Z\cap C$ and an arc $AP\subseteq C$ with $AP\cap Z=\set P$.
+\item \emph{(Gluing.)} If $D$ is an arc from $P$ to $Q$, $E$ an arc from $Q$ to $R$ and
+$D\cap E=\set Q$, then $D\cup E$ is an arc from $P$ to $R$.
+\item \emph{(Joining.)} If $\alpha$ is an arc from $P$ to $Q$, $\beta$ an arc from $R$ to $T$,
+$\alpha\cap\beta\ne\emptyset$ and $P\ne R$, then $\alpha\cup\beta$ contains an arc from $P$ to
+$R$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Let $f$ parametrize $C$. The set $f^{-1}(Z)$ is closed, nonempty and misses $0$; let $t$ be its
+least element and $P=f(t)$. Then $AP=f([0,t])$ works. (b) With $f$ for $D$ and $g$ for $E$, the map
+$h(u)=f(2u)$ for $u\le\frac12$, $h(u)=g(2u-1)$ for $u\ge\frac12$ is continuous and injective (the
+two halves only share $Q=h(\frac12)$). (c) If $P\in\beta$, take the sub-arc of $\beta$ from $P$ to
+$R$. Otherwise apply (a) to $\alpha$ and the closed set $\beta$: we get $X_0\in\beta$ and an arc
+$PX_0\subseteq\alpha$ meeting $\beta$ only in $X_0$. If $X_0=R$ we are done; otherwise glue $PX_0$
+to the sub-arc $X_0R$ of $\beta$ by (b).
+\end{proof}
+
+\formal{\lean{HPC.Moore.Gen.TArc.first_point}, \lean{HPC.Moore.Gen.TArc.union},
+\lean{HPC.Moore.Gen.TArc.join}.}
+
+\section{Irreducible continua are arcs}
+
+A set $C$ containing $A\ne B$ is \emph{irreducible between $A$ and $B$} if $C$ is connected and no
+connected proper subset of $C$ contains both $A$ and $B$ (\vthree{Definition~2.1}). Every arc is
+irreducible between its ends: a connected subset of $f(I)$ containing $f(0)$ and $f(1)$ is $f$ of a
+connected subset of $I$ containing $0$ and $1$, which is all of $I$. The converse, in metrizable
+spaces, is the main theorem of this section. In Moore's 1916 paper an \emph{arc} is \emph{defined}
+as a bounded closed irreducible connected set (following Lennes), and the theorem identifies
+Moore's arcs with the topological ones.
+
+Fix a compact connected separable Hausdorff space $Y$ irreducible between $a\ne b$, i.e.\ every
+connected $H\subseteq Y$ containing $a$ and $b$ is $Y$.
+
+\begin{lemma}\label{lem:insert-conn}
+Let $Z$ be a connected space, $p\in Z$, and $Z\setminus\set p=U\cup V$ with $U,V$ disjoint and open.
+Then $U\cup\set p$ is connected.
+\end{lemma}
+
+\begin{proof}
+$U\cup\set p=Z\setminus V$ is closed. If $U\cup\set p=F_1\cup F_2$ with $F_1,F_2$ disjoint, nonempty
+and closed, say $p\in F_1$, then $F_2\subseteq U$ is closed in $Z$, and $F_2=U\setminus F_1$ is open
+in $Z$. So $F_2$ is a nonempty proper clopen subset of $Z$, which is impossible.
+\end{proof}
+
+\formal{\lean{HPC.Moore.ac_insert_isPreconnected}.}
+
+\begin{lemma}[Cuts]\label{lem:cut}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item $Y\setminus\set a$ and $Y\setminus\set b$ are connected.
+\item For every $p\ne a,b$ there are disjoint connected open sets $U\ni a$, $V\ni b$ with
+$Y\setminus\set p=U\cup V$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The basic observation is: \emph{if $Y\setminus\set p=U_2\cup W$ with $U_2,W$ disjoint and open,
+$U_2\ne\emptyset$, then $W\cup\set p$ does not contain both $a$ and $b$}; for $W\cup\set p$ is
+connected (Lemma~\ref{lem:insert-conn}) and is a proper subset of $Y$.
+
+(a) If $Y\setminus\set b$ were not connected, write $Y\setminus\set b=U_2\cup W$ (disjoint, open,
+nonempty), with $a\in W$. Then $W\cup\set b$ contains $a$ and $b$, contradicting the observation.
+
+(b) $Y\setminus\set p$ is a proper subset of $Y$ containing $a$ and $b$, so it is not connected:
+$Y\setminus\set p=U\cup V$ with $U,V$ disjoint, open and nonempty. By the observation (applied with
+$(U_2,W)=(U,V)$ and with $(U_2,W)=(V,U)$) neither $U\cup\set p$ nor $V\cup\set p$ contains both $a$
+and $b$; so $a$ and $b$ lie in different pieces, say $a\in U$, $b\in V$. If $U$ were not connected,
+$U=U_1\cup U_2$ with $U_1,U_2$ disjoint, open and nonempty, $a\in U_1$; then $Y\setminus\set
+p=U_2\cup(U_1\cup V)$ and $U_1\cup V\cup\set p$ contains $a$ and $b$, against the observation. So $U$
+is connected, and likewise $V$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.ac_compl_isPreconnected}, \lean{HPC.Moore.ac_cut}.}
+
+For $x,y\in Y$ let $L(x,y)$ be the component of $Y\setminus\set y$ containing $x$ (empty if $x=y$).
+Define $x\prec y$ if $x\in L(a,y)$, i.e.\ $x\ne y$ and $x$ lies on the $a$-side of $y$.
+
+\begin{proposition}\label{prop:arc-order}
+$\prec$ is a strict linear order on $Y$ with least element $a$ and greatest element $b$. The rays
+$\set{x:x\prec y}=L(a,y)$ and $\set{x:y\prec x}=L(b,y)$ are open, and the order is dense: if $x\prec
+y$ there is $z$ with $x\prec z\prec y$.
+\end{proposition}
+
+\begin{proof}
+We use two facts. (i) By Lemma~\ref{lem:cut}, for $y\ne a,b$ the set $Y\setminus\set y$ is the
+union of the disjoint connected open sets $L(a,y)$ and $L(b,y)$ (the sets $U,V$ of the lemma are
+connected, so they are these components); $Y\setminus\set b=L(a,b)$ and $Y\setminus\set a=L(b,a)$.
+In particular $b\notin L(a,y)$ for every $y$, and $L(a,a)=\emptyset$. (ii) A connected set
+containing $x$ and missing $z$ lies in $L(x,z)$. By (i) and Lemma~\ref{lem:insert-conn}, the sets
+$A_y=L(a,y)\cup\set y$ ($y\ne a$) and $B_y=L(b,y)\cup\set y$ ($y\ne b$) are connected.
+
+\emph{Asymmetry.} Suppose $x\prec y$ and $y\prec x$. By (i), $x,y\notin\set{a,b}$. The connected set
+$B_y$ contains $b$ and $y$ and misses $x$ (as $x\in L(a,y)$), so by (ii) $B_y\subseteq L(y,x)$,
+which is $L(a,x)$ because $y\in L(a,x)$. Then $b\in L(a,x)$, against (i).
+
+\emph{Transitivity.} Let $x\prec y\prec z$. Then $y\ne a$ (as $L(a,a)=\emptyset$), so $A_y$ is
+connected; it contains $a$ and $x$, and misses $z$ ($z\ne y$, and $z\in L(a,y)$ would mean $z\prec
+y$, against asymmetry). By (ii), $A_y\subseteq L(a,z)$, so $x\prec z$.
+
+\emph{Totality.} Let $y\ne z$ with $y\not\prec z$. If $z=a$, then $a\in L(a,y)$, i.e.\ $z\prec y$.
+The case $z=b$ is impossible, since $L(a,b)=Y\setminus\set b\ni y$. Otherwise $y\in L(b,z)$ by (i),
+so $A_z$ is a connected set containing $a$ and $z$ and missing $y$, and $A_z\subseteq L(a,y)$ by
+(ii): $z\prec y$.
+
+\emph{Rays.} $x\in L(b,y)$ if and only if $y\prec x$: if $x\in L(b,y)$ then $x\ne y$ and $x\notin
+L(a,y)$, so $y\prec x$ by totality; if $y\prec x$ then $y\ne b$, $x\ne y$ and $x\not\prec y$, so
+$x\in L(b,y)$ by (i). Hence both rays are open. For $x\ne a$, $a\in L(a,x)$, i.e.\ $a\prec x$; for
+$x\ne b$, $b\in L(b,x)$, i.e.\ $x\prec b$.
+
+\emph{Density.} If $x\prec y$ and no $z$ lies between, then $Y$ is the union of
+$\set{w:w\preceq x}=Y\setminus L(b,x)$ and $\set{w:y\preceq w}=Y\setminus L(a,y)$, two disjoint
+nonempty closed sets, against connectedness.
+\end{proof}
+
+\formal{\lean{HPC.Moore.acL}, \lean{HPC.Moore.acL_asymm}, \lean{HPC.Moore.acL_trans},
+\lean{HPC.Moore.acL_total}, \lean{HPC.Moore.acL_ray}, \lean{HPC.Moore.ac_exists_between}.}
+
+\begin{theorem}[Irreducible continua are arcs]\label{thm:irr-arc}
+A compact connected separable Hausdorff space $Y$ irreducible between $a\ne b$ is homeomorphic to
+$I$ by a homeomorphism sending $0\mapsto a$, $1\mapsto b$.
+\end{theorem}
+
+\begin{proof}
+Let $D\subseteq Y$ be countable and dense, and $D'=D\setminus\set{a,b}$. With the order of
+Proposition~\ref{prop:arc-order}, $D'$ is a countable dense linear order without end points (between
+two points of $Y$ there is a nonempty open interval, which meets $D$). It is nonempty, since
+$Y\ne\set{a,b}$ (a two-point Hausdorff space is not connected). By Cantor's back-and-forth theorem
+there is an order isomorphism $\varphi\colon D'\to\mathbb Q\cap(0,1)$. Define
+$F(y)=\sup\set{\varphi(d):d\in D',\ d\prec y}$ (with $\sup\emptyset=0$). Then $F$ is
+order preserving, strictly increasing (between $x\prec y$ there are two points of $D'$), $F(a)=0$
+and $F(b)=1$. The preimage of an open ray $\set{t<s}$ or $\set{t>s}$ is a union of open rays of
+$Y$, so $F$ is continuous. $F(Y)$ is a connected subset of $I$ containing $0$ and $1$, so
+$F$ is onto. A continuous bijection from a compact space onto a Hausdorff space is a homeomorphism;
+take its inverse.
+\end{proof}
+
+\formal{\lean{HPC.Moore.ac_exists_strictMono}, \lean{HPC.Moore.ac_homeomorph}.}
+
+\begin{corollary}[Arc characterization]\label{cor:arc-char}
+Let $X$ be metrizable, $A\ne B$ in $X$ and $C\subseteq X$. Then $C$ is an arc from $A$ to $B$ if and
+only if $C$ is compact, connected, contains $A$ and $B$, and no connected proper subset of $C$
+contains both $A$ and $B$.
+\end{corollary}
+
+\begin{proof}
+One direction was noted above. Conversely, $C$ with the subspace topology is compact metrizable,
+hence separable, and Theorem~\ref{thm:irr-arc} applies.
+\end{proof}
+
+\formal{\lean{HPC.Moore.isIrreducibleConnected_iff_arc}.}
+
+\section{Cut-point arcs}
+
+\begin{definition}\label{def:cutarc}
+A set $H$ is a \emph{cut-point arc from $A$ to $B$} if $A\ne B$, $H$ is compact and connected,
+$A,B\in H$, and $H\setminus\set x$ is not connected for every $x\in H\setminus\set{A,B}$.
+\end{definition}
+
+\formal{\lean{HPC.Moore.IsCutArc}.}
+
+This is Moore's definition of an arc in his 1920 and 1925 papers (Chapter~\ref{ch:elements}).
+
+\begin{proposition}\label{prop:cutarc}
+Let $X$ be a $T_1$ space.
+\begin{enumerate}[label=(\alph*)]
+\item A cut-point arc from $A$ to $B$ is irreducible between $A$ and $B$.
+\item If $X$ is metrizable, a cut-point arc from $A$ to $B$ is an arc from $A$ to $B$. Conversely,
+the image of an embedding $f\colon I\to X$ is a cut-point arc from $f(0)$ to $f(1)$, and so is
+$f([s,t])$ for $s<t$.
+\item If $f\colon I\to X$ is an embedding and $L\subseteq f(I)$ is closed, connected and has two
+points, then $L=f([s,t])$ for some $s<t$. If $f([s,t])$ is a cut-point arc from $a$ to $b$, then
+$\set{a,b}=\set{f(s),f(t)}$.
+\item \emph{(Nadler 6.7.)} If $K$ is a continuum and $H\subsetneq K$ is connected, some $x\in
+K\setminus H$ has $K\setminus\set x$ connected.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(d) is \vthree{Theorem~3.7}.
+(a) Let $L\subsetneq H$ be connected with $A,B\in L$, and take $x\in H\setminus L$. By (d) applied to
+the continuum $H$ and the connected set $L$ we may take $x$ with $H\setminus\set x$ connected; then
+$x\ne A,B$ (as $A,B\in L$), against the definition.
+(b) By (a) and Corollary~\ref{cor:arc-char}. For the converse: if $x=f(u)$ with $s<u<t$, then
+$f([s,t])\setminus\set x=f([s,u))\cup f((u,t])$, two disjoint nonempty sets, each closed in the
+union (they are compact images); so it is not connected.
+(c) $f^{-1}(L)$ is a compact connected subset of $I$ with two points, i.e.\ an interval $[s,t]$,
+$s<t$. In $f([s,t])$ removing $f(s)$ or $f(t)$ leaves a connected set, and removing any other point
+does not; so the two points that can be removed without disconnecting are the ends.
+\end{proof}
+
+\formal{(a) \lean{HPC.Moore.IsCutArc.irreducible}; (b) \lean{HPC.Moore.IsCutArc.exists_embedding},
+\lean{HPC.Moore.isCutArc_range}, \lean{HPC.Moore.isCutArc_image_Icc}; (c)
+\lean{HPC.Moore.eq_image_Icc_of_subset_range}, \lean{HPC.Moore.ends_of_image_Icc}; (d)
+\lean{HPC.Moore.exists_nonCut_diff}.}
+
+\section{Simple closed curves}
+
+\begin{theorem}[Moore 1920, Theorem~4]\label{thm:circle-char}
+Let $J$ be a compact connected subset of a Hausdorff space with at least two points, such that
+$J\setminus\set{x,y}$ is not connected for any two distinct $x,y\in J$. Then for any distinct
+$p,q\in J$ there are cut-point arcs $a,b$ from $p$ to $q$ with $a\cup b=J$ and $a\cap b=\set{p,q}$.
+\end{theorem}
+
+\begin{proof}
+Work in the space $Y=J$, which is compact, connected and Hausdorff.
+
+\emph{Step 1: no point of $Y$ is a cut point.} Suppose $Y\setminus\set x=U\cup V$ with $U,V$
+disjoint, open and nonempty. By Lemma~\ref{lem:insert-conn}, $U\cup\set x=Y\setminus V$ is a
+continuum with at least two points, so it has two non-cut points (\vthree{Theorem~3.6}), one of
+them, $u$, different from $x$; so $u\in U$ and $(U\cup\set x)\setminus\set u$ is connected.
+Likewise there is $v\in V$ with $(V\cup\set x)\setminus\set v$ connected. Then
+$Y\setminus\set{u,v}$ is the union of these two connected sets, which share $x$; so it is
+connected, against the hypothesis.
+
+\emph{Step 2: the halves.} $Y\setminus\set{p,q}$ is nonempty (otherwise $\set q=Y\setminus\set p$
+would be a proper nonempty clopen set) and not connected, so $Y\setminus\set{p,q}=U\cup V$ with
+$U,V$ disjoint, open and nonempty. Put $a=Y\setminus V=U\cup\set{p,q}$ and $b=Y\setminus
+U=V\cup\set{p,q}$. Then $a,b$ are closed, $a\cup b=Y$ and $a\cap b=\set{p,q}$. We show that $a$ is
+a cut-point arc from $p$ to $q$; the argument for $b$ is the same.
+
+\emph{$a$ is connected.} Suppose $a=N\cup K$ with $N,K$ disjoint, closed and nonempty. If $p,q\in
+N$, then $K\subseteq U$, so $K=U\setminus N$ is open in $Y$, and $K$ is a nonempty proper clopen
+subset of $Y$: impossible. If $p\in K$ and $q\in N$, then one of the two pieces has a point other
+than its marked point: if $K=\set p$ then $N\supseteq U\ne\emptyset$ has points other than $q$.
+Suppose $K$ has a point $k\ne p$ (the other case is symmetric, exchanging $p$ and $q$). Then
+\[
+Y\setminus\set p=(K\setminus\set p)\cup\big((N\cup b)\setminus\set p\big),
+\]
+both sets are closed in $Y\setminus\set p$, they are disjoint (since $K\cap b\subseteq a\cap
+b=\set{p,q}$ and $q\in N$), and nonempty ($k$, resp.\ $q$). This contradicts Step~1.
+
+\emph{Each $x\in U$ cuts $a$.} Suppose $a\setminus\set x$ were connected. Take $y\in V$; we show
+$S=Y\setminus\set{x,y}$ is connected, contradicting the hypothesis. Let $S\subseteq u\cup v$ with
+$u,v$ open and $S\cap u\cap v=\emptyset$. The connected set $a\setminus\set x\subseteq S$ lies in
+one of them, say $u$. Put $Q=S\cap v$, an open set. Every point of $S$ outside $V$ lies in
+$a\setminus\set x\subseteq u$, so $Q\subseteq V$. If $z\ne y$ is in $\cl Q$, then $z\notin u$
+(as $Q$ misses the open set $u$), $z\in\cl V\subseteq b$, so $z\ne x$ (as $x\in U$ misses $b$); thus
+$z\in S\setminus u\subseteq v$ and $z\in Q$. So $Q$ is closed and open in $Y\setminus\set y$, which
+is connected by Step~1. As $p\in Y\setminus\set y$ and $p\notin Q$, $Q=\emptyset$. Hence
+$S\subseteq u$, and $S$ is connected.
+
+The points of $a\setminus\set{p,q}$ are the points of $U$; so $a$ is a cut-point arc.
+\end{proof}
+
+\formal{\lean{HPC.Moore.circle_noCut}, \lean{HPC.Moore.circle_half}, \lean{HPC.Moore.circle_char}.}
+
+\begin{proposition}\label{prop:scc-cut}
+Let $J=X_1\cup X_2$ be a simple closed curve ($X_1,X_2$ arcs from $p$ to $q$, $X_1\cap
+X_2=\set{p,q}$). Then $J\setminus\set{x,y}$ is not connected for any distinct $x,y\in J$, and $J$
+is homeomorphic to the circle.
+\end{proposition}
+
+\begin{proof}
+Let $f$, $g$ parametrize $X_1$, $X_2$ from $p$ to $q$. If $x=f(s)$, $y=f(t)$ with $s<t$ lie on one
+arc, the closed sets $f([s,t])$ and $f([0,s]\cup[t,1])\cup X_2$ cover $J$ and meet only in $\set{x,y}$,
+and each contains a point of $J\setminus\set{x,y}$. If $x=f(s)\in X_1\setminus X_2$ and $y=g(t)\in
+X_2\setminus X_1$, use $f([0,s])\cup g([0,t])$ and $f([s,1])\cup g([t,1])$. In both cases
+$J\setminus\set{x,y}$ is the union of two disjoint nonempty relatively closed sets.
+
+For the second claim, the map $h\colon[0,1]\to J$ equal to $f(2u)$ for $u\le\frac12$ and to
+$g(2-2u)$ for $u\ge\frac12$ is continuous, onto, and injective except that $h(0)=h(1)=p$; it
+induces a continuous bijection from the circle $[0,1]/\set{0\sim1}$ onto $J$, which is a
+homeomorphism by compactness.
+\end{proof}
+
+\formal{\lean{HPC.Moore.Gen.tscc_cut}; \lean{HPC.Jones.glue_circle},
+\lean{HPC.Jones.tscc_homeomorph_circle}.}
+
+So in a metrizable space the following are equivalent for a set $J$ with at least two points:
+$J$ is a simple closed curve; $J$ is homeomorphic to the circle; $J$ is a continuum cut by every
+pair of its points (Theorem~\ref{thm:circle-char}, Propositions~\ref{prop:cutarc}(b)
+and~\ref{prop:scc-cut}).
+
+\section{Limits of arcs and replacement of sub-arcs}
+
+Two constructions with infinitely many arcs are needed in Chapter~\ref{ch:curves}.
+
+\begin{theorem}[Limit arcs]\label{thm:limit-arc}
+Let $X$ be metrizable, $B\in X$, and let $\varepsilon_n$ ($n\ge0$) be arcs from $y_n$ to $y_{n+1}$
+such that $\varepsilon_n\cap\varepsilon_{n+1}=\set{y_{n+1}}$, $\varepsilon_n\cap\varepsilon_m=\emptyset$
+for $m\ge n+2$, $B\notin\varepsilon_n$, and the $\varepsilon_n$ converge to $B$ (every
+neighbourhood of $B$ contains $\varepsilon_n$ for all large $n$). Then
+$\tau=\set B\cup\bigcup_n\varepsilon_n$ is an arc from $y_0$ to $B$.
+\end{theorem}
+
+\begin{proof}
+$\tau$ is compact: an open cover has a member containing $B$, which contains all but finitely many
+$\varepsilon_n$, and the remaining ones are compact. The same argument shows that
+$\set B\cup\bigcup_{m\ge k}\varepsilon_m$ is compact for every $k$. The sets
+$\Gamma_n=\varepsilon_0\cup\dots\cup\varepsilon_n$ are arcs from $y_0$ to $y_{n+1}$ (gluing,
+Lemma~\ref{lem:arc-ops}(b)); they increase, so their union is connected, and $\tau$, which lies in its
+closure, is connected.
+
+$\tau$ is irreducible between $y_0$ and $B$. Let $z\in\tau\setminus\set{y_0,B}$ and let $n$ be least
+with $z\in\varepsilon_n$. Let $g$ parametrize the arc $\Gamma_{n+1}$ from $y_0$ to $y_{n+2}$; then
+$z=g(c)$ with $0<c<1$ ($z\ne y_{n+2}$ since $\varepsilon_{n+2}\cap\varepsilon_n=\emptyset$). The sets
+$F_1=g([0,c])$ and $F_2=g([c,1])\cup\set B\cup\bigcup_{m\ge n+2}\varepsilon_m$ are compact, cover
+$\tau$, and $F_1\cap F_2=\set z$ ($\varepsilon_m$, $m\ge n+2$, meets $\Gamma_{n+1}$ at most in
+$y_{n+2}=g(1)$). So $\tau\setminus\set z$ is the union of the disjoint relatively closed sets
+$F_1\setminus\set z\ni y_0$ and $F_2\setminus\set z\ni B$, and every connected subset of $\tau$
+containing $y_0$ and $B$ contains $z$. Hence such a set is all of $\tau$, and
+Corollary~\ref{cor:arc-char} applies.
+\end{proof}
+
+\formal{\lean{HPC.Moore.Gen.tarc_of_seq}; with trimming of arcs that meet more than consecutively,
+\lean{HPC.Moore.Gen.exists_tarc_of_seq}.}
+
+In applications the arcs $\beta_n$ come with $\beta_n\cap\beta_m=\emptyset$ for $m\ge n+2$ only;
+cutting each $\beta_n$ at its first point on $\beta_{n+1}$ (Lemma~\ref{lem:arc-ops}(a)) produces arcs
+$\varepsilon_n\subseteq\beta_n$ satisfying the hypotheses, and so $\set B\cup\bigcup\beta_n$ contains
+an arc from $x_0$ to $B$.
+
+\begin{theorem}[Replacement of a null family of sub-arcs]\label{thm:arc-replace}
+Let $X$ be a metric space and $f\colon I\to X$ an embedding. Let $(u_i,v_i)$, $i\in\iota$, be
+pairwise disjoint open subintervals of $I$, and $Z_i$ arcs from $f(u_i)$ to $f(v_i)$ whose open
+arcs are pairwise disjoint and disjoint from $f(I)$. Suppose the family is \emph{null}: for every
+$\varepsilon>0$ only finitely many $Z_i$ contain a point at distance $\ge\varepsilon$ from
+$f(u_i)$. Then
+\[
+D=f\Big(I\setminus\bigcup_i(u_i,v_i)\Big)\cup\bigcup_i Z_i
+\]
+is an arc from $f(0)$ to $f(1)$.
+\end{theorem}
+
+\begin{proof}
+Let $z_i\colon I\to Z_i$ parametrize $Z_i$ from $f(u_i)$ to $f(v_i)$, and define $h\colon I\to X$
+by $h(t)=z_i\big((t-u_i)/(v_i-u_i)\big)$ for $t\in(u_i,v_i)$ and $h(t)=f(t)$ for $t$ in no interval.
+Then $h(I)=D$, and $h$ is injective by the disjointness hypotheses. It remains to show that $h$ is
+continuous; then $D$ is an arc. On each closed interval $[u_i,v_i]$ the map $h$ is continuous (the
+two definitions agree at $u_i,v_i$). Let $s_k\to t$; we show $h(s_k)\to h(t)$, and may assume that
+$t$ is in no open interval and that every $s_k$ lies in some interval $(u_{i_k},v_{i_k})$ (the
+$s_k$ in no interval satisfy $h(s_k)=f(s_k)\to f(t)$). If some index $i$ occurs infinitely often,
+then $t\in\set{u_i,v_i}$ and along those $k$, $h(s_k)\to h(t)$ by continuity on $[u_i,v_i]$. So we
+may assume that every index occurs only finitely often. Since the intervals are disjoint, only
+finitely many have length $\ge\delta$, for every $\delta>0$; so $v_{i_k}-u_{i_k}\to0$, hence
+$u_{i_k}\to t$ and $f(u_{i_k})\to f(t)$. By nullity, $\sup_{x\in Z_{i_k}}d(x,f(u_{i_k}))\to0$. As
+$h(s_k)\in Z_{i_k}$, $h(s_k)\to f(t)=h(t)$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.Gen.arc_replace}.}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Show that in Lemma~\ref{lem:arc-ops}(c) the hypothesis $P\ne R$ is needed, and that the arc from $P$
+to $R$ need not be unique.
+\end{exercise}
+
+\begin{exercise}
+Show that the conclusion of Corollary~\ref{cor:arc-char} fails for the ``long line'' compactified
+by two end points (a compact connected Hausdorff space irreducible between its end points which is
+not metrizable). Which step of the proof of Theorem~\ref{thm:irr-arc} fails?
+\end{exercise}
+
+\begin{exercise}
+Let $J$ be a simple closed curve and $p,q\in J$ distinct. Show that there are exactly two arcs in
+$J$ from $p$ to $q$, and that their union is $J$.
+\end{exercise}
+
+\begin{exercise}
+Show that the null hypothesis in Theorem~\ref{thm:arc-replace} cannot be omitted: replace the
+intervals $(1/(n+1),1/n)$ of the segment $[0,1]\times\set0$ by semicircles of radius $1$ (suitably
+tilted so that they are disjoint) and show that the result is not compact.
+\end{exercise}

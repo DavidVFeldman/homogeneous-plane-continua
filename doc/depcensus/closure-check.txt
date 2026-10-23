@@ -1,0 +1,12 @@
+raw closure: 17643 constants; used declarations: 4689
+modules: 863; with a used declaration: 446
+external constants: 5163
+summary	primary	17643	4689	11697	446	863	92845	138480	255835
+summary	HPC.BJ59.ho16_classification_atomic'	16078	4176	11697	419	863	87172	130918	255835
+summary	HPC.BJ59.bjThm10	4669	526	11697	82	863	14014	25262	255835
+summary	HPC.BJ59.bjPlaneExample	2663	395	11697	32	863	4473	9813	255835
+summary	HPC.Plane.isPseudoArc_plane	1742	213	11697	21	863	2312	6131	255835
+atomic form: 4176 used declarations; also used by the primary closure: 4172; used by the primary closure only: 517
+used by the primary closure only, by module: HPC.BJ59.SweepPattern 49, HPC.Plane.Joints 44, HPC.BJ59.CircDescr 42, HPC.BJ59.CircPlane 40, HPC.BJ59.CircFibre 25, HPC.BJ59.CircCover 24, HPC.BJ59.CircDescent 22, HPC.BJ59.CircStd 21, HPC.BJ59.CircMap 21, HPC.Plane.StdChain 20, HPC.Plane.Descr 19, HPC.BJ59.CircJoints 19, HPC.Plane.Shear 19, HPC.Fold.BingF 15, HPC.BJ59.CircleLike 13, HPC.BJ59.Sweep 10, HPC.Plane.StdStep 10, HPC.Fold.BingCrook 9, HPC.Plane.Stutter 9, HPC.Plane.Transfer 9, HPC.BJ59.CircleFacts 9, HPC.BJ59.Halves 6, HPC.PseudoArc.T13Chains 6, HPC.Plane.Ingram68 6, HPC.BJ59.BJ59A 5, HPC.Plane.RealStep 5, HPC.BJ59.BJ59E 4, HPC.BJ59.AtomicCircle 4, HPC.BJ59.Defs 3, HPC.Fold.OffCenter 3, HPC.BJ59.CircStep 3, HPC.BJ59.BJ59B 3, HPC.PseudoArc.Theorem10 3, HPC.BJ59.Homog 3, HPC.Plane.Snake51 2, HPC.BJ59.Glue 2, HPC.Plane.PseudoArc51 2, HPC.BJ59.BJ59D 2, HPC.Fold.Minimal 2, HPC.BJ59.Decomp 1, HPC.Fold.Questions78 1, HPC.BJ59.Thm56 1, HPC.HO16.HO16E 1
+spine: 1197 used headlines; dependency order respected: True
+differences: 0

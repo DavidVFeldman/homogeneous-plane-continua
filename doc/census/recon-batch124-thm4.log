@@ -1,0 +1,12 @@
+# recon-batch124-thm4 (mode thm4): Theorem 4 as printed (only-clauses at r and s, r<s)
+mode=thm4 N=5 K=3 special=0 sequences=773 instances=1832 pairs=6477 failures=4
+mode=thm4 N=6 K=3 special=0 sequences=2753 instances=6524 pairs=37059 failures=40
+mode=thm4 N=7 K=3 special=0 sequences=9805 instances=23236 pairs=197387 failures=252
+mode=thm4 N=8 K=3 special=0 sequences=34921 instances=82756 pairs=995443 failures=1316
+mode=thm4 N=6 K=4 special=0 sequences=4809 instances=12559 pairs=1176 failures=0
+mode=thm4 N=7 K=4 special=0 sequences=17775 instances=46589 pairs=9400 failures=0
+mode=thm4 N=8 K=4 special=0 sequences=65809 instances=172895 pairs=65440 failures=0
+mode=thm4 N=9 K=4 special=0 sequences=243943 instances=641677 pairs=413472 failures=0
+mode=thm4 N=9 K=5 special=0 sequences=363513 instances=988614 pairs=0 failures=0
+mode=thm4 N=10 K=5 special=0 sequences=1366817 instances=3713082 pairs=0 failures=0
+mode=thm4 N=11 K=5 special=0 sequences=5137761 instances=13936134 pairs=128 failures=0

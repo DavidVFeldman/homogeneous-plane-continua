@@ -1,0 +1,171 @@
+=== which base levels a zig sequence can start from ===
+  band [0, 4] variant 0: 2 zig sequences; base levels used: 2
+  band [0, 4] variant 1: 6 zig sequences; base levels used: 1 2 3
+  band [0, 5] variant 0: 6 zig sequences; base levels used: 2 3
+  band [0, 5] variant 1: 16 zig sequences; base levels used: 1 2 3 4
+  band [0, 6] variant 0: 14 zig sequences; base levels used: 2 3 4
+  band [0, 6] variant 1: 40 zig sequences; base levels used: 1 2 3 4 5
+  band [0, 7] variant 0: 30 zig sequences; base levels used: 2 3 4 5
+  band [0, 7] variant 1: 96 zig sequences; base levels used: 1 2 3 4 5 6
+  band [0, 8] variant 0: 62 zig sequences; base levels used: 2 3 4 5 6
+  band [0, 8] variant 1: 224 zig sequences; base levels used: 1 2 3 4 5 6 7
+  band [0, 9] variant 0: 126 zig sequences; base levels used: 2 3 4 5 6 7
+  band [0, 9] variant 1: 512 zig sequences; base levels used: 1 2 3 4 5 6 7 8
+  band [0, 10] variant 0: 254 zig sequences; base levels used: 2 3 4 5 6 7 8
+  band [0, 10] variant 1: 1152 zig sequences; base levels used: 1 2 3 4 5 6 7 8 9
+  band [0, 11] variant 0: 510 zig sequences; base levels used: 2 3 4 5 6 7 8 9
+  band [0, 11] variant 1: 2560 zig sequences; base levels used: 1 2 3 4 5 6 7 8 9 10
+  band [0, 12] variant 0: 1022 zig sequences; base levels used: 2 3 4 5 6 7 8 9 10
+  band [0, 12] variant 1: 5632 zig sequences; base levels used: 1 2 3 4 5 6 7 8 9 10 11
+
+=== variant 0: whole chains ===
+bing 0  4:     13 links, span  4 ... unserved at extreme levels: 2 ; unserved elsewhere: 0 ; max minimal turning targets: 2
+bing 0  5:     30 links, span  5 ... unserved at extreme levels: 2 ; unserved elsewhere: 0 ; max minimal turning targets: 2
+bing 0  6:     71 links, span  6 ... unserved at extreme levels: 2 ; unserved elsewhere: 0 ; max minimal turning targets: 2
+bing 0  7:    170 links, span  7 ... unserved at extreme levels: 2 ; unserved elsewhere: 0 ; max minimal turning targets: 3
+bing 0  8:    409 links, span  8 ... unserved at extreme levels: 2 ; unserved elsewhere: 0 ; max minimal turning targets: 3
+bing 0  9:    986 links, span  9 ... unserved at extreme levels: 2 ; unserved elsewhere: 0 ; max minimal turning targets: 3
+bing 0 10:   2379 links, span 10 ... unserved at extreme levels: 2 ; unserved elsewhere: 0 ; max minimal turning targets: 4
+bing 0 11:   5742 links, span 11 ... unserved at extreme levels: 2 ; unserved elsewhere: 0 ; max minimal turning targets: 4
+bing 0 12:  13861 links, span 12 ... unserved at extreme levels: 2 ; unserved elsewhere: 0 ; max minimal turning targets: 5
+
+variant 0, span 11: 124 basepoints attain the maximum 4; first few, with all minimal itineraries:
+      [4, 3, 7, 1, 10]
+      [5, 3, 7, 1, 10]
+      [4, 3, 8, 1, 10]
+      [4, 2, 7, 1, 10]
+      [6, 3, 7, 1, 10]
+      [5, 3, 8, 1, 10]
+      [5, 2, 7, 1, 10]
+      [4, 2, 8, 1, 10]
+      [6, 3, 8, 1, 10]
+      [6, 2, 7, 1, 10]
+      [5, 2, 8, 1, 10]
+      [6, 2, 8, 1, 10]
+    basepoint 343 (level 5): 12 minimal itineraries with 4 turning targets
+      [4, 3, 7, 1, 10]
+      [5, 3, 7, 1, 10]
+      [4, 3, 8, 1, 10]
+      [6, 3, 7, 1, 10]
+      [5, 3, 8, 1, 10]
+      [5, 2, 7, 1, 10]
+      [6, 3, 8, 1, 10]
+      [6, 2, 7, 1, 10]
+      [5, 2, 8, 1, 10]
+      [6, 2, 8, 1, 10]
+    basepoint 347 (level 5): 10 minimal itineraries with 4 turning targets
+
+variant 0, span 12: 8 basepoints attain the maximum 5; first few, with all minimal itineraries:
+      [5, 7, 3, 9, 1, 11]
+      [4, 7, 3, 9, 1, 11]
+      [5, 7, 3, 10, 1, 11]
+      [5, 7, 2, 9, 1, 11]
+      [5, 8, 3, 9, 1, 11]
+      [4, 7, 3, 10, 1, 11]
+      [4, 7, 2, 9, 1, 11]
+      [4, 8, 3, 9, 1, 11]
+      [5, 7, 2, 10, 1, 11]
+      [5, 8, 3, 10, 1, 11]
+      [5, 8, 2, 9, 1, 11]
+      [4, 7, 2, 10, 1, 11]
+      [4, 8, 3, 10, 1, 11]
+      [4, 8, 2, 9, 1, 11]
+      [5, 8, 2, 10, 1, 11]
+      [4, 8, 2, 10, 1, 11]
+    basepoint 2027 (level 5): 16 minimal itineraries with 5 turning targets
+      [5, 7, 3, 9, 1, 11]
+      [4, 7, 3, 9, 1, 11]
+      [5, 7, 3, 10, 1, 11]
+      [5, 7, 2, 9, 1, 11]
+      [5, 8, 3, 9, 1, 11]
+      [4, 7, 3, 10, 1, 11]
+      [4, 7, 2, 9, 1, 11]
+      [4, 8, 3, 9, 1, 11]
+      [5, 7, 2, 10, 1, 11]
+      [5, 8, 3, 10, 1, 11]
+      [5, 8, 2, 9, 1, 11]
+      [4, 7, 2, 10, 1, 11]
+      [4, 8, 3, 10, 1, 11]
+      [4, 8, 2, 9, 1, 11]
+      [5, 8, 2, 10, 1, 11]
+      [4, 8, 2, 10, 1, 11]
+    basepoint 2029 (level 5): 16 minimal itineraries with 5 turning targets
+variant 0, random subchains of bing 0 12 of span >= 9: tested 4000, subchains with a non-structural failure 0 (0 basepoints)
+  max minimal turning targets, distribution: 3:3416 4:584
+variant 0, grid subchains of bing 0 12 (stride 97) of span >= 9: tested 8025, subchains with a non-structural failure 0 (0 basepoints)
+
+=== variant 1: whole chains ===
+bing 0  4:     13 links, span  4 ... unserved at extreme levels: 0 ; unserved elsewhere: 0 ; max minimal turning targets: 2
+bing 0  5:     30 links, span  5 ... unserved at extreme levels: 0 ; unserved elsewhere: 0 ; max minimal turning targets: 2
+bing 0  6:     71 links, span  6 ... unserved at extreme levels: 0 ; unserved elsewhere: 0 ; max minimal turning targets: 2
+bing 0  7:    170 links, span  7 ... unserved at extreme levels: 0 ; unserved elsewhere: 0 ; max minimal turning targets: 2
+bing 0  8:    409 links, span  8 ... unserved at extreme levels: 0 ; unserved elsewhere: 0 ; max minimal turning targets: 3
+bing 0  9:    986 links, span  9 ... unserved at extreme levels: 0 ; unserved elsewhere: 0 ; max minimal turning targets: 3
+bing 0 10:   2379 links, span 10 ... unserved at extreme levels: 0 ; unserved elsewhere: 0 ; max minimal turning targets: 4
+bing 0 11:   5742 links, span 11 ... unserved at extreme levels: 0 ; unserved elsewhere: 0 ; max minimal turning targets: 4
+bing 0 12:  13861 links, span 12 ... unserved at extreme levels: 0 ; unserved elsewhere: 0 ; max minimal turning targets: 5
+
+variant 1, span 11: 124 basepoints attain the maximum 4; first few, with all minimal itineraries:
+      [4, 3, 7, 1, 10]
+      [5, 3, 7, 1, 10]
+      [4, 3, 8, 1, 10]
+      [4, 2, 7, 1, 10]
+      [6, 3, 7, 1, 10]
+      [5, 3, 8, 1, 10]
+      [5, 2, 7, 1, 10]
+      [4, 2, 8, 1, 10]
+      [6, 3, 8, 1, 10]
+      [6, 2, 7, 1, 10]
+      [5, 2, 8, 1, 10]
+      [6, 2, 8, 1, 10]
+    basepoint 343 (level 5): 12 minimal itineraries with 4 turning targets
+      [4, 3, 7, 1, 10]
+      [5, 3, 7, 1, 10]
+      [4, 3, 8, 1, 10]
+      [6, 3, 7, 1, 10]
+      [5, 3, 8, 1, 10]
+      [5, 2, 7, 1, 10]
+      [6, 3, 8, 1, 10]
+      [6, 2, 7, 1, 10]
+      [5, 2, 8, 1, 10]
+      [6, 2, 8, 1, 10]
+    basepoint 347 (level 5): 10 minimal itineraries with 4 turning targets
+
+variant 1, span 12: 8 basepoints attain the maximum 5; first few, with all minimal itineraries:
+      [5, 7, 3, 9, 1, 11]
+      [4, 7, 3, 9, 1, 11]
+      [5, 7, 3, 10, 1, 11]
+      [5, 7, 2, 9, 1, 11]
+      [5, 8, 3, 9, 1, 11]
+      [4, 7, 3, 10, 1, 11]
+      [4, 7, 2, 9, 1, 11]
+      [4, 8, 3, 9, 1, 11]
+      [5, 7, 2, 10, 1, 11]
+      [5, 8, 3, 10, 1, 11]
+      [5, 8, 2, 9, 1, 11]
+      [4, 7, 2, 10, 1, 11]
+      [4, 8, 3, 10, 1, 11]
+      [4, 8, 2, 9, 1, 11]
+      [5, 8, 2, 10, 1, 11]
+      [4, 8, 2, 10, 1, 11]
+    basepoint 2027 (level 5): 16 minimal itineraries with 5 turning targets
+      [5, 7, 3, 9, 1, 11]
+      [4, 7, 3, 9, 1, 11]
+      [5, 7, 3, 10, 1, 11]
+      [5, 7, 2, 9, 1, 11]
+      [5, 8, 3, 9, 1, 11]
+      [4, 7, 3, 10, 1, 11]
+      [4, 7, 2, 9, 1, 11]
+      [4, 8, 3, 9, 1, 11]
+      [5, 7, 2, 10, 1, 11]
+      [5, 8, 3, 10, 1, 11]
+      [5, 8, 2, 9, 1, 11]
+      [4, 7, 2, 10, 1, 11]
+      [4, 8, 3, 10, 1, 11]
+      [4, 8, 2, 9, 1, 11]
+      [5, 8, 2, 10, 1, 11]
+      [4, 8, 2, 10, 1, 11]
+    basepoint 2029 (level 5): 16 minimal itineraries with 5 turning targets
+variant 1, random subchains of bing 0 12 of span >= 9: tested 4000, subchains with a non-structural failure 0 (0 basepoints)
+  max minimal turning targets, distribution: 3:3408 4:592
+variant 1, grid subchains of bing 0 12 (stride 97) of span >= 9: tested 8025, subchains with a non-structural failure 0 (0 basepoints)

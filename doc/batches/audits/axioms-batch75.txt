@@ -1,0 +1,6 @@
+'HPC.Fold.foldsOnto_lowEndWalk' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.foldsOnto_highEndWalk' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.extreme_levels_two_walks' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.s3_near_extreme_named' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.lowEndWalk_len' depends on axioms: [propext, Quot.sound]
+'HPC.Fold.highEndWalk_len' depends on axioms: [propext, Quot.sound]

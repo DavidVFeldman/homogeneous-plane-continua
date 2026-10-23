@@ -1,0 +1,103 @@
+census-batch50: the three walks, the valley crossing, and the necessity audits.
+rounds=40 seed=50 walk-steps=600
+
+==== base chain bing 0 9 (n = 986 links); IsCrookedIvF: 1 ====
+  the total mixture is faithful
+  random perturbation walk: 600 steps tried, 84 accepted
+
+==== base chain bing 9 0 (n = 986 links); IsCrookedIvF: 1 ====
+  the total mixture is faithful
+  random perturbation walk: 600 steps tried, 104 accepted
+
+================ totals over both base chains ================
+
+-- the thin chains --
+faithful pairs: 2; non-thin links 0/1972 (0.00000)
+branch basepoints: 364; unserved by the two canonical walks: 110
+arms failing: Leg3Valley 38/38 (fwd/bwd), Leg3Ceil 18, Valley4 76, Valley5 182, CeilW4 0, BottomW4 110, TopW5 0
+arms realising the residual case of cross_valley_profile (all low times before the 
+  first ascent to L+7 at step two or three): 16, of which 0 fold onto the V-walk
+unserved pairs at which the landmark instrument fires (each of the three clauses fails on some arm): 0
+necessity audits: w3 634 checks / 0 failures; w4 304 / 0; w5 546 / 0
+leg3Valley_or_vee: 76 confirmations, 0 failures;  leg3Ceil_or_lam: 18, 0;  Valley4-or-vee: 76, 0
+cross_valley_profile: tested 70, FAILURES 0
+unserved_profile: holds 110, fails 0; unserved_profile_one failures 0
+unserved_three_walks: served by w3 110, w4 16, w5 110; by one of the three 110; BY NONE 0
+
+-- single shavings --
+faithful pairs: 576; non-thin links 576/567936 (0.00101)
+branch basepoints: 105004; unserved by the two canonical walks: 31596
+arms failing: Leg3Valley 10965/10965 (fwd/bwd), Leg3Ceil 5184, Valley4 21930, Valley5 52536, CeilW4 0, BottomW4 31776, TopW5 12
+arms realising the residual case of cross_valley_profile (all low times before the 
+  first ascent to L+7 at step two or three): 4590, of which 0 fold onto the V-walk
+unserved pairs at which the landmark instrument fires (each of the three clauses fails on some arm): 0
+necessity audits: w3 182894 checks / 0 failures; w4 87744 / 0; w5 157460 / 0
+leg3Valley_or_vee: 21930 confirmations, 0 failures;  leg3Ceil_or_lam: 5184, 0;  Valley4-or-vee: 21930, 0
+cross_valley_profile: tested 20194, FAILURES 0
+unserved_profile: holds 31590, fails 6; unserved_profile_one failures 0
+unserved_three_walks: served by w3 31590, w4 4602, w5 31526; by one of the three 31596; BY NONE 0
+
+-- single fills --
+faithful pairs: 576; non-thin links 576/567936 (0.00101)
+branch basepoints: 104832; unserved by the two canonical walks: 31680
+arms failing: Leg3Valley 10944/10944 (fwd/bwd), Leg3Ceil 5184, Valley4 21888, Valley5 52416, CeilW4 0, BottomW4 31680, TopW5 0
+arms realising the residual case of cross_valley_profile (all low times before the 
+  first ascent to L+7 at step two or three): 4608, of which 0 fold onto the V-walk
+unserved pairs at which the landmark instrument fires (each of the three clauses fails on some arm): 0
+necessity audits: w3 182592 checks / 0 failures; w4 87552 / 0; w5 157248 / 0
+leg3Valley_or_vee: 21888 confirmations, 0 failures;  leg3Ceil_or_lam: 5184, 0;  Valley4-or-vee: 21888, 0
+cross_valley_profile: tested 20160, FAILURES 0
+unserved_profile: holds 31680, fails 0; unserved_profile_one failures 0
+unserved_three_walks: served by w3 31680, w4 4608, w5 31680; by one of the three 31680; BY NONE 0
+
+-- random mixtures (rate 1/3) --
+faithful pairs: 80; non-thin links 15241/78880 (0.19322)
+branch basepoints: 16922; unserved by the two canonical walks: 3657
+arms failing: Leg3Valley 1752/1850 (fwd/bwd), Leg3Ceil 694, Valley4 3602, Valley5 9239, CeilW4 0, BottomW4 5691, TopW5 216
+arms realising the residual case of cross_valley_profile (all low times before the 
+  first ascent to L+7 at step two or three): 392, of which 0 fold onto the V-walk
+unserved pairs at which the landmark instrument fires (each of the three clauses fails on some arm): 0
+necessity audits: w3 29548 checks / 0 failures; w4 14929 / 0; w5 24389 / 0
+leg3Valley_or_vee: 3602 confirmations, 0 failures;  leg3Ceil_or_lam: 694, 0;  Valley4-or-vee: 3602, 0
+cross_valley_profile: tested 3294, FAILURES 0
+unserved_profile: holds 3622, fails 35; unserved_profile_one failures 0
+unserved_three_walks: served by w3 3622, w4 591, w5 2762; by one of the three 3657; BY NONE 0
+
+-- heavy mixtures (rate 1/2, and the total mixture) --
+faithful pairs: 82; non-thin links 24326/80852 (0.30087)
+branch basepoints: 18950; unserved by the two canonical walks: 3463
+arms failing: Leg3Valley 2063/2040 (fwd/bwd), Leg3Ceil 663, Valley4 4103, Valley5 10756, CeilW4 0, BottomW4 7032, TopW5 406
+arms realising the residual case of cross_valley_profile (all low times before the 
+  first ascent to L+7 at step two or three): 261, of which 0 fold onto the V-walk
+unserved pairs at which the landmark instrument fires (each of the three clauses fails on some arm): 0
+necessity audits: w3 33134 checks / 0 failures; w4 16963 / 0; w5 26738 / 0
+leg3Valley_or_vee: 4103 confirmations, 0 failures;  leg3Ceil_or_lam: 663, 0;  Valley4-or-vee: 4103, 0
+cross_valley_profile: tested 3790, FAILURES 0
+unserved_profile: holds 3430, fails 33; unserved_profile_one failures 0
+unserved_three_walks: served by w3 3430, w4 533, w5 2463; by one of the three 3463; BY NONE 0
+
+-- random faithful perturbation walks --
+faithful pairs: 188; non-thin links 8110/185368 (0.04375)
+branch basepoints: 36023; unserved by the two canonical walks: 9535
+arms failing: Leg3Valley 3627/3406 (fwd/bwd), Leg3Ceil 1509, Valley4 7033, Valley5 16790, CeilW4 0, BottomW4 10125, TopW5 0
+arms realising the residual case of cross_valley_profile (all low times before the 
+  first ascent to L+7 at step two or three): 1315, of which 0 fold onto the V-walk
+unserved pairs at which the landmark instrument fires (each of the three clauses fails on some arm): 0
+necessity audits: w3 63504 checks / 0 failures; w4 31080 / 0; w5 55256 / 0
+leg3Valley_or_vee: 7033 confirmations, 0 failures;  leg3Ceil_or_lam: 1509, 0;  Valley4-or-vee: 7033, 0
+cross_valley_profile: tested 6522, FAILURES 0
+unserved_profile: holds 9437, fails 98; unserved_profile_one failures 0
+unserved_three_walks: served by w3 9437, w4 1718, w5 9535; by one of the three 9535; BY NONE 0
+
+-- EVERYTHING --
+faithful pairs: 1504; non-thin links 48829/1482944 (0.03293)
+branch basepoints: 282095; unserved by the two canonical walks: 80041
+arms failing: Leg3Valley 29389/29243 (fwd/bwd), Leg3Ceil 13252, Valley4 58632, Valley5 141919, CeilW4 0, BottomW4 86414, TopW5 634
+arms realising the residual case of cross_valley_profile (all low times before the 
+  first ascent to L+7 at step two or three): 11182, of which 0 fold onto the V-walk
+unserved pairs at which the landmark instrument fires (each of the three clauses fails on some arm): 0
+necessity audits: w3 492306 checks / 0 failures; w4 238572 / 0; w5 421637 / 0
+leg3Valley_or_vee: 58632 confirmations, 0 failures;  leg3Ceil_or_lam: 13252, 0;  Valley4-or-vee: 58632, 0
+cross_valley_profile: tested 54030, FAILURES 0
+unserved_profile: holds 79869, fails 172; unserved_profile_one failures 0
+unserved_three_walks: served by w3 79869, w4 12068, w5 78076; by one of the three 80041; BY NONE 0

@@ -1,0 +1,16 @@
+probe68: the corrected sentence (level-aware trigger) with the added clause of
+  batch 66 section 2.3, randomised deep descents.
+  walks of up to 4 turns, levels in [0,6], shortest leg at least 3;
+  arms of up to 40 times; 2000000 nodes per walk; seed 68
+COUNTEREXAMPLE  minleg=3  s=0  ts=[4,1,5]  walkLen=12  walk=012343212345  m=40  arm=-101210-10-10101223343234343210-101232233456
+COUNTEREXAMPLE  minleg=3  s=0  ts=[5,2,6]  walkLen=13  walk=0123454323456  m=40  arm=-100110-1-10-101233343210010-1010123343456667
+COUNTEREXAMPLE  minleg=3  s=0  ts=[4,1,6,0]  walkLen=19  walk=0123432123456543210  m=40  arm=-1010123321000-10-1000122323345555433433456
+COUNTEREXAMPLE  minleg=4  s=0  ts=[5,1,6,0]  walkLen=21  walk=012345432123456543210  m=40  arm=-10-1-1-1010-1-10-10112123434334433210-101234567
+COUNTEREXAMPLE  minleg=3  s=0  ts=[5,2,6,0]  walkLen=19  walk=0123454323456543210  m=40  arm=-1-1-1-100-1012210001223445654445432101234567
+COUNTEREXAMPLE  minleg=3  s=0  ts=[5,2,6,1]  walkLen=18  walk=012345432345654321  m=40  arm=-1011012222343455444434432122232101234567
+COUNTEREXAMPLE  minleg=3  s=0  ts=[4,1,6,3]  walkLen=16  walk=0123432123456543  m=40  arm=-1-10100011212112321232111010-1001233334556
+COUNTEREXAMPLE  minleg=3  s=1  ts=[5,2,5,0]  walkLen=16  walk=1234543234543210  m=40  arm=011012333332345656666544544321012343210-1
+COUNTEREXAMPLE  minleg=3  s=1  ts=[5,2,6,0]  walkLen=18  walk=123454323456543210  m=40  arm=0001121123233322101233444454321001234567
+COUNTEREXAMPLE  minleg=3  s=1  ts=[5,2,6,2]  walkLen=16  walk=1234543234565432  m=40  arm=0111000000012212343321100010122343345567
+COUNTEREXAMPLE  minleg=3  s=2  ts=[6,2,5,1]  walkLen=16  walk=2345654323454321  m=40  arm=1223443445544434456654544556765432221210
+[run stopped before completing the sweep; the complete sweep at a smaller budget is probe68c.log]

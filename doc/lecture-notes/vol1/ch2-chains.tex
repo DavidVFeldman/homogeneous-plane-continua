@@ -1,0 +1,246 @@
+%======================================================================
+\chapter{Chains and crookedness}\label{ch:chains}
+%======================================================================
+
+Chains are the basic tool of the whole theory of the pseudo-arc. This chapter sets up the
+definitions and proves the elementary facts about chains that are used later. Throughout,
+$X$ is a metric space.
+
+\section{Chains}
+
+\begin{definition}[Chain]\label{def:chain}
+Let $n\ge1$. A \emph{chain of length $n$} in $X$ is a sequence $D=(D_0,D_1,\dots,D_{n-1})$ of
+open subsets of $X$, called the \emph{links} of $D$, such that for all $i,j\in[n]$
+\[
+D_i\cap D_j\neq\emptyset\iff\abs{i-j}\le1 .
+\]
+The \emph{union} of $D$ is $\bigcup D=D_0\cup\dots\cup D_{n-1}$.
+\end{definition}
+
+So consecutive links meet and links that are two or more places apart are disjoint. Taking
+$i=j$ shows that \emph{every link is nonempty}. Links are \emph{not} required to be connected;
+this generality costs nothing and is convenient.
+
+\formal{\lean{HPC.Chain} (\lean{HPC/Chains/Basic.lean}); nonemptiness of links is
+\lean{HPC.Chain.link_nonempty}. In the formal proof a chain of length $0$ is allowed; it has no
+links and plays no role.}
+
+\begin{example}[The standard chain]\label{ex:std-chain}
+In $\R^2$ let $S_j=(2j,2j+3)\times(0,1)$ for $j\in\N$. Then $S_i\cap S_j\neq\emptyset$ if and only
+if the intervals $(2i,2i+3)$ and $(2j,2j+3)$ overlap, that is, if and only if $\abs{i-j}\le1$:
+for $j=i+1$ the overlap is $(2i+2,2i+3)$, and for $j\ge i+2$ we have $2j\ge2i+4>2i+3$. Thus
+$(S_0,\dots,S_{m-1})$ is a chain of length $m$, the \emph{standard chain}. It is the starting
+point of the construction in Chapter~\ref{ch:plane}.
+\end{example}
+
+\begin{definition}\label{def:chain-terms}
+Let $D$ be a chain of length $n$.
+\begin{enumerate}
+\item $D$ is an \emph{$\varepsilon$-chain} if every link is bounded with diameter
+$<\varepsilon$. Its \emph{mesh} is $\max_i\diam D_i$.
+\item For points $P,Q$, $D$ \emph{goes from $P$ to $Q$} if $P\in D_0$, $Q\in D_{n-1}$, $P$ lies in
+no other link and $Q$ lies in no other link.
+\item A chain $E$ of length $m$ \emph{refines} $D$ if every link of $E$ lies in some link of
+$D$. A \emph{refinement map} is then a function $\varphi\colon[m]\to[n]$ with
+$E_t\subseteq D_{\varphi(t)}$ for every $t$.
+\item More generally, for any function $x\colon[m]\to[n]$ we say that $E$ \emph{follows the
+pattern $x$ in $D$} if $E_t\subseteq D_{x(t)}$ for every $t$.
+\end{enumerate}
+\end{definition}
+
+\formal{\lean{HPC.Plane.IsEpsChain}, \lean{HPC.Chain.IsFrom}, \lean{HPC.Chain.Refines},
+\lean{HPC.Chain.FollowsPattern}.}
+
+\section{Walks of integers}
+
+Many arguments about chains reduce to statements about integer sequences that move by at
+most one at each step. We record the two basic facts.
+
+\begin{lemma}\label{lem:refinement-lipschitz}
+If $E$ refines $D$ with refinement map $\varphi$, then $\abs{\varphi(t+1)-\varphi(t)}\le1$ for
+every $t$ with $t,t+1\in[m]$.
+\end{lemma}
+
+\begin{proof}
+The links $E_t$ and $E_{t+1}$ meet, say at $z$. Then $z\in D_{\varphi(t)}\cap D_{\varphi(t+1)}$,
+so these links of $D$ meet, and the chain condition gives
+$\abs{\varphi(t)-\varphi(t+1)}\le1$.
+\end{proof}
+
+\formal{\lean{HPC.Chain.pattern_lipschitz}.}
+
+\begin{lemma}[Discrete intermediate value theorem]\label{lem:discrete-ivt}
+Let $a\le b$ be integers and $g\colon\set{a,a+1,\dots,b}\to\Z$ with $\abs{g(t+1)-g(t)}\le1$ for
+$a\le t<b$. If $v$ is an integer between $g(a)$ and $g(b)$ (inclusive), then $g(t)=v$ for
+some $t$ with $a\le t\le b$.
+\end{lemma}
+
+\begin{proof}
+Suppose $g(a)\le v\le g(b)$; the other case is symmetric. Let $t$ be the largest index in
+$[a,b]$ with $g(t)\le v$ (it exists since $g(a)\le v$). If $t=b$ then $v\le g(b)=g(t)\le v$.
+Otherwise $g(t+1)>v$, so $g(t+1)\ge v+1$, and $g(t)\ge g(t+1)-1\ge v$. In both cases
+$g(t)=v$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.exists_eq_of_lip}.}
+
+\begin{definition}\label{def:between}
+For indices $i,r,s,j$ we write $\mathrm{Btw}(i,r,s,j)$ if
+\[
+i<r<s<j\qquad\text{or}\qquad i>r>s>j .
+\]
+That is, $r$ and $s$ lie strictly between $i$ and $j$, and $r$ is nearer to $i$.
+\end{definition}
+
+\formal{\lean{HPC.Chain.Between}.}
+
+\begin{lemma}[Values in order]\label{lem:values-between}
+Let $\varphi\colon[m]\to\Z$ satisfy $\abs{\varphi(t+1)-\varphi(t)}\le1$, let $i,j\in[m]$, and let
+$r,s$ be integers with $\mathrm{Btw}(\varphi(i),r,s,\varphi(j))$. Then there are indices
+$r',s'\in[m]$ with $\mathrm{Btw}(i,r',s',j)$, $\varphi(r')=r$ and $\varphi(s')=s$.
+\end{lemma}
+
+\begin{proof}
+Assume $\varphi(i)<r<s<\varphi(j)$; the case $\varphi(i)>r>s>\varphi(j)$ is the same with all
+values negated. Note $i\neq j$. Suppose first $i<j$. By Lemma~\ref{lem:discrete-ivt} on
+$[i,j]$ the value $s$ is attained; let $s'$ be the smallest index in $[i,j]$ with
+$\varphi(s')=s$. Applying Lemma~\ref{lem:discrete-ivt} on $[i,s']$, the value $r$, which lies
+between $\varphi(i)$ and $\varphi(s')=s$, is attained at some $r'\in[i,s']$. Now $r'\neq i$
+because $\varphi(i)\neq r$; $r'\neq s'$ because $r\neq s$; and $s'\neq j$ because
+$\varphi(j)\neq s$. Hence $i<r'<s'<j$. If $i>j$, apply the same argument to the reversed walk
+$t\mapsto\varphi(i+j-t)$ on $[j,i]$; it produces $j<s'<r'<i$, which is again
+$\mathrm{Btw}(i,r',s',j)$.
+\end{proof}
+
+\formal{\lean{HPC.Chain.exists_between_of_pattern}, stated there for refinement maps (which have unit steps by Lemma~\ref{lem:refinement-lipschitz}).}
+
+\section{Three elementary facts about chains}
+
+\begin{lemma}[Separation by a link]\label{lem:between-link}
+Let $E$ be a chain of length $m$ and $C\subseteq\bigcup E$ a preconnected set. If $C$ meets
+the links $E_a$ and $E_c$ and $a<b<c$, then $C$ meets $E_b$.
+\end{lemma}
+
+\begin{proof}
+Suppose $C\cap E_b=\emptyset$. Let $U=\bigcup_{t<b}E_t$ and $V=\bigcup_{t>b}E_t$. Both are open,
+and $C\subseteq U\cup V$ since $C$ is covered by the links and misses $E_b$. $C$ meets $U$
+(in $E_a$) and $V$ (in $E_c$). If $z\in U\cap V$, then $z\in E_{t_1}\cap E_{t_2}$ with
+$t_1<b<t_2$, so $t_2-t_1\ge2$, contradicting the chain condition. Hence $U\cap V=\emptyset$, and
+$U,V$ disconnect $C$, a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Chain.inter_link_nonempty_between}.}
+
+\begin{lemma}[Distance along a chain]\label{lem:dist-along}
+Let $D$ be a chain whose links are bounded with diameter $\le\varepsilon$. If $z\in D_a$ and
+$w\in D_{a+e}$, then $d(z,w)\le(e+1)\varepsilon$.
+\end{lemma}
+
+\begin{proof}
+Induction on $e$. For $e=0$, $z,w\in D_a$ and $d(z,w)\le\diam D_a\le\varepsilon$. For the step,
+pick $y\in D_{a+e}\cap D_{a+e+1}$ (consecutive links meet). If $w\in D_{a+e+1}$, then
+$d(z,w)\le d(z,y)+d(y,w)\le(e+1)\varepsilon+\varepsilon$.
+\end{proof}
+
+\formal{\lean{HPC.Chain.dist_le_of_mem_link}.}
+
+\begin{lemma}\label{lem:union-chained}
+If $D$ is a chain whose links are bounded with diameter $\le\varepsilon$, then $\bigcup D$ is
+$\varepsilon$-chained (Definition~\ref{def:chained}).
+\end{lemma}
+
+\begin{proof}
+Let $\bigcup D\subseteq U\cup V$ where $d(u,v)>\varepsilon$ for all $u\in U$, $v\in V$. A single
+link cannot meet both $U$ and $V$: two points of it are at distance $\le\varepsilon$. So each
+link, being nonempty, lies entirely in $U$ or entirely in $V$ (and not in both, as $U\cap
+V=\emptyset$). Consecutive links meet, so they lie on the same side. By induction along the
+chain all links lie on the side of $D_0$, and so does $\bigcup D$.
+\end{proof}
+
+\formal{\lean{HPC.Chain.chainedAt_span} together with \lean{HPC.Chain.union_eq_span}.}
+
+\section{Crookedness}
+
+We now come to the central definition. Imagine a chain $D$ laid out from left to right and a
+much finer chain $E$ refining it. Following the links of $E$ in order traces a walk through
+the links of $D$. Crookedness says: whenever this walk gets from a link $D_h$ to a link $D_k$
+far away, it must first go almost all the way to $D_k$, then come almost all the way back to
+$D_h$, and only then go on to $D_k$. The finer chain is ``folded'' inside the coarser one.
+
+\begin{definition}[Crookedness]\label{def:crooked}
+Let $D$ be a chain of length $n$ and $E$ a chain of length $m$. We say $E$ is \emph{crooked
+in} $D$ if $E$ refines $D$ and the following holds. For all $h,k\in[n]$ with $k>h+2$, and all
+$i,j\in[m]$ such that $E_i$ meets $D_h$ and $E_j$ meets $D_k$, there are $r,s\in[m]$ with
+\[
+\mathrm{Btw}(i,r,s,j),\qquad E_r\subseteq D_{k-1},\qquad E_s\subseteq D_{h+1}.
+\]
+\end{definition}
+
+So between a link of $E$ near $D_h$ and a link of $E$ near $D_k$ there is, first, a link of $E$
+inside $D_{k-1}$ and, after it, a link of $E$ inside $D_{h+1}$. Note that $i$ may come before or
+after $j$ in $E$.
+
+\formal{\lean{HPC.Chain.IsCrookedIn'} (Bing's 1948 form, with ``meets''). The formal
+development also has \lean{HPC.Chain.IsCrookedIn}, the 1951 form with ``is contained in'' in
+the hypothesis; it is not used in this volume.}
+
+\begin{lemma}[Refinements of crooked chains are crooked]\label{lem:crooked-refine}
+If $E$ is crooked in $D$ and $F$ refines $E$, then $F$ is crooked in $D$.
+\end{lemma}
+
+\begin{proof}
+Let $\varphi$ be a refinement map for $F$ in $E$, and for $E$ in $D$ choose any refinement
+map. Composing, $F$ refines $D$. Now let $k>h+2$, and let $F_i$ meet $D_h$ and $F_j$ meet
+$D_k$. Since $F_i\subseteq E_{\varphi(i)}$ and $F_j\subseteq E_{\varphi(j)}$, the link
+$E_{\varphi(i)}$ meets $D_h$ and $E_{\varphi(j)}$ meets $D_k$. Crookedness of $E$ in $D$ gives
+$r,s$ with $\mathrm{Btw}(\varphi(i),r,s,\varphi(j))$, $E_r\subseteq D_{k-1}$, $E_s\subseteq
+D_{h+1}$. By Lemma~\ref{lem:refinement-lipschitz}, $\varphi$ moves by at most one at each step,
+so Lemma~\ref{lem:values-between} gives $r',s'$ with $\mathrm{Btw}(i,r',s',j)$, $\varphi(r')=r$
+and $\varphi(s')=s$. Then $F_{r'}\subseteq E_r\subseteq D_{k-1}$ and $F_{s'}\subseteq
+E_s\subseteq D_{h+1}$.
+\end{proof}
+
+\formal{\lean{HPC.Chain.isCrookedIn'_of_refines}.}
+
+\section{Snake-like continua and the pseudo-arc}
+
+\begin{definition}\label{def:snakelike}
+A continuum $M\subseteq X$ is \emph{snake-like} (or \emph{chainable}) if for every
+$\varepsilon>0$ there is an $\varepsilon$-chain $D$ in $X$ with $M\subseteq\bigcup D$.
+\end{definition}
+
+\begin{definition}[Pseudo-arc]\label{def:pseudoarc}
+A \emph{pseudo-arc} is a nondegenerate, snake-like, hereditarily indecomposable continuum.
+\end{definition}
+
+\formal{\lean{HPC.Plane.IsSnakeLike}, \lean{HPC.Plane.IsPseudoArc}.}
+
+\begin{remark}
+In Definition~\ref{def:snakelike} the links are open sets of the ambient space $X$. Intersecting
+them with $M$ gives a chain in $M$ itself, \emph{provided} each link meets $M$ (otherwise one
+first deletes the links that miss $M$ at the two ends; a link missing $M$ in the middle would
+disconnect $M$ by Lemma~\ref{lem:between-link}). So being snake-like is a property of $M$
+alone. We do not need this in the present volume.
+\end{remark}
+
+\begin{example}
+The interval $[0,1]\times\set0\subseteq\R^2$ is snake-like: for $\varepsilon>0$ choose $n$ with
+$3/n<\varepsilon$ and take the links $(\frac{i-1}{n},\frac{i+1}{n})\times(-\frac1n,\frac1n)$,
+$i=0,\dots,n$. It is not hereditarily indecomposable.
+\end{example}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Show that a chain $E$ refining a chain $D$ by the refinement map $\varphi$, with $E$ going from
+$P$ to $Q$ and $D$ going from $P$ to $Q$, satisfies $\varphi(0)=0$ and $\varphi(m-1)=n-1$, and
+deduce that $\varphi$ is onto $[n]$.
+\end{exercise}
+
+\begin{exercise}
+Let $E$ (of length $m$) be crooked in a chain $D$ of length $n\ge4$, and suppose $E_0$ meets
+$D_0$ and $E_{m-1}$ meets $D_{n-1}$. Show that there are indices $0<r<s<m-1$ with
+$E_r\subseteq D_{n-2}$ and $E_s\subseteq D_1$, and deduce from
+Lemma~\ref{lem:refinement-lipschitz} that $m\ge3n-8$.
+\end{exercise}

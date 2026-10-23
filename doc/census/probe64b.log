@@ -1,0 +1,73 @@
+probe64: the corrected sentence (level-aware trigger) on walks with up to 4 turns, levels in [0,6], arms of up to 13 times
+  restricted to walks whose shortest leg is at least 2 (minLeg 2 is NoUnitLeg)
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,4]  walkLen=9  walk=012321234  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,5]  walkLen=10  walk=0123212345  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,6]  walkLen=11  walk=01232123456  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,4,0]  walkLen=13  walk=0123212343210  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,5,0]  walkLen=15  walk=012321234543210  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,6,0]  walkLen=17  walk=01232123456543210  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,4,1]  walkLen=12  walk=012321234321  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,5,1]  walkLen=14  walk=01232123454321  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,6,1]  walkLen=16  walk=0123212345654321  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,4,2]  walkLen=11  walk=01232123432  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,5,2]  walkLen=13  walk=0123212345432  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,6,2]  walkLen=15  walk=012321234565432  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,5,3]  walkLen=12  walk=012321234543  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,6,3]  walkLen=14  walk=01232123456543  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=0  ts=[3,1,6,4]  walkLen=13  walk=0123212345654  m=13  arm=-101210-1012345
+COUNTEREXAMPLE  minleg=2  s=1  ts=[4,2,5]  walkLen=9  walk=123432345  m=13  arm=0123210123456
+COUNTEREXAMPLE  minleg=2  s=1  ts=[4,2,6]  walkLen=10  walk=1234323456  m=13  arm=0123210123456
+COUNTEREXAMPLE  minleg=2  s=1  ts=[4,2,5,0]  walkLen=14  walk=12343234543210  m=13  arm=0123210123456
+COUNTEREXAMPLE  minleg=2  s=1  ts=[4,2,6,0]  walkLen=16  walk=1234323456543210  m=13  arm=0123210123456
+COUNTEREXAMPLE  minleg=2  s=1  ts=[4,2,5,1]  walkLen=13  walk=1234323454321  m=13  arm=0123210123456
+COUNTEREXAMPLE  minleg=2  s=1  ts=[4,2,6,1]  walkLen=15  walk=123432345654321  m=13  arm=0123210123456
+COUNTEREXAMPLE  minleg=2  s=1  ts=[4,2,5,2]  walkLen=12  walk=123432345432  m=13  arm=0123210123456
+COUNTEREXAMPLE  minleg=2  s=1  ts=[4,2,6,2]  walkLen=14  walk=12343234565432  m=13  arm=0123210123456
+COUNTEREXAMPLE  minleg=2  s=1  ts=[4,2,5,3]  walkLen=11  walk=12343234543  m=13  arm=0123210123456
+COUNTEREXAMPLE  minleg=2  s=1  ts=[4,2,6,3]  walkLen=13  walk=1234323456543  m=13  arm=0123210123456
+COUNTEREXAMPLE  minleg=2  s=1  ts=[4,2,6,4]  walkLen=12  walk=123432345654  m=13  arm=0123210123456
+COUNTEREXAMPLE  minleg=2  s=2  ts=[5,3,6]  walkLen=9  walk=234543456  m=13  arm=1234321234567
+COUNTEREXAMPLE  minleg=2  s=2  ts=[5,3,6,0]  walkLen=15  walk=234543456543210  m=13  arm=1234321234567
+COUNTEREXAMPLE  minleg=2  s=2  ts=[5,3,6,1]  walkLen=14  walk=23454345654321  m=13  arm=1234321234567
+COUNTEREXAMPLE  minleg=2  s=2  ts=[5,3,6,2]  walkLen=13  walk=2345434565432  m=13  arm=1234321234567
+COUNTEREXAMPLE  minleg=2  s=2  ts=[5,3,6,3]  walkLen=12  walk=234543456543  m=13  arm=1234321234567
+COUNTEREXAMPLE  minleg=2  s=2  ts=[5,3,6,4]  walkLen=11  walk=23454345654  m=13  arm=1234321234567
+COUNTEREXAMPLE  minleg=2  s=4  ts=[1,3,0]  walkLen=9  walk=432123210  m=13  arm=321234543210-1
+COUNTEREXAMPLE  minleg=2  s=4  ts=[1,3,0,2]  walkLen=11  walk=43212321012  m=13  arm=321234543210-1
+COUNTEREXAMPLE  minleg=2  s=4  ts=[1,3,0,3]  walkLen=12  walk=432123210123  m=13  arm=321234543210-1
+COUNTEREXAMPLE  minleg=2  s=4  ts=[1,3,0,4]  walkLen=13  walk=4321232101234  m=13  arm=321234543210-1
+COUNTEREXAMPLE  minleg=2  s=4  ts=[1,3,0,5]  walkLen=14  walk=43212321012345  m=13  arm=321234543210-1
+COUNTEREXAMPLE  minleg=2  s=4  ts=[1,3,0,6]  walkLen=15  walk=432123210123456  m=13  arm=321234543210-1
+COUNTEREXAMPLE  minleg=2  s=5  ts=[2,4,0]  walkLen=10  walk=5432343210  m=13  arm=4323456543210
+COUNTEREXAMPLE  minleg=2  s=5  ts=[2,4,1]  walkLen=9  walk=543234321  m=13  arm=4323456543210
+COUNTEREXAMPLE  minleg=2  s=5  ts=[2,4,0,2]  walkLen=12  walk=543234321012  m=13  arm=4323456543210
+COUNTEREXAMPLE  minleg=2  s=5  ts=[2,4,0,3]  walkLen=13  walk=5432343210123  m=13  arm=4323456543210
+COUNTEREXAMPLE  minleg=2  s=5  ts=[2,4,1,3]  walkLen=11  walk=54323432123  m=13  arm=4323456543210
+COUNTEREXAMPLE  minleg=2  s=5  ts=[2,4,0,4]  walkLen=14  walk=54323432101234  m=13  arm=4323456543210
+COUNTEREXAMPLE  minleg=2  s=5  ts=[2,4,1,4]  walkLen=12  walk=543234321234  m=13  arm=4323456543210
+COUNTEREXAMPLE  minleg=2  s=5  ts=[2,4,0,5]  walkLen=15  walk=543234321012345  m=13  arm=4323456543210
+COUNTEREXAMPLE  minleg=2  s=5  ts=[2,4,1,5]  walkLen=13  walk=5432343212345  m=13  arm=4323456543210
+COUNTEREXAMPLE  minleg=2  s=5  ts=[2,4,0,6]  walkLen=16  walk=5432343210123456  m=13  arm=4323456543210
+COUNTEREXAMPLE  minleg=2  s=5  ts=[2,4,1,6]  walkLen=14  walk=54323432123456  m=13  arm=4323456543210
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,0]  walkLen=11  walk=65434543210  m=13  arm=5434567654321
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,1]  walkLen=10  walk=6543454321  m=13  arm=5434567654321
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,2]  walkLen=9  walk=654345432  m=13  arm=5434567654321
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,0,2]  walkLen=13  walk=6543454321012  m=13  arm=5434567654321
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,0,3]  walkLen=14  walk=65434543210123  m=13  arm=5434567654321
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,1,3]  walkLen=12  walk=654345432123  m=13  arm=5434567654321
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,0,4]  walkLen=15  walk=654345432101234  m=13  arm=5434567654321
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,1,4]  walkLen=13  walk=6543454321234  m=13  arm=5434567654321
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,2,4]  walkLen=11  walk=65434543234  m=13  arm=5434567654321
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,0,5]  walkLen=16  walk=6543454321012345  m=13  arm=5434567654321
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,1,5]  walkLen=14  walk=65434543212345  m=13  arm=5434567654321
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,2,5]  walkLen=12  walk=654345432345  m=13  arm=5434567654321
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,0,6]  walkLen=17  walk=65434543210123456  m=13  arm=5434567654321
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,1,6]  walkLen=15  walk=654345432123456  m=13  arm=5434567654321
+COUNTEREXAMPLE  minleg=2  s=6  ts=[3,5,2,6]  walkLen=13  walk=6543454323456  m=13  arm=5434567654321
+walks 1862   arms tested 4327285538   walks with a counterexample 64
+by shortest leg of the walk:
+  shortest leg  2 :  1120 walks, 64 with a counterexample
+  shortest leg  3 :  500 walks, 0 with a counterexample
+  shortest leg  4 :  184 walks, 0 with a counterexample
+  shortest leg  5 :  50 walks, 0 with a counterexample
+  shortest leg  6 :  8 walks, 0 with a counterexample

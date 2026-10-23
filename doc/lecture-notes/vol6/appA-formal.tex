@@ -1,0 +1,206 @@
+%======================================================================
+\chapter{Correspondence with the formal proof}\label{app:formal}
+%======================================================================
+
+The table lists the definitions and results of this volume that carry a ``Formal counterpart''
+line, together with the corresponding declarations of the Lean development. All declaration
+names start with \lean{HPC.}. The formal statements are sometimes slightly more general, or are
+split differently into lemmas; the table points to the place where the content of each result is
+proved. Rows are in the order of the text; rows labelled ``Text of \dots'' belong to formal counterpart lines in the
+running text of the named section.
+
+The main theorems of the volume are, in the Lean development (prefix \lean{HPC.} omitted):
+\begin{center}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.54\textwidth}@{}}
+\toprule
+Hagopian 1975, Lemma~1 (Theorem~\ref{thm:hagopian-lemma1}) & \lean{Hagopian.hagopian75_lemma1}\\
+No proper subcontinuum separates (Theorem~\ref{thm:nosep}) & \lean{Hagopian.no_proper_subcontinuum_separates}\\
+Moore's triod theorem (Theorem~\ref{thm:moore-triod}) & \lean{Hagopian.moore_triod_theorem'}\\
+Type $\lambda$ continua exist (Theorem~\ref{thm:exists-lambda}) & \lean{Hagopian.hagopian75_exists_typeA'}\\
+Hagopian 1984, Theorem~1 (Theorem~\ref{thm:h84}) & \lean{Hagopian.hagopian84_decomp}\\
+No arc (Theorem~\ref{thm:noarc}) & \lean{Hagopian.jones75_noArc}\\
+Hagopian 1976, Theorem~1 (Theorem~\ref{thm:HI}) & \lean{Hagopian.hagopian76_theorem1}\\
+Cook's theorem (Theorem~\ref{thm:cook}) & \lean{Span.cook67_theorem4}\\
+Strip theorem (Theorem~\ref{thm:ot32}) & \lean{Span.ot82_theorem32}\\
+Theorem~C (Theorem~\ref{thm:theoremC}) & \lean{Span.theoremC}\\
+Hoehn--Oversteegen, Theorem~4 (Theorem~\ref{thm:ho4}) & \lean{HO16.ho16_theorem4}\\
+Krasinkiewicz--Minc (Lemma~\ref{lem:km}) & \lean{HO16.km77_lemma2}\\
+Hoehn--Oversteegen, Theorem~8 (Theorem~\ref{thm:ho8}) & \lean{HO16.ho16_theorem8}\\
+Hoehn--Oversteegen, Proposition~19 (Proposition~\ref{prop:ho19}) & \lean{HO16.ho16_prop19}\\
+Theorem~20 from Theorem~15 (Theorem~\ref{thm:20-from-15}) & \lean{HO16.ho16_theorem20_of_thm15}\\
+Hoehn--Oversteegen, Theorem~15 (Theorem~\ref{thm:ho15}) & \lean{HO16.ho16_theorem15}\\
+Hoehn--Oversteegen, Theorem~20 (Theorem~\ref{thm:ho20}) & \lean{HO16.ho16_theorem20}\\
+Hoehn--Oversteegen, Theorem~1 (Theorem~\ref{thm:ho1}) & \lean{HO16.ho16_theorem1_plane} with \lean{HO16.ho16_theorem20}\\
+The indecomposable case (Theorem~\ref{thm:indec-pseudoarc}) & \lean{HO16.ho16_indec_homogeneous_pseudoArc}, \lean{HO16.ho16_indec_homogeneous_iff}\\
+\bottomrule
+\end{tabular}
+\end{center}
+All of them are proved in the Lean development without \lean{sorry} and without axioms beyond the
+standard ones of Lean and Mathlib. The printed forms that are false (Section~\ref{sec:intro-diff}) are
+refuted by the declarations whose names end in \lean{_false} or begin with \lean{not_}.
+
+\begin{longtable}{@{}p{0.40\textwidth}p{0.56\textwidth}@{}}
+\toprule
+In these notes & In the Lean development\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:homog}}}\\
+Text of ``Standing conventions'' & \lean{HPC.Fold.Q78.IsContinuum}, \lean{HPC.Fold.Q78.IsIndecomposable}, \lean{HPC.Jones.IsDecomposableSpace}, \lean{HPC.Plane.IsHereditarilyIndecomposable}, \lean{HPC.Jones.IsHomogeneous}.\\
+Text of ``Standing conventions'' & \lean{HPC.Plane.SeparatesPlane}.\\
+Theorem~\ref{thm:composants} & \lean{HPC.Hagopian.composant_dense'}, \lean{HPC.Hagopian.union_ne_univ_of_indec}, \lean{HPC.Hagopian.composant_eq_or_disjoint'}, \lean{HPC.Hagopian.interior_eq_empty_of_proper}, \lean{HPC.Hagopian.composant_isMeagre'}, \lean{HPC.Hagopian.uncountable_composants'} (in \lean{HPC/Hagopian/H75Composants.lean}).\\
+Lemma~\ref{lem:copies} & \lean{HPC.Hagopian.isContinuum_homeo_image}, \lean{HPC.Hagopian.homeo_image_ne_univ}, \lean{HPC.Hagopian.subset_composant}.\\
+Proposition~\ref{prop:effros-nbhd} & \lean{HPC.Hagopian.hagopian75_lemma4}, \lean{HPC.Hagopian.hagopian76_lemma2}, \lean{HPC.Hagopian.hagopian84_lemma1}; all from \lean{HPC.Effros.effros_homogeneous}.\\
+Proposition~\ref{prop:moore22} & \lean{HPC.Hagopian.separatesPlane_of_not_isPreconnected_inter}.\\
+Lemma~\ref{lem:disjoint-domains} & \lean{HPC.Hagopian.disjoint_components_missing}.\\
+Lemma~\ref{lem:sep-composants} & The argument appears twice in the formal development: in \lean{HPC.Hagopian.hereditarilyUnicoherent_of_homogeneous_indecomposable} (\lean{HPC/Hagopian/H75Lemma1.lean}) and in \lean{HPC.Hagopian.no_proper_subcontinuum_separates_aux} (\lean{HPC/Hagopian/H76NoSep.lean}); the countability step is \lean{HPC.Jones.countable_of_pairwiseDisjoint_open}, the Baire step \lean{HPC.Hagopian.exists_notMem_of_isMeagre}.\\
+Theorem~\ref{thm:hu} & \lean{HPC.Hagopian.hereditarilyUnicoherent_of_homogeneous_indecomposable}, \lean{HPC.Hagopian.hagopian75_lemma1_hu}.\\
+Theorem~\ref{thm:nosep} & \lean{HPC.Hagopian.exists_separating_subcontinuum_of_homeomorph}, \lean{HPC.Hagopian.separating_in_copy}, \lean{HPC.Hagopian.no_proper_subcontinuum_separates}.\\
+Proposition~\ref{prop:moore73} & \lean{HPC.Hagopian.comp_subset_comp}, \lean{HPC.Hagopian.countable_of_separating}.\\
+Lemma~\ref{lem:interlace} & \lean{HPC.Hagopian.interlace}, with \lean{HPC.Hagopian.mem_comp_of_mem_closure}, \lean{HPC.Hagopian.mem_of_mem_frontier_comp}, \lean{HPC.Hagopian.subset_of_disjoint_frontier}.\\
+Text of ``Moore's triod theorem'' & \lean{HPC.Hagopian.exists_loop_param}, \lean{HPC.Hagopian.interlace_param}.\\
+Lemma~\ref{lem:interlace-three} & \lean{HPC.Hagopian.interlace_three}.\\
+Proposition~\ref{prop:moore79} & \lean{HPC.Hagopian.TriodData}, \lean{HPC.Hagopian.exists_leg}, \lean{HPC.Hagopian.exists_cross_continuum}, \lean{HPC.Hagopian.exists_rat_intervals}, \lean{HPC.Hagopian.countable_of_nonseparating}.\\
+Text of ``Moore's triod theorem'' & \lean{HPC.Hagopian.moore_triod_theorem'}, \lean{HPC.Hagopian.mooreTriodStatement}; the statement as a proposition is \lean{HPC.Hagopian.MooreTriodStatement}.\\
+Theorem~\ref{thm:hagopian-lemma1} & \lean{HPC.Hagopian.atriodic_of_homogeneous_indecomposable}, \lean{HPC.Hagopian.not_isTriod_univ_of_indecomposable}, \lean{HPC.Hagopian.isTriodSet_image}, \lean{HPC.Hagopian.hagopian75_lemma1}.\\
+Corollary~\ref{cor:nested-or-arc} & \lean{HPC.Hagopian.isContinuum_inter_of_HU}; \lean{HPC.Plane.isTriod_of_core}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:typelambda}}}\\
+Text of ``Admissible maps and layers'' & \lean{HPC.IsIrreducibleBetween}; for the space itself, \lean{HPC.Hagopian.IrrBetween}.\\
+Definition~\ref{def:admissible} & \lean{HPC.Hagopian.IsAdmissibleMap}, \lean{HPC.Hagopian.layer}, \lean{HPC.Hagopian.IsTypeA'}, \lean{HPC.Hagopian.IsMinimalAdmissible}, \lean{HPC.Hagopian.layerSet}.\\
+Text of ``Admissible maps and layers'' & \lean{HPC.Hagopian.admissible_quotient_homeomorph}.\\
+Lemma~\ref{lem:adm-basic} & \lean{HPC.Hagopian.IsAdmissibleMap.isPreconnected_preimage}, \lean{HPC.Hagopian.isContinuum_img}, \lean{HPC.Hagopian.isContinuum_layer}, \lean{HPC.Hagopian.end_layers}, \lean{HPC.Hagopian.layer_subset_of_meets'}, \lean{HPC.Hagopian.layer_subset_of_meets}.\\
+Proposition~\ref{prop:end-sets} & \lean{HPC.Hagopian.dense_middle}, \lean{HPC.Hagopian.eq_of_meets_ends}, \lean{HPC.Hagopian.admissible_end_sets'}, \lean{HPC.Hagopian.hagopian76_end_sets}.\\
+Remark~\ref{rem:end-sets-false} & \lean{HPC.Hagopian.not_admissible_end_sets}.\\
+Lemma~\ref{lem:split-conn} & \lean{HPC.Hagopian.isPreconnected_of_union_closed}.\\
+Proposition~\ref{prop:lemma2-nec} & \lean{HPC.Hagopian.not_isIndecomposable_of_typeA'}.\\
+Theorem~\ref{thm:unique-decomp} & \lean{HPC.Hagopian.fibre_subset_fibre}, \lean{HPC.Hagopian.hagopian75_lemma3}, \lean{HPC.Hagopian.fibre_eq_iff}, \lean{HPC.Hagopian.hagopian75_lemma3_unique}.\\
+Text of ``Kuratowski's family \texorpdfstring{$\mathcal D$}{D}'' & \lean{HPC.Hagopian.IsDElt}.\\
+Lemma~\ref{lem:kur} & \lean{HPC.Hagopian.irr_compl_continuum}, \lean{HPC.Hagopian.irr_no_hole}, \lean{HPC.Hagopian.isDElt_closure_interior}, \lean{HPC.Hagopian.IsDElt.chain}, \lean{HPC.Hagopian.IsDElt.subset_interior}.\\
+Proposition~\ref{prop:no-jumps} & \lean{HPC.Hagopian.IsDElt.closure_diff}, \lean{HPC.Hagopian.IsDElt.exists_between}.\\
+Theorem~\ref{thm:scale} & \lean{HPC.Hagopian.exists_countable_dense_D}, \lean{HPC.Hagopian.IsDScale}, \lean{HPC.Hagopian.exists_scale}, \lean{HPC.Hagopian.scaleFun}, \lean{HPC.Hagopian.continuous_scaleFun}, \lean{HPC.Hagopian.isPreconnected_scaleFun_fibre}, \lean{HPC.Hagopian.interior_scaleFun_fibre}, \lean{HPC.Hagopian.scaleMap_spec}, \lean{HPC.Hagopian.exists_typeA'_map}.\\
+Theorem~\ref{thm:lemma2} & \lean{HPC.Hagopian.isTypeA'_of_decomposable}, \lean{HPC.Hagopian.hagopian75_lemma2}.\\
+Remark~\ref{rem:thomas21} & \lean{HPC.Hagopian.not_arc_of_degenerate_layers}, \lean{HPC.Hagopian.arc_of_degenerate_layers'}, \lean{HPC.Hagopian.exists_arc_of_degenerate_layers}.\\
+Theorem~\ref{thm:exists-lambda} & \lean{HPC.Hagopian.no_indecomposable_interior_aux}, \lean{HPC.Hagopian.hagopian75_no_indecomposable_interior}, \lean{HPC.Hagopian.hagopian75_exists_typeA'}.\\
+Theorem~\ref{thm:layer-invariant} & \lean{HPC.Hagopian.homeo_image_subset_of_meets}, \lean{HPC.Hagopian.homeo_image_layer_subset}, \lean{HPC.Hagopian.hagopian75_layer_invariant_aux}, \lean{HPC.Hagopian.hagopian75_layer_invariant}.\\
+Text of ``Interior layers under small homeomorphisms'' & \lean{HPC.Hagopian.layer_homogeneous_aux}, \lean{HPC.Hagopian.hagopian75_layer_homogeneous}.\\
+Theorem~\ref{thm:h76-lemma3} & \lean{HPC.Hagopian.hagopian76_lemma3}, proved in \lean{HPC/Hagopian/H76Lemma3.lean}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:decomp}}}\\
+Theorem~\ref{thm:h84} & \lean{HPC.Hagopian.Hagopian84Decomp} (the statement), \lean{HPC.Hagopian.hagopian84_decomp} (the proof).\\
+Lemma~\ref{lem:rigid} & \lean{HPC.Hagopian.subset_of_meets_avoids}, \lean{HPC.Hagopian.no_arm_at_interior_layer}.\\
+Theorem~\ref{thm:h76-lemma5} & \lean{HPC.Hagopian.IsExtensionAway}, \lean{HPC.Hagopian.hagopian76_lemma4_chain}, \lean{HPC.Hagopian.hagopian76_lemma4}, \lean{HPC.Hagopian.hagopian76_lemma5}.\\
+Corollary~\ref{cor:restrict} & \lean{HPC.Hagopian.minimalAdmissible_restrict}.\\
+Theorem~\ref{thm:h84-lemma6} & \lean{HPC.Hagopian.IsEssential84}, \lean{HPC.Hagopian.hagopian84_lemma6}.\\
+Theorem~\ref{thm:layers-agree} & \lean{HPC.Hagopian.layers_agree}, \lean{HPC.Hagopian.hagopian84_lemma7_aux}.\\
+Text of ``Rigidity of layers'' & \lean{HPC.Hagopian.hagopian76_lemma6_X}, \lean{HPC.Hagopian.hagopian84_lemma11}.\\
+Definition~\ref{def:chain5} & \lean{HPC.Hagopian.IsChain5}, \lean{HPC.Hagopian.midUnion}, \lean{HPC.Hagopian.IsNormal5}, \lean{HPC.Hagopian.IsFree5}, \lean{HPC.Hagopian.RunsStraight}, \lean{HPC.Hagopian.IsRegular5}, \lean{HPC.Hagopian.IsOrderedRefinement5}.\\
+Lemma~\ref{lem:fold} & \lean{HPC.Hagopian.exists_fold}.\\
+Theorem~\ref{thm:h84-lemma13} & \lean{HPC.Hagopian.WsetOf}, \lean{HPC.Hagopian.chainLinks84}, \lean{HPC.Hagopian.chainLinks84_chain}, \lean{HPC.Hagopian.chainLinks84_runsStraight}, \lean{HPC.Hagopian.chainLinks84_regular}, \lean{HPC.Hagopian.hagopian84_lemma12}, \lean{HPC.Hagopian.hagopian84_lemma13}.\\
+Text of ``The layers of a chain'' & \lean{HPC.Hagopian.Omega5}, \lean{HPC.Hagopian.Delta5}.\\
+Proposition~\ref{prop:delta} & \lean{HPC.Hagopian.delta5_partition}, \lean{HPC.Hagopian.delta5_dist_pos}, \lean{HPC.Hagopian.hagopian84_lemma14}, \lean{HPC.Hagopian.hagopian84_lemma15}, \lean{HPC.Hagopian.exists_interval_in_delta}.\\
+Theorem~\ref{thm:lemma16p} & \lean{HPC.Hagopian.strand_layer_mem_delta}, \lean{HPC.Hagopian.not_strand_subset_extension_layer}, \lean{HPC.Hagopian.strand_layer_of_extension}; Hagopian's Lemma~16 as printed is \lean{HPC.Hagopian.hagopian84_lemma16}.\\
+Proposition~\ref{prop:bridges} & \lean{HPC.Hagopian.omega_not_delta_side}, \lean{HPC.Hagopian.exists_bridge84}, \lean{HPC.Hagopian.mem_delta_of_bridge_chain}, \lean{HPC.Hagopian.exists_chainZ84}.\\
+Proposition~\ref{prop:finite-cover} & \lean{HPC.Hagopian.exists_finite_cover84}, \lean{HPC.Hagopian.hagopian84_cover}, \lean{HPC.Hagopian.CoverData84}, \lean{HPC.Hagopian.exists_coverData84}.\\
+Text of ``The decomposition'' & \lean{HPC.Hagopian.sUnion_cover84_eq_univ}.\\
+Theorem~\ref{thm:frakD} & \lean{HPC.Hagopian.omega_layer_of_mem_mid}, \lean{HPC.Hagopian.omega_mem_delta_of_mem_mid}, \lean{HPC.Hagopian.CoverData84.members}, \lean{HPC.Hagopian.CoverData84.members_disjoint}, \lean{HPC.Hagopian.CoverData84.omega_subset_members}, \lean{HPC.Hagopian.CoverData84.invariant}, \lean{HPC.Hagopian.CoverData84.isJonesDecomp}.\\
+Text of ``The quotient'' & \lean{HPC.Hagopian.IsJonesDecomp84}.\\
+Text of ``The quotient'' & \lean{HPC.Hagopian.exists_comp_small_homeo}, \lean{HPC.Hagopian.hagopian84Decomp_of_package}, \lean{HPC.Hagopian.hagopian84_decomp}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:noarc}}}\\
+Definition~\ref{def:jones-setting} & \lean{HPC.Hagopian.JonesSetting}, \lean{HPC.Hagopian.jonesSetting_of_plane}.\\
+Proposition~\ref{prop:jones-c} & \lean{HPC.Hagopian.JonesSetting.inter_isPreconnected}, \lean{HPC.Hagopian.JonesSetting.no_three_arms}, \lean{HPC.Hagopian.JonesSetting.union_arc}, \lean{HPC.Hagopian.JonesSetting.nested}.\\
+Text of ``Arcs and lines'' & \lean{HPC.Hagopian.JonesSetting.arc_unique}, \lean{HPC.Hagopian.JonesSetting.exists_arc_through}.\\
+Text of ``Arcs and lines'' & \lean{HPC.Hagopian.arcComp}, \lean{HPC.Hagopian.IsLine}.\\
+Theorem~\ref{thm:lines} & \lean{HPC.Hagopian.JonesSetting.rayArcs_total}, \lean{HPC.Hagopian.JonesSetting.extend}, \lean{HPC.Hagopian.JonesSetting.exists_ray_seq}, \lean{HPC.Hagopian.JonesSetting.exists_line}, \lean{HPC.Hagopian.JonesSetting.line_arc}, \lean{HPC.Hagopian.JonesSetting.arc_in_line}, \lean{HPC.Hagopian.JonesSetting.homeo_on_line}.\\
+Lemma~\ref{lem:R0} & \lean{HPC.Hagopian.JonesSetting.no_reversal_arc}.\\
+Theorem~\ref{thm:RO} & \lean{HPC.Hagopian.JonesSetting.local_no_reversal}, \lean{HPC.Hagopian.JonesSetting.exists_no_reversal}, \lean{HPC.Hagopian.JonesSetting.orientation}.\\
+Text of ``Recurrence'' & \lean{HPC.Hagopian.omegaLim}, \lean{HPC.Hagopian.mem_omegaLim_iff}.\\
+Theorem~\ref{thm:recurrent} & \lean{HPC.Hagopian.JonesSetting.omegaLim_saturated}, \lean{HPC.Hagopian.JonesSetting.zero_mem_omegaLim}, \lean{HPC.Hagopian.JonesSetting.line_recurrent}, \lean{HPC.Hagopian.JonesSetting.jones75_d}.\\
+Text of ``Passes through a box'' & \lean{HPC.Hagopian.IsCollar}, \lean{HPC.Hagopian.exists_collar}, \lean{HPC.Hagopian.collarCoord}, \lean{HPC.Hagopian.flipC}.\\
+Definition~\ref{def:pass} & \lean{HPC.Hagopian.IsPass}, \lean{HPC.Hagopian.PassMon}, \lean{HPC.Hagopian.PassAbove}, \lean{HPC.Hagopian.PassBelow}.\\
+Lemma~\ref{lem:passes} & \lean{HPC.Hagopian.IsPass.disjoint}, \lean{HPC.Hagopian.IsPass.finite}, \lean{HPC.Hagopian.exists_first_pass}, \lean{HPC.Hagopian.isPass_base}, \lean{HPC.Hagopian.IsPass.above_or_below}, \lean{HPC.Hagopian.IsPass.mono}.\\
+Lemma~\ref{lem:shadow} & \lean{HPC.Hagopian.shadow_pass}.\\
+Corollary~\ref{cor:scales} & \lean{HPC.Hagopian.flow_box}, \lean{HPC.Hagopian.FBProp}, \lean{HPC.Hagopian.PassThin}, \lean{HPC.Hagopian.scale_two}, \lean{HPC.Hagopian.exists_late_thin_pass}.\\
+Lemma~\ref{lem:region} & \lean{HPC.Hagopian.rect_domain_aux}, \lean{HPC.Hagopian.rect_domain_low}, \lean{HPC.Hagopian.seg_subset_rect_domain}, \lean{HPC.Hagopian.rect_domain_crosscut}, \lean{HPC.Hagopian.thinPass_arc}.\\
+Lemma~\ref{lem:R1R2} & \lean{HPC.Hagopian.region_pass}, \lean{HPC.Hagopian.region_cross}.\\
+Theorem~\ref{thm:trap} & \lean{HPC.Hagopian.region_lemmaA}, \lean{HPC.Hagopian.two_sides}, \lean{HPC.Hagopian.trap_jordan}, \lean{HPC.Hagopian.trap_pass}; the Jordan curve theorem is \lean{HPC.Jones.jordan_curve_theorem}.\\
+Theorem~\ref{thm:noarc} & \lean{HPC.Hagopian.jones75_final_aux}, \lean{HPC.Hagopian.jones75_contra}, \lean{HPC.Hagopian.NoArcIndecHomPlane}, \lean{HPC.Hagopian.jones75_noArc}.\\
+Lemma~\ref{lem:monotone-image} & \lean{HPC.Hagopian.indecomposable_of_monotone_image}.\\
+Theorem~\ref{thm:HI} & \lean{HPC.Hagopian.exists_plane_quotient_of_monotone}, \lean{HPC.Hagopian.hagopian76_theorem1_of_jones}, \lean{HPC.Hagopian.hagopian76_theorem1_jones}, \lean{HPC.Hagopian.Hagopian76Thm1}, \lean{HPC.Hagopian.hagopian76_theorem1}.\\
+Corollary~\ref{cor:bing60} & \lean{HPC.Hagopian.bing60_plane_uncond}, \lean{HPC.Hagopian.hagopian76_theorem2_uncond}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:span}}}\\
+Theorem~\ref{thm:theoremC} & \lean{HPC.Span.TheoremC}, \lean{HPC.Span.theoremC}.\\
+Definition~\ref{def:span} & \lean{HPC.Span.OffDiag}, \lean{HPC.Span.SurjSpanPos}, \lean{HPC.Span.SurjSemiSpanPos}, \lean{HPC.Span.SpanZero}, \lean{HPC.Span.SemiSpanZero}, \lean{HPC.Span.HOSpanZero}.\\
+Proposition~\ref{prop:span-basic} & \lean{HPC.Span.otSemiSpanPos_iff}, \lean{HPC.Span.otSpanPos_iff}, \lean{HPC.Span.SurjSpanPos.image}, \lean{HPC.Span.SurjSemiSpanPos.image}, \lean{HPC.Span.semiSpanZero_iff_hoSpanZero}, \lean{HPC.Span.hoSpanZero_iff_maps}.\\
+Theorem~\ref{thm:cook} & \lean{HPC.Span.nested_of_hi}, \lean{HPC.Span.cook67_theorem4}.\\
+Lemma~\ref{lem:brouwer} & \lean{HPC.Span.isContinuum_sInter_chain}, \lean{HPC.Span.brouwer_reduction}.\\
+Theorem~\ref{thm:davis} & \lean{HPC.Span.exists_surjSpanPos_of_surjSemiSpanPos}, \lean{HPC.Span.semiSpanZero_of_spanZero}.\\
+Text of ``Theorem 3.6 from Corollary 3.5'' & \lean{HPC.Span.OTCor35}.\\
+Lemma~\ref{lem:dense-proper} & \lean{HPC.Span.union_proper_of_indec}, \lean{HPC.Span.exists_dense_proper_subcontinuum}.\\
+Theorem~\ref{thm:ot36} & \lean{HPC.Span.exists_reduced_witness}, \lean{HPC.Span.not_surjSemiSpanPos_univ}.\\
+Corollary~\ref{cor:C-from-35} & \lean{HPC.Span.ot82_theorem36_of_cor35}, \lean{HPC.Span.theoremC_of_cor35}.\\
+Definition~\ref{def:otthm32} & \lean{HPC.Span.OTThm32}.\\
+Lemma~\ref{lem:reembed} & \lean{HPC.Span.exists_homeomorph_unique_leftmost}, \lean{HPC.Span.exists_homeomorph_ball_step}, \lean{HPC.Span.exists_homeomorph_push}, \lean{HPC.Span.isConnected_rightHalf_diff}.\\
+Lemma~\ref{lem:crossing} & \lean{HPC.Span.exists_crossing_subcontinuum}, \lean{HPC.Span.exists_uncountable_crossing}.\\
+Theorem~\ref{thm:ot35} & \lean{HPC.Span.cor35_core}, \lean{HPC.Span.ot82_cor35_of_thm32}, \lean{HPC.Span.theoremC_of_thm32}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:strips}}}\\
+Chapter introduction & \lean{HPC.Plane.parity}, \lean{HPC.Plane.polygonOf}.\\
+Lemma~\ref{lem:parity-tools} & \lean{HPC.Span.parity_eq_zero_of_not_mem_convex}, \lean{HPC.Span.parity_eq_of_perturb}, \lean{HPC.Span.parity_flip_vertical_edge}.\\
+Lemma~\ref{lem:common-zero} & \lean{HPC.Span.common_zero_rect}, using \lean{HPC.Moore.exists_log_of_convex}.\\
+Text of ``The strip lemma'' & \lean{HPC.Span.plPath}, \lean{HPC.Span.plPath_piece}, \lean{HPC.Span.stripPoly}.\\
+Lemma~\ref{lem:strip-basic} & \lean{HPC.Span.parity_strip_eventually}.\\
+Text of ``The strip lemma'' & \lean{HPC.Span.StripInner}, \lean{HPC.Span.stripSign}.\\
+Theorem~\ref{thm:strip-lemma} & \lean{HPC.Span.strip_lemma}.\\
+Proposition~\ref{prop:ordered} & \lean{HPC.Span.crossing_traces_separated}.\\
+Theorem~\ref{thm:ot32} & \lean{HPC.Span.exists_not_countable_of_cover}, \lean{HPC.Span.exists_between_three}, \lean{HPC.Span.ot82_theorem32}.\\
+Text of ``Proof of the strip theorem'' & \lean{HPC.Span.theoremC}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:snake}}}\\
+Definition~\ref{def:plgraph} & \lean{HPC.HO16.IsPLGraph}, \lean{HPC.HO16.SeparatesIn}, \lean{HPC.HO16.IsFanAt}.\\
+Text of ``Statements'' & \lean{HPC.HO16.IsPLGraph.isCompact}, \lean{HPC.HO16.IsPLGraph.exists_fan}, \lean{HPC.HO16.separatesIn_of_closed}.\\
+Theorem~\ref{thm:ho20} & The statement is the proposition \lean{HPC.HO16.HOThm20}; it is proved as \lean{HPC.HO16.ho16_theorem20} (Chapter~\ref{ch:ladders}).\\
+Theorem~\ref{thm:ho1} & \lean{HPC.HO16.ho16_theorem1_plane}, which takes Theorem~\ref{thm:ho20} as a hypothesis \lean{h20 : HOThm20}; span zero is \lean{HPC.Span.HOSpanZero} (Definition~\ref{def:span}).\\
+Theorem~\ref{thm:indec-pseudoarc} & \lean{HPC.HO16.isPseudoArc_of_indec_homogeneous} and \lean{HPC.HO16.homeomorph_pseudoArc_of_indec_homogeneous} (with \lean{h20} as hypothesis); unconditionally \lean{HPC.HO16.ho16_indec_homogeneous_pseudoArc}; the converse \lean{HPC.HO16.ho16_pseudoArc_indec_homogeneous}; both directions \lean{HPC.HO16.ho16_indec_homogeneous_iff}. Non-vacuity of the hypotheses: \lean{HPC.HO16.exists_indec_homogeneous_plane}.\\
+Remark~\ref{rem:ho1-point} & \lean{HPC.HO16.ho16_theorem1_printed_false}, \lean{HPC.HO16.ho16_theorem1prime_printed_false}.\\
+Theorem~\ref{thm:ho4} & \lean{HPC.HO16.ho16_theorem4}; Step~1 is \lean{HPC.HO16.thm4_continuum_of_not_separates}, Steps~2--4 \lean{HPC.HO16.thm4_limit_contra}, using \lean{HPC.HO16.subset_of_tendsto_of_eventually} for limits of compacta.\\
+Lemma~\ref{lem:hi-interior} & \lean{HPC.HO16.interior_eq_empty_of_hi}.\\
+Lemma~\ref{lem:grid} & \lean{HPC.HO16.exists_plGraph_approx}, with \lean{HPC.HO16.radProj}, \lean{HPC.HO16.rectGauge}, \lean{HPC.HO16.radProj_of_onBdry}, \lean{HPC.HO16.radProj_mem}, \lean{HPC.HO16.gridEdge_inter_subset} (in \lean{HPC/HO16/Grid.lean}).\\
+Lemma~\ref{lem:path-approx} & \lean{HPC.HO16.exists_path_approx}, with \lean{HPC.HO16.exists_chain_through}.\\
+Text of ``The proof of Theorem 1 from Theorem 20'' & \lean{HPC.HO16.ho16_theorem1_plane}; the $\varepsilon$-map criterion is \lean{HPC.Plane.isSnakeLike_univ_of_epsMap}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:folds}}}\\
+Lemma~\ref{lem:km} & \lean{HPC.HO16.km77_lemma2}, with \lean{HPC.HO16.isClosed_biUnion_connectedComponentIn} for Step~2.\\
+Theorem~\ref{thm:ho8-core} & \lean{HPC.HO16.ho16_theorem8_core}, with \lean{HPC.HO16.exists_center_fun}, \lean{HPC.HO16.continuousOn_center_comp}, \lean{HPC.HO16.continuous_correction} and \lean{HPC.HO16.exists_open_nbhd_side}.\\
+Proposition~\ref{prop:pl-library} & \lean{HPC.HO16.isPLGraph_biUnion}, \lean{HPC.HO16.IsPLGraph.union}, \lean{HPC.HO16.IsPLGraph.exists_refinement}, \lean{HPC.HO16.IsPLGraph.closure_diff}, \lean{HPC.HO16.IsPLGraph.relFrontier_finite}, \lean{HPC.HO16.IsPLGraph.connectedComponentIn}, \lean{HPC.HO16.IsPLGraph.finite_components}, \lean{HPC.HO16.IsPLGraph.image_fst}, \lean{HPC.HO16.Subdiv.exists_common_subdivision}; the relative frontier is \lean{HPC.HO16.relFrontier}.\\
+Definition~\ref{def:fold} & \lean{HPC.HO16.IsFoldTriple}, \lean{HPC.HO16.IsSimpleFoldOf}.\\
+Theorem~\ref{thm:fold-exists} & \lean{HPC.HO16.exists_simpleFold}, with the lifted graphs \lean{HPC.HO16.liftG} and the midpoint subdivision \lean{HPC.HO16.exists_midpoint_subdivision}.\\
+Lemma~\ref{lem:ho6} & \lean{HPC.HO16.ho16_lemma6}; Hoehn and Oversteegen leave the proof to the reader.\\
+Theorem~\ref{thm:ho8} & \lean{HPC.HO16.ho16_theorem8}, with \lean{HPC.HO16.continuousOn_invFunOn_fst} for $\psi_i$.\\
+Proposition~\ref{prop:ho7} & \lean{HPC.HO16.ho16_prop7}, with \lean{HPC.HO16.exists_comp_meets_both}, \lean{HPC.HO16.image_comp_eq}, \lean{HPC.HO16.lift_subset_of_meets_both}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:stairwells}}}\\
+Definition~\ref{def:sides} & \lean{HPC.HO16.HasConsCompl}, \lean{HPC.HO16.sideOf}.\\
+Text of ``Sides'' & \lean{HPC.HO16.IsPLGraph.finite_components_diff}, \lean{HPC.HO16.IsPLGraph.comp_diff_mem_nhdsWithin}, \lean{HPC.HO16.IsPLGraph.closure_comp_diff}, \lean{HPC.HO16.IsPLGraph.relFrontier_comp_diff}.\\
+Proposition~\ref{prop:sides-char} & \lean{HPC.HO16.ho16_obs9_emptyB}, \lean{HPC.HO16.ho16_obs9_nhds}, \lean{HPC.HO16.ho16_obs9_char}, \lean{HPC.HO16.ho16_obs9_unique}; the common core is \lean{HPC.HO16.IsPLGraph.sideOf_char_aux}.\\
+Proposition~\ref{prop:ho10} & \lean{HPC.HO16.ho16_prop10}.\\
+Proposition~\ref{prop:ho11} & \lean{HPC.HO16.ho16_prop11}, \lean{HPC.HO16.ho16_prop11_frontier}, \lean{HPC.HO16.ho16_prop11_remark}.\\
+Definition~\ref{def:straight} & \lean{HPC.HO16.IsOrdinaryPt}, \lean{HPC.HO16.IsGeneric}, \lean{HPC.HO16.IsStraight}, \lean{HPC.HO16.endSet}.\\
+Text of ``Straight sets and stairwell structures'' & \lean{HPC.HO16.isOrdinaryPt_iff_order}, \lean{HPC.HO16.IsPLGraph.finite_not_ordinary}, \lean{HPC.HO16.ho16_obs12}.\\
+Definition~\ref{def:stairwell} & \lean{HPC.HO16.IsStairwellStr} (with the sets $\alpha_i$ as one sequence, so that $\beta_i=\alpha_{i+1}$ holds by construction) and its existential form \lean{HPC.HO16.HasStairwell}.\\
+Proposition~\ref{prop:stair-remarks} & \lean{HPC.HO16.ho16_obs13_comp}, \lean{HPC.HO16.ho16_height_one}, \lean{HPC.HO16.ho16_claim14_1}, \lean{HPC.HO16.ho16_odd_image}, \lean{HPC.HO16.ho16_p193_remark_false}.\\
+Definition~\ref{def:broken} & \lean{HPC.HO16.IsBrokenStairwellStr}; the restriction to a component is \lean{HPC.HO16.ho16_obs16_comp}.\\
+Proposition~\ref{prop:ho17} & \lean{HPC.HO16.ho16_prop17}, \lean{HPC.HO16.ho16_prop17_exists}. The hypothesis $k\ge3$ is not printed; for $k\le2$ the conclusion has height $\le0$.\\
+Proposition~\ref{prop:rem17} & \lean{HPC.HO16.ho16_rem17_gamma}, \lean{HPC.HO16.ho16_rem17_P1}.\\
+Lemma~\ref{lem:ho18} & \lean{HPC.HO16.ho16_lemma18}, with the preimage \lean{HPC.HO16.foldPre} and $\varphi^\star$ as \lean{HPC.HO16.phiStar}; PL-graph facts for preimages: \lean{HPC.HO16.IsPLGraph.inter_preimage_fst}, \lean{HPC.HO16.isPLGraph_union_finite}.\\
+Proposition~\ref{prop:ho19} & \lean{HPC.HO16.ho16_prop19}, whose statement is the proposition \lean{HPC.HO16.HOProp19}; for the full (possibly disconnected) fold, \lean{HPC.HO16.ho16_prop19_full}.\\
+Text of ``Proposition 19: unwinding one turn'' & The checks are spread over \lean{HPC/HO16/Prop19A.lean} to \lean{HPC/HO16/Prop19D.lean}; the fold is \lean{HPC.HO16.ho16_prop19_fold}; the sheets are \lean{HPC.HO16.p19T}, with a companion definition for the end sets in \lean{HPC/HO16/P19Defs.lean}; ordinary points of folds: \lean{HPC.HO16.IsSimpleFoldOf.isOrdinaryPt_iff}.\\
+Remark~\ref{rem:p208} & \lean{HPC.HO16.ho16_p208_false}.\\
+Theorem~\ref{thm:ho15} & The statement is the proposition \lean{HPC.HO16.HOThm15}; it is proved as \lean{HPC.HO16.ho16_theorem15} (Chapter~\ref{ch:ladders}).\\
+Theorem~\ref{thm:lift-stairwell} & \lean{HPC.HO16.ho16_lift_stairwell}, with the induction in \lean{HPC.HO16.ho16_lift_aux}.\\
+Theorem~\ref{thm:20-from-15} & \lean{HPC.HO16.ho16_theorem20_of_thm15}; with Theorem~15 as the only hypothesis, the classification step is \lean{HPC.HO16.homeomorph_pseudoArc_of_indec_homogeneous_of_thm15}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:ladders}}}\\
+Definition~\ref{def:ladder} & \lean{HPC.HO16.IsLadder}, \lean{HPC.HO16.ladderY}, \lean{HPC.HO16.ladderHeight} (in \lean{HPC/HO16/LadderDefs.lean}).\\
+Text of ``Ladders'' & \lean{HPC.HO16.ladderPiece}, \lean{HPC.HO16.ladderSheet}; the zig-zag parameters are \lean{HPC.HO16.zzL}, \lean{HPC.HO16.zzR} and the lines \lean{HPC.HO16.zzLine}.\\
+Example~\ref{ex:ladder} & \lean{HPC.HO16.ladder_example}, \lean{HPC.HO16.ladder_example_height}, \lean{HPC.HO16.ladder_example_stairwell}.\\
+Theorem~\ref{thm:ladder-stairwell} & \lean{HPC.HO16.ho16_stairwell_of_ladder}, with $\alpha$ given by \lean{HPC.HO16.ladderAlphaSet}; the parity argument for (S4) is \lean{HPC.HO16.ladder_S4}.\\
+Lemma~\ref{lem:sign-fn} & \lean{HPC.HO16.exists_sign_fn}.\\
+Theorem~\ref{thm:exists-ladder} & \lean{HPC.HO16.exists_ladder} (in \lean{HPC/HO16/LadderSep.lean}, \lean{HPC/HO16/LadderSubdiv.lean}, \lean{HPC/HO16/LadderSign.lean}, \lean{HPC/HO16/LadderExists.lean}). Connectedness of $G$ is used only for $G\neq\emptyset$.\\
+Text of ``The end of the proof'' & \lean{HPC.HO16.ho16_theorem15}.\\
+Corollary~\ref{cor:final} & \lean{HPC.HO16.ho16_theorem20}, \lean{HPC.HO16.ho16_indec_homogeneous_pseudoArc}, \lean{HPC.HO16.ho16_indec_homogeneous_iff}.\\[4pt]
+\end{longtable}

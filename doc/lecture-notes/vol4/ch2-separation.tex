@@ -1,0 +1,378 @@
+%======================================================================
+\chapter{Separation by logarithms; Janiszewski and Borsuk}\label{ch:sep}
+%======================================================================
+
+This chapter relates the separation properties of a plane set $K$ to logarithms on $K$. The two
+basic facts are: if $y$ lies in the component of $x$ in $\R^2\setminus K$, then
+$(z-x)/(z-y)$ has a logarithm on $K$ (Theorem~\ref{thm:log-same-comp}); if the component of $x$ is
+bounded and does not contain $y$, it has none (Theorem~\ref{thm:nolog-bounded}). From them follow
+Janiszewski's theorem (Theorem~\ref{thm:janiszewski}), Borsuk's theorem in the direction ``a compact
+set with connected complement carries logarithms of all nonvanishing functions''
+(Theorem~\ref{thm:borsuk}), and the topological invariance of plane separation
+(Theorem~\ref{thm:sep-invariant}). None of these uses the Jordan curve theorem.
+
+\section{Complementary components}
+
+\begin{definition}\label{def:separates}
+Let $A\subseteq\R^2$. For $x\notin A$ write $\comp Ax$ for the component of $x$ in $\R^2\setminus A$.
+\begin{itemize}
+\item $A$ \emph{separates the plane} if $\R^2\setminus A$ is not connected.
+\item $A$ \emph{separates $x$ from $y$} if $x,y\notin A$ and $y\notin\comp Ax$.
+\end{itemize}
+\end{definition}
+
+\formal{\lean{HPC.Plane.SeparatesPlane}, \lean{HPC.Plane.SeparatesPts} (\lean{connectedComponentIn}
+for $\comp Ax$).}
+
+If $A$ is closed, the components of $\R^2\setminus A$ are open (Lemma~\ref{lem:frontier-component}),
+and an open connected subset of $\R^2$ is path-connected (the points joined to a given point by a
+path inside the set form a clopen subset of it, since balls are convex). Separation is monotone in
+the following sense: if $A\subseteq A'$, $x,y\notin A'$ and $A$ separates $x$ from $y$, then so does
+$A'$ (since $\comp{A'}x\subseteq\comp Ax$).
+
+\formal{\lean{IsOpen.isConnected_iff_isPathConnected} (Mathlib); \lean{HPC.Plane.separatesPts_mono}.}
+
+\begin{lemma}\label{lem:compl-square}
+For every $c\in\R^2$ and $R\ge0$ the complement of the closed ball $\bar B(c,R)$ (a closed square) is
+connected and unbounded.
+\end{lemma}
+
+\begin{proof}
+It is the union of the four open half-planes $\set{z_1>c_1+R}$, $\set{z_1<c_1-R}$,
+$\set{z_2>c_2+R}$, $\set{z_2<c_2-R}$; each is convex, and each meets the next two (e.g.\ the first
+and the third meet near $(c_1+R+1,c_2+R+1)$). So the union is connected; it is clearly unbounded.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isConnected_compl_closedBall_pt},
+\lean{HPC.Plane.isPreconnected_compl_closedBall}.}
+
+\begin{lemma}\label{lem:unbounded-comp}
+Let $K\subseteq\R^2$ be compact.
+\begin{enumerate}[label=(\alph*)]
+\item The complement of $K$ has at most one unbounded component; it contains the complement of
+every closed ball $\bar B(0,R)\supseteq K$.
+\item If $K$ separates the plane, some point $p\notin K$ has a bounded component $\comp Kp$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Let $\bar B(0,R)\supseteq K$. The connected set $\R^2\setminus\bar B(0,R)$ misses $K$, so it lies
+in a single component $C_\infty$. An unbounded component is not contained in $\bar B(0,R)$, so it
+meets $\R^2\setminus\bar B(0,R)\subseteq C_\infty$ and equals $C_\infty$.
+(b) $\R^2\setminus K$ is nonempty. If all its components were unbounded they would all equal
+$C_\infty$ by (a), and $\R^2\setminus K$ would be connected.
+\end{proof}
+
+\formal{(a) \lean{HPC.Moore.mem_component_of_unbounded}; (b)
+\lean{HPC.Plane.exists_bounded_component_of_separates}.}
+
+\section{The two basic theorems}
+
+We write the elements of $\R^2$ as complex numbers (Section~\ref{sec:intro-conv}); so $z-x$ is a
+complex number and $\abs{z-x}$ its modulus.
+
+\begin{theorem}[Same component $\Rightarrow$ logarithm]\label{thm:log-same-comp}
+Let $K\subseteq\R^2$ be closed, $x\notin K$ and $y\in\comp Kx$. Then $z\mapsto\frac{z-x}{z-y}$ has
+a logarithm on $K$.
+\end{theorem}
+
+\begin{proof}
+$\comp Kx$ is open and connected, hence path-connected; let $\gamma\colon[0,1]\to\comp Kx$ be a path
+from $y$ to $x$. The function $H(t,z)=\frac{z-\gamma(t)}{z-y}$ is continuous on $[0,1]\times K$ and
+never zero ($\gamma(t)\notin K$ and $y\notin K$), and $H(0,z)=1$. By
+Corollary~\ref{cor:log-exist}(c), $z\mapsto H(1,z)=\frac{z-x}{z-y}$ has a logarithm on $K$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.exists_log_of_mem_component}.}
+
+The next theorem is the converse direction, in a form with powers and an extra factor that is
+needed for the invariance theorem.
+
+\begin{theorem}[Bounded component $\Rightarrow$ no logarithm]\label{thm:nolog-bounded}
+Let $K\subseteq\R^2$ be compact, $x\notin K$, and suppose $U=\comp Kx$ is bounded. Let $a\neq0$ be an
+integer and $u$ a function continuous and nowhere zero on $\cl U$. Then
+$z\mapsto(z-x)^a\,u(z)$ has no logarithm on $K$.
+\end{theorem}
+
+\begin{proof}
+Suppose $g$ is one. By Tietze's extension theorem $g$ extends to a continuous $G\colon\R^2\to\C$.
+The frontier of $U$ lies in $K$ (Lemma~\ref{lem:frontier-component}). Define
+\[
+\Psi(z)=\begin{cases} e^{G(z)}/u(z), & z\in U,\\ (z-x)^a, & z\notin U.\end{cases}
+\]
+The first formula is continuous on $\cl U$, the second on $\R^2\setminus U$ (which is closed and
+does not contain $x\in U$), and they agree on $\cl U\setminus U=\operatorname{fr}U\subseteq K$, where
+$e^{G}=e^{g}=(z-x)^au$. Hence $\Psi$ is continuous on $\R^2$; it vanishes nowhere. By
+Corollary~\ref{cor:log-exist}(a) it has a logarithm $L$ on $\R^2$.
+
+Choose $R_0$ with $U\subseteq\bar B(x,R_0)$, put $R=2\abs{R_0}+2$, and consider the euclidean circle
+$c(t)=x+Re^{it}$, $t\in[0,2\pi]$. Its points have $\nrm{c(t)-x}\ge R/2>R_0$ (since $\abs w\le2\nrm
+w$), so $c(t)\notin U$ and $\Psi(c(t))=(Re^{it})^a=e^{a(\ln R+it)}$. The functions $t\mapsto L(c(t))$
+and $t\mapsto a(\ln R+it)$ are continuous on $[0,2\pi]$ with the same exponential, so by
+Lemma~\ref{lem:log-unique} their difference is constant. Since $c(0)=c(2\pi)$, comparing $t=0$ and
+$t=2\pi$ gives $2\pi i a=0$, a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Moore.no_log_pow_of_bounded_component}.}
+
+\begin{corollary}\label{cor:nolog-bounded}
+Let $K$ be compact, $y\notin K$, and suppose $\comp Kx$ is bounded and does not contain $y$. Then
+$\frac{z-x}{z-y}$ has no logarithm on $K$. If $K$ separates the plane, there is $p\notin K$ such that
+$z-p$ has no logarithm on $K$.
+\end{corollary}
+
+\begin{proof}
+($x\notin K$, for otherwise the function vanishes at $x\in K$.) The closure of $U=\comp Kx$ lies in
+$U\cup K$, which does not contain $y$; so $u(z)=1/(z-y)$ is continuous and nonzero on $\cl U$, and
+Theorem~\ref{thm:nolog-bounded} with $a=1$ applies. For the second statement take $p$ from
+Lemma~\ref{lem:unbounded-comp}(b), $a=1$ and $u=1$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.no_log_of_bounded_component} (proved directly, by the same argument).}
+
+\section{Janiszewski's theorem}
+
+\begin{theorem}[Janiszewski]\label{thm:janiszewski}
+Let $A,B\subseteq\R^2$ be compact with $A\cap B$ connected or empty. If neither $A$ nor $B$
+separates $x$ from $y$, then $A\cup B$ does not separate $x$ from $y$.
+\end{theorem}
+
+\begin{proof}
+Suppose $A\cup B$ separates $x$ from $y$; then $x,y\notin A\cup B$. As $A$ does not separate them,
+$y\in\comp Ax$, and by Theorem~\ref{thm:log-same-comp} there is a logarithm $g_A$ of
+$f(z)=\frac{z-x}{z-y}$ on $A$; likewise $g_B$ on $B$. On $A\cap B$ both are logarithms of $f$, so
+if $A\cap B$ is connected, $g_A-g_B$ is a constant $c$ there (Lemma~\ref{lem:log-unique}), with
+$e^c=1$; if $A\cap B=\emptyset$ put $c=0$. Define $g=g_A$ on $A$ and $g=g_B+c$ on $B\setminus A$.
+The two formulas agree on $A\cap B$, and $A,B$ are closed, so $g$ is continuous on $A\cup B$; it is a
+logarithm of $f$ there.
+
+If $\comp{A\cup B}x$ is bounded, Corollary~\ref{cor:nolog-bounded} (with $K=A\cup B$; it does not
+contain $y$) forbids $g$. If $\comp{A\cup B}y$ is bounded, the same corollary with $x$ and $y$
+exchanged forbids the logarithm $-g$ of $\frac{z-y}{z-x}$. If both are unbounded they coincide by
+Lemma~\ref{lem:unbounded-comp}(a), contradicting the assumption that $A\cup B$ separates $x$ from
+$y$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.janiszewski_compact}.}
+
+A \emph{polygonal set} is a finite union of closed segments (degenerate segments, that is points,
+are allowed); polygonal sets are compact.
+
+\begin{corollary}[Janiszewski for polygonal sets]\label{cor:janiszewski-poly}
+Theorem~\ref{thm:janiszewski} holds for polygonal sets $A$, $B$.
+\end{corollary}
+
+\formal{\lean{HPC.Plane.janiszewski_polygonal_of_compact}. The formal development also contains an
+independent combinatorial proof, \lean{HPC.Plane.janiszewski_polygonal}, by mod-2 cycles of
+straight-line graphs; see Remark~\ref{rem:jan-cycles}.}
+
+\begin{remark}
+Theorem~\ref{thm:janiszewski} fails for closed sets that are not compact: the two half-lines
+$[0,\infty)\times\set0$ and $(-\infty,0]\times\set0$ meet in one point, neither separates $(0,1)$
+from $(0,-1)$, and their union, the $x$-axis, does. (\lean{HPC.Plane.janiszewski_closed_false}.)
+\end{remark}
+
+\section{Borsuk's theorem}
+
+The following theorem is the half of Borsuk's characterization of plane separation used later.
+
+\begin{theorem}[Borsuk]\label{thm:borsuk}
+Let $K\subseteq\R^2$ be compact with $\R^2\setminus K$ connected. Every function $f$ continuous and
+nowhere zero on $K$ has a logarithm on $K$.
+\end{theorem}
+
+The idea: approximate $f$ by a smooth map $\Phi$ whose zeros are finitely many nondegenerate points
+outside $K$; divide out the zeros one at a time; each factor $z-z_0$ (or its conjugate) has a
+logarithm on $K$ because $z_0$ can be joined to infinity in $\R^2\setminus K$.
+
+\begin{definition}\label{def:good-zero}
+Write $\sigma_+(w)=w$ and $\sigma_-(w)=\cl w$. A \emph{good zero} of a function $\Phi\colon\R^2\to\C$
+is a point $z_0$ for which there are $r>0$, a sign $s\in\set{+,-}$, $\gamma\in\C$ and $0\le\rho<\abs\gamma$
+with
+\[
+\abs{\Phi(z)-\gamma\,\sigma_s(z-z_0)}\le\rho\abs{z-z_0}\qquad\text{whenever } d(z,z_0)<r.
+\]
+\end{definition}
+
+\formal{\lean{HPC.Moore.IsGoodZero}, \lean{HPC.Moore.sgnConj}.}
+
+Taking $z=z_0$ shows $\Phi(z_0)=0$.
+
+\begin{lemma}\label{lem:good-zero}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item A good zero is isolated: $\Phi$ has no other zero in $B(z_0,r)$.
+\item If $G\colon\R^2\to\R^2$ is differentiable at $z_0$ with $G(z_0)=c$ and $\det DG(z_0)\neq0$,
+then $z_0$ is a good zero of $\Phi(z)=G(z)-c$ (as a complex number).
+\item If $z_0$ is a good zero of $\Phi$, $m$ is continuous at $z_0$ with $m(z_0)\neq0$ and
+$\Psi=\Phi m$ near $z_0$, then $z_0$ is a good zero of $\Psi$.
+\item A continuous function whose zeros in a compact set $B$ are all good has finitely many zeros
+in $B$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) If $\Phi(z)=0$ with $0<d(z,z_0)<r$, then $\abs\gamma\abs{z-z_0}\le\rho\abs{z-z_0}$, so
+$\abs\gamma\le\rho$.
+
+(b) Write $A=DG(z_0)$. Every real-linear map of $\C$ has the form $Aw=\alpha w+\beta\cl w$, and
+$\det A=\abs\alpha^2-\abs\beta^2$ (a direct computation with the matrix of $A$). So
+$\abs\alpha\neq\abs\beta$. By differentiability, for every $\eta>0$ there is $r>0$ with
+$\abs{G(z)-c-A(z-z_0)}\le\eta\abs{z-z_0}$ for $d(z,z_0)<r$. If $\abs\alpha>\abs\beta$, take $s=+$,
+$\gamma=\alpha$ and $\eta=(\abs\alpha-\abs\beta)/4$: then
+$\abs{\Phi(z)-\alpha(z-z_0)}\le(\abs\beta+\eta)\abs{z-z_0}$ and $\rho=\abs\beta+\eta<\abs\alpha$. If
+$\abs\beta>\abs\alpha$, take $s=-$ and $\gamma=\beta$ symmetrically.
+
+(c) Let $m_0=m(z_0)$ and choose $\delta>0$ small (explicitly
+$\delta=(\abs\gamma-\rho)\abs{m_0}/2(\rho+\abs\gamma+1)$) and $r'>0$ so that for $d(z,z_0)<r'$ we
+have $d(z,z_0)<r$, $\abs{m(z)-m_0}<\delta$ and $\Psi(z)=\Phi(z)m(z)$. With $w=z-z_0$,
+\[
+\Psi(z)-\gamma m_0\sigma_s(w)=(\Phi(z)-\gamma\sigma_s(w))m(z)+\gamma\sigma_s(w)(m(z)-m_0),
+\]
+so $\abs{\Psi(z)-\gamma m_0\sigma_s(w)}\le\big(\rho(\abs{m_0}+\delta)+\abs\gamma\delta\big)\abs w$, and
+the choice of $\delta$ makes $\rho(\abs{m_0}+\delta)+\abs\gamma\delta<\abs{\gamma m_0}$.
+
+(d) Otherwise the zeros in $B$ form an infinite closed subset of the compact set $B$, which has an
+accumulation point; it is a zero, and by (a) not an accumulation point of zeros.
+\end{proof}
+
+\formal{(a) \lean{HPC.Moore.IsGoodZero.isolated}; (b) \lean{HPC.Moore.isGoodZero_of_hasFDerivAt};
+(c) \lean{HPC.Moore.IsGoodZero.mul}; (d) \lean{HPC.Moore.finite_zeros_of_goodZeros}.}
+
+\begin{lemma}[Removing a good zero]\label{lem:remove-zero}
+Let $\Phi$ be continuous, $z_0$ a good zero of $\Phi$ and $r>0$. There are a sign $s$ and a
+continuous $\Phi'$ with
+\begin{enumerate}[label=(\roman*)]
+\item $\Phi(z)=\Phi'(z)\,\sigma_s(z-z_0)$ whenever $d(z,z_0)\ge r$;
+\item $\Phi'(z)=0$ if and only if $z\neq z_0$ and $\Phi(z)=0$;
+\item every good zero $z\neq z_0$ of $\Phi$ is a good zero of $\Phi'$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Let $r_0,s,\gamma,\rho$ be as in Definition~\ref{def:good-zero}; $\gamma\neq0$. Put
+$r_1=\min(r,r_0/2)$, $\psi(z)=\min\big(1,d(z,z_0)/r_1\big)$ and, with $w=z-z_0$,
+\[
+F(z)=\gamma+\psi(z)\Big(\frac{\Phi(z)}{\sigma_s(w)}-\gamma\Big)\quad(z\neq z_0),\qquad
+\Phi'(z_0)=\gamma,\quad\Phi'(z)=F(z)\ (z\neq z_0).
+\]
+For $0<d(z,z_0)<r_0$ the good-zero estimate divided by $\abs w$ gives
+$\abs{\Phi(z)/\sigma_s(w)-\gamma}\le\rho$, hence $\abs{F(z)-\gamma}\le\psi(z)\rho\le\rho\, d(z,z_0)/r_1$.
+This shows that $\Phi'$ is continuous at $z_0$, and that $\Phi'$ has no zero with
+$d(z,z_0)<r_1$ (there $\abs{F-\gamma}\le\rho<\abs\gamma$); and $\Phi$ has none either for
+$0<d(z,z_0)<r_0$. For $d(z,z_0)\ge r_1$ we have $\psi=1$ and $F=\Phi/\sigma_s(w)$, which gives (i) and,
+together with the previous sentence, (ii). Away from $z_0$, $\Phi'$ is continuous as a composition.
+For (iii): a zero $z\neq z_0$ of $\Phi$ has $d(z,z_0)\ge r_0>r_1$, and near it
+$\Phi'=\Phi\cdot(1/\sigma_s(w))$; apply Lemma~\ref{lem:good-zero}(c).
+\end{proof}
+
+\formal{\lean{HPC.Moore.IsGoodZero.remove}.}
+
+\begin{lemma}\label{lem:log-factor}
+Let $K$ be compact with $\R^2\setminus K$ connected, $z_0\notin K$ and $s$ a sign. Then
+$\sigma_s(z-z_0)$ has a logarithm on $K$.
+\end{lemma}
+
+\begin{proof}
+Choose $R$ with $K\subseteq\bar B(0,R)$ and the far point $y=(\abs R+1,0)$; then $y\notin K$ and
+$\Re(y-z)>0$ for $z\in K$. Since $\R^2\setminus K$ is connected, $y\in\comp K{z_0}$, and
+Theorem~\ref{thm:log-same-comp} gives a logarithm $g_1$ of $\frac{z-z_0}{z-y}$ on $K$. Now
+$\Log(y-z)+i\pi$ is a logarithm of $z-y$ on $K$, so $g=g_1+\Log(y-z)+i\pi$ is a logarithm of $z-z_0$.
+For $s=-$ use $\cl g$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.exists_log_sgnConj}.}
+
+\begin{lemma}[Induction on the zeros]\label{lem:zeros-induction}
+Let $K$ be compact with $\R^2\setminus K$ connected, and $B\supseteq K$ convex. Let $\Phi\colon\R^2\to\C$
+be continuous, nowhere zero on $K$, with finitely many zeros in $B$, all of them good. Then $\Phi$
+has a logarithm on $K$.
+\end{lemma}
+
+\begin{proof}
+Induction on the number $n$ of zeros in $B$ (we may assume $K\neq\emptyset$). If $n=0$, $\Phi$ has a
+logarithm on $B$ by Corollary~\ref{cor:log-exist}(b), and we restrict it to $K$. If $n>0$, pick a
+zero $z_0\in B$; $z_0\notin K$, so $r=\dist(z_0,K)>0$. Lemma~\ref{lem:remove-zero} gives $s$ and
+$\Phi'$; by (ii) and (iii), $\Phi'$ has the $n-1$ zeros of $\Phi$ in $B$ other than $z_0$, all good,
+and none on $K$. By induction $\Phi'$ has a logarithm on $K$, and so has $\sigma_s(z-z_0)$
+(Lemma~\ref{lem:log-factor}). Every $z\in K$ has $d(z,z_0)\ge r$, so $\Phi=\Phi'\sigma_s(z-z_0)$ on $K$
+by (i), and the sum of the two logarithms is one of $\Phi$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.exists_log_of_goodZeros}.}
+
+Two standard theorems of analysis enter the proof of Theorem~\ref{thm:borsuk}; both are quoted.
+\begin{itemize}
+\item \emph{Stone--Weierstrass.} The real $C^1$ functions on $\R^2$ form an algebra of continuous
+functions containing the constants and separating points (the coordinate functions do); hence every
+continuous real function on a compact set $K$ is a uniform limit on $K$ of $C^1$ functions.
+\item \emph{Sard's theorem in equal dimensions.} If $G\colon\R^2\to\R^2$ is differentiable, the image
+of the set $\set{z:\det DG(z)=0}$ has Lebesgue measure zero. In particular every ball contains a
+\emph{regular value} $c$: a point such that $\det DG(z)\neq0$ whenever $G(z)=c$.
+\end{itemize}
+
+\formal{Mathlib's
+\lean{ContinuousMap.exists_mem_subalgebra_near_continuous_of_isCompact_of_separatesPoints} and
+\lean{MeasureTheory.addHaar_image_eq_zero_of_det_fderivWithin_eq_zero}; in the development
+\lean{HPC.Moore.exists_contDiff_near} and \lean{HPC.Moore.exists_small_regular_value}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:borsuk}]
+We may assume $K\neq\emptyset$. Let $m=\min_K\abs f>0$. Extend $f$ continuously to $\R^2$ (Tietze)
+and approximate its real and imaginary parts on $K$ by $C^1$ functions: there is a $C^1$ map
+$G\colon\R^2\to\R^2$ with $\abs{G(z)-f(z)}<m/4$ on $K$. Choose a regular value $c$ of $G$ with
+$\nrm c<m/8$, so $\abs c<m/4$, and put $\Phi(z)=G(z)-c$. On $K$,
+$\abs{\Phi-f}<m/2<\abs f$; in particular $\Phi$ has no zero on $K$. Every zero $z$ of $\Phi$ has
+$G(z)=c$, hence $\det DG(z)\neq0$, and is a good zero by Lemma~\ref{lem:good-zero}(b). Let $B$ be a
+closed ball containing $K$; it is convex and compact, so $\Phi$ has finitely many zeros in $B$
+(Lemma~\ref{lem:good-zero}(d)). By Lemma~\ref{lem:zeros-induction} $\Phi$ has a logarithm on $K$, and
+by Lemma~\ref{lem:log-near} so has $f$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.borsuk_exists_log}.}
+
+\section{Plane separation is a topological invariant}
+
+\begin{theorem}\label{thm:sep-invariant}
+Let $A,B\subseteq\R^2$ be compact and homeomorphic. If $A$ separates the plane, so does $B$.
+\end{theorem}
+
+\begin{proof}
+Let $\varphi\colon A\to B$ be a homeomorphism and, by Lemma~\ref{lem:unbounded-comp}(b), $x\notin A$
+with $\comp Ax$ bounded. The function $F(z)=\varphi^{-1}(z)-x$ is continuous and nowhere zero on $B$.
+If $B$ did not separate the plane, Theorem~\ref{thm:borsuk} would give a logarithm $g$ of $F$ on
+$B$, and then $g\circ\varphi$ would be a logarithm of $z-x$ on $A$, contradicting
+Theorem~\ref{thm:nolog-bounded} (with $a=1$, $u=1$).
+\end{proof}
+
+\formal{\lean{HPC.Jones.separatesPlane_of_homeomorph}.}
+
+\begin{remark}
+A weaker form of this invariance, proved without Borsuk's theorem, appears in
+Section~\ref{sec:weak-invariance}: if $K$ separates the plane and the continuum $K'$ is homeomorphic
+to $K$, some subcontinuum of $K'$ separates the plane. The formal development uses it in Hagopian's
+argument (Volume~6); Theorem~\ref{thm:sep-invariant} is used for Jones's decomposition (Volume~7).
+\end{remark}
+
+\section*{Exercises}
+
+\begin{exercise}
+Let $K$ be compact and $x,y\notin K$ in the same component of $\R^2\setminus K$. Show that the
+logarithm of $\frac{z-x}{z-y}$ given by Theorem~\ref{thm:log-same-comp} can be chosen to tend to
+$0$ as $x\to y$. (Use the homotopy along a short segment.)
+\end{exercise}
+
+\begin{exercise}[Mullikin]
+Let $M_1,M_2$ be continua with $M_1\cap M_2=K_1\cup K_2$ for disjoint nonempty closed sets
+$K_1,K_2$. Show that $M_1\cup M_2$ separates the plane. (Let $\varphi\colon M_2\to[0,1]$ be continuous,
+$0$ on $K_1$ and $1$ on $K_2$. Show that the function equal to $1$ on $M_1$ and to $e^{2\pi i\varphi}$
+on $M_2$ has no logarithm on $M_1\cup M_2$, using Lemma~\ref{lem:int-valued} on $M_1$ and on $M_2$;
+then apply Theorem~\ref{thm:borsuk}. This is \lean{HPC.Moore.not_isConnected_compl_union}. If
+moreover $K_1$, $K_2$ are connected and neither $M_1$ nor $M_2$ separates the plane, the complement
+has exactly two components: \lean{HPC.Moore.mullikin_theorem5}.)
+\end{exercise}
+
+\begin{exercise}
+Show that the hypothesis ``$\R^2\setminus K$ connected'' cannot be dropped from
+Theorem~\ref{thm:borsuk}: take for $K$ the unit circle and $f(z)=z$. Which step of the proof
+fails?
+\end{exercise}

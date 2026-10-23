@@ -1,0 +1,270 @@
+%======================================================================
+\chapter{Continua crossing an annulus}\label{ch:sectors}
+%======================================================================
+
+Whyburn's proof that the boundary of a complementary domain of a semi-locally connected plane continuum is
+locally connected (Chapter~\ref{ch:boundaries}) argues by contradiction: if the boundary is not locally
+connected, infinitely many disjoint pieces of it cross an annulus. Whyburn, following Moore (1922), then takes
+for granted two facts about such crossing continua: two of them cut the annulus into two pieces, and
+infinitely many of them can be arranged in a cyclic order, each one cut off from the others by its two
+neighbours. This chapter proves both facts, using only continuous logarithms (\vfour{Chapters~1--2}): neither
+the Jordan curve theorem nor Janiszewski's theorem is needed.
+
+The idea is to unroll the annulus. Polar coordinates map a strip onto the annulus; a crossing continuum that
+misses another crossing continuum lifts to a crossing set of the strip; in the strip, crossing sets are
+linearly ordered from left to right; and the order on the lifts gives the cyclic order.
+
+Throughout, the plane $\R^2$ carries the maximum metric $d(z,w)=\max(\abs{z_1-w_1},\abs{z_2-w_2})$, so that ``circles''
+are squares.
+
+\section{Crossing continua and the strip}
+
+\begin{definition}\label{def:annulus}
+Let $P\in\R^2$ and $0<r_1<r_2$.
+\begin{enumerate}[label=(\alph*)]
+\item The \emph{square annulus} is $\Ann=\Ann(P,r_1,r_2)=\set{z: r_1\le d(z,P)\le r_2}$. A continuum $K$ \emph{crosses} it if
+$K\subseteq\Ann$ and $K$ meets both squares $d(z,P)=r_1$ and $d(z,P)=r_2$.
+\item The \emph{strip} is $\Strip=\Strip(a,b)=\set{(x,y): a\le y\le b}$. A \emph{crossing set} of the strip is a continuum in $\Strip$
+meeting both edges $y=a$ and $y=b$.
+\item The \emph{covering map} $E\colon\Strip(r_1,r_2)\to\Ann$ is $E(\theta,y)=P+y\,(\cos\theta,\sin\theta)/\max(\abs{\cos\theta},\abs{\sin\theta})$. It is
+continuous and $2\pi$-periodic in $\theta$, $d(E(\theta,y),P)=y$, and $E(\theta,y)=E(\theta',y')$ if and only if $y=y'$ and $\theta'-\theta\in2\pi\Z$.
+\end{enumerate}
+\end{definition}
+
+\formal{\lean{HPC.Jones.Sector.Ann}, \lean{HPC.Jones.Sector.IsCrossA}, \lean{HPC.Jones.Sector.Strip},
+\lean{HPC.Jones.Sector.IsCross}, \lean{HPC.Jones.Sector.Ecov}, \lean{HPC.Jones.Sector.dist_Ecov}.}
+
+\begin{lemma}[Lifting]\label{lem:lift}
+Let $K$, $K'$ be disjoint continua crossing $\Ann$. Then $z\mapsto z-P$ has a logarithm on $K$, and $K$ has a \emph{lift}: a crossing set
+$L$ of $\Strip(r_1,r_2)$ mapped by $E$ injectively onto $K$, whose translates $L+(2\pi j,0)$, $j\in\Z$, are pairwise disjoint and have union
+$E^{-1}(K)$.
+\end{lemma}
+
+\begin{proof}
+The open square $d(z,P)<r_1$ and the outside of the square $d(z,P)=r_2$ are connected, miss $K$, and are joined by the connected set $K'$, which
+misses $K$ and meets both squares. So $P$ lies in the unbounded component of $\R^2\setminus K$. Take $y$ in that component so far away that $K$ lies in an open
+half-plane missing $y$. By \vfour{Theorem~2.4}, $(z-P)/(z-y)$ has a logarithm on $K$, and $z-y$ has one (a branch of the logarithm on a half-plane); their
+sum $g$ is a logarithm of $z-P$. Put $L=\set{(\Im g(z),\,d(z,P)) : z\in K}$, a continuous image of $K$, and translate it by a multiple of $2\pi$ if
+desired. The properties follow from those of $E$ and from the uniqueness of logarithms up to constants in $2\pi i\Z$ on connected sets
+(\vfour{Lemma~1.3}).
+\end{proof}
+
+\formal{\lean{HPC.Jones.Sector.exists_log_cross}, \lean{HPC.Jones.Sector.exists_lift} (the lift as
+\lean{HPC.Jones.Sector.IsLift}), \lean{HPC.Jones.Sector.exists_normalized_lift} (a lift whose leftmost points
+have first coordinate in $[0,2\pi)$).}
+
+\section{The two sides of a crossing set}
+
+Let $L$ be a crossing set of $\Strip=\Strip(a,b)$, $a<b$. A point of $\Strip$ is \emph{far right} (\emph{far left}) of $L$ if its first coordinate
+exceeds (is less than) that of every point of $L$. The far right points form a connected set missing $L$; so do the far left points.
+
+\begin{definition}\label{def:sides}
+The \emph{right side} $\Rc(L)$ is the component of $\Strip\setminus L$ containing the far right points, the \emph{left side} $\Lc(L)$ the component
+containing the far left points, and $\NR(L)=\Strip\setminus(L\cup\Rc(L))$ (the left side together with any pockets).
+\end{definition}
+
+\formal{\lean{HPC.Jones.Sector.Rc}, \lean{HPC.Jones.Sector.Lc}, \lean{HPC.Jones.Sector.NotR}, with
+\lean{HPC.Jones.Sector.SideOf}, \lean{HPC.Jones.Sector.FarR}, \lean{HPC.Jones.Sector.FarL}.}
+
+Small balls about a point of $\Strip\setminus L$, cut down to the strip, are connected and miss $L$; hence $\Rc(L)$, $\Lc(L)$ and $\NR(L)$ are open in
+$\Strip$, and a connected subset of $\Strip\setminus L$ meeting one of them lies in it. Each side \emph{reaches} $L$: its closure meets $L$ (otherwise it would
+be open and closed in the connected strip), so $\Rc(L)\cup L$ and $\Lc(L)\cup L$ are connected.
+
+\formal{\lean{HPC.Jones.Sector.sideOf_absorb}, \lean{HPC.Jones.Sector.sideOf_open_rel},
+\lean{HPC.Jones.Sector.GoodSide.exists_mem_closure}, \lean{HPC.Jones.Sector.GoodSide.union_isPreconnected}.}
+
+\begin{theorem}[Strip separation]\label{thm:strip-sep}
+Let $L$ be a crossing set of $\Strip(a,b)$, $a<b$. No compact connected subset of $\Strip\setminus L$ contains a point far left and a point far right of
+$L$. Consequently $\Lc(L)\cap\Rc(L)=\emptyset$.
+\end{theorem}
+
+\begin{proof}
+Let $\Gamma\subseteq\Strip\setminus L$ be compact and connected, containing $(\alpha,a)$ far left and $(\beta,a)$ far right of $L$. Let $p_0=(\theta_p,a)$ and $q_0=(\theta_q,b)$
+be points of $L$ on the two edges; then $\alpha<\theta_p,\theta_q<\beta$. Close $\Gamma$ into
+\[
+Y=\Gamma\cup\bigl(\set\alpha\times[a-1,a]\bigr)\cup\bigl([\alpha,\beta]\times\set{a-1}\bigr)\cup\bigl(\set\beta\times[a-1,a]\bigr),
+\]
+a compact connected set. Let $p=(\theta_p,a-\tfrac12)$ and $q=(\theta_q,b+1)$. The connected set consisting of the segment from $p$ to $p_0$, the set $L$, and the
+segment from $q_0$ to $q$ misses $Y$, so $p$ and $q$ lie in the same component of $\R^2\setminus Y$. By \vfour{Theorem~2.4}, $(z-p)/(z-q)$ has a logarithm on
+$Y$; and $z-q$ has one, as $Y$ lies below $q$. So $z-p$ has a logarithm on $Y$; let $h$ be its imaginary part, a continuous argument of $z-p$ on $Y$.
+
+The downward ray from $p$ meets $Y$ only in $m=(\theta_p,a-1)$, as $\Gamma$ lies in $y\ge a$. The set $Y\setminus\set m$ is connected: it is $\Gamma$ with the two
+vertical segments and the two parts of the bottom segment attached. On it $h$ never takes a value in $-\frac\pi2+2\pi\Z$, so it takes values in a single interval
+$(-\frac\pi2+2\pi k,\frac{3\pi}2+2\pi k)$. Approaching $m$ along the bottom segment from the left, $z-p$ points down and slightly left, so $h(z)\to\frac{3\pi}2+2\pi k$;
+from the right, $h(z)\to-\frac\pi2+2\pi k$. This contradicts the continuity of $h$ at $m$.
+
+For the consequence: if $w\in\Lc(L)\cap\Rc(L)$, the component of $w$ in $\Strip\setminus L$ contains far left and far right points of the edge $y=a$, and two points of
+a component of the relatively open set $\Strip\setminus L$ are joined by a path in it, whose image is compact and connected.
+\end{proof}
+
+\formal{\lean{HPC.Jones.Sector.no_cross_join}, \lean{HPC.Jones.Sector.exists_compact_join},
+\lean{HPC.Jones.Sector.lc_disjoint_rc}.}
+
+\section{The order of disjoint crossing sets}
+
+\begin{definition}\label{def:prec}
+For disjoint crossing sets $L$, $L'$ of $\Strip(a,b)$ write $L\prec L'$ if $L'\subseteq\Rc(L)$.
+\end{definition}
+
+\formal{\lean{HPC.Jones.Sector.Prec}.}
+
+\begin{proposition}\label{prop:prec}
+On pairwise disjoint crossing sets, $\prec$ is a strict linear order. Moreover:
+\begin{enumerate}[label=(\alph*)]
+\item if $L\prec L'$, then $\Rc(L')\subseteq\Rc(L)$ and $\NR(L)\subseteq\NR(L')$;
+\item if $L\prec L'$, then every point of $L'$ has a point of $L$ weakly to its left (first coordinate $\le$);
+\item if $c>0$ and $L$ is disjoint from its translate $L+c=L+(c,0)$, then $L\prec L+c$; and $L\prec L'$ if and only if $L+c\prec L'+c$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+A connected set missing $L$, such as $L'$, lies in $\Rc(L)$ or in $\NR(L)$.
+
+\emph{Totality.} If $L'\subseteq\NR(L)$, then $\Rc(L)\cup L$ is a connected subset of $\Strip\setminus L'$ containing points far right of both sets, so it lies in $\Rc(L')$; thus
+$L'\prec L$.
+
+\emph{Asymmetry.} Let $L'\subseteq\Rc(L)$ and $L\subseteq\Rc(L')$. By Theorem~\ref{thm:strip-sep}, $L'$ misses $\Lc(L)$, so $\Lc(L)\cup L$ is a connected subset of
+$\Strip\setminus L'$ containing far left points; it lies in $\Lc(L')$. Then $L\subseteq\Lc(L')\cap\Rc(L')=\emptyset$, which is absurd.
+
+(a) If $L\prec L'$, then $L\not\subseteq\Rc(L')$ by asymmetry, so $L$ misses $\Rc(L')$; then $\Rc(L')\cup L'$ is a connected subset of $\Strip\setminus L$ with far right points, so
+lies in $\Rc(L)$. The second inclusion follows. \emph{Transitivity:} if $L\prec L'\prec L''$, then $L''\subseteq\Rc(L')\subseteq\Rc(L)$.
+
+(b) A point of $L'$ strictly left of all of $L$ is far left of $L$, hence in $\Lc(L)$, which is disjoint from $\Rc(L)\supseteq L'$.
+
+(c) Translation by $c$ maps sides to sides, which gives the second statement. If $L+c\prec L$, apply (b) to a leftmost point $z$ of $L$: some point of $L+c$, whose first
+coordinate is at least $z_1+c$, would be weakly left of $z$. So $L\prec L+c$ by totality.
+\end{proof}
+
+\formal{\lean{HPC.Jones.Sector.prec_total}, \lean{HPC.Jones.Sector.prec_asymm},
+\lean{HPC.Jones.Sector.prec_trans}, \lean{HPC.Jones.Sector.prec_of_notR}, \lean{HPC.Jones.Sector.rc_mono},
+\lean{HPC.Jones.Sector.notR_mono}, \lean{HPC.Jones.Sector.prec_min}, \lean{HPC.Jones.Sector.prec_sh_self}.}
+
+\section{Sectors}
+
+Let $F$ be a family of pairwise disjoint crossing sets of $\Strip(a,b)$, closed under the translations by the multiples of some $T>0$, none equal to a proper translate of
+itself. By Proposition~\ref{prop:prec}(c) the translates $A+jT$ of a member $A$ increase with $j$. For $A\prec B$ in $F$ the \emph{sector} between them is
+\[
+\Sec(A,B)=\Rc(A)\cap\NR(B),
+\]
+an open subset of the strip.
+
+\formal{\lean{HPC.Jones.Sector.LiftFam}, \lean{HPC.Jones.Sector.Sec}, \lean{HPC.Jones.Sector.sec_open_rel},
+\lean{HPC.Jones.Sector.LiftFam.prec_shift_pos}.}
+
+\begin{proposition}\label{prop:sectors}
+Let $A,B,A',B',X\in F$.
+\begin{enumerate}[label=(\alph*)]
+\item If $A\prec X\prec B$, then $X\subseteq\Sec(A,B)$. If $X\preceq A$ or $B\preceq X$, then $X\cap\Sec(A,B)=\emptyset$.
+\item If $A\prec B$, then $\Sec(A,B)\ne\emptyset$.
+\item If $A\prec B\preceq A'\prec B'\preceq A+T$, then $\Sec(A,B)$ misses every translate $\Sec(A',B')+jT$.
+\item If $A\prec B\prec A+T$, every point of the strip off the translates of $A$ and $B$ lies in a translate of $\Sec(A,B)$ or of $\Sec(B,A+T)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) $X\subseteq\Rc(A)$, and $X\subseteq\NR(B)$ since $X\prec B$ (totality and asymmetry). If $X\preceq A$, then $X$ misses $\Rc(A)$; if $B\preceq X$, then $X$ is $B$ or lies in
+$\Rc(B)$, and misses $\NR(B)$.
+
+(b) A point $x\in A$ lies in the closure of $\Rc(A)$ (the side reaches $A$), and $x\in\NR(B)$ by (a). As $\NR(B)$ is open in the strip, points of $\Rc(A)$ near $x$ lie in
+$\Sec(A,B)$.
+
+(c) For $j\ge0$: $\Sec(A',B')+jT\subseteq\Rc(A'+jT)\subseteq\Rc(B)$, since $B\preceq A'\preceq A'+jT$, while $\Sec(A,B)\subseteq\NR(B)$. For $j<0$: $\Sec(A',B')+jT\subseteq\NR(B'+jT)\subseteq\NR(A)$,
+since $B'+jT\preceq A+(j+1)T\preceq A$, while $\Sec(A,B)\subseteq\Rc(A)$.
+
+(d) Let $y$ be such a point. For $j$ very negative $y$ is far right of $A+jT$, and for $j$ very large it is far left; and $\Rc(A+jT)$ decreases with $j$. Let $j$ be largest with $y\in
+\Rc(A+jT)$; then $y\in\NR(A+(j+1)T)$. If $y\in\Rc(B+jT)$, then $y\in\Sec(B+jT,A+(j+1)T)=\Sec(B,A+T)+jT$; otherwise $y\in\NR(B+jT)$ and $y\in\Sec(A,B)+jT$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.Sector.LiftFam.sub_sec}, \lean{HPC.Jones.Sector.LiftFam.sec_disjoint_mem},
+\lean{HPC.Jones.Sector.LiftFam.sec_nonempty}, \lean{HPC.Jones.Sector.LiftFam.sec_disjoint},
+\lean{HPC.Jones.Sector.LiftFam.sec_cover}.}
+
+\section{The sector theorem and the cyclic order}
+
+\begin{theorem}[The sector theorem]\label{thm:sector}
+Let $K$, $K'$ be disjoint continua crossing $\Ann$. Then $\Ann\setminus(K\cup K')=V_1\cup V_2$ with $V_1$, $V_2$ nonempty, disjoint and open in $\Ann$. Consequently a connected
+subset of $\Ann$ meeting $V_1$ and $V_2$ meets $K\cup K'$.
+\end{theorem}
+
+\begin{proof}
+Take lifts $A$ of $K$ and $B$ of $K'$ (Lemma~\ref{lem:lift}); all translates of $A$ and $B$ form a family $F$ as above, with $T=2\pi$. Translating $B$, we may assume $A\prec B\prec
+A+2\pi$. Let $V_1=E(\Sec(A,B))$ and $V_2=E(\Sec(B,A+2\pi))$. They are nonempty by Proposition~\ref{prop:sectors}(b); disjoint by (c), because $E(u)=E(v)$ only if $v$ is a translate of $u$
+by a multiple of $2\pi$; and they cover $\Ann\setminus(K\cup K')$ by (d), since $E^{-1}(K\cup K')$ is the union of the translates of $A$ and $B$. They are open in $\Ann$ because the sectors
+are open in the strip and $E$ maps small relatively open sets of the strip homeomorphically onto relatively open sets of $\Ann$. The consequence is immediate.
+\end{proof}
+
+\formal{\lean{HPC.Jones.sector_theorem}, from \lean{HPC.Jones.Sector.sector_two} and
+\lean{HPC.Jones.Sector.two_piece_lift}; Moore uses it on p.~236 of his 1922 paper (``must clearly contain a
+point either of $k_{n-1}$ or of $k_{n+1}$'').}
+
+\begin{theorem}[The cyclic order]\label{thm:cyclic}
+Let $k_0,k_1,\dots$ be pairwise disjoint continua crossing $\Ann$. There are a subsequence $k_{g(0)},k_{g(1)},\dots$ and, for $n\ge1$, sets $V_n\subseteq\Ann$ such that
+\begin{enumerate}[label=(\roman*)]
+\item $k_{g(n)}\subseteq V_n$, and $V_n$ misses $k_{g(m)}$ for $m\ne n$;
+\item $V_n\cap V_m=\emptyset$ if $\abs{n-m}\ge2$;
+\item a connected subset of $\Ann\setminus(k_{g(n-1)}\cup k_{g(n+1)})$ that meets $V_n$ lies in $V_n$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Choose normalized lifts $L_n$ of the $k_n$: the least first coordinate of $L_n$ lies in $[0,2\pi)$. By Proposition~\ref{prop:prec}(b), $L_m\prec L_n+2\pi$ for all $m,n$. Any sequence in a linear
+order has a strictly monotone subsequence; reversing the orientation if necessary, let $L_{g(0)}\prec L_{g(1)}\prec\cdots$. For $n\ge1$ put $V_n=E\bigl(\Sec(L_{g(n-1)},L_{g(n+1)})\bigr)$.
+Then (i) follows from Proposition~\ref{prop:sectors}(a) (applied to all translates, using $L_m\prec L_n+2\pi$), (ii) from Proposition~\ref{prop:sectors}(c), and (iii) from the proof of
+Theorem~\ref{thm:sector}: $V_n$ is one of the two pieces cut off by $k_{g(n-1)}$ and $k_{g(n+1)}$, and a connected set in the union of two disjoint relatively open pieces lies in one of
+them.
+\end{proof}
+
+\formal{\lean{HPC.Jones.sector_cyclic_order}, from \lean{HPC.Jones.Sector.sector_cyclic},
+\lean{HPC.Jones.Sector.sector_props}, \lean{HPC.Jones.Sector.preconnected_sub_piece}. Moore (p.~237) orders the
+continua by their points on a middle circle; the order of the lifts avoids having to show that this is well
+defined.}
+
+\section{Crossing continua from a failure of local connectedness}
+
+\begin{definition}\label{def:cik}
+A set $M\subseteq\R^2$ is \emph{connected im kleinen at $P\in M$} if for every $\varepsilon>0$ there is $\delta>0$ such that every point of $M$ within $\delta$ of $P$ lies with $P$ in a connected
+subset of $M$ of diameter less than $\varepsilon$.
+\end{definition}
+
+\formal{\lean{HPC.Jones.CikAt}.}
+
+\begin{proposition}\label{prop:cik}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item A set $M\subseteq\R^2$ connected im kleinen at each of its points is locally connected.
+\item If a closed connected set $M\subseteq\R^2$ is not connected im kleinen at $P\in M$, there are $0<r_1<r_2$ and infinitely many pairwise disjoint continua in $M$ crossing $\Ann(P,r_1,r_2)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Let $F\subseteq M$ be open and $y$ a point of the component $C$ of $y_0$ in $F$; take $\varepsilon$ with $B(y,\varepsilon)\cap M\subseteq F$ and $\delta$ for $\varepsilon$ at $y$. A point $z$ of $M$ within $\delta$ of $y$
+lies with $y$ in a connected subset of $M$ of diameter less than $\varepsilon$, which lies in $F$, hence in $C$. So components of open sets are open.
+
+(b) Let $\varepsilon$ witness the failure, $r_2=\varepsilon/3$, $r_1=\varepsilon/6$, and let $\Gamma$ be the component of $P$ in the compact set $M\cap\bar B(P,r_2)$. Points of $M$ arbitrarily close to $P$ lie
+outside $\Gamma$ (otherwise $\Gamma$, of diameter less than $\varepsilon$, would do). Their components in $M\cap\bar B(P,r_2)$ are infinitely many: a finite union of components missing $P$ is closed
+and misses a neighbourhood of $P$. They are pairwise disjoint, and each meets the outer square by boundary bumping (\vthree{Theorem~1.10}), as $M\not\subseteq\bar B(P,r_2)$ (otherwise $M$ itself, of diameter less than $\varepsilon$, would do). Infinitely many of them
+contain points within $r_1$ of $P$. In each of these, a second application of boundary bumping, from a point on the outer square in the part outside $B(P,r_1)$, gives a continuum crossing the
+annulus.
+\end{proof}
+
+\formal{\lean{HPC.Jones.locallyConnectedSpace_of_cikAt}, \lean{HPC.Jones.exists_crossing_continua}, and for closed
+sets \lean{HPC.Jones.Sector.exists_crossing_continua_closed}. Moore attributes (b) to ``the argument beginning
+with the second line from the bottom of page 365'' of a 1918 note.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that Theorem~\ref{thm:sector} fails if $K$ and $K'$ are allowed to meet, and also if $K$ is only required to meet one of the two squares.
+\end{exercise}
+
+\begin{exercise}
+Prove Theorem~\ref{thm:strip-sep} for a crossing set $L$ which is a vertical segment directly, and explain why the general case cannot be reduced to it.
+\end{exercise}
+
+\begin{exercise}
+Let $k_n$ be the radial segments of $\Ann(0,1,2)$ at the angles $1/n$, $n\ge1$. Describe the subsequence and the sets $V_n$ of Theorem~\ref{thm:cyclic}.
+\end{exercise}
+
+\begin{exercise}
+Show that the $\sin(1/x)$-continuum is not connected im kleinen at the points of its limit segment, and find the crossing continua of Proposition~\ref{prop:cik}(b).
+\end{exercise}

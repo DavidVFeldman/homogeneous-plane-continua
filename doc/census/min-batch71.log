@@ -1,0 +1,11 @@
+min-batch71: the smallest window of the batch-71 counterexample.
+  the witness read: 1106 links, basepoint 104, the w8 side is the backward arm
+  it breaks the distance statement: the nearest time at L+2 or below is 185 steps
+  before the basepoint, against the bound 67
+  the smallest window found: links [0, 289] of the witness -- 290 links, basepoint 104,
+  the w8 side is the backward arm, the nearest time at L+2 or below 185 steps before it
+  written to witness-batch71-min.txt
+  the level sequence:
+    9 8 7 8 7 6 7 8 7 6 7 6 5 6 7 6 7 7 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 6 5 6 6 6 5 6 5 4 5 6 5 6 6 6 5 6 7 6 7 8 7 6 7 6 5 6 6 6 5 6 5 4 5 6 5 6 6 6 5 5 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 4 4 5 5 5 4 4 4 3 4 4 4 3 4 4 4 5 5 5 4 4 4 3 4 5 4 5 6 5 4 5 6 5 6 6 6 5 5 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 6 6 6 5 6 6 6 5 6 5 4 5 6 5 6 6 6 5 5 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 5 5 6 6 6 5 6 5 4 5 6 5 4 5 4 3 4 4 4 5 5 5 4 4 4 3 4 4 4 3 4 3 2
+  the upper ends:
+    9 8 7 8 7 6 7 8 7 6 7 6 6 6 7 6 7 8 7 6 7 6 5 6 7 6 6 6 5 5 5 6 5 6 7 6 5 6 7 6 7 8 7 7 7 6 5 6 7 6 5 6 5 5 5 6 5 6 7 6 5 6 5 5 5 6 5 4 5 4 3 4 5 5 5 6 5 4 5 6 5 6 7 6 6 6 5 5 5 6 5 6 7 6 5 6 7 7 7 8 7 6 7 6 5 6 7 6 5 6 5 5 5 6 5 6 7 6 5 6 5 5 5 6 5 5 5 4 3 4 5 5 5 6 5 4 5 6 5 6 7 6 6 6 5 5 5 6 5 4 5 4 4 4 5 4 5 6 5 5 5 4 4 4 5 4 4 4 5 5 5 6 5 4 5 4 4 4 5 4 5 6 5 5 5 6 6 6 7 6 5 6 5 4 5 6 5 5 5 4 3 4 5 5 5 6 5 5 5 6 5 6 7 6 5 6 5 5 5 6 5 6 7 6 5 6 7 6 5 6 5 5 5 6 5 6 7 6 5 6 5 5 5 6 5 5 5 4 3 4 5 5 5 6 5 4 5 6 5 6 7 6 6 6 5 5 5 6 5 4 5 4 4 4 5 4 5 6 5 5 5 4 4 4 5 4 3 4 3 2

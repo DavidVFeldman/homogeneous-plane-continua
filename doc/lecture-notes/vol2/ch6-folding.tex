@@ -1,0 +1,805 @@
+%======================================================================
+\chapter{The folding theorem}\label{ch:folding}
+%======================================================================
+
+This chapter proves the theorem about crooked chains that Part~II of the uniqueness proof needs: a
+chain crooked in $D$, a stretch of which reaches both ends of $D$, can be consolidated into a chain
+whose first and last blocks are prescribed and whose blocks are small. It is Bing's Theorem~4 (1948),
+in the form that the formal proof establishes.
+
+Throughout, $D$ is a chain of length $k$, $E$ is a chain of length $n$ which is crooked in $D$, and
+$\lo(t)$, $\hi(t)$ are the least and the greatest index $j$ with $E_t\subseteq D_j$
+(Definition~\ref{def:minidx}). For integers $w$ we write $D[w,w+2]$ for the union of those of
+$D_w,D_{w+1},D_{w+2}$ that exist. A block map (Definition~\ref{def:block-map}) has \emph{small
+blocks} if every block $E^\beta_u$ lies in some $D[w,w+2]$.
+
+\section{The statement}
+
+\begin{theorem}[Folding theorem; Bing 1948, Theorem~4]\label{thm:folding}
+Let $k\ge3$, let $E$ be crooked in $D$, and let $r,r',s',s$ be indices of $E$ with $r'=r+1$, $s=s'+1$ and
+$r'\le s'$. Suppose that some $E_h$ with $r\le h\le s$ meets $D_0$, and some $E_{h'}$ with $r\le h'\le s$
+meets $D_{k-1}$. Then there is a block map $\beta\colon[n]\to[q]$ with small blocks such that
+\[
+\beta(r)=\beta(r')=0\qquad\text{and}\qquad\beta(s')=\beta(s)=q-1 .
+\]
+\end{theorem}
+
+\formal{\lean{HPC.Fold.theorem4_pair} (in \lean{HPC/Fold/Theorem4Pair.lean}). The version with single links
+$r$ and $s$ in place of the pairs is \lean{HPC.Fold.theorem4}.}
+
+We need the pairs because of the following application. A point lies in at most two links of a chain, and
+these are adjacent; for the block chain to go from $R$ to $S$ (Lemma~\ref{lem:block-from}) \emph{every} link
+containing $R$ must be in the first block.
+
+\begin{corollary}\label{cor:block-chain}
+Let $k\ge5$ and let $E$ be crooked in $D$. Let $a<b$ be indices of $E$ such that the subchain from $a$ to $b$
+goes from $R$ to $S$, and suppose some $E_{t_1}$ and some $E_{t_2}$ with $a\le t_1,t_2\le b$ meet $D_0$ and $D_{k-1}$
+respectively. Then there is a block map $\beta$ for $E$ with small blocks such that the block chain $E^\beta$ goes
+from $R$ to $S$.
+\end{corollary}
+
+\begin{proof}
+First, $b\ge a+2$: the links $E_{t_1}$ and $E_{t_2}$ lie in links of $D$ with indices $\le1$ and $\ge k-2\ge3$
+respectively, so they do not meet, $\abs{t_1-t_2}\ge2$. Next, the links of $E$ containing $R$: $R$ lies in $E_a$, and in
+no $E_t$ with $a<t\le b$; since links containing $R$ meet, they are among $E_{a-1},E_a$. Similarly the links containing
+$S$ are among $E_b,E_{b+1}$. Apply Theorem~\ref{thm:folding} with $r=a-1$, $r'=a$ if $a\ge1$ (and $r=a$, $r'=a+1$ if
+$a=0$), and $s'=b$, $s=b+1$ if $b+1<n$ (and $s'=b-1$, $s=b$ if $b=n-1$). The hypotheses hold since $r\le a\le t_1,t_2\le
+b\le s$ and $r'\le a+1\le b-1\le s'$. Every link containing $R$ is $E_r$ or $E_{r'}$, hence in block $0$, and every link
+containing $S$ is in the last block; by Lemma~\ref{lem:block-from}, $E^\beta$ goes from $R$ to $S$.
+\end{proof}
+
+\formal{\lean{HPC.Chain.exists_blockChain} (in \lean{HPC/PseudoArc/T13Step.lean}).}
+
+\paragraph{Plan of the proof.}
+The whole proof is about the integer sequences $\lo$ and $\hi$. Section~\ref{sec:fold-readings} records their
+properties: they move by at most one, and $\lo$ is \emph{crooked} in a sense that only involves integers. Sections
+\ref{sec:fold-folds}--\ref{sec:fold-zigzag} prove the central result, the \emph{zigzag theorem}: from any base link, a
+crooked integer sequence can be ``folded'' onto a walk that goes back and forth, with every fibre of the folding map
+inside three consecutive levels. This already gives the version of the theorem with only one prescribed block (Bing's
+Theorem~3). To prescribe both the first and the last block, Section~\ref{sec:fold-fake} folds an initial segment of $E$
+from $r$ and a final segment from $s$, and Section~\ref{sec:fold-splice} splices the two folds together with a grouping
+of the middle part by levels. Section~\ref{sec:fold-proof} finishes the proof.
+
+\section{Readings and crooked sequences}\label{sec:fold-readings}
+
+\begin{lemma}\label{lem:readings}
+For all $t$ (and $t+1$ when it is an index):
+\begin{enumerate}[label=(\alph*)]
+\item $\lo(t)\le\hi(t)\le\lo(t)+1$, and $E_t\subseteq D_j$ exactly for $j\in\set{\lo(t),\hi(t)}$;
+\item $\abs{\lo(t+1)-\lo(t)}\le1$, $\abs{\hi(t+1)-\hi(t)}\le1$, $\abs{\hi(t+1)-\lo(t)}\le1$ and $\abs{\hi(t)-\lo(t+1)}\le 1$;
+\item if $E_t$ meets $D_j$, then $\abs{\lo(t)-j}\le1$ and $\abs{\hi(t)-j}\le1$;
+\item if $\lo(t)\le j\le\hi(t)$, then $E_t\subseteq D_j$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a), (d) and the first two parts of (b) are Lemma~\ref{lem:minidx}. For the others: $E_t$ and $E_{t+1}$ meet at a point
+$z$, which lies in $D_{\hi(t+1)}$ and in $D_{\lo(t)}$, so these links meet; likewise $D_{\hi(t)}$ and $D_{\lo(t+1)}$. (c)
+$E_t$ lies in $D_{\lo(t)}$ and in $D_{\hi(t)}$ and meets $D_j$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.IsCrookedIvF} and \lean{HPC.Fold.isCrookedIvF_minIdx_maxIdx} package these facts with
+crookedness; see also \lean{HPC.Fold.B79.seq_facts}.}
+
+\begin{definition}[Crooked sequence]\label{def:crooked-seq}
+Let $I=[\ell,h]$ be an interval of integers. A function $f\colon I\to\Z$ with unit steps is \emph{crooked} if for all
+$x<y$ in $I$:
+\begin{enumerate}[label=(\roman*)]
+\item if $f(y)\ge f(x)+3$, there are $x<u<u'<y$ with $f(y)-2\le f(u)\le f(y)-1$ and $f(x)\le f(u')\le f(x)+1$;
+\item if $f(y)\le f(x)-3$, there are $x<u<u'<y$ with $f(y)\le f(u)\le f(y)+1$ and $f(x)-2\le f(u')\le f(x)-1$.
+\end{enumerate}
+\end{definition}
+
+In words: between two places whose values differ by three or more, the sequence first comes close to the later value
+and then close to the earlier one. (The asymmetry between (i) and (ii) reflects the fact that $\lo$ is the
+\emph{least} index.)
+
+\formal{\lean{HPC.Fold.Z77.CrkOn}.}
+
+\begin{lemma}\label{lem:crooked-seq}
+\begin{enumerate}[label=(\alph*)]
+\item $\lo$ is crooked on $[0,n-1]$.
+\item $\bar\lo:=k-1-\hi$ is crooked on $[0,n-1]$; it is the least-index reading of $E$ in the reversed chain $\overline D$.
+\item If $f$ is crooked on $[\ell,h]$, then $x\mapsto f(-x)$ is crooked on $[-h,-\ell]$, and $x\mapsto f(x+c)$ is crooked on
+$[\ell-c,h-c]$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Let $x<y$ with $\lo(y)\ge\lo(x)+3$. The link $E_x$ meets $D_{\lo(x)}$ and $E_y$ meets $D_{\lo(y)}$, so crookedness of $E$ in $D$
+gives $u,u'$ with $\mathrm{Btw}(x,u,u',y)$, that is $x<u<u'<y$, and $E_u\subseteq D_{\lo(y)-1}$, $E_{u'}\subseteq D_{\lo(x)+1}$.
+By Lemma~\ref{lem:readings}(a), $\lo(y)-1\in\set{\lo(u),\lo(u)+1}$ and $\lo(x)+1\in\set{\lo(u'),\lo(u')+1}$, which is~(i).
+If $\lo(y)\le\lo(x)-3$, crookedness applied to the pair $E_y$ (meeting $D_{\lo(y)}$) and $E_x$ (meeting $D_{\lo(x)}$) gives
+$\mathrm{Btw}(y,v,v',x)$, i.e.\ $x<v'<v<y$, with $E_v\subseteq D_{\lo(x)-1}$ and $E_{v'}\subseteq D_{\lo(y)+1}$. Take $u=v'$ and
+$u'=v$: then $\lo(u)\in\set{\lo(y),\lo(y)+1}$ and $\lo(u')\in\set{\lo(x)-2,\lo(x)-1}$, which is~(ii).
+
+(b) The link $E_t$ lies in $\overline D_j=D_{k-1-j}$ exactly for $k-1-j\in\set{\lo(t),\hi(t)}$, so its least index in $\overline D$
+is $k-1-\hi(t)$. $E$ is crooked in $\overline D$ (Lemma~\ref{lem:reverse}), so (a) applies.
+
+(c) Translation is clear. For reflection let $g(x)=f(-x)$ and $x<y$. If $g(y)\ge g(x)+3$, then $f(-y)\ge f(-x)+3$ with $-y<-x$,
+so (ii) for $f$ gives $-y<v<v'<-x$ with $f(-x)\le f(v)\le f(-x)+1$ and $f(-y)-2\le f(v')\le f(-y)-1$. Then $u=-v'$, $u'=-v$
+satisfy $x<u<u'<y$, $g(y)-2\le g(u)\le g(y)-1$ and $g(x)\le g(u')\le g(x)+1$. The other case is the same with (i) for $f$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.Z77.crkOn_of_isCrookedIvF}, \lean{HPC.Fold.Z77.CrkOn.reverse},
+\lean{HPC.Fold.B79.minIdx_reverse}.}
+
+\section{Turning levels and folds}\label{sec:fold-folds}
+
+\begin{definition}[Folds]\label{def:fold}
+Let $g\colon[0,m]\to\Z$ have unit steps (an \emph{arm}). A \emph{fold} of $g$ onto a function $c\colon\N\to\Z$ (the \emph{walk}) is a
+function $\beta\colon[0,m]\to\N$ with $\beta(0)=0$, unit steps, and $\abs{g(j)-c(\beta(j))}\le1$ for all $j$.
+\end{definition}
+
+The walks we use are determined by a list of \emph{turning levels} $T_0,T_1,\dots,T_K$ ($K\ge1$) with
+$\abs{T_{i+1}-T_i}\ge3$. The \emph{leg} $i$ goes from $T_i$ to $T_{i+1}$. Its \emph{envelope} is the interval
+$\env_i=[\min(T_i,T_{i+1})-1,\max(T_i,T_{i+1})+1]$, and its \emph{arrival level} is $\arr_i=T_{i+1}-1$ if $T_i<T_{i+1}$ and
+$\arr_i=T_{i+1}+1$ otherwise: the level one short of the end of the leg.
+
+\begin{definition}[Fitting]\label{def:fit}
+An arm $g$ \emph{fits the turning levels $T_0,\dots,T_K$ from time $\tau$} if $K\ge1$, $\abs{T_1-T_0}\ge3$, and either
+\begin{enumerate}[label=(F\arabic*)]
+\item $g(j)\in\env_0$ for all $j\ge\tau$; or
+\item there is $\tau'\ge\tau$ with $g(\tau')=\arr_0$, $g(j)\in\env_0$ for $\tau\le j\le\tau'$, and $g$ fits $T_1,\dots,T_K$ from time $\tau'$.
+\end{enumerate}
+\end{definition}
+
+So the arm runs along the legs: on each leg it stays within one of the levels between the two turning levels, until it
+reaches the level just before the end of the leg, where it passes to the next leg; on the last leg it reaches, it stays
+for good.
+
+\formal{\lean{HPC.Fold.Z77.Env}, \lean{HPC.Fold.Z77.arr}, \lean{HPC.Fold.Z77.Fit}.}
+
+\paragraph{The jump walk.} Let $\ell_i=\abs{T_{i+1}-T_i}-2\ge1$ and $O_i=\ell_0+\dots+\ell_{i-1}$. Define $c$ on $[0,O_K]$ by
+$c(O_i)=T_i$ for $i\le K$ and, for $0<u<\ell_i$,
+\[
+c(O_i+u)=T_i+2+u\ \text{ if }T_i<T_{i+1},\qquad c(O_i+u)=T_i-2-u\ \text{ if }T_i>T_{i+1}
+\]
+(and $c(x)=T_K$ for $x>O_K$). So leg $i$ is run as $T_i,T_i\pm3,T_i\pm4,\dots,T_{i+1}\mp1$, and then the next leg starts at
+$T_{i+1}$: the walk skips the two levels next to each turning level. For a level $y$ define the \emph{position on leg $i$}
+\[
+\pi_i(y)=\begin{cases}\min\bigl(\max(y-T_i-1,0),\,\ell_i\bigr)&\text{if }T_i<T_{i+1},\\
+\min\bigl(\max(T_i-1-y,0),\,\ell_i\bigr)&\text{if }T_i>T_{i+1}.\end{cases}
+\]
+
+\begin{lemma}\label{lem:legpos}
+\begin{enumerate}[label=(\alph*)]
+\item $0\le\pi_i(y)\le\ell_i$, and $\abs{\pi_i(y)-\pi_i(y')}\le1$ when $\abs{y-y'}\le1$.
+\item If $y\in\env_i$, then $\abs{y-c(O_i+\pi_i(y))}\le1$.
+\item $\pi_i(y)=0$ if $\abs{y-T_i}\le1$, and $\pi_i(\arr_i)=\ell_i$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Suppose $T_i<T_{i+1}$ (the other case is symmetric); write $a=T_i$, $b=T_{i+1}$, so $\ell_i=b-a-2$ and $\env_i=[a-1,b+1]$.
+(a) and (c) are immediate from the formula ($\arr_i=b-1$ gives $\pi_i=\min(b-a-2,\ell_i)=\ell_i$). For (b): if $y\le a+1$,
+then $\pi_i(y)=0$, $c(O_i)=a$, and $\abs{y-a}\le1$. If $a+2\le y\le b-2$, then $\pi_i(y)=y-a-1\in(0,\ell_i)$ and
+$c(O_i+\pi_i(y))=y+1$. If $y\ge b-1$, then $\pi_i(y)=\ell_i$, $c(O_{i+1})=b$, and $\abs{y-b}\le1$ as $y\le b+1$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.Z77.jwalk}, \lean{HPC.Fold.Z77.legPos}, \lean{HPC.Fold.Z77.jwalk_legPos},
+\lean{HPC.Fold.Z77.legPos_lip}, \lean{HPC.Fold.Z77.legPos_eq_zero}.}
+
+\begin{lemma}[Folds from fitting]\label{lem:fold-of-fit}
+Let the arm $g$ fit $T_0,\dots,T_K$ from time $\tau$, with $\abs{g(\tau)-T_0}\le1$. Then there is $\beta\colon[\tau,m]\to[0,O_K]$ with
+$\beta(\tau)=0$, unit steps, and $\abs{g(j)-c(\beta(j))}\le1$ for all $j\in[\tau,m]$, where $c$ is the jump walk of $T_0,\dots,T_K$.
+Moreover $\beta(j)=0$ whenever $\abs{g(i)-T_0}\le1$ for all $i\in[\tau,j]$.
+\end{lemma}
+
+\begin{proof}
+Induction on $K$. In case~(F1), let $\beta(j)=\pi_0(g(j))$; by Lemma~\ref{lem:legpos} it starts at $0$, has unit steps, and
+satisfies the estimate. In case~(F2), $\abs{g(\tau')-T_1}=\abs{\arr_0-T_1}=1$, so by induction (applied to $T_1,\dots,T_K$, whose
+jump walk is $u\mapsto c(\ell_0+u)$) there is $\beta'$ on $[\tau',m]$. Put $\beta(j)=\pi_0(g(j))$ for $j\le\tau'$ and
+$\beta(j)=\ell_0+\beta'(j)$ for $j>\tau'$. At $\tau'$ both formulas give $\ell_0$ (as $\pi_0(\arr_0)=\ell_0$ and $\beta'(\tau')=0$),
+so $\beta$ has unit steps; the estimate holds on both parts.
+
+For the last statement: $\arr_0$ differs from $T_0$ by at least $2$, so if $g$ stays within one of $T_0$ on $[\tau,j]$, then in
+case~(F2) $\tau'>j$, and in both cases $\beta(j)=\pi_0(g(j))=0$ by Lemma~\ref{lem:legpos}(c).
+\end{proof}
+
+\formal{\lean{HPC.Fold.Z77.fold_of_fit}, \lean{HPC.Fold.Z77.fold_of_fit_zero}.}
+
+The point is that the walk depends only on the turning levels. If both arms of a sequence fit the same turning levels, their
+folds are folds onto the same walk and can be put together.
+
+\section{One phase of the zigzag}\label{sec:fold-phase}
+
+Fix a sequence $S$ on $[-p,q]$ ($p,q\ge0$) with unit steps and bounds $L\le S\le H$. Its two \emph{arms} are $A_+(j)=S(j)$ for
+$0\le j\le q$ and $A_-(j)=S(-j)$ for $0\le j\le p$; we write $m_+=q$, $m_-=p$, and $e$ for one of the two signs. Arm times
+are $j\ge0$.
+
+\begin{definition}\label{def:phase-state}
+An \emph{up state} consists of integers $b,a$ with $b+2\le a$ (the current \emph{bottom} and the previous \emph{top}) and, for
+each arm $e$, either nothing (the arm is \emph{finished}) or an \emph{entry time} $\tau_e\le m_e$ with $\abs{A_e(\tau_e)-b}\le1$.
+It is \emph{not stuck} if no unfinished arm $e$ has a time $d\ge\tau_e$ with $A_e(d)=b-2$ and $A_e(j)\le a-1$ for $\tau_e\le
+j<d$. \emph{Down states} are defined symmetrically: a top $a$, a previous bottom $b$, entry times with $\abs{A_e(\sigma_e)-a}\le1$;
+not stuck means that no unfinished arm rises to $a+2$ while staying $\ge b+1$ from its entry time on.
+\end{definition}
+
+\begin{lemma}[Up phase]\label{lem:up-phase}
+Let an up state be not stuck. Then there is $t\ge a+1$ such that every unfinished arm $e$ either
+\begin{itemize}
+\item \emph{finishes}: $b-1\le A_e(j)\le t-2$ for all $j\in[\tau_e,m_e]$; or
+\item \emph{passes}: there is $\sigma_e>\tau_e$ with $A_e(\sigma_e)=t-1$ and $b-1\le A_e(j)\le t-2$ for $\tau_e\le j<\sigma_e$.
+\end{itemize}
+Moreover, either every arm finishes, or $t\le H+1$ and some arm $e$ passes and then drops: there is $d>\sigma_e$ with $A_e(d)=b-2$
+and $b-1\le A_e(j)\le t-1$ for $\tau_e\le j<d$.
+\end{lemma}
+
+\begin{proof}
+For each unfinished arm $e$ define a number $v_e$. If $A_e$ goes below $b-1$ at some time after $\tau_e$, let $d_e$ be the first
+such time; then $d_e>\tau_e$ (as $A_e(\tau_e)\ge b-1$), $A_e(d_e)=b-2$ by unit steps, and $A_e\ge b-1$ on $[\tau_e,d_e)$. Let $M_e$
+be the maximum of $A_e$ on $[\tau_e,d_e)$ and $v_e=M_e+1$. Since the state is not stuck, $M_e\ge a$, so $v_e\ge a+1$; also $v_e\le
+H+1$. If $A_e$ never goes below $b-1$, or $e$ is finished, let $v_e=\max(a+1,H+2)$. Let $t=\min(v_+,v_-)\ge a+1$.
+
+Fix an unfinished arm $e$. \emph{Every drop of $A_e$ below $b-1$ after $\tau_e$ is preceded by a visit to $[t-1,\infty)$}: if
+$A_e(j)<b-1$, then $d_e\le j$ exists, and $A_e$ takes the value $M_e=v_e-1\ge t-1$ on $[\tau_e,d_e)$. Now if $A_e$ reaches $t-1$
+or more after $\tau_e$, let $\sigma_e$ be the first such time. Before $\sigma_e$, $A_e\le t-2$, and $A_e\ge b-1$ (a drop would be
+preceded by a visit to $[t-1,\infty)$ before $\sigma_e$); as $A_e(\tau_e)\le b+1\le t-2$, $\sigma_e>\tau_e$ and $A_e(\sigma_e)=t-1$ by
+unit steps. So $e$ passes. If $A_e$ never reaches $t-1$, it never drops below $b-1$ either, and it finishes.
+
+If $t=\max(a+1,H+2)$, then $t-1>H$ and no arm can reach $t-1$, so all arms finish. Otherwise $t=v_e<H+2$ for some arm $e$ which
+drops at $d_e$, so $t\le H+1$; its maximum $t-1$ on $[\tau_e,d_e)$ is attained, so $e$ passes at a time $\sigma_e<d_e$, and
+$b-1\le A_e\le t-1$ on $[\tau_e,d_e)$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.Z77.up_step} (with \lean{HPC.Fold.Z77.transfer} and \lean{HPC.Fold.Z77.exists_armVal}).}
+
+\begin{lemma}[Down phase]\label{lem:down-phase}
+Let a down state (top $a$, previous bottom $b$) be not stuck. Then there is $t'\le b-1$ such that every unfinished arm either finishes
+($t'+2\le A_e\le a+1$ from $\sigma_e$ on) or passes (at a time $\sigma'_e>\sigma_e$ with $A_e(\sigma'_e)=t'+1$, and $t'+2\le A_e\le a+1$
+on $[\sigma_e,\sigma'_e)$). Moreover, either every arm finishes, or $t'\ge L-1$ and some arm passes and then rises: there is
+$d>\sigma'_e$ with $A_e(d)=a+2$ and $t'+1\le A_e\le a+1$ on $[\sigma_e,d)$.
+\end{lemma}
+
+\begin{proof}
+Apply Lemma~\ref{lem:up-phase} to the arms $-A_e$, with bottom $-a$, previous top $-b$, upper bound $-L$, and put $t'=-t$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.Z77.down_step}.}
+
+Note that these two lemmas do not use crookedness.
+
+\section{Crookedness across the base link}\label{sec:fold-cores}
+
+From now on $S$ is crooked on $[-p,q]$. For an arm $e$ let $\bar e$ be the other arm. Reading $S$ from the end of arm $e$ to the
+end of arm $\bar e$ gives the sequence $x\mapsto A_e(-x)$ for $x\le0$, $x\mapsto A_{\bar e}(x)$ for $x\ge0$, which is $S$ or its
+reflection, hence crooked (Lemma~\ref{lem:crooked-seq}(c)). In the next two lemmas, the arm called $\mathcal L$ (left) is read at
+negative positions and the arm $\mathcal R$ (right) at positive ones; they apply with $\set{\mathcal L,\mathcal R}=\set{A_+,A_-}$ in
+either order.
+
+\begin{lemma}[Up core]\label{lem:up-core}
+Let $b\le a$. There are no times $\tau\le d_1$ on $\mathcal L$ and $d_2$ on $\mathcal R$ such that $\mathcal L(j)\ge b$ for $j<\tau$,
+$\mathcal L(j)\le a-1$ for $\tau\le j<d_1$, $\mathcal L(d_1)=b-2$, $\mathcal R(j)\ge b$ for $j<d_2$, and $\mathcal R(d_2)=a+2$.
+\end{lemma}
+
+\begin{proof}
+Suppose there are. The positions $x=-d_1<y=d_2$ have values $b-2$ and $a+2$, which differ by at least $4$. By
+Definition~\ref{def:crooked-seq}(i) there are $x<u<u'<y$ with value at $u$ in $[a,a+1]$ and value at $u'$ in $[b-2,b-1]$. If $u'\ge0$,
+then $u'<d_2$ and $\mathcal R(u')\ge b$, a contradiction. So $u<u'<0$. The arm time $j'=-u'$ has $\mathcal L(j')\le b-1$, so $j'\ge\tau$;
+and $j=-u$ satisfies $j'<j<d_1$, so $\mathcal L(j)\le a-1$, contradicting $\mathcal L(j)\ge a$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.Z77.up_core}.}
+
+\begin{lemma}[Down core]\label{lem:down-core}
+Let $b\le a$. There are no times $\tau\le\sigma\le\rho_1$ on $\mathcal L$ and $\tau'\le d$ on $\mathcal R$ such that
+\[
+\mathcal L\ge b\text{ on }[0,\tau),\quad \mathcal L\le a-2\text{ on }[\tau,\sigma),\quad \mathcal L\ge b+1\text{ on }[\sigma,\rho_1),\quad
+\mathcal L(\rho_1)=a+2,
+\]
+\[
+\mathcal R\ge b\text{ on }[0,\tau'),\quad\mathcal R\le a-1\text{ on }[\tau',d),\quad\mathcal R(d)=b-2 .
+\]
+\end{lemma}
+
+\begin{proof}
+Suppose there are. The positions $x=-\rho_1<y=d$ have values $a+2$ and $b-2$. By Definition~\ref{def:crooked-seq}(ii) there are
+$x<u<u'<y$ with value at $u$ in $[b-2,b-1]$ and value at $u'$ in $[a,a+1]$. If $u\ge0$: $\mathcal R(u)\le b-1$ forces $u\ge\tau'$, and
+then $u<u'<d$ gives $\mathcal R(u')\le a-1$, a contradiction. So $u<0$, and the arm time $j=-u$ satisfies $\mathcal L(j)\le b-1$; hence
+$j\ge\tau$ and $j<\sigma$.
+
+Apply Definition~\ref{def:crooked-seq}(ii) again, to the positions $-\rho_1<u$, whose values $a+2$ and $\mathcal L(j)\le b-1$ differ by at
+least $3$: there are $-\rho_1<v<v'<u$ with value at $v$ in $[\mathcal L(j),\mathcal L(j)+1]$, so at most $b$, and value at $v'$ in
+$[a,a+1]$. The arm time $-v'$ lies in $(j,\rho_1)$. If $-v'<\sigma$, then $-v'\in[\tau,\sigma)$ and $\mathcal L(-v')\le a-2$, a
+contradiction; so $-v'\ge\sigma$, and $-v\in(-v',\rho_1)\subseteq[\sigma,\rho_1)$, whence $\mathcal L(-v)\ge b+1$, a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Fold.Z77.down_core}.}
+
+We now show that the phases of the zigzag never get stuck. An up state has the \emph{history property} if every unfinished arm
+satisfies $A_e(j)\ge b$ for $j<\tau_e$.
+
+\begin{lemma}[Up states are not stuck]\label{lem:nofail-up}
+Let an up state (bottom $b$, previous top $a$, $b\le a$) have the history property, and suppose some arm $e_0$ and time $d$ satisfy
+$A_{e_0}(d)=a+2$, $A_{e_0}(j)\ge b$ for $j<d$, and $\tau_{e_0}\le d$ if $e_0$ is unfinished. Then the state is not stuck.
+\end{lemma}
+
+\begin{proof}
+Suppose an unfinished arm $e$ has $d_1\ge\tau_e$ with $A_e(d_1)=b-2$ and $A_e\le a-1$ on $[\tau_e,d_1)$. If $e=e_0$: since
+$A_e(j)\ge b$ for $j<d$, we have $d<d_1$, so $d\in[\tau_e,d_1)$ and $A_e(d)\le a-1$, contradicting $A_e(d)=a+2$. If $e\ne e_0$:
+Lemma~\ref{lem:up-core} with $\mathcal L=A_e$, $\tau=\tau_e$ and $\mathcal R=A_{e_0}$, $d_2=d$ gives a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Fold.Z77.nofail_up}.}
+
+\begin{lemma}[Down states after an up phase are not stuck]\label{lem:nofail-down}
+Let an up state (bottom $b$, previous top) have the history property, and let the up phase of Lemma~\ref{lem:up-phase} give the top
+$t$, with not every arm finishing. Then the down state with top $t$, previous bottom $b$, and entry times the passing times $\sigma_e$,
+is not stuck.
+\end{lemma}
+
+\begin{proof}
+Let $e_0$ be the arm of Lemma~\ref{lem:up-phase} which passes and then drops: $\tau_{e_0}<\sigma_{e_0}<d$, $A_{e_0}(d)=b-2$, $A_{e_0}\le
+t-1$ on $[\tau_{e_0},d)$. Suppose an arm $e$ (which passed) rises to $t+2$ at a time $\rho_1\ge\sigma_e$ while $A_e\ge b+1$ on
+$[\sigma_e,\rho_1)$. If $e=e_0$: $\rho_1\ge d$ since $A_{e}\le t-1$ on $[\sigma_e,d)$; but then $d\in[\sigma_e,\rho_1)$ and $A_e(d)=b-2<b+1$.
+If $e\ne e_0$: Lemma~\ref{lem:down-core} applies with $\mathcal L=A_e$ (times $\tau_e\le\sigma_e\le\rho_1$; the bound $A_e\le t-2$ on
+$[\tau_e,\sigma_e)$ is part of ``passes'', and $A_e\ge b$ before $\tau_e$ is the history property) and $\mathcal R=A_{e_0}$ (times
+$\tau_{e_0}\le d$), with $a=t$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.Z77.nofail_down}.}
+
+\begin{lemma}[First direction]\label{lem:first-direction}
+Let $P=S(0)$. At least one of the following holds:
+\begin{enumerate}
+\item[$(\mathrm{OK}^-)$] there is no position $x$ with $S(x)=P-3$ and $S\le P$ at all positions between $0$ and $x$;
+\item[$(\mathrm{OK}^+)$] there is no position $x$ with $S(x)=P+3$ and $S\ge P$ at all positions between $0$ and $x$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Suppose $x_1$ violates the first and $x_2$ the second. If they lie on the same arm, the one nearer to $0$ lies between $0$ and the
+other, which is impossible ($S(x_1)=P-3<P$ and $S(x_2)=P+3>P$). Otherwise apply Lemma~\ref{lem:up-core} with $\mathcal L$ the arm of
+$x_1$, $\mathcal R$ the arm of $x_2$, $\tau=0$, $a=P+1$, $b=P-1$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.Z77.first_direction}; the two conditions are \lean{HPC.Fold.Z77.OKBelow} and \lean{HPC.Fold.Z77.OKAbove}.}
+
+\section{The zigzag theorem}\label{sec:fold-zigzag}
+
+\begin{proposition}[Main induction]\label{prop:main-up}
+Let an up state with bottom $b$ and previous top $a$ satisfy $a\le H+1$, $b\ge L-1$, the history property, and be not stuck. Then
+there are turning levels $b=T_0,T_1,\dots,T_K$ which every unfinished arm $e$ fits from its entry time $\tau_e$.
+\end{proposition}
+
+\begin{proof}
+Induction on $(H+1-a)+(b-L+1)\ge0$. Run the up phase (Lemma~\ref{lem:up-phase}): it gives $t\ge a+1\ge b+3$.
+
+\emph{Leg up.} Suppose the passing arms fit some list $t=T'_0,\dots,T'_{K'}$ from their passing times (or that there are no passing
+arms and the list is just $t$). Then every unfinished arm fits $b,t,T'_1,\dots$ from $\tau_e$: the envelope of the leg $b\to t$ is
+$[b-1,t+1]$ and its arrival level is $t-1$; a finishing arm stays in $[b-1,t-2]$ for good, which is~(F1); a passing arm stays in
+$[b-1,t-1]$ on $[\tau_e,\sigma_e]$ and has $A_e(\sigma_e)=t-1$, which is~(F2).
+
+If every arm finishes, the list $b,t$ works. Otherwise, by Lemma~\ref{lem:nofail-down}, the down state with top $t$ and previous
+bottom $b$ is not stuck. Run the down phase (Lemma~\ref{lem:down-phase}); it gives $t'\le b-1\le t-4$. The envelope of the leg
+$t\to t'$ is $[t'-1,t+1]$ and its arrival level is $t'+1$. An arm finishing in the down phase stays in $[t'+2,t+1]$ for good,
+which is~(F1) for this leg; an arm passing it stays in $[t'+1,t+1]$ up to its passing time $\sigma'_e$ and reaches $t'+1$ there. So
+if every arm finishes the down phase, the turning levels $b,t,t'$ work; and in general it suffices to find a list starting with $t'$
+which the arms passing the down phase fit from their passing times $\sigma'_e$, and to prepend $b,t$.
+
+Otherwise, consider the up state with bottom $t'$, previous top $t$ and entry times $\sigma'_e$. It satisfies $|A_e(\sigma'_e)-t'|\le1$,
+$t'+2\le t$, $t\le H+1$ and $t'\ge L-1$ (both from the ``moreover'' parts of the phase lemmas). It has the history property: before
+$\sigma'_e$, an arm was $\ge b$ before $\tau_e$ (history), $\ge b-1$ on $[\tau_e,\sigma_e)$, and $\ge t'+2$ on $[\sigma_e,\sigma'_e)$;
+all these are $\ge t'$. It is not stuck by Lemma~\ref{lem:nofail-up}, applied with the arm $e_0$ which passes the down phase and then
+rises to $t+2$ at time $d$: before $d$ it is $\ge t'$ (by the same history count, and $\ge t'+1$ on $[\sigma_{e_0},d)$), and
+$\sigma'_{e_0}\le d$. The measure has decreased by at least $2$, since $t\ge a+1$ and $t'\le b-1$. By induction there is a list
+$t',\dots$ which the arms fit from $\sigma'_e$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.Z77.main_up}.}
+
+\begin{theorem}[Zigzag theorem]\label{thm:zigzag}
+Let $S$ be crooked on $[-p,q]$ with $L\le S\le H$, and let $\epsilon\in\set{+1,-1}$ be such that $(\mathrm{OK}^\epsilon)$ of
+Lemma~\ref{lem:first-direction} holds. Then there are a walk $c$ with $c(0)=S(0)+\epsilon$ and a function $\beta\colon[-p,q]\to\N$ with
+unit steps and $\beta(0)=0$ such that $\abs{S(x)-c(\beta(x))}\le1$ for all $x$. Moreover $\beta(x)=0$ whenever $\abs{S(y)-c(0)}\le1$ for
+all $y$ between $0$ and $x$.
+\end{theorem}
+
+\begin{proof}
+Let $P=S(0)$; both arms start at $P$. It suffices to find turning levels $T_0=P+\epsilon,T_1,\dots$ which both arms fit from time
+$0$: Lemma~\ref{lem:fold-of-fit} then gives folds $\beta_+$, $\beta_-$ of the two arms onto the same jump walk $c$, and
+$\beta(x)=\beta_+(x)$ for $x\ge0$, $\beta(x)=\beta_-(-x)$ for $x\le0$ is as required.
+
+If $\epsilon=-1$: the up state with bottom $P-1$, previous top $P+1$, and both entry times $0$, has the history property (vacuously),
+$P+1\le H+1$, $P-1\ge L-1$, and it is not stuck by $(\mathrm{OK}^-)$ (an arm dropping to $(P-1)-2=P-3$ while staying $\le P$).
+Proposition~\ref{prop:main-up} gives the turning levels, starting at $P-1$.
+
+If $\epsilon=+1$: the down state with top $P+1$ and previous bottom $P-1$ is not stuck by $(\mathrm{OK}^+)$. Run the down phase; it
+gives $t'\le P-2$. As in the proof of Proposition~\ref{prop:main-up}, either all arms finish (and the turning levels $P+1,t'$ work) or the
+up state with bottom $t'$, previous top $P+1$, and the passing times as entry times, satisfies the hypotheses of
+Proposition~\ref{prop:main-up} (history: before passing, the arms are $\ge t'+2$; not stuck by Lemma~\ref{lem:nofail-up}). Prepend $P+1$
+to the turning levels it gives.
+\end{proof}
+
+\formal{\lean{HPC.Fold.Z77.greedy_fit_below}, \lean{HPC.Fold.Z77.greedy_fit_above}, and \lean{HPC.Fold.Z77.greedy_fit}
+(which uses Lemma~\ref{lem:first-direction} to choose $\epsilon$).}
+
+\begin{corollary}[Bing's Theorem~3, three-link form]\label{cor:theorem3}
+Let $E$ be crooked in $D$ and let $i$ be an index of $E$. Then there is a block map for $E$ with small blocks in which $E_i$ lies in the
+first block.
+\end{corollary}
+
+\begin{proof}
+Apply Theorem~\ref{thm:zigzag} to $S(x)=\lo(i+x)$ on $[-i,n-1-i]$ (crooked by Lemma~\ref{lem:crooked-seq}, with $0\le S\le k-1$), with
+$\epsilon$ from Lemma~\ref{lem:first-direction}. The function $t\mapsto\beta(t-i)$ is a schedule (Definition~\ref{def:schedule}) with value
+$0$ at $i$, hence a block map (Lemma~\ref{lem:schedule}). If $\beta(t-i)=u$ then $\abs{\lo(t)-c(u)}\le1$, so $E_t\subseteq
+D_{\lo(t)}\subseteq D[c(u)-1,c(u)+1]$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.theorem3}, via \lean{HPC.Fold.Z77.s3_zig} and \lean{HPC.exists_blocks_of_walk}.}
+
+\section{Folds with a fake end link}\label{sec:fold-fake}
+
+To prescribe the last block as well as the first, we fold only an initial segment $[0,a]$ of $E$, where $E_a$ meets the first
+link $D_0$, and we need to know that the walk comes back down to level $\le1$ after the end of the segment. This is arranged by
+appending a \emph{fake link} at level $0$.
+
+In this section $f\colon[0,n-1]\to\Z$ is crooked (Definition~\ref{def:crooked-seq}) with unit steps and $0\le f\le H$, and $i\le a$
+are indices. For a \emph{fake level} $F$ consider the two \emph{events}
+\begin{itemize}
+\item $\mathrm{Ev}^+_F(f,i,a)$: either there is $t\le a$ with $f(t)=f(i)+3$ and $f\ge f(i)$ at all indices strictly between $i$ and
+$t$; or $F=f(i)+3$ and $f\ge f(i)$ on $[i,a]$;
+\item $\mathrm{Ev}^-_F(f,i,a)$: the same with $f(i)-3$ in place of $f(i)+3$ and $f\le f(i)$ in place of $f\ge f(i)$.
+\end{itemize}
+So $\mathrm{Ev}^{\pm}_F(f,i,a)$ says that the sequence $f$ on $[0,a]$, continued by one more value $F$ at $a+1$, violates the condition
+$(\mathrm{OK}^\pm)$ of Lemma~\ref{lem:first-direction} at the base $i$.
+
+\formal{\lean{HPC.Fold.B79.EvUp} and \lean{HPC.Fold.B79.EvDown}; reflecting $f$ exchanges them
+(\lean{HPC.Fold.B79.evUp_reflect}).}
+
+\begin{lemma}[Crooked extensions]\label{lem:crooked-ext}
+\begin{enumerate}[label=(\alph*)]
+\item Suppose $f(a)\le1$ and the \emph{low meeting property} holds: for every $x<a$ with $f(x)\ge3$ there are $x<y<y'<a$ with
+$f(y)\le1$ and $f(x)-2\le f(y')\le f(x)-1$. Then the sequence $f^\flat$ on $[0,a+1]$ equal to $f$ on $[0,a]$ with $f^\flat(a+1)=0$ is
+crooked, has unit steps, and satisfies $0\le f^\flat\le H$.
+\item Suppose $f(a)\ge H-1$ and the \emph{high meeting property} holds: for every $x<a$ with $f(x)\le H-3$ there are $x<y<y'<a$ with
+$H-2\le f(y)\le H-1$ and $f(x)\le f(y')\le f(x)+1$. Then the sequence $f^\sharp$ equal to $f$ on $[0,a]$ with $f^\sharp(a+1)=H$ is
+crooked, has unit steps, and satisfies $0\le f^\sharp\le H$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) The step from $a$ to $a+1$ is $f(a)-0\in\set{0,1}$, and the bounds are clear. Pairs $x<y\le a$ are covered by crookedness of
+$f$. Let $y=a+1$ and $x\le a$. Clause~(i) of Definition~\ref{def:crooked-seq} needs $0\ge f(x)+3$, impossible as $f\ge0$. For
+clause~(ii) let $0\le f(x)-3$; then $x\ne a$ (as $f(a)\le1$), so $x<a$, and the low meeting property gives $x<u<u'<a$ with $0\le
+f(u)\le1=f^\flat(a+1)+1$ and $f(x)-2\le f(u')\le f(x)-1$, which is clause~(ii) for the pair $(x,a+1)$.
+
+(b) The same with the roles of the two clauses exchanged: clause~(ii) for $(x,a+1)$ needs $H\le f(x)-3$, impossible; clause~(i)
+needs $H\ge f(x)+3$, so $x<a$, and the high meeting property supplies the two indices.
+\end{proof}
+
+\formal{\lean{HPC.Fold.B79.crkOn_lowExt}, \lean{HPC.Fold.B79.crkOn_highExt} (on sequences re-indexed so that the base is at $0$).}
+
+\begin{lemma}[Fold with a fake low end]\label{lem:fake-low}
+Assume the hypotheses of Lemma~\ref{lem:crooked-ext}(a), and let $\epsilon\in\set{+1,-1}$ be such that $\mathrm{Ev}^\epsilon_0(f,i,a)$
+fails. Then there are a walk $c\colon\N\to\Z$, a function $\beta\colon[0,a]\to\N$ and a number $U\in\N$ such that
+\begin{enumerate}[label=(\alph*)]
+\item $c(0)=f(i)+\epsilon$, $\beta(i)=0$, $\beta$ has unit steps, and $\abs{f(t)-c(\beta(t))}\le1$ for $t\le a$;
+\item $\abs{U-\beta(a)}\le1$ and $c(U)\le1$;
+\item if $t\le a$ is a neighbour of $i$ ($t=i\pm1$) with $\abs{f(t)-c(0)}\le1$, then $\beta(t)=0$;
+\item if $a=i$ and $\abs{c(0)}\le1$, then $U=0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Let $S(x)=f^\flat(i+x)$ for $-i\le x\le a-i+1$. By Lemma~\ref{lem:crooked-ext}(a) and Lemma~\ref{lem:crooked-seq}(c), $S$ is crooked
+on $[-i,a-i+1]$, with unit steps and $0\le S\le H$; $S(0)=f(i)$. The condition $(\mathrm{OK}^\epsilon)$ of
+Lemma~\ref{lem:first-direction} for $S$ is the failure of $\mathrm{Ev}^\epsilon_0(f,i,a)$: a position $x\le a-i$ violating it is an index
+$t=i+x\le a$ as in the first alternative of the event, and the position $a-i+1$ (value $0$) violates it exactly when the second
+alternative holds, the positions strictly between $0$ and $a-i+1$ being those of $[i,a]$. So Theorem~\ref{thm:zigzag} applies and
+gives $c$ and $\tilde\beta$ on $[-i,a-i+1]$. Put $\beta(t)=\tilde\beta(t-i)$ and $U=\tilde\beta(a-i+1)$. Then (a) is the statement of
+the theorem; (b) follows from unit steps and $\abs{0-c(U)}=\abs{S(a-i+1)-c(\tilde\beta(a-i+1))}\le1$. For (c), the positions between $0$
+and $t-i=\pm1$ are $0$ and $\pm1$, and $\abs{S(0)-c(0)}=1$; so the ``moreover'' part of Theorem~\ref{thm:zigzag} gives
+$\tilde\beta(t-i)=0$. For (d), if $a=i$ the positions between $0$ and $1$ are $0$ and $1$, with $S(1)=0$; as $\abs{c(0)}\le1$, again
+$U=\tilde\beta(1)=0$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.B79.finfold_low}, from \lean{HPC.Fold.B79.fold_low_end_mode} (the version on $\Z$-indexed sequences;
+without the choice of $\epsilon$ it is \lean{HPC.Fold.B78.fold_low_end}). With $\epsilon$ chosen by Lemma~\ref{lem:first-direction}
+it is \lean{HPC.Fold.B79.finfold_low_any}.}
+
+\begin{lemma}[Fold with a fake high end]\label{lem:fake-high}
+Assume the hypotheses of Lemma~\ref{lem:crooked-ext}(b), and let $\epsilon$ be such that $\mathrm{Ev}^\epsilon_H(f,i,a)$ fails. Then
+there are $c$, $\beta$, $U$ with properties (a), (c) of Lemma~\ref{lem:fake-low} and $\abs{U-\beta(a)}\le1$, $c(U)\ge H-1$.
+\end{lemma}
+
+\begin{proof}
+The same, with $f^\sharp$ and Lemma~\ref{lem:crooked-ext}(b): now $\abs{H-c(U)}\le1$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.B79.finfold_high}, from \lean{HPC.Fold.B79.fold_high_end_mode}.}
+
+\paragraph{The meeting properties.} They come from crookedness when $E_a$ meets $D_0$.
+
+\begin{lemma}\label{lem:meet-low}
+Let $E$ be crooked in $D$ (of length $k\ge2$), let $E_a$ meet $D_0$, let $t<a$, and let $E_t\subseteq D_j$ with $j\ge3$. Then there are
+$t<y<y'<a$ with $E_y\subseteq D_1$ and $E_{y'}\subseteq D_{j-1}$. Consequently:
+\begin{enumerate}[label=(\alph*)]
+\item $\lo$ has the low meeting property at $a$, and $\lo(a)\le1$;
+\item $\bar\lo=k-1-\hi$ has the high meeting property at $a$ with $H=k-1$, and $\bar\lo(a)\ge k-2$;
+\item for every $t<a$ with $\lo(t)\ge3$ there are $t<y<y'<a$ with $\lo(y)\le1$ and $\hi(y')\ge\lo(t)-1$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+$E_a$ meets $D_0$, $E_t$ meets $D_j$, and $j-0\ge3$; crookedness gives indices $r,s$ with $\mathrm{Btw}(a,r,s,t)$, $E_r\subseteq D_{j-1}$
+and $E_s\subseteq D_1$. Since $t<a$, $\mathrm{Btw}(a,r,s,t)$ means $t<s<r<a$; take $y=s$, $y'=r$.
+
+(a) Apply this with $j=\lo(t)$. Then $\lo(y)\le1$, and $D_{\lo(t)-1}\in\set{D_{\lo(y')},D_{\hi(y')}}$, so $\lo(t)-2\le\lo(y')\le\lo(t)-1$
+(Lemma~\ref{lem:readings}(a)). Also $\lo(a)\le1$ and $\hi(a)\le1$ by Lemma~\ref{lem:readings}(c).
+(b) Apply it with $j=\hi(t)$, which is $\ge3$ when $\bar\lo(t)\le k-4$. Then $\hi(y)\in\set{1,2}$, i.e.\ $k-3\le\bar\lo(y)\le k-2$, and
+$\hi(y')\in\set{\hi(t)-1,\hi(t)}$, i.e.\ $\bar\lo(t)\le\bar\lo(y')\le\bar\lo(t)+1$. And $\hi(a)\le1$ gives $\bar\lo(a)\ge k-2$.
+(c) Apply it with $j=\lo(t)$: $\hi(y')\ge\lo(t)-1$ as $E_{y'}\subseteq D_{\lo(t)-1}$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.B79.meet_low_gen}, \lean{HPC.Fold.B79.maxIdx_near_zero}; the two sequences and their properties are
+collected in \lean{HPC.Fold.B79.seq_facts}.}
+
+\paragraph{Exclusion.} The prefix fold must send \emph{both} links $r,r+1$ to time $0$. When $\lo(r)\ne\lo(r+1)$ this can fail for
+the fold read on $\lo$ in the only direction which would work; then we read on $\hi$ instead. The next lemma says that one of the two
+readings always works.
+
+\begin{lemma}[Exclusion]\label{lem:exclusion}
+Let $E$ be crooked in $D$, let $E_a$ meet $D_0$, and let $\ell,h$ be adjacent indices (that is, $\abs{\ell-h}=1$) with $\ell\le a$ and
+\[
+x:=\lo(\ell),\qquad \lo(h)=\hi(h)=x+1 .
+\]
+Then $\mathrm{Ev}^+_0(\lo,\ell,a)$ and $\mathrm{Ev}^-_0(\hi,h,a)$ do not both hold.
+\end{lemma}
+
+\begin{proof}
+Suppose both hold. The second alternative of $\mathrm{Ev}^+_0(\lo,\ell,a)$ would need $x+3=0$, impossible; so there is $t\le a$ with
+$\lo(t)=x+3$ and $\lo\ge x$ strictly between $\ell$ and $t$. Note $t\ne\ell,h$ (their $\lo$ is $x$, $x+1$), and $\hi(t)\ge x+3$. We
+use repeatedly that an index strictly between $\ell$ and $t$ has $\lo\ge x$, and the following consequence of adjacency of $\ell,h$:
+\emph{an index $w\ne\ell,h$ lies on the same side of $\ell$ as of $h$}.
+
+\emph{Case 1: the first alternative of $\mathrm{Ev}^-_0(\hi,h,a)$}: there is $u\le a$ with $\hi(u)=x-2$ and $\hi\le x+1$ strictly between
+$h$ and $u$. Then $u\ne\ell,h$ (their $\hi$ is $\ge x$) and $\lo(u)\le x-2$.
+\begin{itemize}
+\item $t,u$ both below the pair ($t<\ell$, $u<h$). If $t<u$, then $u$ is strictly between $t$ and $\ell$, so $\lo(u)\ge x$, a contradiction.
+If $u<t$, then $t$ is strictly between $u$ and $h$, so $\hi(t)\le x+1$, a contradiction. The case of both above is the same.
+\item $t$ below, $u$ above ($t<\ell$, $u>h$). $E_t$ meets $D_{x+3}$ and $E_u$ meets $D_{x-2}$; crookedness gives $t<w<w'<u$ with
+$E_w\subseteq D_{x-1}$ and $E_{w'}\subseteq D_{x+2}$. As $\lo(w)\le x-1$, $w$ is not strictly between $t$ and $\ell$ and $w\ne\ell$; so
+$w>\ell$, and then $w'>\ell$. As $\hi(w')\ge x+2$, $w'\ne h$, so $w'$ is strictly between $h$ and $u$, and $\hi(w')\le x+1$, a contradiction.
+\item $t$ above, $u$ below. Crookedness for $u<t$ ($E_u$ meets $D_{x-2}$, $E_t$ meets $D_{x+3}$) gives $u<w<w'<t$ with $E_w\subseteq
+D_{x+2}$ and $E_{w'}\subseteq D_{x-1}$. As $\hi(w)\ge x+2$, $w$ is not strictly between $u$ and $h$ and $w\ne h$, so $w>h$ and $w'>h$; as
+$\lo(w')\le x-1$, $w'\ne\ell$, so $w'$ is strictly between $\ell$ and $t$ and $\lo(w')\ge x$, a contradiction.
+\end{itemize}
+
+\emph{Case 2: the second alternative}: $x-2=0$ and $\hi\le x+1=3$ on $[h,a]$. If $t>\ell$, then $t\ge h$ (as $t\ne h$) and $t\le a$, so
+$\hi(t)\le3<5=\lo(t)$, impossible. If $t<\ell$: $t<a$ and $\lo(t)=5\ge3$, so Lemma~\ref{lem:meet-low}(c) gives $t<y<y'<a$ with $\lo(y)\le1$
+and $\hi(y')\ge4$. As $\lo(y)<x$, $y$ is not strictly between $t$ and $\ell$, and $y\ne\ell$; so $y>\ell$ and $y'\ge h$. Then $y'\in[h,a]$ and
+$\hi(y')\le3$, a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Fold.B79.pair_exclusion}.}
+
+\begin{proposition}[Prefix fold]\label{prop:prefix-fold}
+Let $k\ge4$, let $E$ be crooked in $D$, let $r'=r+1$, and let $a\ge r$ be an index such that $E_a$ meets $D_0$. Then there are a
+\emph{reading} $\lambda\colon[0,n-1]\to\Z$ with $\lo\le\lambda\le\hi$, a walk $c$, a function $\beta\colon[0,a]\to\N$ with unit steps
+and a number $U$ such that
+\begin{enumerate}[label=(\alph*)]
+\item $\beta(r)=0$, and either $r'\le a$ and $\beta(r')=0$, or $a=r$ and $U=0$;
+\item $\abs{\lambda(t)-c(\beta(t))}\le1$ for $t\le a$;
+\item $\abs{U-\beta(a)}\le1$ and $c(U)\le1$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:meet-low}(a), Lemma~\ref{lem:fake-low} applies to $f=\lo$ (crooked by Lemma~\ref{lem:crooked-seq}, $0\le\lo\le k$)
+with any base $i\le a$.
+
+\emph{Case $a=r$.} Take $\lambda=\lo$, base $r$, and $\epsilon=-1$: the event $\mathrm{Ev}^-_0(\lo,r,a)$ fails, because $\lo(r)=\lo(a)\le1$
+and neither a value $\lo(t)=\lo(r)-3<0$ nor $0=\lo(r)-3$ is possible. Then $c(0)=\lo(r)-1\in\set{-1,0}$, so $U=0$ by
+Lemma~\ref{lem:fake-low}(d).
+
+From now on $a>r$, so $r'\le a$. \emph{Case $\lo(r')=\lo(r)$.} Take $\lambda=\lo$, base $r$, and $\epsilon$ given by
+Lemma~\ref{lem:first-direction} for the extended sequence (one of the two events fails). Then $\abs{\lo(r')-c(0)}=1$, so $\beta(r')=0$ by
+Lemma~\ref{lem:fake-low}(c).
+
+\emph{Case $\lo(r')\ne\lo(r)$.} Then they differ by one; let $\ell\in\set{r,r'}$ be the one with the smaller value $x=\lo(\ell)$ and $h$
+the other, so $\lo(h)=x+1$. Also $\hi(h)=x+1$: $\hi(h)\ge\lo(h)$, and $\hi(h)\le\lo(\ell)+1$ by Lemma~\ref{lem:readings}(b). It suffices
+to find $\lambda,c,\beta,U$ with (b), (c) and $\beta(\ell)=\beta(h)=0$.
+\begin{itemize}
+\item If $\mathrm{Ev}^+_0(\lo,\ell,a)$ fails, take $\lambda=\lo$, base $\ell$, $\epsilon=+1$. Then $c(0)=x+1=\lo(h)$, so $\beta(h)=0$ by
+Lemma~\ref{lem:fake-low}(c).
+\item Otherwise $\mathrm{Ev}^-_0(\hi,h,a)$ fails by Lemma~\ref{lem:exclusion}. Reflecting, $\mathrm{Ev}^+_{k-1}(\bar\lo,h,a)$ fails for
+$\bar\lo=k-1-\hi$. By Lemma~\ref{lem:meet-low}(b), Lemma~\ref{lem:fake-high} applies to $\bar\lo$ (crooked by
+Lemma~\ref{lem:crooked-seq}(b)) with $H=k-1$, base $h$ and $\epsilon=+1$, giving $\bar c,\beta,U$ with $\bar c(0)=\bar\lo(h)+1$ and
+$\bar c(U)\ge k-2$. Take $\lambda=\hi$ and $c=k-1-\bar c$. Then (b) holds, $c(U)\le1$, and $c(0)=\hi(h)-1=x$; since
+$\hi(\ell)\in\set{x,x+1}$, $\abs{\bar\lo(\ell)-\bar c(0)}=\abs{\hi(\ell)-x}\le1$, so $\beta(\ell)=0$ by Lemma~\ref{lem:fake-low}(c).\qedhere
+\end{itemize}
+\end{proof}
+
+\formal{\lean{HPC.Fold.B79.pair_prefix_fold}; the conclusion is \lean{HPC.Fold.B79.PrefixFold}.}
+
+\begin{corollary}[Suffix fold]\label{cor:suffix-fold}
+Let $k\ge4$, let $E$ be crooked in $D$, let $s=s'+1$, and let $b\le s$ be an index such that $E_b$ meets $D_{k-1}$. Then there are a
+reading $\mu$ with $\lo\le\mu\le\hi$, a walk $c'$, a function $\beta'\colon[b,n-1]\to\N$ with unit steps, and $V$, such that
+$\beta'(s)=0$; either $b\le s'$ and $\beta'(s')=0$, or $b=s$ and $V=0$; $\abs{(k-1-\mu(t))-c'(\beta'(t))}\le1$ for $t\ge b$; and
+$\abs{V-\beta'(b)}\le1$, $c'(V)\le1$.
+\end{corollary}
+
+\begin{proof}
+Apply Proposition~\ref{prop:prefix-fold} to the reversed chains: $\overline E$ is crooked in $\overline D$ (Lemma~\ref{lem:reverse},
+twice), the pair $s,s'$ becomes the pair $n-1-s$, $n-1-s'=(n-1-s)+1$, and $\overline E_{n-1-b}=E_b$ meets $\overline D_0=D_{k-1}$. The
+least and greatest indices of $\overline E_{n-1-t}$ in $\overline D$ are $k-1-\hi(t)$ and $k-1-\lo(t)$, so a reading $\bar\lambda$ for the
+reversed chains gives the reading $\mu(t)=k-1-\bar\lambda(n-1-t)$ of $E$ in $D$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.B79.pair_suffix_fold}.}
+
+\section{The splice}\label{sec:fold-splice}
+
+We now combine a prefix fold on $[0,a]$ and a suffix fold on $[b,n-1]$ with the middle part of $E$, which is grouped by its levels.
+
+\begin{proposition}[Splice]\label{prop:splice}
+Let $k\ge6$, let $E$ be crooked in $D$, and let $r\le a<b\le s$ with $\lo(a)\le1$ and $\hi(b)\ge k-2$. Let
+$(\lambda,c,\beta_P,U)$ satisfy (b), (c) of Proposition~\ref{prop:prefix-fold} with $\beta_P(r)=0$, and let $(\mu,c',\beta_Q,V)$ satisfy
+the conclusion of Corollary~\ref{cor:suffix-fold} except the clause about $s'$. Then there is a schedule $\beta\colon[0,n-1]\to\N$ (unit
+steps) such that
+\begin{enumerate}[label=(\alph*)]
+\item $\beta(r)=0$ and $\beta(t)\le\beta(s)$ for all $t$;
+\item every block $\set{t:\beta(t)=v}$ lies in some $D[w,w+2]$: there is $w$ such that for each $t$ with $\beta(t)=v$, $\lo(t)$ or $\hi(t)$
+lies in $[w,w+2]$;
+\item if $t\le a$ and $\beta_P(t)=0$, then $\beta(t)=0$; if $U=0$, $t<b$ and $\lo(t)\le2$, then $\beta(t)=0$;
+\item if $t\ge b$ and $\beta_Q(t)=0$, then $\beta(t)=\beta(s)$; if $V=0$, $t>a$ and $\lo(t)\ge k-3$, then $\beta(t)=\beta(s)$.
+\end{enumerate}
+\end{proposition}
+
+Note that ``$\lo(t)$ or $\hi(t)$ in $[w,w+2]$'' implies $E_t\subseteq D[w,w+2]$, since $E_t\subseteq D_{\lo(t)}$ and $E_t\subseteq
+D_{\hi(t)}$.
+
+\begin{proof}
+Let $G=k-5\ge1$ and $\gamma(y)=\min(\max(y-2,0),G)$; $\gamma$ is non-decreasing and moves by at most one when $y$ does. The \emph{middle
+schedule} is $g(t)=\gamma(\lo(t))$ for $t<b$ and $g(t)=\gamma(\hi(t))$ for $t\ge b$. Let $K_P=\set{t\le a:\beta_P(t)<U}$ (the part of the
+prefix fold kept) and $K_S=\set{t\ge b:\beta_Q(t)<V}$, and define
+\[
+\beta(t)=\begin{cases}\beta_P(t)&t\in K_P,\\ U+G+V-\beta_Q(t)&t\in K_S,\\ U+g(t)&\text{otherwise.}\end{cases}
+\]
+We first note $a+3\le b$: by Lemma~\ref{lem:readings}(b), if $b=a+1$ then $\hi(b)\le\lo(a)+1\le2$, and if $b=a+2$ then $\hi(b)\le\lo(a+1)+1
+\le\lo(a)+2\le3$; both contradict $\hi(b)\ge k-2\ge4$. So $K_P$ and $K_S$ are disjoint, and far apart.
+
+Two observations do most of the work. \emph{(P)} If $t\le a$ and $\beta_P(t)=U$, then $\abs{\lambda(t)-c(U)}\le1$ and $c(U)\le1$, so
+$\lo(t)\le\lambda(t)\le2$ and $g(t)=\gamma(\lo(t))=0$. \emph{(Q)} If $t\ge b$ and $\beta_Q(t)=V$, then $k-1-\mu(t)\le c'(V)+1\le2$, so
+$\hi(t)\ge\mu(t)\ge k-3$ and $g(t)=\gamma(\hi(t))=G$ (as $\hi(t)-2\ge k-5$).
+
+\emph{Unit steps.} Let $t'=t+1$.
+\begin{itemize}
+\item Both in $K_P$, or both in $K_S$: unit steps of $\beta_P$, $\beta_Q$.
+\item $t\in K_P$, $t'\notin K_P$ (so $t'\notin K_S$, as $t'\le a+1<b$). If $t'\le a$, then $\beta_P(t)<U\le\beta_P(t')$ forces $\beta_P(t)=U-1$,
+$\beta_P(t')=U$, and by (P) $\beta(t')=U$. If $t'=a+1$, then $t=a$, $\beta_P(a)=U-1$ (from $\abs{U-\beta_P(a)}\le1$), and
+$\lo(t')\le\lo(a)+1\le2$, so $\beta(t')=U$. In both cases $\beta(t)=U-1$. Entering $K_P$ ($t\notin K_P$, $t'\in K_P$) is the same.
+\item $t\in K_S$, $t'\notin K_S$: then $t'\ge b$, $\beta_Q(t)=V-1$, $\beta_Q(t')=V$, and by (Q) $\beta(t')=U+G=\beta(t)-1$. Entering $K_S$ at
+$t'$: if $t\ge b$ this is the same; otherwise $t'=b$, $\beta_Q(b)=V-1$ (from $\abs{V-\beta_Q(b)}\le1$), $\beta(t')=U+G+1$, and
+$\lo(t)\ge\hi(b)-1\ge k-3$ by Lemma~\ref{lem:readings}(b), so $\beta(t)=U+G$.
+\item Neither in $K_P\cup K_S$: $\beta=U+g$, and $g$ has unit steps since $\gamma$ is $1$-Lipschitz and $\lo$, $\hi$ have unit steps;
+at the switch $t=b-1$, $t'=b$, use $\abs{\hi(b)-\lo(b-1)}\le1$.
+\end{itemize}
+
+\emph{(a)} If $U>0$, then $r\in K_P$ and $\beta(r)=\beta_P(r)=0$. If $U=0$, then $r\notin K_P\cup K_S$, and by (P) (with $\beta_P(r)=0=U$)
+$\beta(r)=g(r)=0$. Clearly $\beta\le U+G+V$ everywhere ($\beta<U$ on $K_P$, $g\le G$). And $\beta(s)=U+G+V$: if $V>0$, $s\in K_S$ and
+$\beta_Q(s)=0$; if $V=0$, $s\notin K_S$ and by (Q) $\beta(s)=U+G$.
+
+\emph{(b)} Let $v<U$. Then every $t$ with $\beta(t)=v$ lies in $K_P$ (outside $K_P$, $\beta\ge U$) and has $\beta_P(t)=v$, so
+$\lambda(t)\in[c(v)-1,c(v)+1]$; since $\lambda(t)$ is $\lo(t)$ or $\hi(t)$ (Lemma~\ref{lem:readings}(a)), take $w=c(v)-1$. Let $U\le
+v\le U+G$ and $j=v-U$; then $\beta(t)=v$ forces $t\notin K_P\cup K_S$ and $g(t)=j$, so the relevant reading $y$ ($\lo(t)$ if $t<b$, $\hi(t)$
+otherwise) satisfies $\gamma(y)=j$: if $j=0$, $0\le y\le2$ (take $w=0$); if $0<j<G$, $y=j+2$ (take $w=j$); if $j=G$, $k-3\le y\le k-1$ (take
+$w=k-3$). Let $v>U+G$; then $t\in K_S$ and $\beta_Q(t)=U+G+V-v$, so $k-1-\mu(t)$ is within one of $c'(U+G+V-v)$; take $w=k-2-c'(U+G+V-v)$.
+
+\emph{(c)} If $t\le a$ and $\beta_P(t)=0$: if $U>0$, $t\in K_P$ and $\beta(t)=0$; if $U=0$, by (P) $\beta(t)=g(t)=0$. If $U=0$, $t<b$ and
+$\lo(t)\le2$: $t\notin K_P\cup K_S$ and $g(t)=\gamma(\lo(t))=0$.
+
+\emph{(d)} If $t\ge b$ and $\beta_Q(t)=0$: if $V>0$, $t\in K_S$ and $\beta(t)=U+G+V$; if $V=0$, by (Q) $\beta(t)=U+G=\beta(s)$. If $V=0$,
+$t>a$ and $\lo(t)\ge k-3$: $t\notin K_P\cup K_S$, and $g(t)=G$ since $\hi(t)\ge\lo(t)\ge k-3$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.B79.splice_schedule_pair} (the version with $\lambda=\mu=\lo$ and without (c), (d) is
+\lean{HPC.Fold.B78.splice_schedule}); the passage from levels to links is \lean{HPC.Fold.B78.link_sub_of_level}.}
+
+\section{Proof of the folding theorem}\label{sec:fold-proof}
+
+\begin{lemma}[From a schedule to the block map]\label{lem:assemble}
+Let $\beta$ be a schedule for $E$ with $\beta(r)=\beta(r')=0$, $\beta(s')=\beta(s)\ge\beta(t)$ for all $t$, and such that every block of
+$\beta$ lies in some $D[w,w+2]$. Then the conclusion of Theorem~\ref{thm:folding} holds.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:schedule}, $\beta$ is a block map onto $[q]$ with $q=1+\beta(s)$. Its blocks are those of $\beta$, and $\beta(s)=\beta(s')=q-1$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.B79.assemble_pair}.}
+
+\begin{lemma}[Two windows]\label{lem:windows}
+Let $A,B$ be sets of indices with $A\cup B=[0,n-1]$, such that every $E_t$ with $t\in A$ lies in $D[w_A,w_A+2]$ and every $E_t$ with $t\in
+B$ lies in $D[w_B,w_B+2]$. Let $r'=r+1<s'=s-1$ with $r,r'\in A$, and suppose that either $s',s\in B$, or $s',s\in A$ and some $c$ with
+$r'<c<s'$ lies in $B$. Then the conclusion of Theorem~\ref{thm:folding} holds.
+\end{lemma}
+
+\begin{proof}
+In the first case let $\beta(t)=1$ for $t\in\set{s',s}$ and otherwise $\beta(t)=0$ for $t\in A$, $\beta(t)=1$ for $t\notin A$. In the second
+case let, for $t<c$, $\beta(t)=0$ if $t\in A$ and $1$ otherwise; $\beta(c)=1$; and, for $t>c$, $\beta(t)=2$ if $t\in A$ and $1$ otherwise.
+In both cases $\beta$ has unit steps (in the second case the only way to jump from $0$ to $2$ would be across $c$, where $\beta=1$),
+$\beta(r)=\beta(r')=0$, and $\beta(s)=\beta(s')$ is the maximum. Block $1$ consists of indices outside $A$, hence in $B$, together with
+$s',s$, resp.\ $c$, which are in $B$; the other blocks consist of indices in $A$. Apply Lemma~\ref{lem:assemble}.
+\end{proof}
+
+\formal{\lean{HPC.Fold.B79.pair_windows}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:folding}]
+Let $h_l$ and $h_h$ be the given indices: $E_{h_l}$ meets $D_0$ and $E_{h_h}$ meets $D_{k-1}$, so $\lo(h_l)\le1$ and $\hi(h_h)\ge k-2$
+(Lemma~\ref{lem:readings}(c)). Let $A=\set{t:\lo(t)\le2}$ and $B=\set{t:\hi(t)\ge k-3}$; then $E_t\subseteq D[0,2]$ for $t\in A$ and
+$E_t\subseteq D[k-3,k-1]$ for $t\in B$.
+
+\emph{$k=3$.} Every link lies in $D[0,2]=\bigcup D$; take the single block, $\beta\equiv0$, $q=1$.
+
+\emph{$k\ge4$: then $r'<s'$.} Otherwise $s=r+2$, and $h_l,h_h\in[r,r+2]$. Crookedness applied to $E_{h_l}$ (meeting $D_0$) and $E_{h_h}$ (meeting
+$D_{k-1}$, $k-1\ge3$) gives two indices strictly between $h_l$ and $h_h$, which is impossible within three consecutive indices.
+
+\emph{$k\ge6$.} $h_l\ne h_h$, since $\hi(h_l)\le\lo(h_l)+1\le2<k-2$. If $h_l<h_h$, let $a=h_l$, $b=h_h$, so $r\le a<b\le s$. Take the prefix
+fold of Proposition~\ref{prop:prefix-fold} for $(r,r',a)$ and the suffix fold of Corollary~\ref{cor:suffix-fold} for $(s',s,b)$, and splice
+them (Proposition~\ref{prop:splice}). The schedule $\beta$ satisfies $\beta(r)=0$ and $\beta(t)\le\beta(s)$, and its blocks are small.
+Moreover $\beta(r')=0$: either $r'\le a$ and $\beta_P(r')=0$, and Proposition~\ref{prop:splice}(c) applies; or $a=r$ and $U=0$, and then
+$r'=a+1<b$ and $\lo(r')\le\lo(a)+1\le2$, so again (c) applies. Symmetrically $\beta(s')=\beta(s)$ by (d). Lemma~\ref{lem:assemble} finishes
+this case. If $h_h<h_l$, apply this to $E$ and the reversed chain $\overline D$ (in which $E_{h_h}$ meets $\overline D_0$ and $E_{h_l}$ meets
+$\overline D_{k-1}$; $E$ is crooked in $\overline D$ by Lemma~\ref{lem:reverse}); a block inside $\overline D[j,j+2]$ lies inside
+$D[k-3-j,k-1-j]$.
+
+\emph{$k\in\set{4,5}$.} Every index lies in $A\cup B$: if $\lo(t)\ge3$ then $\hi(t)\ge3\ge k-3$. Also, an index $t$ not in $B$ has
+$\hi(t)\le k-4\le1$, so its neighbours have $\lo\le2$: \emph{if one of two adjacent indices is not in $B$, both are in $A$}; similarly, an
+index not in $A$ has $\lo\ge3$, so its neighbours have $\hi\ge2\ge k-3$: \emph{if one of two adjacent indices is not in $A$, both are in
+$B$}. Hence each of the pairs $\set{r,r'}$ and $\set{s',s}$ lies in $A$ or in $B$.
+\begin{itemize}
+\item If $r,r'\in A$ and $s',s\in B$, apply Lemma~\ref{lem:windows} (first case). If $r,r'\in B$ and $s',s\in A$, apply it with $A$ and $B$
+exchanged.
+\item Otherwise, suppose $r,r'\in A$. Then $s',s\in A$ (since not both are in $B$), and $h_h$ lies strictly between $r'$ and $s'$: if
+$h_h\in\set{r,r'}$, then $\hi\ge k-3$ on both $r,r'$ (as $\hi(h_h)\ge k-2$), so $r,r'\in B$ and we would be in the previous case; if
+$h_h\in\set{s',s}$, similarly $s',s\in B$. Since $h_h\in B$, Lemma~\ref{lem:windows} (second case) applies with $c=h_h$.
+\item Otherwise $r,r'$ are not both in $A$, so both are in $B$, and then $s',s$ are not both in $A$, so both are in $B$. Now $h_l\in A$
+lies strictly between $r'$ and $s'$: if $h_l\in\set{r,r'}$, then $\lo\le2$ on both $r,r'$, i.e.\ $r,r'\in A$; if $h_l\in\set{s',s}$, then
+similarly $s',s\in A$, a contradiction. Apply Lemma~\ref{lem:windows} (second case) with $A$ and $B$ exchanged and $c=h_l$.\qedhere
+\end{itemize}
+\end{proof}
+
+\formal{\lean{HPC.Fold.theorem4_pair}; the main case is \lean{HPC.Fold.B79.theorem4_pair_core}, and the reflection uses
+\lean{HPC.Fold.B78.unionRange_reverse}.}
+
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Show that no sequence beginning with the values $0,1,2,3$ is crooked. Show that every sequence with unit steps whose values lie in an
+interval of length at most $2$ is crooked.
+\end{exercise}
+
+\begin{exercise}
+Compute the jump walk of the turning levels $0,4,1,5$ and the leg positions $\pi_0(y)$ for $-1\le y\le5$. Check
+Lemma~\ref{lem:legpos} directly in this case.
+\end{exercise}
+
+\begin{exercise}
+Let $S(x)=x$ on $[-3,3]$. Show that both conditions $(\mathrm{OK}^+)$ and $(\mathrm{OK}^-)$ of Lemma~\ref{lem:first-direction} fail, and
+verify directly that $S$ is not crooked.
+\end{exercise}
+
+\begin{exercise}
+In Lemma~\ref{lem:up-phase}, explain why the minimum $t=\min(v_+,v_-)$ cannot be replaced by $\max(v_+,v_-)$.
+\end{exercise}
+
+\begin{exercise}
+Let $\ell,h$ be adjacent indices with $\lo(h)=\lo(\ell)+1$. Show that $\hi(h)=\lo(h)$ and $\hi(\ell)\in\set{\lo(\ell),\lo(\ell)+1}$. Give an
+example with chains of open intervals in $\R$ in which $\hi(\ell)=\lo(\ell)+1$.
+\end{exercise}
+
+\begin{exercise}
+Where exactly is the hypothesis $k\ge6$ used in the proof of Proposition~\ref{prop:splice}? What goes wrong with the middle schedule
+$g$ for $k=5$?
+\end{exercise}
+
+\begin{exercise}
+Deduce from Theorem~\ref{thm:folding} the single-link version: if $r\le s$ and some $E_h$, $E_{h'}$ with $r\le h,h'\le s$ meet $D_0$ and
+$D_{k-1}$, then there is a block map with small blocks sending $r$ to the first and $s$ to the last block. (Hint: use the pairs
+$(r,r+1)$ and $(s-1,s)$; treat $s\le r+1$ separately.)
+\end{exercise}

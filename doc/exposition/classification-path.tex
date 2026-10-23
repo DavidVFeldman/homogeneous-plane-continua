@@ -1,0 +1,703 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\lean}[1]{\texttt{#1}}
+\setlist{itemsep=2pt,topsep=4pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\sloppy
+
+\title{The classification of homogeneous plane continua: the whole path, minimally}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+This is a reading guide to the proof of the classification that is formalized in this repository. It follows the dependency graph of the two final theorems, \lean{BJ59.\hspace{0pt}ho16\_\hspace{0pt}classification$_{4}$} and \lean{BJ59.\hspace{0pt}ho16\_\hspace{0pt}classification\_\hspace{0pt}plane$_{4}$} (\lean{HPC/BJ59/BJ59E.\hspace{0pt}lean}), and nothing else: every result stated below is used, directly or indirectly, by those two theorems. Results that the repository proves but the classification does not use are not mentioned, even when they come from the same papers. For example, Bing 1948 Theorems 3, 7--9 and 13--15, Bing--Jones Theorems 2, 6 and 9, and the refutations of printed statements are left out.
+
+``First principles'' means the standard point-set topology and analysis available in Mathlib: compact metric spaces, connectedness and components, the Baire category theorem, Polish spaces, Urysohn functions, Lebesgue numbers, Hausdorff limits, the complex exponential, and the circle \lean{Circle $\subset$ $\mathbb{C}$}. Everything else is proved on the way.
+
+Each section gives the statements and, for each one, the idea of the proof. Lean names are given in backticks without the leading \lean{HPC.\hspace{0pt}}, so \lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}c} means \lean{HPC.\hspace{0pt}Jones.\hspace{0pt}jones55\_\hspace{0pt}c}. Where the formal proof takes a different route from the source paper, a short note says so.
+
+\textbf{Conventions.} The plane is \lean{Pt = $\mathbb{R}$ $\times$ $\mathbb{R}$}. A \emph{continuum} is a compact connected metric space; in the Lean code it may be a single point, and ``nondegenerate'' is stated separately where it is needed. A continuum is \emph{decomposable} if it is the union of two proper subcontinua, and \emph{indecomposable} otherwise. It is \emph{hereditarily indecomposable} (HI) if every subcontinuum is indecomposable. A space is \emph{homogeneous} if for all points $x$, $y$ some self-homeomorphism carries $x$ to $y$. A \emph{simple closed curve} is a space homeomorphic to the circle $S^1$.
+
+\bigskip
+
+\tableofcontents
+
+\section*{0. The theorem and the shape of its proof}
+\addcontentsline{toc}{section}{0. The theorem and the shape of its proof}
+
+\textbf{Classification theorem} (\lean{BJ59.\hspace{0pt}ho16\_\hspace{0pt}classification$_{4}$}). A nondegenerate plane continuum $M$ is homogeneous if and only if $M$ is a simple closed curve, a pseudo-arc, or a circle of pseudo-arcs.
+
+\textbf{Plane form} (\lean{BJ59.\hspace{0pt}ho16\_\hspace{0pt}classification\_\hspace{0pt}plane$_{4}$}). There are plane continua $C_1$, $C_2$, $C_3$ such that $C_1$ is a simple closed curve, $C_2$ is a pseudo-arc and $C_3$ is a circle of pseudo-arcs. Each of them is homogeneous, no two of them are homeomorphic, and a nondegenerate plane continuum is homogeneous if and only if it is homeomorphic to one of them.
+
+The three classes are defined as follows.
+
+\begin{itemize}
+  \item A continuum is \emph{snake-like} (chainable) if for every $\varepsilon > 0$ it is covered by a chain of open sets of diameter $< \varepsilon$ (\S{}2). A \emph{pseudo-arc} is a nondegenerate, snake-like, hereditarily indecomposable continuum (\lean{Plane.\hspace{0pt}IsPseudoArc}).
+  \item A \emph{circle of pseudo-arcs} (\lean{BJ59.\hspace{0pt}IsCircleOfPA}, Bing--Jones 1959) is a circle-like continuum $X$ with a continuous, open, surjective map $f : X \to S^1$ all of whose fibres are pseudo-arcs.
+\end{itemize}
+
+The proof has five parts.
+
+\begin{enumerate}
+  \item[1.] \textbf{The pseudo-arc} (Part III). From Bing 1948 and 1951: a pseudo-arc exists in the plane, any two pseudo-arcs are homeomorphic, and a pseudo-arc is homogeneous.
+  \item[2.] \textbf{The indecomposable case} (Part IV). An indecomposable homogeneous plane continuum is a pseudo-arc. It is HI (Hagopian 1976), it has span zero (Theorem C of Hoehn--Oversteegen, via Oversteegen--Tymchatyn 1982), and an HI continuum of span zero is snake-like (Hoehn--Oversteegen 2016, Theorem 1).
+  \item[3.] \textbf{The decomposable case} (Part V). A decomposable homogeneous plane continuum is either a simple closed curve or has an open atomic map onto the circle with pseudo-arc fibres. This uses Jones's aposyndetic decomposition (Jones 1955), Jones 1949 and the indecomposable case.
+  \item[4.] \textbf{Circles of pseudo-arcs} (Part VI). Bing--Jones Theorem 10: two ``arcs of pseudo-arcs'' are homeomorphic by a fibre-preserving homeomorphism extending given homeomorphisms of the end fibres. It follows that any two circles of pseudo-arcs are homeomorphic, that each one is homogeneous, and that every continuum with an open atomic pseudo-arc map onto the circle is a circle of pseudo-arcs. A circle of pseudo-arcs in the plane is constructed explicitly.
+  \item[5.] \textbf{Assembly} (Part VII).
+\end{enumerate}
+
+Parts III--VI rest on the general theory of continua (Part I) and on plane topology (Part II). Two foundations need the most work. The first is Moore's characterization of the plane, which shows that a decomposition of the plane into non-separating continua is again a plane (Moore 1925). The second is the Effros theorem for homogeneous compacta.
+
+{\footnotesize
+\begin{verbatim}
+      Part I (continua, chains, Effros, decompositions)    Part II (plane topology, Moore)
+                 |                                                  |
+   +-------------+-----------------+---------------------+----------+------------+
+   |                               |                     |                       |
+ Part III                       Part IV                Part V                  Part VI
+ pseudo-arc:                    indecomposable =>       decomposable =>          Bing-Jones Thm 10;
+ exists, unique,                HI (Hagopian),         circle, or atomic       circles of pseudo-arcs:
+ homogeneous                    span 0 (O-T),          pseudo-arc map onto     unique, homogeneous,
+                                snake-like (H-O)       the circle (Jones)      one in the plane
+   +-------------------------------+---------------------+-----------------------+
+                                             |
+                                     Part VII: assembly
+\end{verbatim}
+}
+
+\bigskip
+
+\part*{Part I. Foundations}
+\addcontentsline{toc}{part}{Part I. Foundations}
+
+\section*{1. Continua}
+\addcontentsline{toc}{section}{1. Continua}
+
+\textbf{1.1 Boundary bumping.} Let $L$ be a continuum and $F$ a proper closed subset. Every component of $F$ meets the boundary of $F$ in $L$. In open form: if $O$ is open and $L \not\subset O$, every component of a closed neighbourhood inside $O$ reaches its frontier. A compact piece of a connected set behaves the same way. (\lean{Plane.\hspace{0pt}exists\_\hspace{0pt}continuum\_\hspace{0pt}bump\_\hspace{0pt}closed}, \lean{Plane.\hspace{0pt}exists\_\hspace{0pt}continuum\_\hspace{0pt}bump\_\hspace{0pt}open}, \lean{Jones.\hspace{0pt}exists\_\hspace{0pt}continuum\_\hspace{0pt}bump\_\hspace{0pt}compact}, \lean{T13.\hspace{0pt}clopen\_\hspace{0pt}meets\_\hspace{0pt}closure\_\hspace{0pt}diff}.) \emph{Proof:} components of a compact Hausdorff space are quasi-components, so a component missing the frontier is cut off from it by a clopen set. This contradicts the connectedness of $L$.
+
+\textbf{1.2 The cut-wire theorem.} If no subcontinuum of the compact set $F$ meets both of the disjoint closed sets $A$ and $B$, then $F = F_1 \sqcup F_2$ with $F_1$, $F_2$ closed, $A \subseteq F_1$ and $B \subseteq F_2$ (\lean{Plane.\hspace{0pt}exists\_\hspace{0pt}split\_\hspace{0pt}of\_\hspace{0pt}no\_\hspace{0pt}continuum}, \lean{Jones.\hspace{0pt}exists\_\hspace{0pt}clopen\_\hspace{0pt}of\_\hspace{0pt}connectedComponentIn\_\hspace{0pt}disjoint}). \emph{Proof:} components equal quasi-components; cover by finitely many clopen sets. Moore's Theorem 44 is the same statement for a compact set with no preconnected set meeting both pieces (\lean{Plane.\hspace{0pt}exists\_\hspace{0pt}closed\_\hspace{0pt}split\_\hspace{0pt}of\_\hspace{0pt}no\_\hspace{0pt}connected}).
+
+\textbf{1.3 Brouwer reduction and irreducible continua.} A property of subcontinua that passes to intersections of decreasing chains has minimal elements (\lean{Plane.\hspace{0pt}exists\_\hspace{0pt}minimal\_\hspace{0pt}of\_\hspace{0pt}seq}, \lean{Span.\hspace{0pt}brouwer\_\hspace{0pt}reduction}, \lean{Span.\hspace{0pt}isContinuum\_\hspace{0pt}sInter\_\hspace{0pt}chain}). In particular, a continuum containing two points (or two closed sets) contains a subcontinuum that is irreducible between them (\lean{exists\_\hspace{0pt}irreducible}).
+
+\textbf{1.4 Non-cut points.} A nondegenerate continuum has at least two non-cut points (\lean{Plane.\hspace{0pt}exists\_\hspace{0pt}two\_\hspace{0pt}nonCutPoints}, \lean{Plane.\hspace{0pt}exists\_\hspace{0pt}nonCutPoint\_\hspace{0pt}of\_\hspace{0pt}cut}; Moore, Nadler 6.6). \emph{Proof:} if $p$ is a cut point, write $X \setminus p = A \cup B$ with $A$, $B$ separated; then $A \cup \{p\}$ is a continuum, and a nested argument (or boundary bumping and compactness) finds a non-cut point of $X$ in each side. The elementary tools are \lean{Plane.\hspace{0pt}exists\_\hspace{0pt}separated\_\hspace{0pt}of\_\hspace{0pt}not\_\hspace{0pt}isPreconnected} (Nadler 6.2), \lean{Plane.\hspace{0pt}isContinuum\_\hspace{0pt}union\_\hspace{0pt}piece} and \lean{Plane.\hspace{0pt}isPreconnected\_\hspace{0pt}union\_\hspace{0pt}of\_\hspace{0pt}separated} (Nadler 6.3), and \lean{Plane.\hspace{0pt}subset\_\hspace{0pt}side\_\hspace{0pt}of\_\hspace{0pt}isPreconnected}.
+
+\textbf{1.5 Indecomposability and composants.} The \emph{composant} of $x$ in $M$ is the union of the proper subcontinua of $M$ that contain $x$. In a nondegenerate indecomposable continuum $M$:
+
+\begin{itemize}
+  \item a proper subcontinuum has empty interior in $M$ (\lean{T13.\hspace{0pt}false\_\hspace{0pt}of\_\hspace{0pt}interior}; otherwise $M$ would be the union of it and the closure of its complement);
+  \item every composant is dense (Moore 135, \lean{Hagopian.\hspace{0pt}composant\_\hspace{0pt}dense}) and meagre (Moore 136--137, \lean{Hagopian.\hspace{0pt}composant\_\hspace{0pt}isMeagre'});
+  \item two composants are equal or disjoint (Moore 138, \lean{Hagopian.\hspace{0pt}composant\_\hspace{0pt}eq\_\hspace{0pt}or\_\hspace{0pt}disjoint});
+  \item there are uncountably many composants (Moore 139, \lean{Hagopian.\hspace{0pt}uncountable\_\hspace{0pt}composants}; each is a countable union of nowhere dense proper subcontinua, so by Baire they cannot be countably many);
+  \item in particular each composant is a proper subset (\lean{composant\_\hspace{0pt}ne\_\hspace{0pt}of\_\hspace{0pt}indecomposable}), and some point lies in no proper subcontinuum through a given point (\lean{T13.\hspace{0pt}exists\_\hspace{0pt}not\_\hspace{0pt}mem\_\hspace{0pt}proper\_\hspace{0pt}subcontinua}).
+\end{itemize}
+
+\textbf{1.6 Monotone maps.} Under a continuous map of compacta with connected fibres, preimages of connected sets are connected (\lean{Plane.\hspace{0pt}Mono.\hspace{0pt}isConnected\_\hspace{0pt}inter\_\hspace{0pt}preimage}, \lean{BJ59.\hspace{0pt}isPreconnected\_\hspace{0pt}preimage\_\hspace{0pt}of\_\hspace{0pt}monotone'}).
+
+\textbf{1.7 Triods.} A \emph{triod} is a continuum $T$ with a subcontinuum $H$ such that $T \setminus H$ is the union of three nonempty pairwise separated sets; a continuum is \emph{atriodic} if it contains none. A continuum is \emph{unicoherent} if the intersection of any two subcontinua whose union is the whole is connected, and \emph{hereditarily unicoherent} if every subcontinuum is unicoherent. The bridge used later is ``a triod is a weak triod'': an essential sum of three continua with a common point (\lean{Plane.\hspace{0pt}IsTriod}, \lean{Plane.\hspace{0pt}IsWeakTriod}, \lean{Plane.\hspace{0pt}isWeakTriod\_\hspace{0pt}of\_\hspace{0pt}isTriod}; Nadler 11.23--11.25).
+
+\section*{2. Chains, snake-like and circle-like continua}
+\addcontentsline{toc}{section}{2. Chains, snake-like and circle-like continua}
+
+\textbf{2.1 Chains.} A \emph{chain} of length $n$ is a sequence of open sets $L_0$, \dots{}, $L_{n-1}$ (\emph{links}) with $L_i \cap L_j \neq \emptyset$ exactly when $|i - j| \leq 1$ (\lean{Chain}). It is an \emph{$\varepsilon$-chain} if every link is bounded of diameter $< \varepsilon$ (\lean{Plane.\hspace{0pt}IsEpsChain}). A chain $E$ \emph{refines} $D$ if every link of $E$ lies in a link of $D$ (\lean{Chain.\hspace{0pt}Refines}). $E$ \emph{follows the pattern} $x : \{0..m-1\} \to \{0..n-1\}$ in $D$ if $E_i \subseteq D_{x(i)}$ (\lean{Chain.\hspace{0pt}FollowsPattern}). $F$ is a \emph{consolidation} of $D$ if each link of $F$ is a union of links of $D$ (\lean{Chain.\hspace{0pt}IsConsolidationOf}). A \emph{circular chain} is the same with indices read modulo $n$ (\lean{Plane.\hspace{0pt}CircChain}, \lean{Plane.\hspace{0pt}IsCircEpsChain}).
+
+Two elementary facts are used throughout. A preconnected set inside the union of a chain that meets links $i$ and $j$ meets every link between them (\lean{Chain.\hspace{0pt}inter\_\hspace{0pt}link\_\hspace{0pt}nonempty\_\hspace{0pt}between}). A set of diameter $d$ covered by an $\varepsilon$-chain needs at least $d/\varepsilon$ links (\lean{Chain.\hspace{0pt}diam\_\hspace{0pt}le\_\hspace{0pt}length\_\hspace{0pt}mul}).
+
+\textbf{2.2 Crookedness} (Bing 1948, \lean{Chain.\hspace{0pt}IsCrookedIn'}). $E$ is \emph{crooked in} $D$ if $E$ refines $D$ and, whenever links $E_i$, $E_j$ meet $D_h$ and $D_k$ with $k > h + 2$, there are indices $r$, $s$ between $i$ and $j$, in the order $i$, $r$, $s$, $j$, with $E_r \subseteq D_{k-1}$ and $E_s \subseteq D_{h+1}$. In words: to get from $D_h$ to $D_k$, $E$ must go almost all the way, come almost all the way back, and go again.
+
+\textbf{2.3 Snake-like and circle-like.} A continuum is \emph{snake-like} if it is covered by an $\varepsilon$-chain for every $\varepsilon > 0$ (\lean{Plane.\hspace{0pt}IsSnakeLike}), and \emph{circle-like} if it is covered by $\varepsilon$-circular chains (\lean{Plane.\hspace{0pt}IsCircleLike}). Facts used:
+
+\begin{itemize}
+  \item \emph{$\varepsilon$-map criterion}: a compact connected metric space with, for every $\varepsilon$, a map onto [0, 1] with fibres of diameter $< \varepsilon$ is snake-like (\lean{Plane.\hspace{0pt}isSnakeLike\_\hspace{0pt}univ\_\hspace{0pt}of\_\hspace{0pt}epsMap}, \lean{Plane.\hspace{0pt}isSnakeLike\_\hspace{0pt}of\_\hspace{0pt}epsMap}). Conversely, an $\varepsilon$-chain gives an $\varepsilon$-map by weighted means of distance functions (\lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}epsMap\_\hspace{0pt}of\_\hspace{0pt}chain}). Hence snake-likeness and hereditary indecomposability are topological, and so is being a pseudo-arc (\lean{BJ59.\hspace{0pt}isSnakeLike\_\hspace{0pt}of\_\hspace{0pt}homeomorph}, \lean{BJ59.\hspace{0pt}isHereditarilyIndecomposable\_\hspace{0pt}of\_\hspace{0pt}homeomorph}, \lean{BJ59.\hspace{0pt}isPseudoArc\_\hspace{0pt}of\_\hspace{0pt}homeomorph}). Circle-likeness also passes along homeomorphisms (\lean{BJ59.\hspace{0pt}isCircleLike\_\hspace{0pt}univ\_\hspace{0pt}of\_\hspace{0pt}homeomorph}).
+  \item A snake-like continuum is unicoherent, and its subcontinua are snake-like (\lean{Plane.\hspace{0pt}isUnicoherent\_\hspace{0pt}of\_\hspace{0pt}isSnakeLike\_\hspace{0pt}aux}, \lean{Plane.\hspace{0pt}isSnakeLike\_\hspace{0pt}of\_\hspace{0pt}subcontinuum\_\hspace{0pt}aux}; Nadler 12.2, 12.5).
+  \item A proper subcontinuum of a circle-like continuum is snake-like (\lean{Plane.\hspace{0pt}isSnakeLike\_\hspace{0pt}of\_\hspace{0pt}subset\_\hspace{0pt}circleLike}, Nadler 12.51). \emph{Proof:} pick $x$ outside it and a link containing $x$ that misses it; the remaining links, read cyclically from the next one, form a chain.
+  \item A \emph{weak chain} (non-consecutive links disjoint) can be trimmed to a chain (\lean{Plane.\hspace{0pt}exists\_\hspace{0pt}chain\_\hspace{0pt}of\_\hspace{0pt}weak}).
+  \item Limits of finely chained connected sets are connected (\lean{T13.\hspace{0pt}isPreconnected\_\hspace{0pt}limSup}).
+\end{itemize}
+
+\section*{3. Homogeneity and the Effros theorem}
+\addcontentsline{toc}{section}{3. Homogeneity and the Effros theorem}
+
+\textbf{3.1 The homeomorphism group.} For a compact metric space $Y$, the group $H(Y)$ of self-homeomorphisms, with the topology of uniform convergence of maps and inverses, is a Polish topological group acting continuously on $Y$ (\lean{Effros.\hspace{0pt}homeoGroup}, \lean{Effros.\hspace{0pt}homeoTopology}).
+
+\textbf{3.2 The open mapping principle} (Effros 1965, in van Mill's 2004 proof; \lean{Effros.\hspace{0pt}effros\_\hspace{0pt}open\_\hspace{0pt}mapping}). If a Polish group $G$ acts continuously and transitively on a nonempty metric Baire space $X$, then for every $x$ and every neighbourhood $U$ of 1, $U\cdot x$ is a neighbourhood of $x$. \emph{Proof (van Mill):} $U\cdot x$ is not meagre, because countably many translates of $U$ cover $G$ (Lindel\"of) (\lean{Effros.\hspace{0pt}vanMill\_\hspace{0pt}3\_\hspace{0pt}2}). Analytic nowhere-meagre sets that are dense in one another meet (\lean{Effros.\hspace{0pt}inter\_\hspace{0pt}nonempty\_\hspace{0pt}of\_\hspace{0pt}nowhereMeagre}, Proposition 2.2, by a nested Cantor-scheme construction). From this, $x$ lies in the interior of the closure of $U\cdot x$ and the interior of the closure of $U_{n+1}\cdot x$ lies in $U_n\cdot x$ (Lemmas 3.3--3.5, \lean{Effros.\hspace{0pt}vanMill\_\hspace{0pt}3\_\hspace{0pt}5}), which gives the claim.
+
+\textbf{3.3 Effros for homogeneous compacta} (\lean{Effros.\hspace{0pt}effros\_\hspace{0pt}homogeneous}). Let $Y$ be a homogeneous compact metric space. For every $\varepsilon > 0$ there is $\delta > 0$ such that any two points at distance $< \delta$ are carried one to the other by a homeomorphism that moves every point by less than $\varepsilon$. \emph{Proof:} apply 3.2 to $U =$ \{$h$ : sup-displacement $< \varepsilon /2$\} and take a Lebesgue number of the cover by the interiors of the sets $U\cdot z$.
+
+This is the only way homogeneity enters the local arguments of Parts IV and $V$. Its consumers are Hagopian's Lemma 1 (1984) and Lemma 4 (1975), Jones 1975, Jones's aposyndesis lemma (\S{}18), and Oversteegen--Tymchatyn's Theorem 3.6 and Corollary 3.5.
+
+\section*{4. Decompositions}
+\addcontentsline{toc}{section}{4. Decompositions}
+
+Let $r$ be an equivalence relation on a compact metric space $X$ with closed classes.
+
+\begin{itemize}
+  \item $r$ is \emph{upper semicontinuous} (u.s.c.\@) if the saturation of every closed set is closed (\lean{Jones.\hspace{0pt}IsUSCDecomp}). A closed relation on a compact metric space is u.s.c.\@ (\lean{Jones.\hspace{0pt}isUSCDecomp\_\hspace{0pt}of\_\hspace{0pt}isClosed}).
+  \item $r$ is \emph{continuous at a class} $g$ if it is also lower semicontinuous there (\lean{Jones.\hspace{0pt}LSCAt}), and \emph{continuous} if it is so at every class (\lean{Jones.\hspace{0pt}IsContinuousDecomp}).
+  \item The quotient of a u.s.c.\@ decomposition of a compact metric space is compact metrizable (\lean{Jones.\hspace{0pt}metrizableSpace\_\hspace{0pt}quotient}).
+  \item \textbf{Residual continuity} (Kuratowski, Fort; used without statement by Jones 1955): a u.s.c.\@ decomposition is continuous at the classes of a residual subset of the quotient (\lean{Jones.\hspace{0pt}residual\_\hspace{0pt}lscAt}).
+  \item A homeomorphism of $X$ that permutes the classes descends to the quotient (\lean{Jones.\hspace{0pt}exists\_\hspace{0pt}homeomorph\_\hspace{0pt}quotient}).
+  \item The quotient map of a continuous decomposition is open (\lean{BJ59.\hspace{0pt}isOpenMap\_\hspace{0pt}quotient\_\hspace{0pt}mk\_\hspace{0pt}of\_\hspace{0pt}continuous}): the saturation of an open set is open by lower semicontinuity.
+\end{itemize}
+
+\bigskip
+
+\part*{Part II. Plane topology}
+\addcontentsline{toc}{part}{Part II. Plane topology}
+
+\section*{5. Logarithms, separation and polygons}
+\addcontentsline{toc}{section}{5. Logarithms, separation and polygons}
+
+Separation in the plane is handled almost everywhere by continuous logarithms rather than by the Jordan curve theorem.
+
+\textbf{5.1 Lifting.} On a space that contracts to a point by a homotopy, every continuous map into $\mathbb{C} \setminus 0$ has a continuous logarithm, and two logarithms on a preconnected set differ by a constant (\lean{Plane.\hspace{0pt}exists\_\hspace{0pt}exp\_\hspace{0pt}lift}, \lean{Plane.\hspace{0pt}sub\_\hspace{0pt}const\_\hspace{0pt}of\_\hspace{0pt}exp\_\hspace{0pt}eq}, \lean{Moore.\hspace{0pt}exists\_\hspace{0pt}exp\_\hspace{0pt}lift\_\hspace{0pt}of\_\hspace{0pt}homotopy}). In particular every nonvanishing map of the plane has a logarithm (\lean{Moore.\hspace{0pt}exists\_\hspace{0pt}log\_\hspace{0pt}pt}).
+
+\textbf{5.2 Separation by logarithms.} For a closed $K \subset \mathbb{R}^2$:
+
+\begin{itemize}
+  \item if $y$ lies in the component of $x$ in $K^c$, then $(z - x)/(z - y)$ has a logarithm on $K$ (\lean{Moore.\hspace{0pt}exists\_\hspace{0pt}log\_\hspace{0pt}of\_\hspace{0pt}mem\_\hspace{0pt}component});
+  \item if $x$ lies in a bounded component of $K^c$, then no power of $z - x$ has a logarithm on $K$ (\lean{Moore.\hspace{0pt}no\_\hspace{0pt}log\_\hspace{0pt}of\_\hspace{0pt}bounded\_\hspace{0pt}component}, \lean{Moore.\hspace{0pt}no\_\hspace{0pt}log\_\hspace{0pt}pow\_\hspace{0pt}of\_\hspace{0pt}bounded\_\hspace{0pt}component});
+  \item \textbf{Borsuk} (the direction used): if $K$ is compact and $K^c$ is connected, every nonvanishing map on $K$ has a logarithm (\lean{Moore.\hspace{0pt}borsuk\_\hspace{0pt}exists\_\hspace{0pt}log}).
+\end{itemize}
+
+Consequences:
+
+\begin{itemize}
+  \item \textbf{Janiszewski's theorem} (\lean{Moore.\hspace{0pt}janiszewski\_\hspace{0pt}compact}). Let $A$, $B$ be compact with $A \cap B$ connected or empty. If neither $A$ nor $B$ separates $x$ from $y$, then $A \cup B$ does not. \emph{Proof:} glue the logarithms of $(z - x)/(z - y)$ on $A$ and on $B$; they differ by a constant on $A \cap B$.
+  \item \textbf{Brouwer's boundary theorem} (\lean{Moore.\hspace{0pt}brouwer\_\hspace{0pt}boundary}). The frontier of a complementary domain of a closed connected plane set is connected.
+  \item \textbf{Separation is a topological invariant} of compact plane sets (\lean{Jones.\hspace{0pt}separatesPlane\_\hspace{0pt}of\_\hspace{0pt}homeomorph}). If $A$ separates, $z - x$ has no logarithm on $A$ for $x$ in a bounded component; transported to $B$ by the homeomorphism, the same map would have one if $B$ did not separate.
+  \item \textbf{Weak invariance} for continua (\lean{Hagopian.\hspace{0pt}exists\_\hspace{0pt}separating\_\hspace{0pt}subcontinuum\_\hspace{0pt}of\_\hspace{0pt}homeomorph}): if $K$ separates and the continuum $K'$ is homeomorphic to $K$, then some subcontinuum of $K'$ separates. On a tree-like plane continuum every nonvanishing map has a logarithm (\lean{Hagopian.\hspace{0pt}exists\_\hspace{0pt}log\_\hspace{0pt}of\_\hspace{0pt}isTreeLike}), and \S{}8.2 makes a continuum with no separating subcontinuum tree-like.
+\end{itemize}
+
+\textbf{5.3 Polygons.} For a closed polygon (not necessarily simple), the parity of the number of crossings of the half-open ray to the east (\lean{Plane.\hspace{0pt}CrossesEast}, \lean{Plane.\hspace{0pt}crossesEast\_\hspace{0pt}jump}) is locally constant off the polygon and vanishes far away (\lean{Plane.\hspace{0pt}parity\_\hspace{0pt}eventually\_\hspace{0pt}eq}, \lean{Plane.\hspace{0pt}parity\_\hspace{0pt}far}). From this:
+
+\begin{itemize}
+  \item the \textbf{Jordan curve theorem for simple closed polygons} (\lean{Plane.\hspace{0pt}jct\_\hspace{0pt}polygon});
+  \item \textbf{Janiszewski's theorem for polygonal sets} (\lean{Plane.\hspace{0pt}janiszewski\_\hspace{0pt}polygonal});
+  \item a connected open set is polygonally connected, and a polygonal path contains a simple polygonal arc (\lean{Plane.\hspace{0pt}exists\_\hspace{0pt}vpath\_\hspace{0pt}of\_\hspace{0pt}isConnected}, \lean{Plane.\hspace{0pt}exists\_\hspace{0pt}simplePolyArc\_\hspace{0pt}of\_\hspace{0pt}polyPath});
+  \item a simple polygonal arc is a topological arc (\lean{Jones.\hspace{0pt}tarc\_\hspace{0pt}of\_\hspace{0pt}isSimplePolyArc'});
+  \item an open connected plane set minus a point is connected (\lean{Plane.\hspace{0pt}isConnected\_\hspace{0pt}diff\_\hspace{0pt}singleton\_\hspace{0pt}of\_\hspace{0pt}isOpen});
+  \item no logarithm exists on a simple closed polygon around $p$ (\lean{Plane.\hspace{0pt}no\_\hspace{0pt}log\_\hspace{0pt}on\_\hspace{0pt}polygon}), and polygons can be drawn around points inside open sets (\lean{Plane.\hspace{0pt}exists\_\hspace{0pt}polygon\_\hspace{0pt}around});
+  \item \textbf{enclosing polygons}: a continuum $M$ that does not separate the plane lies, inside any open $G \supseteq M$, in the interior of a simple closed polygon in $G$ that misses $M$ (\lean{Plane.\hspace{0pt}enclose\_\hspace{0pt}holds}).
+\end{itemize}
+
+These three plane facts (polygonal Jordan, polygonal Janiszewski, enclosing polygons) are bundled as \lean{Plane.\hspace{0pt}PlaneFacts} and proved as \lean{Plane.\hspace{0pt}planeFacts\_\hspace{0pt}holds}.
+
+\section*{6. Moore's axioms characterize the plane (Moore 1916, 1919)}
+\addcontentsline{toc}{section}{6. Moore's axioms characterize the plane (Moore 1916, 1919)}
+
+This section is needed for one theorem only: Moore 1925 (\S{}7), which shows that certain decomposition spaces are planes. Moore's route works with ``points'' and ``regions'' satisfying Axioms 1--8 of \emph{On the foundations of plane analysis situs} (1916):
+
+\begin{enumerate}
+  \item[1.] there is a sequence of regions $K_1$, $K_2$, \dots{} from which small regions about any point can be chosen, with closures inside any given region (\lean{Moore.\hspace{0pt}Space.\hspace{0pt}Axiom1});
+  \item[2.] regions are connected;
+  \item[3.] the complement of the closure of a region is connected;
+  \item[4.] closures of regions are compact;
+  \item[5.] there is an infinite set without limit point, and there are at least three points;
+  \item[6.] and 7. two conditions on boundary points of regions (accessibility by arcs from inside and from outside);
+  \item[8.] every simple closed curve bounds a region (\lean{Moore.\hspace{0pt}Space.\hspace{0pt}Axiom8}).
+\end{enumerate}
+
+\textbf{6.1 The bridge to topology.} The regions form a basis of a regular $T_1$, metrizable topology, and Moore's notions (limit point, closure, connected, arc) are the topological ones (\lean{Moore.\hspace{0pt}isTopologicalBasis\_\hspace{0pt}region}, \lean{Moore.\hspace{0pt}fa\_\hspace{0pt}theorem6}, \lean{Moore.\hspace{0pt}t1Space}, \lean{Moore.\hspace{0pt}regularSpace}, \lean{Moore.\hspace{0pt}cl\_\hspace{0pt}eq\_\hspace{0pt}closure}). Two points of a connected open set lie in an irreducible continuum inside it (Theorem 15, by nested simple chains of regions, \lean{Moore.\hspace{0pt}exists\_\hspace{0pt}irreducible}). \textbf{Arc characterization:} in a metrizable space, a compact connected set irreducible between $A \neq B$ is an embedded [0, 1] from $A$ to $B$, and conversely (\lean{Moore.\hspace{0pt}isIrreducibleConnected\_\hspace{0pt}iff\_\hspace{0pt}arc}, \lean{Moore.\hspace{0pt}ac\_\hspace{0pt}homeomorph}, \lean{Moore.\hspace{0pt}isArc\_\hspace{0pt}iff}). The order of a cut-point arc is constructed and mapped monotonically onto [0, 1]. Arcs glue at a common end point (\lean{Moore.\hspace{0pt}Gen.\hspace{0pt}TArc.\hspace{0pt}union}).
+
+\textbf{6.2 Closed curves and interiors (Moore 1916 \S{}\S{}5--7).} Every boundary point of a region is a limit point of its exterior (Theorem 20, \lean{Moore.\hspace{0pt}fa\_\hspace{0pt}theorem20}). Every closed curve has exactly one interior (\lean{Moore.\hspace{0pt}existsUnique\_\hspace{0pt}interior}). The $\theta$-curve theorems (24--27) say that a cross-cut divides an interior into two interiors (\lean{Moore.\hspace{0pt}split\_\hspace{0pt}interior\_\hspace{0pt}of}). Arcs into and out of regions (28, 31, 32) and the connectedness of $R - AB$ (33, 34) follow. There are closed curves about points and inside regions (35, 36). If two interiors meet, some closed curve on $J_1 \cup J_2$ has an interior containing both (Theorem 41, by replacing a null family of arcs of $J_2$ by chords of $J_1$, \lean{Moore.\hspace{0pt}fa\_\hspace{0pt}theorem41}), and likewise for a finite family with connected union of interiors (Theorem 42, \lean{Moore.\hspace{0pt}fa\_\hspace{0pt}theorem42}).
+
+\textbf{6.3 From the axioms to $\mathbb{R}^2$ (Moore 1919).} \emph{Double rulings} subdivide the interior of a closed curve $ABCDA$ into cells. Theorem D (\lean{Moore.\hspace{0pt}m19\_\hspace{0pt}theoremD}) says that if every point on or inside $ABCDA$ lies inside some curve of a family $G$, the interior can be ruled into cells each inside a curve of $G$; the formal proof takes a route different from Moore's. Nested rulings of vanishing mesh give a grid, and a compact set carrying a grid of two families of lines is a closed square, sides to sides (\lean{Sq.\hspace{0pt}Grid.\hspace{0pt}exists\_\hspace{0pt}square}). This proves the \textbf{Schoenflies theorem} in Moore's space: the closure of the interior of a closed curve is a closed disc with the curve as boundary (\lean{Moore.\hspace{0pt}exists\_\hspace{0pt}square\_\hspace{0pt}of\_\hspace{0pt}interior}). The \textbf{annulus lemma} (\lean{Moore.\hspace{0pt}exists\_\hspace{0pt}collar}) says that the closed region between nested closed curves is a collar $J \times [0, 1]$ of the inner one; it is proved by cutting it into two quadrilaterals by two cross-cuts. \textbf{Theorem F} (\lean{Moore.\hspace{0pt}m19\_\hspace{0pt}theoremF\_\hspace{0pt}proof}) gives an exhaustion of the space by nested closed curves $J_0$, $J_1$, \dots{} whose interiors cover it.
+
+\textbf{Main theorem} (\lean{Moore.\hspace{0pt}m19\_\hspace{0pt}plane}, \lean{Moore.\hspace{0pt}m19\_\hspace{0pt}plane\_\hspace{0pt}exhaust}). A space satisfying Axioms 1--8 is homeomorphic to $\mathbb{R}^2$. \emph{Proof:} paste the square of $J_0$ and the collars between consecutive $J_n$ onto the squares $[-(n+1), n+1]^2$ (\lean{Sq.\hspace{0pt}plane\_\hspace{0pt}of\_\hspace{0pt}collars}).
+
+\section*{7. Decompositions of the plane into non-separating continua (Moore 1925)}
+\addcontentsline{toc}{section}{7. Decompositions of the plane into non-separating continua (Moore 1925)}
+
+\textbf{Standing hypothesis} (\lean{Moore.\hspace{0pt}MooreDecomp}). $G$ is a u.s.c.\@ decomposition of $\mathbb{R}^2$ into compact connected sets, none of which separates the plane. A closed quotient map gives Moore's u.s.c.\@ in distance form (\lean{Moore.\hspace{0pt}usc\_\hspace{0pt}of\_\hspace{0pt}isClosedMap}).
+
+\textbf{7.1 Arcs and closed curves of elements.} In the quotient space $G$, Moore's simple continuous arcs and simple closed curves of elements are the topological arcs and circles (\lean{Moore.\hspace{0pt}isArcElt\_\hspace{0pt}iff\_\hspace{0pt}tarc}, \lean{Moore.\hspace{0pt}isSCCElt\_\hspace{0pt}iff\_\hspace{0pt}tscc}; via cut-point arcs, \lean{Moore.\hspace{0pt}IsCutArc.\hspace{0pt}exists\_\hspace{0pt}embedding}). Theorem 2 (\lean{Moore.\hspace{0pt}m25\_\hspace{0pt}theorem2}) describes the outer boundary of a bounded complementary domain, and Theorems 4 and 6 (\lean{Moore.\hspace{0pt}m25\_\hspace{0pt}theorem4}, \lean{Moore.\hspace{0pt}m25\_\hspace{0pt}theorem6}) treat limit elements and subarcs. Theorem 9 (\lean{Moore.\hspace{0pt}m25\_\hspace{0pt}theorem9}): the complement of an arc of elements is connected. Theorem 10 (\lean{Moore.\hspace{0pt}m25\_\hspace{0pt}theorem10}): two points split a closed curve of elements into two arcs.
+
+\textbf{7.2 Mullikin's theorem} (corrected form, \lean{Moore.\hspace{0pt}mullikin\_\hspace{0pt}theorem5}). If $M_1$, $M_2$ are non-separating plane continua and $M_1 \cap M_2$ is the union of two disjoint closed connected sets, then the complement of $M_1 \cup M_2$ has exactly two components. \emph{Proof:} at least two (\lean{Moore.\hspace{0pt}not\_\hspace{0pt}isConnected\_\hspace{0pt}compl\_\hspace{0pt}union}): the function equal to 1 on $M_1$ and to $\exp (2\pi i\varphi)$ on $M_2$, with $\varphi$ an Urysohn function separating the two pieces, has no logarithm on $M_1 \cup M_2$, whereas Borsuk would give one if the complement were connected. At most two (\lean{Moore.\hspace{0pt}compl\_\hspace{0pt}union\_\hspace{0pt}two\_\hspace{0pt}components}): Eilenberg's bound for two pieces.
+
+\textbf{7.3 Theorem 11} (\lean{Moore.\hspace{0pt}m25\_\hspace{0pt}theorem11}). A simple closed curve $J$ of elements has exactly two complementary domains, and $J$ is the boundary of each (\lean{Moore.\hspace{0pt}frontier\_\hspace{0pt}eq\_\hspace{0pt}of\_\hspace{0pt}scc}). \emph{Proof:} split $J$ into two arcs (Theorem 10), each with connected complement (Theorem 9); apply Mullikin's theorem to the two point sets.
+
+\textbf{The Jordan curve theorem} (\lean{Jones.\hspace{0pt}jordan\_\hspace{0pt}curve\_\hspace{0pt}theorem}). A simple closed curve in $\mathbb{R}^2$ has two complementary components, one bounded and one unbounded, and is the frontier of each. \emph{Proof:} Theorem 11 for the decomposition into points.
+
+\textbf{7.4 Theorems 19, 21, 22.} About every point of a region there is a simple closed curve of elements whose interior lies in the region (\lean{Moore.\hspace{0pt}m25\_\hspace{0pt}theorem19}). With the interiors of such curves as restricted regions, the space of elements satisfies Axioms 1--8 (Theorem 21, \lean{Moore.\hspace{0pt}m25\_\hspace{0pt}theorem21}; Axioms 6 and 7 are proved directly, e.g.\@ \lean{Moore.\hspace{0pt}m25r\_\hspace{0pt}axiom6}).
+
+\textbf{Moore's theorem} (Theorem 22, \lean{Moore.\hspace{0pt}m25\_\hspace{0pt}theorem22}). Under the standing hypothesis, the space of elements is homeomorphic to $\mathbb{R}^2$. \emph{Proof:} Theorem 21 and \S{}6.
+
+\textbf{Corollary used three times} (\lean{Hagopian.\hspace{0pt}exists\_\hspace{0pt}plane\_\hspace{0pt}quotient\_\hspace{0pt}of\_\hspace{0pt}monotone}). Let $q : M \to Y$ be a monotone map of a plane continuum onto a compact metric space whose fibres do not separate the plane. Then $Y$ is homeomorphic to a compact plane set. \emph{Proof:} decompose the plane into the fibres of $q$ and the points off $M$. This is u.s.c.\@ by compactness alone, and Theorem 22 applies. The same construction is used by Jones 1955 (\S{}19) and by Hagopian (\S{}13).
+
+\section*{8. Further plane tools}
+\addcontentsline{toc}{section}{8. Further plane tools}
+
+\textbf{8.1 Arcs in the plane} (Hagopian 1976, IV). The cross-cut theorem (\lean{Hagopian.\hspace{0pt}plane\_\hspace{0pt}split}) and the Schoenflies theorem with one side prescribed (\lean{Hagopian.\hspace{0pt}plane\_\hspace{0pt}schoenflies\_\hspace{0pt}aux}, \lean{Moore.\hspace{0pt}m19\_\hspace{0pt}schoenflies\_\hspace{0pt}boundary\_\hspace{0pt}proof}) are obtained by transporting Moore 1919 to $\mathbb{R}^2$. Every arc in the plane has a two-sided collar (\lean{Hagopian.\hspace{0pt}exists\_\hspace{0pt}collar}), glued from a Schoenflies half-collar and one obtained by inversion.
+
+\textbf{8.2 Bing 1951, Theorem 6} (\lean{Plane.\hspace{0pt}theorem6\_\hspace{0pt}1951}). A bounded plane continuum none of whose subcontinua separates the plane is tree-like (\lean{Plane.\hspace{0pt}IsTreeLike}: covered for every $\varepsilon$ by a tree chain of bounded links of diameter $< \varepsilon$). \emph{Proof:} Bing's Theorem 7 (\lean{Plane.\hspace{0pt}theorem7\_\hspace{0pt}1951\_\hspace{0pt}rel}): such a continuum is covered by tree chains whose links are interiors of small simple closed polygons. The polygons come from enclosing polygons (\S{}5.3) and a notched grid. The tree property comes from the polygonal Jordan and Janiszewski theorems.
+
+\textbf{8.3 Simple closed curves.} Two arcs glued along their ends form a circle (\lean{Jones.\hspace{0pt}glue\_\hspace{0pt}circle}), and a topological simple closed curve is homeomorphic to \lean{Circle} (\lean{Jones.\hspace{0pt}tscc\_\hspace{0pt}homeomorph\_\hspace{0pt}circle}).
+
+\bigskip
+
+\part*{Part III. The pseudo-arc}
+\addcontentsline{toc}{part}{Part III. The pseudo-arc}
+
+\section*{9. Bing 1948: descriptions, hereditary indecomposability, uniqueness}
+\addcontentsline{toc}{section}{9. Bing 1948: descriptions, hereditary indecomposability, uniqueness}
+
+\textbf{9.1 Descriptions} (\lean{Description}). A description of a continuum from $P$ to $Q$ is a sequence of chains $D_0$, $D_1$, \dots{} such that
+
+\begin{enumerate}
+  \item[1.] each $D_i$ goes from $P$ to $Q$: $P$ lies in the first link only and $Q$ in the last link only (\lean{Chain.\hspace{0pt}IsFrom});
+  \item[2.] $D_{i+1}$ is crooked in $D_i$ (\S{}2.2);
+  \item[3.] the closure of each link of $D_{i+1}$ lies in a link of $D_i$;
+  \item[4.] the links of $D_i$ are bounded, of diameter $\leq \varepsilon_i$, with $\varepsilon_i \to 0$.
+\end{enumerate}
+
+The described set is $M = \bigcap_i \bigcup D_i$ (\lean{Description.\hspace{0pt}M}). If all links lie in a fixed compact set, $M$ is a continuum (\lean{Description.\hspace{0pt}isContinuum\_\hspace{0pt}M\_\hspace{0pt}of}), and every link of every level meets $M$ (\lean{Description.\hspace{0pt}link\_\hspace{0pt}inter\_\hspace{0pt}M\_\hspace{0pt}nonempty}).
+
+\textbf{9.2 Bing's Theorem 10: described continua are HI} (\lean{Description.\hspace{0pt}theorem10}). \emph{Proof} (\lean{Description.\hspace{0pt}theorem10\_\hspace{0pt}core}): suppose a subcontinuum $K = A \cup B$ with $A$, $B$ proper subcontinua. Take $p \in K \setminus A$ and $q \in K \setminus B$, and go to a level $D$ fine enough that $p$ and $q$ lie in links $D_h$ and $D_k$ with $k > h + 2$, where $D_{h+1}$ misses $A$ and $D_{k-1}$ misses $B$. A finer level $E$ is crooked in $D$, and $K$ is connected inside $\bigcup E$. Crookedness forces a passage of $E$ from $D_h$ to $D_k$ that returns to $D_{h+1}$ after reaching $D_{k-1}$. Following this passage inside $A$ or $B$ (\lean{Chain.\hspace{0pt}inter\_\hspace{0pt}link\_\hspace{0pt}nonempty\_\hspace{0pt}between}) gives a contradiction.
+
+Hence: \textbf{if $P \neq Q$ and the links lie in a compact set, $M$ is a pseudo-arc} (\lean{Plane.\hspace{0pt}isPseudoArc\_\hspace{0pt}of\_\hspace{0pt}description}).
+
+\textbf{9.3 Bing's Theorem 4} (\lean{Fold.\hspace{0pt}theorem4\_\hspace{0pt}pair}). Let $E$ be crooked in a chain $D$ of $k \geq 3$ links, and consider a stretch of $E$ from link $r$ to link $s$ that meets the first and the last link of $D$. Then the stretch can be consolidated by a block map into a chain each of whose links lies in the union of three consecutive links of $D$, with the end blocks at the ends. \emph{Proof:} a greedy zig-zag reading of the index walk of $E$ in $D$ (\lean{Fold.\hspace{0pt}Z77.\hspace{0pt}main\_\hspace{0pt}up} and its companions); crookedness, read in both directions, guarantees that no phase of the zig-zag gets stuck. Applied to a subchain from $R$ to $S$, this gives \lean{Chain.\hspace{0pt}exists\_\hspace{0pt}blockChain}.
+
+\textbf{9.4 Bing's Theorem 6: pattern following} (\lean{Description.\hspace{0pt}PatternFollowing}, \lean{Description.\hspace{0pt}patternFollowing}, \lean{Description.\hspace{0pt}theorem6Pos\_\hspace{0pt}shift}, \lean{Description.\hspace{0pt}theorem6Pos\_\hspace{0pt}of\_\hspace{0pt}ne}). Let $\Delta$ be a description from $P \neq Q$ of a compact space. For every level $i$ and every pattern $x$ in $D_i$ (a walk with steps of size $\leq 1$ from the first link to the last), some deeper level $D_j$ has a consolidation $E$ from $P$ to $Q$ that follows $x$ in $D_i$. \emph{Proof:} the combinatorial core (\lean{PatCore.\hspace{0pt}realize}). If a fine reading $\sigma$ is crooked and a coarse reading $\tau$ is slow enough relative to the length $N$ of the pattern, then $\sigma$ can be lifted along $x$ by a map that moves by at most one step. The geometric input is ``thick readings'' (\lean{Description.\hspace{0pt}eventually\_\hspace{0pt}thick}): at deep enough levels, every window of $w$ consecutive links lies in a single link of $D_0$.
+
+\textbf{9.5 Bing's Theorem 11: matching covers} (\lean{MatchingCovers}, \lean{MatchingCovers.\hspace{0pt}exists\_\hspace{0pt}homeomorph}). Let $M_1$, $M_2$ be compact, and suppose that for each level $i$ there are finite open covers of $M_1$ and $M_2$ indexed by the same set, with elements meeting the spaces and of diameter $\leq \varepsilon_i$, where $\sum \varepsilon_i < \infty$. Suppose also the matching condition: if the $j$-th element of level $i + 1$ meets the $k$-th element of level $i$ on one side, the corresponding elements on the other side come within $\varepsilon_i$. Then there is a homeomorphism $T : M_1 \to M_2$ such that $T(p) = q$ whenever one index sequence tracks both $p$ and $q$. \emph{Proof:} $T(p)$ is the limit point of the nested fattened elements along a tracking sequence of $p$. The nesting lemma (\lean{closure\_\hspace{0pt}fat\_\hspace{0pt}subset\_\hspace{0pt}fat}) makes $T$ well defined. $T$ is continuous, surjective and injective (\lean{MatchingCovers.\hspace{0pt}continuous\_\hspace{0pt}toMap}, \lean{MatchingCovers.\hspace{0pt}surjective\_\hspace{0pt}toMap}, \lean{MatchingCovers.\hspace{0pt}injective\_\hspace{0pt}toMap}), hence a homeomorphism of compacta.
+
+\textbf{9.6 Bing's Theorem 12} (\lean{theorem12}, \lean{Description.\hspace{0pt}exists\_\hspace{0pt}homeomorph}). If $\Delta_1$, $\Delta_2$ describe compact spaces from $P_1 \neq Q_1$ and from $P_2 \neq Q_2$, there is a homeomorphism $\Delta_1$.$M \to \Delta_2$.$M$ taking $P_1$ to $P_2$ and $Q_1$ to $Q_2$. \emph{Proof:} build a ladder of ``rungs'' (\lean{Rung}, \lean{Rung.\hspace{0pt}exists\_\hspace{0pt}next}). At each step, the side that can follow patterns follows the pattern that the other side's new level traces in its old one (Theorem 6; consolidations from $P$ to $Q$ of any length exist by \lean{Chain.\hspace{0pt}exists\_\hspace{0pt}consolidation\_\hspace{0pt}isFrom}). The two new chains then follow the same pattern in the two old chains, so the matching condition holds (\lean{Chain.\hspace{0pt}pattern\_\hspace{0pt}matching}). Theorem 11 gives the homeomorphism. The end links track $P_1$, $P_2$ and $Q_1$, $Q_2$.
+
+\section*{10. A pseudo-arc in the plane}
+\addcontentsline{toc}{section}{10. A pseudo-arc in the plane}
+
+\textbf{Theorem} (\lean{Plane.\hspace{0pt}isPseudoArc\_\hspace{0pt}plane}, \lean{Plane.\hspace{0pt}exists\_\hspace{0pt}description\_\hspace{0pt}plane}). There is a description in $\mathbb{R}^2$ with $P \neq Q$ and all links in a compact set, so the plane contains a pseudo-arc.
+
+\emph{Construction} (\lean{Plane.\hspace{0pt}planeDescription}, \lean{Plane.\hspace{0pt}exists\_\hspace{0pt}description\_\hspace{0pt}plane'}). Use \emph{tame chains}: images of standard chains of rectangles under homeomorphisms of the plane (\lean{Plane.\hspace{0pt}tameChain}). The \emph{planar step} (\lean{Plane.\hspace{0pt}real\_\hspace{0pt}step}, via \lean{Plane.\hspace{0pt}std\_\hspace{0pt}step}) says the following. Let $x$ be a pattern with unit steps that is slow, meaning it stays a long time near each value (\lean{Plane.\hspace{0pt}Joints.\hspace{0pt}UnitSteps}, \lean{Plane.\hspace{0pt}Joints.\hspace{0pt}Slow}). Then $x$ is realized by a tame chain whose link closures lie in the prescribed links of the given tame chain, which is \emph{tight} (a link meets only links named by $x$ at nearby positions), and whose links are small or lie in old zones. The patterns used are stuttered copies of Bing's crooked pattern \lean{Fold.\hspace{0pt}bingF}, which is crooked (\lean{Fold.\hspace{0pt}bingF\_\hspace{0pt}crooked}, by induction on its recursive three-part definition). Tightness transfers crookedness of the pattern to crookedness of the chains. The two end boxes shrink to points $P \neq Q$.
+
+\section*{11. Bing 1951: uniqueness and homogeneity of the pseudo-arc}
+\addcontentsline{toc}{section}{11. Bing 1951: uniqueness and homogeneity of the pseudo-arc}
+
+\textbf{11.1 Crookedness is automatic in HI chainable continua} (\lean{Plane.\hspace{0pt}PA51.\hspace{0pt}eventually\_\hspace{0pt}crookedIn}). In a compact HI space, chains refining a covering chain $C$ with mesh $\to 0$ are eventually crooked in $C$. \emph{Proof:} a failure of crookedness at a fixed pair of links $(h, k)$, repeated along a sequence, yields in the limit (\lean{T13.\hspace{0pt}isPreconnected\_\hspace{0pt}limSup}) a decomposable subcontinuum (\lean{Plane.\hspace{0pt}PA51.\hspace{0pt}limit\_\hspace{0pt}false}).
+
+Iterating (\lean{Plane.\hspace{0pt}PA51.\hspace{0pt}exists\_\hspace{0pt}crooked\_\hspace{0pt}next}, \lean{Plane.\hspace{0pt}PA51.\hspace{0pt}exists\_\hspace{0pt}preDesc}), a compact chainable HI space carries a sequence of covering chains, each crooked in the previous one, with nested closures and mesh $\to 0$.
+
+\textbf{11.2 Descriptions of a given pseudo-arc} (\lean{Plane.\hspace{0pt}PA51.\hspace{0pt}exists\_\hspace{0pt}description\_\hspace{0pt}univ}, \lean{Plane.\hspace{0pt}PA51.\hspace{0pt}exists\_\hspace{0pt}description\_\hspace{0pt}sub}). If $M$ is a pseudo-arc and $p$, $q \in M$ lie in different composants, $M$ has a description from $p$ to $q$ describing all of $M$. \emph{Proof:} at each step (\lean{Plane.\hspace{0pt}PA51.\hspace{0pt}PreDesc.\hspace{0pt}exists\_\hspace{0pt}step}), take a deep level of the sequence of 11.1 and its subchain from $p$ to $q$. That subchain meets the first and the last link of the current level; otherwise a limit of such subchains would be a proper subcontinuum containing $p$ and $q$ (the limit step, via \lean{T13.\hspace{0pt}isPreconnected\_\hspace{0pt}limSup}), against the choice of $p$ and $q$. Theorem 4 (\lean{Chain.\hspace{0pt}exists\_\hspace{0pt}blockChain}) then consolidates it into a chain from $p$ to $q$ whose links are small and have closures inside the current links.
+
+\textbf{11.3 Bing 1951, Theorem 1} (\lean{Plane.\hspace{0pt}theorem1\_\hspace{0pt}HIC}, \lean{Plane.\hspace{0pt}theorem1\_\hspace{0pt}HIC'}). Let $M$, $M'$ be pseudo-arcs, $p$, $q \in M$ in different composants, and $p'$, $q' \in M'$ in different composants. Then some homeomorphism $M \to M'$ sends $p$ to $p'$ and $q$ to $q'$. In particular \textbf{any two pseudo-arcs are homeomorphic}. \emph{Proof:} 11.2 gives descriptions; Theorem 12 (9.6) gives the homeomorphism. Points in different composants exist by \S{}1.5 (\lean{Plane.\hspace{0pt}exists\_\hspace{0pt}not\_\hspace{0pt}mem\_\hspace{0pt}composant}).
+
+\textbf{11.4 Homogeneity} (\lean{Plane.\hspace{0pt}homogeneous\_\hspace{0pt}of\_\hspace{0pt}isPseudoArc}, \lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}pseudoArc\_\hspace{0pt}indec\_\hspace{0pt}homogeneous}). A pseudo-arc is homogeneous (and indecomposable). \emph{Proof:} given $x$, $z$, choose $r$ outside the composant of $x$ and $s$ outside the composant of $z$, and apply 11.3 with $(p, q, p', q') = (x, r, z, s)$.
+
+\bigskip
+
+\part*{Part IV. The indecomposable case}
+\addcontentsline{toc}{part}{Part IV. The indecomposable case}
+
+\textbf{Goal} (\lean{HO16.\hspace{0pt}isPseudoArc\_\hspace{0pt}of\_\hspace{0pt}indec\_\hspace{0pt}homogeneous}, \lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}indec\_\hspace{0pt}homogeneous\_\hspace{0pt}iff}). A nondegenerate indecomposable homogeneous plane continuum is a pseudo-arc. Conversely, a pseudo-arc is homogeneous and indecomposable (\S{}11.4).
+
+Throughout this part, $M$ is a nondegenerate indecomposable homogeneous plane continuum.
+
+\section*{12. First consequences of homogeneity in the plane (Hagopian 1975, 1976)}
+\addcontentsline{toc}{section}{12. First consequences of homogeneity in the plane (Hagopian 1975, 1976)}
+
+\textbf{12.1 Hagopian 1975, Lemma 1} (\lean{Hagopian.\hspace{0pt}hagopian75\_\hspace{0pt}lemma1}). $M$ is atriodic and hereditarily unicoherent.
+
+\begin{itemize}
+  \item \emph{Atriodic} (\lean{Hagopian.\hspace{0pt}atriodic\_\hspace{0pt}of\_\hspace{0pt}homogeneous\_\hspace{0pt}indecomposable}). If $M$ contained a triod, then by homogeneity every composant would contain one. The composants are uncountably many and pairwise disjoint (\S{}1.5), so the plane would contain uncountably many disjoint triods. This contradicts \textbf{Moore's triod theorem} (Moore 1962, Theorem 84; \lean{Hagopian.\hspace{0pt}MooreTriodStatement}, \lean{Hagopian.\hspace{0pt}moore\_\hspace{0pt}triod\_\hspace{0pt}theorem'}): every family of pairwise disjoint triods in the plane is countable. That theorem is proved through Moore's Theorem 73 for separating cores (\lean{Hagopian.\hspace{0pt}countable\_\hspace{0pt}of\_\hspace{0pt}separating}) and Theorems 76, 78, 79 for non-separating cores (\lean{Hagopian.\hspace{0pt}countable\_\hspace{0pt}of\_\hspace{0pt}nonseparating}), with an interlacing lemma proved from Janiszewski's theorem (\lean{Hagopian.\hspace{0pt}interlace}).
+  \item \emph{Hereditarily unicoherent} (\lean{Hagopian.\hspace{0pt}hereditarilyUnicoherent\_\hspace{0pt}of\_\hspace{0pt}homogeneous\_\hspace{0pt}indecomposable}, \lean{Hagopian.\hspace{0pt}hagopian75\_\hspace{0pt}lemma1\_\hspace{0pt}hu}). If $H \cup K$ is a subcontinuum with $H \cap K$ not connected, then $H \cup K$ separates the plane (Borsuk, \S{}5.2). Copies of this configuration in uncountably many composants would give uncountably many disjoint complementary domains meeting $M$, which is impossible in the separable plane (\lean{Hagopian.\hspace{0pt}disjoint\_\hspace{0pt}components\_\hspace{0pt}missing}). A single proper subcontinuum with two complementary domains meeting $M$ also contradicts the density of composants.
+\end{itemize}
+
+\textbf{12.2 No proper subcontinuum of $M$ separates the plane} (\lean{Hagopian.\hspace{0pt}no\_\hspace{0pt}proper\_\hspace{0pt}subcontinuum\_\hspace{0pt}separates}). \emph{Proof:} the 1975 argument with one step supplied. The homeomorphic copies $h[K]$ of a separating $K$ in the uncountably many composants each contain a separating subcontinuum (\lean{Hagopian.\hspace{0pt}exists\_\hspace{0pt}separating\_\hspace{0pt}subcontinuum\_\hspace{0pt}of\_\hspace{0pt}homeomorph}, \S{}5.2, which uses Bing's Theorem 6, \S{}8.2). This replaces Borsuk's invariance theorem. The rest is as in 12.1.
+
+\textbf{12.3 Effros neighbourhoods} (Hagopian 1975 Lemma 4, 1976 Lemma 2, 1984 Lemma 1; \lean{Hagopian.\hspace{0pt}hagopian75\_\hspace{0pt}lemma4}, \lean{Hagopian.\hspace{0pt}hagopian76\_\hspace{0pt}lemma2}, \lean{Hagopian.\hspace{0pt}hagopian84\_\hspace{0pt}lemma1}). For $\varepsilon > 0$ and $x \in M$, the set $W(x, \varepsilon)$ of images of $x$ under homeomorphisms moving points less than $\varepsilon$ is open. \emph{Proof:} Effros (\S{}3.3).
+
+\section*{13. Type $\lambda$ continua and Hagopian's decomposition (Hagopian 1975, 1976, 1984)}
+\addcontentsline{toc}{section}{13. Type $\lambda$ continua and Hagopian's decomposition (Hagopian 1975, 1976, 1984)}
+
+This section proves: \textbf{if $M$ is not HI, then $M$ has a monotone decomposition whose quotient is a homogeneous continuum containing an arc} (\lean{Hagopian.\hspace{0pt}hagopian84\_\hspace{0pt}decomp : Hagopian.\hspace{0pt}Hagopian84Decomp}).
+
+\textbf{13.1 Type $\lambda$ (type $A'$) continua.} A continuum $E$ is of \emph{type $\lambda$} if it is irreducible between two points and has an \emph{admissible} map $k : E \to [0, 1]$ (continuous, onto, with connected fibres, the \emph{layers}) all of whose layers have empty interior in $E$ (\lean{Hagopian.\hspace{0pt}IsTypeA'}, \lean{Hagopian.\hspace{0pt}IsAdmissibleMap}, \lean{Hagopian.\hspace{0pt}IsMinimalAdmissible}, \lean{Hagopian.\hspace{0pt}layer}). The end sets are $k^{-1}(0)$ and $k^{-1}(1)$. The facts used come from Kuratowski \S{}48 VII:
+
+\begin{itemize}
+  \item sufficiency: an irreducible continuum all of whose indecomposable subcontinua have empty interior is of type $\lambda$ (\lean{Hagopian.\hspace{0pt}exists\_\hspace{0pt}typeA'\_\hspace{0pt}map}, \lean{Hagopian.\hspace{0pt}isTypeA'\_\hspace{0pt}of\_\hspace{0pt}decomposable}; built from Kuratowski's subcontinuum lemma and ``no jumps'', \lean{Hagopian.\hspace{0pt}isDElt\_\hspace{0pt}closure\_\hspace{0pt}interior}, \lean{Hagopian.\hspace{0pt}IsDElt.\hspace{0pt}exists\_\hspace{0pt}between}, \lean{Hagopian.\hspace{0pt}irr\_\hspace{0pt}compl\_\hspace{0pt}continuum});
+  \item uniqueness of the decomposition (\lean{Hagopian.\hspace{0pt}hagopian75\_\hspace{0pt}lemma3\_\hspace{0pt}unique}, \lean{Hagopian.\hspace{0pt}fibre\_\hspace{0pt}subset\_\hspace{0pt}fibre});
+  \item the interval lemma: a subcontinuum meeting two layers is a union of layers over an interval (\lean{Hagopian.\hspace{0pt}layer\_\hspace{0pt}subset\_\hspace{0pt}of\_\hspace{0pt}meets'}), and a subcontinuum meeting both end sets is $E$ (\lean{Hagopian.\hspace{0pt}end\_\hspace{0pt}sets\_\hspace{0pt}aux}).
+\end{itemize}
+
+\textbf{13.2 Existence} (Hagopian 1975, Theorem 1, \P{}\P{}1--3; \lean{Hagopian.\hspace{0pt}hagopian75\_\hspace{0pt}exists\_\hspace{0pt}typeA'}). Every decomposable subcontinuum of $M$ contains a type $\lambda$ continuum. \emph{Proof:} take an irreducible decomposable subcontinuum (\S{}1.3). By homogeneity and Effros, none of its indecomposable subcontinua has interior in it. Then apply sufficiency (13.1).
+
+\textbf{13.3 Hagopian 1976, Lemmas 3--6.} Fix a type $\lambda$ continuum $(E, k)$ in $M$.
+
+\begin{itemize}
+  \item \emph{Lemma 3} (\lean{Hagopian.\hspace{0pt}hagopian76\_\hspace{0pt}lemma3}). A homeomorphism of $M$ that carries an interior layer of $E$ onto a set meeting an interior layer $U$ of another type $\lambda$ continuum $F$, while avoiding the end sets appropriately, maps that layer exactly onto $U$. \emph{Proof:} the triod argument (atriodicity) puts the image inside $F$, and the empty-interior condition does the rest.
+  \item \emph{Lemma 4} (\lean{Hagopian.\hspace{0pt}hagopian76\_\hspace{0pt}lemma4}, \lean{Hagopian.\hspace{0pt}ext\_\hspace{0pt}chain}, \lean{Hagopian.\hspace{0pt}hagopian76\_\hspace{0pt}lemma4\_\hspace{0pt}seq}). The extensions of $E$ away from an end set (\lean{Hagopian.\hspace{0pt}IsExtensionAway}: type $\lambda$ continua $F \supseteq E$ with that end set as an end set) are linearly ordered by inclusion and have no maximal element. The step that Hagopian leaves unargued, ``no maximal element'', is supplied.
+  \item \emph{Lemma 5} (\lean{Hagopian.\hspace{0pt}hagopian76\_\hspace{0pt}lemma5}). The decomposition of $E$ into layers is continuous. \emph{Proof:} lower semicontinuity at interior layers by Lemma 3; at the end sets, pass to an extension in which they are interior layers.
+  \item \emph{Lemma 6, first part} (\lean{Hagopian.\hspace{0pt}hagopian76\_\hspace{0pt}lemma6\_\hspace{0pt}X}). The closure of the union of the extensions of $E$ away from an end set is indecomposable.
+\end{itemize}
+
+\textbf{13.4 Hagopian 1984 (with $N = M$).}
+
+\begin{itemize}
+  \item \emph{Lemma 6} (\lean{Hagopian.\hspace{0pt}hagopian84\_\hspace{0pt}lemma6}). An essential subcontinuum $H$ of $E$ (one meeting two layers) is a union of layers over an interval, is of type $\lambda$, and its layers are layers of $E$.
+  \item \emph{Lemma 7} (\lean{Hagopian.\hspace{0pt}hagopian84\_\hspace{0pt}lemma7\_\hspace{0pt}aux}), proved by a different route from the printed one. Atriodicity excludes a third arm at an interior layer (\lean{Hagopian.\hspace{0pt}no\_\hspace{0pt}arm\_\hspace{0pt}at\_\hspace{0pt}interior\_\hspace{0pt}layer}), and common layers of two type $\lambda$ continua agree (\lean{Hagopian.\hspace{0pt}layers\_\hspace{0pt}agree}).
+  \item \emph{Lemma 11} (\lean{Hagopian.\hspace{0pt}hagopian84\_\hspace{0pt}lemma11}). It is 13.3 Lemma 6 in this setting.
+  \item \emph{Lemmas 12--13} (\lean{Hagopian.\hspace{0pt}hagopian84\_\hspace{0pt}lemma12}, \lean{Hagopian.\hspace{0pt}hagopian84\_\hspace{0pt}lemma13}). $E$ ``runs straight'' through a free, normal, regular chain of five open sets $P_1$, \dots{}, $P_5$ of $M$ with $\operatorname{Cl} (P_1 \cup P_5)$ inside a given neighbourhood of the end sets. The closure of each component of the middle part is an essential subcontinuum of an $\varepsilon$-translate $h[E]$. \emph{Proof:} links $W(k^{-1}[x_{3i}, x_{3i+3}], \delta)$ (12.3), a fold-free sweep of the parameter sets (\lean{Hagopian.\hspace{0pt}exists\_\hspace{0pt}fold}), and Moore's Theorem 44 (\S{}1.2) for the refinement.
+  \item \emph{Lemmas 14--$16'$} (\lean{Hagopian.\hspace{0pt}hagopian84\_\hspace{0pt}lemma14}, \lean{Hagopian.\hspace{0pt}hagopian84\_\hspace{0pt}lemma15}, \lean{Hagopian.\hspace{0pt}strand\_\hspace{0pt}layer\_\hspace{0pt}of\_\hspace{0pt}extension}). The decomposition $\Delta (\mathcal{P})$ of the middle part into layers of the strands is continuous (Lemma 14, through Lemma 3). Small homeomorphisms carry members of $\Delta (\mathcal{P})$ onto members (Lemma 15). End layers of strands are members (Lemma $16'$).
+  \item \emph{The decomposition} (\lean{Hagopian.\hspace{0pt}CoverData84}, \lean{Hagopian.\hspace{0pt}exists\_\hspace{0pt}coverData84}, \lean{Hagopian.\hspace{0pt}hagopian84\_\hspace{0pt}cover}, \lean{Hagopian.\hspace{0pt}exists\_\hspace{0pt}finite\_\hspace{0pt}cover84}). Finitely many chains $\mathcal{P} (Z)$ cover the rest of $M$; the members of their decompositions together with $\Delta (\mathcal{P})$ form a partition $\mathfrak{D}$.
+  \item \emph{The package} (\lean{Hagopian.\hspace{0pt}IsJonesDecomp84}, \lean{Hagopian.\hspace{0pt}CoverData84.\hspace{0pt}isJonesDecomp}). $\mathfrak{D}$ is u.s.c.\@ (Lemma 14), its classes are connected and proper, it is respected by every $\delta$-homeomorphism for some $\delta > 0$ (Lemma 15), and it has an arc of classes (\lean{Hagopian.\hspace{0pt}exists\_\hspace{0pt}interval\_\hspace{0pt}in\_\hspace{0pt}delta}).
+  \item \emph{Quotient} (\lean{Hagopian.\hspace{0pt}hagopian84Decomp\_\hspace{0pt}of\_\hspace{0pt}package}). $M/\mathfrak{D}$ is compact metrizable (\S{}4). It is homogeneous: compositions of $\delta$-homeomorphisms respect $\mathfrak{D}$, their orbits are clopen by 12.3, hence there is one orbit, and homeomorphisms descend (\S{}4). It contains an arc, the image of the arc of classes. So \lean{Hagopian.\hspace{0pt}Hagopian84Decomp} holds.
+\end{itemize}
+
+\section*{14. No arc (Bing 1960; Jones 1975)}
+\addcontentsline{toc}{section}{14. No arc (Bing 1960; Jones 1975)}
+
+\textbf{Theorem} (\lean{Hagopian.\hspace{0pt}jones75\_\hspace{0pt}noArc : Hagopian.\hspace{0pt}NoArcIndecHomPlane}). No indecomposable homogeneous plane continuum contains an arc.
+
+\emph{Setting} (\lean{Hagopian.\hspace{0pt}JonesSetting}, \lean{Hagopian.\hspace{0pt}jonesSetting\_\hspace{0pt}of\_\hspace{0pt}plane}). A compact metric space $Y$ that is homogeneous, hereditarily unicoherent and atriodic and contains an arc. An indecomposable homogeneous plane continuum with an arc is such a $Y$, by 12.1.
+
+\emph{Structure of arcs in the setting} (Jones (a)--(d), corrected). Two arcs with a common end point are nested or their union is an arc (\lean{Hagopian.\hspace{0pt}JonesSetting.\hspace{0pt}union\_\hspace{0pt}arc}, \lean{Hagopian.\hspace{0pt}JonesSetting.\hspace{0pt}nested}). Every point is interior to an arc (\lean{Hagopian.\hspace{0pt}JonesSetting.\hspace{0pt}exists\_\hspace{0pt}arc\_\hspace{0pt}through}). Every arc component is a \emph{line}, a continuous injective image of $\mathbb{R}$ (\lean{Hagopian.\hspace{0pt}IsLine}, \lean{Hagopian.\hspace{0pt}JonesSetting.\hspace{0pt}exists\_\hspace{0pt}line}, \lean{Hagopian.\hspace{0pt}JonesSetting.\hspace{0pt}line\_\hspace{0pt}arc}, \lean{Hagopian.\hspace{0pt}JonesSetting.\hspace{0pt}homeo\_\hspace{0pt}on\_\hspace{0pt}line}). Jones's defective step (f) is replaced by two properties (\lean{Hagopian.\hspace{0pt}JonesSetting.\hspace{0pt}no\_\hspace{0pt}reversal\_\hspace{0pt}arc}, \lean{Hagopian.\hspace{0pt}JonesSetting.\hspace{0pt}exists\_\hspace{0pt}no\_\hspace{0pt}reversal}, \lean{Hagopian.\hspace{0pt}JonesSetting.\hspace{0pt}local\_\hspace{0pt}no\_\hspace{0pt}reversal}, \lean{Hagopian.\hspace{0pt}JonesSetting.\hspace{0pt}orientation}):
+
+\begin{itemize}
+  \item (R) a small homeomorphism fixing a point does not reverse the line through it;
+  \item (O) a small homeomorphism carrying a point of a line into that line is increasing on it.
+\end{itemize}
+
+\emph{Recurrence} replaces the second half of Jones's (d) (\lean{Hagopian.\hspace{0pt}JonesSetting.\hspace{0pt}line\_\hspace{0pt}recurrent}, \lean{Hagopian.\hspace{0pt}JonesSetting.\hspace{0pt}omegaLim\_\hspace{0pt}saturated}): every line lies in its own forward limit set. \emph{Proof:} Effros.
+
+\emph{The planar core} (\lean{Hagopian.\hspace{0pt}jones75\_\hspace{0pt}contra}). An arc $\ell [0, 1]$ of a line has a two-sided collar (\lean{Hagopian.\hspace{0pt}exists\_\hspace{0pt}collar}, \S{}8.1). In the collar coordinates, the returns of the line form \emph{passes} (\lean{Hagopian.\hspace{0pt}IsPass}). Three tools control them:
+
+\begin{itemize}
+  \item the shadow lemma (\lean{Hagopian.\hspace{0pt}shadow\_\hspace{0pt}pass}, by Effros and (O));
+  \item the flow box in the middle band (\lean{Hagopian.\hspace{0pt}flow\_\hspace{0pt}box});
+  \item late thin passes (\lean{Hagopian.\hspace{0pt}scale\_\hspace{0pt}two}, \lean{Hagopian.\hspace{0pt}exists\_\hspace{0pt}late\_\hspace{0pt}thin\_\hspace{0pt}pass}, from recurrence).
+\end{itemize}
+
+Take the first thin pass after $\tfrac34$, above or below the base arc. The region under it (\lean{Hagopian.\hspace{0pt}region\_\hspace{0pt}lemmaA}) and a Jordan curve formed by a cross-cut and a piece of the line (\lean{Hagopian.\hspace{0pt}trap\_\hspace{0pt}jordan}, \lean{Hagopian.\hspace{0pt}two\_\hspace{0pt}sides}, with the Jordan curve theorem of \S{}7.3) trap the line: no later pass enters the low strip (\lean{Hagopian.\hspace{0pt}trap\_\hspace{0pt}pass}). Recurrence brings the line back near the base point on both sides, which gives a contradiction (\lean{Hagopian.\hspace{0pt}jones75\_\hspace{0pt}final\_\hspace{0pt}aux}). This route replaces Jones's accessibility assumption, his choice of $\eta$ and his final limit argument.
+
+\section*{15. Hereditary indecomposability (Hagopian 1976, Theorem 1)}
+\addcontentsline{toc}{section}{15. Hereditary indecomposability (Hagopian 1976, Theorem 1)}
+
+\textbf{Theorem} (\lean{Hagopian.\hspace{0pt}hagopian76\_\hspace{0pt}theorem1 : Hagopian.\hspace{0pt}Hagopian76Thm1}). Every indecomposable homogeneous plane continuum is hereditarily indecomposable.
+
+\emph{Proof} (Hagopian 1984, Corollary 3, by Jones's plan; \lean{Hagopian.\hspace{0pt}hagopian76\_\hspace{0pt}theorem1\_\hspace{0pt}of\_\hspace{0pt}jones}, \lean{Hagopian.\hspace{0pt}hagopian76\_\hspace{0pt}theorem1\_\hspace{0pt}jones}). Suppose $M$ has a decomposable subcontinuum, and let $q : M \to Y$ be the decomposition of \S{}13. Its fibres are proper subcontinua of $M$, so they do not separate the plane (12.2). By Moore's theorem (\S{}7.4, \lean{Hagopian.\hspace{0pt}exists\_\hspace{0pt}plane\_\hspace{0pt}quotient\_\hspace{0pt}of\_\hspace{0pt}monotone}), $Y$ is homeomorphic to a compact plane set $Q$. $Q$ is connected, homogeneous and indecomposable (a monotone image of an indecomposable continuum, \lean{Hagopian.\hspace{0pt}indecomposable\_\hspace{0pt}of\_\hspace{0pt}monotone\_\hspace{0pt}image}), and it contains an arc. This contradicts \S{}14.
+
+\section*{16. Span zero (Theorem C; Oversteegen--Tymchatyn 1982)}
+\addcontentsline{toc}{section}{16. Span zero (Theorem C; Oversteegen--Tymchatyn 1982)}
+
+\textbf{Definitions} (\lean{Span.\hspace{0pt}HOSpanZero}, \lean{Span.\hspace{0pt}SemiSpanZero}, \lean{Span.\hspace{0pt}SurjSpanPos}, \lean{Span.\hspace{0pt}SurjSemiSpanPos}). $X$ has \emph{span zero} (in Hoehn--Oversteegen's sense) if every subcontinuum $Z \subseteq X \times X$ with $\pi_1(Z) \subseteq \pi_2(Z)$ meets the diagonal. A set $A$ has \emph{positive surjective span} if some continuum $Z \subseteq A \times A$ off the diagonal has both projections onto $A$, and \emph{positive surjective semi-span} if the first projection is onto $A$. O--T's semi-span zero is H--O's span zero (\lean{Span.\hspace{0pt}semiSpanZero\_\hspace{0pt}iff\_\hspace{0pt}hoSpanZero}).
+
+\textbf{Theorem C} (\lean{Span.\hspace{0pt}theoremC : Span.\hspace{0pt}TheoremC}). Every homogeneous indecomposable plane continuum has span zero.
+
+The proof runs Theorem 3.2 $\Rightarrow$ Corollary 3.5 $\Rightarrow$ Theorem 3.6 $\Rightarrow$ Theorem C (\lean{Span.\hspace{0pt}theoremC\_\hspace{0pt}of\_\hspace{0pt}thm32}).
+
+\textbf{16.1 Two general tools.}
+
+\begin{itemize}
+  \item \textbf{Cook 1967, Theorem 4} (\lean{Span.\hspace{0pt}cook67\_\hspace{0pt}theorem4}). A map of a continuum onto an HI continuum is confluent: every subcontinuum $Q$ of the image is the image of a component of its preimage. \emph{Proof:} boundary bumping in one closed neighbourhood of the component.
+  \item \textbf{Davis's Theorem 1.1 for HI continua} (\lean{Span.\hspace{0pt}exists\_\hspace{0pt}surjSpanPos\_\hspace{0pt}of\_\hspace{0pt}surjSemiSpanPos}). In an HI continuum, positive surjective semi-span of $A$ gives a subcontinuum $B \subseteq A$ of positive surjective span. \emph{Proof:} Brouwer reduction (\S{}1.3) and Cook's theorem.
+\end{itemize}
+
+\textbf{16.2 Theorem 3.6 from Corollary 3.5} (\lean{Span.\hspace{0pt}ot82\_\hspace{0pt}theorem36\_\hspace{0pt}of\_\hspace{0pt}cor35}, \lean{Span.\hspace{0pt}theoremC\_\hspace{0pt}of\_\hspace{0pt}cor35}, \lean{Span.\hspace{0pt}not\_\hspace{0pt}surjSemiSpanPos\_\hspace{0pt}univ}). Assume (Corollary 3.5, \lean{Span.\hspace{0pt}OTCor35}) that every proper subcontinuum of $M$ has zero surjective semi-span. Then $M$ has semi-span zero. \emph{Proof:}
+
+\begin{enumerate}
+  \item[1.] $M$ is HI (\S{}15). Suppose $Z \subseteq M \times M$ is a continuum off the diagonal with $\pi_1(Z) = M$, and let $3\varepsilon$ be the minimum distance on $Z$.
+  \item[2.] Reduce (\lean{Span.\hspace{0pt}exists\_\hspace{0pt}reduced\_\hspace{0pt}witness}, Brouwer reduction): either $\pi_2(Z) \neq M$, or no proper subcontinuum of $Z$ maps onto $M$ under $\pi_2$.
+  \item[3.] Effros gives $\delta$ for $\varepsilon$.
+  \item[4.] Some proper subcontinuum $K$ of $M$ is $\delta$-dense (\lean{Span.\hspace{0pt}exists\_\hspace{0pt}dense\_\hspace{0pt}proper\_\hspace{0pt}subcontinuum}: proper subcontinua through a point are directed by union and have dense union).
+  \item[5.] By Cook, $K = \pi_1(C)$ for a subcontinuum $C \subsetneq Z$.
+  \item[6.] Pick $y \in \pi_2(C)$ and $x \in K$ with $d(x, y) < \delta$, and let $h$ be the Effros homeomorphism with $h(x) = y$.
+  \item[7.] $h(K)$ and $\pi_2(C)$ are proper subcontinua that meet, so they are nested (HI).
+  \item[8.] $\{(h(\pi_1c), \pi_2c) : c \in C\}$ (or its swap) witnesses positive surjective semi-span of the larger of the two. This contradicts Corollary 3.5.
+\end{enumerate}
+
+\textbf{16.3 Corollary 3.5 from Theorem 3.2} (\lean{Span.\hspace{0pt}ot82\_\hspace{0pt}cor35\_\hspace{0pt}of\_\hspace{0pt}thm32}, \lean{Span.\hspace{0pt}cor35\_\hspace{0pt}core}). Let $A_0 \subsetneq M$ have positive surjective semi-span.
+
+\begin{enumerate}
+  \item[1.] By Davis, some $A_1 \subseteq A_0$ has positive surjective span (\lean{Span.\hspace{0pt}SurjSpanPos.\hspace{0pt}image} carries this along embeddings).
+  \item[2.] Re-embed $M$ so that it lies in $\{x \geq 0\}$ with a unique point $x_0$ on $x = 0$ (\lean{Span.\hspace{0pt}exists\_\hspace{0pt}homeomorph\_\hspace{0pt}unique\_\hspace{0pt}leftmost}).
+  \item[3.] Move $A_1$ by homogeneity to a continuum $A \ni x_0$. A does not separate the plane (12.2), so $\{x > 0\} \setminus A$ is connected (\lean{Span.\hspace{0pt}isConnected\_\hspace{0pt}rightHalf\_\hspace{0pt}diff}, by Janiszewski). A finger move (\lean{Span.\hspace{0pt}exists\_\hspace{0pt}homeomorph\_\hspace{0pt}push}) then puts a point $q$ of $M$ to the right of $A$.
+  \item[4.] Effros gives $\delta$. Indecomposability gives an uncountable family $\mathcal{K}$ of disjoint subcontinua crossing a thin strip near $x = 0$ (\lean{Span.\hspace{0pt}exists\_\hspace{0pt}crossing\_\hspace{0pt}subcontinuum}, \lean{Span.\hspace{0pt}exists\_\hspace{0pt}uncountable\_\hspace{0pt}crossing}, by the cut-wire theorem and the uncountably many composants).
+  \item[5.] For each $K \in \mathcal{K}$, an Effros homeomorphism $h_K$ moves $x_0$ into $K$, and hereditary indecomposability gives $h_K(A) \subseteq K$.
+  \item[6.] The continua $h_K^{-1}(K)$ are nested; their intersection gives one continuum $B \supseteq A$ with a point $y$ whose images lie beyond all of $h_K(A)$.
+  \item[7.] Uncountably many disjoint crossing continua then carry copies $h_K(A)$ of positive surjective span. This contradicts Theorem 3.2.
+\end{enumerate}
+
+\textbf{16.4 Theorem 3.2, strip form} (\lean{Span.\hspace{0pt}OTThm32}, \lean{Span.\hspace{0pt}ot82\_\hspace{0pt}theorem32}). Let $h_{\lambda} (\lambda \in \Lambda)$ map a continuum $Y$ into the strip $[0, 1] \times \mathbb{R}$, with images inside pairwise disjoint continua crossing the strip, $h_{\lambda}(x)$ on the left line, and a point $y$ beyond $X \subseteq Y$. Then only countably many $h_{\lambda}(X)$ have positive surjective span. \emph{Proof} (a route that needs no Jordan curve theorem):
+
+\begin{itemize}
+  \item \emph{Parity} of closed polygons (\lean{Span.\hspace{0pt}parity\_\hspace{0pt}eq\_\hspace{0pt}zero\_\hspace{0pt}of\_\hspace{0pt}not\_\hspace{0pt}mem\_\hspace{0pt}convex}, \lean{Span.\hspace{0pt}parity\_\hspace{0pt}eq\_\hspace{0pt}of\_\hspace{0pt}perturb}). The parity vanishes off a convex set containing the polygon and is stable under small vertex moves.
+  \item \emph{Common zeros} (\lean{Span.\hspace{0pt}common\_\hspace{0pt}zero\_\hspace{0pt}rect}). Two functions on a rectangle with O--T's sign pattern have a common zero, by a winding count.
+  \item \emph{The strip lemma} (\lean{Span.\hspace{0pt}strip\_\hspace{0pt}lemma}, with \lean{Span.\hspace{0pt}plPath}, \lean{Span.\hspace{0pt}plPath\_\hspace{0pt}piece}, \lean{Span.\hspace{0pt}stripPoly}, \lean{Span.\hspace{0pt}StripInner}, \lean{Span.\hspace{0pt}stripSign}). A continuum $W$ in a thin strip between two PL paths, with a span witness $Z \subseteq W \times W$, has a pair $(h(u), k(u))$ on a common short segment $B_t$. Hence its surjective span is at most the strip width.
+  \item \emph{Ordering} (\lean{Span.\hspace{0pt}crossing\_\hspace{0pt}traces\_\hspace{0pt}separated}). Disjoint continua crossing a strip have strictly ordered traces on its left side.
+  \item \emph{Counting.} If uncountably many images had positive surjective span, one bound would serve uncountably many of them. Separability clusters three of them; ordering puts one between the other two; the strip lemma bounds its span; contradiction.
+\end{itemize}
+
+\section*{17. Snake-likeness: Hoehn--Oversteegen 2016, Theorem 1}
+\addcontentsline{toc}{section}{17. Snake-likeness: Hoehn--Oversteegen 2016, Theorem 1}
+
+\textbf{Theorem} (\lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}theorem1\_\hspace{0pt}plane}, with \lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}theorem20 : HO16.\hspace{0pt}HOThm20}). A hereditarily indecomposable plane continuum $X$ with span zero is snake-like.
+
+Hence \S{}15 $+$ \S{}16 $+$ \S{}17 give \lean{HO16.\hspace{0pt}isPseudoArc\_\hspace{0pt}of\_\hspace{0pt}indec\_\hspace{0pt}homogeneous}, and with \S{}11.4, \lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}indec\_\hspace{0pt}homogeneous\_\hspace{0pt}iff}.
+
+\textbf{17.1 The proof of Theorem 1, given Theorem 20.} Given $\varepsilon > 0$:
+
+\begin{enumerate}
+  \item[1.] \textbf{Theorem 4} (\lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}theorem4}). For $X$ compact with span zero there is $\delta > 0$ with the following property. For every compact $G \subseteq B_{\delta}(X)$ and every path $\gamma$ on [0, 1] that is $\delta$-close to $X$ in both directions, the set $\{(x, t) \in G \times (0, 1) : d(x, \gamma (t)) < \varepsilon /6\}$ separates $G \times \{0\}$ from $G \times \{1\}$. \emph{Proof:} otherwise the cut-wire theorem (\S{}1.2) gives continua in $\{d \geq \varepsilon /6\}$ joining the two ends. Their Hausdorff limit as $\delta \to 0$ is a continuum $Z \subseteq X \times X$ off the diagonal with $\pi_1(Z) \subseteq \pi_2(Z) = X$, against span zero.
+  \item[2.] \textbf{A graph and a map} (\lean{HO16.\hspace{0pt}exists\_\hspace{0pt}plGraph\_\hspace{0pt}approx}). An HI plane continuum has empty interior (\lean{HO16.\hspace{0pt}interior\_\hspace{0pt}eq\_\hspace{0pt}empty\_\hspace{0pt}of\_\hspace{0pt}hi}). Radial projection in the squares of a fine grid maps $X$ into a PL graph $G \subseteq B_{\delta}(X)$ by a map $f$ with $d(f(x), x) < \delta$.
+  \item[3.] \textbf{A path} (\lean{HO16.\hspace{0pt}exists\_\hspace{0pt}path\_\hspace{0pt}approx}): a polygonal path through a fine chain of points of $X$.
+  \item[4.] \textbf{Theorem 20} gives $h : X \to U \cap (G \times [0, 1])$ with $d(f(x), \pi (h(x))) < \varepsilon /6$.
+  \item[5.] The $t$-coordinate of $h$ is an $\varepsilon$-map onto [0, 1], so $X$ is snake-like (\S{}2.3).
+\end{enumerate}
+
+\textbf{17.2 PL graphs and folds} (\lean{HO16.\hspace{0pt}IsPLGraph}). PL graphs are finite unions of segments. They have common subdivisions and refinements (\lean{HO16.\hspace{0pt}Subdiv.\hspace{0pt}exists\_\hspace{0pt}common\_\hspace{0pt}subdivision}, \lean{HO16.\hspace{0pt}IsPLGraph.\hspace{0pt}exists\_\hspace{0pt}refinement}). A \emph{simple fold} of $G$ along a triple $G_1$, $G_2$, $G_3$ (\lean{HO16.\hspace{0pt}IsFoldTriple}, \lean{HO16.\hspace{0pt}IsSimpleFoldOf}) is a PL graph $F = F_1 \cup F_2 \cup F_3$ in $G \times \mathbb{R}$. Each $F_i$ projects injectively onto $G_i$, and the sheets are glued over the relative frontiers of $G_1$ and $G_3$. Folds exist for every triple (\lean{HO16.\hspace{0pt}exists\_\hspace{0pt}simpleFold}). Lemma 6 (\lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}lemma6}) and Proposition 7 (\lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}prop7}: a component of the fold maps onto $G$) are proved as in H--O.
+
+\textbf{17.3 Theorem 8: maps lift to folds} (\lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}theorem8\_\hspace{0pt}core}, \lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}theorem8}). A map $f : X \to G$ of an HI compactum is $\varepsilon$-approximated by $\varphi \circ g$ with $g : X \to F$. \emph{Proof:} the Krasinkiewicz--Minc lemma for HI compacta (\lean{HO16.\hspace{0pt}km77\_\hspace{0pt}lemma2}). Disjoint closed $A \subseteq U$ and $B \subseteq V$ admit a closed cover $X_1 \cup X_2 \cup X_3$ with $A \subseteq X_1$, $B \subseteq X_3$, $X_1 \cap X_3 = \emptyset$, $X_1 \cap X_2 \subseteq V$ and $X_2 \cap X_3 \subseteq U$. On each piece, push $f$ towards the fan vertices by an explicit Urysohn interpolation, then lift through the inverse of $\varphi$ on each sheet.
+
+\textbf{17.4 Stairwells} (\lean{HO16.\hspace{0pt}IsStairwellStr}, \lean{HO16.\hspace{0pt}IsBrokenStairwellStr}, \lean{HO16.\hspace{0pt}IsStraight}, \lean{HO16.\hspace{0pt}HasConsCompl}, \lean{HO16.\hspace{0pt}sideOf}, \lean{HO16.\hspace{0pt}IsGeneric}). A stairwell structure of height $k$ is a sequence of straight sheets $S_1$, \dots{}, $S_k$ over $G$, with end sets satisfying H--O's conditions (S1)--(S5): sides, consistent complements, and generic end points over ordinary points. The workhorse for sides is \lean{HO16.\hspace{0pt}IsPLGraph.\hspace{0pt}sideOf\_\hspace{0pt}char\_\hspace{0pt}aux}. The proof chain is:
+
+\begin{itemize}
+  \item Proposition 17 (\lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}prop17}) lowers the height by two at the cost of a pit;
+  \item the remarks of p.~201 (\lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}rem17\_\hspace{0pt}gamma}, \lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}rem17\_\hspace{0pt}P1}) handle degenerate pits;
+  \item Lemma 18 (\lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}lemma18}) pulls straight sets back to a fold;
+  \item Proposition 19 (\lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}prop19 : HO16.\hspace{0pt}HOProp19}) turns a broken structure over $G$ into a stairwell structure over a connected fold. Ordinary points of folds are characterized by \lean{HO16.\hspace{0pt}IsSimpleFoldOf.\hspace{0pt}isOrdinaryPt\_\hspace{0pt}iff}. One false sentence of H--O (p.~208) is replaced by a case split.
+\end{itemize}
+
+\textbf{17.5 Theorem 20 from Theorem 15} (\lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}lift\_\hspace{0pt}aux}, \lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}theorem20\_\hspace{0pt}of\_\hspace{0pt}thm15}). Use strong induction on $(k + 1)^2$ (plus the pit position), quantified over the ambient space $E \mapsto E \times \mathbb{R}$. At height 1, the sheet is a section (\lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}height\_\hspace{0pt}one}). Otherwise apply Proposition 17, then Proposition 19, then Theorem 8 on the fold, and then the induction hypothesis. Theorem 20 for a disconnected $G$ is reduced to components.
+
+\textbf{17.6 Theorem 15} (\lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}theorem15 : HO16.\hspace{0pt}HOThm15}). For every $M \subseteq G \times (0, 1)$ separating $G \times \{0\}$ from $G \times \{1\}$, and every open $U \supseteq M$, some $S \subseteq U$ has a stairwell structure of odd height. \emph{Proof by ladders} (\lean{HO16.\hspace{0pt}IsLadder}, \lean{HO16.\hspace{0pt}exists\_\hspace{0pt}ladder}, \lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}stairwell\_\hspace{0pt}of\_\hspace{0pt}ladder}). $A$ Lipschitz sign function (\lean{HO16.\hspace{0pt}exists\_\hspace{0pt}sign\_\hspace{0pt}fn}) is positive near the top and non-positive near the bottom, and changes sign only inside $U$. On a fine subdivision of $G$, the midpoints of the sign changes along each vertical give lists of odd length. Along edges these lists change by moving one curve, or by creating or removing two curves at a wedge. The resulting sheets satisfy (S1)--(S5); the parity argument for (S4) is \lean{HO16.\hspace{0pt}ladder\_\hspace{0pt}S4}.
+
+\bigskip
+
+\part*{Part V. The decomposable case}
+\addcontentsline{toc}{part}{Part V. The decomposable case}
+
+\textbf{Goal} (\lean{BJ59.\hspace{0pt}circle\_\hspace{0pt}or\_\hspace{0pt}atomic\_\hspace{0pt}of\_\hspace{0pt}decomposable}). Let $M$ be a decomposable homogeneous plane continuum. Then $M$ is a simple closed curve, or there is a continuous, open, surjective map $f : M \to S^1$ whose fibres are pseudo-arcs and which is \emph{atomic}: every subcontinuum that meets a fibre either lies in that fibre or contains it (\lean{BJ59.\hspace{0pt}IsAtomicMap}, \lean{BJ59.\hspace{0pt}IsAtomicCircPAMap}).
+
+The map is the quotient map of Jones's aposyndetic decomposition (Jones 1955). Its quotient is a circle by Jones 1949, and its elements are pseudo-arcs by Part IV.
+
+\section*{18. Aposyndesis}
+\addcontentsline{toc}{section}{18. Aposyndesis}
+
+\textbf{Definition} (\lean{Jones.\hspace{0pt}AposAt}). $X$ is \emph{aposyndetic at $x$ with respect to $y$} if some continuum $H \subseteq X \setminus \{y\}$ contains a neighbourhood of $x$. $X$ is \emph{aposyndetic} (\lean{Jones.\hspace{0pt}IsAposyndetic}) if this holds for all $x \neq y$. Write $U_x =$ \{$z \neq x : X$ is aposyndetic at $z$ with respect to $x$\} (\lean{Jones.\hspace{0pt}aposSet}).
+
+\textbf{18.1 Openness} (Jones 1948, Theorem 1; \lean{Jones.\hspace{0pt}isOpen\_\hspace{0pt}setOf\_\hspace{0pt}aposAt}). The set of pairs $(x, y)$ with $X$ aposyndetic at $x$ with respect to $y$ is open. \emph{Proof:} the same continuum $H$ works for all pairs near $(x, y)$, because $H$ contains a neighbourhood of $x$ and misses a neighbourhood of $y$.
+
+\textbf{18.2 Jones 1948, Theorem 3} (\lean{Jones.\hspace{0pt}theorem3}). For a continuum $X$ and $y \in X$, the set $L_y = \{y\} \cup$ \{$x \neq y : X$ is not aposyndetic at $x$ with respect to $y$\} is a continuum. \emph{Proof:} $L_y$ is closed (\lean{Jones.\hspace{0pt}isClosed\_\hspace{0pt}not\_\hspace{0pt}aposAt\_\hspace{0pt}left}). Suppose $L_y = A \cup B$ with $y \in A$ and $A$, $B$ disjoint, closed and nonempty. Take an open $V \supseteq B$ whose closure misses $A$. The frontier of $V$ misses $L_y$, so $X$ is aposyndetic at the points of $B$ with respect to $y$ (\lean{Jones.\hspace{0pt}aposAt\_\hspace{0pt}of\_\hspace{0pt}frontier}). This contradicts $B \subseteq L_y$.
+
+\textbf{18.3 Jones 1948, Theorem 8} (\lean{Jones.\hspace{0pt}theorem8}). A continuum is decomposable iff it is aposyndetic at some $x$ with respect to some $y \neq x$. \emph{Proof:} if $X = A \cup B$ with $A$, $B$ proper subcontinua, take $x \in X \setminus B$ and $y \in X \setminus A$; then $A$ contains the neighbourhood $X \setminus B$ of $x$ and misses $y$. Conversely, let $H \not\ni y$ be a continuum containing a neighbourhood of $x$. If $X \setminus H$ is connected, $H$ and the closure of $X \setminus H$ are two proper subcontinua covering $X$. Otherwise split $X \setminus H$ into two separated pieces $A$ and $B$. Then $H \cup A$ and $H \cup B$ are proper subcontinua covering $X$ (\lean{Plane.\hspace{0pt}isContinuum\_\hspace{0pt}union\_\hspace{0pt}piece}).
+
+\textbf{18.4 Jones 1941, Theorem 4} (\lean{Jones.\hspace{0pt}semiLocConn\_\hspace{0pt}of\_\hspace{0pt}isAposyndetic}). An aposyndetic continuum is semi-locally connected (\lean{Jones.\hspace{0pt}SemiLocConnAt}): every point has arbitrarily small open neighbourhoods whose complement has finitely many components. \emph{Proof:} by Jones's Theorem 0 (\lean{Jones.\hspace{0pt}theorem0}, a Heine--Borel argument), $X$ is semi-locally connected at $p$ iff $X$ is aposyndetic at every other point with respect to $p$.
+
+\textbf{18.5 Spreading} (\lean{Jones.\hspace{0pt}aposAt\_\hspace{0pt}of\_\hspace{0pt}isContinuum\_\hspace{0pt}interior}). In a homogeneous compact metric space, if a continuum $K$ with nonempty interior contains $o$ and misses $x$, then $X$ is aposyndetic at $o$ with respect to $x$. \emph{Proof:} let $b$ be an interior point of $K$ and choose $\varepsilon$ smaller than the radius of a ball around $b$ inside $K$ and than half the distance from $x$ to $K$. Let $Z$ be the closure of the union of the sets $K \cup h(K)$, over all homeomorphisms $h$ that move points by less than $\varepsilon$. Each $h(b)$ lies in $K$, so $Z$ is a continuum. $Z$ stays within $\varepsilon$ of $K$, so it misses $x$. By the Effros theorem (\S{}3.3), every point near $o$ is $h(o)$ for such an $h$, so $Z$ contains a neighbourhood of $o$.
+
+\textbf{18.6 Jones 1951, Lemma} (\lean{Jones.\hspace{0pt}jones51\_\hspace{0pt}lemma}). If $X$ is homogeneous, $U_y$ is never a proper subset of $U_x$. \emph{Proof:} the formal proof replaces Jones's transfinite recursion. A lower semicontinuous function that strictly increases along proper inclusions of the sets $U_x$ (\lean{Jones.\hspace{0pt}exists\_\hspace{0pt}lsc\_\hspace{0pt}strictMono\_\hspace{0pt}aposSet}) attains its minimum on the compact space. Homogeneity moves any point to a minimizer.
+
+\section*{19. Jones's aposyndetic decomposition (Jones 1955)}
+\addcontentsline{toc}{section}{19. Jones's aposyndetic decomposition (Jones 1955)}
+
+Throughout this section, $M$ is a homogeneous plane continuum and $L_x$ is as in 18.2 (\lean{Jones.\hspace{0pt}Lset}).
+
+\textbf{19.1 Theorem 1 (b)} (\lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}b}, \lean{Jones.\hspace{0pt}mem\_\hspace{0pt}Lset\_\hspace{0pt}iff\_\hspace{0pt}Lset\_\hspace{0pt}eq}). $y \in L_x$ iff $L_y = L_x$. So the sets $L_x$ partition $M$ (\lean{Jones.\hspace{0pt}lSetoid}; the classes are the $L_x$, \lean{Jones.\hspace{0pt}cls\_\hspace{0pt}lSetoid}). \emph{Proof:} by spreading (18.5) and the Lemma of Jones 1951 (18.6), not by Jones's case argument on p.~738.
+
+\textbf{19.2 Theorem 1 (c): elements are terminal} (\lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}c}). A subcontinuum $K$ that meets both $L_x$ and its complement contains $L_x$. \emph{Proof} (\lean{Jones.\hspace{0pt}Lset\_\hspace{0pt}subset\_\hspace{0pt}of\_\hspace{0pt}meets}): let $a \in K \cap L_x$ and $b \in K \setminus L_x$, and suppose $y \in L_x \setminus K$. Then $L_y = L_x$, so $b \notin L_y$, and some continuum $B \not\ni y$ contains a neighbourhood of $b$. $K \cup B$ is a continuum with nonempty interior that contains a and misses $y$. By spreading (18.5), $M$ is aposyndetic at a with respect to $y$, against $a \in L_y$. Also $M \setminus L_x = U_x$ (\lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}prop\_\hspace{0pt}e}).
+
+\textbf{19.3 Theorem 1 (a)} (\lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}a}). If $M$ is decomposable, the quotient $G = M/\{L_x\}$ is a nondegenerate, homogeneous, aposyndetic, compact metric continuum. \emph{Proof:} the decomposition is u.s.c.\@ and the quotient is compact metrizable (\S{}4). Homeomorphisms of $M$ permute the elements (aposyndesis is topological), so $G$ is homogeneous (\lean{Jones.\hspace{0pt}exists\_\hspace{0pt}homeomorph\_\hspace{0pt}quotient}). $G$ is nondegenerate by 18.3, since $M$ is decomposable. Jones does not argue aposyndesis. The formal proof goes as follows: for $g \neq g'$ and points $x \in g$, $y \in g'$, a continuum $K$ containing a neighbourhood of $y$ and missing $x$ misses $g$ by (c). By lower semicontinuity at $g'$, its image in $G$ is a continuum missing $g$ that contains a neighbourhood of $g'$.
+
+\textbf{19.4 $G$ is continuous} (\lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}continuous}). By residual continuity (\S{}4, \lean{Jones.\hspace{0pt}residual\_\hspace{0pt}lscAt}, \lean{Jones.\hspace{0pt}exists\_\hspace{0pt}lscAt}) the decomposition is continuous at some element. Homeomorphisms of $M$ permuting the elements carry continuity at one element to continuity at its image (\lean{Jones.\hspace{0pt}lscAt\_\hspace{0pt}homeomorph}), and $M$ is homogeneous.
+
+\textbf{19.5 Each element is homogeneous} (\lean{Jones.\hspace{0pt}isHomogeneous\_\hspace{0pt}Lset}, \lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}elements}). If $M$ is not aposyndetic, every $L_x$ is nondegenerate, any two are homeomorphic, and each is homogeneous, because a homeomorphism of $M$ carrying $a \in L_x$ to $b \in L_x$ maps $L_x$ onto $L_b = L_x$. If $M$ is aposyndetic, the elements are points (\lean{Jones.\hspace{0pt}Lset\_\hspace{0pt}eq\_\hspace{0pt}singleton\_\hspace{0pt}of\_\hspace{0pt}isAposyndetic}).
+
+\textbf{19.6 Elements do not separate the plane.}
+
+\begin{itemize}
+  \item $M \setminus L_x$ is connected (\lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}compl\_\hspace{0pt}connected}). By Jones's claim (5), two points of $U_x$ lie in a continuum missing $x$ (\lean{Jones.\hspace{0pt}exists\_\hspace{0pt}continuum\_\hspace{0pt}of\_\hspace{0pt}mem\_\hspace{0pt}aposSet}). Such a continuum misses $L_x$ by (c), and $M \setminus L_x = U_x$.
+  \item No element separates the plane (\lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}elt\_\hspace{0pt}not\_\hspace{0pt}separates}). In the non-aposyndetic case the elements are homeomorphic, so if one separates, all do (\lean{Jones.\hspace{0pt}separatesPlane\_\hspace{0pt}of\_\hspace{0pt}homeomorph}). Since $M \setminus g$ is connected, some complementary domain $W_g$ of $g$ misses $M$. For $g \neq h$, the domain $W_g$ is a connected subset of $\mathbb{R}^2 \setminus h$, so $W_g$ and $W_h$ are either disjoint or equal. If they are equal, the common domain is open and closed in the plane, which is absurd. So the $W_g$ are disjoint open sets, and there are uncountably many of them (\lean{Jones.\hspace{0pt}uncountable\_\hspace{0pt}quotient}), which is impossible in the plane.
+\end{itemize}
+
+\textbf{19.7 $G$ lies in a plane} (\lean{Jones.\hspace{0pt}mooreDecomp\_\hspace{0pt}gPrime}, \lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}plane}, \lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}embedding}). Let $G'$ be the decomposition of $\mathbb{R}^2$ into the elements of $G$ and the points of $\mathbb{R}^2 \setminus M$ (\lean{Jones.\hspace{0pt}gPrime}). Its quotient map is closed (\lean{Jones.\hspace{0pt}isClosedMap\_\hspace{0pt}mk\_\hspace{0pt}gPrime}), so $G'$ is upper semicontinuous in Moore's sense. Its elements are continua that do not separate the plane (19.6). By Moore 1925, Theorem 22 (\S{}7.4, \lean{Moore.\hspace{0pt}m25\_\hspace{0pt}theorem22}), $G'$ is a plane. So $G$ is homeomorphic to a compact connected subset of $\mathbb{R}^2$ (\lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}embedding\_\hspace{0pt}data}).
+
+\textbf{19.8 Theorem 2} (\lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}circle}, \lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}theorem2'}). If $M$ is decomposable, $G$ is a continuous decomposition, $M/G$ is a simple closed curve, and each element is a homogeneous plane continuum that does not separate the plane. \emph{Proof:} $G$ is a nondegenerate homogeneous aposyndetic plane continuum (19.3, 19.7), hence a simple closed curve by Jones 1949 (\S{}20).
+
+\textbf{19.9 Elements are indecomposable} (\lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}two\_\hspace{0pt}domains}, \lean{Jones.\hspace{0pt}jones55\_\hspace{0pt}elements\_\hspace{0pt}indecomposable'}). A decomposable homogeneous plane continuum has exactly two complementary domains. \emph{Proof:} in the plane $G'$, the image of $M$ is a simple closed curve (19.8). The Jordan curve theorem (\lean{Jones.\hspace{0pt}jordan\_\hspace{0pt}curve\_\hspace{0pt}theorem}, \S{}7.3) gives two domains of elements, and their point sets are disjoint connected open sets with union $\mathbb{R}^2 \setminus M$. Now if an element $L_x$ were decomposable, it would be a decomposable homogeneous plane continuum (19.5), so it would separate the plane, against 19.6.
+
+\section*{20. Homogeneous aposyndetic plane continua are circles (Jones 1949)}
+\addcontentsline{toc}{section}{20. Homogeneous aposyndetic plane continua are circles (Jones 1949)}
+
+\textbf{Theorem} (\lean{Jones.\hspace{0pt}jones49\_\hspace{0pt}theorem1 : Jones.\hspace{0pt}Jones49Thm1}). A nondegenerate homogeneous aposyndetic plane continuum $M$ is a simple closed curve.
+
+\textbf{20.1 Order} (\lean{Jones.\hspace{0pt}OrderLE}, \lean{Jones.\hspace{0pt}HasOrder}). $p$ has order $\leq n$ if it has arbitrarily small open neighbourhoods whose frontier has at most $n$ points. $p$ has order $n$ if it has order $\leq n$ but not $\leq n - 1$. A \emph{local separating point} separates some open set (\lean{Jones.\hspace{0pt}IsSepPointOf}, \lean{Jones.\hspace{0pt}IsLocalSepPoint}).
+
+\textbf{20.2 Menger's theorem} (\lean{Jones.\hspace{0pt}menger\_\hspace{0pt}order\_\hspace{0pt}two}). A nondegenerate continuum in which every point has order 2 is a simple closed curve. \emph{Proof:} such a continuum is hereditarily locally connected (\lean{Jones.\hspace{0pt}locallyConnectedSpace\_\hspace{0pt}of\_\hspace{0pt}orderLE}), so any two of its points are joined by arcs. Take a non-cut point $u$ (\S{}1.4) and a small connected open $V \ni u$ with exactly two frontier points. A triod argument shows that the closure of $V$ and the complement of $V$ are arcs. Two arcs glued along their ends form a circle (\S{}8.3). With homogeneity, one point of order 2 is enough (\lean{Jones.\hspace{0pt}jones49\_\hspace{0pt}order\_\hspace{0pt}two}).
+
+\textbf{20.3 Whyburn's separating point--order theorem} (\lean{Jones.\hspace{0pt}countable\_\hspace{0pt}sepPoint\_\hspace{0pt}not\_\hspace{0pt}hasOrder\_\hspace{0pt}two}, \lean{Jones.\hspace{0pt}whyburn\_\hspace{0pt}9\_\hspace{0pt}1}, \lean{Jones.\hspace{0pt}whyburn\_\hspace{0pt}9\_\hspace{0pt}2}, \lean{Jones.\hspace{0pt}whyburn\_\hspace{0pt}3\_\hspace{0pt}2}). In a separable locally compact metric space, only countably many points separate an open set $R$ without having order 2. A separating point of $R$ also separates every smaller open neighbourhood (9.1). With a countable basis, only countably many local separating points fail to have order 2 (9.2). For cut points of a continuum this is (3.2). \emph{Consequence} (\lean{Jones.\hspace{0pt}jones49\_\hspace{0pt}some\_\hspace{0pt}order\_\hspace{0pt}two}, \lean{Jones.\hspace{0pt}jones49\_\hspace{0pt}some\_\hspace{0pt}order\_\hspace{0pt}two\_\hspace{0pt}of\_\hspace{0pt}whyburn\_\hspace{0pt}9\_\hspace{0pt}2}): an uncountable homogeneous continuum with a local separating point has a point of order 2, since by homogeneity all of its points are local separating points.
+
+\textbf{20.4 The setting} (\lean{Jones.\hspace{0pt}jones49\_\hspace{0pt}setting}). $M$ is cyclic, since no point cuts $M$: some point does not (\S{}1.4), so by homogeneity none does. By 18.4, $M$ is semi-locally connected.
+
+\textbf{20.5 Whyburn 1939} (\lean{Jones.\hspace{0pt}whyburn39\_\hspace{0pt}theorem14}, \lean{Jones.\hspace{0pt}whyburn39\_\hspace{0pt}corollary1}). Let $M$ be a compact semi-locally connected plane continuum. The boundary of each complementary domain is locally connected. If $M$ is also cyclic, each such boundary is a simple closed curve. \emph{Proof of Theorem 14:} suppose the boundary $B$ is not locally connected (\lean{Jones.\hspace{0pt}locallyConnectedSpace\_\hspace{0pt}of\_\hspace{0pt}cikAt}). Then disjoint subcontinua of $B$ cross an annulus. On every circle of radius $\rho$ in the middle third, this produces a point of $B$ that has no finite order and cuts $M$. That gives uncountably many cut points not of order 2, which contradicts 20.3. \emph{Proof of the Corollary:} $B$ is a locally connected continuum without cut points. If $B$ is not a circle, it contains a $\theta$-curve. All three arcs of the $\theta$-curve lie in the closure of the complementary domain, which is connected and misses them. This is impossible by the $\theta$-curve lemma (\lean{Jones.\hspace{0pt}theta\_\hspace{0pt}not\_\hspace{0pt}subset\_\hspace{0pt}closure}, from the Jordan curve theorem and Janiszewski's theorem). So $B$ is a simple closed curve (\lean{Jones.\hspace{0pt}tscc\_\hspace{0pt}homeomorph\_\hspace{0pt}circle}).
+
+\textbf{20.6 Proof of the Theorem.} If some point has order 2, apply 20.2. Otherwise no point has order 2. Take $x \notin M$, and let $J$ be the boundary of its complementary domain; $J$ is a simple closed curve by 20.5.
+
+\begin{itemize}
+  \item \emph{Case 1: $M \setminus J$ is connected} (\lean{Jones.\hspace{0pt}jones49\_\hspace{0pt}case1\_\hspace{0pt}core}). By homogeneity every point of $M$ lies on the boundary of some complementary domain (\lean{Jones.\hspace{0pt}exists\_\hspace{0pt}frontier\_\hspace{0pt}through}, via \lean{Jones.\hspace{0pt}frontier\_\hspace{0pt}cc\_\hspace{0pt}of\_\hspace{0pt}jordan}). There are only countably many complementary domains (\lean{Jones.\hspace{0pt}countable\_\hspace{0pt}complDomains}). By Baire, one of their boundaries contains a nonempty open subset of $M$. That boundary is a simple closed curve (20.5), so a point of the open subset is a local separating point (\lean{Jones.\hspace{0pt}isLocalSepPoint\_\hspace{0pt}of\_\hspace{0pt}open\_\hspace{0pt}sub\_\hspace{0pt}tscc}). By 20.3 some point has order 2, a contradiction.
+  \item \emph{Case 2: $M \setminus J$ is not connected} (\lean{Jones.\hspace{0pt}jones49\_\hspace{0pt}case2\_\hspace{0pt}core}). Choose a domain $U$ meeting the two pieces (\lean{Jones.\hspace{0pt}exists\_\hspace{0pt}domain\_\hspace{0pt}meeting}). Its boundary $C$ is a simple closed curve meeting $J$. An arc of $C$ between two points $A$, $B$ of $J$ (\lean{Jones.\hspace{0pt}exists\_\hspace{0pt}theta\_\hspace{0pt}arcs}) completes a $\theta$-curve. The $\theta$-curve separates $M \setminus \{A, B\}$ (\lean{Jones.\hspace{0pt}theta\_\hspace{0pt}separation}). Since $M \setminus B$ is connected, $A$ is a local separating point (\lean{Jones.\hspace{0pt}isLocalSepPoint\_\hspace{0pt}of\_\hspace{0pt}separation}). $M$ is uncountable (\lean{Jones.\hspace{0pt}uncountable\_\hspace{0pt}of\_\hspace{0pt}nontrivial}), so 20.3 gives a point of order 2, a contradiction.
+\end{itemize}
+
+\section*{21. The decomposable case}
+\addcontentsline{toc}{section}{21. The decomposable case}
+
+\textbf{21.1 Elements are pseudo-arcs} (\lean{BJ59.\hspace{0pt}isPseudoArc\_\hspace{0pt}Lset'}). If $M$ is decomposable and homogeneous, every nondegenerate element $L_x$ is a pseudo-arc. \emph{Proof:} $L_x$ is a homogeneous (19.5), indecomposable (19.9) plane continuum, so it is a pseudo-arc by Part IV (\lean{HO16.\hspace{0pt}isPseudoArc\_\hspace{0pt}of\_\hspace{0pt}indec\_\hspace{0pt}homogeneous}).
+
+\textbf{21.2 Proof of the Goal} (\lean{BJ59.\hspace{0pt}circle\_\hspace{0pt}or\_\hspace{0pt}atomic\_\hspace{0pt}of\_\hspace{0pt}decomposable}). Let $q : M \to S^1$ be the quotient map followed by the homeomorphism $M/G \cong S^1$ of 19.8; its fibres are the $L_x$.
+
+\begin{itemize}
+  \item If $M$ is aposyndetic, the elements are points (19.5). Then $q$ is a continuous bijection from a compact space, hence a homeomorphism, and $M$ is a simple closed curve.
+  \item Otherwise $q$ is continuous and surjective. It is open because the decomposition is continuous (19.4, \S{}4 \lean{BJ59.\hspace{0pt}isOpenMap\_\hspace{0pt}quotient\_\hspace{0pt}mk\_\hspace{0pt}of\_\hspace{0pt}continuous}). Its fibres are pseudo-arcs (21.1, the elements being nondegenerate by 19.5), and it is atomic because the elements are terminal (19.2).
+\end{itemize}
+
+\textbf{21.3 The circle-like form} (\lean{BJ59.\hspace{0pt}circle\_\hspace{0pt}or\_\hspace{0pt}circPAMap\_\hspace{0pt}of\_\hspace{0pt}decomposable}). The same proof gives $q$ with \lean{BJ59.\hspace{0pt}IsCircPAMap} (open, surjective, pseudo-arc fibres, with $M$ circle-like) whenever $M$ is known to be circle-like. Circle-likeness is supplied in \S{}24.4.
+
+\bigskip
+
+\part*{Part VI. Circles of pseudo-arcs (Bing--Jones 1959)}
+\addcontentsline{toc}{part}{Part VI. Circles of pseudo-arcs (Bing--Jones 1959)}
+
+\textbf{Definitions.} An \emph{arc of continua} (\lean{BJ59.\hspace{0pt}IsArcOfContinua}) is a continuous surjection $f : X \to [0, 1]$ whose fibres are continua. It is a \emph{continuous arc of pseudo-arcs} (\lean{BJ59.\hspace{0pt}IsContArcPA}) if $f$ is also open and its fibres are pseudo-arcs. A \emph{circle of pseudo-arcs} (\lean{BJ59.\hspace{0pt}IsCircleOfPA}) is a circle-like continuum $X$ with a continuous, open, surjective map $f : X \to S^1$ whose fibres are pseudo-arcs. Equivalently, $X$ carries a map with \lean{BJ59.\hspace{0pt}IsCircPAMap} (\lean{BJ59.\hspace{0pt}isCircleOfPA\_\hspace{0pt}iff}).
+
+For $f : X \to S^1$, the two \emph{halves} \lean{BJ59.\hspace{0pt}halfSet f ($\pm$1)} are the preimages of the closed upper and lower semicircles from 1 to $-1$. Each half carries the induced map \lean{BJ59.\hspace{0pt}halfMap} onto [0, 1], with end fibres $f^{-1}(1)$ and $f^{-1}(-1)$ (\lean{BJ59.\hspace{0pt}halfFibreEquiv}).
+
+\section*{22. Atomic maps have snake-like halves}
+\addcontentsline{toc}{section}{22. Atomic maps have snake-like halves}
+
+\textbf{22.1 Bing 1951, Theorem 11 for atomic maps} (\lean{BJ59.\hspace{0pt}isSnakeLike\_\hspace{0pt}of\_\hspace{0pt}atomic'}). Let $f : X \to [0, 1]$ be continuous and atomic, with snake-like HI fibres. Then $X$ is snake-like. \emph{Proof.} $X$ is hereditarily unicoherent (\lean{BJ59.\hspace{0pt}isHereditarilyUnicoherent\_\hspace{0pt}of\_\hspace{0pt}atomic}). A subcontinuum lying in a fibre inherits this from the snake-like fibre (\S{}2.3). Otherwise, in a splitting $K = H \cup L$ into subcontinua, a piece lying in a fibre lies in the other piece, and pieces lying in no fibre are unions of fibres (\lean{BJ59.\hspace{0pt}subset\_\hspace{0pt}fibre\_\hspace{0pt}or\_\hspace{0pt}saturated}). Their intersection is then the preimage of an interval, which is connected (\lean{BJ59.\hspace{0pt}isPreconnected\_\hspace{0pt}preimage\_\hspace{0pt}of\_\hspace{0pt}fibres}). Now suppose $X$ is not $\varepsilon$-coverable (\lean{Plane.\hspace{0pt}EpsCoverable}). Bing's minimal counterexample (\lean{Plane.\hspace{0pt}exists\_\hspace{0pt}minimal\_\hspace{0pt}notCoverable}, Brouwer reduction \S{}1.3) gives a subcontinuum $S$ that is not $\varepsilon$-coverable, while all of its proper subcontinua are. $S$ lies in no fibre, since fibres are snake-like. So $S = f^{-1}[a, b]$ with $a < b$. Split $S$ at $c = (a + b)/2$ into $A = f^{-1}[a, c]$ and $C = f^{-1}[c, b]$. These are proper subcontinua, hence $\varepsilon$-coverable. Fugate's Lemma 1 (\lean{Plane.\hspace{0pt}fugate\_\hspace{0pt}lemma1}, for the terminal subcontinuum $f^{-1}(c)$, \lean{Plane.\hspace{0pt}IsTerminalSub}) gives $\varepsilon$-chains covering $A$ and $C$ whose last links contain a common point $\mu \in f^{-1}(c)$. Fugate's gluing of the two chains (\lean{Plane.\hspace{0pt}epsCoverable\_\hspace{0pt}of\_\hspace{0pt}halves}) covers $S$ by an $\varepsilon$-chain, a contradiction.
+
+\textbf{22.2 Halves} (\lean{BJ59.\hspace{0pt}isAtomicMap\_\hspace{0pt}halfMap}, \lean{BJ59.\hspace{0pt}isContArcPA\_\hspace{0pt}halfMap\_\hspace{0pt}of\_\hspace{0pt}atomic}, \lean{BJ59.\hspace{0pt}isSnakeLike\_\hspace{0pt}halfSet\_\hspace{0pt}of\_\hspace{0pt}atomic}). If $f : X \to S^1$ is open, atomic and has pseudo-arc fibres, each half is a continuous arc of pseudo-arcs and is snake-like, by 22.1. If instead $f$ has \lean{BJ59.\hspace{0pt}IsCircPAMap}, each half is a proper subcontinuum of the circle-like $X$, hence snake-like by Nadler 12.51 (\S{}2.3, \lean{BJ59.\hspace{0pt}isSnakeLike\_\hspace{0pt}halfSet}, \lean{Plane.\hspace{0pt}isSnakeLike\_\hspace{0pt}of\_\hspace{0pt}subset\_\hspace{0pt}circleLike}). Both cases give \lean{BJ59.\hspace{0pt}IsSnakeHalvesMap}: continuous, open, surjective, pseudo-arc fibres and snake-like halves (\lean{BJ59.\hspace{0pt}IsAtomicCircPAMap.\hspace{0pt}isSnakeHalvesMap}, \lean{BJ59.\hspace{0pt}IsCircPAMap.\hspace{0pt}isSnakeHalvesMap}).
+
+\section*{23. Bing--Jones Theorem 10}
+\addcontentsline{toc}{section}{23. Bing--Jones Theorem 10}
+
+\textbf{Theorem} (\lean{BJ59.\hspace{0pt}bjThm10 : BJ59.\hspace{0pt}BJThm10}). Let $f : X \to [0, 1]$ and $g : Y \to [0, 1]$ be continuous arcs of pseudo-arcs with $X$, $Y$ compact and snake-like. Let $h_0 : f^{-1}(0) \to g^{-1}(0)$ and $h_1 : f^{-1}(1) \to g^{-1}(1)$ be homeomorphisms. Then there is a homeomorphism $H : X \to Y$ with $g \circ H = f$ that extends $h_0$ and $h_1$.
+
+\textbf{23.1 Chains and chain maps.} A chain in Bing--Jones's sense (\lean{BJ59.\hspace{0pt}IsBJChain}) has non-adjacent links at positive distance. A \emph{chain map} (\lean{BJ59.\hspace{0pt}IsChainMap}) is a map of link indices that sends adjacent links to adjacent or equal links. A chain has \emph{private points} (\lean{BJ59.\hspace{0pt}HasPrivatePoints}) if each link has a point outside the closures of the others. Every chain properly covering a nondegenerate continuum can be shrunk to have them (\lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}privatePoint\_\hspace{0pt}shrink}).
+
+\textbf{23.2 The homeomorphism from a zigzag} (Bing--Jones pp. 188--189; \lean{BJ59.\hspace{0pt}zigzag\_\hspace{0pt}homeomorph}, \lean{BJ59.\hspace{0pt}zigzag\_\hspace{0pt}fibre}). Suppose we are given:
+
+\begin{itemize}
+  \item chains $D_i$ on $X$ and $E_i$ on $Y$ with meshes tending to 0;
+  \item chain maps $H_i$ of $D_i$ onto $E_i$, and $K_i$ of $E_{i+1}$ into $D_i$;
+  \item \emph{Conditions $B$ and $B'$}: each link of $D_{i+1}$ lies in the link of $D_i$ named by $K_i \circ H_{i+1}$, and each link of $E_{i+1}$ lies in the link of $E_i$ named by $H_i \circ K_i$.
+\end{itemize}
+
+Then the point $h(p)$ defined by $h(p) \in$ closure($H_i$(links of $D_i$ containing $p$)) for all $i$ is a homeomorphism $X \to Y$ (\lean{BJ59.\hspace{0pt}starImage}). The sets decrease by $B$ and $B'$, and their diameters tend to 0. If the $H_i$ preserve fibres (Condition A below), $h$ preserves fibres.
+
+\textbf{23.3 Tools from Bing--Jones \S{}\S{}3--5.}
+
+\begin{itemize}
+  \item \textbf{Theorem 3} (\lean{BJ59.\hspace{0pt}theorem3\_\hspace{0pt}arc}). A snake-like arc of continua has $\varepsilon$-chains from the fibre over 0 to the fibre over 1.
+  \item \textbf{Theorem 4} (\lean{BJ59.\hspace{0pt}bj\_\hspace{0pt}theorem4}). A nonempty open set missing the two end fibres separates them. It is used in its located form \lean{BJ59.\hspace{0pt}bj\_\hspace{0pt}cut}.
+  \item \textbf{Theorem 5, repaired} (\lean{BJ59.\hspace{0pt}theorem5\_\hspace{0pt}repaired}). If $f$ is open with indecomposable fibres, and no fibre meets a link of a chain $E$ only inside the closure of $U$, then the separation of Theorem 4 can be chosen so that each fibre meets every link of $E$ on one side. The printed statement is false; the formal proof uses this repaired form, applied on a window $f^{-1}[a, b]$ (\lean{BJ59.\hspace{0pt}bj\_\hspace{0pt}theorem5\_\hspace{0pt}window}, \lean{BJ59.\hspace{0pt}bj\_\hspace{0pt}theorem5\_\hspace{0pt}window\_\hspace{0pt}aux}, \lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}window\_\hspace{0pt}set}).
+  \item \textbf{Theorem 7, second sentence} (\lean{BJ59.\hspace{0pt}bj\_\hspace{0pt}theorem7\_\hspace{0pt}ends'}, \lean{BJ59.\hspace{0pt}bj7\_\hspace{0pt}ends\_\hspace{0pt}compact}). Let $D$ be a chain of $n \geq 3$ links properly covering a pseudo-arc $P$, and let $H$ be a chain map onto $D$. Then there is a chain $E$ in Bing--Jones's sense covering $P$ that follows $H$, with prescribed closed sets in prescribed end links. The proof folds chains along walks (\lean{BJ59.\hspace{0pt}foldChain}), uses the shrinking step \lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}bjChain\_\hspace{0pt}shrink}, and uses crookedness of the pseudo-arc (\S{}11.1).
+  \item \textbf{Theorem 8} (\lean{BJ59.\hspace{0pt}bj\_\hspace{0pt}theorem8}, via \lean{BJ59.\hspace{0pt}bj\_\hspace{0pt}theorem8\_\hspace{0pt}ends}). Let $f$ be a continuous snake-like arc of pseudo-arcs, $D$ a chain of $n \geq 3$ links each meeting every fibre, and $H$ a chain map onto $D$. Then there is a chain $E$ in Bing--Jones's sense, each link meeting every fibre, with each link of $E$ inside the link of $D$ named by $H$. The proof uses a uniform grid under a Lebesgue number, Theorem 4 (as \lean{BJ59.\hspace{0pt}bj\_\hspace{0pt}cut}), and Theorem 7 on the fibres.
+  \item \textbf{Corollary to Theorem 8} (\lean{BJ59.\hspace{0pt}bj\_\hspace{0pt}theorem8\_\hspace{0pt}cor}, with the discrete intermediate-value lemma \lean{BJ59.\hspace{0pt}walk\_\hspace{0pt}core}). Its form on a sub-arc (\lean{BJ59.\hspace{0pt}bj\_\hspace{0pt}theorem8\_\hspace{0pt}cor\_\hspace{0pt}sub}, \lean{BJ59.\hspace{0pt}bj\_\hspace{0pt}theorem8\_\hspace{0pt}cor\_\hspace{0pt}sub\_\hspace{0pt}three}, \lean{BJ59.\hspace{0pt}window\_\hspace{0pt}transfer}, \lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}fibre\_\hspace{0pt}spread}) is the one used.
+  \item \textbf{Step 1$(b)$} (\lean{BJ59.\hspace{0pt}bj\_\hspace{0pt}step1b}). Over a short enough interval, a minimal covering subchain has every link meeting every fibre.
+\end{itemize}
+
+\textbf{23.4 The conditions carried by the induction} (\lean{BJ59.\hspace{0pt}IsFibreChainMap}, \lean{BJ59.\hspace{0pt}EndCompat}, \lean{BJ59.\hspace{0pt}IsFibreFine}).
+
+\begin{itemize}
+  \item \emph{Condition A}: a link meeting a fibre $f^{-1}(t)$ goes to a link meeting $g^{-1}(t)$, and a run of links properly covering $f^{-1}(t)$ goes onto links covering $g^{-1}(t)$.
+  \item \emph{Condition C}: compatibility with $h_0$ and $h_1$ on the end fibres.
+  \item \emph{Fibre-fineness}: either the chain has one link, or every run of links covering a fibre has at least three links (\lean{BJ59.\hspace{0pt}isFibreFine\_\hspace{0pt}of\_\hspace{0pt}isEpsChain}).
+\end{itemize}
+
+\textbf{23.5 The step} (\lean{BJ59.\hspace{0pt}BJStep}, \lean{BJ59.\hspace{0pt}bj\_\hspace{0pt}step}). Suppose $H$ is a chain map of $D$ (on $X$) onto $E$ (on $Y$) with Conditions $A$ and $C$, where $D$ has private points and $E$ is fibre-fine. Then for every $\delta > 0$ there are a chain $E'$ on $Y$ in Bing--Jones's sense, of mesh $< \delta$ and with private points, and a chain map $K$ of $E'$ onto $D$. $K$ satisfies Conditions $A$ and $C$ in the reverse direction, and each link of $E'$ lies in the link of $E$ named by $H \circ K$. \emph{Construction:}
+
+\begin{itemize}
+  \item (a) Cut [0, 1] into short sub-arcs, using Step 1$(b)$.
+  \item (b) Map fine chains of the end fibres by the pattern of $h_0$, $h_1$ (\lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}pattern}: a fine chain covering a fibre maps into a run of $D$ following the homeomorphism, each link of the run being the image of three consecutive links, \lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}point\_\hspace{0pt}only\_\hspace{0pt}of\_\hspace{0pt}minimal}).
+  \item (c) Map the sub-arcs by the corollary to Theorem 8 (\lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}subarc\_\hspace{0pt}piece}, \lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}end\_\hspace{0pt}piece}, \lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}tau\_\hspace{0pt}run}).
+  \item (d) Glue the pieces along windows given by the repaired Theorem 5 (\lean{BJ59.\hspace{0pt}bj\_\hspace{0pt}glue}).
+\end{itemize}
+
+Theorem 6 of Bing--Jones enters only in the form \lean{BJ59.\hspace{0pt}adjacent\_\hspace{0pt}of\_\hspace{0pt}properCover}. The homeomorphisms on cut fibres and Theorem 9 are not needed.
+
+\textbf{23.6 Theorem 10 from the step} (\lean{BJ59.\hspace{0pt}bjThm10\_\hspace{0pt}of\_\hspace{0pt}step}, \lean{BJ59.\hspace{0pt}BJStage}). Start from one-link chains and alternate the step on the two sides, with meshes tending to 0. This produces the data of 23.2. Then \lean{BJ59.\hspace{0pt}zigzag\_\hspace{0pt}homeomorph} and \lean{BJ59.\hspace{0pt}zigzag\_\hspace{0pt}fibre} give a fibre-preserving homeomorphism, and Condition C makes it agree with $h_0$ and $h_1$.
+
+\section*{24. Uniqueness, homogeneity and recognition}
+\addcontentsline{toc}{section}{24. Uniqueness, homogeneity and recognition}
+
+\textbf{24.1 Gluing two halves} (\lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}half\_\hspace{0pt}homeomorph}, \lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}homeomorph\_\hspace{0pt}glue}, and the primed versions \lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}half\_\hspace{0pt}homeomorph'}, \lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}homeomorph\_\hspace{0pt}glue'} for \lean{BJ59.\hspace{0pt}IsSnakeHalvesMap}). Let $f : X \to S^1$ and $g : Y \to S^1$ both have snake-like halves, and let $k_+ : f^{-1}(1) \to g^{-1}(1)$ and $k_- : f^{-1}(-1) \to g^{-1}(-1)$ be homeomorphisms. Apply Theorem 10 to each half with end homeomorphisms $k_+$ and $k_-$. The two half homeomorphisms agree on the common fibres, so they glue to $\Phi : X \to Y$ with $g \circ \Phi = f$ and $\Phi = k_+$ on $f^{-1}(1)$.
+
+\textbf{24.2 Any two circles of pseudo-arcs are homeomorphic} (\lean{BJ59.\hspace{0pt}homeomorph\_\hspace{0pt}of\_\hspace{0pt}isCircPAMap}, \lean{BJ59.\hspace{0pt}homeomorph\_\hspace{0pt}of\_\hspace{0pt}isCircleOfPA}). The fibres over 1 are pseudo-arcs, hence homeomorphic (\S{}11.3, \lean{Plane.\hspace{0pt}theorem1\_\hspace{0pt}HIC'}), and likewise the fibres over $-1$. Then apply 24.1.
+
+\textbf{24.3 Every circle of pseudo-arcs is homogeneous} (\lean{BJ59.\hspace{0pt}isHomogeneous\_\hspace{0pt}of\_\hspace{0pt}isCircPAMap}, \lean{BJ59.\hspace{0pt}isHomogeneous\_\hspace{0pt}of\_\hspace{0pt}isCircleOfPA}). Given $x$, $y$, rotate $f$ so that $f(x) = 1$, and separately so that $f(y) = 1$ (\lean{BJ59.\hspace{0pt}IsCircPAMap.\hspace{0pt}mul\_\hspace{0pt}left}). A homeomorphism of the fibres over 1 sending $x$ to $y$ comes from \S{}11.3 followed by homogeneity of the pseudo-arc (\S{}11.4). Gluing (24.1) gives a self-homeomorphism carrying $x$ to $y$.
+
+\textbf{24.4 Recognition: open atomic maps} (\lean{BJ59.\hspace{0pt}dp22\_\hspace{0pt}theorem61}, \lean{BJ59.\hspace{0pt}homeomorph\_\hspace{0pt}of\_\hspace{0pt}isSnakeHalvesMap}, \lean{BJ59.\hspace{0pt}isCircleOfPA\_\hspace{0pt}of\_\hspace{0pt}atomic}). Let $X$ be compact with an open atomic map onto $S^1$ with pseudo-arc fibres, and let $Y$ be any circle of pseudo-arcs. Then $X \cong Y$ (Domokos--Prajs Theorem 6.1, ``if'' direction). \emph{Proof:} both maps have snake-like halves (22.2), so 24.1 applies. Hence $X$ is circle-like (\lean{BJ59.\hspace{0pt}isCircleLike\_\hspace{0pt}univ\_\hspace{0pt}of\_\hspace{0pt}homeomorph}), and $X$ is a circle of pseudo-arcs.
+
+\textbf{24.5 Circle-likeness of decomposable homogeneous plane continua} (\lean{BJ59.\hspace{0pt}hoCircleLike}, \lean{BJ59.\hspace{0pt}HOCircleLike}). Let $M$ be a decomposable homogeneous plane continuum. If $M$ is a simple closed curve, it is circle-like (\lean{BJ59.\hspace{0pt}isCircleLike\_\hspace{0pt}circle}). Otherwise it has an open atomic pseudo-arc map onto $S^1$ (\S{}21.2). By 24.4 it is then homeomorphic to the plane circle of pseudo-arcs of \S{}25, so it is circle-like.
+
+\section*{25. A circle of pseudo-arcs in the plane}
+\addcontentsline{toc}{section}{25. A circle of pseudo-arcs in the plane}
+
+\textbf{Theorem} (\lean{BJ59.\hspace{0pt}bjPlaneExample : BJ59.\hspace{0pt}BJPlaneExample}). Some plane continuum is a circle of pseudo-arcs. Bing--Jones \S{}7 states this without a full construction. The formal proof uses a different route, which runs parallel to the construction of the plane pseudo-arc in \S{}10.
+
+\textbf{25.1 Circular descriptions} (\lean{BJ59.\hspace{0pt}CircDescr}). Level $k$ is a circular chain of $N_k \geq 4$ open connected links in a fixed compact set, indexed by $\mathbb{Z}$ mod $N_k$, with mesh $\to 0$. Level $k + 1$ refines level $k$ along a lifted pattern of degree one with unit steps. Link closures are nested (\lean{nest}), and the refinement is \emph{tight}: a new link meets only old links named by the pattern at nearby positions (\lean{tight}). Each link $t$ of level $k$ carries the label of a closed arc of $\mathbb{R} /\mathbb{Z}$ of length $\lambda_k \to 0$, centred at $o_k + t/N_k$. The arcs of new links lie in the arcs of the old links they map to (\lean{arcNest}). Every point of a slightly shrunk arc lies in the shrunk arc of some child (\lean{surv}). The patterns are crooked on every window that a run of level $k + 1$ can occupy (\lean{crook}).
+
+\textbf{25.2 Recognition} (\lean{BJ59.\hspace{0pt}CircDescr.\hspace{0pt}isCircleOfPA}). The set $M = \bigcap_k$ (union of level $k$) (\lean{BJ59.\hspace{0pt}CircDescr.\hspace{0pt}M}, \lean{BJ59.\hspace{0pt}CircDescr.\hspace{0pt}isCompact\_\hspace{0pt}M}) is a circle of pseudo-arcs. \emph{Proof:} for $y \in \mathbb{R} /\mathbb{Z}$, the links whose arcs contain $y$ form runs, and these runs are chains. A run of level $k + 1$ is crooked in the run of level $k$ (\lean{crook} with tightness). So the fibre over $y$, the intersection of the runs (\lean{BJ59.\hspace{0pt}CircDescr.\hspace{0pt}fib}), is described by crooked chains and is a pseudo-arc, as in \S{}9. The map \lean{BJ59.\hspace{0pt}CircDescr.\hspace{0pt}fmap} : $M \to S^1$ sending a point to its label is continuous and surjective. It is open by survival. The traces of the circular chains on $M$ make $M$ circle-like.
+
+\textbf{25.3 Sweep patterns} (\lean{BJ59.\hspace{0pt}sweep\_\hspace{0pt}lemma}, \lean{BJ59.\hspace{0pt}sweepX}, \lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}sweepPattern}). For $m \geq 5$ and $S \geq 1$ there is an explicit lifted pattern $x : \mathbb{Z} \to \mathbb{Z}$ of degree one. It has unit steps and is $S$-slow (values two apart are at distance at least $S$). It satisfies the nesting and survival estimates of 25.1, and it is crooked on every window of the required length. Crookedness comes from the sweep lemma: blocks of fixed length that run alternately up and down through windows moving one end at a time are crooked on any interval containing at most two window changes.
+
+\textbf{25.4 The circular planar step} (\lean{BJ59.\hspace{0pt}circ\_\hspace{0pt}step}). This is the analogue of \lean{Plane.\hspace{0pt}real\_\hspace{0pt}step} for circular chains. Fix a tame circular chain, the image under a plane homeomorphism $\Phi$ of the standard circular chain \lean{BJ59.\hspace{0pt}stdCircLink} (with its intersection pattern \lean{BJ59.\hspace{0pt}stdCircLink\_\hspace{0pt}meet\_\hspace{0pt}iff}). Every sufficiently slow lifted pattern of degree one with bounded drift is then realized by a tame circular chain of $QN$ links with closures nested, tight, and with links small or inside old zones. The proof transports the joint positions of \S{}10 through a shear on the universal cover and descends it by the map $E(u, v) = \exp (v + i\pi u/N)$ (\lean{BJ59.\hspace{0pt}circExp}).
+
+\textbf{25.5 Assembly} (\lean{BJ59.\hspace{0pt}planeDescr}, \lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}circDescr\_\hspace{0pt}plane}). Start from the standard circular chain of 16 links and alternate 25.3 and 25.4 to obtain a circular description in $\mathbb{R}^2$. By 25.2 its set $M$ is a plane circle of pseudo-arcs.
+
+\bigskip
+
+\part*{Part VII. Assembly}
+\addcontentsline{toc}{part}{Part VII. Assembly}
+
+\section*{26. The classification}
+\addcontentsline{toc}{section}{26. The classification}
+
+\textbf{26.1 The decomposable case} (\lean{BJ59.\hspace{0pt}circle\_\hspace{0pt}or\_\hspace{0pt}circleOfPA\_\hspace{0pt}of\_\hspace{0pt}decomposable}). A decomposable homogeneous plane continuum $M$ is a simple closed curve or a circle of pseudo-arcs. \emph{Proof:} $M$ is circle-like by \S{}24.5. Then \S{}21.3 gives a homeomorphism to $S^1$ or a map with \lean{BJ59.\hspace{0pt}IsCircPAMap}, that is, a circle of pseudo-arcs (\lean{BJ59.\hspace{0pt}isCircleOfPA\_\hspace{0pt}iff}).
+
+\textbf{26.2 The classification with its inputs as hypotheses} (\lean{BJ59.\hspace{0pt}ho16\_\hspace{0pt}classification}). Assume Theorem 10 and \lean{BJ59.\hspace{0pt}HOCircleLike}. A nondegenerate plane continuum $M$ is homogeneous iff it is a simple closed curve, a pseudo-arc, or a circle of pseudo-arcs.
+
+\begin{itemize}
+  \item $(\Rightarrow)$ If $M$ is decomposable, use 26.1. If $M$ is indecomposable, $M$ is a pseudo-arc by Part IV (\lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}indec\_\hspace{0pt}homogeneous\_\hspace{0pt}iff}).
+  \item $(\Leftarrow)$ The circle is homogeneous, since rotations act transitively (\lean{BJ59.\hspace{0pt}isHomogeneous\_\hspace{0pt}circle}, \lean{BJ59.\hspace{0pt}isHomogeneous\_\hspace{0pt}circle'}), and homogeneity passes along homeomorphisms. A pseudo-arc is homogeneous by \S{}11.4 (\lean{HO16.\hspace{0pt}ho16\_\hspace{0pt}pseudoArc\_\hspace{0pt}indec\_\hspace{0pt}homogeneous}). A circle of pseudo-arcs is homogeneous by \S{}24.3 (\lean{BJ59.\hspace{0pt}isHomogeneous\_\hspace{0pt}of\_\hspace{0pt}isCircleOfPA}).
+\end{itemize}
+
+\textbf{26.3 The plane form with its inputs as hypotheses} (\lean{BJ59.\hspace{0pt}ho16\_\hspace{0pt}classification\_\hspace{0pt}plane}). Assume Theorem 10, \lean{BJ59.\hspace{0pt}HOCircleLike} and \lean{BJ59.\hspace{0pt}BJPlaneExample}. Take the following plane continua:
+
+\begin{itemize}
+  \item $C_1$: a plane simple closed curve (\lean{BJ59.\hspace{0pt}exists\_\hspace{0pt}plane\_\hspace{0pt}circle});
+  \item $C_2$: a plane pseudo-arc (\S{}10, \lean{Plane.\hspace{0pt}isPseudoArc\_\hspace{0pt}plane});
+  \item $C_3$: a plane circle of pseudo-arcs.
+\end{itemize}
+
+Each is homogeneous by 26.2 (for $C_2$ directly by \lean{Plane.\hspace{0pt}homogeneous\_\hspace{0pt}of\_\hspace{0pt}isPseudoArc}). No two are homeomorphic:
+
+\begin{itemize}
+  \item $C_1$ and $C_3$ are decomposable (\lean{BJ59.\hspace{0pt}isDecomposableSpace\_\hspace{0pt}circle}; for $C_3$, \lean{BJ59.\hspace{0pt}isDecomposableSpace\_\hspace{0pt}of\_\hspace{0pt}isCircPAMap}, the two halves of \S{}22). $C_2$ is indecomposable, being HI. So $C_2$ is not homeomorphic to $C_1$ or to $C_3$.
+  \item If $\Phi : C_1 \to C_3$ were a homeomorphism, the fibre of $C_3$ over 1 would be carried to a pseudo-arc in $S^1$. That pseudo-arc misses the image of any point over $-1$, so it is a proper subset of $S^1$ (\lean{BJ59.\hspace{0pt}circle\_\hspace{0pt}exp\_\hspace{0pt}pi\_\hspace{0pt}ne\_\hspace{0pt}one}). No proper subset of the circle is a pseudo-arc (\lean{BJ59.\hspace{0pt}not\_\hspace{0pt}isPseudoArc\_\hspace{0pt}of\_\hspace{0pt}ne\_\hspace{0pt}univ\_\hspace{0pt}circle}): if $K$ misses a point $z$, the argument measured from $z$ embeds $K$ in $\mathbb{R}$, so $K$ would be a nondegenerate compact interval, which is decomposable.
+\end{itemize}
+
+For a nondegenerate plane continuum $M$, if $M$ is homogeneous then 26.2 says that $M$ is a circle, a pseudo-arc or a circle of pseudo-arcs. Then $M$ is homeomorphic to $C_1$, to $C_2$ (any two pseudo-arcs are homeomorphic, \S{}11.3, \lean{Plane.\hspace{0pt}theorem1\_\hspace{0pt}HIC'}) or to $C_3$ (\S{}24.2, \lean{BJ59.\hspace{0pt}homeomorph\_\hspace{0pt}of\_\hspace{0pt}isCircleOfPA}). Conversely, a continuum homeomorphic to $C_1$, $C_2$ or $C_3$ is homogeneous.
+
+\textbf{26.4 Discharging the inputs.}
+
+\begin{itemize}
+  \item \lean{BJ59.\hspace{0pt}ho16\_\hspace{0pt}classification$_{2}$}, \lean{BJ59.\hspace{0pt}ho16\_\hspace{0pt}classification\_\hspace{0pt}plane$_{2}$}: \lean{BJ59.\hspace{0pt}HOCircleLike} is replaced by Theorem 10 and the plane example, via \S{}24.5 (\lean{BJ59.\hspace{0pt}hoCircleLike}).
+  \item \lean{BJ59.\hspace{0pt}ho16\_\hspace{0pt}classification$_{3}$}, \lean{BJ59.\hspace{0pt}ho16\_\hspace{0pt}classification\_\hspace{0pt}plane$_{3}$}: Theorem 10 is discharged by \lean{BJ59.\hspace{0pt}bjThm10} (\S{}23).
+  \item \lean{BJ59.\hspace{0pt}ho16\_\hspace{0pt}classification$_{4}$}, \lean{BJ59.\hspace{0pt}ho16\_\hspace{0pt}classification\_\hspace{0pt}plane$_{4}$}: the plane example is discharged by \lean{BJ59.\hspace{0pt}bjPlaneExample} (\S{}25).
+\end{itemize}
+
+The two final theorems carry no hypotheses beyond those in their statements. Their proofs depend only on the results described above and on Mathlib.
+
+\end{document}

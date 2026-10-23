@@ -1,0 +1,46 @@
+=== Bing K=5 (all subchains, every basepoint), LIMIT=2000000
+LITP-FAIL n=5 K=3 i=2 S=0 rho=1,0,1,2,1 sig=1,0,1,2,1
+LITM-FAIL n=5 K=3 i=2 S=6 rho=1,0,1,2,1 sig=1,0,1,2,1
+LITP-FAIL n=5 K=3 i=2 S=0 rho=1,2,1,0,1 sig=1,2,1,0,1
+LITM-FAIL n=5 K=3 i=2 S=9 rho=1,2,1,0,1 sig=1,2,1,0,1
+LITP-FAIL n=5 K=3 i=2 S=0 rho=1,0,1,2,1 sig=1,0,1,2,1
+LITM-FAIL n=5 K=3 i=2 S=6 rho=1,0,1,2,1 sig=1,0,1,2,1
+bing KK=5 len=13 limit=2000000 sequences=66
+  T3END instances=418 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=418 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=418 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=418 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=418 fails=3 (in 3 sequences; 0 fails with K >= 4) undecided=0
+  T3E2 instances=418 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=418 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=670 fails=3 (in 3 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=670 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+=== Bing K=6 (all subchains, every basepoint), LIMIT=2000000
+LITP-FAIL-K>=4 n=18 K=5 i=16 S=0 rho=0,1,2,1,2,3,2,1,2,3,2,3,4,3,2,3,2,1 sig=0,1,2,1,2,3,2,1,2,3,2,3,4,3,2,3,2,1
+LITP-FAIL n=18 K=5 i=16 S=0 rho=0,1,2,1,2,3,2,1,2,3,2,3,4,3,2,3,2,1 sig=0,1,2,1,2,3,2,1,2,3,2,3,4,3,2,3,2,1
+LITP-FAIL n=5 K=3 i=2 S=0 rho=1,0,1,2,1 sig=1,0,1,2,1
+LITM-FAIL n=5 K=3 i=2 S=6 rho=1,0,1,2,1 sig=1,0,1,2,1
+LITP-FAIL n=5 K=3 i=2 S=0 rho=1,2,1,0,1 sig=1,2,1,0,1
+LITM-FAIL n=5 K=3 i=2 S=9 rho=1,2,1,0,1 sig=1,2,1,0,1
+LITP-FAIL n=5 K=3 i=2 S=0 rho=1,0,1,2,1 sig=1,0,1,2,1
+LITM-FAIL n=5 K=3 i=2 S=6 rho=1,0,1,2,1 sig=1,0,1,2,1
+LITP-FAIL n=5 K=3 i=2 S=0 rho=1,0,1,2,1 sig=1,0,1,2,1
+LITM-FAIL n=5 K=3 i=2 S=6 rho=1,0,1,2,1 sig=1,0,1,2,1
+LITP-FAIL n=5 K=3 i=2 S=0 rho=1,2,1,0,1 sig=1,2,1,0,1
+LITM-FAIL n=5 K=3 i=2 S=9 rho=1,2,1,0,1 sig=1,2,1,0,1
+LITP-FAIL-K>=4 n=18 K=5 i=1 S=0 rho=3,2,1,2,1,0,1,2,1,2,3,2,1,2,3,2,3,4 sig=3,2,1,2,1,0,1,2,1,2,3,2,1,2,3,2,3,4
+LITP-FAIL n=18 K=5 i=1 S=0 rho=3,2,1,2,1,0,1,2,1,2,3,2,1,2,3,2,3,4 sig=3,2,1,2,1,0,1,2,1,2,3,2,1,2,3,2,3,4
+LITP-FAIL n=5 K=3 i=2 S=0 rho=1,2,1,0,1 sig=1,2,1,0,1
+LITM-FAIL n=5 K=3 i=2 S=9 rho=1,2,1,0,1 sig=1,2,1,0,1
+LITM-FAIL n=5 K=3 i=2 S=6 rho=1,0,1,2,1 sig=1,0,1,2,1
+LITM-FAIL n=5 K=3 i=2 S=6 rho=1,0,1,2,1 sig=1,0,1,2,1
+bing KK=6 len=30 limit=2000000 sequences=406
+  T3END instances=4872 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDP instances=4872 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  S2 instances=4872 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LIT instances=4872 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITP instances=4872 fails=12 (in 12 sequences; 2 fails with K >= 4) undecided=0
+  T3E2 instances=4872 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  T3E2P instances=4872 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0
+  LITM instances=7534 fails=10 (in 10 sequences; 0 fails with K >= 4) undecided=0
+  T3ENDM instances=7534 fails=0 (in 0 sequences; 0 fails with K >= 4) undecided=0

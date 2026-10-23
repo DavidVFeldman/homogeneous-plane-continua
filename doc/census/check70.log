@@ -1,0 +1,20 @@
+the witness: 2378 links, basepoint 2026, the w8 side is the forward arm
+  levels run from 0 to 9
+  IsCrookedIvF: True (faithful)
+  rho i = 5
+  arm lengths: forward 352, backward 2027
+  LowAt on the forward arm: True; on the backward arm: True
+  the forward arm reaches 9: True (first at arm index 113)
+  the backward arm reaches 9: True (first at arm index 225)
+  w8: forward True, backward False
+  wb: forward False, backward True
+  w3: forward False, backward True
+  a crossing of the trichotomy (no one of the three serves both arms): True
+  w72 = (7,2,5) on the forward arm: True; on the backward arm: True
+  walks of the four-leg family serving both arms: 6
+    direct P=5 K=7 M=2 : (4, 7, 2, 8, 1)
+    direct P=5 K=7 M=3 : (4, 7, 3, 8, 1)
+    direct P=6 K=7 M=2 : (5, 7, 2, 8, 1)
+    direct P=6 K=7 M=3 : (5, 7, 3, 8, 1)
+    direct P=6 K=8 M=2 : (5, 8, 2, 8, 1)
+    direct P=6 K=8 M=3 : (5, 8, 3, 8, 1)

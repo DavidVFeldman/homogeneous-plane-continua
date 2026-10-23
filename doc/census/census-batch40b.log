@@ -1,0 +1,31 @@
+### leaf 1: LowAt(0,8) and LowAt(1,7) — the four-leg walk [3,4,5,6,5,4,3,2,3,4,5,6,7,6,5,4,3,2,1]
+-- floor
+span 8 basepoint 4; conditions: HighAt(1,8) LowAt(0,7) LowAt(0,8) LowAt(1,7)
+probe: every descent to 1 is preceded by one of 2 patterns: [>=6] [<=2 then >=5]
+HOLDS on the whole class (11340 states)
+-- deep floor
+span 8 basepoint 4; conditions: HighAt(1,8) LowAt(0,7) LowAt(0,8) LowAt(1,7)
+probe: every descent to 0 is preceded by one of 2 patterns: [>=8] [<=1 then >=6]
+HOLDS on the whole class (11340 states)
+-- ceiling
+span 8 basepoint 4; conditions: HighAt(1,8) LowAt(0,7) LowAt(0,8) LowAt(1,7)
+probe: every ascent to 8 is preceded by one of 3 patterns: [<=1] [>=7 then <=3] [<=2 then >=6 then <=3]
+HOLDS on the whole class (12839 states)
+
+### leaf 4: HighAt(0,8) and HighAt(1,7) — the reflected four-leg walk [5,4,3,2,3,4,5,6,5,4,3,2,1,2,3,4,5,6,7]
+-- floor of the reflected arm
+span 8 basepoint 4; conditions: HighAt(1,8) LowAt(0,7) HighAt(0,8) HighAt(1,7)
+probe: every ascent to 7 is preceded by one of 1 patterns: [<=2]
+HOLDS on the whole class (10773 states)
+-- deep floor of the reflected arm (three clauses)
+span 8 basepoint 4; conditions: HighAt(1,8) LowAt(0,7) HighAt(0,8) HighAt(1,7)
+probe: every ascent to 8 is preceded by one of 3 patterns: [<=0] [>=7 then <=2] [<=1 then >=6 then <=2]
+HOLDS on the whole class (14418 states)
+-- deep floor of the reflected arm, without the third clause
+span 8 basepoint 4; conditions: HighAt(1,8) LowAt(0,7) HighAt(0,8) HighAt(1,7)
+probe: every ascent to 8 is preceded by one of 2 patterns: [<=0] [>=7 then <=2]
+VIOLATED by the arm: 4322122343234344565443432343445654434456545656678
+-- ceiling of the reflected arm
+span 8 basepoint 4; conditions: HighAt(1,8) LowAt(0,7) HighAt(0,8) HighAt(1,7)
+probe: every descent to 0 is preceded by one of 2 patterns: [>=7] [<=1 then >=5]
+HOLDS on the whole class (10773 states)

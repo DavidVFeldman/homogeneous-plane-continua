@@ -1,0 +1,241 @@
+%======================================================================
+\chapter{Continuous logarithms}\label{ch:log}
+%======================================================================
+
+The basic tool of this volume is the continuous logarithm. A plane set $K$ ``goes around'' a point
+$p\notin K$ exactly when the function $z\mapsto z-p$ has no continuous logarithm on $K$; the
+precise forms of this statement are proved in Chapter~\ref{ch:sep}. This chapter collects the
+facts about logarithms that do not involve the topology of the plane: uniqueness up to a constant,
+existence on contractible spaces (from the lifting property of the exponential map), and a few
+explicit logarithms. The last section proves that the plane is unicoherent and derives Brouwer's
+theorem on the frontiers of complementary domains.
+
+Throughout, points of the plane are identified with complex numbers (Section~\ref{sec:intro-conv}).
+
+\section{Logarithms and their uniqueness}\label{sec:log-unique}
+
+\begin{definition}\label{def:log}
+Let $X$ be a topological space, $K\subseteq X$ and $f$ a complex-valued function defined (at
+least) on $K$. A \emph{logarithm of $f$ on $K$} is a function $L\colon K\to\C$, continuous on $K$,
+with $e^{L(z)}=f(z)$ for every $z\in K$.
+\end{definition}
+
+If $f$ has a logarithm on $K$, then $f$ vanishes nowhere on $K$, and it is continuous on $K$
+(as $e^{L}$). A logarithm on $K$ restricts to a logarithm on every subset of $K$. If $L_1$ and
+$L_2$ are logarithms of $f_1$ and $f_2$ on $K$, then $L_1+L_2$ is a logarithm of $f_1f_2$, $-L_1$
+one of $1/f_1$, and $\cl{L_1}$ (complex conjugate) one of $\cl{f_1}$.
+
+\begin{lemma}\label{lem:int-valued}
+Let $Z$ be a preconnected subset of a topological space and $k$ a real function continuous on $Z$
+whose values on $Z$ are integers. Then $k$ is constant on $Z$.
+\end{lemma}
+
+\begin{proof}
+The image $k(Z)$ is a preconnected subset of $\R$, hence an interval. If it contained two integers
+$m<n$ it would contain $m+\frac12$, which is not an integer.
+\end{proof}
+
+\formal{\lean{HPC.Plane.eq_of_isPreconnected_int_valued}.}
+
+\begin{lemma}[Uniqueness]\label{lem:log-unique}
+Let $S$ be a preconnected set and $L_1,L_2$ functions continuous on $S$ with $e^{L_1}=e^{L_2}$ on
+$S$. Then $L_1-L_2$ is constant on $S$; the constant lies in $2\pi i\Z$.
+\end{lemma}
+
+\begin{proof}
+$e^{L_1(z)-L_2(z)}=1$, so $L_1(z)-L_2(z)=2\pi i\,k(z)$ with $k(z)\in\Z$. The function
+$k=\Re\big((L_1-L_2)/2\pi i\big)$ is continuous on $S$ and integer-valued, hence constant by
+Lemma~\ref{lem:int-valued}.
+\end{proof}
+
+\formal{\lean{HPC.Plane.sub_const_of_exp_eq}.}
+
+\paragraph{The principal logarithm.} Every $w\neq0$ is $w=\abs w e^{i\Arg w}$ with a unique
+$\Arg w\in(-\pi,\pi]$, the \emph{principal argument}. The \emph{principal logarithm}
+$\Log w=\ln\abs w+i\Arg w$ satisfies $e^{\Log w}=w$, and it is continuous on the \emph{slit plane}
+$\C\setminus(-\infty,0]$. Two facts are used repeatedly:
+\begin{itemize}
+\item if $\abs{w-1}<1$ then $\Re w>0$, so $w$ lies in the slit plane;
+\item if $\abs{u-1}<\frac12$ and $\abs{v-1}<\frac12$ then $\Log(uv)=\Log u+\Log v$. Indeed $\Re u,\Re
+v>0$ and $\abs{\Arg u},\abs{\Arg v}<\pi/2$, so $\Arg u+\Arg v\in(-\pi,\pi)$ is the principal
+argument of $uv$.
+\end{itemize}
+
+\formal{Mathlib's \lean{Complex.log}, \lean{Complex.arg}; the second fact is
+\lean{HPC.Hagopian.log_mul_near_one}.}
+
+\begin{lemma}[Nearby functions]\label{lem:log-near}
+Let $f$ and $\Phi$ be continuous on $K$ with $\abs{\Phi(z)-f(z)}<\abs{f(z)}$ for $z\in K$. If $\Phi$
+has a logarithm on $K$, so does $f$.
+\end{lemma}
+
+\begin{proof}
+$f$ vanishes nowhere on $K$, and $\Phi/f=1+(\Phi-f)/f$ with $\abs{(\Phi-f)/f}<1$, so $\Phi/f$ takes
+values in the slit plane and $\Log(\Phi/f)$ is continuous on $K$. If $L$ is a logarithm of $\Phi$,
+then $L-\Log(\Phi/f)$ is a logarithm of $\Phi\cdot f/\Phi=f$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.exists_log_of_near}.}
+
+\section{Existence: the lifting property of the exponential}
+
+The exponential map $\exp\colon\C\to\C\setminus\set0$ is a covering map. We use its
+\emph{homotopy lifting property} without proof; it is part of the elementary theory of covering
+spaces and is available in Mathlib.
+
+\begin{theorem}[Homotopy lifting; quoted]\label{thm:lifting}
+Let $X$ be a topological space, $H\colon[0,1]\times X\to\C\setminus\set0$ continuous, and
+$G_0\colon X\to\C$ continuous with $e^{G_0(x)}=H(0,x)$ for all $x$. There is a continuous
+$G\colon[0,1]\times X\to\C$ with $G(0,x)=G_0(x)$ and $e^{G(t,x)}=H(t,x)$ for all $t,x$.
+\end{theorem}
+
+\formal{Mathlib's \lean{IsCoveringMap.liftHomotopy} applied to \lean{Complex.isCoveringMap_exp}.}
+
+\begin{remark}
+For the reader who wants a proof: for fixed $x$, the path $t\mapsto H(t,x)$ is lifted step by
+step, using that $\exp$ maps every small disc around a point of $\C$ homeomorphically onto a small
+disc in $\C\setminus\set0$ (an inverse is a branch of $\Log$). Continuity in $x$ follows from the
+uniqueness of lifts of paths (Lemma~\ref{lem:log-unique} on $[0,1]$) and a Lebesgue number
+argument on $[0,1]\times N$ for a small neighbourhood $N$ of $x$.
+\end{remark}
+
+\begin{theorem}[Logarithms on contractible spaces]\label{thm:contractible}
+Let $X$ be a topological space with a point $x_0$ and a continuous $H_c\colon[0,1]\times X\to X$
+with $H_c(0,x)=x_0$ and $H_c(1,x)=x$ for all $x$. Every continuous $g\colon X\to\C\setminus\set0$
+has a logarithm on $X$.
+\end{theorem}
+
+\begin{proof}
+Choose $c$ with $e^c=g(x_0)$ and apply Theorem~\ref{thm:lifting} to $H(t,x)=g(H_c(t,x))$ and the
+constant $G_0=c$ (note $H(0,x)=g(x_0)$). Then $x\mapsto G(1,x)$ is continuous and
+$e^{G(1,x)}=g(H_c(1,x))=g(x)$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_exp_lift}.}
+
+\begin{corollary}\label{cor:log-exist}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item Every continuous nowhere vanishing $g\colon\R^2\to\C$ has a logarithm on $\R^2$.
+\item If $B\subseteq\R^2$ is convex and $h$ is continuous and nowhere zero on $B$, then $h$ has a
+logarithm on $B$.
+\item If $X$ is a topological space and $H\colon[0,1]\times X\to\C\setminus\set0$ is continuous with
+$H(0,x)=1$ for all $x$, then $x\mapsto H(1,x)$ has a logarithm on $X$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) Theorem~\ref{thm:contractible} with $H_c(t,z)=tz$. (b) For $B$ nonempty pick $b_0\in B$; the
+map $H_c(t,z)=b_0+t(z-b_0)$ maps $[0,1]\times B$ into $B$ by convexity, and
+Theorem~\ref{thm:contractible} applies to the subspace $B$. (c) Theorem~\ref{thm:lifting} with
+$G_0=0$; the logarithm is $x\mapsto G(1,x)$.
+\end{proof}
+
+\formal{(a) \lean{HPC.Moore.exists_log_pt}; (b) \lean{HPC.Moore.exists_log_of_convex}; (c)
+\lean{HPC.Moore.exists_exp_lift_of_homotopy}.}
+
+\begin{lemma}[A logarithm of $z-p$ on a small ball]\label{lem:log-ball}
+Let $r>0$ and $p,c\in\R^2$ with $4r<d(c,p)$. Then $z\mapsto z-p$ has a logarithm on $B(c,r)$,
+namely $L(z)=\Log\frac{z-p}{c-p}+\Log(c-p)$.
+\end{lemma}
+
+\begin{proof}
+For $z\in B(c,r)$,
+$\Big|\frac{z-p}{c-p}-1\Big|=\frac{\abs{z-c}}{\abs{c-p}}\le\frac{2\nrm{z-c}}{\nrm{c-p}}<\frac{2r}{4r}=\frac12$,
+using $\nrm w\le\abs w\le2\nrm w$. So $(z-p)/(c-p)$ stays in the slit plane, $L$ is continuous on
+the ball, and $e^{L(z)}=\frac{z-p}{c-p}(c-p)=z-p$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_log_on_ball}.}
+
+\section{The plane is unicoherent; Brouwer's theorem}
+
+Recall (\vthree{Definition~4.2}) that a connected space is \emph{unicoherent} if, whenever it is
+the union of two closed connected sets, their intersection is connected. The plane is
+unicoherent; the proof below is S.~Eilenberg's, by logarithms. It works for closed sets that need
+not be bounded, and we state it for preconnected sets.
+
+\begin{theorem}[Unicoherence of the plane]\label{thm:unicoherent}
+Let $A,B\subseteq\R^2$ be closed and preconnected with $A\cup B=\R^2$. Then $A\cap B$ is
+preconnected.
+\end{theorem}
+
+\begin{proof}
+Suppose not. Then $A\cap B=P\cup Q$ with $P,Q$ disjoint, nonempty and closed (\vone{(K2)}). By
+Urysohn's lemma there is a continuous $\varphi\colon\R^2\to[0,1]$ with $\varphi=0$ on $P$ and
+$\varphi=1$ on $Q$. Put $e(x)=e^{2\pi i\varphi(x)}$; then $e=1$ on $A\cap B$. Define $g_0=e$ on $A$
+and $g_0=1$ off $A$.
+
+$g_0$ is continuous: both $e$ and $1$ are continuous, so it suffices that they agree on the frontier
+of $A$; a frontier point of $A$ lies in $A$ (closed) and in $\cl{\R^2\setminus A}\subseteq B$, hence
+in $A\cap B$, where $e=1$. Also $g_0$ never vanishes. By Corollary~\ref{cor:log-exist}(a) it has a
+logarithm $G$ on $\R^2$. Put $u=\Im G/2\pi$, a continuous real function.
+
+On $B$ we have $g_0=1$ (on $B\setminus A$ by definition, on $A\cap B$ because $e=1$ there), so
+$e^{G}=1$ and $u$ is integer-valued on $B$; by Lemma~\ref{lem:int-valued} it is constant on the
+preconnected set $B$. On $A$ we have $e^{G}=e^{2\pi i\varphi}$, so $u-\varphi$ is integer-valued and
+hence constant on $A$. Take $p\in P$ and $q\in Q$. Both lie in $A$ and in $B$; so $u(p)=u(q)$ and
+$u(p)-0=u(q)-1$, a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Moore.plane_unicoherent}; the same argument for a compact space contractible by
+an explicit homotopy is \lean{HPC.Plane.isUnicoherent_univ_of_contraction}.}
+
+\begin{lemma}\label{lem:frontier-component}
+Let $W$ be an open subset of $\R^2$ and $D$ a component of $W$. Then $D$ is open and its frontier
+does not meet $W$.
+\end{lemma}
+
+\begin{proof}
+$D$ is open because the plane is locally connected (every point of $W$ has a ball inside $W$,
+which is connected and so lies in the component of that point). If $a\in W$ were a frontier point
+of $D$, the component $D'$ of $a$ in $W$ would be an open set containing $a$, hence meeting $D$; then
+$D'=D$ and $a\in D$, which is impossible since $D$ is open and $a\in\cl D\setminus D$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.frontier_connectedComponentIn_subset},
+\lean{HPC.Plane.isOpen_connectedComponentIn_of_isOpen}.}
+
+\begin{theorem}[Brouwer]\label{thm:brouwer}
+Let $M\subseteq\R^2$ be closed and connected and $D$ a component of $\R^2\setminus M$. Then the
+frontier of $D$ is connected.
+\end{theorem}
+
+\begin{proof}
+$D$ is open and connected (Lemma~\ref{lem:frontier-component}).
+
+\emph{$E=\R^2\setminus D$ is preconnected.} $E$ contains $M$. Let $y\in E\setminus M$ and let $C$ be
+the component of $y$ in $\R^2\setminus M$; $C\neq D$. The closure $\cl C$ misses $D$: a point of
+$D\cap\cl C$ would give, $D$ being open, a point of $D\cap C$, and then $C=D$. And $\cl C$ meets $M$:
+otherwise every point of $\cl C$ lies in $\R^2\setminus M$, so by Lemma~\ref{lem:frontier-component}
+it cannot be a frontier point of $C$, i.e.\ $\cl C=C$; then $C$ would be a nonempty clopen proper
+subset of $\R^2$ (proper because it misses $M\neq\emptyset$). Hence $M\cup\cl C$ is connected and lies
+in $E$. Every point of $E$ is thus joined to a fixed point of $M$ by a connected subset of $E$, and
+$E$ is preconnected.
+
+Now $\R^2=\cl D\cup E$ with both sets closed and preconnected, so by
+Theorem~\ref{thm:unicoherent} the set $\cl D\cap E=\cl D\setminus D$ is preconnected; it is the
+frontier of the open set $D$. Finally the frontier is nonempty, since otherwise $D$ would be a
+nonempty clopen set missing $M$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.brouwer_boundary}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that $z\mapsto z$ has no logarithm on the unit circle $\set{\abs z=1}$, directly from
+Lemma~\ref{lem:log-unique} applied on $[0,2\pi]$ to $t\mapsto L(e^{it})$ and $t\mapsto it$.
+\end{exercise}
+
+\begin{exercise}
+Show that the closed unit disc is unicoherent, by the argument of Theorem~\ref{thm:unicoherent}.
+Deduce that the circle is not a retract of the disc. (The formal development proves the
+unicoherence of the disc as \lean{HPC.Plane.isUnicoherent_disk}.)
+\end{exercise}
+
+\begin{exercise}
+Show that the annulus $\set{1\le\abs z\le2}$ is not unicoherent: write it as the union of its
+parts in the closed upper and lower half-planes. Where does the proof of
+Theorem~\ref{thm:unicoherent} break down for the annulus?
+\end{exercise}

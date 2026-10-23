@@ -1,0 +1,26 @@
+bing 0 9 : length 986
+bing 0 10 : length 2379
+bing 0 11 : length 5742
+windows of span exactly nine: 1694639
+branch 4: inhabited 10588, unserved 0, served by the fixed walk 10588, least-turn histogram: k=2:10588
+    both arms CritLam(base L+3,peak L+8)   : 10588 / 10588
+    both arms LowAt L (L+8)                : 10588 / 10588
+    both arms deepFloor(L,L+8)             : 10588 / 10588
+    both arms never at L                   : 0 / 10588
+    both arms HighAt (L+1) (L+7)           : 0 / 10588
+    both arms CritLam(base L+4,peak L+8)   : 0 / 10588
+    both arms deepFloor(L+1,L+8)           : 0 / 10588
+    both arms high L+7 before floor L+1    : 10588 / 10588
+    both arms high L+8 before floor L+1    : 0 / 10588
+    announcements: both ceiling-first 0, both floor-first 0, mixed 0, an arm with neither 10588
+branch 5: inhabited 11184, unserved 0, served by the fixed walk 11184, least-turn histogram: k=2:11184
+    both arms CritLam(base L+3,peak L+8)   : 9837 / 11184
+    both arms LowAt L (L+8)                : 11184 / 11184
+    both arms deepFloor(L,L+8)             : 11184 / 11184
+    both arms never at L                   : 0 / 11184
+    both arms HighAt (L+1) (L+7)           : 0 / 11184
+    both arms CritLam(base L+4,peak L+8)   : 0 / 11184
+    both arms deepFloor(L+1,L+8)           : 0 / 11184
+    both arms high L+7 before floor L+1    : 10588 / 11184
+    both arms high L+8 before floor L+1    : 0 / 11184
+    announcements: both ceiling-first 0, both floor-first 0, mixed 0, an arm with neither 11184

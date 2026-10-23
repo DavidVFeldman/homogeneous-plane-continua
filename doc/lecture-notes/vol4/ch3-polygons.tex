@@ -1,0 +1,480 @@
+%======================================================================
+\chapter{Polygons and the polygonal Jordan curve theorem}\label{ch:poly}
+%======================================================================
+
+This chapter proves the Jordan curve theorem for simple closed polygons by the classical parity
+argument: a point is inside the polygon if a ray from it crosses the polygon an odd number of times.
+The care goes into the crossing rule, which must count correctly when the ray passes through a
+vertex or runs along an edge; the half-open rule of Definition~\ref{def:crosses} does this with no
+general-position assumption. The chapter ends with polygonal paths and with the fact that $z-p$ has
+no logarithm on a simple closed polygon around $p$.
+
+\section{Polygons}
+
+For $a,b\in\R^2$ the \emph{segment} $[a,b]=\set{a+t(b-a):0\le t\le1}$ is compact and convex.
+
+\begin{definition}\label{def:polygon}
+Let $n\ge1$ and $v_0,\dots,v_{n-1}\in\R^2$; indices are taken mod $n$. The \emph{closed polygon}
+with vertices $v$ is
+\[
+\Gamma(v)=\bigcup_{i<n}[v_i,v_{i+1}],
+\]
+and $[v_i,v_{i+1}]$ is its \emph{edge} $i$. The vertex list $v$ is \emph{simple} if $n\ge3$, the
+$v_i$ are distinct, adjacent edges meet only in their common vertex, and non-adjacent edges are
+disjoint. A \emph{simple closed polygon} is a set $\Gamma(v)$ with $v$ simple.
+\end{definition}
+
+\formal{\lean{HPC.Plane.polygonOf}, \lean{HPC.Plane.polyEdge}, \lean{HPC.Plane.IsSimpleVertices},
+\lean{HPC.Plane.IsSimpleClosedPolygon} (with \lean{HPC.Plane.isSimpleClosedPolygon_iff}).}
+
+A closed polygon is compact and preconnected (consecutive edges share a vertex). A simple closed
+polygon is a polygonal set in the sense of Corollary~\ref{cor:janiszewski-poly}. Note that a
+straight angle at a vertex is allowed.
+
+\begin{definition}\label{def:ins}
+For a set $J\subseteq\R^2$, the \emph{inside} $\inn J$ is the union of the bounded components of
+$\R^2\setminus J$:
+$\inn J=\set{x\notin J:\comp Jx\text{ is bounded}}$.
+\end{definition}
+
+\formal{\lean{HPC.Plane.polyInterior}.}
+
+This definition needs no Jordan curve theorem. Two facts are immediate:
+
+\begin{lemma}\label{lem:ins-basic}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item If $W$ is connected and unbounded and $W\cap J=\emptyset$, then $W\cap\inn J=\emptyset$.
+\item If $\R^2\setminus J=U\cup V$ with $U,V$ open, disjoint and connected, $U$ bounded and $V$
+unbounded, then $\inn J=U$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $W$ lies in a single component of $\R^2\setminus J$, which is unbounded since it contains $W$.
+(b) A component of $\R^2\setminus J$ meeting $U$ is contained in $U\cup V$ and connected, so it lies in
+$U$ (the sets $U,V$ are open and disjoint); as $U$ is connected, the component is $U$. Likewise the
+component through a point of $V$ is $V$, which is unbounded.
+\end{proof}
+
+\formal{(a) \lean{HPC.Plane.polyInterior_disjoint_of_unbounded}; (b)
+\lean{HPC.Plane.polyInterior_eq_of_split} (with \lean{HPC.Plane.connectedComponentIn_eq_of_split}).}
+
+\section{The crossing parity}
+
+\begin{definition}[The half-open crossing rule]\label{def:crosses}
+Let $x,a,b\in\R^2$. The segment from $a$ to $b$ is \emph{crossed by the east ray from $x$}, written
+$\mathrm{CE}(x;a,b)$, if
+\begin{enumerate}[label=(\roman*)]
+\item the heights straddle $x_2$ half-openly: $a_2\le x_2<b_2$ or $b_2\le x_2<a_2$; and
+\item the point of the line through $a,b$ at height $x_2$ lies strictly to the right of $x$:
+$x_1<a_1+(x_2-a_2)\frac{b_1-a_1}{b_2-a_2}$.
+\end{enumerate}
+For a closed polygon $\Gamma(v)$ and $x\in\R^2$, the \emph{crossing number} is the number of
+indices $i$ with $\mathrm{CE}(x;v_i,v_{i+1})$, and the \emph{parity} $\parity_v(x)\in\Z/2$ is its
+residue mod $2$.
+\end{definition}
+
+\formal{\lean{HPC.Plane.CrossesEast}, \lean{HPC.Plane.crossCount}, \lean{HPC.Plane.parity}.}
+
+The rule is symmetric in $a$ and $b$. Under (i) the segment is not horizontal and the point in (ii)
+lies on the segment, so $\mathrm{CE}(x;a,b)$ says that the east ray $\set{x+(t,0):t>0}$ meets the
+segment, counted with the half-open convention at the ends: an end at the height of $x$ counts only
+if the other end is above. Horizontal edges are never crossed, and a point on the segment never
+crosses it. Write $[\mathrm{CE}]\in\Z/2$ for the indicator.
+
+\begin{definition}
+For $x,a\in\R^2$ the \emph{vertex jump} is $j_x(a)=1$ if $a_2=x_2$ and $x_1<a_1$ (the point $a$ lies
+on the east ray from $x$), and $j_x(a)=0$ otherwise.
+\end{definition}
+
+\formal{\lean{HPC.Plane.vJump}, \lean{HPC.Plane.ceInd}.}
+
+\begin{lemma}[The vertex rule]\label{lem:vertex-rule}
+Let $x\notin[a,b]$. For all $y$ in a neighbourhood of $x$:
+\begin{enumerate}[label=(\alph*)]
+\item if $y_2\ge x_2$, then $\mathrm{CE}(y;a,b)\iff\mathrm{CE}(x;a,b)$;
+\item if $y_2<x_2$, then $[\mathrm{CE}(y;a,b)]+[\mathrm{CE}(x;a,b)]=j_x(a)+j_x(b)$ in $\Z/2$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+If neither end has height $x_2$, the strict inequalities $a_2\gtrless x_2$, $b_2\gtrless x_2$ and the
+strict inequality (ii) (the crossing abscissa is a continuous function of $y$ where the segment is
+not horizontal; it is $\neq x_1$, since $x\notin[a,b]$) persist near $x$, so the indicator is
+locally constant, and both jumps vanish.
+
+Suppose $a_2=x_2\neq b_2$. Then $a_1\neq x_1$. If $a_1<x_1$, nothing near $x$ crosses (the crossing
+abscissa is close to $a_1<x_1$), and $j_x(a)=j_x(b)=0$. If $a_1>x_1$ and $b_2>x_2$: at $x$ and at
+every nearby $y$ with $y_2\ge x_2$ the straddle $a_2\le y_2<b_2$ holds and the crossing point is to the
+right, while for $y_2<x_2$ both ends are above $y$; so the indicator drops from $1$ to $0$ below
+$x$, a jump of $1=j_x(a)+j_x(b)$. If $a_1>x_1$ and $b_2<x_2$: at $x$ and above it both ends are at or
+below and neither straddle holds; below $x$ the straddle $b_2\le y_2<a_2$ holds and the crossing point
+is to the right: again a jump of $1$.
+
+If $a_2=b_2=x_2$, the edge is horizontal and never crossed; as $x\notin[a,b]$, both ends lie on the
+same side of $x$, so $j_x(a)+j_x(b)\in\set{0,2}$ is $0$ in $\Z/2$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.crossesEast_jump} (with \lean{HPC.Plane.crossesEast_jump_end}).}
+
+\begin{theorem}[Local constancy of the parity]\label{thm:parity-loc-const}
+For every closed polygon $\Gamma(v)$ (not necessarily simple), $\parity_v$ is locally constant on
+$\R^2\setminus\Gamma(v)$. Hence it is constant on every preconnected subset of
+$\R^2\setminus\Gamma(v)$, and the sets $\set{x\notin\Gamma(v):\parity_v(x)=e}$, $e\in\Z/2$, are open.
+Moreover $\parity_v(x)=0$ whenever $x_1>\max_iv_{i,1}$, and outside a large ball.
+\end{theorem}
+
+\begin{proof}
+Let $x\notin\Gamma(v)$. By Lemma~\ref{lem:vertex-rule} applied to each edge, near $x$ the parity
+does not change at points $y$ with $y_2\ge x_2$, and changes at points with $y_2<x_2$ by
+\[
+\sum_i\big(j_x(v_i)+j_x(v_{i+1})\big)=2\sum_ij_x(v_i)=0\quad\text{in }\Z/2,
+\]
+since every vertex is the end of exactly two edges in the cyclic list. The parity at points far to
+the east is $0$ because no point of an edge lies to their right. The complement of a closed ball
+containing $\Gamma(v)$ is connected (Lemma~\ref{lem:compl-square}) and contains such points.
+\end{proof}
+
+\formal{\lean{HPC.Plane.parity_eventually_eq}, \lean{HPC.Plane.parity_locallyConstant},
+\lean{HPC.Plane.sum_vJump_telescope}, \lean{HPC.Plane.parity_eq_of_isPreconnected},
+\lean{HPC.Plane.isOpen_parity_set}, \lean{HPC.Plane.parity_far},
+\lean{HPC.Plane.parity_eq_zero_of_far}.}
+
+\section{Near a simple closed polygon}
+
+For $w,a\in\R^2$ let $\rho_w(a)=\set{w+ta:t\ge0}$ be the closed ray from $w$ in direction $a$.
+
+\begin{lemma}\label{lem:local-rays}
+Let $\Gamma$ be a simple closed polygon and $w\in\Gamma$. There are $\rho>0$ and nonzero
+$a,b\in\R^2$, $b$ not a positive multiple of $a$, with
+$\Gamma\cap B(w,\rho)=(\rho_w(a)\cup\rho_w(b))\cap B(w,\rho)$.
+\end{lemma}
+
+\begin{proof}
+If $w$ is a vertex $v_i$, take $a=v_{i-1}-v_i$, $b=v_{i+1}-v_i$, and $\rho$ smaller than the
+distance from $w$ to the edges not containing $w$ and than $\nrm a,\nrm b$. If $w$ lies on edge $i$
+and is not a vertex, take $a=v_{i+1}-v_i$, $b=-a$, and $\rho$ smaller than the distance from $w$ to
+the other edges and to $v_i,v_{i+1}$. In both cases $b$ is not a positive multiple of $a$ because
+adjacent edges meet only at their common vertex.
+\end{proof}
+
+\formal{\lean{HPC.Plane.polygon_local_rays}, \lean{HPC.Plane.rayFrom}.}
+
+\begin{lemma}[Two rays cut a square into two pieces]\label{lem:ball-rays}
+Let $w\in\R^2$, $a,b\neq0$ with $b$ not a positive multiple of $a$, and $r>0$. Then
+$B(w,r)\setminus(\rho_w(a)\cup\rho_w(b))=P_1\cup P_2$ with $P_1,P_2$ preconnected.
+\end{lemma}
+
+\begin{proof}
+If $a,b$ are parallel, then $b$ is a negative multiple of $a$, the two rays form a line through $w$,
+and the two open half-squares on either side are convex. Otherwise write
+$z-w=f(z)a+g(z)b$ with linear coordinates $f,g$. The rays are $\set{g=0,f\ge0}$ and
+$\set{f=0,g\ge0}$, so the complement in the ball is
+\[
+P_1=B(w,r)\cap\set{f>0,g>0},\qquad P_2=\big(B(w,r)\cap\set{f<0}\big)\cup\big(B(w,r)\cap\set{g<0}\big).
+\]
+$P_1$ is convex, and $P_2$ is the union of two convex sets that share the point
+$w-\varepsilon(a+b)$ for small $\varepsilon>0$ (where $f=g=-\varepsilon$).
+\end{proof}
+
+\formal{\lean{HPC.Plane.ball_diff_rays}.}
+
+\begin{lemma}[Local sides from a splitting]\label{lem:local-side}
+Let $\Gamma$ be a simple closed polygon with $\R^2\setminus\Gamma=U\cup V$, $U,V$ open and
+disjoint, and let $w\in\Gamma$ lie in $\cl U\cap\cl V$. Then there is $r_0>0$ such that for
+$0<r\le r_0$ the set $U\cap B(w,r)$ is nonempty and connected.
+\end{lemma}
+
+\begin{proof}
+Take $r_0=\rho$ from Lemma~\ref{lem:local-rays}. For $r\le r_0$, $B(w,r)\setminus\Gamma=P_1\cup P_2$
+by Lemma~\ref{lem:ball-rays}. Each $P_k$ is preconnected and misses $\Gamma$, so it lies in $U$ or
+in $V$. Both $U\cap B(w,r)$ and $V\cap B(w,r)$ are nonempty ($w\in\cl U\cap\cl V$) and lie in
+$P_1\cup P_2$; so one piece lies in $U$, the other in $V$, and $U\cap B(w,r)$ is that piece.
+\end{proof}
+
+\formal{\lean{HPC.Plane.local_side_of_split}.}
+
+The following gluing lemma is used several times.
+
+\begin{lemma}[Gluing local pieces]\label{lem:local-meet}
+Let $\alpha\subseteq\R^2$ be preconnected and, for $w\in\alpha$, let $P_w$ be preconnected and
+$\rho(w)>0$, such that $P_w\cap P_{w'}\neq\emptyset$ whenever $w,w'\in\alpha$ and $d(w,w')<\rho(w)$.
+Then $\bigcup_{w\in\alpha}P_w$ is preconnected.
+\end{lemma}
+
+\begin{proof}
+Let the union lie in $O_1\cup O_2$ with $O_1,O_2$ open and disjoint on it. Each $P_w$ lies in $O_1$ or
+in $O_2$. The set of $w\in\alpha$ with $P_w\subseteq O_1$ and its complement in $\alpha$ are both open
+in $\alpha$: if $P_w\subseteq O_1$ and $w'\in\alpha$ is $\rho(w)$-close to $w$, then $P_{w'}$ meets
+$P_w$, hence $O_1$, so $P_{w'}\subseteq O_1$. As $\alpha$ is preconnected, one of the two sets is all
+of $\alpha$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isPreconnected_biUnion_of_local_meet}.}
+
+\section{Both parities accumulate at every point of the polygon}
+
+From now on $v$ is a simple vertex list and $\Gamma=\Gamma(v)$. Put
+$S_e=\set{x\notin\Gamma:\parity_v(x)=e}$ for $e\in\Z/2$.
+
+\begin{lemma}[Flips]\label{lem:flip}
+Let $p$ be a point of edge $i$ which is not a vertex.
+\begin{enumerate}[label=(\alph*)]
+\item If edge $i$ is not horizontal and no vertex has height $p_2$, then for all small $t>0$ the
+points $p\pm(t,0)$ are off $\Gamma$ and have different parities.
+\item If edge $i$ is horizontal, then for all small $t>0$ the points $p\pm(0,t)$ are off $\Gamma$ and
+have different parities.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+$p$ lies on no other edge (simplicity), so a small ball about $p$ meets $\Gamma$ only in edge $i$.
+
+(a) The east rays from $p-(t,0)$ and $p+(t,0)$ run along the same horizontal line. No vertex lies on
+it, so every edge either misses the line or crosses it transversally at one point. For edges other
+than $i$ this point is at positive distance from $p$, and for small $t$ both rays cross such an
+edge or both do not. Edge $i$ meets the line at $p$, which is to the right of $p-(t,0)$ and to the
+left of $p+(t,0)$. So the crossing numbers differ by one.
+
+(b) Apply Lemma~\ref{lem:vertex-rule} at $x=p$ to every edge $k\neq i$ ($p\notin$ edge $k$): for small
+$t$, with $y^\pm=p\pm(0,t)$,
+$[\mathrm{CE}(y^+;k)]+[\mathrm{CE}(y^-;k)]=j_p(v_k)+j_p(v_{k+1})$. Edge $i$ is horizontal at height
+$p_2$ and is crossed by neither ray. Summing over $k\neq i$,
+\[
+\parity_v(y^+)+\parity_v(y^-)=\sum_{k}\big(j_p(v_k)+j_p(v_{k+1})\big)-\big(j_p(v_i)+j_p(v_{i+1})\big)
+=0-1=1,
+\]
+because $p$ lies strictly between the ends of the horizontal edge $i$, so exactly one of them is to
+its right.
+\end{proof}
+
+\formal{(a) \lean{HPC.Plane.parity_flip_at} (and \lean{HPC.Plane.exists_parity_flip}); (b)
+\lean{HPC.Plane.parity_flip_vertical}.}
+
+\begin{proposition}\label{prop:both-parities}
+Every point of $\Gamma$ lies in the closure of $S_0$ and in the closure of $S_1$.
+\end{proposition}
+
+\begin{proof}
+Let $w\in\Gamma$, say on edge $i$, and $\varepsilon>0$. The points of edge $i$ that are not vertices,
+and, if the edge is not horizontal, also not at the height of a vertex, are dense in the edge
+(finitely many points are excluded). Pick such a point $p$ with $d(p,w)<\varepsilon/2$; by
+Lemma~\ref{lem:flip} there are points of both parities within $\varepsilon/2$ of $p$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.mem_closure_parity_set} (with \lean{HPC.Plane.exists_near_on_segment}).}
+
+\section{The Jordan curve theorem for polygons}
+
+\begin{lemma}[First hit]\label{lem:first-hit}
+Let $x\notin\Gamma$. There is $p\in\Gamma$ such that $x+t(p-x)\notin\Gamma$ for $0\le t<1$.
+\end{lemma}
+
+\begin{proof}
+Take any $y\in\Gamma$; the set of $t\in[0,1]$ with $x+t(y-x)\in\Gamma$ is closed and nonempty, and
+its least element $t_0$ is positive. Put $p=x+t_0(y-x)$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_first_hit}.}
+
+\begin{theorem}[Jordan curve theorem for simple closed polygons]\label{thm:jct-poly}
+Let $\Gamma$ be a simple closed polygon. Then $\R^2\setminus\Gamma=U\cup V$ with $U,V$ open, disjoint
+and connected, $U$ bounded, $V$ unbounded, and $\operatorname{fr}U=\operatorname{fr}V=\Gamma$. In
+fact $U=S_1$ and $V=S_0$.
+\end{theorem}
+
+\begin{proof}
+$S_0$ and $S_1$ are open, disjoint, and cover $\R^2\setminus\Gamma$
+(Theorem~\ref{thm:parity-loc-const}); $S_1$ is bounded and $S_0$ contains the complement of a large
+ball. Both are nonempty by Proposition~\ref{prop:both-parities}.
+
+\emph{Frontiers.} A frontier point of $S_e$ is not in $S_e$ (open) nor in $S_{e+1}$ (open and
+disjoint from $S_e$), hence lies in $\Gamma$; conversely every point of $\Gamma$ is in $\cl{S_e}$
+(Proposition~\ref{prop:both-parities}) and not in $S_e$.
+
+\emph{Connectedness.} Fix $e$. By Lemma~\ref{lem:local-side} (with $U=S_e$, $V=S_{e+1}$), every
+$w\in\Gamma$ has $r_0(w)>0$ with $S_e\cap B(w,r)$ nonempty and connected for $r\le r_0(w)$. Let
+$N_e$ be the union of all the sets $S_e\cap B(w,r)$ with $w\in\Gamma$, $r>0$ and $S_e\cap B(w,r)$
+preconnected; and for $w\in\Gamma$ let $P_w$ be the union of those with this centre $w$. Each $P_w$
+is preconnected: any two of its pieces contain the points of $S_e$ in a smaller ball about $w$,
+which exist by Proposition~\ref{prop:both-parities}. If $w'\in\Gamma$ and $d(w,w')<r_0(w)$, then
+$P_w\supseteq S_e\cap B(w,r_0(w))$ and $P_{w'}\supseteq S_e\cap B(w',r_0(w'))$ meet, since $w'$ is a
+limit of points of $S_e$ that are eventually in both balls. As $\Gamma$ is connected,
+Lemma~\ref{lem:local-meet} shows that $N_e=\bigcup_{w}P_w$ is connected (and nonempty).
+
+Now let $x\in S_e$. By Lemma~\ref{lem:first-hit} there is $p\in\Gamma$ with
+$x+t(p-x)\notin\Gamma$ for $t<1$. Choose $t<1$ with $z=x+t(p-x)\in B(p,r_0(p))$. The segment
+$[x,z]$ misses $\Gamma$, so the parity is constant on it and $z\in S_e\cap B(p,r_0(p))\subseteq N_e$.
+Hence $N_e\cup[x,z]$ is a connected subset of $S_e$ containing $x$ and meeting $N_e$. So $S_e$ is
+connected.
+\end{proof}
+
+\formal{\lean{HPC.Plane.jct_polygon}; the steps are \lean{HPC.Plane.polygon_separates},
+\lean{HPC.Plane.frontier_parity_set}, \lean{HPC.Plane.local_piece}, \lean{HPC.Plane.sideNbhd},
+\lean{HPC.Plane.sideNbhd_isConnected}, \lean{HPC.Plane.exists_segment_to_sideNbhd},
+\lean{HPC.Plane.isConnected_parity_set}.}
+
+\begin{corollary}\label{cor:jct-consequences}
+Let $\Gamma$ be a simple closed polygon with vertex list $v$, and $U,V$ as in
+Theorem~\ref{thm:jct-poly}.
+\begin{enumerate}[label=(\alph*)]
+\item $\inn\Gamma=U=\set{x\notin\Gamma:\parity_v(x)=1}$; it is open, connected and bounded, and its
+frontier is $\Gamma$.
+\item $\R^2\setminus\inn\Gamma=\Gamma\cup V=\cl V$ is connected and unbounded.
+\item (\emph{Local sides.}) Every $w\in\Gamma$ has $r_0>0$ such that $\inn\Gamma\cap B(w,r)$ is
+nonempty and connected for $0<r\le r_0$.
+\item (\emph{Sides along a connected part.}) If $\alpha\subseteq\Gamma$ is preconnected and
+$h\supseteq\alpha$ is open, there is a preconnected $S\subseteq\inn\Gamma\cap h$ such that every
+$w\in\alpha$ has $r>0$ with $\inn\Gamma\cap B(w,r)\subseteq S$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) Lemma~\ref{lem:ins-basic}(b) and the theorem. (b) $\R^2\setminus U=\Gamma\cup V$, and
+$\Gamma=\operatorname{fr}V\subseteq\cl V$, so it is the closure of the connected unbounded set $V$.
+(c) Lemma~\ref{lem:local-side}. (d) For $w\in\alpha$ choose $r_w\le r_0(w)$ with $B(w,r_w)\subseteq h$
+and let $P_w=\inn\Gamma\cap B(w,r_w)$, connected by (c). If $w'\in\alpha$ and $d(w,w')<r_w$, then
+$P_w$ and $P_{w'}$ meet (points of $\inn\Gamma$ close enough to $w'$, which exist as
+$w'\in\cl{\inn\Gamma}$, lie in both balls). Lemma~\ref{lem:local-meet} shows that
+$S=\bigcup_{w\in\alpha}P_w$ is preconnected.
+\end{proof}
+
+\formal{(a) \lean{HPC.Plane.polyInterior_eq_oddSet}, \lean{HPC.Plane.PlaneFacts.polyInterior_eq};
+(b) \lean{HPC.Plane.PlaneFacts.compl_polyInterior}; (c) \lean{HPC.Plane.PlaneFacts.local_side};
+(d) \lean{HPC.Plane.sides_of_split} and \lean{HPC.Plane.PlaneFacts.sides}. The bundle of plane facts
+\lean{HPC.Plane.PlaneFacts} is proved as \lean{HPC.Plane.planeFacts_holds}.}
+
+\section{Polygonal paths and arcs}
+
+\begin{definition}\label{def:polypath}
+A \emph{polygonal path} with vertices $w_0,\dots,w_{k-1}$ ($k\ge1$) is the set
+$\bigcup_{i<k-1}[w_i,w_{i+1}]$, from $w_0$ to $w_{k-1}$. It is a \emph{simple polygonal arc} from $p$
+to $q$ if $k\ge2$, $w_0=p$, $w_{k-1}=q$, the $w_i$ are distinct, consecutive segments meet only in
+their common vertex and non-consecutive segments are disjoint.
+\end{definition}
+
+\formal{\lean{HPC.Plane.polyPathOf}, \lean{HPC.Plane.IsSimplePolyArc} (and the vertex-function form
+\lean{HPC.Plane.vpath}, \lean{HPC.Plane.IsSArc}).}
+
+A polygonal path is compact and connected, and so is a simple polygonal arc; a simple polygonal arc
+is homeomorphic to $[0,1]$ (\lean{HPC.Jones.tarc_of_isSimplePolyArc'}).
+
+\begin{proposition}\label{prop:polypath}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item Any two points of a connected open set $h\subseteq\R^2$ are joined by a polygonal path in $h$.
+\item (\emph{Loop erasure.}) A polygonal path from $p$ to $q\neq p$ contains a simple polygonal arc
+from $p$ to $q$.
+\item If $\alpha$ is a simple polygonal arc from $p$ to $q$, $F$ is closed, $p\notin F$ and $\alpha$
+meets $F$, then there is $x\in\alpha\cap F$ and a simple polygonal arc $\alpha_1\subseteq\alpha$ from
+$p$ to $x$ with $\alpha_1\cap F=\set x$ (``the first point of $\alpha$ on $F$'').
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) The set of points of $h$ joined to $p$ by a polygonal path in $h$ is open (a path to $y$ can be
+prolonged by a segment inside a ball about $y$ in $h$), and so is its complement in $h$ (by the same
+argument backwards). As $h$ is connected and contains $p$, it is all of $h$.
+
+(b) Among the polygonal paths from $p$ to $q$ contained in the given one, choose one with the
+fewest vertices. It is simple: a repeated vertex could be cut out; if two consecutive segments
+$[w_{i-1},w_i]$, $[w_i,w_{i+1}]$ shared a point other than $w_i$, one of $w_{i-1},w_{i+1}$ would lie
+on the other segment and $[w_{i-1},w_{i+1}]$ would lie in their union, so $w_i$ could be dropped;
+and if two non-consecutive segments met in a point $z$, the path could be shortcut through $z$. Each
+case gives a path with fewer vertices inside the given one.
+
+(c) Walk along $\alpha$ from $p$: the parameters of points of $F$ form a closed set; take the least,
+and cut the arc there (the cut point may be interior to a segment).
+\end{proof}
+
+\formal{(a) \lean{HPC.Plane.exists_vpath_of_isConnected}, \lean{HPC.Plane.exists_polyPath_of_isConnected};
+(b) \lean{HPC.Plane.exists_simplePolyArc_of_polyPath} (\lean{HPC.Plane.exists_sarc_of_vpath});
+(c) \lean{HPC.Plane.IsSimplePolyArc.exists_first_mem}.}
+
+\begin{lemma}[Closed chains of arcs]\label{lem:closed-chain}
+Let $m\ge3$ and let $\alpha_0,\dots,\alpha_{m-1}$ be simple polygonal arcs, $\alpha_i$ from $p_i$ to
+$p_{i+1}$ (indices mod $m$), such that consecutive arcs meet only in their common end and
+non-consecutive arcs are disjoint. Then $\bigcup_i\alpha_i$ is a simple closed polygon.
+\end{lemma}
+
+\begin{proof}
+Concatenate the vertex lists of the arcs, identifying the common ends. The conditions on the arcs
+give exactly the conditions on the edges in Definition~\ref{def:polygon}.
+\end{proof}
+
+\formal{\lean{HPC.Plane.closed_chain_polygon}; for three arcs, the threaded form
+\lean{HPC.Plane.IsThreaded.isSimpleClosedPolygon}.}
+
+\begin{proposition}\label{prop:open-minus-point}
+If $U\subseteq\R^2$ is open and connected and $q\in\R^2$, then $U\setminus\set q$ is connected.
+\end{proposition}
+
+\begin{proof}
+We may assume $q\in U$. A punctured square $B(q,r)\setminus\set q$ is connected: it is the union of
+four open half-squares (right of, above, left of, below $q$), which are convex and overlap in
+consecutive pairs. Choose $B(q,r)\subseteq U$. Every component $K$ of $U\setminus\set q$ meets
+$B(q,r)$: otherwise $K$ is closed in $U$ (a point of $U\cap\cl K$ is not $q$, since $K$ misses a
+neighbourhood of $q$, and so lies in $K$, components of open sets being open) as well as open, and
+$U$ connected forces $K=U\ni q$. Hence every component contains points of the connected set
+$B(q,r)\setminus\set q$, and there is only one component.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isConnected_diff_singleton_of_isOpen}
+(with \lean{HPC.Plane.isPreconnected_ball_diff_singleton}).}
+
+\section{No logarithm on a polygon around a point}
+
+\begin{theorem}\label{thm:nolog-polygon}
+Let $\Gamma=\Gamma(v)$ be a simple closed polygon and $p\in\inn\Gamma$. Then $z\mapsto z-p$ has no
+logarithm on $\Gamma$.
+\end{theorem}
+
+\begin{proof}
+Suppose $L$ is one. Let $A_i=p-v_i$, which is nonzero.
+
+\emph{Change along an edge.} Since $p\notin[v_i,v_{i+1}]$, the segment from $A_i$ to $A_{i+1}$
+misses $0$, and the quotient $A_{i+1}/A_i$ lies in the slit plane (the segment from $1$ to
+$A_{i+1}/A_i$ misses $(-\infty,0]$). Comparing $t\mapsto L(v_i+t(v_{i+1}-v_i))$ with
+$t\mapsto\Log\frac{(1-t)A_i+tA_{i+1}}{A_i}+L(v_i)$ on $[0,1]$ (Lemma~\ref{lem:log-unique}) gives
+\[
+L(v_{i+1})-L(v_i)=\Log(A_{i+1}/A_i).
+\]
+Summing around the polygon, $\sum_i\Log(A_{i+1}/A_i)=0$, so $\sum_i\Arg(A_{i+1}/A_i)=0$.
+
+\emph{Arguments.} For nonzero $A,B$ with $B/A$ in the slit plane,
+$\Arg(B/A)=\Arg B-\Arg A+2\pi j$ with $j\in\set{-1,0,1}$, and $j\neq0$ exactly when $A$ and $B$ lie on
+opposite sides of the real axis in the half-open sense ($\Im\ge0$ against $\Im<0$) and the segment
+$[A,B]$ crosses the negative real axis. With $A=p-a$, $B=p-b$ this condition is exactly
+$\mathrm{CE}(p;a,b)$: the segment $[A,B]$ crosses the negative real axis when $[a,b]$ crosses the east
+ray from $p$, and $\Arg$, taking values in $(-\pi,\pi]$ with $\Arg w\ge0\iff\Im w\ge0$, follows the
+half-open convention of Definition~\ref{def:crosses}.
+
+Write $\Arg(A_{i+1}/A_i)=\Arg A_{i+1}-\Arg A_i+2\pi j_i$. Summing, the $\Arg A_i$ telescope and
+$0=2\pi\sum_ij_i$. But $j_i$ is odd exactly when edge $i$ is crossed, so
+$\sum_ij_i\equiv\parity_v(p)=1\pmod2$ by Corollary~\ref{cor:jct-consequences}(a). This is a
+contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Plane.no_log_on_polygon}, from \lean{HPC.Plane.log_diff_edge},
+\lean{HPC.Plane.arg_div_jump}, \lean{HPC.Plane.crossesEast_iff_cross} and
+\lean{HPC.Plane.edge_jump}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that the rule ``count every edge meeting the open east ray'' (without the half-open convention)
+gives a parity that is not locally constant near a point whose east ray passes through a vertex at
+which the polygon does not cross the horizontal line.
+\end{exercise}
+
+\begin{exercise}
+Show that a simple closed polygon has a non-horizontal edge. (At the leftmost vertex of a
+polygon with all vertices at one height, both neighbours lie to the right, and the two edges
+overlap; this is \lean{HPC.Plane.exists_nonhorizontal_edge}.)
+\end{exercise}
+
+\begin{exercise}
+Let $\Gamma$ be a simple closed polygon. Show that $\inn\Gamma$ is regular open: it is the interior
+of its closure (\lean{HPC.Plane.PlaneFacts.polyInterior_regular}).
+\end{exercise}

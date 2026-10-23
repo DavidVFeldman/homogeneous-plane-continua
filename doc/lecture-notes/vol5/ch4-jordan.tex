@@ -1,0 +1,203 @@
+%======================================================================
+\chapter{Mullikin's theorem and the Jordan curve theorem}\label{ch:jordan}
+%======================================================================
+
+This chapter proves Moore's Theorem~11: \emph{a simple closed curve of elements has exactly two
+complementary domains, one bounded and one unbounded, and is the boundary of each}. Applied to the
+decomposition of the plane into points, it is the Jordan curve theorem. The plane input is a theorem
+of A.~M.~Mullikin (1922) on the union of two non-separating continua, which we prove with
+logarithms, as in Volume~4, instead of Mullikin's polygons.
+
+Points of the plane are identified with complex numbers (\vfour{Section~0.4}). Recall from Volume~4:
+two logarithms of the same function on a connected set differ by a constant in $2\pi i\Z$
+(\vfour{Lemma~1.3}); if $y$ is in the component of $x$ in the complement of a closed set $K$, then
+$(z-x)/(z-y)$ has a logarithm on $K$ (\vfour{Theorem~2.4}); if that component is bounded, then for
+every integer $a\ne0$ and every $u$ continuous and nowhere zero on its closure, $(z-x)^au(z)$ has no
+logarithm on $K$ (\vfour{Theorem~2.5}); and if $K$ is compact with connected complement, every
+continuous nowhere zero function on $K$ has a logarithm on $K$ (Borsuk, \vfour{Theorem~2.10}).
+
+\section{Mullikin's theorem}
+
+\begin{theorem}[Mullikin 1922, Theorem~5, corrected]\label{thm:mullikin}
+Let $M_1,M_2\subseteq\R^2$ be continua neither of which separates the plane, and suppose
+$M_1\cap M_2=K_1\cup K_2$ with $K_1,K_2$ disjoint, closed and connected. Then $\R^2\setminus(M_1\cup
+M_2)$ has exactly two components: it is the union of two disjoint connected open sets.
+\end{theorem}
+
+The theorem has two halves, proved separately.
+
+\begin{proposition}[At least two components]\label{prop:mullikin-two}
+Let $M_1,M_2$ be continua with $M_1\cap M_2=K_1\cup K_2$, where $K_1,K_2$ are disjoint, nonempty and
+closed. Then $M_1\cup M_2$ separates the plane.
+\end{proposition}
+
+\begin{proof}
+Suppose $\R^2\setminus(M_1\cup M_2)$ is connected. By Urysohn's lemma there is a continuous
+$\varphi\colon\R^2\to[0,1]$ with $\varphi=0$ on $K_1$ and $\varphi=1$ on $K_2$. Define $f$ on $M_1\cup
+M_2$ by $f=1$ on $M_1$ and $f=e^{2\pi i\varphi}$ on $M_2$; on $M_1\cap M_2$ both formulas give $1$, and
+$M_1,M_2$ are closed, so $f$ is continuous and nowhere zero. By Borsuk's theorem $f$ has a logarithm
+$g$ on the compact set $M_1\cup M_2$. Take $k_1\in K_1$, $k_2\in K_2$. On the connected set $M_1$, $g$ and
+the constant $0$ are logarithms of $1$, so $g(k_1)=g(k_2)$. On the connected set $M_2$, $g$ and
+$2\pi i\varphi$ are logarithms of $e^{2\pi i\varphi}$, so $g(k_2)-g(k_1)=2\pi i(\varphi(k_2)-\varphi(k_1))=2\pi
+i$. Contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Moore.not_isConnected_compl_union}.}
+
+\begin{proposition}[At most two components; Eilenberg]\label{prop:mullikin-three}
+Let $M_1,M_2$ be compact sets with connected complements, and $M_1\cap M_2=K_1\cup K_2$ with $K_1,K_2$
+connected. Then $\R^2\setminus(M_1\cup M_2)$ has at most two components.
+\end{proposition}
+
+\begin{proof}
+Put $M=M_1\cup M_2$, a compact set. Suppose $M$ had three components $C_p,C_q,C_y$ of its complement,
+containing $p,q,y$. At most one component is unbounded (\vfour{Lemma~2.3}); renaming, we may assume
+$C_p$ and $C_q$ are bounded.
+
+For $x\in\set{p,q}$ and $i\in\set{1,2}$, the point $x$ and $y$ lie off $M_i$, whose complement is
+connected; so $h_x(z)=(z-x)/(z-y)$ has a logarithm $g_{ix}$ on $M_i$ (\vfour{Theorem~2.4}). On each
+connected set $K_j$ the two logarithms $g_{1x},g_{2x}$ of $h_x$ differ by a constant: $g_{1x}-g_{2x}=2\pi
+i\,n_{jx}$ on $K_j$ with $n_{jx}\in\Z$ (if $K_j$ is empty there is nothing to say; take $n_{jx}=0$).
+
+Choose integers $a,b$, not both zero, with $a(n_{1p}-n_{2p})+b(n_{1q}-n_{2q})=0$ (if both differences
+vanish take $a=1,b=0$; otherwise $a=n_{1q}-n_{2q}$, $b=-(n_{1p}-n_{2p})$). Define $G$ on $M$ by
+\[
+G=a\,g_{1p}+b\,g_{1q}\ \text{on }M_1,\qquad G=a\,g_{2p}+b\,g_{2q}+2\pi i(a\,n_{1p}+b\,n_{1q})\ \text{on }M_2\setminus M_1.
+\]
+On $K_1$ the two expressions agree by definition of the $n_{1x}$, and on $K_2$ they agree by the choice
+of $a,b$; so the second expression, extended to all of $M_2$, agrees with the first on $M_1\cap M_2$,
+and $G$ is continuous on $M$ ($M_1,M_2$ closed). Moreover $e^{G}=h_p^a\,h_q^b$ on $M$.
+
+Say $a\neq0$ (the case $b\ne0$ is symmetric, exchanging $p$ and $q$). Then
+$h_p^ah_q^b=(z-p)^a\,u(z)$ with $u(z)=(z-y)^{-a}h_q(z)^b$. The closure of $C_p$ lies in $C_p\cup M$,
+which contains neither $y$ nor $q$, so $u$ is continuous and nowhere zero on $\cl{C_p}$. By
+\vfour{Theorem~2.5}, $(z-p)^au(z)$ has no logarithm on $M$; but $G$ is one. Contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Moore.exists_jump}, \lean{HPC.Moore.no_log_pow_of_bounded_component},
+\lean{HPC.Moore.not_two_bounded_components}, \lean{HPC.Moore.compl_union_two_components}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:mullikin}]
+$K_1,K_2$ are nonempty (connected sets are nonempty), so the complement of $M_1\cup M_2$ has at least
+two components (Proposition~\ref{prop:mullikin-two}) and at most two
+(Proposition~\ref{prop:mullikin-three}). The components are open, since $M_1\cup M_2$ is closed.
+\end{proof}
+
+\formal{\lean{HPC.Moore.mullikin_theorem5}.}
+
+\begin{remark}\label{rem:mullikin-printed}
+\leavevmode
+\begin{enumerate}
+\item Mullikin states the theorem with $K_1,K_2$ merely mutually exclusive connected sets. This is
+false: for $M_1=M_2$ a segment, $M_1\cap M_2$ is the union of two disjoint connected (not closed)
+pieces, and the complement is connected (\lean{HPC.Moore.not_mullikin_theorem5_printed}). Moore uses
+the theorem with $K_1,K_2$ two elements, which are closed.
+\item Mullikin's Theorem~4 says that the union of two plane continua, neither separating the plane,
+separates the plane if and only if their intersection is not connected. With her convention that the
+empty set is connected, the case $M_1\cap M_2=\emptyset$ says that the union of two disjoint
+non-separating continua does not separate the plane; this is true (Janiszewski's theorem with empty
+intersection, \lean{HPC.Moore.mullikin_theorem4_disjoint}). With the modern convention (the empty set
+is not connected) the same sentence would be false for two points
+(\lean{HPC.Moore.not_mullikin_theorem4_disjoint_mathlib}).
+\end{enumerate}
+\end{remark}
+
+\section{Theorem 11}
+
+We return to the standing hypothesis of Chapter~\ref{ch:usc}.
+
+\begin{lemma}\label{lem:frontier-scc}
+Let $J$ be a simple closed curve of elements and $I\subseteq G$ a nonempty open set with $I\cap
+J=\emptyset$ and $\fr I\subseteq J$. Then $\fr I=J$.
+\end{lemma}
+
+\begin{proof}
+Put $B=\fr I$, a closed subset of $J$, and suppose $x\in J\setminus B$. Since $J$ is homeomorphic to
+a circle (Proposition~\ref{prop:arc-elt-top}(c)) and $B$ is closed, there are elements $p_1\ne q_1$ of
+$J$ such that one of the two arcs of $J$ from $p_1$ to $q_1$ (Theorem~\ref{thm:m25-5-10}(e)), call it
+$C$, contains $x$ as an interior point and misses $B$. Let $A$ be the other arc; then $B\subseteq A$ and
+$x\notin A$. By Theorem~\ref{thm:m25-9}, $G\setminus A$ is connected. Now $I\subseteq G\setminus A$, $I$
+is open, and its closure $I\cup B$ meets $G\setminus A$ only in $I$; so $I$ is a nonempty open and
+closed subset of $G\setminus A$, hence $I=G\setminus A$. But $x\in G\setminus A$ and $x\in J$, while
+$I\cap J=\emptyset$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.frontier_eq_of_scc}.}
+
+\begin{theorem}[Moore, Theorem~11]\label{thm:m25-11}
+Let $J$ be a simple closed curve of elements. Then $G\setminus J=I\cup E$ with $I,E$ disjoint,
+open and connected, $I$ bounded, $E$ unbounded, and $\fr I=\fr E=J$.
+\end{theorem}
+
+\begin{proof}
+Choose distinct $p,q\in J$ and, by Theorem~\ref{thm:m25-5-10}(e), arcs $a,b$ of elements from $p$
+to $q$ with $a\cup b=J$ and $a\cap b=\set{p,q}$. By Theorem~\ref{thm:m25-9} and
+Corollary~\ref{cor:pts-nonsep}, neither $\pts a$ nor $\pts b$ separates the plane. They are continua
+(compact by Proposition~\ref{prop:arc-elt-top}, connected by Proposition~\ref{prop:pts-conn}(a)), and
+$\pts a\cap\pts b=\pts{\set{p,q}}=p\cup q$ is the union of the two disjoint continua $p$ and $q$
+(elements are compact and connected). By Mullikin's theorem, $\R^2\setminus\pts J=U\cup V$ with
+$U,V$ disjoint, connected and open.
+
+Each element $g\notin J$ is connected and lies in $U\cup V$, so it lies in $U$ or in $V$; hence $U$
+and $V$ are unions of elements. Put $I'=\pi(U)$, $E'=\pi(V)$: they are open (their point sets are $U,V$),
+connected, disjoint, and $I'\cup E'=G\setminus J$. As $J$ is bounded, exactly one component of
+$G\setminus J$ is unbounded (Corollary~\ref{cor:quot-tools}(c)), and not both are bounded (else $G=I'\cup
+E'\cup J$ would be bounded). Let $I$ be the bounded one and $E$ the unbounded one.
+
+$I$ is open, and it is closed in $G\setminus J$ (its complement there is the open set $E$); so $\cl
+I\subseteq I\cup J$ and $\fr I\subseteq J$. Lemma~\ref{lem:frontier-scc} gives $\fr I=J$; likewise $\fr
+E=J$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.m25_theorem11}, \lean{HPC.Moore.sccInterior_spec}.}
+
+\begin{remark}
+Moore's proof says that $J$ is the boundary of each domain because ``it easily follows, with the help
+of Theorems~10 and~6, that $B$ is a simple continuous arc''. Theorem~6 needs $B=\fr I$ to be
+connected, which is not known at that point. Lemma~\ref{lem:frontier-scc} replaces this step; it uses
+Theorems~9 and~10 only.
+\end{remark}
+
+The bounded domain $I$ is the \emph{interior} of $J$ and $E$ its \emph{exterior}.
+
+\section{The Jordan curve theorem}
+
+\begin{theorem}[Jordan curve theorem]\label{thm:jct}
+Let $J\subseteq\R^2$ be homeomorphic to a circle. Then $\R^2\setminus J=I\cup E$ with $I,E$ disjoint,
+open and connected, $I$ bounded and $E$ unbounded, and $\fr I=\fr E=J$.
+\end{theorem}
+
+\begin{proof}
+Apply Theorem~\ref{thm:m25-11} to the decomposition of the plane into points
+(Section~\ref{sec:points}): there $G$ is the plane itself, and by
+Proposition~\ref{prop:arc-elt-top}(c) the simple closed curves of elements are exactly the subsets
+of the plane homeomorphic to a circle.
+\end{proof}
+
+\formal{\lean{HPC.Jones.jordan_curve_theorem}.}
+
+The proof uses: logarithms and Borsuk's theorem (Volume~4), Brouwer's theorem and Janiszewski's
+theorem (Volume~4), the characterizations of arcs and circles (Chapter~\ref{ch:arcs}), Theorems~2,
+6, 9 and~10 (Chapters~\ref{ch:usc} and~\ref{ch:elements}) and Mullikin's theorem. It does not use
+Moore's characterization of the plane (Chapters~\ref{ch:axioms}--\ref{ch:plane}). In the decomposition
+into points, Theorem~2 and Theorem~9 are statements about plane continua and plane arcs, and the
+whole argument is a proof of the Jordan curve theorem by Janiszewski's and Borsuk's theorems, in the
+spirit of Eilenberg's.
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Deduce from Proposition~\ref{prop:mullikin-two} that a simple closed curve in the plane separates the
+plane, using only that an arc does not separate the plane.
+\end{exercise}
+
+\begin{exercise}
+Generalize Proposition~\ref{prop:mullikin-three}: if $M_1\cap M_2$ has $n$ components, the complement of
+$M_1\cup M_2$ has at most $n$ components.
+\end{exercise}
+
+\begin{exercise}
+Show that the theta-curve (a circle together with a diameter) has exactly three complementary
+domains, using Theorem~\ref{thm:jct} and Proposition~\ref{prop:mullikin-three}.
+\end{exercise}

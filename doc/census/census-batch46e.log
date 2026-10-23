@@ -1,0 +1,27 @@
+bing 0 9: n = 986
+strict local maxima: 288
+
+=== VALLEY counterexample: peak 128 shaved, basepoint 138 ===
+    rho[128] = 5 (the shaved link meets 6); rho[i] = 4
+    folds: Lambda (G,T) = (1,0); V (G,T) = (0,1)
+    forward arm : 848 links, levels [1,9]; first >=8 at 270, first >=7 at 31, first <=2 at 2, first <=1 at 101
+    backward arm: 139 links, levels [0,6]; first >=8 at -1, first >=7 at -1, first <=2 at 22, first <=1 at 39
+    V fails on the forward arm: first ascent to >=7 at step 31; from step 4 to it the arm stays >= 3
+    Lambda fails on the backward arm: first descent to <=1 at step 39
+      before step 39 the arm stays in [2, 5]
+    VALLEY ANNOUNCEMENT FAILS on the backward arm at step 39 (level 1)
+      before step 39 the arm stays in [2, 5]
+      arm up to the failure:4345434545554543454343234345434323432321
+
+=== CEILING counterexample: peak 309 shaved, basepoint 336 ===
+    rho[309] = 6 (the shaved link meets 7); rho[i] = 4
+    folds: Lambda (G,T) = (1,0); V (G,T) = (0,1)
+    forward arm : 650 links, levels [1,9]; first >=8 at 72, first >=7 at 31, first <=2 at 2, first <=1 at 241
+    backward arm: 337 links, levels [0,7]; first >=8 at -1, first >=7 at 167, first <=2 at 56, first <=1 at 97
+    V fails on the forward arm: first ascent to >=7 at step 31; from step 4 to it the arm stays >= 3
+    Lambda fails on the backward arm: first descent to <=1 at step 97
+      before step 97 the arm stays in [2, 6]
+    CEILING ANNOUNCEMENT FAILS on the forward arm at step 72 (level 8)
+      before step 72 the arm stays in [2, 7]
+      first step at >=7 before it: 31; from there to step 72 the arm stays >= 3
+      arm around the failure:4565676567678

@@ -1,0 +1,43 @@
+check bing 0 8 (n=409) crooked: 1
+check monotone run crooked: 0
+bing 0 9: n = 986, crooked = 1
+levels attained: [0, 9]; v[0] = 0, v[n-1] = 9
+
+  *** COUNTEREXAMPLE to unserved_high8 at basepoint i = 278 of bing 0 9
+      arms: forward 708 links, backward 279 links; v[i] = 4
+      folds: Lambda (G,T) = (1,0); V (G,T) = (0,1)
+      the forward arm stands at L+8 at its step 130 with no earlier time at L+1;
+      before that step it stays in [L+2, L+7]
+      ceiling announcement on that arm: 1 (valley: 1)
+      the arm up to the failure:43234345434545654543454565456567656545654543454565454345434323434543454565454345456545656765654565454345456545656765654565676567678
+
+  *** COUNTEREXAMPLE to unserved_high8 at basepoint i = 282 of bing 0 9
+      arms: forward 704 links, backward 283 links; v[i] = 4
+      folds: Lambda (G,T) = (1,0); V (G,T) = (0,1)
+      the forward arm stands at L+8 at its step 126 with no earlier time at L+1;
+      before that step it stays in [L+2, L+7]
+      ceiling announcement on that arm: 1 (valley: 1)
+      the arm up to the failure:4345434545654543454565456567656545654543454565454345434323434543454565454345456545656765654565454345456545656765654565676567678
+
+  *** COUNTEREXAMPLE to unserved_high8 at basepoint i = 284 of bing 0 9
+      arms: forward 702 links, backward 285 links; v[i] = 4
+      folds: Lambda (G,T) = (1,0); V (G,T) = (0,1)
+      the forward arm stands at L+8 at its step 124 with no earlier time at L+1;
+      before that step it stays in [L+2, L+7]
+      ceiling announcement on that arm: 1 (valley: 1)
+      the arm up to the failure:45434545654543454565456567656545654543454565454345434323434543454565454345456545656765654565454345456545656765654565676567678
+
+  *** COUNTEREXAMPLE to unserved_high8 at basepoint i = 286 of bing 0 9
+      arms: forward 700 links, backward 287 links; v[i] = 4
+      folds: Lambda (G,T) = (1,0); V (G,T) = (0,1)
+      the forward arm stands at L+8 at its step 122 with no earlier time at L+1;
+      before that step it stays in [L+2, L+7]
+      ceiling announcement on that arm: 1 (valley: 1)
+      the arm up to the failure:434545654543454565456567656545654543454565454345434323434543454565454345456545656765654565454345456545656765654565676567678
+
+basepoints of the open branch in bing 0 9: 182
+  folding onto neither canonical walk: 55
+  of those, COUNTEREXAMPLES to unserved_high8: 33
+  of those, failing the ceiling announcement: 0
+  of those, failing the valley announcement:  0
+fold/criterion disagreements: 0

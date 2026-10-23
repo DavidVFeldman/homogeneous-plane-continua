@@ -1,0 +1,88 @@
+census-batch47c: exhaustive over 1-Lipschitz arms in [0,9] starting at 4;
+  fold onto L+3 -> L+6 -> L+1 -> L+8 decided by the dynamic program over FoldsOnto.
+  crit6 = the engine's criterion; crit5 = the same with every demand for a time at
+  the peak L+6 lowered to L+5.
+
+m= 1: arms 1; fold 1; crit6 1; crit5 1; crit5 but no fold 0; fold but not crit5 0; fold but not crit6 0
+      profile 1; profile but no fold 0; fold but not profile 0
+m= 2: arms 3; fold 3; crit6 3; crit5 3; crit5 but no fold 0; fold but not crit5 0; fold but not crit6 0
+      profile 3; profile but no fold 0; fold but not profile 0
+m= 3: arms 9; fold 9; crit6 9; crit5 9; crit5 but no fold 0; fold but not crit5 0; fold but not crit6 0
+      profile 9; profile but no fold 0; fold but not profile 0
+m= 4: arms 27; fold 26; crit6 26; crit5 26; crit5 but no fold 0; fold but not crit5 0; fold but not crit6 0
+      profile 26; profile but no fold 0; fold but not profile 0
+m= 5: arms 81; fold 74; crit6 74; crit5 74; crit5 but no fold 0; fold but not crit5 0; fold but not crit6 0
+      profile 74; profile but no fold 0; fold but not profile 0
+  WEAK CRITERION BUT NO FOLD (m=6): 4 5 4 3 2 1
+m= 6: arms 242; fold 209; crit6 209; crit5 210; crit5 but no fold 1; fold but not crit5 0; fold but not crit6 0
+      profile 209; profile but no fold 0; fold but not profile 0
+  WEAK CRITERION BUT NO FOLD (m=7): 4 4 5 4 3 2 1
+  WEAK CRITERION BUT NO FOLD (m=7): 4 5 4 3 2 1 0
+  WEAK CRITERION BUT NO FOLD (m=7): 4 5 4 3 2 1 1
+  WEAK CRITERION BUT NO FOLD (m=7): 4 5 4 3 2 1 2
+  WEAK CRITERION BUT NO FOLD (m=7): 4 5 4 3 2 2 1
+m= 7: arms 720; fold 588; crit6 588; crit5 596; crit5 but no fold 8; fold but not crit5 0; fold but not crit6 0
+      profile 588; profile but no fold 0; fold but not profile 0
+  WEAK CRITERION BUT NO FOLD (m=8): 4 4 5 4 3 2 1 0
+  WEAK CRITERION BUT NO FOLD (m=8): 4 4 5 4 3 2 1 1
+  WEAK CRITERION BUT NO FOLD (m=8): 4 4 5 4 3 2 1 2
+  WEAK CRITERION BUT NO FOLD (m=8): 4 4 5 4 3 2 2 1
+  WEAK CRITERION BUT NO FOLD (m=8): 4 4 5 4 3 3 2 1
+m= 8: arms 2134; fold 1657; crit6 1652; crit5 1694; crit5 but no fold 37; fold but not crit5 0; fold but not crit6 5
+      profile 1651; profile but no fold 0; fold but not profile 6
+  WEAK CRITERION BUT NO FOLD (m=9): 4 4 5 4 3 2 1 0 0
+  WEAK CRITERION BUT NO FOLD (m=9): 4 4 5 4 3 2 1 0 1
+  WEAK CRITERION BUT NO FOLD (m=9): 4 4 5 4 3 2 1 1 0
+  WEAK CRITERION BUT NO FOLD (m=9): 4 4 5 4 3 2 1 1 1
+  WEAK CRITERION BUT NO FOLD (m=9): 4 4 5 4 3 2 1 1 2
+m= 9: arms 6305; fold 4683; crit6 4641; crit5 4823; crit5 but no fold 140; fold but not crit5 0; fold but not crit6 42
+      profile 4658; profile but no fold 0; fold but not profile 25
+  WEAK CRITERION BUT NO FOLD (m=10): 4 4 5 4 3 2 1 0 0 0
+  WEAK CRITERION BUT NO FOLD (m=10): 4 4 5 4 3 2 1 0 0 1
+  WEAK CRITERION BUT NO FOLD (m=10): 4 4 5 4 3 2 1 0 1 0
+  WEAK CRITERION BUT NO FOLD (m=10): 4 4 5 4 3 2 1 0 1 1
+  WEAK CRITERION BUT NO FOLD (m=10): 4 4 5 4 3 2 1 0 1 2
+m=10: arms 18581; fold 13274; crit6 13047; crit5 13754; crit5 but no fold 480; fold but not crit5 0; fold but not crit6 227
+      profile 13192; profile but no fold 0; fold but not profile 82
+  WEAK CRITERION BUT NO FOLD (m=11): 4 4 5 4 3 2 1 0 0 0 0
+  WEAK CRITERION BUT NO FOLD (m=11): 4 4 5 4 3 2 1 0 0 0 1
+  WEAK CRITERION BUT NO FOLD (m=11): 4 4 5 4 3 2 1 0 0 1 0
+  WEAK CRITERION BUT NO FOLD (m=11): 4 4 5 4 3 2 1 0 0 1 1
+  WEAK CRITERION BUT NO FOLD (m=11): 4 4 5 4 3 2 1 0 0 1 2
+m=11: arms 54648; fold 37724; crit6 36718; crit5 39280; crit5 but no fold 1556; fold but not crit5 0; fold but not crit6 1006
+      profile 37468; profile but no fold 0; fold but not profile 256
+  WEAK CRITERION BUT NO FOLD (m=12): 4 4 5 4 3 2 1 0 0 0 0 0
+  WEAK CRITERION BUT NO FOLD (m=12): 4 4 5 4 3 2 1 0 0 0 0 1
+  WEAK CRITERION BUT NO FOLD (m=12): 4 4 5 4 3 2 1 0 0 0 1 0
+  WEAK CRITERION BUT NO FOLD (m=12): 4 4 5 4 3 2 1 0 0 0 1 1
+  WEAK CRITERION BUT NO FOLD (m=12): 4 4 5 4 3 2 1 0 0 0 1 2
+m=12: arms 160467; fold 107448; crit6 103467; crit5 112321; crit5 but no fold 4873; fold but not crit5 0; fold but not crit6 3981
+      profile 106670; profile but no fold 0; fold but not profile 778
+  WEAK CRITERION BUT NO FOLD (m=13): 4 4 5 4 3 2 1 0 0 0 0 0 0
+  WEAK CRITERION BUT NO FOLD (m=13): 4 4 5 4 3 2 1 0 0 0 0 0 1
+  WEAK CRITERION BUT NO FOLD (m=13): 4 4 5 4 3 2 1 0 0 0 0 1 0
+  WEAK CRITERION BUT NO FOLD (m=13): 4 4 5 4 3 2 1 0 0 0 0 1 1
+  WEAK CRITERION BUT NO FOLD (m=13): 4 4 5 4 3 2 1 0 0 0 0 1 2
+m=13: arms 470599; fold 306607; crit6 291953; crit5 321529; crit5 but no fold 14922; fold but not crit5 0; fold but not crit6 14654
+      profile 304276; profile but no fold 0; fold but not profile 2331
+  WEAK CRITERION BUT NO FOLD (m=14): 4 4 5 4 3 2 1 0 0 0 0 0 0 0
+  WEAK CRITERION BUT NO FOLD (m=14): 4 4 5 4 3 2 1 0 0 0 0 0 0 1
+  WEAK CRITERION BUT NO FOLD (m=14): 4 4 5 4 3 2 1 0 0 0 0 0 1 0
+  WEAK CRITERION BUT NO FOLD (m=14): 4 4 5 4 3 2 1 0 0 0 0 0 1 1
+  WEAK CRITERION BUT NO FOLD (m=14): 4 4 5 4 3 2 1 0 0 0 0 0 1 2
+m=14: arms 1378753; fold 876254; crit6 824929; crit5 921260; crit5 but no fold 45006; fold but not crit5 0; fold but not crit6 51325
+      profile 869334; profile but no fold 0; fold but not profile 6920
+  WEAK CRITERION BUT NO FOLD (m=15): 4 4 5 4 3 2 1 0 0 0 0 0 0 0 0
+  WEAK CRITERION BUT NO FOLD (m=15): 4 4 5 4 3 2 1 0 0 0 0 0 0 0 1
+  WEAK CRITERION BUT NO FOLD (m=15): 4 4 5 4 3 2 1 0 0 0 0 0 0 1 0
+  WEAK CRITERION BUT NO FOLD (m=15): 4 4 5 4 3 2 1 0 0 0 0 0 0 1 1
+  WEAK CRITERION BUT NO FOLD (m=15): 4 4 5 4 3 2 1 0 0 0 0 0 0 1 2
+m=15: arms 4036302; fold 2507523; crit6 2333997; crit5 2641749; crit5 but no fold 134296; fold but not crit5 70; fold but not crit6 173526
+      profile 2487106; profile but no fold 0; fold but not profile 20417
+  WEAK CRITERION BUT NO FOLD (m=16): 4 4 5 4 3 2 1 0 0 0 0 0 0 0 0 0
+  WEAK CRITERION BUT NO FOLD (m=16): 4 4 5 4 3 2 1 0 0 0 0 0 0 0 0 1
+  WEAK CRITERION BUT NO FOLD (m=16): 4 4 5 4 3 2 1 0 0 0 0 0 0 0 1 0
+  WEAK CRITERION BUT NO FOLD (m=16): 4 4 5 4 3 2 1 0 0 0 0 0 0 0 1 1
+  WEAK CRITERION BUT NO FOLD (m=16): 4 4 5 4 3 2 1 0 0 0 0 0 0 0 1 2
+m=16: arms 11809035; fold 7183837; crit6 6612148; crit5 7580591; crit5 but no fold 397632; fold but not crit5 878; fold but not crit6 571689
+      profile 7123855; profile but no fold 0; fold but not profile 59982

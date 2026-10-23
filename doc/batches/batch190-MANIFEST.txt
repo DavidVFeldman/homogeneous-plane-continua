@@ -1,0 +1,30 @@
+# batch 190: files added (A), modified (M) or moved (R) in this run; from git diff --name-status e19b1de HEAD (no uncommitted changes), plus the delivery files
+M	Axioms.lean
+M	HPC.lean
+M	HPC/Hagopian/Hagopian76AB.lean
+M	HPC/Hagopian/Hagopian76P.lean
+M	HPC/Hagopian/Hagopian76Q.lean
+M	HPC/Hagopian/Hagopian76R.lean
+M	HPC/Hagopian/Hagopian76S.lean
+M	HPC/Hagopian/Hagopian76T.lean
+M	HPC/Hagopian/Hagopian76U.lean
+M	HPC/Hagopian/Hagopian76V.lean
+M	HPC/Hagopian/Hagopian76W.lean
+M	HPC/Hagopian/Hagopian76X.lean
+M	HPC/Hagopian/Hagopian76Y.lean
+A	HPC/Jones/Jones75B.lean
+A	HPC/Jones/Jones75Pass.lean
+A	HPC/Jones/Jones75Region.lean
+A	HPC/Jones/Jones75Shadow.lean
+A	HPC/Jones/Jones75Trap.lean
+M	LEDGER.md
+M	OPEN.md
+M	README.md
+M	axioms.txt
+R100	COMMISSION-batch190.md	doc/batches/COMMISSION-batch190.md
+A	doc/batches/REPORT-batch190.md
+A	doc/batches/audits/axioms-batch190.txt
+R100	Jones75B.lean	doc/batches/skeletons/Jones75B.lean
+M	doc/notes/jones75.md
+A	doc/batches/batch190-MANIFEST.txt
+A	doc/batches/batch190-files.tar.gz	(not inside itself)

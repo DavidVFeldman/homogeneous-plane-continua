@@ -1,0 +1,179 @@
+%======================================================================
+\chapter{Correspondence with the formal proof}\label{app:formal}
+%======================================================================
+
+The table lists the definitions and results of this volume that carry a ``Formal counterpart''
+line, together with the corresponding declarations of the Lean development. All declaration
+names start with \lean{HPC.}. The formal statements are sometimes slightly more general, or are
+split differently into lemmas; the table points to the place where the content of each result is
+proved. Rows are in the order of the text; rows labelled ``Text of \dots'' belong to formal counterpart lines in the
+running text of the named section.
+
+The main theorems of the volume are, in the Lean development (prefix \lean{HPC.} omitted):
+\begin{center}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.54\textwidth}@{}}
+\toprule
+Atomic arcs are snake-like (Theorem~\ref{thm:atomic-snake}) & \lean{BJ59.isSnakeLike_of_atomic'}\\
+Bing 1951, Theorem~10; Fugate, Lemma~1 (Theorem~\ref{thm:fugate1}) & \lean{Plane.fugate_lemma1}\\
+Shrinking to a BJ-chain (Theorem~\ref{thm:shrink}) & \lean{BJ59.exists_bjChain_shrink}\\
+Theorem~6, the form used (Theorem~\ref{thm:bj6}) & \lean{BJ59.adjacent_of_properCover}\\
+Bing and Jones, Theorems~3 and~4 (Theorems~\ref{thm:bj3}, \ref{thm:bj4}) & \lean{BJ59.theorem3_arc}, \lean{BJ59.bj_theorem4}\\
+Theorem~5 is false as printed (Proposition~\ref{prop:bj5-false}) & \lean{BJ59.bj_theorem5_printed_false_general}\\
+Theorem~5, repaired (Theorem~\ref{thm:bj5}) & \lean{BJ59.theorem5_repaired}\\
+Theorem~7 (Theorems~\ref{thm:bj7}, \ref{thm:bj7-ends}) & \lean{BJ59.bj_theorem7'}, \lean{BJ59.bj_theorem7_ends'}\\
+Theorem~8 and its corollary (Theorem~\ref{thm:bj8}, Corollary~\ref{cor:bj8}) & \lean{BJ59.bj_theorem8}, \lean{BJ59.bj_theorem8_cor}\\
+The homeomorphism from a zigzag (Theorem~\ref{thm:zigzag}) & \lean{BJ59.zigzag_homeomorph}\\
+The step (Theorem~\ref{thm:step}) & \lean{BJ59.bj_step}\\
+Bing and Jones, Theorem~10 (Theorem~\ref{thm:bj10}) & \lean{BJ59.bjThm10}\\
+Uniqueness of circles of pseudo-arcs (Theorem~\ref{thm:unique}) & \lean{BJ59.homeomorph_of_isCircleOfPA'}\\
+Homogeneity of circles of pseudo-arcs (Theorem~\ref{thm:homog}) & \lean{BJ59.isHomogeneous_of_isCircleOfPA'}\\
+Domokos and Prajs, Theorem~6.1 (Theorem~\ref{thm:dp61}) & \lean{BJ59.dp22_theorem61'}, \lean{BJ59.dp22_theorem61_iff'}\\
+Circle-likeness (Theorem~\ref{thm:ho-circlelike}) & \lean{BJ59.hoCircleLike'}\\
+Circular descriptions (Theorem~\ref{thm:circdescr}) & \lean{BJ59.CircDescr.isCircleOfPA}\\
+Sweep lemma, sweep patterns (Theorems~\ref{thm:sweep}, \ref{thm:sweep-pattern}) & \lean{BJ59.sweep_lemma}, \lean{BJ59.exists_sweepPattern}\\
+The circular planar step (Theorem~\ref{thm:circ-step}) & \lean{BJ59.circ_step}\\
+A plane circle of pseudo-arcs (Theorem~\ref{thm:plane-example}) & \lean{BJ59.bjPlaneExample}\\
+The decomposable case (Theorem~\ref{thm:decomp-case}) & \lean{BJ59.circle_or_circleOfPA_of_decomposable}, \lean{BJ59.hoCircleLike'}\\
+The classification (Theorem~\ref{thm:classification}) & \leansub{BJ59.ho16_classification}{4}\\
+The plane form (Theorem~\ref{thm:classification-plane}) & \leansub{BJ59.ho16_classification_plane}{4}\\
+\bottomrule
+\end{tabular}
+\end{center}
+All of them are proved in the Lean development without \lean{sorry} and without axioms beyond the
+standard ones of Lean and Mathlib. The printed forms that are false (Section~\ref{sec:intro-diff}) are
+refuted by the declarations whose names contain \lean{printed_false} or \lean{proof_n3}.
+
+\begin{longtable}{@{}p{0.40\textwidth}p{0.56\textwidth}@{}}
+\toprule
+In these notes & In the Lean development\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:circles}}}\\
+Definition~\ref{def:arc-continua} & \lean{HPC.BJ59.IsArcOfContinua}, \lean{HPC.BJ59.IsContArcPA}.\\
+Definition~\ref{def:circle-pa} & \lean{HPC.BJ59.IsCircleOfPA}, \lean{HPC.BJ59.IsCircPAMap}; the equivalence of ``$X$ is a circle of pseudo-arcs'' with ``$X$ carries a circle-of-pseudo-arcs map'' is \lean{HPC.BJ59.isCircleOfPA_iff}.\\
+Example~\ref{ex:not-atomic} & \lean{HPC.BJ59.not_isAtomicMap_snd}, \lean{HPC.BJ59.isAtomicMap_id}.\\
+Lemma~\ref{lem:monotone-preimage} & \lean{HPC.BJ59.isPreconnected_preimage_of_monotone'}.\\
+Corollary~\ref{cor:G-connected} & \lean{HPC.BJ59.isPreconnected_preimage_Icc}, \lean{HPC.BJ59.isCompact_preimage_Icc}.\\
+Definition~\ref{def:halves} & \lean{HPC.Jones.halfC}, \lean{HPC.BJ59.halfParam}, \lean{HPC.BJ59.halfSet}, \lean{HPC.BJ59.halfMap}.\\
+Text of ``The two halves'' & \lean{HPC.BJ59.range_halfC_union}, \lean{HPC.BJ59.mem_range_halfC_inter}, \lean{HPC.BJ59.exists_not_mem_range_halfC}, \lean{HPC.BJ59.image_val_halfMap_fibre}, \lean{HPC.BJ59.halfFibreEquiv}.\\
+Proposition~\ref{prop:halves} & \lean{HPC.BJ59.isContArcPA_halfMap'} (with \lean{HPC.BJ59.continuous_halfMap}, \lean{HPC.BJ59.isOpenMap_halfMap}, \lean{HPC.BJ59.surjective_halfMap}), \lean{HPC.BJ59.isContinuum_halfSet}, \lean{HPC.BJ59.isAtomicMap_halfMap}.\\
+Proposition~\ref{prop:halves-snake} & \lean{HPC.BJ59.isContArcPA_halfMap}, \lean{HPC.BJ59.isSnakeLike_halfSet}, from \lean{HPC.Plane.isSnakeLike_of_subset_circleLike}.\\
+Definition~\ref{def:snake-halves} & \lean{HPC.BJ59.IsSnakeHalvesMap}; a circle-of-pseudo-arcs map has snake-like halves by \lean{HPC.BJ59.IsCircPAMap.isSnakeHalvesMap}, and an atomic one on a compact space by \lean{HPC.BJ59.IsAtomicCircPAMap.isSnakeHalvesMap} (Chapter~\ref{ch:atomic}).\\
+Text of ``The two halves'' & \lean{HPC.BJ59.IsCircPAMap.mul_left}, \lean{HPC.BJ59.IsAtomicCircPAMap.mul_left}.\\
+Proposition~\ref{prop:circle-decomp} & \lean{HPC.BJ59.isDecomposableSpace_circle}.\\
+Corollary~\ref{cor:circle-pa-decomp} & \lean{HPC.BJ59.isDecomposableSpace_of_isCircPAMap}.\\
+Proposition~\ref{prop:pa-not-in-circle} & \lean{HPC.BJ59.not_isPseudoArc_of_ne_univ_circle}, with \lean{HPC.BJ59.continuousAt_arg_circle}, \lean{HPC.BJ59.arg_injective_circle} and \lean{HPC.BJ59.not_isHereditarilyIndecomposable_of_nontrivial_real}.\\
+Corollary~\ref{cor:circle-not-cpa} & Inside the proof of \lean{HPC.BJ59.ho16_classification_plane}, with \lean{HPC.BJ59.isPseudoArc_of_homeomorph}.\\
+Proposition~\ref{prop:circle-homog} & \lean{HPC.BJ59.isHomogeneous_circle'}, \lean{HPC.BJ59.isHomogeneous_circle}, \lean{HPC.Span.isHomogeneous_of_homeomorph}, \lean{HPC.BJ59.exists_plane_circle}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:atomic}}}\\
+Text of ``chapter introduction'' & \lean{HPC.Plane.EpsCoverable}, \lean{HPC.Plane.isEpsChain_of_refines}.\\
+Lemma~\ref{lem:saturation} & \lean{HPC.BJ59.subset_fibre_or_saturated}, \lean{HPC.BJ59.fibre_subset_of_saturated}.\\
+Text of ``Atomic maps onto the interval'' & \lean{HPC.BJ59.isPreconnected_preimage_of_fibres}, \lean{HPC.BJ59.isContinuum_univ_of_fibres}.\\
+Lemma~\ref{lem:condB} & \lean{HPC.BJ59.condB_preimage_Icc}, with \lean{HPC.BJ59.nested_of_common_bound}.\\
+Proposition~\ref{prop:atomic-hu} & \lean{HPC.BJ59.isHereditarilyUnicoherent_of_atomic}, with \lean{HPC.Plane.isHereditarilyUnicoherent_of_isSnakeLike}.\\
+Lemma~\ref{lem:brouwer} & \lean{HPC.Plane.exists_minimal_notCoverable}.\\
+Text of ``Bing's minimal counterexample'' & \lean{HPC.Plane.IsTerminalSub}, \lean{HPC.Plane.isTerminalSub_singleton_iff}. \lean{HPC.Plane.IsT10Chain}.\\
+Lemma~\ref{lem:surgery} & \lean{HPC.Plane.surgery_of_sep} (Bing's original form with condition B is \lean{HPC.Plane.theorem10_1951_of_lastLink}); the trimming is \lean{HPC.Plane.exists_chain_of_weak}.\\
+Lemma~\ref{lem:composant-step} & \lean{HPC.Plane.exists_proper_superset_meeting_all_links}, with \lean{HPC.Plane.IsTerminalSub.mono}. \lean{HPC.Plane.fugate_lemma1}, from \lean{HPC.Plane.lemma1_aux}, \lean{HPC.Plane.t10Chain_of_mem_first}, \lean{HPC.Plane.t10Chain_of_mem_last}. Fugate assumes $M$ atriodic and hereditarily unicoherent; the formal proof does not use either hypothesis.\\
+Proposition~\ref{prop:glue-halves} & \lean{HPC.Plane.epsCoverable_of_halves}, with Claim~2 as \lean{HPC.Plane.claim2}. Fugate uses $\varepsilon/2$-chains; no mesh is lost.\\
+Theorem~\ref{thm:atomic-snake} & \lean{HPC.BJ59.isSnakeLike_of_atomic'}; the case of pseudo-arc fibres is \lean{HPC.BJ59.isSnakeLike_of_atomic}. Openness of $f$ is not needed. Bing's own theorem, for his ``layers'', is \lean{HPC.Plane.theorem11_1951}.\\
+Corollary~\ref{cor:atomic-halves} & \lean{HPC.BJ59.isContArcPA_halfMap_of_atomic}, \lean{HPC.BJ59.isSnakeLike_halfSet_of_atomic}, \lean{HPC.BJ59.IsAtomicCircPAMap.isSnakeHalvesMap}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:chains}}}\\
+Definition~\ref{def:bjchain} & \lean{HPC.BJ59.IsBJChain}. These are Fugate's \emph{taut} chains: \lean{HPC.BJ59.isBJChain_iff_isTaut}.\\
+Lemma~\ref{lem:adj-closure} & \lean{HPC.BJ59.IsBJChain.adjacent_of_closure}.\\
+Lemma~\ref{lem:adjacent-meet} & \lean{HPC.BJ59.adjacent_meet_of_cover}.\\
+Theorem~\ref{thm:shrink} & \lean{HPC.BJ59.exists_bjChain_shrink}, from \lean{HPC.BJ59.exists_bjChain_shrink'}. The argument is Barrett's, as used for taut chains in \lean{HPC.Plane.exists_taut_epsChain}.\\
+Definition~\ref{def:private} & \lean{HPC.BJ59.HasPrivatePoints}.\\
+Proposition~\ref{prop:private-interior} & \lean{HPC.BJ59.exists_privatePoint_interior}.\\
+Proposition~\ref{prop:private-shrink} & \lean{HPC.BJ59.exists_privatePoint_shrink}, with \lean{HPC.BJ59.exists_injective_choice}.\\
+Lemma~\ref{lem:runs} & \lean{HPC.BJ59.exists_minimal_run}, \lean{HPC.BJ59.exists_run_meeting}, \lean{HPC.BJ59.exists_point_only_of_minimal}.\\
+Definition~\ref{def:chainmap} & \lean{HPC.BJ59.IsChainMap}.\\
+Lemma~\ref{lem:chainmap-ivt} & \lean{HPC.BJ59.chainMap_ivt}, from \lean{HPC.BJ59.exists_eq_of_steps}.\\
+Theorem~\ref{thm:bj6} & \lean{HPC.BJ59.adjacent_of_properCover}; Bing and Jones's form is \lean{HPC.BJ59.bj_theorem6} (with \lean{HPC.BJ59.sign_persist}), which is not used.\\
+Text of ``Folding a chain along a walk'' & \lean{HPC.BJ59.foldChain}, \lean{HPC.BJ59.isBJChain_foldChain}.\\
+Lemma~\ref{lem:unfold} & \lean{HPC.BJ59.unfoldIdx}, \lean{HPC.BJ59.unfoldFin}, \lean{HPC.BJ59.unfoldMain}, \lean{HPC.BJ59.isPattern_unfold}.\\
+Lemma~\ref{lem:fibre-spread} & \lean{HPC.BJ59.exists_fibre_spread}.\\
+Definition~\ref{def:fibre-fine} & \lean{HPC.BJ59.IsFibreFine}.\\
+Lemma~\ref{lem:fibre-fine} & \lean{HPC.BJ59.isFibreFine_of_isEpsChain}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:arcs}}}\\
+Theorem~\ref{thm:bj3} & \lean{HPC.BJ59.theorem3_arc} (with explicit hypotheses), \lean{HPC.BJ59.bj_theorem3}; the chain is \lean{HPC.BJ59.chain_assembly}.\\
+Text of ``Theorem 3: chains from end to end'' & \lean{HPC.BJ59.theorem2_arc}, \lean{HPC.BJ59.bj_theorem2}.\\
+Theorem~\ref{thm:bj4} & \lean{HPC.BJ59.bj_theorem4}, from \lean{HPC.BJ59.theorem4_of_chain} and \lean{HPC.BJ59.theorem4_explicit}.\\
+Corollary~\ref{cor:bj-cut} & \lean{HPC.BJ59.bj_cut}.\\
+Lemma~\ref{lem:deep} & \lean{HPC.BJ59.exists_deep_radius}, \lean{HPC.BJ59.exists_deep_sets}.\\
+Proposition~\ref{prop:bj5-false} & \lean{HPC.BJ59.bj_theorem5_printed_false_general}; a concrete instance on $\I$ is \lean{HPC.BJ59.bj_theorem5_printed_false}.\\
+Theorem~\ref{thm:bj5} & \lean{HPC.BJ59.theorem5_repaired}, \lean{HPC.BJ59.bj_theorem5}; the chained parts are \lean{HPC.BJ59.chainedAt_union_point}. The hypotheses ``$\cl U$ in a link'' and ``$E$ covers $X$'' are not used.\\
+Lemma~\ref{lem:window-transfer} & \lean{HPC.BJ59.window_transfer}, with \lean{HPC.BJ59.winScale}, \lean{HPC.BJ59.winInv}.\\
+Theorem~\ref{thm:bj5-window} & \lean{HPC.BJ59.bj_theorem5_window}, \lean{HPC.BJ59.bj_theorem5_window_aux}.\\
+Lemma~\ref{lem:window-set} & \lean{HPC.BJ59.exists_window_set}.\\
+Lemma~\ref{lem:meets-all} & \lean{HPC.BJ59.meets_all_of_meets_ends}.\\
+Theorem~\ref{thm:step1b} & \lean{HPC.BJ59.bj_step1b}, with Step~1 as \lean{HPC.BJ59.exists_nhd_step1b}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:thm78}}}\\
+Theorem~\ref{thm:bj7} & \lean{HPC.BJ59.bj_theorem7'} and \lean{HPC.BJ59.bj_theorem7}; inside $P$, \lean{HPC.BJ59.bj7_compact}, with \lean{HPC.BJ59.traceChain}, \lean{HPC.BJ59.exists_chain_isFrom}, \lean{HPC.BJ59.prependDesc}, \lean{HPC.BJ59.exists_follow_pattern}; the lift uses \lean{HPC.BJ59.exists_bjChain_shrink'}.\\
+Theorem~\ref{thm:bj7-ends} & \lean{HPC.BJ59.bj_theorem7_ends'}; inside $P$, \lean{HPC.BJ59.bj7_ends_compact}, with \lean{HPC.BJ59.collar_data}, \lean{HPC.BJ59.exists_collar_chain}, \lean{HPC.BJ59.bufIdx}, \lean{HPC.BJ59.bufPat}.\\
+Remark~\ref{rem:bj7-false} & \lean{HPC.BJ59.bj_theorem7_ends_printed_false}, \lean{HPC.BJ59.bj_theorem7_proof_n3}.\\
+Theorem~\ref{thm:bj8} & \lean{HPC.BJ59.bj_theorem8}, from \lean{HPC.BJ59.bj_theorem8_le} and \lean{HPC.BJ59.bj_theorem8_ends}.\\
+Lemma~\ref{lem:walk-core} & \lean{HPC.BJ59.walk_core}.\\
+Corollary~\ref{cor:bj8} & \lean{HPC.BJ59.bj_theorem8_cor}. The irreducibility of $F$ assumed by Bing and Jones is not needed.\\
+Text of ``The corollary to Theorem 8'' & \lean{HPC.BJ59.bj_theorem8_cor_sub}, \lean{HPC.BJ59.bj_theorem8_cor_sub_three}, \lean{HPC.BJ59.bj_theorem8_cor_sub_one}, \lean{HPC.BJ59.zigN}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:zigzag}}}\\
+Text of ``The data'' & \lean{HPC.BJ59.starImage}.\\
+Lemma~\ref{lem:star-props} & \lean{HPC.BJ59.mem_starImage}, \lean{HPC.BJ59.starImage_succ_subset}, \lean{HPC.BJ59.starImage_dist_le}.\\
+Theorem~\ref{thm:zigzag} & \lean{HPC.BJ59.zigzag_homeomorph}. Only the chains $E^i$ need to be BJ-chains.\\
+Proposition~\ref{prop:zigzag-fibre} & \lean{HPC.BJ59.zigzag_fibre}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:thm10}}}\\
+Theorem~\ref{thm:bj10} & \lean{HPC.BJ59.bjThm10}, a proof of the statement \lean{HPC.BJ59.BJThm10}.\\
+Definition~\ref{def:conditions} & \lean{HPC.BJ59.IsFibreChainMap} (Condition A), \lean{HPC.BJ59.EndCompat} (Condition C).\\
+Text of ``The conditions carried along'' & \lean{HPC.BJ59.IsPatternOn}.\\
+Theorem~\ref{thm:step} & The statement is \lean{HPC.BJ59.BJStep}, proved as \lean{HPC.BJ59.bj_step}.\\
+Lemma~\ref{lem:end-piece} & \lean{HPC.BJ59.exists_end_piece}, from \lean{HPC.BJ59.exists_pattern}.\\
+Lemma~\ref{lem:subarc-piece} & \lean{HPC.BJ59.exists_subarc_piece}.\\
+Lemma~\ref{lem:tau} & \lean{HPC.BJ59.exists_tau_run}, \lean{HPC.BJ59.exists_tau_incl}. The gluing (e)--(g) is \lean{HPC.BJ59.bj_glue}; the pieces are \lean{HPC.BJ59.exists_subarc_piece}, \lean{HPC.BJ59.exists_end_piece}; the windows use \lean{HPC.BJ59.adjacent_of_properCover}, \lean{HPC.BJ59.exists_window_set}, \lean{HPC.BJ59.bj_theorem5_window}.\\
+Text of ``The induction'' & \lean{HPC.BJ59.bjThm10_of_step}, with \lean{HPC.BJ59.BJStage}, \lean{HPC.BJ59.BJStage.exists_init}, \lean{HPC.BJ59.BJStage.exists_next}. Bing and Jones's Theorem~9 is nevertheless proved: \lean{HPC.BJ59.bj_theorem9}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:uniqueness}}}\\
+Lemma~\ref{lem:one-half} & \lean{HPC.BJ59.exists_half_homeomorph'}, with \lean{HPC.BJ59.halfFibreEquiv}.\\
+Theorem~\ref{thm:glue} & \lean{HPC.BJ59.exists_homeomorph_glue'}; Theorem~\ref{thm:bj10} enters as the hypothesis \lean{HPC.BJ59.BJThm10}, discharged by \lean{HPC.BJ59.bjThm10}.\\
+Corollary~\ref{cor:snakehalves-homeo} & \lean{HPC.BJ59.homeomorph_of_isSnakeHalvesMap}, with \lean{HPC.Plane.theorem1_HIC'}.\\
+Theorem~\ref{thm:unique} & \lean{HPC.BJ59.homeomorph_of_isCircleOfPA'}; with Theorem~10 as a hypothesis, \lean{HPC.BJ59.homeomorph_of_isCircleOfPA} and \lean{HPC.BJ59.homeomorph_of_isCircPAMap}.\\
+Theorem~\ref{thm:homog} & \lean{HPC.BJ59.isHomogeneous_of_isCircleOfPA'}; with Theorem~10 as a hypothesis, \lean{HPC.BJ59.isHomogeneous_of_isCircleOfPA}, \lean{HPC.BJ59.isHomogeneous_of_isCircPAMap}; the pseudo-arc facts are \lean{HPC.Plane.theorem1_HIC'} and \lean{HPC.Plane.homogeneous_of_isPseudoArc}.\\
+Lemma~\ref{lem:circlelike-homeo} & \lean{HPC.BJ59.isCircleLike_circle}, \lean{HPC.BJ59.isCircleLike_univ_of_homeomorph}.\\
+Theorem~\ref{thm:dp61} & \lean{HPC.BJ59.dp22_theorem61'} and \lean{HPC.BJ59.dp22_theorem61_iff'}; with the inputs as hypotheses, \lean{HPC.BJ59.dp22_theorem61}, \lean{HPC.BJ59.isCircleOfPA_of_atomic}, \lean{HPC.BJ59.dp22_theorem61_iff}; the converse uses \lean{HPC.BJ59.exists_atomic_of_plane_isCircleOfPA} and \lean{HPC.BJ59.IsAtomicCircPAMap.comp_homeomorph}.\\
+Text of ``Recognition'' & \lean{HPC.BJ59.homeomorph_of_atomic}, \lean{HPC.BJ59.isHomogeneous_of_atomic}.\\
+Theorem~\ref{thm:ho-circlelike} & \lean{HPC.BJ59.hoCircleLike'}, a proof of the statement \lean{HPC.BJ59.HOCircleLike}; with Theorem~10 and the plane example as hypotheses, \lean{HPC.BJ59.hoCircleLike}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:circdescr}}}\\
+Text of ``The definition'' & \lean{HPC.Fold.PatCrookedOn}.\\
+Definition~\ref{def:circdescr} & \lean{HPC.BJ59.CircDescr}, \lean{HPC.BJ59.CircDescr.M}; the centres are \lean{HPC.BJ59.CircDescr.c}.\\
+Text of ``The definition'' & \lean{HPC.BJ59.CircDescr.fib}, \lean{HPC.BJ59.CircDescr.run_iff}, \lean{HPC.BJ59.CircDescr.run_len}.\\
+Theorem~\ref{thm:circdescr} & \lean{HPC.BJ59.CircDescr.isCircleOfPA}.\\
+Lemma~\ref{lem:cd-continuum} & \lean{HPC.BJ59.CircDescr.closure_U_succ}, \lean{HPC.BJ59.CircDescr.M_eq}, \lean{HPC.BJ59.CircDescr.isCompact_M}, \lean{HPC.BJ59.CircDescr.isConnected_M}.\\
+Lemma~\ref{lem:cd-meet} & \lean{HPC.BJ59.CircDescr.exists_pat_pair}, \lean{HPC.BJ59.CircDescr.inter_M_nonempty}.\\
+Lemma~\ref{lem:cd-fibre} & \lean{HPC.BJ59.CircDescr.down}, \lean{HPC.BJ59.CircDescr.fib_subset_M}, \lean{HPC.BJ59.CircDescr.fib_meets}, \lean{HPC.BJ59.CircDescr.fib_add_int}, \lean{HPC.BJ59.CircDescr.exists_fib}, \lean{HPC.BJ59.CircDescr.eq_add_int_of_mem}.\\
+Definition~\ref{def:cd-fmap} & \lean{HPC.BJ59.CircDescr.fmap}, \lean{HPC.BJ59.CircDescr.fmap_eq_iff}.\\
+Proposition~\ref{prop:cd-map} & \lean{HPC.BJ59.CircDescr.continuous_fmap}, \lean{HPC.BJ59.CircDescr.surjective_fmap}, \lean{HPC.BJ59.CircDescr.isOpenMap_fmap}.\\
+Lemma~\ref{lem:cd-runs} & \lean{HPC.BJ59.CircDescr.runChain}, \lean{HPC.BJ59.CircDescr.runChain_crooked}, with \lean{HPC.BJ59.CircDescr.tight_run}, \lean{HPC.BJ59.CircDescr.pat_mem_run}.\\
+Proposition~\ref{prop:cd-fibre-pa} & \lean{HPC.BJ59.CircDescr.isPseudoArc_fib}, from \lean{HPC.BJ59.CircDescr.isContinuum_fib}, \lean{HPC.BJ59.CircDescr.fib_nontrivial}, \lean{HPC.BJ59.CircDescr.isSnakeLike_fib}, \lean{HPC.BJ59.CircDescr.isHereditarilyIndecomposable_fib}.\\
+Lemma~\ref{lem:cd-circlelike} & \lean{HPC.BJ59.CircDescr.traceChain}, \lean{HPC.BJ59.CircDescr.isCircleLike_M}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:sweep}}}\\
+Text of ``chapter introduction'' & \lean{HPC.BJ59.PatCrookedOnZ}, with the passage to and from sequences indexed by $\N$, \lean{HPC.BJ59.PatCrookedOnZ.toNat}, \lean{HPC.BJ59.PatCrookedOn.toZ}.\\
+Theorem~\ref{thm:sweep} & \lean{HPC.BJ59.sweep_lemma}.\\
+Text of ``The sweep lemma'' & \lean{HPC.BJ59.sweep_lemma3}, with \lean{HPC.BJ59.sweep_window_case2b}.\\
+Definition~\ref{def:sweepX} & \lean{HPC.BJ59.sweepX}, with \lean{HPC.BJ59.sweepL}, \lean{HPC.BJ59.sweepQ}, \lean{HPC.BJ59.swT}, \lean{HPC.BJ59.swB}, \lean{HPC.BJ59.swD}, \lean{HPC.BJ59.swK}, \lean{HPC.BJ59.swVal}.\\
+Text of ``The pattern'' & \lean{HPC.BJ59.sw_win_up}, \lean{HPC.BJ59.sw_win_down}, \lean{HPC.BJ59.swVal_junction}, \lean{HPC.BJ59.sweepX_block_crooked}.\\
+Theorem~\ref{thm:sweep-pattern} & \lean{HPC.BJ59.exists_sweepPattern}, from \lean{HPC.BJ59.sweepX_period}, \lean{HPC.BJ59.sweepX_step}, \lean{HPC.BJ59.sweepX_slow}, \lean{HPC.BJ59.sweepX_nest}, \lean{HPC.BJ59.sweepX_surv}, \lean{HPC.BJ59.sweepX_crook}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:plane}}}\\
+Definition~\ref{def:std-circ} & \lean{HPC.BJ59.stdRectZ}, \lean{HPC.BJ59.zoneZ}, \lean{HPC.BJ59.circExp}, \lean{HPC.BJ59.stdCircLink}, \lean{HPC.BJ59.stdCircZone}.\\
+Text of ``Standard circular chains'' & \lean{HPC.BJ59.CircStd.isOpen_stdCircLink}, \lean{HPC.BJ59.CircStd.isPreconnected_stdCircLink}, \lean{HPC.BJ59.CircStd.stdCircLink_periodic}.\\
+Lemma~\ref{lem:std-meet} & \lean{HPC.BJ59.stdCircLink_meet_iff}.\\
+Theorem~\ref{thm:circ-step} & \lean{HPC.BJ59.circ_step}. The joint positions are \lean{HPC.BJ59.CircJ.jointZ}, with the link lemma \lean{HPC.BJ59.CircJ.link_facts_Z}; the interpolation is \lean{HPC.BJ59.Ramp.phat}; the shear is \lean{HPC.BJ59.cover}; the descent is \lean{HPC.BJ59.Descent.descHomeo}, with \lean{HPC.BJ59.Descent.E}; the estimates are \lean{HPC.BJ59.CircStepAux.small_images} and \lean{HPC.BJ59.CircStepAux.phat_height}.\\
+Text of ``The assembly'' & \lean{HPC.BJ59.CircPlane.Lvl}, \lean{HPC.BJ59.CircPlane.L0}, \lean{HPC.BJ59.CircPlane.next}, \lean{HPC.BJ59.CircPlane.lvl}.\\
+Theorem~\ref{thm:circdescr-plane} & \lean{HPC.BJ59.planeDescr}, \lean{HPC.BJ59.exists_circDescr_plane}, with \lean{HPC.BJ59.CircPlane.link_diam}, \lean{HPC.BJ59.CircPlane.arcNest}, \lean{HPC.BJ59.CircPlane.surv}, \lean{HPC.BJ59.CircPlane.crook}.\\
+Theorem~\ref{thm:plane-example} & \lean{HPC.BJ59.bjPlaneExample}, a proof of the statement \lean{HPC.BJ59.BJPlaneExample}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:classification}}}\\
+Theorem~\ref{thm:decomp-case} & \lean{HPC.BJ59.circle_or_circleOfPA_of_decomposable} (with circle-likeness as the hypothesis \lean{HPC.BJ59.HOCircleLike}, discharged by \lean{HPC.BJ59.hoCircleLike'}), from \lean{HPC.BJ59.circle_or_circPAMap_of_decomposable} and \lean{HPC.BJ59.circle_or_atomic_of_decomposable}.\\
+Theorem~\ref{thm:classification} & \leansub{HPC.BJ59.ho16_classification}{4}. The indecomposable case in both directions is \lean{HPC.HO16.ho16_indec_homogeneous_iff}, and the converse for pseudo-arcs \lean{HPC.HO16.ho16_pseudoArc_indec_homogeneous}.\\
+Text of ``The classification'' & \lean{HPC.BJ59.ho16_classification_atomic'}.\\
+Theorem~\ref{thm:classification-plane} & \leansub{HPC.BJ59.ho16_classification_plane}{4}, with \lean{HPC.BJ59.exists_plane_circle}, \lean{HPC.Plane.isPseudoArc_plane}, \lean{HPC.BJ59.bjPlaneExample}, \lean{HPC.Plane.theorem1_HIC'}.\\
+Text of ``How the inputs were discharged'' & \leansub{HPC.BJ59.ho16_classification}{4}, \leansub{HPC.BJ59.ho16_classification_plane}{4}.\\[4pt]
+\end{longtable}

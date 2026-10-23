@@ -1,0 +1,183 @@
+%======================================================================
+\chapter{Two descriptions give a homeomorphism}\label{ch:two}
+%======================================================================
+
+This chapter proves Part~I of the uniqueness theorem.
+
+\begin{theorem}[Bing 1948, Theorem~12]\label{thm:two-desc}
+Let $X_1,X_2$ be compact metric spaces, and for $c=1,2$ let $D^{(c,0)},D^{(c,1)},\dots$ be a description from $P_c$ to $Q_c$ in
+$X_c$, with $P_c\neq Q_c$ and described set $M_c$. Then there is a homeomorphism $T\colon M_1\to M_2$ with $T(P_1)=P_2$ and
+$T(Q_1)=Q_2$.
+\end{theorem}
+
+\formal{\lean{HPC.theorem12}, which combines \lean{HPC.Description.exists_homeomorph} (the theorem assuming pattern following)
+with \lean{HPC.Description.patternFollowing}.}
+
+The idea: build, alternately in the two spaces, chains $C^{(1,i)}$ in $X_1$ and $C^{(2,i)}$ in $X_2$ with the same number of links
+$N_i$, such that $C^{(1,i+1)}$ and $C^{(2,i+1)}$ follow the \emph{same} pattern in $C^{(1,i)}$ and $C^{(2,i)}$. Then the links of
+these chains are matching covers (Chapter~\ref{ch:matching}). At each step one side is refined by a deep level of its own
+description, which yields a pattern, and the other side follows this pattern by Theorem~\ref{thm:pattern-following}.
+
+\section{Patterns from refinements, and matching}
+
+\begin{lemma}\label{lem:pattern-of-refines}
+Let $Y$ (of length $N$) and $Z$ (of length $m$) be chains from $P$ to $Q$, with $Y$ refining $Z$. Then any refinement map
+$x\colon[N]\to[m]$ is a pattern in $Z$, and $Y$ follows $x$ in $Z$.
+\end{lemma}
+
+\begin{proof}
+$x$ has unit steps by \vone{Lemma~2.4}. $P\in Y_0\subseteq Z_{x(0)}$ and $P$ lies only in $Z_0$, so $x(0)=0$; likewise
+$x(N-1)=m-1$ using $Q$. The last statement is the definition of a refinement map.
+\end{proof}
+
+\formal{\lean{HPC.Chain.exists_pattern_of_refines}.}
+
+\begin{lemma}[Matching]\label{lem:pattern-matching}
+Let $Y_1,Z_1$ be chains in $X_1$ and $Y_2,Z_2$ chains in $X_2$, with $Y_1,Y_2$ of length $N$ and $Z_1,Z_2$ of length $m$. Suppose $Y_1$
+follows a function $x\colon[N]\to[m]$ in $Z_1$ and $Y_2$ follows the same $x$ in $Z_2$, and the links of $Z_2$ are bounded with
+diameter $<\varepsilon$. If $(Y_1)_j$ meets $(Z_1)_k$, then some point of $(Y_2)_j$ is at distance $<\varepsilon$ from some point of
+$(Z_2)_k$.
+\end{lemma}
+
+\begin{proof}
+A point of $(Y_1)_j\cap(Z_1)_k$ lies in $(Z_1)_{x(j)}\cap(Z_1)_k$, so $\abs{x(j)-k}\le1$, and therefore $(Z_2)_{x(j)}$ meets $(Z_2)_k$,
+say at $q$. Take any $p\in(Y_2)_j$. Then $p,q\in(Z_2)_{x(j)}$, so $d(p,q)\le\diam(Z_2)_{x(j)}<\varepsilon$.
+\end{proof}
+
+\formal{\lean{HPC.Chain.pattern_matching}.}
+
+\begin{lemma}\label{lem:consolidation-meets}
+Let $C$ be a consolidation of a level $D^{(l)}$ of a description in a compact space, with described set $M$. Then
+$M\subseteq\bigcup C$, and every link of $C$ meets $M$.
+\end{lemma}
+
+\begin{proof}
+$M\subseteq\bigcup D^{(l)}\subseteq\bigcup C$ since $D^{(l)}$ refines $C$. A link of $C$ is a nonempty union of links of $D^{(l)}$, and
+every link of $D^{(l)}$ meets $M$ by \vone{Proposition~3.9}.
+\end{proof}
+
+\formal{\lean{HPC.Description.M_subset_consolidation}, \lean{HPC.Description.consolidation_link_inter_M_nonempty},
+\lean{HPC.Description.link_inter_M_nonempty}.}
+
+\begin{lemma}\label{lem:level-refining}
+Let $C$ be a consolidation of the level $D^{(l)}$ and $\delta>0$. There is $k\ge l$ such that $D^{(k)}$ refines $C$ and
+$\varepsilon_k\le\delta$.
+\end{lemma}
+
+\begin{proof}
+Choose $k\ge l$ with $\varepsilon_k\le\delta$. Then $D^{(k)}$ refines $D^{(l)}$ (\vone{Lemma~3.2(b)}), which refines $C$.
+\end{proof}
+
+\formal{\lean{HPC.Description.exists_level_refining}.}
+
+\section{The alternating construction}
+
+Fix the two descriptions of Theorem~\ref{thm:two-desc}; write $n^c_l$ and $\varepsilon^c_l$ for the lengths and mesh bounds
+of the description in $X_c$, and $D^{(c,l)}$ for its levels. By Theorem~\ref{thm:pattern-following} both descriptions have the
+pattern following property.
+
+\begin{definition}\label{def:rung}
+A \emph{rung} consists of a number $N$, chains $C^1$ in $X_1$ and $C^2$ in $X_2$, both of length $N$, and numbers $m>0$,
+$m_f>0$, such that
+\begin{enumerate}[label=(R\arabic*)]
+\item $C^c$ goes from $P_c$ to $Q_c$ and is a consolidation of some level of the description in $X_c$ ($c=1,2$);
+\item every link of $C^1$ and of $C^2$ has diameter $\le m$;
+\item one of the two chains, the \emph{active} one, is itself a level of its description, and its links have diameter $\le m_f$.
+\end{enumerate}
+\end{definition}
+
+\formal{\lean{HPC.Rung}. Formally, (R3) asks that the active side be able to follow patterns
+(\lean{HPC.Description.CanFollow}), which holds for every level by pattern following
+(\lean{HPC.Description.canFollow_level}).}
+
+\begin{lemma}[The first rung]\label{lem:base-rung}
+There is a rung with $m_f=1/2$.
+\end{lemma}
+
+\begin{proof}
+Choose a level $a$ of the first description with $\varepsilon^1_a<1/2$ and $\varepsilon^1_a<d(P_1,Q_1)$. Then $n^1_a\ge2$, since $P_1$
+and $Q_1$ cannot lie in one link. By Lemma~\ref{lem:n-tendsto} choose $b$ with $n^2_b\ge n^1_a$, and by
+Lemma~\ref{lem:consolidate-length} a consolidation $F$ of $D^{(2,b)}$ of length $n^1_a$ from $P_2$ to $Q_2$. Take $C^1=D^{(1,a)}$
+(active, $m_f=1/2$), $C^2=F$, and $m=\max(1/2,\diam X_2+1)$; $X_2$ is compact, hence bounded.
+\end{proof}
+
+\formal{\lean{HPC.Rung.exists_base}.}
+
+\begin{lemma}[The next rung]\label{lem:next-rung}
+Given a rung $(N,C^1,C^2,m,m_f)$ and $\delta>0$, there are a rung $(N',C'^1,C'^2,m',\delta)$ with $m'=\max(\delta,m_f)$ and a
+function $x\colon[N']\to[N]$ such that $C'^1$ follows $x$ in $C^1$ and $C'^2$ follows $x$ in $C^2$.
+\end{lemma}
+
+\begin{proof}
+Suppose $C^1$ is active, $C^1=D^{(1,a)}$ (the other case is symmetric). The inactive side $C^2$ is a consolidation of some level of
+the second description; by Lemma~\ref{lem:level-refining} there is a level $c$ such that $D^{(2,c)}$ refines $C^2$ and
+$\varepsilon^2_c\le\delta$. By Lemma~\ref{lem:pattern-of-refines} a refinement map $x\colon[n^2_c]\to[N]$ is a pattern in $C^2$, followed
+by $D^{(2,c)}$. Since $C^1=D^{(1,a)}$ is a level, pattern following (Theorem~\ref{thm:pattern-following}) gives $a'>a$ and a
+consolidation $C'^1$ of $D^{(1,a')}$ of length $n^2_c$, from $P_1$ to $Q_1$, following $x$ in $C^1$. Let $N'=n^2_c$ and
+$C'^2=D^{(2,c)}$, now the active side, with $m_f'=\delta$. The links of $C'^2$ have diameter $\le\varepsilon^2_c\le\delta$; each link of
+$C'^1$ lies in a link of $C^1$, of diameter $\le m_f$. So $m'=\max(\delta,m_f)$ bounds all diameters.
+\end{proof}
+
+\formal{\lean{HPC.Rung.exists_next}, via \lean{HPC.Description.exists_half_step}.}
+
+\section{Proof of Theorem~\ref{thm:two-desc}}
+
+\begin{proof}
+Start with the rung $R_0$ of Lemma~\ref{lem:base-rung} and let $R_{k+1}$ be obtained from $R_k$ by Lemma~\ref{lem:next-rung}
+with $\delta=2^{-(k+2)}$. Write $R_i=(N_i,C^{(1,i)},C^{(2,i)},m_i,m_{f,i})$. Then $m_{f,i}=2^{-(i+1)}$ for all $i$, and for
+$i\ge1$, $m_i=\max(2^{-(i+1)},2^{-i})=2^{-i}$. Put $\varepsilon_i=2m_i$; these numbers are positive and summable.
+
+We check that the links $x^c_{i,k}=C^{(c,i)}_k$ ($k\in[N_i]$) are matching covers of $M_1$ and $M_2$ for $\varepsilon$
+(Definition~\ref{def:matching}). The links are open; \ref{M:cover} and~\ref{M:meet} hold by Lemma~\ref{lem:consolidation-meets};
+\ref{M:diam} holds since diameters are at most $m_i<\varepsilon_i$ (links are bounded because $X_c$ is compact). For~\ref{M:match}, by
+Lemma~\ref{lem:next-rung} there is $x$ such that $C^{(1,i+1)}$ and $C^{(2,i+1)}$ follow $x$ in $C^{(1,i)}$ and $C^{(2,i)}$
+respectively; Lemma~\ref{lem:pattern-matching} gives~\ref{M:match} in both directions, with $\varepsilon=\varepsilon_i$.
+
+Also $M_1$ and $M_2$ are compact (closed subsets of compact spaces, \vone{Lemma~3.2(d)}). Theorem~\ref{thm:matching} gives a
+homeomorphism $T\colon M_1\to M_2$ with the tracking property. The constant sequence $a_i=0$ tracks $P_1$ and $P_2$, because each
+$C^{(c,i)}$ goes from $P_c$ to $Q_c$; so $T(P_1)=P_2$. Likewise the sequence $a_i=N_i-1$ tracks $Q_1$ and $Q_2$, so $T(Q_1)=Q_2$.
+\end{proof}
+
+\section{Descriptions in non-compact spaces}
+
+Theorem~\ref{thm:two-desc} assumes that the ambient spaces are compact. It is enough that the links lie in compact sets.
+
+\begin{corollary}\label{cor:two-desc-K}
+Let $D^{(c,i)}$ be descriptions from $P_c$ to $Q_c\ne P_c$ in arbitrary metric spaces $X_c$ ($c=1,2$), and suppose all links of the
+$c$-th description lie in a compact set $K_c\subseteq X_c$. Then there is a homeomorphism $T\colon M_1\to M_2$ with $T(P_1)=P_2$ and
+$T(Q_1)=Q_2$.
+\end{corollary}
+
+\begin{proof}
+Regard each link $D^{(c,i)}_t\subseteq K_c$ as a subset of the compact metric space $K_c$. It is open in $K_c$, the chain conditions
+and the conditions ``from $P_c$ to $Q_c$'', ``crooked'' and the diameter bounds do not change, and the closure of a link in $K_c$ is its
+closure in $X_c$ intersected with $K_c$, so closures of links are still nested. Thus we have descriptions in the compact spaces $K_c$,
+with the same described sets. Apply Theorem~\ref{thm:two-desc}.
+\end{proof}
+
+\formal{\lean{HPC.Plane.theorem12_of}, using the restriction \lean{HPC.Description.restrict} (in
+\lean{HPC/Plane/Transfer.lean}).}
+
+\begin{remark}
+Bing states Theorem~12 under the assumption that the described sets are compact. This is not sufficient: \vone{Remark~3.5} gives a
+description, in a non-complete space, whose described set is compact but not connected; it is not homeomorphic to the
+pseudo-arc described in the plane. The formal development records this as \lean{HPC.Plane.theorem12_of_false}.
+\end{remark}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Show that in Theorem~\ref{thm:two-desc} one may take the two descriptions to be the same. What does the theorem then say?
+(Compare Chapter~\ref{ch:main}.)
+\end{exercise}
+
+\begin{exercise}
+Why does the construction alternate between the two sides? Show that if one only ever refines the first side, the
+mesh of the second side need not tend to zero.
+\end{exercise}
+
+\begin{exercise}
+Show that the homeomorphism $T$ of Theorem~\ref{thm:two-desc} can be chosen so that also $T(R_1)=R_2$ for given points $R_c$ that
+lie, for every $i$, in the $k_i$-th link of $C^{(c,i)}$ for the same indices $k_i$. (This is the tracking clause.)
+\end{exercise}

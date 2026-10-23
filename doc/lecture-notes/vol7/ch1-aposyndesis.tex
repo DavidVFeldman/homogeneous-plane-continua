@@ -1,0 +1,293 @@
+%======================================================================
+\chapter{Aposyndesis}\label{ch:apos}
+%======================================================================
+
+Aposyndesis is F.~B.~Jones's name (1941) for a weak form of local connectedness: a continuum is
+aposyndetic at $x$ with respect to $y$ if a continuum that misses $y$ contains a whole neighbourhood of
+$x$. A decomposable continuum is aposyndetic at some point with respect to some other point, and the
+points with respect to which a homogeneous continuum fails to be aposyndetic are the raw material of
+Jones's decomposition (Chapter~\ref{ch:jones55}). This chapter collects what is needed from Jones's
+1948 paper \emph{Concerning non-aposyndetic continua} and from Whyburn's 1939 paper
+\emph{Semi-locally-connected sets}. Nothing here uses the plane or homogeneity.
+
+\section{Conventions and definitions}
+
+Throughout this chapter $X$ is a continuum, that is, a compact connected metric space; it may be a single
+point. As in the formal development, Jones's continuum $M$ is the whole space $X$, and subsets of $X$
+carry the subspace topology. A \emph{continuum in $X$} (or \emph{subcontinuum}) is a nonempty compact
+connected subset. $X$ is \emph{decomposable} if $X=A\cup B$ with $A,B$ proper subcontinua.
+
+\formal{The setting is a type \lean{X} with \lean{[MetricSpace X] [CompactSpace X] [ConnectedSpace X]};
+continua in $X$ are \lean{HPC.Fold.Q78.IsContinuum}; decomposability is \lean{HPC.Jones.IsDecomposableSpace}.}
+
+\begin{definition}\label{def:apos}
+Let $x,y\in X$.
+\begin{enumerate}[label=(\alph*)]
+\item $X$ is \emph{aposyndetic at $x$ with respect to $y$} if there are a continuum $H$ and an open set $U$
+with $x\in U\subseteq H\subseteq X\setminus\set y$.
+\item $X$ is \emph{aposyndetic at $x$} if it is aposyndetic at $x$ with respect to every $y\neq x$, and
+\emph{aposyndetic} if it is aposyndetic at every point. It is \emph{totally non-aposyndetic} if it is
+aposyndetic at no point.
+\item For $x\in X$ put
+\[
+\Us x=\set{z\in X : X\text{ is aposyndetic at }z\text{ with respect to }x},\qquad \Ls x=X\setminus\Us x .
+\]
+\end{enumerate}
+\end{definition}
+
+\formal{\lean{HPC.Jones.AposAt}, \lean{HPC.Jones.AposyndeticAt}, \lean{HPC.Jones.IsAposyndetic},
+\lean{HPC.Jones.TotallyNonAposyndetic}; $\Us x$ is \lean{HPC.Jones.aposSet} (with
+\lean{HPC.Jones.aposSet_eq}) and $\Ls x$ is \lean{HPC.Jones.Lset} (with \lean{HPC.Jones.Lset_compl}).}
+
+Since a continuum $H$ containing a neighbourhood of $x$ contains $x$, $X$ is never aposyndetic at $x$
+with respect to $x$. Hence $x\in\Ls x$, and $\Ls x$ is $x$ together with the points $z\ne x$ at which $X$
+is not aposyndetic with respect to $x$. This is the set $L_x$ of Jones's 1955 paper, and $\Us x$ is the
+set $U_x$ of his 1951 paper.
+
+\begin{example}\label{ex:apos}
+A Peano continuum (a locally connected continuum) is aposyndetic: for $x\ne y$, a connected open
+neighbourhood $U$ of $x$ with $y\notin\cl U$ has a continuum $\cl U$ as its closure. An arc is
+aposyndetic but has cut points. A nondegenerate indecomposable continuum is aposyndetic at no point with
+respect to any other point (Theorem~\ref{thm:jones48-8} below). The product of two nondegenerate
+continua is aposyndetic (Theorem~\ref{thm:jones48-7}).
+\end{example}
+
+\begin{definition}\label{def:slc}
+$X$ is \emph{semi-locally connected at $x$} if for every open $U\ni x$ there is an open $V$ with
+$x\in V\subseteq U$ such that $X\setminus U$ lies in the union of finitely many components of $X\setminus V$.
+\end{definition}
+
+\formal{\lean{HPC.Jones.SemiLocConnAt}.}
+
+\begin{definition}\label{def:cuts}
+A point $p$ \emph{cuts $x$ from $y$} if $x$, $y$, $p$ are distinct and every continuum containing $x$ and
+$y$ contains $p$. A \emph{weak cut point} is a point that cuts some $x$ from some $y$. A \emph{cut point} of
+a connected space $Y$ is a point $p$ with $Y\setminus\set p$ not connected.
+\end{definition}
+
+\formal{\lean{HPC.Jones.CutsPts}, \lean{HPC.Jones.IsWeakCutPoint}, \lean{HPC.Jones.IsStrongCutPoint}.}
+
+\section{Openness and finite covers}
+
+\begin{lemma}\label{lem:apos-basic}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item If $H$, $U$ witness aposyndesis at $x$ with respect to $y$, then $X$ is aposyndetic at every point of
+$U$ with respect to every point outside $H$.
+\item If $T\colon X\to X$ is a homeomorphism, $X$ is aposyndetic at $x$ with respect to $y$ if and only if
+it is aposyndetic at $Tx$ with respect to $Ty$. Hence $T(\Us x)=\Us{Tx}$ and $T(\Ls x)=\Ls{Tx}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) is immediate from the definition. (b) $T(H)$ is a continuum and $T(U)$ is open; apply the same to
+$T^{-1}$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.aposAt_of_mem}, \lean{HPC.Jones.aposAt_homeomorph_iff},
+\lean{HPC.Jones.aposSet_homeomorph}, \lean{HPC.Jones.Lset_homeomorph}.}
+
+\begin{theorem}[Jones 1948, Theorem~1]\label{thm:jones48-1}
+The set of pairs $(x,y)\in X\times X$ such that $X$ is aposyndetic at $x$ with respect to $y$ is open in
+$X\times X$. Consequently, for fixed $y$ the set $\Us y$ is open and $\Ls y$ is closed; and if
+$x_i\to x$, $y_i\to y$ and $X$ is not aposyndetic at $x_i$ with respect to $y_i$, then it is not
+aposyndetic at $x$ with respect to $y$.
+\end{theorem}
+
+\begin{proof}
+Let $H$, $U$ witness aposyndesis at $x$ with respect to $y$. Since $H$ is closed and $y\notin H$, the set
+$X\setminus H$ is an open neighbourhood of $y$. By Lemma~\ref{lem:apos-basic}(a) every pair in the open set
+$U\times(X\setminus H)$ is a pair of aposyndesis.
+\end{proof}
+
+\formal{\lean{HPC.Jones.isOpen_setOf_aposAt}, \lean{HPC.Jones.isOpen_aposSet},
+\lean{HPC.Jones.isClosed_Lset}, \lean{HPC.Jones.theorem1}. Jones states the sequential form with the
+hypotheses $x\ne y$, $x_i\ne y_i$, which are not needed.}
+
+\begin{lemma}[Heine--Borel for aposyndesis]\label{lem:heine-borel}
+Let $K\subseteq X$ be compact.
+\begin{enumerate}[label=(\alph*)]
+\item If $X$ is aposyndetic at every point of $K$ with respect to $y$, there are finitely many continua
+$H_1,\dots,H_k$ missing $y$ and open sets $U_i\subseteq H_i$ with $K\subseteq U_1\cup\dots\cup U_k$.
+\item If $X$ is aposyndetic at $x$ with respect to every point of $K$, there are an open $U\ni x$ and, for
+each $y\in K$, a continuum $H_y\supseteq U$ missing $y$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Cover $K$ by the open sets $U$ of witnesses $(H,U)$ and take a finite subcover. (b) For $y\in K$ take a
+witness $(H_y,U_y)$; by Lemma~\ref{lem:apos-basic}(a) the same witness works for all points of the open set
+$X\setminus H_y\ni y$. Finitely many of these sets cover $K$; the intersection of the corresponding $U_y$
+is the required $U$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.exists_finite_apos_cover}, \lean{HPC.Jones.exists_nhd_uniform_apos}.}
+
+The next lemma is the tool for proving aposyndesis without exhibiting a continuum.
+
+\begin{lemma}[Aposyndesis from the frontier]\label{lem:apos-frontier}
+Let $V\subseteq X$ be open, $b\in V$ and $y\notin\cl V$. If $X$ is aposyndetic at every point of the
+frontier $\fr V$ with respect to $y$, then it is aposyndetic at $b$ with respect to $y$.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:heine-borel}(a) there are continua $H_1,\dots,H_k$ missing $y$ and open $U_i\subseteq H_i$
+covering the compact set $\fr V$. Let $F=\cl V\cup H_1\cup\dots\cup H_k$, a closed set missing $y$.
+
+Every point $z$ of $F$ lies in the component of $F$ of some $H_i$. This is clear if $z\in H_i$. If $z\in\cl
+V$, then $\cl V\ne X$ (it misses $y$), and by boundary bumping (\vthree{Theorem~1.10}) the component of $z$
+in $\cl V$ meets $\cl{X\setminus\cl V}$, hence meets $\fr V$, hence meets some $U_i\subseteq H_i$; so $z$
+lies with $H_i$ in a connected subset of $F$.
+
+So $F$ has at most $k$ components $C_1,\dots,C_k$, and they cover the open set $O=V\cup U_1\cup\dots\cup U_k$.
+Let $C$ be the component of $b$. The components other than $C$ are closed and miss $b$; removing them from
+$O$ leaves an open set containing $b$ and contained in $C$. And $C$ is a continuum (a component of a
+closed set) missing $y$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.aposAt_of_frontier}; the last step is \lean{HPC.Jones.exists_open_subset_component}.}
+
+\section{The sets \texorpdfstring{$\Ls y$}{L\_y} are continua}
+
+\begin{theorem}[Jones 1948, Theorem~3]\label{thm:jones48-3}
+For every $y\in X$ the set $\Ls y$ is a continuum.
+\end{theorem}
+
+\begin{proof}
+$\Ls y$ is closed by Theorem~\ref{thm:jones48-1} and contains $y$. Suppose $\Ls y=A\cup B$ with $A$, $B$ closed,
+disjoint and nonempty, $y\in A$. Choose an open $V\supseteq B$ with $\cl V\cap A=\emptyset$. Then $\fr V$
+misses $A$ (as $\fr V\subseteq\cl V$) and misses $B$ (as $B\subseteq V$ and $V$ is open), so $X$ is
+aposyndetic at every point of $\fr V$ with respect to $y$. Also $y\in A$ is not in $\cl V$. By
+Lemma~\ref{lem:apos-frontier}, $X$ is aposyndetic at every point of $B$ with respect to $y$, against
+$B\subseteq\Ls y$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.theorem3}, \lean{HPC.Jones.isContinuum_Lset}. Jones prints no proof.}
+
+\section{Semi-local connectedness}
+
+\begin{theorem}[Jones 1948, Theorem~0]\label{thm:jones48-0}
+$X$ is semi-locally connected at $p$ if and only if $X$ is aposyndetic at every $x\ne p$ with respect
+to $p$.
+\end{theorem}
+
+\begin{proof}
+Suppose $X$ is semi-locally connected at $p$, and let $x\ne p$, $d=d(x,p)$. Apply the definition to
+$U=B(p,d/2)$: there is an open $V$ with $p\in V\subseteq U$ such that $X\setminus U$ lies in finitely many
+components of $X\setminus V$. The open set $O=X\setminus\bar B(p,d/2)$ contains $x$ and lies in $X\setminus U$,
+hence in the union of finitely many components of the closed set $X\setminus V$. As in the last step of the
+proof of Lemma~\ref{lem:apos-frontier}, the component $C$ of $x$ in $X\setminus V$ contains an open set
+containing $x$. $C$ is a continuum missing $p\in V$.
+
+Conversely, suppose the condition and let $U\ni p$ be open. By Lemma~\ref{lem:heine-borel}(a) for the
+compact set $K=X\setminus U$, there are continua $H_1,\dots,H_k$ missing $p$ whose interiors cover $X\setminus U$.
+Put $V=U\setminus(H_1\cup\dots\cup H_k)$, an open set containing $p$. Each $H_i$ is a connected subset of
+$X\setminus V$, so lies in one component of $X\setminus V$, and these $k$ components cover $X\setminus U$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.theorem0}. Jones only says that it ``may be established with the help of the
+Heine--Borel theorem''.}
+
+\begin{corollary}[Jones 1941, Theorem~4]\label{cor:jones41}
+A continuum is aposyndetic if and only if it is semi-locally connected at each of its points.
+\end{corollary}
+
+\begin{proof}
+Both conditions say that $X$ is aposyndetic at $x$ with respect to $p$ for all $x\ne p$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.semiLocConn_of_isAposyndetic}, \lean{HPC.Jones.isAposyndetic_of_semiLocConn}.}
+
+\begin{proposition}[Whyburn 1939, (6.2)]\label{prop:whyburn62}
+Let $X$ be semi-locally connected at each point, $x\in X$, and $a\ne x$. If $b$ lies in the component of
+$a$ in $X\setminus\set x$, then some continuum contains $a$ and $b$ and misses $x$.
+\end{proposition}
+
+\begin{proof}
+Let $S$ be the set of points $z\ne x$ such that some continuum contains $a$ and $z$ and misses $x$. Then
+$a\in S$. By Corollary~\ref{cor:jones41}, $X$ is aposyndetic at every $z\neq x$ with respect to $x$; let $H$
+be a continuum missing $x$ and containing an open $W\ni z$. If $z\in S$, with continuum $K$, then every
+point of $W$ is in $S$ (use $K\cup H$); so $S$ is open. If $z\ne x$ is a limit point of $S$, then $W$ contains a
+point $z'\in S$ with continuum $K'$, and $K'\cup H$ shows $z\in S$; so $S$ is closed in $X\setminus\set x$. Thus $S$
+is open and closed in $X\setminus\set x$ and contains the component of $a$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.whyburn_6_2}; also Whyburn's (6.1) and (6.21), \lean{HPC.Jones.whyburn_6_1},
+\lean{HPC.Jones.whyburn_6_21}. Whyburn argues with the components of $X\setminus V_\delta(x)$; the
+formal proof goes through Theorem~\ref{thm:jones48-0}.}
+
+\section{Decomposability}
+
+\begin{theorem}[Jones 1948, Theorem~8]\label{thm:jones48-8}
+$X$ is decomposable if and only if there are $x\ne y$ such that $X$ is aposyndetic at $x$ with respect
+to $y$. Equivalently, $X$ is indecomposable if and only if $\Ls y=X$ for every $y$.
+\end{theorem}
+
+\begin{proof}
+If $X=A\cup B$ with $A,B$ proper subcontinua, take $x\in X\setminus B$ and $y\in X\setminus A$. Then $A$ is a
+continuum missing $y$ and containing the open set $X\setminus B\ni x$. In particular $x\ne y$.
+
+Conversely, let $H$ be a continuum missing $y$ and containing an open $U\ni x$, with $x\ne y$. If $X\setminus H$ is
+connected, then $X=H\cup\cl{X\setminus H}$, where $H\ne X$ (it misses $y$) and $\cl{X\setminus H}\neq X$ (it misses
+the open set $U\subseteq H$). If $X\setminus H=A\cup B$ with $A,B$ separated and nonempty, then $H\cup A$ and $H\cup B$
+are continua (\vthree{Lemma~1.5}), proper (they miss $B$, respectively $A$), and their union is $X$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.theorem8}, \lean{HPC.Jones.theorem9}; the first direction is
+\lean{HPC.Jones.aposAt_of_decomposition}.}
+
+\begin{theorem}[Jones 1948, Theorem~7]\label{thm:jones48-7}
+The product $Y\times Z$ of two nondegenerate continua is aposyndetic.
+\end{theorem}
+
+\begin{proof}
+Let $a=(a_1,a_2)\ne b=(b_1,b_2)$. Suppose $a_1\ne b_1$; let $A=\bar B(a_1,d(a_1,b_1)/2)\subseteq Y$ and choose
+$c\in Z$ with $c\ne b_2$. The set $H=(A\times Z)\cup(Y\times\set c)$ is a continuum (each slice $\set{y}\times
+Z$ with $y\in A$ meets the connected set $Y\times\set c$), it misses $b$, and it contains the open set
+$B(a_1,d(a_1,b_1)/2)\times Z\ni a$. The case $a_2\ne b_2$ is symmetric.
+\end{proof}
+
+\formal{\lean{HPC.Jones.theorem7}, with \lean{HPC.Jones.isContinuum_prod_cross}.}
+
+\begin{remark}[The rest of Jones 1948]\label{rem:jones48-rest}
+Jones's paper continues with weak cut points. Theorem~6 says: if $D$ is open and nonempty, $M_0$ closed and
+disjoint from $D$, and for each $x\in D$ there is $y\in M_0$ with $X$ not aposyndetic at $x$ with respect to $y$,
+then for each $z\notin M_0$ some $y_0\in M_0$ cuts some $x_0\in D$ from $z$. Theorems~11--19 and three corollaries
+derive the existence and density of weak cut points; for instance, a totally non-aposyndetic continuum
+contains a weak cut point, and if $X$ has no weak cut point, the points at which $X$ is aposyndetic and
+semi-locally connected form a dense $G_\delta$ (Theorem~18). Only Theorem~18 reappears in these notes, in
+Jones's Theorem~2 of 1949 (Corollary~\ref{cor:jones49-2}). Two statements are false as printed: Theorem~6
+without the word ``nonempty'' (take $D=M_0=\emptyset$), and Theorem~10, ``$X$ is indecomposable iff it contains
+an open set $D$ such that $X$ is not aposyndetic at any point of $D$ with respect to any other point'', whose
+right-hand side always holds with $D=\emptyset$. Both are proved with $D$ nonempty.
+\end{remark}
+
+\formal{\lean{HPC.Jones.theorem6}, \lean{HPC.Jones.not_theorem6_printed}, \lean{HPC.Jones.theorem10},
+\lean{HPC.Jones.theorem10_printed_iff}, \lean{HPC.Jones.not_theorem10_printed_unitInterval},
+\lean{HPC.Jones.theorem11}, \lean{HPC.Jones.theorem12}, \lean{HPC.Jones.theorem13},
+\lean{HPC.Jones.totallyNonApos_exists_weakCutPoint}, \lean{HPC.Jones.theorem18}
+(in \lean{HPC/Jones/Basic.lean}, \lean{HPC/Jones/Theorem6.lean}, \lean{HPC/Jones/Theorem13.lean},
+\lean{HPC/Jones/CutPoints.lean}).}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that the $\sin(1/x)$-continuum is not aposyndetic, and determine the sets $\Ls y$ for all its points
+$y$.
+\end{exercise}
+
+\begin{exercise}
+Let $F$ be the harmonic fan: the union of the segments from $v=(0,0)$ to $(1,1/n)$, $n\ge1$, and to $(1,0)$.
+Show that a point $p\neq v$ of the last segment lies in $\Ls v$, but $v\notin\Ls p$. Conclude that the sets $\Ls y$ of a
+continuum need not be pairwise disjoint or equal. Chapter~\ref{ch:jones55} shows that in a homogeneous continuum they
+are.
+\end{exercise}
+
+\begin{exercise}
+Prove directly, without Theorem~\ref{thm:jones48-0}, that a locally connected continuum is semi-locally
+connected at every point.
+\end{exercise}
+
+\begin{exercise}
+Show that Lemma~\ref{lem:apos-frontier} fails without the hypothesis $y\notin\cl V$.
+\end{exercise}

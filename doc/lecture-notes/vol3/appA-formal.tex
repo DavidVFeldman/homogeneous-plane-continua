@@ -1,0 +1,133 @@
+%======================================================================
+\chapter{Correspondence with the formal proof}\label{app:formal}
+%======================================================================
+
+The table lists the definitions and results of this volume that carry a ``Formal counterpart''
+line, together with the corresponding declarations of the Lean development. All declaration
+names start with \lean{HPC.}, except the few Mathlib names marked as such; file names are relative
+to the root of the repository. The formal statements are sometimes slightly more general, or are
+split differently into lemmas; the table points to the place where the content of each result is
+proved. Rows are in the order of the text.
+
+The main theorems of the volume are, in the Lean development (prefix \lean{HPC.} omitted):
+\begin{center}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.54\textwidth}@{}}
+\toprule
+Boundary bumping (Theorem~\ref{thm:bump-closed}) & \lean{Jones.exists_continuum_bump_compact},
+\lean{Plane.exists_continuum_bump_closed}\\
+Moore's non-cut point theorem (Theorems~\ref{thm:noncut-side}, \ref{thm:two-noncut}) &
+\lean{Plane.exists_nonCutPoint_of_cut}, \lean{Plane.exists_two_nonCutPoints}\\
+Sorgenfrey's theorem (Theorem~\ref{thm:sorgenfrey}) & \lean{Plane.sorgenfrey}\\
+Snake-like continua are hereditarily unicoherent and atriodic
+(Theorems~\ref{thm:snake-unicoherent}, \ref{thm:snake-atriodic}) &
+\lean{Plane.isHereditarilyUnicoherent_of_isSnakeLike}, \lean{Plane.isAtriodic_of_isSnakeLike}\\
+Snake-likeness is topological (Theorem~\ref{thm:snake-homeo}) & \lean{BJ59.isSnakeLike_of_homeomorph}\\
+Decomposition spaces are metrizable (Theorem~\ref{thm:quotient-metrizable}) &
+\lean{Jones.metrizableSpace_quotient}\\
+Continuity at a residual set of elements (Theorem~\ref{thm:residual}) & \lean{Jones.residual_lscAt}\\
+The open mapping principle (Theorem~\ref{thm:effros-open}) & \lean{Effros.effros_open_mapping}\\
+Ungar's corollary (Theorem~\ref{thm:ungar}) & \lean{Effros.effros_homogeneous}\\
+\bottomrule
+\end{tabular}
+\end{center}
+All of them are proved in the Lean development without \lean{sorry} and without axioms beyond the
+standard ones of Lean and Mathlib.
+
+\begin{longtable}{@{}p{0.40\textwidth}p{0.56\textwidth}@{}}
+\toprule
+In these notes & In the Lean development\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:bumping}}}\\
+Lemma~\ref{lem:sep-of-not-conn} & \lean{HPC.Plane.exists_separated_of_not_isPreconnected}.\\
+Lemma~\ref{lem:side} & \lean{HPC.Plane.subset_side_of_isPreconnected}.\\
+Lemma~\ref{lem:union-continua} & \lean{HPC.Plane.isContinuum_union}.\\
+A continuum plus one piece (Lemma~\ref{lem:piece}) & \lean{HPC.Plane.isContinuum_union_piece} (Nadler, \emph{Continuum Theory}, 6.3). A version for an arbitrary connected topological space is Theorem~\ref{thm:nadler63}.\\
+Lemma~\ref{lem:nested} & \lean{HPC.T14.isPreconnected_sInter_chain}.\\
+Lemma~\ref{lem:quasi} & Mathlib's \lean{connectedComponent_eq_iInter_isClopen}, used inside the proofs below.\\
+Lemma~\ref{lem:clopen-split} & \lean{HPC.Plane.exists_clopen_split}.\\
+Separating two closed sets in a compact set (Theorem~\ref{thm:closed-split}) & \lean{HPC.Plane.exists_closed_split_of_no_connected} (Moore's Theorem~44 in \emph{Foundations of Point Set Theory}). A variant with a continuum in place of the preconnected set, in a compact space, is \lean{HPC.Plane.closed_dichotomy}.\\
+Boundary bumping (Theorem~\ref{thm:bump-closed}) & \lean{HPC.Jones.exists_continuum_bump_compact}; for $M$ a continuum in a compact space and $F$ closed, \lean{HPC.Plane.exists_continuum_bump_closed} (Nadler 5.4).\\
+Boundary bumping, open form (Corollary~\ref{cor:bump-open}) & \lean{HPC.Plane.exists_continuum_bump_open} (Nadler 5.7).\\
+Boundary bumping, metric form (Corollary~\ref{cor:bump-ball}) & \lean{HPC.Plane.exists_subcontinuum_meeting_closedBall}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:irreducible}}}\\
+Definition~\ref{def:irreducible} & \lean{HPC.IsIrreducibleBetween} (in \lean{HPC/PseudoArc/Theorem14.lean}).\\
+Definition~\ref{def:irr-sets} & \lean{HPC.Plane.IrrFromTo} (Nadler 11.29).\\
+Existence of irreducible subcontinua (Theorem~\ref{thm:irr-exists}) & \lean{HPC.Plane.exists_irrFromTo} (Nadler 11.30) and \lean{HPC.exists_irreducible}.\\
+Theorem~\ref{thm:indec-irr} & \lean{HPC.Plane.exists_irreducible_of_indecomposable} (the case of Nadler 11.15 used later).\\
+Proposition~\ref{prop:irr-homeo} & \lean{HPC.IsIrreducibleBetween.homImage}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:noncut}}}\\
+Definition~\ref{def:separation} & \lean{HPC.Plane.IsSeparation}, \lean{HPC.Plane.IsCutPoint} (in \lean{HPC/Plane/NonCut51Gen.lean}).\\
+Lemma~\ref{lem:sep-basic} & \lean{HPC.Plane.IsSeparation.disjoint_closure_left}, \lean{HPC.Plane.IsSeparation.isOpen_right}, \lean{HPC.Plane.IsSeparation.subset_or_subset}, \lean{HPC.Plane.exists_separation_of_not_isConnected}.\\
+Theorem~\ref{thm:nadler63} & \lean{HPC.Plane.isConnected_union_of_separation} (Nadler 6.3).\\
+Lemma~\ref{lem:nadler64} & \lean{HPC.Plane.nadler_6_4}.\\
+Moore (Theorem~\ref{thm:noncut-side}) & \lean{HPC.Plane.exists_nonCutPoint_left} and \lean{HPC.Plane.exists_nonCutPoint_of_cut} (Nadler 6.6). Nadler assumes $X$ nondegenerate; this follows from the separation and is not needed.\\
+Theorem~\ref{thm:two-noncut} & \lean{HPC.Plane.exists_two_nonCutPoints}.\\
+Theorem~\ref{thm:noncut-not-in} & \lean{HPC.Plane.not_subset_of_nonCutPoints} (Nadler 6.7).\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:triods}}}\\
+Definition~\ref{def:triod} & \lean{HPC.Plane.IsTriod}, \lean{HPC.Plane.IsAtriodic} (in \lean{HPC/Plane/Atriodic51Defs.lean}); for a triod in a non-compact space, \lean{HPC.Hagopian.IsTriodSet}.\\
+Definition~\ref{def:unicoherent} & \lean{HPC.Plane.IsUnicoherent}, \lean{HPC.Plane.IsHereditarilyUnicoherent}.\\
+Definition~\ref{def:esum} & \leansub{HPC.Plane.IsEssentialSum}{2}, \leansub{HPC.Plane.IsEssentialSum}{3}, \lean{HPC.Plane.IsWeakTriod} (in \lean{HPC/Plane/SorgenfreyDefs.lean}); the constructor used in all proofs below is \lean{HPC.Plane.isWeakTriod_of}.\\
+Lemma~\ref{lem:esum-basic} & The lemmas in the namespace \leansub{HPC.Plane.IsEssentialSum}{2} (\lean{diff_nonempty}, \lean{closure_diff_subset_left}, \lean{eq_closure_union}, \lean{closure_diff_ne}, \lean{closure_diff_disjoint}, \lean{closure_inter_nonempty}).\\
+A triod with a given core (Lemma~\ref{lem:core}) & \lean{HPC.Plane.isTriod_of_core}.\\
+Proposition~\ref{prop:triod-weak} & \lean{HPC.Plane.isWeakTriod_of_isTriod} (Nadler 11.25).\\
+Corollary~\ref{cor:indec-not-triod} & \lean{HPC.Hagopian.not_isTriod_univ_of_indecomposable} (for the whole space, which is all that is used).\\
+Lemma~\ref{lem:weak-not-irr} & \lean{HPC.Plane.not_irreducible_of_isWeakTriod}.\\
+Proposition~\ref{prop:uni-triod} & \lean{HPC.Plane.isTriod_iff_isWeakTriod} (Nadler 11.26).\\
+Theorem~\ref{thm:diff-connected} & \lean{HPC.Plane.isConnected_diff_of_not_weakTriod} (Nadler 11.27), with the two halves in \lean{HPC.Plane.isConnected_diff_left_of_not_weakTriod}; the continuum $\cl U$ is \lean{HPC.Plane.isContinuum_closure_diff}.\\
+Lemma~\ref{lem:1128} & \lean{HPC.Plane.isConnected_diff_of_superset'} (Nadler 11.28, corrected).\\
+Proposition~\ref{prop:1131} & \lean{HPC.Plane.nadler_11_31} (Nadler 11.31, without the unused hypothesis $B\subseteq\cl U$).\\
+Proposition~\ref{prop:1132} & \lean{HPC.Plane.nadler_11_32} (Nadler 11.32, without the hypothesis $A\ne\cl U$, which follows from the others).\\
+Lemma~\ref{lem:1133a} & \lean{HPC.Plane.diff_subset_of_irr}.\\
+Proposition~\ref{prop:1133} & \lean{HPC.Plane.nadler_11_33} (Nadler 11.33).\\
+Lemma~\ref{lem:sorg-proper} & \lean{HPC.Plane.exists_proper_of_not_irr}.\\
+Lemma~\ref{lem:sorg-step} & \lean{HPC.Plane.SorgGood}, \lean{HPC.Plane.sorgGood_base}, \lean{HPC.Plane.sorgGood_step}.\\
+Lemma~\ref{lem:sorg-star} & \lean{HPC.Plane.exists_irrFromTo_point} (Nadler 11.34(a)); the body of the proof by contradiction is \lean{HPC.Plane.sorgenfrey_contra}.\\
+Sorgenfrey (Theorem~\ref{thm:sorgenfrey}) & \lean{HPC.Plane.sorgenfrey} (Nadler 11.34).\\
+Corollary~\ref{cor:irr-iff} & \lean{HPC.Plane.irreducible_iff_not_isTriod} (Nadler 11.35).\\
+Corollary~\ref{cor:atriodic-irr} & \lean{HPC.Plane.exists_irreducibleBetween_of_atriodic}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:snake}}}\\
+Theorem~\ref{thm:snake-sub} & \lean{HPC.Plane.isSnakeLike_of_subcontinuum}; the interval of links meeting $K$ is \lean{HPC.Plane.meets_between}.\\
+Intermediate values along a chain (Lemma~\ref{lem:chain-ivt}) & \lean{HPC.Plane.chain_ivt}.\\
+Corollary~\ref{cor:two-sets} & \lean{HPC.Plane.chain_two_sets}.\\
+Theorem~\ref{thm:snake-unicoherent} & \lean{HPC.Plane.isUnicoherent_of_isSnakeLike} and \lean{HPC.Plane.isHereditarilyUnicoherent_of_isSnakeLike} (Nadler 12.2).\\
+Theorem~\ref{thm:snake-atriodic} & \lean{HPC.Plane.isAtriodic_of_isSnakeLike}, through \lean{HPC.Plane.not_isTriod_of_isSnakeLike} (Nadler 12.4).\\
+Proposition~\ref{prop:chain-epsmap} & \lean{HPC.BJ59.exists_epsMap_of_chain} and \lean{HPC.BJ59.exists_epsMap_of_isSnakeLike}.\\
+Lemma~\ref{lem:uniform-fibres} & \lean{HPC.Plane.exists_delta_of_fibres_on}.\\
+The $\varepsilon$-map criterion (Theorem~\ref{thm:epsmap-criterion}) & \lean{HPC.Plane.isSnakeLike_of_epsMap}; for the whole space, \lean{HPC.Plane.isSnakeLike_univ_of_epsMap}.\\
+Snake-likeness is topological (Theorem~\ref{thm:snake-homeo}) & \lean{HPC.BJ59.isSnakeLike_of_homeomorph}.\\
+Definition~\ref{def:circchain} & \lean{HPC.Plane.CircChain}, \lean{HPC.Plane.IsCircEpsChain}, \lean{HPC.Plane.IsCircleLike} (in \lean{HPC/Plane/Ingram68.lean}).\\
+Proposition~\ref{prop:circle-circlelike} & \lean{HPC.BJ59.isCircleLike_circle}, with the arcs \lean{HPC.BJ59.circArc}.\\
+Proposition~\ref{prop:circle-homeo} & \lean{HPC.BJ59.isCircleLike_univ_of_homeomorph}.\\
+Theorem~\ref{thm:circle-sub} & \lean{HPC.Plane.isSnakeLike_of_subset_circleLike} (Nadler 12.51).\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:decomp}}}\\
+Definition~\ref{def:usc} & \lean{HPC.Jones.IsUSCDecomp}, \lean{HPC.Jones.LSCAt}, \lean{HPC.Jones.IsContinuousDecomp}, with the element $\elt x$ written \lean{HPC.Jones.cls} (in \lean{HPC/Jones/Decomp.lean}).\\
+Lemma~\ref{lem:usc-open} & \lean{HPC.Jones.isOpen_setOf_cls_subset}.\\
+Proposition~\ref{prop:closed-usc} & \lean{HPC.Jones.isUSCDecomp_of_isClosed}.\\
+Theorem~\ref{thm:quotient-metrizable} & \lean{HPC.Jones.isClosedMap_mk}, \lean{HPC.Jones.t2Space_quotient}, \lean{HPC.Jones.secondCountable_quotient}, \lean{HPC.Jones.metrizableSpace_quotient}. Urysohn's theorem is Mathlib's \lean{TopologicalSpace.metrizableSpace_of_t3_secondCountable}.\\
+Theorem~\ref{thm:monotone-preimage} & \lean{HPC.Jones.isContinuum_preimage}.\\
+Corollary~\ref{cor:monotone-decomposable} & For monotone maps onto a metric space, \lean{HPC.Hagopian.isDecomposableSpace_of_monotone_image}.\\
+Proposition~\ref{prop:homeo-descends} & \lean{HPC.Jones.exists_homeomorph_quotient}.\\
+Lemma~\ref{lem:frontier-nd} & \lean{HPC.Jones.dense_compl_frontier_of_isClosed}.\\
+Kuratowski, Fort (Theorem~\ref{thm:residual}) & \lean{HPC.Jones.residual_lscAt} and \lean{HPC.Jones.exists_lscAt}.\\
+Proposition~\ref{prop:lsc-homeo} & \lean{HPC.Jones.lscAt_homeomorph}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:effros}}}\\
+Proposition~\ref{prop:homeo-group} & \lean{HPC.Effros.homeoGroup}, \lean{HPC.Effros.homeoTopology}, \lean{HPC.Effros.homeo_isTopologicalGroup}, \lean{HPC.Effros.homeo_continuousSMul}, \lean{HPC.Effros.homeo_polishSpace}, \lean{HPC.Effros.supMove} (our $\mv$), \lean{HPC.Effros.supMove_inv}, \lean{HPC.Effros.supMove_mul_le}, \lean{HPC.Effros.hasBasis_supMove} (in \lean{HPC/Effros/HomeoGroup.lean}). Mathlib has no topology on the homeomorphism group at the pinned version; the formal proof uses the compact-open topology on $C(Y,Y)$, which for compact metric $Y$ is the topology of the uniform metric.\\
+Definition~\ref{def:fat} & \lean{HPC.Effros.NowhereMeagre}, \lean{HPC.Effros.IsFat}.\\
+Lemma~\ref{lem:fat-basic} & \lean{HPC.Effros.NowhereMeagre.diff_meagre} (van Mill's Lemma~2.1), \lean{HPC.Effros.NowhereMeagre.closure_subset_closure_diff}, \lean{HPC.Effros.nonempty_interior_closure_of_not_meagre}.\\
+The nested construction (Lemma~\ref{lem:core-construction}) & \lean{HPC.Effros.CoreGood}, \lean{HPC.Effros.coreGood_step}, \lean{HPC.Effros.exists_eq_of_core}.\\
+Reducing the parameter space (Lemma~\ref{lem:reduced}) & \lean{HPC.Effros.exists_reduced_param} (stated for $P=\N^\N$, which suffices since Mathlib defines analytic sets as continuous images of $\N^\N$).\\
+van Mill, Proposition~2.2, relative form (Theorem~\ref{thm:prop22}) & \lean{HPC.Effros.inter_nonempty_of_nowhereMeagre}.\\
+van Mill, Proposition~2.2 (Corollary~\ref{cor:fat-meet}) & \lean{HPC.Effros.inter_nonempty_of_isFat}. The hypothesis that the space be nonempty is needed: in the empty space the empty set is analytic and fat (\lean{HPC.Effros.isFat_empty_of_isEmpty}).\\
+Lemma~\ref{lem:vm-basis} & \lean{HPC.Effros.exists_vanMill_basis}.\\
+van Mill, Lemma~3.1 (Lemma~\ref{lem:vm31}) & \lean{HPC.Effros.vanMill_3_1}.\\
+van Mill, Lemma~3.2 (Lemma~\ref{lem:vm32}) & \lean{HPC.Effros.vanMill_3_2}.\\
+van Mill, Corollary~3.3 (Lemma~\ref{lem:vm33}) & \lean{HPC.Effros.vanMill_3_3}.\\
+van Mill, Lemma~3.4 (Lemma~\ref{lem:vm34}) & \lean{HPC.Effros.vanMill_3_4} (as printed by van Mill, with the closure).\\
+van Mill, Proposition~3.5 (Proposition~\ref{prop:vm35}) & \lean{HPC.Effros.vanMill_3_5} (as printed, with the closure).\\
+The open mapping principle; Effros (Theorem~\ref{thm:effros-open}) & \lean{HPC.Effros.effros_open_mapping} and \lean{HPC.Effros.isOpenMap_smul_left}.\\
+Effros, Ungar (Theorem~\ref{thm:ungar}) & \lean{HPC.Effros.effros_homogeneous}; for a compact subset $M$ of a metric space which is homogeneous in its own topology (the form used for plane continua), \lean{HPC.Effros.effros_homogeneous_set}.\\[4pt]
+
+\end{longtable}

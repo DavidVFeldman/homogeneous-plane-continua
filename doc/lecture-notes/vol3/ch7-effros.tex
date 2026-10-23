@@ -1,0 +1,352 @@
+%======================================================================
+\chapter{The homeomorphism group and the Effros theorem}\label{ch:effros}
+%======================================================================
+
+A space $Y$ is \emph{homogeneous} if for any $x,y\in Y$ some homeomorphism $h\colon Y\to Y$ has
+$h(x)=y$. The Effros theorem says that for a compact metric $Y$ this can be done
+\emph{quantitatively}: points that are close are moved one to the other by homeomorphisms close to
+the identity (Theorem~\ref{thm:ungar}). We follow J.~van Mill, \emph{A note on the Effros
+theorem} (Amer.\ Math.\ Monthly 111, 2004), as the formal proof does.
+
+This chapter uses some standard notions of descriptive set theory, which we recall without proof
+(they are part of Mathlib):
+\begin{itemize}
+\item A \emph{Polish space} is a separable topological space whose topology comes from a complete
+metric. Closed subsets and open subsets of Polish spaces are Polish; a Polish space is
+second countable, hence \emph{Lindel\"of}: every open cover has a countable subcover.
+\item For a compact metric space $Y$, the space $C(Y,Y)$ of continuous maps with the uniform metric
+$d(f,g)=\sup_yd(f(y),g(y))$ is Polish (complete and separable).
+\item A set is \emph{analytic} if it is empty or a continuous image of a Polish space.
+\item A space is a \emph{Baire space} if every nonempty open subset is non-meager (meager sets were
+defined in Chapter~\ref{ch:decomp}). Compact metric spaces are Baire spaces; this is the Baire
+category theorem (\vtwo{Lemma~1.8} and its proof).
+\end{itemize}
+
+\section{The homeomorphism group}
+
+Let $Y$ be a compact metric space and $\Homeo(Y)$ the set of homeomorphisms $Y\to Y$. It is a group
+under composition, $(gh)(y)=g(h(y))$, with identity $1=\mathrm{id}$ and inverse $h^{-1}$, and it acts on
+$Y$ by $h\cdot y=h(y)$. We give it the topology induced by the injective map
+\[
+\iota\colon\Homeo(Y)\to C(Y,Y)\times C(Y,Y),\qquad \iota(h)=(h,h^{-1}),
+\]
+that is, by the metric $\rho(g,h)=\max\bigl(d(g,h),d(g^{-1},h^{-1})\bigr)$. For $h\in\Homeo(Y)$ let
+\[
+\mv(h)=\sup_{z\in Y}d(h(z),z)=d(h,\mathrm{id}),
+\]
+the largest distance a point is moved.
+
+\begin{proposition}\label{prop:homeo-group}
+\begin{enumerate}[label=(\alph*)]
+\item $\Homeo(Y)$ is a topological group, and the action $\Homeo(Y)\times Y\to Y$ is continuous.
+\item $\Homeo(Y)$ is a Polish space.
+\item $\mv(h^{-1})=\mv(h)$ and $\mv(gh)\le\mv(g)+\mv(h)$; and the sets $\set{h:\mv(h)<r}$, $r>0$,
+form a basis of neighbourhoods of $1$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Composition $C(Y,Y)\times C(Y,Y)\to C(Y,Y)$ is continuous: $d(f\circ g,f'\circ g')\le d(f\circ g,f\circ
+g')+d(f,f')$, and the first term is small when $g'$ is uniformly close to $g$, by uniform continuity of
+$f$. Since $\iota(gh)=(g\circ h,\ h^{-1}\circ g^{-1})$, multiplication is continuous; inversion is
+continuous since $\iota(h^{-1})$ is $\iota(h)$ with its coordinates swapped. Evaluation is continuous:
+$d(h(y),h'(y'))\le d(h(y),h(y'))+d(h,h')$.
+
+(b) The image of $\iota$ is $\set{(f,g):f\circ g=\mathrm{id},\ g\circ f=\mathrm{id}}$ (a pair of mutually
+inverse continuous maps is a homeomorphism and its inverse), which is closed in the Polish space
+$C(Y,Y)^2$ because composition is continuous. So $\iota$ is a homeomorphism onto a closed subset of a
+Polish space, and $\Homeo(Y)$ is Polish.
+
+(c) $\mv(h^{-1})=\sup_zd(h^{-1}(z),z)=\sup_wd(w,h(w))=\mv(h)$ (substitute $z=h(w)$), and
+$d(g(h(z)),z)\le d(g(h(z)),h(z))+d(h(z),z)$. The $\rho$-ball of radius $r$ about $1$ is
+$\set{h:\mv(h)<r,\ \mv(h^{-1})<r}=\set{h:\mv(h)<r}$.
+\end{proof}
+
+\formal{\lean{HPC.Effros.homeoGroup}, \lean{HPC.Effros.homeoTopology},
+\lean{HPC.Effros.homeo_isTopologicalGroup}, \lean{HPC.Effros.homeo_continuousSMul},
+\lean{HPC.Effros.homeo_polishSpace}, \lean{HPC.Effros.supMove} (our $\mv$),
+\lean{HPC.Effros.supMove_inv}, \lean{HPC.Effros.supMove_mul_le}, \lean{HPC.Effros.hasBasis_supMove}
+(in \lean{HPC/Effros/HomeoGroup.lean}). Mathlib has no topology on the homeomorphism group at the
+pinned version; the formal proof uses the compact-open topology on $C(Y,Y)$, which for compact
+metric $Y$ is the topology of the uniform metric.}
+
+\section{Meager, nowhere meager and analytic sets}
+
+In this section $Y$ is a topological space.
+
+\begin{definition}\label{def:fat}
+A set $A\subseteq Y$ is \emph{nowhere meager} if for every open $V$ with $V\cap A\neq\emptyset$ the set
+$V\cap A$ is not meager in $Y$. It is \emph{fat} if it is dense and nowhere meager.
+\end{definition}
+
+\formal{\lean{HPC.Effros.NowhereMeagre}, \lean{HPC.Effros.IsFat}.}
+
+\begin{lemma}\label{lem:fat-basic}
+\begin{enumerate}[label=(\alph*)]
+\item If $A$ is nowhere meager and $M$ is meager, then $A\setminus M$ is nowhere meager, and
+$\cl A\subseteq\cl{A\setminus M}$.
+\item A set that is not meager has a closure with nonempty interior.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) If $V$ is open and $V\cap A\ne\emptyset$, then $V\cap A\subseteq(V\cap(A\setminus M))\cup M$; the left side
+is not meager, so $V\cap(A\setminus M)$ is not meager, in particular nonempty. Taking for $V$ the
+neighbourhoods of a point of $\cl A$ gives the second statement.
+(b) Otherwise the set is nowhere dense, hence meager.
+\end{proof}
+
+\formal{\lean{HPC.Effros.NowhereMeagre.diff_meagre} (van Mill's Lemma~2.1),
+\lean{HPC.Effros.NowhereMeagre.closure_subset_closure_diff},
+\lean{HPC.Effros.nonempty_interior_closure_of_not_meagre}.}
+
+The key fact about analytic sets is the following intersection property.
+
+\begin{lemma}[The nested construction]\label{lem:core-construction}
+Let $P,Q$ be complete metric spaces with $P\ne\emptyset$, $Y$ a metric space, and $\alpha\colon P\to Y$,
+$\beta\colon Q\to Y$ continuous maps such that
+\begin{enumerate}[label=(\roman*)]
+\item for every nonempty open $U\subseteq P$, $\interior\cl{\alpha(U)}\neq\emptyset$, and for every nonempty
+open $V\subseteq Q$, $\interior\cl{\beta(V)}\ne\emptyset$;
+\item $\alpha(P)\subseteq\cl{\beta(Q)}$.
+\end{enumerate}
+Then $\alpha(p)=\beta(q)$ for some $p\in P$, $q\in Q$.
+\end{lemma}
+
+\begin{proof}
+Call a triple $(U,V,W)$ of open sets of $P$, $Q$, $Y$ \emph{good} if $U\ne\emptyset$, $\beta(V)\subseteq W$
+and $\alpha(U)\subseteq\cl{\beta(V)}$. The triple $(P,Q,Y)$ is good by (ii).
+
+\emph{Step.} Let $(U,V,W)$ be good and $\varepsilon>0$. We find a good triple $(E,F,W')$ with $E\subseteq U$,
+$F\subseteq V$, $W'\subseteq W$, each contained in a ball of radius $\varepsilon$. Let
+$O=\interior\cl{\alpha(U)}$, nonempty by (i). Since $\alpha(U)\subseteq\cl{\beta(V)}\subseteq\cl W$, the
+nonempty open set $O$ lies in $\cl W$, so it meets $W$: take $y\in O\cap W$ and put $W'=O\cap W\cap
+B(y,\varepsilon)$. Then $y\in W'\subseteq\cl{\alpha(U)}\subseteq\cl{\beta(V)}$, so the open set $W'$ meets
+$\beta(V)$: take $q\in V$ with $\beta(q)\in W'$, and put $F=V\cap\beta^{-1}(W')\cap B(q,\varepsilon)$, a
+nonempty open set with $\beta(F)\subseteq W'$. Let $O'=\interior\cl{\beta(F)}$, nonempty by (i); it lies in
+$\cl{W'}\subseteq\cl{\alpha(U)}$, so it meets $\alpha(U)$: take $p\in U$ with $\alpha(p)\in O'$, and put
+$E=U\cap\alpha^{-1}(O')\cap B(p,\varepsilon)$, nonempty and open, with $\alpha(E)\subseteq
+O'\subseteq\cl{\beta(F)}$. The triple $(E,F,W')$ is good.
+
+\emph{Limit.} Starting from $(P,Q,Y)$ and applying the step with $\varepsilon=2^{-n}$ at stage $n$, we
+get good triples $(U_n,V_n,W_n)$, decreasing in each coordinate, with $U_{n+1},V_{n+1},W_{n+1}$ in balls
+of radius $2^{-n}$. Each $V_n$ is nonempty, since $\emptyset\ne\alpha(U_n)\subseteq\cl{\beta(V_n)}$. Choosing a
+point in each $U_n$ gives a Cauchy sequence; by completeness it converges to some $p$, which lies in
+every $\cl{U_n}$. Likewise there is $q$ in every $\cl{V_n}$. Then $\alpha(p)\in\cl{\alpha(U_n)}\subseteq\cl{W_n}$
+and $\beta(q)\in\cl{\beta(V_n)}\subseteq\cl{W_n}$ for every $n$, and $\diam\cl{W_{n+1}}\le2\cdot2^{-n}\to0$.
+So $\alpha(p)=\beta(q)$.
+\end{proof}
+
+\formal{\lean{HPC.Effros.CoreGood}, \lean{HPC.Effros.coreGood_step},
+\lean{HPC.Effros.exists_eq_of_core}.}
+
+\begin{lemma}[Reducing the parameter space]\label{lem:reduced}
+Let $P$ be a Polish space, $Y$ a topological space and $f\colon P\to Y$ any map. There is a closed set
+$C\subseteq P$ such that $f(P)\setminus f(C)$ is meager, and $f(U)$ is not meager for every nonempty
+relatively open subset $U$ of $C$.
+\end{lemma}
+
+\begin{proof}
+Let $O$ be the union of all open sets $U'\subseteq P$ with $f(U')$ meager. Each point of $O$ lies in a
+basic open set (of a fixed countable basis) contained in such a $U'$, whose image is then meager;
+so $O$ is a countable union of open sets with meager images, and $f(O)$ is meager. Let $C=P\setminus
+O$. Then $f(P)\setminus f(C)\subseteq f(O)$ is meager. If $U=C\cap U'$, with $U'$ open, is nonempty and
+$f(U)$ is meager, then $f(U')\subseteq f(U)\cup f(O)$ is meager, so $U'\subseteq O$ and $U=\emptyset$, a
+contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Effros.exists_reduced_param} (stated for $P=\N^\N$, which suffices since Mathlib
+defines analytic sets as continuous images of $\N^\N$).}
+
+\begin{theorem}[van Mill, Proposition~2.2, relative form]\label{thm:prop22}
+Let $Y$ be a metric space and $S,T\subseteq Y$ analytic and nowhere meager, with $S\neq\emptyset$ and
+$S\subseteq\cl T$. Then $S\cap T\neq\emptyset$.
+\end{theorem}
+
+\begin{proof}
+$T$ is nonempty since $S\subseteq\cl T$. Write $S=f(P)$ and $T=g(Q)$ with $P,Q$ Polish and $f,g$ continuous,
+and let $C\subseteq P$ and $D\subseteq Q$ be given by Lemma~\ref{lem:reduced}. They are closed, hence Polish;
+fix complete metrics on them. $S$ is not meager (apply the definition of nowhere meager with
+$V=Y$), and $S\subseteq f(C)\cup(f(P)\setminus f(C))$, so $f(C)\ne\emptyset$ and $C\ne\emptyset$.
+
+Apply Lemma~\ref{lem:core-construction} to $\alpha=f|_C$ and $\beta=g|_D$. Condition (i) holds by
+Lemma~\ref{lem:reduced} and Lemma~\ref{lem:fat-basic}(b). For (ii), let $M=g(Q)\setminus g(D)$, a meager
+set; then $T\setminus M\subseteq g(D)$, and by Lemma~\ref{lem:fat-basic}(a)
+\[
+f(C)\subseteq S\subseteq\cl T\subseteq\cl{T\setminus M}\subseteq\cl{g(D)} .
+\]
+So $f(p)=g(q)$ for some $p\in C$, $q\in D$, a point of $S\cap T$.
+\end{proof}
+
+\formal{\lean{HPC.Effros.inter_nonempty_of_nowhereMeagre}.}
+
+\begin{corollary}[van Mill, Proposition~2.2]\label{cor:fat-meet}
+In a nonempty metric space, two analytic fat sets meet.
+\end{corollary}
+
+\formal{\lean{HPC.Effros.inter_nonempty_of_isFat}. The hypothesis that the space be nonempty is
+needed: in the empty space the empty set is analytic and fat
+(\lean{HPC.Effros.isFat_empty_of_isEmpty}).}
+
+\section{The open mapping principle}
+
+In this section $G$ is a Polish group (a topological group whose topology is Polish), acting
+continuously and transitively on a nonempty metric space $X$ which is a Baire space. For $U\subseteq G$
+and $x\in X$ let $U\cdot x=\set{g\cdot x:g\in U}$. For each $g\in G$ the map $x\mapsto g\cdot x$ is a
+homeomorphism of $X$ (with inverse $x\mapsto g^{-1}\cdot x$); it maps meager sets to meager sets.
+
+\begin{lemma}\label{lem:vm-basis}
+There are open sets $G=U_0\supseteq U_1\supseteq\cdots$ containing $1$, with $U_n^{-1}=U_n$ and
+$U_{n+1}U_{n+1}\subseteq U_n$, forming a basis of neighbourhoods of $1$.
+\end{lemma}
+
+\begin{proof}
+$G$ is metrizable, so $1$ has a decreasing basis of neighbourhoods $B_0\supseteq B_1\supseteq\cdots$. Given an
+open symmetric $U_n\ni1$, continuity of multiplication at $(1,1)$ gives an open $S\ni1$ with $SS\subseteq
+U_n\cap B_n$; put $U_{n+1}=S\cap S^{-1}$.
+\end{proof}
+
+\formal{\lean{HPC.Effros.exists_vanMill_basis}.}
+
+Fix such sets $U_n$.
+
+\begin{lemma}[van Mill, Lemma~3.1]\label{lem:vm31}
+If $V\subseteq X$ is open and $z\in V\cap U_n\cdot x$, then $U_m\cdot z\subseteq V\cap U_n\cdot x$ for some $m$.
+\end{lemma}
+
+\begin{proof}
+Write $z=h\cdot x$ with $h\in U_n$. The set $\set{g:(gh)\cdot x\in V,\ gh\in U_n}$ is open (by continuity)
+and contains $1$, so it contains some $U_m$. For $g\in U_m$, $g\cdot z=(gh)\cdot x\in V$ with $gh\in U_n$.
+\end{proof}
+
+\formal{\lean{HPC.Effros.vanMill_3_1}.}
+
+\begin{lemma}[van Mill, Lemma~3.2]\label{lem:vm32}
+For every neighbourhood $U$ of $1$ and every $x$, the set $U\cdot x$ is not meager.
+\end{lemma}
+
+\begin{proof}
+Let $U'=\interior U\ni1$. The open sets $\varphi U'$, $\varphi\in G$, cover $G$; as $G$ is Lindel\"of,
+countably many of them, $\varphi_kU'$, cover $G$. Every $y\in X$ is $g\cdot x$ for some $g$ (transitivity),
+and $g=\varphi_ku$ with $u\in U'$, so $y=\varphi_k\cdot(u\cdot x)$. Hence $X=\bigcup_k\varphi_k\cdot(U\cdot x)$.
+If $U\cdot x$ were meager, so would be each $\varphi_k\cdot(U\cdot x)$, and $X$ would be meager, which is
+impossible in a nonempty Baire space.
+\end{proof}
+
+\formal{\lean{HPC.Effros.vanMill_3_2}.}
+
+\begin{lemma}[van Mill, Corollary~3.3]\label{lem:vm33}
+Each $U_n\cdot x$ is nowhere meager.
+\end{lemma}
+
+\begin{proof}
+If $V$ is open and $z\in V\cap U_n\cdot x$, Lemma~\ref{lem:vm31} gives $U_m\cdot z\subseteq V\cap U_n\cdot x$,
+and $U_m\cdot z$ is not meager by Lemma~\ref{lem:vm32}.
+\end{proof}
+
+\formal{\lean{HPC.Effros.vanMill_3_3}.}
+
+\begin{lemma}[van Mill, Lemma~3.4]\label{lem:vm34}
+$x\in\interior\cl{U_n\cdot x}$ for every $n$ and $x$.
+\end{lemma}
+
+\begin{proof}
+$V=\interior\cl{U_{n+1}\cdot x}$ is nonempty by Lemmas~\ref{lem:vm32} and~\ref{lem:fat-basic}(b), and,
+being a nonempty open subset of $\cl{U_{n+1}\cdot x}$, it meets $U_{n+1}\cdot x$: say $h\cdot x\in V$ with
+$h\in U_{n+1}$. The set $h^{-1}\cdot V$ is open, contains $x$, and
+\[
+h^{-1}\cdot V\subseteq h^{-1}\cdot\cl{U_{n+1}\cdot x}=\cl{(h^{-1}U_{n+1})\cdot x}\subseteq\cl{U_n\cdot x},
+\]
+because $h^{-1}\in U_{n+1}$ and $U_{n+1}U_{n+1}\subseteq U_n$.
+\end{proof}
+
+\formal{\lean{HPC.Effros.vanMill_3_4} (as printed by van Mill, with the closure).}
+
+\begin{proposition}[van Mill, Proposition~3.5]\label{prop:vm35}
+$\interior\cl{U_{n+1}\cdot x}\subseteq U_n\cdot x$ for every $n$ and $x$.
+\end{proposition}
+
+\begin{proof}
+Let $z\in\interior\cl{U_{n+1}\cdot x}$, and let $E=\interior\cl{U_{n+1}\cdot x}\cap\interior\cl{U_{n+1}\cdot
+z}$, an open set containing $z$ (Lemma~\ref{lem:vm34}). Consider
+\[
+S'=U_{n+1}\cdot x\cap E,\qquad T'=U_{n+1}\cdot z\cap E .
+\]
+\begin{itemize}
+\item They are analytic: $T'$ is the image of the open, hence Polish, set
+$\set{g\in U_{n+1}:g\cdot z\in E}$ under the continuous map $g\mapsto g\cdot z$; similarly for $S'$.
+\item They are nowhere meager: for $V$ open, $V\cap T'=(V\cap E)\cap U_{n+1}\cdot z$, which is not meager
+if nonempty, by Lemma~\ref{lem:vm33}; similarly for $S'$.
+\item $E\subseteq\cl{T'}$: if $y\in E$ and $N$ is a neighbourhood of $y$, then $N\cap E$ is a neighbourhood of
+$y\in\cl{U_{n+1}\cdot z}$, so it meets $U_{n+1}\cdot z$, that is, $N$ meets $T'$. Likewise $E\subseteq\cl{S'}$;
+in particular $S'\ne\emptyset$ (as $z\in E$), and $S'\subseteq E\subseteq\cl{T'}$.
+\end{itemize}
+By Theorem~\ref{thm:prop22}, $S'\cap T'\ne\emptyset$: $g\cdot x=h\cdot z$ with $g,h\in U_{n+1}$. Then
+$z=(h^{-1}g)\cdot x$ and $h^{-1}g\in U_{n+1}U_{n+1}\subseteq U_n$.
+\end{proof}
+
+\formal{\lean{HPC.Effros.vanMill_3_5} (as printed, with the closure).}
+
+\begin{theorem}[The open mapping principle; Effros]\label{thm:effros-open}
+Let a Polish group $G$ act continuously and transitively on a nonempty metric Baire space $X$. Then
+for every $x\in X$ and every neighbourhood $U$ of $1$ in $G$, the set $U\cdot x$ is a neighbourhood of
+$x$. Consequently the orbit maps $g\mapsto g\cdot x$ are open.
+\end{theorem}
+
+\begin{proof}
+Choose $n$ with $U_n\subseteq U$. By Lemma~\ref{lem:vm34} and Proposition~\ref{prop:vm35},
+$x\in\interior\cl{U_{n+1}\cdot x}\subseteq U_n\cdot x\subseteq U\cdot x$. For the second statement, let $O\subseteq G$
+be open and $g\in O$; then $g^{-1}O$ is a neighbourhood of $1$, so $(g^{-1}O)\cdot x$ is a neighbourhood
+of $x$, and its image $O\cdot x$ under the homeomorphism $y\mapsto g\cdot y$ is a neighbourhood of $g\cdot
+x$.
+\end{proof}
+
+\formal{\lean{HPC.Effros.effros_open_mapping} and \lean{HPC.Effros.isOpenMap_smul_left}.}
+
+\section{Ungar's corollary}
+
+\begin{theorem}[Effros, Ungar]\label{thm:ungar}
+Let $Y$ be a homogeneous compact metric space and $\varepsilon>0$. There is $\delta>0$ such that for any
+$x,y\in Y$ with $d(x,y)<\delta$ there is a homeomorphism $h\colon Y\to Y$ with $h(x)=y$ and
+$d(h(z),z)<\varepsilon$ for every $z\in Y$.
+\end{theorem}
+
+\begin{proof}
+If $Y=\emptyset$ there is nothing to prove. By Proposition~\ref{prop:homeo-group}, $G=\Homeo(Y)$ is a
+Polish group acting continuously on $Y$; the action is transitive because $Y$ is homogeneous, and $Y$
+is a nonempty compact metric space, hence a Baire space. Let $N=\set{h:\mv(h)<\varepsilon/2}$, a
+neighbourhood of $1$. By Theorem~\ref{thm:effros-open} each $N\cdot z$ is a neighbourhood of $z$, so the
+interiors of the sets $N\cdot z$, $z\in Y$, form an open cover of the compact space $Y$. Let $\delta$ be
+a Lebesgue number: every ball $B(x,\delta)$ lies in some $\interior(N\cdot z)$.
+
+Let $d(x,y)<\delta$, and take $z$ with $x,y\in N\cdot z$: $x=g(z)$, $y=h(z)$ with $g,h\in N$. Then
+$hg^{-1}$ maps $x$ to $y$, and $\mv(hg^{-1})\le\mv(h)+\mv(g^{-1})=\mv(h)+\mv(g)<\varepsilon$.
+\end{proof}
+
+\formal{\lean{HPC.Effros.effros_homogeneous}; for a compact subset $M$ of a metric space which is
+homogeneous in its own topology (the form used for plane continua),
+\lean{HPC.Effros.effros_homogeneous_set}.}
+
+\begin{remark}
+In the later volumes Theorem~\ref{thm:ungar} is used to move small subcontinua of a homogeneous
+continuum around by homeomorphisms that hardly move anything, which is the basic tool for turning
+homogeneity into local structure; the formal proof uses it in its treatment of F.~B.~Jones's
+papers of 1951, 1955 and 1975, of the span argument of Oversteegen and Tymchatyn, and of Hagopian's
+1984 paper.
+\end{remark}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that the conclusion of Theorem~\ref{thm:ungar} fails for the non-homogeneous space $[0,1]$: there
+is no homeomorphism moving $0$ to a point $y>0$.
+\end{exercise}
+
+\begin{exercise}
+Prove Theorem~\ref{thm:ungar} directly for the circle, with an explicit $\delta$.
+\end{exercise}
+
+\begin{exercise}
+Let $Y$ be a homogeneous compact metric space. Show that for every $x\in Y$ and $\varepsilon>0$ the set
+of points $y$ for which some homeomorphism $h$ with $\mv(h)<\varepsilon$ maps $x$ to $y$ is open.
+\end{exercise}

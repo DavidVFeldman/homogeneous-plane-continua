@@ -1,0 +1,35 @@
+-- Batch 153: `#print axioms` for every theorem of the five new files
+-- (`HPC/Jones/Jones49EArc.lean`, `Jones49ETheta.lean`, `Jones49EAcc.lean`, `Jones49EPlane.lean`,
+-- `Jones49E.lean`). 26 theorems, no definitions; every one depends on exactly
+-- [propext, Classical.choice, Quot.sound].
+-- HPC.Jones.Jones49EArc: 6 theorems
+HPC.Jones.tarc_segment: [propext, Classical.choice, Quot.sound]
+HPC.Jones.tarc_vpath: [propext, Classical.choice, Quot.sound]
+HPC.Jones.tarc_of_isSimplePolyArc': [propext, Classical.choice, Quot.sound]
+HPC.Jones.exists_tarc_of_isOpen_plane: [propext, Classical.choice, Quot.sound]
+HPC.Jones.exists_tarc_in_open: [propext, Classical.choice, Quot.sound]
+HPC.Jones.exists_tarc_of_locallyConnected': [propext, Classical.choice, Quot.sound]
+-- HPC.Jones.Jones49ETheta: 5 theorems
+HPC.Jones.tscc_rot_left: [propext, Classical.choice, Quot.sound]
+HPC.Jones.tscc_rot: [propext, Classical.choice, Quot.sound]
+HPC.Jones.tscc_split: [propext, Classical.choice, Quot.sound]
+HPC.Jones.exists_scc_of_cyclic: [propext, Classical.choice, Quot.sound]
+HPC.Jones.exists_theta_of_cyclic: [propext, Classical.choice, Quot.sound]
+-- HPC.Jones.Jones49EAcc: 1 theorems
+HPC.Jones.accessible_of_cyclic': [propext, Classical.choice, Quot.sound]
+-- HPC.Jones.Jones49EPlane: 6 theorems
+HPC.Jones.closure_ccIn_subset: [propext, Classical.choice, Quot.sound]
+HPC.Jones.frontier_diff_nonempty: [propext, Classical.choice, Quot.sound]
+HPC.Jones.frontier_cyclic': [propext, Classical.choice, Quot.sound]
+HPC.Jones.jordan_side: [propext, Classical.choice, Quot.sound]
+HPC.Jones.sub_side_of_closure: [propext, Classical.choice, Quot.sound]
+HPC.Jones.theta_not_subset_closure: [propext, Classical.choice, Quot.sound]
+-- HPC.Jones.Jones49E: 8 theorems
+HPC.Jones.tarc_of_isSimplePolyArc: [propext, Classical.choice, Quot.sound]
+HPC.Jones.exists_tarc_of_locallyConnected: [propext, Classical.choice, Quot.sound]
+HPC.Jones.accessible_of_cyclic: [propext, Classical.choice, Quot.sound]
+HPC.Jones.frontier_cyclic: [propext, Classical.choice, Quot.sound]
+HPC.Jones.theta_of_cyclic_peano: [propext, Classical.choice, Quot.sound]
+HPC.Moore.Gen.TArc.subtype_val: [propext, Classical.choice, Quot.sound]
+HPC.Jones.image_val_inter_pair: [propext, Classical.choice, Quot.sound]
+HPC.Jones.whyburn39_corollary1: [propext, Classical.choice, Quot.sound]

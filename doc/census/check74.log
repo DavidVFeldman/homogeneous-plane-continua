@@ -1,0 +1,8 @@
+witness: 5815 links, basepoint 946, the census's least number of legs 5
+  band [0, 11], span 11; basepoint level 5
+  thin (sig = rho): False
+  IsCrookedIvF: True
+  the arms: |armG| = 4869, |armT| = 947 (whole arms)
+  walks of at most four legs tried: 8219
+  no walk of at most four legs serves both arms: the finding is reproduced
+  a five-leg walk serving both arms: (4, 7, 2, 8, 1, 10)

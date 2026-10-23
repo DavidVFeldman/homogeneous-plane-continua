@@ -1,0 +1,23 @@
+# Batch 184 manifest
+# git diff --name-status 179a01a (run's initial commit) .. final commit, plus uncommitted changes (none),
+# plus this manifest and the files the report names that are not in the diff
+# (the tarball doc/batches/batch184-files.tar.gz holds every file below; it does not contain itself)
+
+M	Axioms.lean
+M	HPC.lean
+A	HPC/Hagopian/H84Quot.lean
+A	HPC/Hagopian/Hagopian84A.lean
+M	LEDGER.md
+M	OPEN.md
+M	README.md
+M	axioms.txt
+R100	COMMISSION-batch184.md	doc/batches/COMMISSION-batch184.md
+A	doc/batches/REPORT-batch184.md
+A	doc/batches/audits/axioms-batch184.txt
+R100	Hagopian84A.lean	doc/batches/skeletons/Hagopian84A.lean
+M	doc/notes/hagopian84.md
+A	doc/batches/batch184-MANIFEST.txt
+
+# named in the report, not in the git diff
+A	doc/sources/hagopian1984.pdf	(moved upload; ignored by git, delivered in the tarball)
+=	doc/batches/REPORT-batch183.md	(unchanged; its dependency map is quoted in §10.1)

@@ -1,0 +1,22 @@
+# batch 191: files added (A), modified (M) or moved (R) in this run; from git diff --name-status 8f23aa3 HEAD (no uncommitted changes), plus the uploaded PDFs and the delivery files
+M	Axioms.lean
+M	HPC.lean
+A	HPC/Span/Cook.lean
+A	HPC/Span/Crossing.lean
+A	HPC/Span/Defs.lean
+A	HPC/Span/OT82A.lean
+A	HPC/Span/Reembed.lean
+A	HPC/Span/Thm36.lean
+M	LEDGER.md
+M	OPEN.md
+M	README.md
+M	axioms.txt
+R100	COMMISSION-batch191.md	doc/batches/COMMISSION-batch191.md
+A	doc/batches/REPORT-batch191.md
+A	doc/batches/audits/axioms-batch191.txt
+R100	OT82A.lean	doc/batches/skeletons/OT82A.lean
+A	doc/notes/ot82.md
+A	doc/sources/oversteegen-tymchatyn1982.pdf	(moved upload; ignored by git, delivered in the tarball)
+A	doc/sources/cook1967.pdf	(moved upload; ignored by git, delivered in the tarball)
+A	doc/batches/batch191-MANIFEST.txt
+A	doc/batches/batch191-files.tar.gz	(not inside itself)

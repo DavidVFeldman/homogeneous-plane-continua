@@ -1,0 +1,86 @@
+== 1. the dichotomy at arbitrary levels, on stretches of Bing's chains ==
+   bing 0 7 (170 links): high 378, instances 884, low 680
+   bing 0 8 (409 links): high 300741, instances 700859, low 536372
+   total: high 301119, instances 701743, low 537052
+   dichotomy failures: 0
+
+== 2. the bridge and the greedy assignment, all arms of length <= 14 ==
+   p = 3: walk [2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
+     LowAt arms 1451944, bridge failures 0
+     switch arms 1463371, fold failures 0
+   p = 4: walk [3, 4, 5, 6, 5, 4, 3, 2, 1]
+     LowAt arms 1280299, bridge failures 0
+     switch arms 1348557, fold failures 0
+
+== 3. the switch condition implies the fold, for arms of every length ==
+   p = 3: bumpWalk [2, 3, 4, 5, 6, 5, 4, 3, 2, 1] serves every switch arm: True
+     walks of length <= 10 serving every switch arm: 1; shortest [2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
+   p = 4: bumpWalk [3, 4, 5, 6, 5, 4, 3, 2, 1] serves every switch arm: True
+     walks of length <= 9 serving every switch arm: 1; shortest [3, 4, 5, 6, 5, 4, 3, 2, 1]
+
+== 4. which classes have a walk, and what is left ==
+   -- basepoint p = 3
+     (0,4): LowAt served by 0 walks | HighAt served by 179 walks, e.g. [2, 1, 2, 3, 4, 5, 6]
+     (0,5): LowAt served by 0 walks | HighAt served by 56 walks, e.g. [3, 2, 1, 2, 3, 4, 5, 6]
+     (0,6): LowAt served by 0 walks | HighAt served by 14 walks, e.g. [4, 3, 2, 1, 2, 3, 4, 5, 6]
+     (0,7): LowAt served by 7 walks, e.g. [2, 3, 4, 5, 6, 5, 4, 3, 2, 1] | HighAt served by 0 walks
+     (1,4): LowAt served by 0 walks | HighAt served by 53 walks, e.g. [2, 1, 2, 3, 4, 5, 6]
+     (1,5): LowAt served by 0 walks | HighAt served by 0 walks
+     (1,6): LowAt served by 0 walks | HighAt served by 0 walks
+     (1,7): LowAt served by 28 walks, e.g. [3, 4, 5, 6, 5, 4, 3, 2, 1] | HighAt served by 0 walks
+     classes with no walk of length <= 12: L(0,4), L(0,5), L(0,6), H(0,7), L(1,4), L(1,5), H(1,5), L(1,6), H(1,6), H(1,7)
+   -- basepoint p = 4
+     (0,5): LowAt served by 0 walks | HighAt served by 98 walks, e.g. [3, 2, 1, 2, 3, 4, 5, 6]
+     (0,6): LowAt served by 0 walks | HighAt served by 28 walks, e.g. [4, 3, 2, 1, 2, 3, 4, 5, 6]
+     (0,7): LowAt served by 0 walks | HighAt served by 7 walks, e.g. [5, 4, 3, 2, 1, 2, 3, 4, 5, 6]
+     (1,5): LowAt served by 0 walks | HighAt served by 28 walks, e.g. [3, 2, 1, 2, 3, 4, 5, 6]
+     (1,6): LowAt served by 0 walks | HighAt served by 0 walks
+     (1,7): LowAt served by 14 walks, e.g. [3, 4, 5, 6, 5, 4, 3, 2, 1] | HighAt served by 0 walks
+     (2,5): LowAt served by 0 walks | HighAt served by 0 walks
+     (2,6): LowAt served by 0 walks | HighAt served by 0 walks
+     (2,7): LowAt served by 56 walks, e.g. [4, 5, 6, 5, 4, 3, 2, 1] | HighAt served by 0 walks
+     classes with no walk of length <= 12: L(0,5), L(0,6), L(0,7), L(1,5), L(1,6), H(1,6), H(1,7), L(2,5), H(2,5), L(2,6), H(2,6), H(2,7)
+
+== 4b. the leaf that survives every dichotomy at p = 3 ==
+   H(0,7) & H(1,7) & L(0,4) & L(0,5) & L(0,6) & L(1,4) & L(1,5) & L(1,6)
+     walks of length <= 13: 5, e.g. [3, 4, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6]
+   H(0,7) & H(1,7) & L(0,4) & L(0,5) & L(0,6) & L(1,4) & L(1,5) & H(1,6)
+     walks of length <= 13: 0
+
+== 5. the leaf, the arms' own crookedness, and the extremes ==
+   the two arms that obstruct the leaf: [3, 2, 3, 2, 1, 2, 3, 4, 5, 6, 7] and [3, 2, 3, 2, 1, 2, 3, 4, 3, 2, 1, 0]
+     walks of length <= 13 taking both: 611
+     internally crooked: False and False
+   so the leaf can only be closed by using the arms' own crookedness.
+
+   -- does a leaf class contain a crooked arm that reaches an extreme?
+      (a class whose arms never reach one shrinks the band to [L+1, H-1], where
+       both interior levels are near-extreme and `s3_near_extreme` settles them)
+     H(0,7) & L(0,6) & L(0,5) & L(0,4) & L(1,4) & L(1,5) & L(1,6)
+       crooked arms of length <= 16 searched: 3591538; reaching an extreme: None
+     H(0,7) & L(0,6) & L(0,5) & L(0,4) & L(1,4) & L(1,5) & H(1,6)
+       crooked arms of length <= 16 searched: 3152047; reaching an extreme: [3, 2, 3, 2, 1, 2, 2, 3, 4, 3, 2, 2, 1, 2, 1, 0]
+     H(0,7) & L(0,6) & L(0,5) & L(0,4) & L(1,4) & H(1,5) & L(1,6)
+       crooked arms of length <= 16 searched: 1901477; reaching an extreme: None
+     H(0,7) & L(0,6) & L(0,5) & L(0,4) & L(1,4) & H(1,5) & H(1,6)
+       crooked arms of length <= 16 searched: 1757301; reaching an extreme: [3, 3, 2, 2, 1, 2, 2, 3, 4, 3, 2, 2, 1, 2, 1, 0]
+
+== 6. at span six the batch-37 condition implies the switch condition ==
+   LowLate arms of length <= 14 in [0, 6] at p = 3: 1271062, switch failures 0
+
+== 7. which extreme can a crooked arm of a leaf class reach? ==
+   (an arm class that misses H lives in a band of width six, where `s3_span_six`
+    settles the basepoint; one that misses both lives in a band of width five)
+     H(0,7) & L(0,6) & L(0,5) & L(0,4) & L(1,4) & L(1,5) & L(1,6)
+       reaching 7, arms of length <= 18 searched 24829758: None
+       reaching 0, arms of length <= 18 searched 24829758: None
+     H(0,7) & L(0,6) & L(0,5) & L(0,4) & L(1,4) & L(1,5) & H(1,6)
+       reaching 7, arms of length <= 18 searched 24419219: None
+       reaching 0, arms of length <= 18 searched 7986473: [3, 4, 3, 2, 3, 2, 1, 2, 2, 3, 4, 3, 2, 2, 1, 2, 1, 0]
+     H(0,7) & L(0,6) & L(0,5) & L(0,4) & L(1,4) & H(1,5) & L(1,6)
+       reaching 7, arms of length <= 18 searched 13109560: None
+       reaching 0, arms of length <= 18 searched 13109560: None
+     H(0,7) & L(0,6) & L(0,5) & L(0,4) & L(1,4) & H(1,5) & H(1,6)
+       reaching 7, arms of length <= 18 searched 20077981: None
+       reaching 0, arms of length <= 18 searched 1757303: [3, 4, 4, 3, 2, 2, 1, 2, 2, 3, 4, 3, 2, 2, 1, 2, 1, 0]
+

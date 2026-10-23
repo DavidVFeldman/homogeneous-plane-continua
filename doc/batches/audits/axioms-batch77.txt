@@ -1,0 +1,57 @@
+# #print axioms, batch 77 (lake env lean Axioms77.lean; the file imports HPC.Fold.Open and HPC.Fold.General)
+# Preceded by: lake build HPC RequestProject -> Build completed successfully (8190 jobs), no errors, no 'declaration uses sorry' warnings.
+# Toolchain: leanprover/lean4:v4.28.0
+
+'HPC.Fold.Z77.jlen_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.jwalk_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.abs_sub_cases' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.legPos_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.legPos_lip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.jwalk_legPos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.Fit.head_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.fold_of_fit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.CrkOn.reverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.reindex_nat_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.reindex_nat_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.reindex_fin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.crkOn_of_isCrookedIvF' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.up_core' depends on axioms: [propext, Quot.sound]
+'HPC.Fold.Z77.down_core' depends on axioms: [propext, Quot.sound]
+'HPC.Fold.Z77.LipOn.neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.first_drop' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.max_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.exists_armVal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.up_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.down_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.arm_eq_sside_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.arm_not_eq_sside_right' depends on axioms: [propext]
+'HPC.Fold.Z77.arm_zero' depends on axioms: [propext]
+'HPC.Fold.Z77.crkOn_sside' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.bool_eq_not_of_ne' depends on axioms: [propext]
+'HPC.Fold.Z77.nofail_up' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.nofail_down' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.first_direction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.main_up' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.greedy_fit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.foldsOnto_of_nat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.Z77.s3_zig' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.theorem3_of_S3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.s3_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Fold.theorem3' depends on axioms: [propext, Classical.choice, Quot.sound]
+def HPC.Fold.S3 : Prop :=
+∀ (n : ℕ) (ρ σ : Fin n → ℤ) (i : Fin n) (H L : ℤ),
+  IsLip ρ →
+    IsCrookedIvF ρ σ →
+      (∀ (t : Fin n), L ≤ ρ t) →
+        (∀ (t : Fin n), ρ t ≤ H) →
+          L + 3 ≤ H → (∃ t, ρ t = L) → (∃ t, ρ t = H) → ∃ len c, FoldsOnto (armG ρ i) len c ∧ FoldsOnto (armT ρ i) len c
+s3_general : S3
+@theorem3 : ∀ {X : Type u_1} [inst : MetricSpace X] {n k : ℕ},
+  0 < n →
+    ∀ {E : HPC.Chain X n} {D : HPC.Chain X k},
+      E.IsCrookedIn' D →
+        ∀ (i : Fin n),
+          ∃ q β',
+            ∃ (hβ' : HPC.Chain.IsBlockMap β'),
+              ↑(β' i) = 0 ∧ ∀ (u : Fin q), ∃ j, (E.ofBlocks β' hβ').link u ⊆ D.unionRange j 3

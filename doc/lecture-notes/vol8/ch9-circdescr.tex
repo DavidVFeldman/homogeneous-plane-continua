@@ -1,0 +1,190 @@
+%======================================================================
+\chapter{Circular descriptions}\label{ch:circdescr}
+%======================================================================
+
+The rest of the volume constructs a circle of pseudo-arcs in the plane. Bing and Jones's \S7 lists nine properties of a sequence of circular chains in the
+plane, without constructing the chains and without arguing that the resulting continuum has pseudo-arc fibres; as far as one can see, their condition~(9)
+makes each new column crooked in a pair of old columns, which does not make a run of two new columns crooked in two old ones. The construction here is
+different. It is a circular analogue of the descriptions of \vone{Chapter~3}: this chapter gives the abstract conditions and proves that they produce a circle
+of pseudo-arcs; Chapter~\ref{ch:sweep} gives explicit patterns, and Chapter~\ref{ch:plane} realizes them in the plane.
+
+\section{The definition}
+
+We use crookedness of integer sequences on a window, as in \vone{Definition~4.1}: a sequence $g$ is \emph{crooked on $[lo,hi]$} if whenever $lo\le i,j\le hi$,
+$g(i)\le h$, $g(j)\ge k$ and $h+3\le k$, there are $r$, $s$ strictly between $i$ and $j$, with $r$ nearer to $i$ than $s$, such that $g(r)=k-1$ and $g(s)=h+1$.
+
+\formal{\lean{HPC.Fold.PatCrookedOn}.}
+
+\begin{definition}\label{def:circdescr}
+A \emph{circular description} in a metric space $X$ consists of the following data, for every level $k\ge0$.
+\begin{enumerate}[label=(\arabic*)]
+\item \emph{Circular chains.} Integers $N_k\ge4$ and open preconnected sets $L_k(t)\subseteq X$, $t\in\Z$, with $L_k(t+N_k)=L_k(t)$, such that $L_k(s)$ meets $L_k(t)$ if and
+only if $s-t$ is within $1$ of a multiple of $N_k$. All links lie in a fixed compact set $K$, and $\diam L_k(t)\le\varepsilon_k$ with $\varepsilon_k\to0$.
+\item \emph{Lifted patterns.} Maps $\pi_k\colon\Z\to\Z$ of degree one, $\pi_k(t+N_{k+1})=\pi_k(t)+N_k$, with $\abs{\pi_k(t+1)-\pi_k(t)}\le1$, such that
+\begin{itemize}
+\item (nest) $\cl{L_{k+1}(t)}\subseteq L_k(\pi_k(t))$;
+\item (tight) if $L_{k+1}(t)$ meets $L_k(l)$, then $\pi_k(t')=l+nN_k$ for some $t'$ with $\abs{t'-t}\le1$ and some $n\in\Z$.
+\end{itemize}
+\item \emph{Arcs.} Reals $o_k$ (offsets) and $\lambda_k$ (arc lengths) with $\lambda_k\to0$, $5\le\lambda_kN_k$ and $\lambda_kN_k+4\le N_k$. Link $t$ of level $k$ carries the
+\emph{centre} $c_k(t)=o_k+t/N_k\in\R$ and the closed arc of length $\lambda_k$ about it (read in $\R/\Z$; the arcs are labels, not geometry). With $\delta_k=1/(2N_k)$:
+\begin{itemize}
+\item (arcNest) $\abs{c_{k+1}(t)-c_k(\pi_k(t))}\le(\lambda_k-\lambda_{k+1})/2$ for every $t$;
+\item (surv) if $\abs{y-c_k(l)}\le\lambda_k/2-\delta_k$, there is $t$ with $\pi_k(t)=l$ and $\abs{y-c_{k+1}(t)}\le\lambda_{k+1}/2-\delta_{k+1}$;
+\item (crook) for every $a\in\Z$ the sequence $u\mapsto\pi_k(a+u)$ is crooked on $[0,\cel{\lambda_{k+1}N_{k+1}}+3]$.
+\end{itemize}
+\end{enumerate}
+The continuum \emph{described} is $M=\bigcap_k\bigcup_tL_k(t)$.
+\end{definition}
+
+\formal{\lean{HPC.BJ59.CircDescr}, \lean{HPC.BJ59.CircDescr.M}; the centres are \lean{HPC.BJ59.CircDescr.c}.}
+
+For $y\in\R$, the \emph{run} of $y$ at level $k$ is $\run_k(y)=\set{t\in\Z:\abs{y-c_k(t)}\le\lambda_k/2}$, a set of consecutive integers with at most $\lambda_kN_k+1\le N_k-3$
+elements. The \emph{fibre} over $y$ is
+\[
+\mathrm{fib}(y)=\bigcap_k\ \bigcup_{t\in\run_k(y)}L_k(t).
+\]
+
+\formal{\lean{HPC.BJ59.CircDescr.fib}, \lean{HPC.BJ59.CircDescr.run_iff}, \lean{HPC.BJ59.CircDescr.run_len}.}
+
+\section{The recognition theorem}
+
+\begin{theorem}\label{thm:circdescr}
+The continuum described by a circular description is a circle of pseudo-arcs.
+\end{theorem}
+
+\formal{\lean{HPC.BJ59.CircDescr.isCircleOfPA}.}
+
+The proof occupies the rest of the chapter. Write $U_k=\bigcup_tL_k(t)$.
+
+\begin{lemma}[$M$ is a continuum]\label{lem:cd-continuum}
+$\cl{U_{k+1}}\subseteq U_k$, so $M=\bigcap_k\cl{U_k}$ is a nested intersection of nonempty compact connected sets, hence a continuum.
+\end{lemma}
+
+\begin{proof}
+Up to periodicity a level has finitely many links, so $\cl{U_{k+1}}$ is the union of the closures $\cl{L_{k+1}(t)}\subseteq L_k(\pi_k(t))$. Each $\cl{U_k}$ is compact (it lies in
+$K$). $U_k$ is connected: consecutive links meet and are preconnected, so $L_k(0)\cup\dots\cup L_k(t)$ is connected for every $t\ge0$, and $U_k$ is the union of these increasing
+sets.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.CircDescr.closure_U_succ}, \lean{HPC.BJ59.CircDescr.M_eq}, \lean{HPC.BJ59.CircDescr.isCompact_M}, \lean{HPC.BJ59.CircDescr.isConnected_M}.}
+
+\begin{lemma}[Consecutive links meet in $M$]\label{lem:cd-meet}
+For all $k$ and $t$, $L_k(t)\cap L_k(t+1)\cap M\neq\emptyset$.
+\end{lemma}
+
+\begin{proof}
+Since $\pi_k$ has degree one and steps of at most one, it has an index $s$ with $\pi_k(s)=t$ and $\pi_k(s+1)=t+1$ (take an index with value $\le t$, a later one with value $\ge t+1$, and
+the last index between them with value $\le t$). Repeating at every level gives $t_k=t$ and $t_j$ ($j>k$) with $\pi_j(t_{j+1})=t_j$, $\pi_j(t_{j+1}+1)=t_j+1$. The sets
+$C_j=\cl{L_j(t_j)}\cap\cl{L_j(t_j+1)}$ are compact, nonempty and nested ($C_{j+1}\subseteq L_j(t_j)\cap L_j(t_j+1)$ by (nest)). A point of their intersection lies in $U_j$ for every
+$j\ge k$, and by (nest) also for $j<k$; so it lies in $M\cap L_k(t)\cap L_k(t+1)$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.CircDescr.exists_pat_pair}, \lean{HPC.BJ59.CircDescr.inter_M_nonempty}.}
+
+\begin{lemma}[Fibres]\label{lem:cd-fibre}
+\begin{enumerate}[label=(\alph*)]
+\item A link of $\run_{k+1}(y)$ lies in the link of $\run_k(y)$ named by $\pi_k$; so the sets $\bigcup_{t\in\run_k(y)}L_k(t)$ decrease, and $\mathrm{fib}(y)\subseteq M$.
+\item (Survival) If $\abs{y-c_k(l)}\le\lambda_k/2-\delta_k$, then $\mathrm{fib}(y)$ meets $L_k(l)$.
+\item $\mathrm{fib}(y+n)=\mathrm{fib}(y)$ for $n\in\Z$; every point of $M$ lies in some fibre; and a point lying in $\mathrm{fib}(y)$ and $\mathrm{fib}(y')$ has $y-y'\in\Z$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) is (nest) and (arcNest). (b) Apply (surv) repeatedly: $t_k=l$ and $t_{j+1}$ with $\pi_j(t_{j+1})=t_j$ and $\abs{y-c_j(t_j)}\le\lambda_j/2-\delta_j$. The compact sets
+$\cl{L_j(t_j)}$ are nested and nonempty; a point of their intersection lies in $L_j(t_j)$ with $t_j\in\run_j(y)$ for all $j\ge k$, hence (by (a)) in $\mathrm{fib}(y)$, and it lies in
+$L_k(l)$. (c) The first statement is periodicity. For $p\in M$ and each $k$, the set of $y$ such that $p$ lies in a link of $\run_k(y)$ is closed and nonempty, and these sets
+decrease by (a); a point of their intersection (taken in one period) gives a fibre containing $p$. For the last statement: at level $k$, $p$ lies in at most two consecutive links
+(up to periodicity), so $y$ and $y'$ are within $\lambda_k+2/N_k$ of each other modulo $1$; this tends to $0$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.CircDescr.down}, \lean{HPC.BJ59.CircDescr.fib_subset_M}, \lean{HPC.BJ59.CircDescr.fib_meets}, \lean{HPC.BJ59.CircDescr.fib_add_int},
+\lean{HPC.BJ59.CircDescr.exists_fib}, \lean{HPC.BJ59.CircDescr.eq_add_int_of_mem}.}
+
+\begin{definition}\label{def:cd-fmap}
+The map $\Phi\colon M\to\Sph$ sends $p$ to $\exp(2\pi iy)$ for any $y$ with $p\in\mathrm{fib}(y)$. By Lemma~\ref{lem:cd-fibre}(c) it is well defined, and its fibre over $\exp(2\pi
+iy)$ is $\mathrm{fib}(y)$.
+\end{definition}
+
+\formal{\lean{HPC.BJ59.CircDescr.fmap}, \lean{HPC.BJ59.CircDescr.fmap_eq_iff}.}
+
+\begin{proposition}\label{prop:cd-map}
+$\Phi$ is continuous, open and surjective.
+\end{proposition}
+
+\begin{proof}
+\emph{Continuous.} If $p_n\to p$ and $p\in L_k(t)$, then $p_n\in L_k(t)$ for large $n$, and the parameters of $p_n$ and $p$ lie (modulo $1$) in the union of the arcs of $t-1,t,t+1$, of
+length $\lambda_k+2/N_k$. Let $k\to\infty$.
+
+\emph{Surjective.} Consecutive centres are $1/N_k$ apart and $\lambda_k/2-\delta_k\ge1/(2N_k)$, so every $y$ is within $\lambda_k/2-\delta_k$ of a centre; apply survival.
+
+\emph{Open.} Let $p\in M$, $r>0$, and $k$ with $2\varepsilon_k<r$. Choose $t$ with $p\in L_k(t)$ and a parameter $z$ of $p$ with $\abs{z-c_k(t)}\le\lambda_k/2$. The three shrunk arcs
+$\abs{y-c_k(s)}\le\lambda_k/2-\delta_k$, $s=t-1,t,t+1$, cover $\abs{y-c_k(t)}\le\lambda_k/2+\delta_k$, so every $y$ with $\abs{y-z}<\delta_k$ is in one of them. Survival gives $q\in\mathrm{fib}(y)\cap
+L_k(s)$; as $L_k(s)$ meets $L_k(t)\ni p$, $\dist(p,q)\le2\varepsilon_k<r$. So the image of $B(p,r)\cap M$ contains the image of the interval $(z-\delta_k,z+\delta_k)$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.CircDescr.continuous_fmap}, \lean{HPC.BJ59.CircDescr.surjective_fmap}, \lean{HPC.BJ59.CircDescr.isOpenMap_fmap}.}
+
+\begin{lemma}[Runs are crooked chains]\label{lem:cd-runs}
+For $y\in\R$, the links $L_k(t)$, $t\in\run_k(y)$, in increasing order, form a chain $D^k(y)$, and its traces on $M$ form a chain of $M$. The chain $D^{k+1}(y)$ refines $D^k(y)$ and is crooked
+in it (\vone{Definition~2.11}).
+\end{lemma}
+
+\begin{proof}
+The run has at most $N_k-3$ elements, so by the meeting rule two of its links meet exactly when their indices differ by at most one. Consecutive traces on $M$ meet, and in
+particular are nonempty, by Lemma~\ref{lem:cd-meet}.
+
+By (arcNest), $\pi_k$ maps $\run_{k+1}(y)=\set{a,\dots,a+n-1}$ into $\run_k(y)$ with no shift by a multiple of $N_k$, and (nest) gives the refinement. Tightness holds inside the runs: if
+$L_{k+1}(t)$ meets $L_k(l)$, then $\pi_k(t')=l+nN_k$ with $\abs{t'-t}\le1$, and $n=0$ because $l$ and $\pi_k(t)$ lie in a run of fewer than $N_k-2$ elements. By (crook) with $a-1$ in place of
+$a$, $\pi_k$ is crooked on $[a-1,a+n]$ (as $n+1\le\cel{\lambda_{k+1}N_{k+1}}+2$). Now argue as in \vone{Proposition~4.10}, with the window enlarged by one index at each end: given links $i$, $j$ of $D^{k+1}(y)$ meeting links $\alpha$, $\beta$ of
+$D^k(y)$ with $\alpha+2<\beta$, tightness gives $u'$, $v'$ within one of $i$, $j$ with $\pi_k(u')=\alpha$, $\pi_k(v')=\beta$; crookedness gives $r$, $s$ strictly between $u'$ and $v'$, in the
+right order, with $\pi_k(r)=\beta-1$ and $\pi_k(s)=\alpha+1$. Since $\pi_k(r)=\beta-1>\alpha+1\ge\pi_k(i)$ we have $r\ne i$; similarly $s\ne j$; so $r$ and $s$ lie strictly between $i$ and
+$j$, inside the run.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.CircDescr.runChain}, \lean{HPC.BJ59.CircDescr.runChain_crooked}, with \lean{HPC.BJ59.CircDescr.tight_run}, \lean{HPC.BJ59.CircDescr.pat_mem_run}.}
+
+\begin{proposition}\label{prop:cd-fibre-pa}
+Every fibre $\mathrm{fib}(y)$ is a pseudo-arc.
+\end{proposition}
+
+\begin{proof}
+\emph{Continuum:} $\mathrm{fib}(y)=\bigcap_k\cl{W_k}$, with $W_k$ the union of the run at level $k$ (one period); $\cl{W_{k+1}}\subseteq W_k$, and $W_k$ is connected.
+\emph{Nondegenerate:} the indices $l$ with $\abs{y-c_k(l)}\le\lambda_k/2-\delta_k$ fill an interval of length $\lambda_kN_k-1\ge4$, so they include some $l$ and $l+2$; by survival the fibre meets
+the disjoint links $L_k(l)$ and $L_k(l+2)$. \emph{Snake-like:} the run chains cover the fibre and have mesh $\le\varepsilon_k$. \emph{Hereditarily indecomposable:} Bing's argument
+(\vone{Theorem~3.7}) applies verbatim to the run chains, which are crooked in one another by Lemma~\ref{lem:cd-runs}: if a subcontinuum $H=A\cup B$ of the fibre had proper subcontinua
+$A$, $B$, take $p\in H\setminus A$, $q\in H\setminus B$ at distance $\ge\delta$ from $A$ and $B$ respectively, and $k$ with $3\varepsilon_k<\delta$; the crookedness of $D^{k+1}(y)$ in $D^k(y)$
+gives a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.CircDescr.isPseudoArc_fib}, from \lean{HPC.BJ59.CircDescr.isContinuum_fib}, \lean{HPC.BJ59.CircDescr.fib_nontrivial},
+\lean{HPC.BJ59.CircDescr.isSnakeLike_fib}, \lean{HPC.BJ59.CircDescr.isHereditarilyIndecomposable_fib}.}
+
+\begin{lemma}\label{lem:cd-circlelike}
+$M$ is circle-like.
+\end{lemma}
+
+\begin{proof}
+Given $\varepsilon>0$ take $k$ with $\varepsilon_k<\varepsilon$. The traces $L_k(t)\cap M$, $0\le t<N_k$, are open in $M$ and cover it; two of them meet if and only if their indices are cyclically
+adjacent (the meeting rule and Lemma~\ref{lem:cd-meet}), and each is nonempty. So they form a circular chain of $M$ (\vthree{Definition~5.13}) of mesh $<\varepsilon$.
+\end{proof}
+
+\formal{\lean{HPC.BJ59.CircDescr.traceChain}, \lean{HPC.BJ59.CircDescr.isCircleLike_M}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:circdescr}]
+$M$ is circle-like (Lemma~\ref{lem:cd-circlelike}), and $\Phi$ is continuous, open and surjective (Proposition~\ref{prop:cd-map}) with pseudo-arc fibres
+(Proposition~\ref{prop:cd-fibre-pa}).
+\end{proof}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that without (surv) the map $\Phi$ need not be open. (Let all the arcs of level $k+1$ crowd into one half of the arcs of level $k$.)
+\end{exercise}
+
+\begin{exercise}
+Show that the condition $5\le\lambda_kN_k$ is what makes the fibres nondegenerate, and that $\lambda_kN_k+4\le N_k$ is what makes runs into chains.
+\end{exercise}
+
+\begin{exercise}
+Show that a point of $M$ lies in at most two links of each level, up to periodicity, and that these two links are consecutive.
+\end{exercise}

@@ -1,0 +1,195 @@
+%======================================================================
+\chapter{Homogeneous aposyndetic plane continua are circles}\label{ch:jones49}
+%======================================================================
+
+This chapter proves the theorem of Jones's \emph{Note on homogeneous plane continua} (1949), the last
+ingredient of the decomposable case:
+
+\begin{quote}
+\emph{Theorem~1.} If a compact plane continuum $M$ is both homogeneous and aposyndetic, then $M$ is a simple
+closed curve.
+\end{quote}
+
+As printed the theorem is false for a one-point continuum, which is homogeneous and aposyndetic; it is proved
+for nondegenerate $M$. Jones's proof occupies about a page. It is followed here step by step, with three
+additions: the local separating points at the end of both cases are produced explicitly, the claim ``$M-(A+B)$ is
+not connected'' in Case~2 is proved with the $\theta$-curve lemma, and in Case~1 the Baire argument ends with a
+local separating point rather than with Jones's remark on limit points.
+
+Throughout, $M\subseteq\R^2$ is a nondegenerate compact continuum, $G$ is the collection of components of $\R^2\setminus M$
+(its \emph{complementary domains}), and for $x\notin M$, $\comp Mx$ is the complementary domain containing $x$.
+
+\formal{The statement is \lean{HPC.Jones.Jones49Thm1}; the one-point counterexample to the printed version is
+\lean{HPC.Jones.not_jones49_theorem1_point}.}
+
+\section{The setting}
+
+\begin{lemma}[Jones 1949, p.~113]\label{lem:jones49-setting}
+Let $M$ be homogeneous and aposyndetic. Then $M$ has no cut point, $M$ is semi-locally connected at each point, and the boundary of each complementary
+domain of $M$ is a simple closed curve.
+\end{lemma}
+
+\begin{proof}
+A nondegenerate continuum has a non-cut point (\vthree{Theorem~3.6}); a homeomorphism of $M$ carries it to any given point, and homeomorphisms carry
+non-cut points to non-cut points. Semi-local connectedness is Corollary~\ref{cor:jones41}. The last statement is Theorem~\ref{thm:whyburn-cor1}.
+\end{proof}
+
+\formal{\lean{HPC.Jones.jones49_setting}, \lean{HPC.Jones.jones49_simple_domains}. Jones: ``Because $M$ is homogeneous and
+contains a non-separating point, no point of $M$ separates $M$. Since $M$ is aposyndetic, $M$ is semi-locally-connected. Hence each
+element of $G$ is a simple domain.''}
+
+\begin{lemma}[Two sources of local separating points]\label{lem:local-sep}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item If a point $p\in M$ has a neighbourhood in $M$ contained in a simple closed curve $J\subseteq M$, then $p$ is a local separating point of $M$.
+\item If $a\ne b$ are points of $M$, $M\setminus\set b$ is connected, and $M\setminus\set{a,b}=X_1\cup X_2$ with $X_1$, $X_2$ nonempty and separated, then $a$ is a local
+separating point of $M$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Let $W\ni p$ be open in $M$ with $W\subseteq J$, and $q\in J\setminus\set p$. The points $p$, $q$ split $J$ into two arcs $L_1$, $L_2$. The sets $W\cap\oarc L_1$ and $W\cap\oarc L_2$ are open in $J$, hence in $W$ and in $M$;
+they cover $(W\setminus\set q)\setminus\set p$ and are disjoint; and small sub-arcs of $L_1$ and $L_2$ at $p$ are connected subsets of $W\setminus\set q$ through $p$ meeting both. So $p$ separates the open set
+$W\setminus\set q$.
+
+(b) $a$ separates the open set $R=M\setminus\set b$, whose component containing $a$ is all of $R$: take for $A$, $B$ the complements of $\cl{X_2}$ and $\cl{X_1}$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.isLocalSepPoint_of_open_sub_tscc}, \lean{HPC.Jones.isLocalSepPoint_of_separation}.}
+
+From now on assume that $M$ is homogeneous and aposyndetic and that \emph{no point of $M$ has order~$2$}; we derive a contradiction. Fix $x\notin M$, let
+$D=\comp Mx$, and let $J=\fr D$, a simple closed curve by Lemma~\ref{lem:jones49-setting}. By Corollary~\ref{cor:some-order-two} (a nondegenerate continuum is
+uncountable), \emph{no point of $M$ is a local separating point}.
+
+\section{Case 1: \texorpdfstring{$M\setminus J$}{M - J} is connected}
+
+\begin{lemma}\label{lem:frontier-of-jordan}
+Let $J'\subseteq M$ be a simple closed curve and $A$ a connected set missing $J'$ with $M\subseteq A\cup J'$. Then $J'$ is the boundary of a complementary domain of $M$.
+\end{lemma}
+
+\begin{proof}
+By the Jordan curve theorem (\vfive{Theorem~4.8}) $A$ lies in one component of $\R^2\setminus J'$; let $T$ be the other one. $T$ misses $M\subseteq A\cup J'$, is open and connected, and
+its frontier is $J'\subseteq M$; so $T$ is a component of $\R^2\setminus M$, with boundary $J'$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.frontier_cc_of_jordan}.}
+
+\begin{proposition}[Case 1]\label{prop:case1}
+If $M\setminus J$ is connected, some point of $M$ is a local separating point.
+\end{proposition}
+
+\begin{proof}
+\emph{Every point of $M$ lies on the boundary of a complementary domain.} Given $p\in M$, let $h$ be a homeomorphism of $M$ carrying a point of $J$ to $p$. Then $J'=h(J)\ni p$ is a simple
+closed curve in $M$ and $M\setminus J'=h(M\setminus J)$ is connected; apply Lemma~\ref{lem:frontier-of-jordan} with $A=M\setminus J'$.
+
+\emph{$G$ is countable}, being a family of disjoint nonempty open sets in the plane (Lemma~\ref{lem:disjoint-open-countable}).
+
+So $M$ is the union of countably many closed sets $\fr U$, $U\in G$. By the Baire category theorem one of them, $J_i$, contains a nonempty open subset $W$ of $M$. $J_i$ is a simple closed curve
+(Lemma~\ref{lem:jones49-setting}), so every point of $W$ is a local separating point by Lemma~\ref{lem:local-sep}(a).
+\end{proof}
+
+\formal{\lean{HPC.Jones.exists_frontier_through}, \lean{HPC.Jones.countable_complDomains},
+\lean{HPC.Jones.jones49_case1_core}, \lean{HPC.Jones.jones49_case1}. Jones ends with: ``Since no point of $M$ is of order~2 in
+$M$, each point of $J_i$ is a limit point of $M-J_i$. This contradicts a well known theorem (Baire).''}
+
+\section{Case 2: \texorpdfstring{$M\setminus J$}{M - J} is not connected}
+
+\begin{lemma}[The separation of $M\setminus\set{A,B}$]\label{lem:theta-sep}
+Let $J_1$, $J_2$, $L$ be arcs in $M$ from $A$ to $B$ forming a $\theta$-curve. Suppose that $D$ is a complementary domain of $M$ with boundary $J_1\cup J_2$, and $U\ne D$ a complementary domain of
+$M$ whose boundary is a simple closed curve $L\cup L'$, where $L'$ is an arc from $A$ to $B$ with $L\cap L'=\set{A,B}$. Then $M\setminus\set{A,B}$ is the union of two nonempty separated sets.
+\end{lemma}
+
+\begin{proof}
+Let $E_1$ be the side of $J_1\cup L$ not containing $\oarc J_2$, and $E_2$ the side of $J_2\cup L$ not containing $\oarc J_1$. Since $D$
+misses $\oarc L\subseteq M$ and has frontier $J_1\cup J_2$, $D$ is the side of $J_1\cup J_2$ not containing $\oarc L$.
+
+\emph{$D$, $E_1$, $E_2$ are pairwise disjoint and cover the complement of the $\theta$-curve.} $E_1$ misses $J_2$ (it misses $\oarc J_2$ and $A,B$), so it is a
+connected set missing $J_2\cup L$ and $J_1\cup J_2$, with $\oarc J_1$ and $\oarc L$ in its closure; by the remark at the start of the proof of
+Lemma~\ref{lem:theta}, it lies on the $\oarc J_1$-side of $J_2\cup L$ (so misses $E_2$) and on the $\oarc L$-side of $J_1\cup J_2$ (so misses $D$). Symmetrically
+$E_2$ misses $D$. A point off the $\theta$-curve in none of the three sets would lie on the $\oarc L$-side of $J_1\cup J_2$, the $\oarc J_2$-side of $J_1\cup L$ and the
+$\oarc J_1$-side of $J_2\cup L$, which Lemma~\ref{lem:theta}(a) excludes.
+
+\emph{$U$ lies in $E_1$ or in $E_2$.} $U$ is connected and misses $M$, which contains the $\theta$-curve. It misses $D$, so lies on the side of $J_1\cup J_2$ containing $\oarc L$. By the $\theta$-curve lemma
+(Lemma~\ref{lem:theta}(a)) it is not also on the $\oarc J_2$-side of $J_1\cup L$ and the $\oarc J_1$-side of $J_2\cup L$. Say $U\subseteq E_1$ (the other case is symmetric).
+
+Put $X_1=M\cap(E_1\cup\oarc J_1)$ and $X_2=M\cap(E_2\cup\oarc J_2\cup\oarc L)$. As $M\cap D=\emptyset$, these sets cover $M\setminus\set{A,B}$; they are disjoint, and nonempty since $\oarc J_1\subseteq X_1$, $\oarc J_2\subseteq X_2$.
+Since $\cl{E_2}\subseteq E_2\cup J_2\cup L$, the closure of $X_2$ misses $X_1$. Since $\cl{E_1}\subseteq E_1\cup J_1\cup L$, the closure of $X_1$ misses $E_2\cup\oarc J_2$; it remains to see that it misses $\oarc L$. This is the
+difficulty: $\oarc L$ lies in the closure of $E_1$.
+
+As $U\subseteq E_1$, $L'\subseteq\cl U\subseteq E_1\cup J_1\cup L$, so $L'$ meets $J_2$ only in $A$, $B$, and $L'$, $L$, $J_2$ form a second $\theta$-curve. Let $m\in M\cap E_1$, $m\notin L'$. Then $m$ is off this
+$\theta$-curve; $m$ and $\oarc J_2$ lie outside $U$, so on the same side of $L\cup L'$; and $m$ and $\oarc L'$ lie outside $E_2$, so on the same side of $J_2\cup L$. By Lemma~\ref{lem:theta}(a), $m$ is not on the side
+$S$ of $L'\cup J_2$ that contains $\oarc L$. Hence $M\cap E_1\setminus L'$ lies in the other side $S'$, whose closure lies in $S'\cup L'\cup J_2$ and misses $\oarc L$. And $M\cap E_1\cap L'$ lies in the closed set $L'$, which
+misses $\oarc L$. So $\oarc L$ is not in the closure of $M\cap E_1$, and not in that of $M\cap\oarc J_1\subseteq J_1$.
+\end{proof}
+
+\formal{\lean{HPC.Jones.theta_separation}, \lean{HPC.Jones.theta_separation_core}, with
+\lean{HPC.Jones.mem_cc_of_not_mem_domain} and \lean{HPC.Jones.side_eq_cc}.}
+
+\begin{proposition}[Case 2]\label{prop:case2}
+If $M\setminus J$ is not connected, some point of $M$ is a local separating point.
+\end{proposition}
+
+\begin{proof}
+If $M=J$, every point of $M$ is a local separating point (Lemma~\ref{lem:local-sep}(a)). Otherwise $M\setminus J=H\cup K$ with $H$, $K$ nonempty and separated.
+
+\emph{Step 1: an arc $T$.} $M\setminus J$ misses $D$, so it lies in the other component $E$ of $\R^2\setminus J$, which is open and connected. Join a point of $H$ to a point of $K$ by an arc in $E$ (a polygonal arc: connected
+open subsets of the plane are polygonally connected), and trim it: from its last point $x$ on $\cl H$ to the next point $y$ on $\cl K$. Then $x\in H$, $y\in K$ (as $x,y\in E$ miss $J$), and the open arc $\oarc T$ between them misses $\cl H\cup\cl K\supseteq
+M\setminus J$ and $J$, so it lies in a complementary domain $U$ of $M$, and $x,y\in\fr U$.
+
+\emph{Step 2: the curve $C$.} $C=\fr U$ is a simple closed curve (Lemma~\ref{lem:jones49-setting}) through $x$ and $y$, and $U\ne D$ because $x\in\fr U\setminus J$.
+
+\emph{Step 3.} Each of the two arcs of $C$ from $x$ to $y$ meets $J$: otherwise it would be a connected subset of $M\setminus J$ meeting $H$ and $K$.
+
+\emph{Step 4: the arc $AxB$.} Let $A$ and $B$ be the first points of $J$ on the two arcs of $C$ from $x$ to $y$, starting at $x$. Then $A\ne B$, and $C=L\cup L'$ where $L$ (the arc $AxB$) and $L'$ are arcs from $A$ to $B$
+with $L\cap L'=\set{A,B}$ and $L\cap J=\set{A,B}$.
+
+\emph{Step 5.} $A$ and $B$ split $J$ into arcs $J_1$, $J_2$, and $J_1$, $J_2$, $L$ form a $\theta$-curve in $M$. By Lemma~\ref{lem:theta-sep}, $M\setminus\set{A,B}$ is the union of two nonempty separated sets.
+
+\emph{Steps 6--7.} $M\setminus\set B$ is connected (Lemma~\ref{lem:jones49-setting}), so $A$ is a local separating point by Lemma~\ref{lem:local-sep}(b).
+\end{proof}
+
+\formal{\lean{HPC.Jones.exists_domain_meeting}, \lean{HPC.Jones.exists_theta_arcs},
+\lean{HPC.Jones.jones49_case2_core}, \lean{HPC.Jones.jones49_case2}; the polygonal arc is
+\lean{HPC.Jones.exists_tarc_of_isOpen_plane}. Jones: ``It follows that $M-(A+B)$ is \emph{not} connected, but $M-B$
+\emph{is} connected. Hence $A$ is a local separating point of $M$.''}
+
+\section{The theorems}
+
+\begin{theorem}[Jones 1949, Theorem~1]\label{thm:jones49-1}
+A nondegenerate homogeneous aposyndetic plane continuum is a simple closed curve.
+\end{theorem}
+
+\begin{proof}
+If some point of $M$ has order $2$, $M$ is a simple closed curve by Corollary~\ref{cor:order-two}. Otherwise, with $x$, $D$, $J$ as above, Proposition~\ref{prop:case1} or
+Proposition~\ref{prop:case2} gives a local separating point, and Corollary~\ref{cor:some-order-two} a point of order $2$, a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Jones.jones49_theorem1}, of type \lean{HPC.Jones.Jones49Thm1}.}
+
+\begin{corollary}[Jones 1949, Theorem~2]\label{cor:jones49-2}
+A nondegenerate homogeneous plane continuum without weak cut points is a simple closed curve.
+\end{corollary}
+
+\begin{proof}
+By Jones's Theorem~18 of 1948 (Remark~\ref{rem:jones48-rest}), a continuum without weak cut points is aposyndetic at the points of a dense set, in particular at some point.
+By homogeneity (Lemma~\ref{lem:apos-basic}(b)) it is aposyndetic at every point. Apply Theorem~\ref{thm:jones49-1}.
+\end{proof}
+
+\formal{\lean{HPC.Jones.jones49_theorem2}, from \lean{HPC.Jones.theorem18}; the one-point space is again a
+counterexample to the printed statement, \lean{HPC.Jones.not_jones49_theorem2_point}.}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that every hypothesis of Theorem~\ref{thm:jones49-1} is needed: give a homogeneous plane continuum that is not aposyndetic, an aposyndetic plane continuum that is not
+homogeneous, and a homogeneous aposyndetic continuum (not in the plane) that is not a simple closed curve.
+\end{exercise}
+
+\begin{exercise}
+Let $M$ be a $\theta$-curve with vertices $A$, $B$. Show that $M\setminus\set{A,B}$ is not connected, that $A$ is a local separating point and has order $3$,
+and explain why this does not contradict Corollary~\ref{cor:some-order-two}.
+\end{exercise}
+
+\begin{exercise}
+Where in the proof of Theorem~\ref{thm:jones49-1} is it used that $M$ lies in the plane? Find all the places.
+\end{exercise}

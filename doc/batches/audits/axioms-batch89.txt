@@ -1,0 +1,8 @@
+'HPC.Plane.theorem3_HIC' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.isHereditarilyIndecomposable_image' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.isContinuum_image' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.theorem4_HIC' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.Mono.exists_chain_of_intervals' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.Mono.isConnected_inter_preimage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.Mono.isContinuum_inter_preimage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.Mono.image_inter_preimage' depends on axioms: [propext, Quot.sound]

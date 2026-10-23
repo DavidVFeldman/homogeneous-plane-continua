@@ -1,0 +1,452 @@
+%======================================================================
+\chapter{The space of elements is a plane}\label{ch:quotient}
+%======================================================================
+
+We return to a Moore decomposition $G$ of the plane (Definition~\ref{def:moore-decomp}) and finish
+Moore's 1925 paper: Theorems~13--22. The plan of the paper is simple. Theorems~1--12 (Chapters
+\ref{ch:usc}--\ref{ch:jordan}) show that arcs and simple closed curves of elements behave as in the plane,
+with the Jordan curve theorem for curves of elements (Theorem~\ref{thm:m25-11}) as the key result.
+Theorems~13--19 develop the cross-cut theory of curves of elements, which shows that the
+interiors of simple closed curves of elements, the \emph{regions in the restricted sense}, form a basis of the
+topology. Theorem~21 checks that with these regions $G$ satisfies Moore's Axioms~1--8, and Theorem~22 then
+follows from Moore's characterization of the plane (Theorem~\ref{thm:moore-plane}).
+
+Throughout, $J$ denotes a simple closed curve of elements; by Theorem~\ref{thm:m25-11},
+$G\setminus J$ has exactly two components, the bounded \emph{interior} $I(J)$ and the unbounded
+\emph{exterior} $E(J)$, and $J$ is the frontier of each. (Formally, $I(J)$ is the set of elements off
+$J$ whose component of $G\setminus J$ has bounded point set.) An element $x\notin J$ is
+\emph{within} $J$ if $x\in I(J)$ and \emph{without} $J$ if $x\in E(J)$. For an arc $pxq$ of elements,
+$\oarc{pxq}=pxq\setminus\set{p,q}$.
+
+\formal{\lean{HPC.Moore.sccInterior}, \lean{HPC.Moore.sccExterior}, \lean{HPC.Moore.sccInterior_spec},
+\lean{HPC.Moore.closure_sccInterior}, \lean{HPC.Moore.closure_sccExterior}.}
+
+\section{Arcs and curves of elements are topological arcs and curves}
+
+The cross-cut theory of F.A.\ was developed in Chapter~\ref{ch:curves} for a space satisfying Moore's
+axioms, but most of it uses the axioms only through a few consequences. Those consequences were isolated
+in topological form: a Hausdorff, locally connected space $X$ with a family of open sets (``regions'')
+such that
+\begin{enumerate}[label=(\roman*)]
+\item regions and the complements of their closures are connected, and region closures are compact,
+while $X$ is not;
+\item two points of a connected open set are joined by an arc in it (F.A.\ Theorem~15);
+\item every simple closed curve is the frontier of exactly two components of its complement, one a region
+(Axiom~8 together with F.A.\ Theorem~21).
+\end{enumerate}
+To apply this to $G$ we need Moore's arcs and curves of elements to be the topological ones.
+
+\begin{proposition}\label{prop:elt-top}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item A set of elements is a simple continuous arc of elements from $A$ to $B$ if and only if it is the image of
+an embedding of $[0,1]$ sending $0$, $1$ to $A$, $B$.
+\item A set of elements is a simple closed curve of elements if and only if it is the union of two such arcs
+with only their ends in common, if and only if it is homeomorphic to a circle.
+\item Two arcs of elements from $p$ to $q$ with only $p,q$ in common form a simple closed curve of
+elements.
+\item $G$ is Hausdorff and arcwise connected; every connected open set of elements is arcwise connected.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) An arc of elements is compact (Proposition~\ref{prop:arc-elt-top}), metrizable, connected, and every
+element other than $A,B$ cuts it: by the cut-point characterization of the arc
+(Theorem~\ref{thm:irr-arc} and Proposition~\ref{prop:cutarc}) it is a topological arc. Conversely a
+topological arc is closed, connected, compact (so bounded: the point set of a compact set of elements is
+compact, Corollary~\ref{cor:quot-tools}), and every interior point cuts it.
+
+(b) A curve of elements is split by any two of its elements into two arcs of elements
+(Theorem~\ref{thm:m25-5-10}(e)), which are topological arcs by (a). Conversely, two topological arcs with only
+their ends in common are cut by any two points (Proposition~\ref{prop:scc-cut}). The circle characterization is
+Theorem~\ref{thm:circle-char}.
+
+(c) is (b). (d) Hausdorff: Theorem~\ref{thm:quot-metrizable}. Arcs: Moore's proof of F.A.\ Theorem~15 goes
+through in $G$ with the Moore regions (Theorem~\ref{thm:fa-elementary} applied as in Chapter~\ref{ch:axioms});
+alternatively, $G$ is a connected, locally connected, complete metric space, so connected open sets are
+arcwise connected.
+\end{proof}
+
+\formal{\lean{HPC.Moore.isArcElt_iff_tarc}, \lean{HPC.Moore.isSCCElt_iff_tscc}, \lean{HPC.Moore.isSCCElt_union},
+\lean{HPC.Moore.t2Space_quot}, \lean{HPC.Moore.arcConn_quot}, \lean{HPC.Jones.tscc_homeomorph_circle}.}
+
+\begin{definition}\label{def:restricted}
+A \emph{region in the restricted sense} is the interior $I(J)$ of some simple closed curve of elements $J$.
+The \emph{space of elements with the restricted regions} is $G$ with these sets as Moore's regions.
+\end{definition}
+
+\formal{\lean{HPC.Moore.restrictedRegion}, \lean{HPC.Moore.spaceRestricted}.}
+
+\begin{lemma}\label{lem:restricted-moore}
+A region in the restricted sense is a Moore region (Definition~\ref{def:moore-region}). The restricted
+regions satisfy (i)--(iii) above.
+\end{lemma}
+
+\begin{proof}
+By Theorem~\ref{thm:m25-11}, $I(J)$ is open, connected and bounded with frontier $J$, which is connected. Its
+closure $I(J)\cup J$ has bounded point set, so it is compact; the complement of the closure is $E(J)$, connected.
+$G$ is not compact, since $\pts G=\R^2$ is unbounded. (ii) is Proposition~\ref{prop:elt-top}(d), and (iii) is
+Theorem~\ref{thm:m25-11} together with Proposition~\ref{prop:elt-top}(b).
+\end{proof}
+
+\formal{\lean{HPC.Moore.mooreRegion_of_restricted}, \lean{HPC.Moore.th21Prop_restricted},
+\lean{HPC.Moore.ax8Prop_restricted}, \lean{HPC.Moore.isCompact_closure_restricted},
+\lean{HPC.Moore.not_isCompact_univ_quot}.}
+
+Moore remarks (p.~423) that F.A.\ Theorem~21 ``may be easily proved with the help of Theorem~11''. This is
+correct as it stands: only Theorem~\ref{thm:m25-11} is needed for (iii).
+
+\section{Theorems 13 and 14}
+
+\begin{lemma}[Janiszewski's theorem for elements]\label{lem:quot-jan}
+Let $A,B$ be closed sets of elements with bounded point sets such that $A\cap B$ is connected (or empty). If
+neither $A$ nor $B$ separates the elements $x$ and $y$, then $A\cup B$ does not separate them.
+\end{lemma}
+
+\begin{proof}
+Components of $G\setminus A$ correspond to components of $\R^2\setminus\pts A$ through $H\mapsto\pts H$
+(Proposition~\ref{prop:pts-conn}). The point sets $\pts A$, $\pts B$ are compact, $\pts A\cap\pts B=\pts{(A\cap B)}$
+is connected (or empty), and Janiszewski's theorem in the plane (\vfour{Theorem~2.7}) applies to
+points of $x$ and $y$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.quot_janiszewski}.}
+
+\begin{theorem}[Moore, Theorem~13]\label{thm:m25-13}
+Let $R$ be a Moore region and $k$ either a single element or an arc of elements all of whose elements,
+except possibly one end, belong to $R$. Then $R\setminus k$ is open and connected.
+\end{theorem}
+
+\begin{proof}
+$R\setminus k$ is open since $k$ is closed. Let $x,y\in R\setminus k$ and $B=\fr R$. $B$ does not separate $x$
+from $y$, since $R$ is connected and misses $B$. Nor does $k$: $G\setminus k$ is connected
+(Theorem~\ref{thm:m25-9}, or Corollary~\ref{cor:pts-nonsep} for a single element). Now $k\cap B$ is empty or the one
+end of $k$ outside $R$, so by Lemma~\ref{lem:quot-jan} $k\cup B$ does not separate $x$ from $y$. The component of
+$G\setminus(k\cup B)$ containing $x$ and $y$ misses $B$ and meets $R$, so lies in $R$, and it misses $k$.
+Finally $R\setminus k\ne\emptyset$ (a point not in Moore's text), since an arc of elements $k$ contains no nonempty open set of elements.
+Indeed, if $U\subseteq k$ is open and nonempty, choose $y\in U$ other than the ends of $k$ and a Moore region $V\ni y$
+inside $U$ (Theorem~\ref{thm:m25-4}). Then $V$ is a connected open subset of the arc $k$, so an interval of the arc containing $y$
+in its interior, and $V\setminus\set y$ is not connected; but by the first part of this proof (with $V$ for $R$ and
+$\set y$ for $k$) it is.
+\end{proof}
+
+\formal{\lean{HPC.Moore.not_subset_arc_of_cut}, \lean{HPC.Moore.m25_theorem13}.}
+
+\begin{theorem}[Moore, Theorem~14]\label{thm:m25-14}
+Every Moore region contains a simple closed curve of elements.
+\end{theorem}
+
+\begin{proof}
+A Moore region $R$ is infinite, so it contains elements $p\ne q$, joined by an arc $pxq$ in $R$
+(Proposition~\ref{prop:elt-top}(d)). Let $x$ be an element of $pxq$ other than $p,q$. By
+Theorem~\ref{thm:m25-13}, $R\setminus\set x$ is a domain, so it contains an arc $pyq$ from $p$ to $q$. Moore:
+``it is easy to see that the sum of the arcs $pxq$ and $pyq$ contains as a subset a simple closed curve''.
+Indeed, follow $pxq$ from $x$ towards $p$ until the first element $a$ on $pyq$, and towards $q$ until the first
+element $b$ on $pyq$ (both exist, since $p,q\in pyq$ and $pyq$ is closed). The sub-arc $axb$ of $pxq$ meets $pyq$ only
+in $a$ and $b$, and with the sub-arc of $pyq$ from $a$ to $b$ it forms a simple closed curve of elements
+(Proposition~\ref{prop:elt-top}(c)).
+\end{proof}
+
+\formal{\lean{HPC.Moore.exists_tscc_of_arcs}, \lean{HPC.Moore.m25_theorem14}.}
+
+\section{Theorems 15--18: cross-cuts}
+
+Moore gives no proofs of Theorems~15--18, only pointers to F.A.\ Theorems~24--27
+(Theorems~\ref{thm:fa24}--\ref{thm:fa27}). Since those were proved from (i)--(iii) only, and
+Lemma~\ref{lem:restricted-moore} supplies (i)--(iii) for $G$, each pointer is made exact: the F.A.\ proof, read in
+$G$, with the axioms it uses replaced by Theorem~\ref{thm:m25-11}.
+
+Fix arcs of elements $pxq$, $pyq$ with $pxq\cap pyq=\set{p,q}$, $J=pxq\cup pyq$, and a third arc $pzq$; put
+$J_1=pxq\cup pzq$ and $J_2=pyq\cup pzq$.
+
+\begin{theorem}[Moore, Theorems~15 and~16]\label{thm:m25-15-16}
+Suppose $\oarc{pzq}\subseteq I(J)$. Then
+\begin{enumerate}[label=(\arabic*)]
+\item $I(J_1)\subseteq I(J)$;
+\item $\oarc{pyq}\subseteq E(J_1)$;
+\item $I(J_1)\cap I(J_2)=\emptyset$;
+\item $I(J)=I(J_1)\cup I(J_2)\cup\oarc{pzq}$.
+\end{enumerate}
+\end{theorem}
+
+\formal{\lean{HPC.Moore.m25_theorem15}, \lean{HPC.Moore.m25_theorem16}.}
+
+\begin{theorem}[Moore, Theorem~17]\label{thm:m25-17}
+If $pxq$, $pyq$, $pzq$ are three arcs of elements, no two with a common element other than $p$, $q$, then the
+interiors of the three curves they form in pairs are not mutually disjoint.
+\end{theorem}
+
+\formal{\lean{HPC.Moore.m25_theorem17}.}
+
+\begin{theorem}[Moore, Theorem~18]\label{thm:m25-18}
+Suppose $\oarc{pzq}\subseteq E(J)$. Then (1) either $\oarc{pyq}\subseteq E(J_1)$ or $\oarc{pxq}\subseteq E(J_2)$; and
+(2) if $\oarc{pyq}\subseteq E(J_1)$ then $\oarc{pxq}\subseteq I(J_2)$ and $I(J_2)=I(J)\cup I(J_1)\cup\oarc{pxq}$.
+\end{theorem}
+
+\formal{\lean{HPC.Moore.m25_theorem18}.}
+
+Moore's statement of Theorem~18 uses the letters $x$, $y$ for elements of the arcs $pxq$, $pyq$ without
+introducing them, and says ``without'' for ``in the exterior of''. We read the statements for all elements of the
+open arcs. This reading loses nothing: $\oarc{pyq}$ is connected and misses $J_1$, so it lies wholly within or wholly
+without $J_1$, and likewise for $\oarc{pxq}$ and $J_2$.
+
+\section{Theorem 19 and the restricted topology}
+
+\begin{theorem}[Moore, Theorem~19]\label{thm:m25-19}
+If $R$ is a Moore region and $O\in R$, there is a simple closed curve of elements $J\subseteq R$ with
+$O\in I(J)\subseteq R$.
+\end{theorem}
+
+\begin{proof}
+Moore: ``with the use of Theorems 11, 12, 13, 17 and 18 this theorem may be proved by a method closely analogous to
+that employed to prove Theorem 36 in F.A.'' We follow the proof of F.A.\ Theorem~36
+(Theorem~\ref{thm:fa35-36}(b)), with its correction, in $G$, using Moore regions as the neighbourhood basis
+(Theorem~\ref{thm:m25-4}).
+\begin{enumerate}[label=(\arabic*)]
+\item Choose an element $X_0\in R$, $X_0\ne O$, and a Moore region $Q\ni X_0$ in $R$ with $O\notin\cl Q$
+(Theorem~\ref{thm:m25-3}). By Theorem~\ref{thm:m25-14}, $Q$ contains a closed curve $J$; its interior $I$
+lies in $Q$ by Theorem~\ref{thm:m25-12} (applied to $D_1=Q$, $D_2=I$), so $O\in E(J)$.
+\item An arc from $O$ to an element of $J$ inside $R$, cut at its first element on $J$, gives an arc $OA$
+meeting $J$ only in $A$.
+\item Since $R$ is bounded and $G$ is not, $\fr R\ne\emptyset$. By Theorem~\ref{thm:m25-13} (for $R\setminus OA$,
+which is connected), there is an arc from an element of $J$ to a boundary element $C$ of $R$, missing $OA$ and,
+except for $C$, in $R$; cut at its last element on $J\cup I$ (and its first element on $\fr R$) it gives an arc
+$BC$ meeting $J\cup I$ only in $B$.
+\item The elements $A,B$ split $J$ into arcs $AF_1B$ and $AH_1B$ (Theorem~\ref{thm:m25-5-10}(e)). By
+Theorem~\ref{thm:m25-13} for $R$ minus the arc $OA\cup AF_1B\cup BC$ (an arc with one end, $C$, on $\fr R$),
+there is an arc $FZH$ from $AF_1B$ to $AH_1B$, missing $OA\cup AF_1B\cup BC$ except for $F$, lying except for its ends in
+$E(J)$ and in $R$.
+\item $B$ is without the curve $ZHAFZ$: the interior of that curve lies in $R$ (Theorem~\ref{thm:m25-12}), while the arc
+$BC$ reaches $C\notin R$ without meeting the curve. By Theorem~\ref{thm:m25-18}, $A$ is within $ZHBFZ$, and so is $O$,
+since $OA$ does not meet that curve. Its interior lies in $R$ by Theorem~\ref{thm:m25-12}.
+\end{enumerate}
+\end{proof}
+
+\formal{\lean{HPC.Moore.m25_theorem19}.}
+
+Of Moore's citations, Theorems~11, 12, 13 and~18 are used; Theorem~17 is not (nor is F.A.\ Theorem~26 in the
+proof of F.A.\ Theorem~36), while Theorems~10 and~14, which Moore does not cite, are.
+
+\begin{theorem}[Moore, Theorem~20]\label{thm:m25-20}
+An element $p$ is a limit element of a set $H$ of elements if and only if every region in the restricted sense
+containing $p$ contains an element of $H$ other than $p$. More precisely: the restricted regions form a basis of the
+topology of $G$, so the topology they generate is the quotient topology.
+\end{theorem}
+
+\begin{proof}
+Restricted regions are open (Lemma~\ref{lem:restricted-moore}). Given an open $V\ni p$, take a Moore region
+$R\ni p$ in $V$ (Theorem~\ref{thm:m25-4}) and then a curve $J$ with $p\in I(J)\subseteq R$ (Theorem~\ref{thm:m25-19}).
+So the restricted regions form a basis, and limit elements (Theorem~\ref{thm:m25-4}) are the accumulation
+points for this basis.
+\end{proof}
+
+\formal{\lean{HPC.Moore.isTopologicalBasis_restricted}, \lean{HPC.Moore.m25_theorem20},
+\lean{HPC.Moore.spaceRestricted_topology}.}
+
+\section{Theorems 21 and 22}
+
+\begin{theorem}[Moore, Theorem~21]\label{thm:m25-21}
+The space of elements with the restricted regions satisfies Moore's Axioms~1--8
+(Definition~\ref{def:moore-axioms}).
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:m25-20} and the bridge (Proposition~\ref{prop:bridge}), Moore's notions for this space (limit
+points, closure, boundary, connectedness, arcs and closed curves) are the topological notions of $G$.
+
+\emph{Axiom 1.} $G$ is a separable metric space (Theorem~\ref{thm:quot-metrizable}). Take a countable dense set
+$\set{d_m}$ and, for each $m$ and $j$, a restricted region about $d_m$ inside the ball of radius $2^{-j}$ about
+$d_m$ (Theorems~\ref{thm:m25-3} and~\ref{thm:m25-19}); enumerate these, each repeated infinitely often in a
+suitable order. If $P\ne\bar P$ lie in a region $R$, the fundamental regions about $P$ of small radius have closures
+in $R\setminus\set{\bar P}$.
+
+\emph{Axioms 2, 4.} A restricted region is connected, and its closure compact (Lemma~\ref{lem:restricted-moore}).
+
+\emph{Axiom 3.} The exterior of $I(J)$ is $G\setminus(I(J)\cup J)=E(J)$, connected (Theorem~\ref{thm:m25-11}).
+
+\emph{Axiom 5.} Moore's limit elements are the same for both systems of regions (Theorems~\ref{thm:m25-4}
+and~\ref{thm:m25-20}), so this is the corresponding statement for the Moore regions: the elements containing the
+points $(n,0)$, $n$ large, form an infinite set without limit element.
+
+\emph{Axiom 8.} A simple closed curve (topological, Proposition~\ref{prop:elt-top}(b)) is a curve of elements $J$, and
+it is the boundary of the restricted region $I(J)$ (Theorem~\ref{thm:m25-11}).
+
+\emph{Axioms 6, 7.} Moore derives these from F.A.\ and the fact that every restricted region is the interior of a
+closed curve. We prove them directly. Let $R=I(J)$, $\bar R$ a restricted region and $P\in\bar R$ an element of $J$.
+\begin{itemize}
+\item \emph{Cross-cuts near $P$.} Let $V_0\subseteq\bar R$ be a Moore region about $P$ missing some element of $J$, and
+$D=I(J)$ (or $D=E(J)$). There are elements $a,b$ of $J$ splitting $J$ into arcs $X$, $Y$ with $P\in\oarc X$ and
+$X\subseteq V_0$, and an arc $c$ from $a$ to $b$ in $V_0$ with $\oarc c\subseteq D$. Indeed: the two arcs of $J$ from $P$
+(Theorem~\ref{thm:m25-5-10}(e)), cut near $P$ (Theorem~\ref{thm:m25-5-10}), give $a$, $b$ on either side of $P$, which
+can be taken accessible from $D$ inside a small region (an arc from an element of $D$ near $J$, cut at its first
+element on $J$). The two access arcs are joined in $D\cap V_0$ by Lemma~\ref{lem:quot-jan}, applied to $J$ and to
+$\fr V_0$ together with the rest of $J$; these meet in a connected set.
+\item \emph{Axiom 6.} Take $c$ interior to $J$ and $K=I(X\cup c)$. By Theorem~\ref{thm:m25-15-16}, $K\subseteq R$, and by
+Theorem~\ref{thm:m25-12}, $K\subseteq V_0\subseteq\bar R$. By Theorem~\ref{thm:m25-19} there is a restricted region $\bar K$
+about $P$ inside $V_0\setminus Y$; then $J\cap\bar K\subseteq X$, which is part of the boundary of $K$.
+\item \emph{Axiom 7.} Take $c$ exterior to $J$ and $L=I(X\cup c)$. By Theorem~\ref{thm:m25-18}, either $\oarc Y\subseteq
+E(X\cup c)$, and then $L$ misses $J$ and lies in $E(J)$ (as $\oarc c$ does); or $\oarc Y\subseteq L\subseteq V_0$, which is
+excluded since $V_0$ misses an element of $J$.
+\end{itemize}
+Along the way, Moore's weaker Axioms~$6'$ and~$7'$ (his route to 6 and 7 through F.A.) also follow, from
+Theorems~\ref{thm:m25-11} and~\ref{thm:m25-13}.
+\end{proof}
+
+\formal{\lean{HPC.Moore.m25r_axiom1}, \lean{HPC.Moore.m25r_axiom2}, \lean{HPC.Moore.m25r_axiom3},
+\lean{HPC.Moore.m25r_axiom4}, \lean{HPC.Moore.m25r_axiom5}, \lean{HPC.Moore.m25r_axiom6},
+\lean{HPC.Moore.m25r_axiom7}, \lean{HPC.Moore.m25r_axiom8}, \lean{HPC.Moore.m25_axioms6'7'},
+\lean{HPC.Moore.m25_theorem21}.}
+
+\begin{theorem}[Moore, Theorem~22]\label{thm:m25-22}
+If $G$ is a Moore decomposition of the plane, the space of elements $G$ is homeomorphic to $\R^2$. In Moore's form:
+there is a one-to-one correspondence between the elements of $G$ and the points of the plane such that a point $P$ is
+a limit point of a point set $M$ if and only if the corresponding element is a limit element of the set of
+elements corresponding to $M$.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:m25-21} and Moore's characterization of the plane (Theorem~\ref{thm:moore-plane}), $G$ with the
+topology generated by the restricted regions is homeomorphic to $\R^2$; by Theorem~\ref{thm:m25-20} this topology is the
+quotient topology. Homeomorphisms preserve accumulation points, and limit elements are the accumulation points of
+the quotient topology (Theorem~\ref{thm:m25-4}).
+\end{proof}
+
+\formal{\lean{HPC.Moore.m25_theorem22}, \lean{HPC.Moore.m25_theorem22_moore}.}
+
+\section{Monotone decompositions of a plane continuum}\label{sec:monotone-quotient}
+
+The main use of Theorem~\ref{thm:m25-22} in this series is to recognise a monotone image of a plane continuum as
+a plane set.
+
+\begin{proposition}\label{prop:monotone}
+Let $M$ be a compact space and $q\colon M\to Y$ a continuous surjection onto a Hausdorff space with connected
+fibres $q^{-1}(y)$. Then
+\begin{enumerate}[label=(\alph*)]
+\item the preimage of a connected set is connected;
+\item if $M$ is an indecomposable continuum, so is $Y$ (provided $Y$ has more than one point): a decomposition
+$Y=A\cup B$ into proper subcontinua lifts to the decomposition $M=q^{-1}(A)\cup q^{-1}(B)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) $q$ is closed (compact to Hausdorff). If $q^{-1}(C)=U\cup V$ with $U,V$ disjoint, nonempty and relatively closed,
+each fibre over $C$, being connected, lies in $U$ or in $V$, so $C=q(U)\cup q(V)$ is a partition of $C$ into disjoint,
+nonempty, relatively closed sets. (b) follows from (a), as $q^{-1}(A)$ and $q^{-1}(B)$ are proper, closed and connected.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.isPreconnected_preimage_of_monotone},
+\lean{HPC.Hagopian.isDecomposableSpace_of_monotone_image}.}
+
+Now let $M\subseteq\R^2$ be a continuum and $q\colon M\to Y$ as above. The \emph{fibre decomposition} of the plane
+has as elements the fibres of $q$ and the single points of $\R^2\setminus M$.
+
+\begin{lemma}\label{lem:fibre-usc}
+The fibre decomposition is upper semicontinuous in Moore's sense (Definition~\ref{def:moore-decomp}(3)).
+\end{lemma}
+
+\begin{proof}
+For fibres of $q$: if fibres $F_n=q^{-1}(y_n)$ came within $1/n$ of $F=q^{-1}(y)$ but not within $e$, pass to a
+subsequence with $y_n\to y'$ (compactness of $Y$) and with points $u_n\in F_n$ near $F$ converging to $u\in F$,
+and points $w_n\in F_n$ far from $F$ converging to $w$. By continuity $q(u)=y'=q(w)$, so $y'=y$ and $w\in F$,
+a contradiction. Points off $M$ are handled by the compactness of $M$: a point $z\notin M$ has a neighbourhood missing $M$,
+whose elements are single points.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.fibreSetoid}, \lean{HPC.Hagopian.fibre_usc}.}
+
+\begin{corollary}\label{cor:monotone-plane}
+Let $M\subseteq\R^2$ be a continuum and $q\colon M\to Y$ a continuous surjection onto a compact Hausdorff space with
+connected fibres, none of which separates the plane. Then the fibre decomposition is a Moore decomposition, the
+space of elements is a plane, and $Y$ is homeomorphic to a compact subset of $\R^2$ (the image of $\pi(M)$).
+In the application, $M$ is a homogeneous indecomposable plane continuum and every fibre is a proper subcontinuum of
+$M$; such subcontinua do not separate the plane.
+\end{corollary}
+
+\begin{proof}
+The elements are compact and connected and do not separate the plane by hypothesis (points never do), and the
+decomposition is upper semicontinuous by Lemma~\ref{lem:fibre-usc}. By Theorem~\ref{thm:m25-22} there is a
+homeomorphism $h\colon G\to\R^2$. The map $Y\to G$, $y\mapsto q^{-1}(y)$, is a continuous injection of a compact space
+into a Hausdorff space (continuity: the fibre map is the quotient map restricted to $M$, factored through $q$, which is a
+quotient map as a closed surjection), so it is an embedding; composing with $h$ embeds $Y$ onto the compact set
+$h(\pi(M))$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.fibreSetoid_mooreDecomp}, \lean{HPC.Hagopian.exists_plane_quotient_of_monotone_aux},
+\lean{HPC.Hagopian.exists_plane_quotient_of_monotone}.}
+
+The formal corollary is stated for the case of the application (homogeneous indecomposable $M$, fibres proper);
+the non-separation of proper subcontinua is the input that lets Theorem~\ref{thm:m25-22} apply.
+
+\section{Further plane tools}
+
+Once the Schoenflies theorem is available in the plane itself, several classical facts used in later volumes
+follow. We record them, with the plane-specific forms that are proved.
+
+\begin{theorem}[Cross-cuts in the plane]\label{thm:plane-split}
+Let $V\subseteq\R^2$ be a bounded connected open set whose frontier is the simple closed curve $C_1\cup C_2$, with
+$C_1,C_2$ arcs from $a$ to $b$ meeting only in $a,b$. If $\gamma$ is an arc from $a$ to $b$ with $\oarc\gamma\subseteq V$, then
+$V\setminus\gamma=R_1\cup R_2$, where $R_1,R_2$ are disjoint bounded connected open sets with frontiers
+$\gamma\cup C_1$ and $\gamma\cup C_2$.
+\end{theorem}
+
+\begin{proof}
+This is Theorems~\ref{thm:fa24} and~\ref{thm:fa25} for the restricted regions of the plane: the plane with the
+interiors of its simple closed curves satisfies (i)--(iii) (Jordan curve theorem, Theorem~\ref{thm:jct}), and
+$V=I(C_1\cup C_2)$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.plane_split}.}
+
+\begin{theorem}[Schoenflies theorem in the plane, one side prescribed]\label{thm:plane-schoenflies}
+Let $J\subseteq\R^2$ be a simple closed curve, $D$ its bounded complementary domain, and $\varphi\colon[0,1]\to J$ an
+embedding. There is an embedding $f\colon[0,1]^2\to\R^2$ with image $J\cup D$, $f(t,0)=\varphi(t)$ for all $t$, and $f$
+maps the open square onto $D$.
+\end{theorem}
+
+\begin{proof}
+Apply Theorem~\ref{thm:m25-21} to the decomposition of the plane into points (Section~\ref{sec:points}): the plane,
+with the interiors of its simple closed curves as regions, satisfies Moore's Axioms~1--8. Cut the arc of $J$
+complementary to $\varphi([0,1])$ twice to obtain a quadrilateral whose bottom side is $\varphi([0,1])$, apply
+Theorem~\ref{thm:schoenflies} to it, and reparametrize the bottom side by $\varphi$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.plane_schoenflies_aux}.}
+
+\begin{theorem}[Two-sided collars]\label{thm:collar}
+Every arc $\gamma$ in the plane has a two-sided collar: an embedding $F$ of $[0,1]\times[-1,1]$ onto a neighbourhood of
+$\oarc\gamma$ (relative to $\gamma$'s complement near the ends) with $F(t,0)=\gamma(t)$.
+\end{theorem}
+
+\begin{proof}
+Join the ends of $\gamma$ by an arc $\beta$ meeting $\gamma$ only in them (both ends are accessible from the connected
+complement of $\gamma$). An arc $\beta_2$ from end to end through the bounded side $I$ of $\gamma\cup\beta$ cuts $I$ into the
+bounded sides $R_1$ of $\gamma\cup\beta_2$ and $R_2$ of $\beta\cup\beta_2$ (Theorem~\ref{thm:plane-split}). One half-collar is
+taken in $R_1\cup\gamma\cup\beta_2$ (Theorem~\ref{thm:plane-schoenflies}); the other in the unbounded side of $\gamma\cup\beta$,
+by the Schoenflies theorem after an inversion about a point of $I$, restricted to a strip along $\gamma$.
+\end{proof}
+
+\formal{\lean{HPC.Hagopian.IsCollar}, \lean{HPC.Hagopian.exists_collar}.}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Show that in Theorem~\ref{thm:m25-13} the hypothesis that at most one end of the arc lies outside $R$ cannot be
+dropped: give a Moore region $R$ and an arc with both ends on $\fr R$ and its other elements in $R$ such that $R\setminus k$
+is not connected.
+\end{exercise}
+
+\begin{exercise}
+Prove Theorem~\ref{thm:m25-17} for the decomposition of the plane into points, directly from the Jordan curve theorem.
+\end{exercise}
+
+\begin{exercise}
+Let $M$ be the closed unit disc and $q\colon M\to[0,1]$, $q(z)=\abs z$. Describe the fibre decomposition. Which hypothesis of
+Corollary~\ref{cor:monotone-plane} fails, and what is the space of elements?
+\end{exercise}
+
+\begin{exercise}
+Let $G$ be the decomposition of $\R^2$ whose elements are the vertical segments $\set{x}\times[-1,1]$, $\abs x\le1$, and the
+single points elsewhere. Verify the hypotheses of Theorem~\ref{thm:m25-22} and write down an explicit homeomorphism
+of $G$ onto $\R^2$.
+\end{exercise}

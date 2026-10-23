@@ -1,0 +1,27 @@
+Batch 179 file manifest (Hagopian 1976 Theorem 1, commission doc/batches/COMMISSION-batch179.md)
+Changes relative to the commit preceding this batch (b7d0f1f). A = added, M = modified, R = renamed/moved.
+
+M Axioms.lean
+M HPC.lean
+A HPC/Hagopian/H76Final179.lean
+A HPC/Hagopian/H76Nondeg.lean
+A HPC/Hagopian/H76PieceB.lean
+A HPC/Hagopian/H76Thm1Setup.lean
+A HPC/Hagopian/H76Uniform.lean
+A HPC/Hagopian/H76Uniform2.lean
+A HPC/Hagopian/H76Uniform3.lean
+M HPC/Hagopian/Hagopian76W.lean
+A HPC/Hagopian/Hagopian76X.lean
+M LEDGER.md
+M OPEN.md
+M README.md
+M axioms.txt
+R doc/batches/COMMISSION-batch179.md   (moved from repository root)
+A doc/batches/REPORT-batch179.md
+A doc/batches/audits/axioms-batch179.txt
+R doc/batches/skeletons/Hagopian76X.lean   (moved from repository root)
+  doc/notes/hagopian76-cases.md   (unchanged; included because the report refers to it)
+A doc/batches/batch179-MANIFEST.txt   (this file)
+
+The tarball doc/batches/batch179-files.tar.gz was made from the repository root with
+  git diff --name-only b7d0f1f HEAD  (plus the two extra entries above), via tar -czf.

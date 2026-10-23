@@ -1,0 +1,19 @@
+# batch 192: files added (A), modified (M) or moved (R) in this run, from git diff --name-status 680e677 (the run's initial commit); the tarball doc/batches/batch192-files.tar.gz contains every file listed (new paths) plus this manifest
+M	Axioms.lean
+M	HPC.lean
+M	HPC/Span/OT82A.lean
+A	HPC/Span/OT82B.lean
+A	HPC/Span/OT82Order.lean
+A	HPC/Span/OT82Parity.lean
+A	HPC/Span/OT82Strip.lean
+A	HPC/Span/OT82Zero.lean
+M	LEDGER.md
+M	OPEN.md
+M	README.md
+M	axioms.txt
+R100	COMMISSION-batch192.md	doc/batches/COMMISSION-batch192.md
+A	doc/batches/REPORT-batch192.md
+A	doc/batches/audits/axioms-batch192.txt
+R100	OT82B.lean	doc/batches/skeletons/OT82B.lean
+M	doc/notes/ot82.md
+A	doc/batches/batch192-MANIFEST.txt

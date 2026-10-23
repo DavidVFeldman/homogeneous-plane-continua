@@ -1,0 +1,124 @@
+name: build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            -o elan-init.sh
+          sh elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Restore this repository's build from earlier runs
+        uses: actions/cache/restore@v4
+        with:
+          path: .lake/build
+          key: build-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}-${{ github.run_attempt }}
+          restore-keys: |
+            build-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}-
+            build-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-
+
+      - name: Fetch the Mathlib cache
+        run: lake exe cache get
+
+      # A first run may not finish within the limit. The build is saved anyway (next step), so
+      # "Re-run failed jobs" continues where it stopped.
+      - name: Build the libraries
+        timeout-minutes: 300
+        run: lake build HPC HPCExtra HPCCensus HPCArchive 2>&1 | tee build.log
+
+      - name: Save the build
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .lake/build
+          key: build-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}-${{ github.run_attempt }}
+
+      - name: No sorry in the libraries
+        run: |
+          if grep -n "declaration uses 'sorry'" build.log; then exit 1; fi
+
+  axioms:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            -o elan-init.sh
+          sh elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Restore the build
+        uses: actions/cache/restore@v4
+        with:
+          path: .lake/build
+          key: build-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}-${{ github.run_attempt }}
+          restore-keys: |
+            build-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}-
+          fail-on-cache-miss: true
+
+      - name: Fetch the Mathlib cache
+        run: lake exe cache get
+
+      - name: Regenerate the axiom audit
+        run: lake env lean Axioms.lean > axioms-ci.txt
+
+      - name: Compare with axioms.txt
+        run: diff axioms.txt axioms-ci.txt
+
+      - name: Allow only propext, Classical.choice and Quot.sound
+        run: |
+          cat > check_axioms.py <<'PYEOF'
+          import re, sys
+          std = {'propext', 'Classical.choice', 'Quot.sound'}
+          entries, cur = [], None
+          for line in open(sys.argv[1], encoding='utf-8'):
+              if line.startswith("'"):
+                  if cur is not None:
+                      entries.append(cur)
+                  cur = line
+              elif cur is not None:
+                  cur += line
+              elif line.strip():
+                  sys.exit('unexpected line: ' + line.strip())
+          if cur is not None:
+              entries.append(cur)
+          bad = 0
+          for e in entries:
+              e = ' '.join(e.split())
+              m = re.match(r"^'(.*)' depends on axioms: \[(.*)\]$", e)
+              if m and set(a.strip() for a in m.group(2).split(',')) <= std:
+                  continue
+              if re.match(r"^'(.*)' does not depend on any axioms$", e):
+                  continue
+              print('not allowed:', e[:200])
+              bad += 1
+          print(len(entries), 'entries,', bad, 'not on the three standard axioms')
+          sys.exit(1 if bad or not entries else 0)
+          PYEOF
+          python3 check_axioms.py axioms-ci.txt

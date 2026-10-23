@@ -1,0 +1,498 @@
+%======================================================================
+\chapter{Simple closed curves and their interiors}\label{ch:curves}
+%======================================================================
+
+This chapter follows F.A.\ \S\S6--7 (Theorems~20--43). It develops, from Moore's axioms, the plane
+topology of simple closed curves: every simple closed curve has exactly one interior; a cross-cut
+divides an interior into two interiors (the $\theta$-curve theorems); every point of a curve is
+accessible from both sides; there are closed curves about every point inside every region; and two
+interiors that meet can be merged into one (Theorems~41 and~42). These are the tools for the double
+rulings of Chapter~\ref{ch:rulings}.
+
+Throughout, $S$ is a space satisfying Axioms~1--8, with the topology of the bridge
+(Proposition~\ref{prop:bridge}): $S$ is metrizable, the regions form a basis of connected open sets
+with compact closures, and Moore's arcs and simple closed curves are the topological ones. ``Closed
+curve'' means simple closed curve. For an arc we write $AXB$ (an arc from $A$ to $B$ through $X$),
+$\oarc{AXB}$ for the open arc, and $AXBCA$ for the closed curve formed by two arcs $AXB$ and $ACB$ with
+only $A,B$ in common.
+
+Many arguments of F.A.\ are long case analyses with figures. We give complete proofs of the results
+that are used later and whose proofs are short, and proofs in outline of the others, indicating the
+construction and the key step; the formal proofs are complete.
+
+\section{The interior of a closed curve}
+
+\begin{theorem}[F.A.\ Theorems~20 and~21]\label{thm:fa20-21}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(Theorem~20.)} Every boundary point of a region $R$ is a limit point of its exterior
+$S\setminus\cl R$. Hence $\fr(S\setminus\cl R)=\fr R$.
+\item \emph{(Theorem~21.)} If $K,R$ are regions and $\fr R\subseteq\cl K$, then $R\subseteq K$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Let $P\in\fr R$ and let $\bar R$ be a region about $P$. Axiom~7 gives regions $L,\bar L\subseteq\bar
+R$ with $L$ in the exterior of $R$, $P\in\bar L$, and every boundary point of $R$ in $\bar L$ a boundary
+point of $L$. So $P\in\fr L$, and the region $\bar L\ni P$ contains a point of $L$, which lies in the
+exterior of $R$ and in $\bar R$. As $\bar R$ was arbitrary, $P$ is a limit point of the exterior.
+
+(b) The exterior $E_K=S\setminus\cl K$ is connected (Axiom~3) and does not lie in the compact set $\cl R$
+(it is unbounded, Theorem~\ref{thm:fa-elementary}(18)). It misses $\fr R\subseteq\cl K$, so by
+Lemma~\ref{lem:conn-frontier} it lies in $S\setminus\cl R$. Hence $R\subseteq\cl K$. If a point of $R$ were
+on $\fr K$, it would be a limit point of $E_K$ by (a); but $R$ is open and misses $E_K$. So
+$R\subseteq K$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.fa_theorem20}, \lean{HPC.Moore.fa_theorem21}.}
+
+\begin{corollary}[The interior of a closed curve]\label{cor:interior}
+Every closed curve $J$ is the frontier of exactly one region, its \emph{interior} $I(J)$. The
+\emph{exterior} $E(J)=S\setminus\cl{I(J)}$ is open and connected, $S\setminus J=I(J)\cup E(J)$ (disjoint), and
+$\fr I(J)=\fr E(J)=J$. If $J'$ is a closed curve with $J'\subseteq\cl{I(J)}$, then $I(J')\subseteq I(J)$.
+\end{corollary}
+
+\begin{proof}
+Existence is Axiom~8; if $R,R'$ are regions with frontier $J$, Theorem~\ref{thm:fa20-21}(b) gives
+$R\subseteq R'$ and $R'\subseteq R$. $I(J)$ is connected (Axiom~2), $E(J)$ is connected (Axiom~3), and the
+rest follows from Theorem~\ref{thm:fa20-21}.
+\end{proof}
+
+\formal{\lean{HPC.Moore.existsUnique_interior}, \lean{HPC.Moore.jordan}, \lean{HPC.Moore.Space.IsInteriorOf}.}
+
+``Within $J$'' means in $I(J)$, ``without $J$'' means in $E(J)$. In F.A.\ the interior of a closed curve
+is used from Theorem~23 on but never defined; Corollary~\ref{cor:interior} supplies the definition.
+
+\paragraph{The topological setting.} From here on the axioms enter only through the following facts, and
+the formal proofs of Theorems~24--34 are carried out in an arbitrary Hausdorff, locally connected space
+with a family of open sets (``regions'') satisfying them:
+\begin{enumerate}[label=(T\arabic*)]
+\item two distinct points of a connected open set are joined by an arc in it (Theorem~\ref{thm:fa15});
+\item if $K,R$ are regions and $\fr R\subseteq\cl K$ then $R\subseteq K$ (Theorem~\ref{thm:fa20-21});
+\item every closed curve is the frontier of a region (Axiom~8);
+\item regions and their exteriors are connected, closures of regions are compact, $S$ is not compact.
+\end{enumerate}
+
+\formal{\lean{HPC.Moore.Gen.ArcConn}, \lean{HPC.Moore.Gen.Th21Prop}, \lean{HPC.Moore.Gen.Ax8Prop},
+\lean{HPC.Moore.Gen.TInt}.}
+
+Two constructions recur. \emph{Accessibility:} if $W$ is a connected open set, $F\in W$, $Q\in\fr W$ and
+$N$ a neighbourhood of $Q$, there is an arc $FH$ with $H\in\fr W\cap N$ and $FH\setminus\set H\subseteq W$ (join
+$F$ by an arc in $W$ to a point of $W$ in a small connected neighbourhood of $Q$, continue in that
+neighbourhood towards $Q$, and stop at the first point off $W$). \emph{Crossing:} two such arcs from a
+common point $F$, glued, give an arc $HK$ through $W$ with ends on $\fr W$ near two prescribed boundary
+points.
+
+\formal{\lean{HPC.Moore.Gen.exists_access}, \lean{HPC.Moore.Gen.exists_cross}.}
+
+\begin{theorem}[F.A.\ Theorem~23]\label{thm:fa23}
+No nonempty region lies in an arc.
+\end{theorem}
+
+\begin{proof}[Proof (outline)]
+Suppose the region $R$ lies in the arc $AB$. Take $O\in R$, $O\ne A,B$ (regions are infinite), a region $K$
+about $O$ whose closure misses $A$ and $B$, and an arc $AXB$ in the exterior of $K$
+(Corollary~\ref{cor:fa16}) from $A$ to $B$. Cutting at a last and a first point, one finds points $A_1$, $B_1$
+on $AB$ on either side of $O$ and a sub-arc of $AXB$ from $A_1$ to $B_1$ meeting $AB$ only in $A_1,B_1$; with
+the interval $A_1OB_1$ of $AB$ it forms a closed curve $J$. $O$ is a boundary point of $I(J)$, so a small region
+about $O$, inside $R$ and missing the rest of $J$, meets $I(J)$; but it lies in $AB\subseteq J$, which misses
+$I(J)$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.fa_theorem23}.}
+
+\section{Theta-curves: Theorems 24--27}
+
+In this section $J=ACB\cup ADB$ is a closed curve with interior $R$ ($A,B$ separate $C,D$ on $J$), and
+$AXB$ is an arc from $A$ to $B$ with $\oarc{AXB}$ disjoint from $J$. Put $R_1=I(AXBCA)$, $R_2=I(AXBDA)$.
+
+\begin{theorem}[F.A.\ Theorem~24]\label{thm:fa24}
+If $\oarc{AXB}\subseteq R$, then (1) $R_1\subseteq R$; (2) $\oarc{ADB}$ lies without $AXBCA$; (3)
+$R_1\cap R_2=\emptyset$.
+\end{theorem}
+
+\begin{proof}
+(1) $\fr R_1=AXBCA\subseteq\cl R$; apply (T2). (2) $\oarc{ADB}$ misses $\cl{R_1}=R_1\cup AXBCA$: it lies on $J=\fr R$, so it misses the open set $R\supseteq R_1$;
+and it misses $AXBCA$, since $\oarc{AXB}\subseteq R$ misses $J$ and $ACB\cap ADB=\set{A,B}$. So it lies in $E(AXBCA)$.
+(3) If $R_1\cap R_2\ne\emptyset$: $R_2\subseteq R$ by (1) for $R_2$, so $R_2$ misses $J\supseteq ACB$,
+and it misses $\oarc{AXB}\subseteq\fr R_2$; so the connected set $R_2$ misses $\fr R_1=AXBCA$ and meets $R_1$,
+whence $R_2\subseteq R_1$ (Lemma~\ref{lem:conn-frontier}). Then $D\in\fr R_2\subseteq\cl{R_1}$, against (2).
+\end{proof}
+
+\formal{\lean{HPC.Moore.fa_theorem24}, \lean{HPC.Moore.Gen.th24_sub}, \lean{HPC.Moore.Gen.th24_ext},
+\lean{HPC.Moore.Gen.th24_disj}.}
+
+\begin{theorem}[F.A.\ Theorem~25]\label{thm:fa25}
+If $\oarc{AXB}\subseteq R$, then $R=\oarc{AXB}\cup R_1\cup R_2$.
+\end{theorem}
+
+\begin{proof}
+``$\supseteq$'' is Theorem~\ref{thm:fa24}(1). The points of $R$ on $\fr R_1=AXBCA$ are those of $\oarc{AXB}$, so
+$R\cap\cl{R_1}=R_1\cup\oarc{AXB}$, and likewise for $R_2$. Hence, with $Y=R\setminus(\oarc{AXB}\cup\cl{R_1}\cup\cl
+{R_2})$, the set $R\setminus\oarc{AXB}$ is the union of the three disjoint open sets $R_1,R_2,Y$. Suppose
+$Y\ne\emptyset$, and take $E\in Y$.
+
+\emph{Step 1.} An arc in $R$ from $E$ to a point of $R_1$ (T1) must meet $\oarc{AXB}$; let $O$ be its first point on
+the closed set $AXB$ ($A,B\notin R$). The sub-arc $EO$ minus $O$ is connected, lies in $R\setminus\oarc{AXB}$ and
+contains $E$, so it lies in $Y$.
+
+\emph{Step 2.} $E$ and the points of $\oarc{ADB}$ lie in the connected open set $E(AXBCA)$ (by
+Theorem~\ref{thm:fa24}(2), and $E\notin\cl{R_1}$). An arc in it from $E$ to a point of $\oarc{ADB}$ has a first
+point $L$ on $J$. The part before $L$ is connected, misses $J=\fr R$ and starts in $R$, so lies in $R$; it misses
+$\cl{R_1}\supseteq\oarc{AXB}$; so it lies in $R_2\cup Y$, hence in $Y$. And $L\in J\setminus\cl{R_1}=\oarc{ADB}$.
+
+\emph{Step 3.} Choose points $\bar H,H,O,K,\bar K$ in this order on $\oarc{AXB}$ and, by the crossing construction, arcs
+$HP_1K$ with open part in $R_1$ and $\bar HP_2\bar K$ with open part in $R_2$ (the ends can be prescribed near
+given points of $\oarc{AXB}$ because these points are on $\fr R_1$ and $\fr R_2$; one aims at points of $\oarc{AXB}$
+on either side of $O$, which is why the order can be arranged). Then
+$\bar J=\bar HP_2\bar K\cup\bar KK\cup KP_1H\cup H\bar H$ (with $\bar KK$, $H\bar H$ sub-arcs of $AXB$) is a closed curve
+lying in $R$, so its interior $\bar R$ lies in $R$ by (T2).
+
+\emph{Step 4.} $O\notin\bar J$, and $O$ is joined to $L$ by $OE\cup EL$, which misses $\bar J$ (its points other than $O,L$
+lie in $Y$, and $L\notin R$). As $L\notin\cl{\bar R}\subseteq R$, $O$ lies in $E(\bar J)$ (Lemma~\ref{lem:conn-frontier}).
+The open sub-arc of $AXB$ between $H$ and $K$ misses $\bar J$ and contains $O$, so it lies in $E(\bar J)$; the open
+sub-arcs from $A$ to $\bar H$ and from $\bar K$ to $B$ miss $\bar J$ and have the ends $A,B\notin\cl{\bar R}$, so they lie
+in $E(\bar J)$ too. Hence $\bar R$ misses $\oarc{AXB}$ and $\bar R\subseteq R_1\cup R_2\cup Y$. But $\bar R$ is connected and
+meets $R_1$ (near $P_1\in\fr\bar R\cap R_1$) and $R_2$ (near $P_2$): a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Moore.fa_theorem25}, \lean{HPC.Moore.Gen.th25}.}
+
+\begin{theorem}[F.A.\ Theorem~26]\label{thm:fa26}
+If $ACB$, $ADB$, $AFB$ are three arcs, no two with a common point other than $A,B$, then two of the interiors of
+$ACBFA$, $ACBDA$, $ADBFA$ meet.
+\end{theorem}
+
+\begin{proof}[Proof (outline)]
+Suppose the three interiors $R=I(ACBFA)$, $R_1=I(ACBDA)$, $R_2=I(ADBFA)$ are pairwise disjoint. Then each open arc
+lies without the curve formed by the other two (for $\oarc{ADB}$: were it within $ACBFA$, Theorem~\ref{thm:fa24} would put
+$R_1$ inside $R$). The set $Y$ of points without all three curves is nonempty (the closures of the three interiors are
+compact, $S$ is not). From a point $P\in Y$, an arc without $ACBFA$ reaches $\oarc{ADB}$ at a first point $O$, through $Y$.
+Around $O$ one builds, by crossing arcs through $R_1$ and $R_2$, a closed curve $\bar J$ on $R_1\cup R_2\cup\oarc{ADB}$ as in
+the proof of Theorem~\ref{thm:fa25}. If $I(\bar J)$ met $ACB\cup AFB$ it would contain it and then all of $Y$, which is
+unbounded; if it met $Y$ it would meet $ACB$ through arcs in $Y$; so $I(\bar J)\subseteq R\cup R_1\cup R_2$, while it meets
+$R_1$ and $R_2$ and is connected. Contradiction. (This simplifies Moore's three cases: his Case~I is reduced to Case~II and
+his auxiliary curves are not needed.)
+\end{proof}
+
+\formal{\lean{HPC.Moore.fa_theorem26}, \lean{HPC.Moore.Gen.th26}.}
+
+\begin{theorem}[F.A.\ Theorem~27]\label{thm:fa27}
+If $\oarc{AXB}$ lies without $J$, then (1) $D$ is without $AXBCA$ or $C$ is without $AXBDA$; (2) if $D$ is without
+$AXBCA$, then $C$ is within $AXBDA$ and $I(AXBDA)=\oarc{ACB}\cup R\cup R_1$.
+\end{theorem}
+
+\begin{proof}
+(1) If $D$ is not without $AXBCA$, then $\oarc{ADB}$ (connected, missing $AXBCA$) is within $AXBCA$, and
+Theorem~\ref{thm:fa24}(2), applied to the curve $AXBCA$ and the cross-cut $\oarc{ADB}$, puts $C$ without $AXBDA$.
+(2) $R$ and $R_1$ are disjoint ($R_1$ is connected, misses $J$, and is not inside $R$, as its boundary point $X$ is
+without $J$). If $C$ were also without $AXBDA$, the three interiors $R,R_1,R_2$ would be pairwise disjoint
+(the cases are symmetric), against Theorem~\ref{thm:fa26}. So $C$ is within $AXBDA$; then $\oarc{ACB}$ is a
+cross-cut of $AXBDA$ and Theorem~\ref{thm:fa25} gives $I(AXBDA)=\oarc{ACB}\cup R\cup R_1$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.fa_theorem27}, \lean{HPC.Moore.Gen.th27}.}
+
+\begin{corollary}[Splitting an interior]\label{cor:split-interior}
+If $J$ is a closed curve, $AXB$ an arc with $A,B\in J$ and $\oarc{AXB}\subseteq I(J)$, and $C_1,C_2$ the two arcs of $J$
+from $A$ to $B$, then $I(J)\setminus AXB$ is the disjoint union of $I(AXB\cup C_1)$ and $I(AXB\cup C_2)$.
+\end{corollary}
+
+\formal{\lean{HPC.Moore.split_interior}, \lean{HPC.Moore.split_interior_of}.}
+
+\section{Arcs near a curve: Theorems 28--30}
+
+\begin{theorem}[F.A.\ Theorem~28]\label{thm:fa28}
+Let $O$ be a point of the closed curve $J$, $\bar R$ a region about $O$, and $M$ either $I(J)$ or $E(J)$. There is an
+arc $AXB$ with $A,B\in J$, $\oarc{AXB}\subseteq M\cap\bar R$, such that of the two arcs of $J$ from $A$ to $B$ the one
+containing $O$ (in its interior) lies in $\bar R$.
+\end{theorem}
+
+\begin{proof}[Proof (outline)]
+Axiom~6 (for $M=I(J)$) or Axiom~7 (for $M=E(J)$) gives regions $L\subseteq M\cap\bar R$ and $\bar L\subseteq\bar R$ about $O$ such
+that every point of $J$ in $\bar L$ is a boundary point of $L$. Take an arc $A_1OB_1$ of $J$ in $\bar L$, points $A_2,B_2$
+with $A_1A_2OB_2B_1$ in order, small regions $R_A\ni A_2$, $R_B\ni B_2$ meeting $J$ only in $A_1O$ and $OB_1$, points
+$C\in L\cap R_A$, $D\in L\cap R_B$, an arc from $C$ to $D$ in $L$ and arcs from $C$ to $A_2$ in $R_A$, from $D$ to $B_2$ in
+$R_B$. The arc $AXB$ is extracted from their union; Moore's last step needs care, since the arc $CA_2$ may leave $M$
+before reaching $J$: one takes for $A$ the \emph{first point of $CA_2$ outside $M$}, which lies on $\fr M=J$, hence on the
+open arc $A_1O$; likewise $B$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.fa_theorem28}.}
+
+Theorem~29 (if $A,B$ separate $C,D$ on $J$, and $\oarc{AXB}$, $\oarc{CYD}$ are both within or both without $J$, they meet)
+follows from Theorems~\ref{thm:fa24}, \ref{thm:fa25} and~\ref{thm:fa27}. In the case ``within'', if the arcs did not
+meet, the connected set $\oarc{CYD}$ would lie in $R_1\cup R_2$ (Theorem~\ref{thm:fa25}), hence in one of them, say $R_1$; but its
+limit point $D$ lies without $AXBCA$ (Theorem~\ref{thm:fa24}(2)), and symmetrically $C$ lies without $AXBDA$. The case ``without'' uses
+Theorem~\ref{thm:fa27} in the same way. Theorem~30 (the interiors of $AXBDA$ and $CYDBC$ meet) is not proved by Moore; the formal proof
+examines the four combinations of the alternatives of Theorem~\ref{thm:fa27}.
+
+\formal{\lean{HPC.Moore.fa_theorem29}, \lean{HPC.Moore.fa_theorem30}.}
+
+\section{The two sides of an arc and accessibility: Theorems 31--34}
+
+\begin{theorem}[F.A.\ Theorem~31; the pocket construction]\label{thm:fa31}
+Let $f\colon I\to S$ parametrize an arc, $0<b<1$, and $R$ a region about $f(b)$. There are closed curves $J_1=F_1\cup P_1$
+and $J_2=F_2\cup P_2$, where $P_1\supseteq P_2$ are sub-arcs of the arc around $f(b)$ (in its interior) and $F_1,F_2$ are
+arcs meeting the given arc only in their ends, such that $I(J_1)$ and $I(J_2)$ are disjoint, miss the arc, and together
+with the open arc $\oarc{P_2}$ form a region about $f(b)$ inside $R$.
+\end{theorem}
+
+\begin{proof}[Proof (outline)]
+A closed curve $J_0$ through $f(b)$ containing a sub-arc of the given arc is built as in Theorem~\ref{thm:fa23}. Theorem~28
+inside $J_0$ at $f(b)$ gives an arc $F_1$ within $J_0$, closing a curve $J_1$; Theorem~28 again, for $J_1$ from outside,
+gives $F_2$ without $J_1$, closing a curve $J_2$. By Theorem~\ref{thm:fa27}, the interior of the curve formed by $F_1$, $F_2$
+and the two short pieces of the arc is $I(J_1)\cup I(J_2)\cup\oarc{P_2}$, and Theorem~\ref{thm:fa24}(3) makes $I(J_1)$ and
+$I(J_2)$ disjoint.
+\end{proof}
+
+\formal{\lean{HPC.Moore.fa_theorem31}, \lean{HPC.Moore.th31_pocket}.}
+
+\begin{corollary}[The two sides]\label{cor:sides}
+If $f(b)$ is an interior point of an arc $\alpha$ and $W$ an open set about $f(b)$, there are an open set $N$ with $f(b)\in
+N\subseteq W$ and two connected open sets $I_1,I_2\subseteq W\setminus\alpha$ with $N\setminus\alpha\subseteq I_1\cup I_2$, each of
+which has every point of some open sub-arc of $\alpha$ about $f(b)$ as a limit point.
+\end{corollary}
+
+\formal{\lean{HPC.Moore.sides}.}
+
+\begin{theorem}[Propagation and accessibility; F.A.\ Theorem~32]\label{thm:fa32}
+Let $f$ parametrize an arc $\alpha=AB$ ($A=f(0)$, $B=f(1)$), $O$ an open set, and $Q$ the component of $O\setminus\alpha$
+containing a point $x_0$.
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(Propagation.)} If $T\subseteq(0,1)$ is an interval with $f(T)\subseteq O$ and some point of $f(T)$ is a limit point
+of $Q$, then every point of $f(T)$ is a limit point of $Q$.
+\item \emph{(Accessibility.)} If $f(u)\in O$ for all $u\in(t_0,1)$ and some such $f(u)$ is a limit point of $Q$, then $x_0$ is
+joined to $B$ by an arc lying, except for $B$, in $Q$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) The set of $u\in T$ with $f(u)\in\cl Q$ is closed in $T$ and nonempty. It is open: if $f(u)\in\cl Q$, take $N,I_1,I_2$
+as in Corollary~\ref{cor:sides} with $W\subseteq O$. $Q$ meets $N\setminus\alpha$, hence $I_1$ or $I_2$, say $I_1$; as $I_1$ is
+connected and lies in $O\setminus\alpha$, $I_1\subseteq Q$, and every point of an open sub-arc about $f(u)$ is in $\cl{I_1}\subseteq\cl
+Q$. As $T$ is connected, the set is all of $T$.
+
+(b) (Outline.) By (a), $Q$ has every point of $f((t_0,1))$ as a limit point. Choose open sets $O_k\subseteq O$, $O_k$ within
+distance $1/k$ of $B$ and containing $f((t_k,1))$ for suitable $t_k\to1$; by (a) the component $Q_k$ of $O_k\setminus\alpha$ adjacent to
+$f((t_k,1))$ lies in $Q$ and, by connectedness, in $Q_{k-1}$. Pick $x_k\in Q_k$ and arcs $\beta_k$ in $Q_k$ from $x_k$ to
+$x_{k+1}$ (T1), arranged so that non-consecutive ones are disjoint. The $\beta_k$ converge to $B$, and
+Theorem~\ref{thm:limit-arc} (with trimming) gives an arc from $x_0$ to $B$ in $Q\cup\set B$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.side_propagate}, \lean{HPC.Moore.accessible}, \lean{HPC.Moore.fa_theorem32}.}
+
+Moore's own proof of Theorem~32 covers the arc by chains of the closed curves of Theorem~31 and uses a least-upper-bound
+argument with two classes of points; the connectedness argument (a) replaces it.
+
+\begin{theorem}[F.A.\ Theorems~33 and~34]\label{thm:fa33-34}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item If $A\in\fr R$ for a region $R$, $B\in R$, and $AB$ is an arc with $AB\setminus\set A\subseteq R$, then
+$R\setminus(AB\setminus\set A)$ is connected.
+\item If $AB$ is an arc lying in a region $R$, then $R\setminus AB$ is connected. In particular this holds for $R$ the
+interior of a closed curve.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+We use the following consequence of Theorem~\ref{thm:fa32} (\emph{reaching an end}): if $O$ is open, $\alpha=AB$ an arc
+with $\alpha\setminus\set A\subseteq O$, and $P\in O\setminus\alpha$ is joined in $O$ by an arc to a point of $\alpha$ other
+than $A$, then $P$ is joined to $B$ by an arc in $O$ meeting $\alpha$ only in $B$. Indeed, the first point $X$ of that arc on
+$\alpha$ is a limit point of the component $Q$ of $P$ in $O\setminus\alpha$; if $X=B$ we are done, otherwise propagate along
+$\alpha$ from $X$ towards $B$ and apply accessibility.
+
+(a) (Kline's proof.) Let $C,D\in R\setminus(AB\setminus\set A)$. An arc from $C$ to $B$ in $R$ meets $AB$, not at
+$A\notin R$; so $C$ is joined to $B$ by an arc $\gamma$ meeting $AB$ only in $B$. Then $\Gamma=\gamma\cup AB$ is an arc from
+$C$ to $A$ with $\Gamma\setminus\set A\subseteq R$. An arc from $D$ to $C$ in $R$ meets $\Gamma$ not at $A$; reaching the end $C$
+of $\Gamma$, $D$ is joined to $C$ by an arc in $R$ meeting $\Gamma$ only in $C$. This arc misses $AB$, so $C$ and $D$ are in the
+same component of $R\setminus(AB\setminus\set A)$.
+
+(b) The same argument, with both ends of $AB$ in $R$: reaching an end gives an arc from $C$ to an end of $AB$, say $B$,
+meeting $AB$ only there, and $\Gamma=\gamma\cup AB$; then $D$ reaches an end of $\Gamma$. If it reaches $C$ we are done. If it
+reaches $A$, then $D$ and $C$ are the ends of an arc $D\dots A\dots B\dots C$ in $R$ containing $AB$, and the two sides of this
+arc near an interior point (Corollary~\ref{cor:sides}) together with accessibility join $D$ to $C$ in $R\setminus AB$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.reach_end}, \lean{HPC.Moore.joinZ}, \lean{HPC.Moore.fa_theorem33},
+\lean{HPC.Moore.fa_theorem34_region}, \lean{HPC.Moore.fa_theorem34}.}
+
+Moore gives two proofs of Theorem~34. The first (for interiors of closed curves) is not needed; the second, ``a
+modification of a proof due to Mr.~J.~R.~Kline'', is the one formalized. Kline's argument does not cover the case in
+which the arc from $D$ first meets $\Gamma$ at its end $A$; that case is the last sentence of the proof.
+
+\section{Curves about points: Theorems 35, 36, 39 and 40}
+
+\begin{theorem}[F.A.\ Theorems~39 and~40; accessibility of a closed curve]\label{thm:fa39-40}
+Let $J$ be a closed curve and $M$ either $I(J)$ or $E(J)$.
+\begin{enumerate}[label=(\alph*)]
+\item Every point $O\in J$ is joined to every point $P\in M$ by an arc lying in $M\cup\set O$. In particular every point not on
+$J$ is joined to $O$ by an arc meeting $J$ only in $O$.
+\item Any two points $A\ne B$ of $J$ are joined by an arc whose open part lies in $I(J)$ and by one whose open part lies in
+$E(J)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Let $f$ parametrize an arc $\alpha$ of $J$ with $f(1)=O$. The set $W=(S\setminus J)\cup f((0,1))$ is open (its
+complement is the compact set $J\setminus f((0,1))$), it contains $f(u)$ for $0<u<1$, and $W\setminus\alpha=S\setminus J$. So the
+component of $P$ in $W\setminus\alpha$ is the component of $P$ in $S\setminus J$, which is $M$ (Corollary~\ref{cor:interior}).
+Since $\fr M=J$, the points $f(u)$ are limit points of $M$. Theorem~\ref{thm:fa32}(b) joins $P$ to $O$ by an arc lying, except for
+$O$, in $M$.
+(b) Take $P\in M$ and arcs from $P$ to $A$ and to $B$ as in (a); their union contains an arc from $A$ to $B$
+(Lemma~\ref{lem:arc-ops}(c)), whose open part lies in $M$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.access}, \lean{HPC.Moore.fa_theorem39}, \lean{HPC.Moore.fa_theorem40}.}
+
+Moore proves Theorem~39 with a sequence of closed curves converging to $O$ and a limit arc; accessibility
+(Theorem~\ref{thm:fa32}) does the same work.
+
+\begin{theorem}[F.A.\ Theorems~35 and~36]\label{thm:fa35-36}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item Every nonempty region contains a closed curve.
+\item If $O$ is a point of a region $R$, there is a closed curve $J\subseteq R$ with $O\in I(J)\subseteq R$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof (outline)]
+(a) Take an arc in $R$ (Corollary~\ref{cor:fa16}) and, about an interior point of it, the curve $J_1$ of the pocket
+construction (Theorem~\ref{thm:fa31}), which lies in $R$.
+
+(b) Moore's proof, with one correction. Take a closed curve $J$ in a small region about a point $X\ne O$ of $R$, so that $O$ is
+without $J$ and $I(J)\subseteq R$ (by (a) and (T2)); an arc $OA$ meeting $J$ only in $A$; a boundary point $C$ of $R$
+(Theorem~\ref{thm:fa-elementary}(19)) and an arc $BC$ from $J$ to $C$ with $BC\setminus\set C\subseteq R$, missing $OA$ and meeting $J\cup I(J)$
+only in $B$ (by Theorem~\ref{thm:fa33-34}(a) in $R\setminus OA$ and first points). Moore takes $BC$ inside a region about $C$ that need
+not lie in $R$; the arc is cut at its first point outside $R$, which is again a boundary point of $R$, and that point is used as $C$.
+Let $AF_1B$, $AH_1B$ be the two arcs of $J$ from $A$ to $B$ and $FZH$ an arc from $AF_1B$ to $AH_1B$, missing $OA\cup BC$, with open part
+without $J$ and inside $R$ (Theorems~\ref{thm:fa20-21}, \ref{thm:fa33-34}). Then $B$ is without $ZHAFZ$ (the interior of that curve lies
+in $R$, and the arc $BC$ reaches $C\notin R$ without meeting it), so by Theorem~\ref{thm:fa27} $A$ is within $ZHBFZ$, and so is $O$, since
+$OA$ does not meet that curve. Finally $I(ZHBFZ)\subseteq R$ by (T2), as the curve lies in $R$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.fa_theorem35}, \lean{HPC.Moore.fa_theorem36},
+\lean{HPC.Moore.fa_theorem36_interior_subset}.}
+
+\begin{remark}
+As printed, Theorem~35 (``every region contains a closed curve'') fails for the empty region
+(\lean{HPC.Moore.not_fa_theorem35_printed}); see Remark~\ref{rem:empty-region}. The statement that the interior lies in $R$ is
+not part of the printed Theorem~36, but it is what Moore uses in 1925 (Theorem~19), and it follows from (T2).
+\end{remark}
+
+\section{Merging interiors: Theorems 37--43}
+
+\begin{definition}\label{def:chord}
+Let $J_1,J_2$ be closed curves. A \emph{chord} of $J_1$ over a closed set $K$ is an arc of $J_1$ with its ends on $K$ and its open
+arc off $K$.
+\end{definition}
+
+Every point of $J_1\setminus K$ lies on exactly one chord over $K$ (cut $J_1$ at the nearest points of $K$ on either side), and two
+chords whose open arcs meet are equal.
+
+\begin{lemma}[Chords form a null family; Moore 1919, Theorem~A]\label{lem:chords-null}
+Arcs of a closed curve $L$ with pairwise disjoint open arcs form a null family: for every $\varepsilon>0$ only finitely many of
+them have a point at distance $\ge\varepsilon$ from their first end.
+\end{lemma}
+
+\begin{proof}
+Parametrize $L$ by the circle $\R/\Z$. Each arc of $L$ is the image of a closed interval of the circle, and the open arcs being
+disjoint, so are the open intervals; so for every $\delta>0$ only finitely many intervals have length $\ge\delta$. By uniform
+continuity of the parametrization, an arc whose interval has length $<\delta$ has diameter $<\varepsilon$ for suitable $\delta$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.chords_null}, \lean{HPC.Moore.m19_theoremA}.}
+
+Moore's Theorem~A (1919) is the statement that a closed curve $L$ carries no infinite family of arcs, no two with a common
+segment, each meeting two given disjoint closed sets; the lemma above is the form used here.
+
+Theorems~37 and~38 of F.A.\ produce, for a point $O$ of $J$ not on another closed curve $C$, the innermost (resp.\ outermost) arc of
+$C$ around $O$ with open part within (resp.\ without) $J$. The formal proofs replace Moore's limit-point arguments by the
+observation that the chords of $C$ in question have only finitely many pairs of ends: distinct chords have disjoint open
+intervals in a parametrization of $C$, and all have length bounded below, since their two ends lie in disjoint compact sets.
+
+\formal{\lean{HPC.Moore.exists_maximal_chord}, \lean{HPC.Moore.fa_theorem37}, \lean{HPC.Moore.fa_theorem38}.}
+
+\begin{theorem}[F.A.\ Theorem~41]\label{thm:fa41}
+If the interiors $I_1,I_2$ of the closed curves $J_1,J_2$ meet, there is a closed curve $J\subseteq J_1\cup J_2$ with $I_1\cup
+I_2\subseteq I(J)$.
+\end{theorem}
+
+\begin{proof}
+\emph{Case I: $J_1\cap J_2$ has at most one point.} Then one interior contains the other, and $J$ is the bigger curve. Indeed,
+if $J_2$ misses $I_1$, then $I_1$ (connected, meeting $I_2$, missing $J_2=\fr I_2$) lies in $I_2$. Otherwise $J_2$ has a point $x$
+within $J_1$, and no point $y$ without $J_1$: the two arcs of $J_2$ from $x$ to $y$ would each meet $J_1$ at a point other than
+$x,y$, giving two common points. So $J_2\subseteq\cl{I_1}$ and $I_2\subseteq I_1$ by (T2).
+
+\emph{Case II, first sub-case: every point of $J_1$ is within or on $J_2$.} Then $I_1\subseteq I_2$ by (T2), and $J=J_2$;
+symmetrically if $J_2\subseteq\cl{I_1}$.
+
+\emph{Case II proper} (outline). Let $V$ be a component of $S\setminus(\cl{I_1}\cup\cl{I_2})$ with noncompact closure. Its frontier lies
+on $J_1\cup J_2$, and $V$ misses the interior of every closed curve that misses $V$. There is a point $O$ of $J_2$ without $J_1$ which is
+a limit point of $V$, and a second one $O'$. Split $J_2$ at $O,O'$ into two arcs; on each, replace every sub-arc cut off by a chord of $J_1$
+over $J_2$ lying in $\cl V$ by that chord. The replaced sub-arcs have disjoint parameter intervals (no point inside such a sub-arc is a limit
+point of $V$, by Theorem~\ref{thm:fa27}), the chords have disjoint open arcs and form a null family (Lemma~\ref{lem:chords-null}), so the
+result is an arc from $O$ to $O'$ (Theorem~\ref{thm:arc-replace}). The two arcs so obtained meet only in $O,O'$, and their union $J$ is a
+closed curve on $J_1\cup J_2$ containing the frontier of $V$. Then $V$ is the exterior of $J$, and $I_1\cup I_2$, which misses $J$ and $V$, lies
+in $I(J)$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.fa_theorem41_caseI_nested}, \lean{HPC.Moore.fa_theorem41_caseI},
+\lean{HPC.Moore.fa_theorem41_of_subset}, \lean{HPC.Moore.fa_theorem41_caseII}, \lean{HPC.Moore.Gen.arc_replace},
+\lean{HPC.Moore.fa_theorem41}.}
+
+Moore ends the proof of Case~II with ``It may be proved that $J$ is a closed curve satisfying the requirements of Theorem~41''; the
+replacement of a null family of arcs (Theorem~\ref{thm:arc-replace}) is what this sentence needs.
+
+\begin{theorem}[F.A.\ Theorem~42]\label{thm:fa42}
+Let $\mathcal G$ be a finite nonempty set of closed curves the union of whose interiors is connected. There is a closed curve lying on
+the curves of $\mathcal G$ whose interior contains all their interiors.
+\end{theorem}
+
+\begin{proof}
+Induction on the number of curves not yet absorbed. Suppose $\mathcal H\subsetneq\mathcal G$ is nonempty and $J_{\mathcal H}$ is a closed
+curve on the curves of $\mathcal H$ whose interior contains theirs. If no curve of $\mathcal G\setminus\mathcal H$ had an interior meeting
+$U=\bigcup_{\mathcal H}I(J)$, then $U$ and $V=\bigcup_{\mathcal G\setminus\mathcal H}I(J)$ would be disjoint nonempty open sets whose union
+is the union of all the interiors, against connectedness. So some curve $q\in\mathcal G\setminus\mathcal H$ has an interior meeting
+$U\subseteq I(J_{\mathcal H})$. Theorem~\ref{thm:fa41}
+applied to $J_{\mathcal H}$ and $q$ absorbs $q$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.fa_theorem42_of_41}, \lean{HPC.Moore.fa_theorem42}.}
+
+The connectedness of the union of the interiors is essential; it is what guarantees an order in which each new interior meets the union
+of the previous ones.
+
+\begin{theorem}[F.A.\ Theorem~43, corrected]\label{thm:fa43}
+Let $J$ be a closed curve, $O\in J$, and $\mathcal G$ a finite \emph{nonempty} set of closed curves whose interiors contain $O$ and none
+of whose interiors contains $I(J)$. There are closed curves $J_1,J_2$ through $O$, lying on $J$ and the curves of $\mathcal G$, with $I(J_1)$
+without $J$, $I(J_2)$ within $J$, and both inside every interior of a curve of $\mathcal G$.
+\end{theorem}
+
+\begin{proof}[Proof (outline)]
+Moore gives no proof. The key step is the intersection analogue of Theorem~41: if $O\in J$ lies within $J'$ and $U$ is $I(J)$ or $E(J)$
+(in the second case with $I(J)\not\subseteq I(J')$), and $J\cap J'$ has two points, then the component of $U\cap I(J')$ adjacent to $O$ is
+the interior of a closed curve on $J\cup J'$ through $O$. Its proof is that of Case~II of Theorem~41 with this component in place of the
+unbounded one. Iterating over $\mathcal G$ gives $J_2$ (starting from $J$) and $J_1$ (starting from the exterior side).
+\end{proof}
+
+\formal{\lean{HPC.Moore.dual_component}, \lean{HPC.Moore.fa_theorem43}.}
+
+For $\mathcal G=\emptyset$ the printed Theorem~43 is false: its hypotheses hold vacuously and its conclusion would make the interior of $J$
+lie in its own exterior (\lean{HPC.Moore.not_fa_theorem43_printed}).
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+In $\R^2$, verify Theorem~\ref{thm:fa25} for $J$ the unit circle and $AXB$ a diameter, and Theorem~\ref{thm:fa27} for $AXB$ a semicircle
+outside the unit circle.
+\end{exercise}
+
+\begin{exercise}
+Show by an example in $\R^2$ that Theorem~\ref{thm:fa42} fails if the union of the interiors is not connected.
+\end{exercise}
+
+\begin{exercise}
+Prove Corollary~\ref{cor:split-interior} from Theorems~\ref{thm:fa24} and~\ref{thm:fa25}.
+\end{exercise}

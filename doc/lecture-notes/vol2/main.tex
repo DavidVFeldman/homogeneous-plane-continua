@@ -1,0 +1,93 @@
+% Lecture notes on the classification of homogeneous plane continua,
+% following the formal (Lean 4) proof in this repository.
+% Volume 2: Uniqueness and homogeneity of the pseudo-arc.
+%
+% Compile with:  pdflatex main && pdflatex main   (two runs for the contents and references)
+\documentclass[11pt,oneside]{book}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tikz}
+\usepackage[hidelinks]{hyperref}
+
+% ---------------------------------------------------------------- theorem styles
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ---------------------------------------------------------------- notation
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\cl}[1]{\overline{#1}}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\fl}[1]{\left\lfloor #1\right\rfloor}
+% the composant of p in M
+\newcommand{\cmp}[2]{\operatorname{cmp}_{#1}(#2)}
+% the union of the links a..b of a chain D
+\newcommand{\spn}[3]{#1[#2,#3]}
+% least and greatest coarse index of a fine link
+\newcommand{\lo}{\rho}
+\newcommand{\hi}{\sigma}
+% envelope and arrival level of a leg
+\newcommand{\env}{\operatorname{Env}}
+\newcommand{\arr}{\operatorname{arr}}
+
+% Names of declarations in the Lean development (typewriter, underscores allowed).
+\newcommand{\lean}[1]{\texttt{\detokenize{#1}}}
+% A Lean name ending in a subscript digit (such as Tracks with subscript 1).
+\newcommand{\leansub}[2]{\texttt{\detokenize{#1}}\ensuremath{_{#2}}}
+% A paragraph pointing to the formal counterpart of a result.
+\newcommand{\formal}[1]{\par\smallskip\noindent{\small\textit{Formal counterpart:} #1}\par\smallskip}
+% A reference to a numbered result of Volume 1.
+\newcommand{\vone}[1]{Volume~1, #1}
+
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{\textbf{Homogeneous Plane Continua}\\[6pt]
+\Large Lecture notes following the formal proof\\[18pt]
+\large Volume 2\\[4pt]
+\Large Uniqueness and homogeneity of the pseudo-arc}
+\author{}
+\date{}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+% The introduction is Chapter 0, as in Volume 1.
+\setcounter{chapter}{-1}
+\input{ch0-intro}
+\input{ch1-composants}
+\input{ch2-consolidations}
+\input{ch3-patterns}
+\input{ch4-matching}
+\input{ch5-two-descriptions}
+\input{ch6-folding}
+\input{ch7-descriptions}
+\input{ch8-main}
+
+\appendix
+\input{appA-formal}
+
+\end{document}

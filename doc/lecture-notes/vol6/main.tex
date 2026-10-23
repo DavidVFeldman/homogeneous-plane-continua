@@ -1,0 +1,114 @@
+% Lecture notes on the classification of homogeneous plane continua,
+% following the formal (Lean 4) proof in this repository.
+% Volume 6: The indecomposable case.
+%
+% Compile with:  pdflatex main && pdflatex main   (two runs for the contents and references)
+\documentclass[11pt,oneside]{book}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tikz}
+\usepackage[hidelinks]{hyperref}
+
+% ---------------------------------------------------------------- theorem styles
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ---------------------------------------------------------------- notation
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\interior}{\operatorname{int}}
+\newcommand{\cl}[1]{\overline{#1}}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\nrm}[1]{\lVert #1\rVert}
+% the composant of p in M
+\newcommand{\cmp}[2]{\operatorname{cmp}_{#1}(#2)}
+% the frontier of a set
+\newcommand{\fr}{\operatorname{fr}}
+% the interior of a compact set of the plane (union of the bounded complementary components)
+\newcommand{\inn}{\operatorname{ins}}
+% the layer k^{-1}(s) of an admissible map
+\newcommand{\lay}[2]{#1^{-1}(#2)}
+% the Effros neighbourhood
+\newcommand{\Eff}{\mathcal{W}}
+% coordinate projections
+\newcommand{\pr}[1]{\pi_{#1}}
+% the diagonal
+\newcommand{\Diag}{\Delta}
+% the parity of a closed polygon at a point
+\newcommand{\parity}{\operatorname{par}}
+% the relative frontier of a subgraph
+\newcommand{\rfr}{\partial}
+% a side of a set over a graph
+\newcommand{\side}{\operatorname{side}}
+% the unit interval
+\newcommand{\I}{[0,1]}
+
+% Names of declarations in the Lean development (typewriter, underscores allowed).
+\newcommand{\lean}[1]{\texttt{\detokenize{#1}}}
+% A Lean name ending in a subscript digit.
+\newcommand{\leansub}[2]{\texttt{\detokenize{#1}}\ensuremath{_{#2}}}
+% A paragraph pointing to the formal counterpart of a result.
+\newcommand{\formal}[1]{\par\smallskip\noindent{\small\textit{Formal counterpart:} #1}\par\smallskip}
+% References to numbered results of the earlier volumes.
+\newcommand{\vone}[1]{Volume~1, #1}
+\newcommand{\vtwo}[1]{Volume~2, #1}
+\newcommand{\vthree}[1]{Volume~3, #1}
+\newcommand{\vfour}[1]{Volume~4, #1}
+\newcommand{\vfive}[1]{Volume~5, #1}
+
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{\textbf{Homogeneous Plane Continua}\\[6pt]
+\Large Lecture notes following the formal proof\\[18pt]
+\large Volume 6\\[4pt]
+\Large The indecomposable case:\\ hereditary indecomposability, span zero\\ and snake-likeness}
+\author{}
+\date{}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+% The introduction is Chapter 0, as in Volumes 1--5.
+\setcounter{chapter}{-1}
+\input{ch0-intro}
+\input{ch1-homogeneity}
+\input{ch2-typelambda}
+\input{ch3-decomposition}
+\input{ch4-noarc}
+\input{ch5-span}
+\input{ch6-strips}
+\input{ch7-snake}
+\input{ch8-folds}
+\input{ch9-stairwells}
+\input{ch10-ladders}
+
+\appendix
+\input{appA-formal}
+
+\end{document}

@@ -1,0 +1,39 @@
+K=5 n=11 (special-case sequences 64): instances=320 IH-H=3296 working(Cbot)=2640 working(A)=792 inst-some-Cbot-works=320 inst-every-Cbot-fails=0
+   P=a: H-with-P=1280 unsound(H with P failing Cbot)=176 unsat(instances with no H with P)=128
+      e.g. unsound: rho=[1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=4 k=6 i=0 H=[0, 1, 0, 1, 1]
+      e.g. unsat:   rho=[1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=4 k=6 i=3
+   P=b: H-with-P=3296 unsound(H with P failing Cbot)=656 unsat(instances with no H with P)=0
+      e.g. unsound: rho=[1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=4 k=6 i=0 H=[0, 1, 0, 1, 1]
+   P=c: H-with-P=1280 unsound(H with P failing Cbot)=176 unsat(instances with no H with P)=128
+      e.g. unsound: rho=[1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=4 k=6 i=0 H=[0, 1, 0, 1, 1]
+      e.g. unsat:   rho=[1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=4 k=6 i=3
+   P=d: H-with-P=2592 unsound(H with P failing Cbot)=512 unsat(instances with no H with P)=0
+      e.g. unsound: rho=[1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=4 k=6 i=0 H=[0, 1, 0, 1, 1]
+   P=s: H-with-P=2336 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=w: H-with-P=2640 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+K=5 n=12 (special-case sequences 960): instances=6528 IH-H=102960 working(Cbot)=82656 working(A)=24888 inst-some-Cbot-works=6528 inst-every-Cbot-fails=0
+   P=a: H-with-P=38400 unsound(H with P failing Cbot)=5024 unsat(instances with no H with P)=2624
+      e.g. unsound: rho=[1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=5 k=7 i=0 H=[0, 0, 1, 0, 1, 1]
+      e.g. unsat:   rho=[1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=5 k=7 i=4
+   P=b: H-with-P=102960 unsound(H with P failing Cbot)=20304 unsat(instances with no H with P)=0
+      e.g. unsound: rho=[1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=5 k=7 i=0 H=[0, 0, 1, 0, 1, 1]
+   P=c: H-with-P=38400 unsound(H with P failing Cbot)=5024 unsat(instances with no H with P)=2624
+      e.g. unsound: rho=[1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=5 k=7 i=0 H=[0, 0, 1, 0, 1, 1]
+      e.g. unsat:   rho=[1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=5 k=7 i=4
+   P=d: H-with-P=76864 unsound(H with P failing Cbot)=15168 unsat(instances with no H with P)=0
+      e.g. unsound: rho=[1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=5 k=7 i=0 H=[0, 0, 1, 0, 1, 1]
+   P=s: H-with-P=73440 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=w: H-with-P=82656 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+K=5 n=13 (special-case sequences 8448): instances=76288 IH-H=1921280 working(Cbot)=1545792 working(A)=465368 inst-some-Cbot-works=76288 inst-every-Cbot-fails=0
+   P=a: H-with-P=686400 unsound(H with P failing Cbot)=84960 unsat(instances with no H with P)=30848
+      e.g. unsound: rho=[1, 1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 1, 1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=6 k=8 i=0 H=[0, 0, 0, 1, 0, 1, 1]
+      e.g. unsat:   rho=[1, 1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 1, 1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=6 k=8 i=5
+   P=b: H-with-P=1921280 unsound(H with P failing Cbot)=375488 unsat(instances with no H with P)=0
+      e.g. unsound: rho=[1, 1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 1, 1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=6 k=8 i=0 H=[0, 0, 0, 1, 0, 1, 1]
+   P=c: H-with-P=686400 unsound(H with P failing Cbot)=84960 unsat(instances with no H with P)=30848
+      e.g. unsound: rho=[1, 1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 1, 1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=6 k=8 i=0 H=[0, 0, 0, 1, 0, 1, 1]
+      e.g. unsat:   rho=[1, 1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 1, 1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=6 k=8 i=5
+   P=d: H-with-P=1358160 unsound(H with P failing Cbot)=270048 unsat(instances with no H with P)=0
+      e.g. unsound: rho=[1, 1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 3] sig=[1, 1, 1, 2, 1, 2, 3, 2, 1, 2, 3, 2, 3] h=6 k=8 i=0 H=[0, 0, 0, 1, 0, 1, 1]
+   P=s: H-with-P=1378992 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0
+   P=w: H-with-P=1545792 unsound(H with P failing Cbot)=0 unsat(instances with no H with P)=0

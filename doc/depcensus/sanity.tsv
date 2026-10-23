@@ -1,0 +1,11 @@
+in_closure	HPC.BJ59.bjThm10	true	used	true
+in_closure	HPC.BJ59.bjPlaneExample	true	used	true
+in_closure	HPC.BJ59.CircDescr.isCircleOfPA	true	used	true
+in_closure	HPC.BJ59.ho16_classification	true	used	true
+in_closure	HPC.BJ59.hoCircleLike	true	used	true
+in_closure	HPC.HO16.ho16_theorem20	true	used	true
+in_closure	HPC.HO16.ho16_indec_homogeneous_iff	true	used	true
+in_closure	HPC.Plane.isPseudoArc_plane	true	used	true
+archive_or_census_constants_in_closure	0
+flagged	HPC.Plane.mem_halfDisk_false	HPC.Plane.Jct2	theorem	∀ {p d z : HPC.Plane.Pt} {ρ : ℝ},   dist z p < ρ → (z.1 - p.1) * d.2 - (z.2 - p.2) * d.1 < 0 → z ∈ HPC.Plane.halfDisk p d ρ false
+flagged	HPC.Plane.PA51.limit_false	HPC.Plane.PA51Crook	theorem	∀ {X : Type u_1} [inst : MetricSpace X] [CompactSpace X],   (∀ (K : Set X), HPC.Fold.Q78.IsContinuum K → HPC.Fold.Q78.IsIndecomposable K) →     ∀ {n : ℕ} (C : HPC.Chain X n),       (∀ (x : X), ∃ l, x ∈ C.link l) →         ∀ (h k : Fin n) (hhk : ↑h + 2 < ↑k) (ε : ℕ → ℝ),           (∀ (j : ℕ), 0 ≤ ε j) →             Filter.Tendsto ε Filter.atTop (nhds 0) → (∀ (j : ℕ), HPC.Plane.PA51.FailData C h k hhk (ε j)) → False

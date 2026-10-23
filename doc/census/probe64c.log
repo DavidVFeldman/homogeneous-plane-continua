@@ -1,0 +1,8 @@
+probe64: the corrected sentence (level-aware trigger) on walks with up to 4 turns, levels in [0,6], arms of up to 14 times
+  restricted to walks whose shortest leg is at least 3 (minLeg 2 is NoUnitLeg)
+walks 742   arms tested 5323443384   walks with a counterexample 0
+by shortest leg of the walk:
+  shortest leg  3 :  500 walks, 0 with a counterexample
+  shortest leg  4 :  184 walks, 0 with a counterexample
+  shortest leg  5 :  50 walks, 0 with a counterexample
+  shortest leg  6 :  8 walks, 0 with a counterexample

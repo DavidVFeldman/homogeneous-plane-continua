@@ -1,0 +1,44 @@
+-- Batch 154: `#print axioms` for every theorem of the five new files
+-- (`HPC/Jones/Jones49FTheta.lean`, `Jones49FLocal.lean`, `Jones49FCase1.lean`, `Jones49FCase2.lean`,
+-- `Jones49F.lean`). 35 theorems; every one depends on exactly
+-- [propext, Classical.choice, Quot.sound].
+-- HPC.Jones.Jones49FTheta: 10 theorems
+HPC.Jones.sub_cc_of_mem_closure: [propext, Classical.choice, Quot.sound]
+HPC.Jones.cc_sub_of_frontier: [propext, Classical.choice, Quot.sound]
+HPC.Jones.mem_cc_of_not_mem_domain: [propext, Classical.choice, Quot.sound]
+HPC.Jones.side_eq_cc: [propext, Classical.choice, Quot.sound]
+HPC.Jones.theta_no_common_side: [propext, Classical.choice, Quot.sound]
+HPC.Jones.nonempty_of_frontier: [propext, Classical.choice, Quot.sound]
+HPC.Jones.disjoint_frontier_of_isOpen: [propext, Classical.choice, Quot.sound]
+HPC.Jones.not_mem_of_inter: [propext, Classical.choice, Quot.sound]
+HPC.Jones.theta_separation_core: [propext, Classical.choice, Quot.sound]
+HPC.Jones.theta_separation: [propext, Classical.choice, Quot.sound]
+-- HPC.Jones.Jones49FLocal: 5 theorems
+HPC.Jones.tscc_of_homeomorph_circle: [propext, Classical.choice, Quot.sound]
+HPC.Jones.isPreconnected_preimage_val: [propext, Classical.choice, Quot.sound]
+HPC.Jones.isLocalSepPoint_of_open_sub_tscc: [propext, Classical.choice, Quot.sound]
+HPC.Jones.isLocalSepPoint_of_separation: [propext, Classical.choice, Quot.sound]
+HPC.Jones.uncountable_of_nontrivial: [propext, Classical.choice, Quot.sound]
+-- HPC.Jones.Jones49FCase1: 4 theorems
+HPC.Jones.frontier_cc_of_jordan: [propext, Classical.choice, Quot.sound]
+HPC.Jones.exists_frontier_through: [propext, Classical.choice, Quot.sound]
+HPC.Jones.countable_complDomains: [propext, Classical.choice, Quot.sound]
+HPC.Jones.jones49_case1_core: [propext, Classical.choice, Quot.sound]
+-- HPC.Jones.Jones49FCase2: 5 theorems
+HPC.Moore.Gen.TArc.first_point_split: [propext, Classical.choice, Quot.sound]
+HPC.Jones.exists_domain_meeting: [propext, Classical.choice, Quot.sound]
+HPC.Jones.exists_theta_arcs: [propext, Classical.choice, Quot.sound]
+HPC.Jones.inter_eq_pair_of_sub: [propext, Classical.choice, Quot.sound]
+HPC.Jones.jones49_case2_core: [propext, Classical.choice, Quot.sound]
+-- HPC.Jones.Jones49F: 11 theorems
+HPC.Jones.jones49_setting: [propext, Classical.choice, Quot.sound]
+HPC.Jones.jones49_simple_domains: [propext, Classical.choice, Quot.sound]
+HPC.Jones.jones49_case1: [propext, Classical.choice, Quot.sound]
+HPC.Jones.jones49_case2: [propext, Classical.choice, Quot.sound]
+HPC.Jones.jones49_theorem1: [propext, Classical.choice, Quot.sound]
+HPC.Jones.jones49_theorem2: [propext, Classical.choice, Quot.sound]
+HPC.Jones.not_jones49_theorem2_point: [propext, Classical.choice, Quot.sound]
+'HPC.Jones.jones55_theorem2'' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Jones.jones55_two_domains'' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Jones.jones55_elements_indecomposable'' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Jones.jones55_three_domains'' depends on axioms: [propext, Classical.choice, Quot.sound]

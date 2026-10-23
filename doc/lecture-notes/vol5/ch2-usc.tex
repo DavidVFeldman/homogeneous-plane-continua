@@ -1,0 +1,367 @@
+%======================================================================
+\chapter{Decompositions of the plane into non-separating continua}\label{ch:usc}
+%======================================================================
+
+This chapter begins the study of Moore's 1925 paper \emph{Concerning upper semi-continuous
+collections of continua}. Its main theorem (Theorem~\ref{thm:m25-22} in Chapter~\ref{ch:quotient})
+says that if the plane is cut up into compact connected pieces, none of which separates the plane,
+in an upper semicontinuous way, then the space of pieces is again a plane. Here we set up the space
+of pieces as a quotient space, show that it is metrizable and locally connected, translate Moore's
+notions (limit element, domain, boundary) into topology, and prove Moore's Theorems~1--4. The
+plane tools are those of Volume~4: Brouwer's theorem, Janiszewski's theorem and enclosing polygons.
+
+\section{The standing hypothesis}
+
+As in Volume~4, $\R^2$ carries the sup metric $d$, so that balls are squares; for a set $A$ and a
+point $z$, $\dist(z,A)=\inf_{a\in A}d(z,a)$.
+
+\begin{definition}\label{def:moore-decomp}
+A \emph{Moore decomposition} of the plane is an equivalence relation on $\R^2$ whose classes, the
+\emph{elements}, satisfy:
+\begin{enumerate}[label=(\arabic*)]
+\item every element is compact and connected;
+\item no element separates the plane;
+\item \emph{(upper semicontinuity, Moore's form)} for every element $g$ and every $e>0$ there is
+$\delta>0$ such that every element containing a point at distance $<\delta$ from $g$ lies within
+distance $<e$ of $g$ (every point of it is at distance $<e$ from $g$).
+\end{enumerate}
+We write $\el x$ for the element containing $x$, $G$ for the set of elements with the quotient
+topology, and $\pi\colon\R^2\to G$, $x\mapsto\el x$, for the quotient map. For $H\subseteq G$,
+$\pts H=\pi^{-1}(H)$ is the \emph{point set} of $H$ (Moore writes $\bar H$). $H$ is \emph{bounded} if
+$\pts H$ is bounded.
+\end{definition}
+
+\formal{\lean{HPC.Moore.MooreDecomp}, \lean{HPC.Moore.elt}, \lean{HPC.Moore.ptsOf}.}
+
+By definition of the quotient topology, $H$ is open (closed) in $G$ if and only if $\pts H$ is open
+(closed) in $\R^2$, and $\pi(\pts H)=H$.
+
+The two extreme examples: the decomposition into points (every element a single point), for which
+$G$ is the plane itself (Section~\ref{sec:points}); and, for a plane continuum $M$ with a monotone map
+$q\colon M\to Y$ whose fibres do not separate the plane, the decomposition into the fibres of $q$ and
+the single points off $M$ (Section~\ref{sec:monotone-quotient}).
+
+\begin{definition}\label{def:tube}
+For $U\subseteq\R^2$ the \emph{tube} of $U$ is $\mathrm{tube}(U)=\set{g\in G:g\subseteq U}$.
+\end{definition}
+
+\formal{\lean{HPC.Moore.tube}.}
+
+\begin{proposition}\label{prop:closed-map}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item $\pi$ is a closed map. Consequently the tube of an open set is open.
+\item The tubes of the open $\varepsilon$-neighbourhoods $N_\varepsilon(g)=\set{z:\dist(z,g)<\varepsilon}$,
+$\varepsilon>0$, form a neighbourhood base at the element $g$.
+\item Conversely, for a decomposition into compact sets, if $\pi$ is closed then Moore's condition
+(3) holds.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Let $F\subseteq\R^2$ be closed; we show that $\pi^{-1}(\pi(F))$, the union of the elements meeting
+$F$, is closed. Let $x$ lie in no element meeting $F$. The compact set $\el x$ misses the closed set
+$F$, so $\dist(z,\el x)\ge e$ for all $z\in F$, for some $e>0$. Take $\delta$ as in (3). If an element
+$g$ contains a point at distance $<\delta$ from $\el x$, then $g\subseteq N_e(\el x)$, so $g$ misses
+$F$. So $N_\delta(\el x)$ is a neighbourhood of $x$ missing $\pi^{-1}(\pi(F))$. For the tube:
+$\mathrm{tube}(U)=G\setminus\pi(\R^2\setminus U)$.
+
+(b) If $V\ni g$ is open in $G$, $\pts V$ is an open set containing the compact set $g$, so it contains
+some $N_\varepsilon(g)$, and $g\in\mathrm{tube}(N_\varepsilon(g))\subseteq V$.
+
+(c) Given $g$ and $e>0$, $\mathrm{tube}(N_e(g))$ is open, so its point set is an open set containing
+the compact $g$, and contains some $N_\delta(g)$. An element meeting $N_\delta(g)$ lies in the tube,
+i.e.\ in $N_e(g)$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.isClosedMap_mk_plane}, \lean{HPC.Moore.isOpen_tube},
+\lean{HPC.Moore.mem_nhds_iff_tube}, \lean{HPC.Moore.usc_of_isClosedMap}.}
+
+So Moore's distance form of upper semicontinuity agrees, for decompositions into compact sets,
+with the topological one of \vthree{Definition~6.1}.
+
+\begin{theorem}\label{thm:quot-metrizable}
+$G$ is a $T_1$, regular, second countable space; hence it is metrizable.
+\end{theorem}
+
+\begin{proof}
+\emph{$T_1$.} Points of $G$ are closed because elements are closed.
+
+\emph{Regular.} Let $g\in G$ and $F\subseteq G$ closed with $g\notin F$. The closed sets $g$ and $\pts F$
+of the plane are disjoint, so they have disjoint open neighbourhoods $U\supseteq g$, $V\supseteq\pts
+F$. Then $\mathrm{tube}(U)\ni g$ and $\mathrm{tube}(V)\supseteq F$ are open and disjoint (an element in
+both would lie in $U\cap V=\emptyset$).
+
+\emph{Second countable.} Let $\mathcal B$ be the countable family of finite unions of open squares
+with rational centres and radii. Given $g\in V$ open, the compact set $g\subseteq\pts V$ is covered by
+finitely many rational squares inside $\pts V$; their union $B\in\mathcal B$ satisfies $g\in
+\mathrm{tube}(B)\subseteq V$. So the countably many open sets $\mathrm{tube}(B)$, $B\in\mathcal B$, form a
+basis.
+
+A regular second countable $T_1$ space is metrizable (Urysohn's metrization theorem).
+\end{proof}
+
+\formal{\lean{HPC.Moore.t1Space_quot}, \lean{HPC.Moore.regularSpace_quot},
+\lean{HPC.Moore.secondCountable_quot}, \lean{HPC.Moore.quotient_metrizable_plane}.}
+
+\section{Connectedness and components}
+
+\begin{proposition}\label{prop:pts-conn}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item If $C\subseteq G$ is connected, so is $\pts C$.
+\item \emph{(Components correspond.)} For every $W\subseteq G$ and $x\in\R^2$,
+$\pts{(\text{component of }\el x\text{ in }W)}=\text{component of }x\text{ in }\pts W$.
+\item Components of open subsets of $G$ are open; $G$ is locally connected.
+\item If $C\subseteq G$ is open, $\fr C=\pi(\fr\pts C)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Let $\pts C\subseteq U\cup V$ with $U,V$ open and $\pts C\cap U\cap V=\emptyset$. Every element
+$g\in C$ is connected and lies in $U\cup V$, so (being covered by the two disjoint relatively open
+sets $g\cap U$, $g\cap V$) it lies in $U$ or in $V$. So $C\subseteq\mathrm{tube}(U)\cup\mathrm{tube}(V)$,
+two open sets (Proposition~\ref{prop:closed-map}) whose intersection misses $C$. As $C$ is connected it
+lies in one of them, and then $\pts C$ lies in $U$ or in $V$.
+
+(b) Let $K$ be the component of $\el x$ in $W$ and $L$ the component of $x$ in $\pts W$. By (a),
+$\pts K$ is a connected subset of $\pts W$ containing $x$, so $\pts K\subseteq L$. Conversely $\pi(L)$
+is connected, lies in $W$ and contains $\el x$, so $\pi(L)\subseteq K$ and $L\subseteq\pts K$.
+
+(c) If $W$ is open, $\pts W$ is open, its components are open (balls are connected), and by (b) the
+point set of each component of $W$ is one of them.
+
+(d) $\pts C$ is open and is a union of elements. Since $\pi$ is closed and continuous,
+$\cl C=\pi(\cl{\pts C})$. Hence $\fr C=\cl C\setminus C=\pi(\cl{\pts C})\setminus C=\pi(\cl{\pts
+C}\setminus\pts C)=\pi(\fr\pts C)$, using that $\pts C$ is a union of elements.
+\end{proof}
+
+\formal{\lean{HPC.Moore.isPreconnected_ptsOf}, \lean{HPC.Moore.ptsOf_connectedComponentIn},
+\lean{HPC.Moore.isOpen_connectedComponentIn_quot}, \lean{HPC.Moore.locallyConnectedSpace_quot},
+\lean{HPC.Moore.frontier_eq_image}.}
+
+\begin{corollary}\label{cor:quot-tools}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(Brouwer for elements.)} If $F\subseteq G$ is closed and connected and $q\notin F$, the
+frontier of the component of $q$ in $G\setminus F$ is connected.
+\item \emph{(Janiszewski for elements.)} Let $A,B\subseteq G$ be closed and bounded with $A\cap B$
+connected or empty, and $x,y\notin A\cup B$. If neither $A$ nor $B$ separates $x$ from $y$ in $G$,
+then $A\cup B$ does not.
+\item \emph{(The unbounded component.)} If $H\subseteq G$ is bounded, exactly one component of
+$G\setminus H$ is unbounded.
+\item For every element $g$, $G\setminus\set g$ is connected.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) $\pts F$ is closed and connected (Proposition~\ref{prop:pts-conn}(a)). If $C$ is the component of
+$q$ in $G\setminus F$, then $\pts C$ is a component of $\R^2\setminus\pts F$ (Proposition~\ref{prop:pts-conn}(b)),
+whose frontier is connected by Brouwer's theorem (\vfour{Theorem~1.12}). By
+Proposition~\ref{prop:pts-conn}(d), $\fr C$ is its image under $\pi$, hence connected.
+
+(b) By Proposition~\ref{prop:pts-conn}(b), $A$ separates $x$ from $y$ in $G$ exactly when $\pts A$
+separates any point of $x$ from any point of $y$ in the plane. $\pts A$, $\pts B$ are compact, and
+$\pts A\cap\pts B=\pts{(A\cap B)}$ is connected or empty by Proposition~\ref{prop:pts-conn}(a).
+Apply Janiszewski's theorem (\vfour{Theorem~2.7}).
+
+(c) Choose $R$ with $\pts H\subseteq\bar B(0,R)$. The set $W=\pi(\R^2\setminus\bar B(0,R))$ is
+connected (the complement of a square is connected, \vfour{Lemma~2.2}), it misses $H$ (an element of
+$H$ lies in $\pts H\subseteq\bar B(0,R)$), and its point set is unbounded. So $W$ lies in one
+component $C_\infty$ of $G\setminus H$, which is unbounded. An unbounded component has point set
+meeting $\R^2\setminus\bar B(0,R)$, so it meets $W\subseteq C_\infty$ and equals $C_\infty$.
+
+(d) $\pts{(G\setminus\set g)}=\R^2\setminus g$ is connected because $g$ does not separate the plane;
+its image is $G\setminus\set g$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.quot_brouwer}, \lean{HPC.Moore.quot_janiszewski},
+\lean{HPC.Moore.m25_unbounded_unique}, \lean{HPC.Moore.isConnected_compl_singleton_quot}.}
+
+\section{Moore's notions are the topological ones}
+
+Moore works directly with elements and distances. An element $p$ is a \emph{limit element} of a set
+$K\subseteq G$ if for every $e>0$ some element of $K$ other than $p$ lies within distance $e$ of $p$
+(every point of it is at distance $<e$ from $p$). A \emph{domain} of elements is a connected set $D$
+such that each element of $D$ is not a limit element of $G\setminus D$. The \emph{boundary} of
+$H\subseteq G$ consists of the elements of $H$ that are limit elements of $G\setminus H$ together with
+the elements not in $H$ that are limit elements of $H$.
+
+\begin{proposition}\label{prop:moore-notions}
+$p$ is a limit element of $K$ if and only if $p$ is an accumulation point of $K$ in $G$. Hence the
+domains are the connected open subsets of $G$, and the boundary of $H$ is its frontier $\fr H$.
+\end{proposition}
+
+\begin{proof}
+An element $k$ lies within distance $e$ of $p$ exactly when $k\in\mathrm{tube}(N_e(p))$, and these tubes
+form a neighbourhood base at $p$ (Proposition~\ref{prop:closed-map}(b)).
+\end{proof}
+
+\formal{\lean{HPC.Moore.isLimitElt_iff}, \lean{HPC.Moore.m25_domain_iff},
+\lean{HPC.Moore.m25_boundary_iff}.}
+
+\begin{remark}
+Read literally, Moore's definition of boundary (p.~417) has ``a limit element of $H$'' in both
+clauses, which would make the first clause empty; the reading above (``of $G-H$'' in the first
+clause) is the intended one, and it gives the frontier.
+\end{remark}
+
+\section{Moore's Theorems 1--4}
+
+\begin{theorem}[Moore, Theorem~1]\label{thm:m25-1}
+Let $K\subseteq\R^2$ and let $H=\pi(K)$ be the set of elements meeting $K$. If $K$ is closed, so is
+$H$; if $K$ is connected, so is $H$.
+\end{theorem}
+
+\begin{proof}
+$\pi$ is closed (Proposition~\ref{prop:closed-map}) and continuous.
+\end{proof}
+
+\formal{\lean{HPC.Moore.m25_theorem1}.}
+
+\begin{definition}\label{def:moore-region}
+A \emph{Moore region} is an open connected bounded set $R\subseteq G$ whose frontier is connected.
+\end{definition}
+
+\formal{\lean{HPC.Moore.mooreRegion}, \lean{HPC.Moore.spaceOfElts}.}
+
+\begin{theorem}[Moore, Theorem~3]\label{thm:m25-3}
+For every element $p$ and every $e>0$ there is a Moore region $R\ni p$ all of whose elements lie in
+$N_e(p)$.
+\end{theorem}
+
+\begin{proof}
+$p$ is a continuum not separating the plane, inside the open set $N_e(p)$. By the enclosing polygon
+theorem (\vfour{Theorem~4.14}) there is a simple closed polygon $\Gamma$ missing $p$ with
+$p\subseteq\inn\Gamma\subseteq N_e(p)$. Let $H=\pi(\Gamma)$, the set of elements meeting $\Gamma$; it is
+closed and connected (Theorem~\ref{thm:m25-1}), and $p\notin H$. Let $R$ be the component of $p$ in
+$G\setminus H$. It is open and connected (Proposition~\ref{prop:pts-conn}(c)), and its frontier is
+connected by Corollary~\ref{cor:quot-tools}(a). By Proposition~\ref{prop:pts-conn}(b), $\pts R$ is the
+component of the plane set $p$ in $\R^2\setminus\pts H$; it misses $\Gamma$, is connected and meets
+$\inn\Gamma$, so it lies in $\inn\Gamma\subseteq N_e(p)$. So $R$ is bounded and every element of $R$ lies in
+$N_e(p)$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.exists_region_in_tube}, \lean{HPC.Moore.m25_theorem3}.}
+
+\begin{theorem}[Moore, Theorem~4]\label{thm:m25-4}
+The Moore regions form a basis of the topology of $G$. In particular $p$ is a limit element of $K$
+if and only if every Moore region containing $p$ contains an element of $K$ other than $p$; and the
+closure of a set in Moore's sense (the set together with its limit elements) is its topological
+closure.
+\end{theorem}
+
+\begin{proof}
+Moore regions are open, and by Theorem~\ref{thm:m25-3} and Proposition~\ref{prop:closed-map}(b) every
+neighbourhood of $p$ contains one containing $p$. The rest follows from
+Proposition~\ref{prop:moore-notions}.
+\end{proof}
+
+\formal{\lean{HPC.Moore.isTopologicalBasis_mooreRegion}, \lean{HPC.Moore.m25_theorem4},
+\lean{HPC.Moore.spaceOfElts_topology}, \lean{HPC.Moore.cl_eq_closure_quot}.}
+
+\begin{theorem}[Moore, Theorem~2]\label{thm:m25-2}
+Let $M\subseteq G$ be closed, connected and bounded, $D$ a bounded component of $G\setminus M$, $E$
+the unbounded component of $G\setminus\fr D$ and $K=\fr E$ (the \emph{outer boundary} of $D$). Then
+$K$ is closed and connected, and $K\setminus\set p$ is connected for every $p\in K$.
+\end{theorem}
+
+\begin{proof}
+$D$ and $E$ are open and connected; $\fr D\subseteq M$ and $K=\fr E\subseteq\fr D$ (the frontier of a
+component of the complement of a closed set lies in that set). $K$ is closed, and it is connected by
+Corollary~\ref{cor:quot-tools}(a) applied twice: $\fr D$ is connected, and then so is the frontier of
+the component $E$ of its complement. $K$ is bounded, as $K\subseteq M$. Fix $x\in D$ and $y\in E$.
+
+\emph{$D\cap E=\emptyset$.} $E$ is connected and misses $\fr D$; if it met $D$ it would lie in $D$
+(Lemma~\ref{lem:conn-frontier}), and would be bounded.
+
+\emph{$K\setminus\set p\neq\emptyset$.} Otherwise $\fr E=\set p$. Then $E$ is open and closed in the
+connected set $G\setminus\set p$ (Corollary~\ref{cor:quot-tools}(d)), so $E=G\setminus\set p\supseteq D$
+($p\notin D$ since $p\in\fr D$ and $D$ is open), against $D\cap E=\emptyset$.
+
+\emph{$K\setminus\set p$ is connected.} Suppose $K\setminus\set p=H\cup N$ with $H,N$ nonempty, disjoint
+and relatively closed. Then $H\cup\set p$ and $N\cup\set p$ are closed (a limit point of $H$ lies in
+the closed set $K$ and not in $N$), bounded, and meet in $\set p$.
+
+\emph{Claim: $F=H\cup\set p$ does not separate $x$ from $y$.} Suppose it does, and let $D_x$ be the
+component of $x$ in $G\setminus F$; then $y\notin D_x$, and $\fr D_x\subseteq F$. Since $D$ is connected
+and misses $K\supseteq F$, $D\subseteq D_x$. Take $q\in N$. Then $q\in K\subseteq\fr D\subseteq\cl D\subseteq
+\cl{D_x}$ and $q\notin F\supseteq\fr D_x$, so $q\in D_x$. As $q\in\fr E$, the open set $D_x$ meets $E$.
+$E$ is connected and misses $K\supseteq\fr D_x$, so $E\subseteq D_x$ (Lemma~\ref{lem:conn-frontier}), and
+$y\in D_x$: a contradiction.
+
+Likewise $N\cup\set p$ does not separate $x$ from $y$. Their intersection $\set p$ is connected, so by
+Janiszewski's theorem for elements (Corollary~\ref{cor:quot-tools}(b)) $K$ does not separate $x$ from
+$y$: the component $C$ of $x$ in $G\setminus K$ contains $y$. But $C$ is connected, misses $K=\fr E$
+and meets $E$ (at $y$), so $C\subseteq E$ and $x\in E$, against $D\cap E=\emptyset$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.m25_theorem2}.}
+
+\begin{remark}\label{rem:m25-2-printed}
+Moore defines a \emph{complementary domain} of a closed set $H$ as a domain whose boundary lies
+in $H$, not necessarily a component of $G\setminus H$. With that definition Theorem~2 is false: in the
+decomposition into points, let $M$ be the closed unit disc, $D$ the open disc minus the segment
+$T=[0,\frac12]\times\set0$, and $E$ the plane minus $T$; then $E$ is an unbounded ``complementary
+domain'' of $\fr D$, its boundary is $T$, and removing $(\frac14,0)$ disconnects $T$
+(\lean{HPC.Moore.not_m25_theorem2_printed}). With complementary domains read as components, as above,
+the theorem holds; this is the form used later (in the proof of Theorem~9, Chapter~\ref{ch:elements}).
+\end{remark}
+
+\section{The claim of p.~420}\label{sec:p420}
+
+Moore states without proof that the space of elements, with the Moore regions as regions, satisfies
+Axioms~1, 2, 4 and~5 of his 1916 paper and its Theorem~4, and that consequently Theorems~1--15 of
+that paper hold in it. Moore's axioms are the subject of Chapter~\ref{ch:axioms}; we record here the
+part that only needs the results above. For the definitions see Section~\ref{sec:axioms}.
+
+\begin{proposition}\label{prop:p420}
+The space of elements with the Moore regions satisfies Axioms~1, 2, 4 and~5 of
+Definition~\ref{def:moore-axioms}, and every nonempty Moore region is infinite.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+\emph{Axiom~1.} $G$ is metrizable (Theorem~\ref{thm:quot-metrizable}); fix a metric. For each $k$ the
+set of elements meeting the square $\bar B(0,k)$ is compact (its point set is closed and bounded, by
+upper semicontinuity), so it is covered by finitely many Moore regions lying in balls of radius
+$1/(k+1)$ (Theorems~\ref{thm:m25-3} and~\ref{thm:m25-4}). Listing these finite families one after the
+other gives a sequence $K_1,K_2,\dots$ with the properties of Axiom~1; Moore's closure is the
+topological closure (Theorem~\ref{thm:m25-4}).
+\emph{Axiom~2.} Moore regions are connected, and Moore's connectedness is the topological one once
+Axiom~1 holds (Proposition~\ref{prop:bridge}).
+\emph{Axiom~4.} The closure of a Moore region $R$ is the image of the compact set $\cl{\pts R}$.
+\emph{Axiom~5.} The elements containing the points $(n,0)$, $n\in\N$, are infinitely many (only finitely
+many integer points lie in a bounded element), and have no limit element: a tube about any element
+meets only finitely many of them.
+\emph{Theorem~4 of 1916.} A finite nonempty region would be a compact open nonempty proper subset of the
+connected space $G$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.m25_axioms1245}, \lean{HPC.Moore.m25_FA_1_15}.}
+
+The remaining axioms need more work and are proved, for a different system of regions, in
+Chapter~\ref{ch:quotient}.
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Show that the decomposition of the plane into the vertical lines is upper semicontinuous in the
+topological sense, but violates condition (1) of Definition~\ref{def:moore-decomp}, and that its quotient
+is the real line.
+\end{exercise}
+
+\begin{exercise}
+Let $M$ be the closed unit square and decompose the plane into $M$ and single points. Verify the
+standing hypothesis, and show directly (without Theorem~\ref{thm:m25-22}) that the quotient is
+homeomorphic to the plane.
+\end{exercise}
+
+\begin{exercise}
+Show that Proposition~\ref{prop:pts-conn}(a) fails if the elements are not assumed connected.
+\end{exercise}
+
+\begin{exercise}
+In Theorem~\ref{thm:m25-2}, show by an example in the decomposition into points that $K$ may be a
+proper subset of $\fr D$.
+\end{exercise}

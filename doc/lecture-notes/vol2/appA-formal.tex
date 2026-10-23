@@ -1,0 +1,154 @@
+%======================================================================
+\chapter{Correspondence with the formal proof}\label{app:formal}
+%======================================================================
+
+The table lists the definitions and results of this volume that carry a ``Formal counterpart''
+line, together with the corresponding declarations of the Lean development. All declaration
+names start with \lean{HPC.}; file names are relative to the root of the repository. The formal
+statements are sometimes slightly more general, or are split differently into lemmas; the table
+points to the place where the content of each result is proved. Rows are in the order of the
+text.
+
+The main theorems of the volume are, in the Lean development (prefix \lean{HPC.} omitted):
+\begin{center}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.54\textwidth}@{}}
+\toprule
+Uniqueness, with two pairs of points (Theorem~\ref{thm:unique-points}) & \lean{Plane.theorem1_HIC}\\
+Uniqueness (Theorem~\ref{thm:unique}) & \lean{Plane.theorem1_HIC'}\\
+Homogeneity (Theorem~\ref{thm:homog}) & \lean{Plane.homogeneous_of_isPseudoArc}\\
+Every pseudo-arc is the plane one (Corollary~\ref{cor:plane-unique}) & \lean{Plane.pseudoArc_unique}\\
+Subcontinua (Corollary~\ref{cor:sub-homeo}) & \lean{Plane.homeomorphic_subcontinuum}\\
+Two descriptions (Theorem~\ref{thm:two-desc}) & \lean{theorem12}\\
+Every pseudo-arc has a description (Theorem~\ref{thm:desc-exists}) &
+\lean{Plane.exists_description_of_chainable_HI}\\
+\bottomrule
+\end{tabular}
+\end{center}
+All of them are proved in the Lean development without \lean{sorry} and without axioms beyond the
+standard ones of Lean and Mathlib.
+
+\begin{longtable}{@{}p{0.40\textwidth}p{0.56\textwidth}@{}}
+\toprule
+In these notes & In the Lean development\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:composants}}}\\
+Definition~\ref{def:composant} & \lean{HPC.composant} (in \lean{HPC/PseudoArc/Statements79.lean}).\\
+Lemma~\ref{lem:ne-of-composant} & \lean{HPC.Plane.PA51.ne_of_not_mem_composant}.\\
+Boundary bumping, clopen form (Lemma~\ref{lem:bumping}) & \lean{HPC.T13.clopen_meets_closure_diff}.\\
+Lemma~\ref{lem:union-clopen} & \lean{HPC.T13.isPreconnected_union_clopen}.\\
+Theorem~\ref{thm:thin} & \lean{HPC.T13.false_of_interior}.\\
+Theorem~\ref{thm:composant-proper} & \lean{HPC.T13.exists_not_mem_proper_subcontinua} (in a compact ambient space) and \lean{HPC.composant_ne_of_indecomposable}.\\
+Corollary~\ref{cor:other-composant} & \lean{HPC.Plane.exists_not_mem_composant}. Formally the theorem is applied in the compact space $M$, and the subcontinuum found there is transported back to $X$.\\
+Lemma~\ref{lem:sub-HI} & \lean{HPC.Plane.PA51.hI_sub}, \lean{HPC.Plane.PA51.not_mem_composant_sub}.\\
+Lemma~\ref{lem:cover-meeting} & (a) is \lean{HPC.Plane.exists_cover_meeting}; (b) is \lean{HPC.Plane.PA51.inter_inter_nonempty} and \lean{HPC.Plane.PA51.subChain}.\\
+Corollary~\ref{cor:sub-snake} & \lean{HPC.Plane.PA51.snake_sub}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:consolidations}}}\\
+Definition~\ref{def:consolidation} & \lean{HPC.Chain.IsConsolidationOf}.\\
+Lemma~\ref{lem:block-chain} & \lean{HPC.Chain.IsBlockMap}, \lean{HPC.Chain.ofBlocks}, \lean{HPC.Chain.blockLink_adjacent}, \lean{HPC.Chain.ofBlocks_isConsolidationOf}.\\
+Lemma~\ref{lem:block-from} & \lean{HPC.Fold.Q78.isFrom_ofBlocks_iff}.\\
+Lemma~\ref{lem:schedule} & \lean{HPC.IsSchedule}, \lean{HPC.IsSchedule.exists_blockMap}.\\
+Lemma~\ref{lem:consolidate-length} & \lean{HPC.Chain.exists_consolidation_isFrom}.\\
+Lemma~\ref{lem:index-dist} & \lean{HPC.Chain.index_dist_le_of_subset}.\\
+Bing 1948, Theorem~1 (Theorem~\ref{thm:bing1}) & \lean{HPC.Chain.isCrookedIn'_of_isConsolidationOf}; the interpolation of Step~4 is \lean{HPC.Chain.exists_value_between}.\\
+Lemma~\ref{lem:reverse} & \lean{HPC.Chain.reverse}, \lean{HPC.Chain.IsCrookedIn'.reverse_left}, \lean{HPC.Chain.IsCrookedIn'.reverse_right}.\\
+Lemma~\ref{lem:minidx} & \lean{HPC.Chain.Refines.minIdx}, \lean{HPC.Chain.Refines.maxIdx}, \lean{HPC.Chain.subset_adjacent_of_subset}, \lean{HPC.Chain.minIdx_lip}, \lean{HPC.Chain.maxIdx_lip}, \lean{HPC.Chain.minIdx_near_of_inter}.\\
+Lemma~\ref{lem:span-chained} & \lean{HPC.Chain.span}, \lean{HPC.Chain.chainedAt_span}.\\
+Definition~\ref{def:subchain-from} & \lean{HPC.Chain.IsSubchainFrom}.\\
+Lemma~\ref{lem:subchain-exists} & \lean{HPC.Chain.exists_isSubchainFrom}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:patterns}}}\\
+Pattern following; Bing 1948, Theorem~6 (Theorem~\ref{thm:pattern-following}) & \lean{HPC.Description.patternFollowing}; the property itself is \lean{HPC.Description.PatternFollowing}, and patterns are \lean{HPC.Description.IsPattern}; the proof is \lean{HPC.Description.theorem6Pos_of_ne}, with \lean{HPC.Description.patternFollowing_of_theorem6Pos} for the passage to arbitrary $i$ (via the shifted description \lean{HPC.Description.shift}).\\
+Remark~\ref{rem:pf-false} & \lean{HPC.Description.unitDescription}, \lean{HPC.Description.not_patternFollowing_unconditional}.\\
+Lemma~\ref{lem:allowed} & \lean{HPC.PatCore.Setting}, \lean{HPC.PatCore.Slow}, \lean{HPC.PatCore.Al}, \lean{HPC.PatCore.al_canon}, \lean{HPC.PatCore.al_move}, \lean{HPC.PatCore.al_near}, \lean{HPC.PatCore.al_far}, \lean{HPC.PatCore.time_ge}; \lean{HPC.PatCore.ivt_between}.\\
+Definition~\ref{def:lift} & \lean{HPC.PatCore.Real}.\\
+Operations on lifts (Lemma~\ref{lem:lift-ops}) & \lean{HPC.PatCore.real_glue}, \lean{HPC.PatCore.real_widen}, \lean{HPC.PatCore.real_of_neg}, \lean{HPC.PatCore.real_reflect}, \lean{HPC.PatCore.real_step}, \lean{HPC.PatCore.real_ramp}.\\
+Definition~\ref{def:good} & \lean{HPC.PatCore.Good}.\\
+Main induction (Theorem~\ref{thm:pf-main}) & \lean{HPC.PatCore.main_step} with the cases \lean{HPC.PatCore.case_const}, \lean{HPC.PatCore.case_plateau}, \lean{HPC.PatCore.case_plateau_end}, \lean{HPC.PatCore.case_amp1}, \lean{HPC.PatCore.case_return}, \lean{HPC.PatCore.case_noreturn}; the induction is \lean{HPC.PatCore.ih_all}.\\
+Combinatorial core of pattern following (Theorem~\ref{thm:realize}) & \lean{HPC.PatCore.realize}.\\
+Lemma~\ref{lem:n-tendsto} & \lean{HPC.Description.n_tendsto_atTop} (via the more general \lean{HPC.Chain.diam_le_length_mul}).\\
+Thick readings (Lemma~\ref{lem:thick}) & \lean{HPC.Description.eventually_thick}.\\
+Lemma~\ref{lem:setting-of-crooked} & \lean{HPC.Chain.setting_of_crooked}.\\
+Lemma~\ref{lem:consolidation-of-lift} & \lean{HPC.Chain.exists_consolidation_of_lift}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:matching}}}\\
+Definition~\ref{def:matching} & \lean{HPC.MatchingCovers}, \leansub{HPC.MatchingCovers.Tracks}{1}, \leansub{HPC.MatchingCovers.Tracks}{2}.\\
+Matching covers; Bing 1948, Theorem~11 (Theorem~\ref{thm:matching}) & \lean{HPC.MatchingCovers.exists_homeomorph}.\\
+Fattening & \lean{HPC.tail}, \lean{HPC.rad}, \lean{HPC.mesh}, \lean{HPC.fat}, \leansub{HPC.MatchingCovers.y}{1}, \leansub{HPC.MatchingCovers.y}{2}, \lean{HPC.diam_fat_le_mesh}, \lean{HPC.mesh_tendsto_zero}.\\
+Nesting (Lemma~\ref{lem:nesting}) & \lean{HPC.closure_fat_subset_fat}.\\
+Step 1 (Lemma~\ref{lem:step1}) & \leansub{HPC.MatchingCovers.step1}{2}.\\
+Step 2 (Lemma~\ref{lem:step2}) & \leansub{HPC.MatchingCovers.step2}{2}.\\
+Step 3 (Lemma~\ref{lem:limit-point}) & \lean{HPC.MatchingCovers.exists_limit_point}.\\
+Step 4: independence of choices (Lemma~\ref{lem:T-indep}) & \lean{HPC.MatchingCovers.toFun}, \leansub{HPC.MatchingCovers.toFun_mem_y}{2}.\\
+Step 5 (Lemma~\ref{lem:T-cont}) & \lean{HPC.MatchingCovers.continuous_toMap}.\\
+Step 6 (Lemma~\ref{lem:T-inj}) & \lean{HPC.MatchingCovers.injective_toMap}.\\
+Step 7 (Lemma~\ref{lem:T-surj}) & \lean{HPC.MatchingCovers.surjective_toMap}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:two}}}\\
+Bing 1948, Theorem~12 (Theorem~\ref{thm:two-desc}) & \lean{HPC.theorem12}, which combines \lean{HPC.Description.exists_homeomorph} (the theorem assuming pattern following) with \lean{HPC.Description.patternFollowing}.\\
+Lemma~\ref{lem:pattern-of-refines} & \lean{HPC.Chain.exists_pattern_of_refines}.\\
+Matching (Lemma~\ref{lem:pattern-matching}) & \lean{HPC.Chain.pattern_matching}.\\
+Lemma~\ref{lem:consolidation-meets} & \lean{HPC.Description.M_subset_consolidation}, \lean{HPC.Description.consolidation_link_inter_M_nonempty}, \lean{HPC.Description.link_inter_M_nonempty}.\\
+Lemma~\ref{lem:level-refining} & \lean{HPC.Description.exists_level_refining}.\\
+Definition~\ref{def:rung} & \lean{HPC.Rung}. Formally, (R3) asks that the active side be able to follow patterns (\lean{HPC.Description.CanFollow}), which holds for every level by pattern following (\lean{HPC.Description.canFollow_level}).\\
+The first rung (Lemma~\ref{lem:base-rung}) & \lean{HPC.Rung.exists_base}.\\
+The next rung (Lemma~\ref{lem:next-rung}) & \lean{HPC.Rung.exists_next}, via \lean{HPC.Description.exists_half_step}.\\
+Corollary~\ref{cor:two-desc-K} & \lean{HPC.Plane.theorem12_of}, using the restriction \lean{HPC.Description.restrict} (in \lean{HPC/Plane/Transfer.lean}).\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:folding}}}\\
+Folding theorem; Bing 1948, Theorem~4 (Theorem~\ref{thm:folding}) & \lean{HPC.Fold.theorem4_pair} (in \lean{HPC/Fold/Theorem4Pair.lean}). The version with single links $r$ and $s$ in place of the pairs is \lean{HPC.Fold.theorem4}. In the proof, the main case is \lean{HPC.Fold.B79.theorem4_pair_core}, and the reflection uses \lean{HPC.Fold.B78.unionRange_reverse}.\\
+Corollary~\ref{cor:block-chain} & \lean{HPC.Chain.exists_blockChain} (in \lean{HPC/PseudoArc/T13Step.lean}).\\
+Lemma~\ref{lem:readings} & \lean{HPC.Fold.IsCrookedIvF} and \lean{HPC.Fold.isCrookedIvF_minIdx_maxIdx} package these facts with crookedness; see also \lean{HPC.Fold.B79.seq_facts}.\\
+Crooked sequence (Definition~\ref{def:crooked-seq}) & \lean{HPC.Fold.Z77.CrkOn}.\\
+Lemma~\ref{lem:crooked-seq} & \lean{HPC.Fold.Z77.crkOn_of_isCrookedIvF}, \lean{HPC.Fold.Z77.CrkOn.reverse}, \lean{HPC.Fold.B79.minIdx_reverse}.\\
+Fitting (Definition~\ref{def:fit}) & \lean{HPC.Fold.Z77.Env}, \lean{HPC.Fold.Z77.arr}, \lean{HPC.Fold.Z77.Fit}.\\
+Lemma~\ref{lem:legpos} & \lean{HPC.Fold.Z77.jwalk}, \lean{HPC.Fold.Z77.legPos}, \lean{HPC.Fold.Z77.jwalk_legPos}, \lean{HPC.Fold.Z77.legPos_lip}, \lean{HPC.Fold.Z77.legPos_eq_zero}.\\
+Folds from fitting (Lemma~\ref{lem:fold-of-fit}) & \lean{HPC.Fold.Z77.fold_of_fit}, \lean{HPC.Fold.Z77.fold_of_fit_zero}.\\
+Up phase (Lemma~\ref{lem:up-phase}) & \lean{HPC.Fold.Z77.up_step} (with \lean{HPC.Fold.Z77.transfer} and \lean{HPC.Fold.Z77.exists_armVal}).\\
+Down phase (Lemma~\ref{lem:down-phase}) & \lean{HPC.Fold.Z77.down_step}.\\
+Up core (Lemma~\ref{lem:up-core}) & \lean{HPC.Fold.Z77.up_core}.\\
+Down core (Lemma~\ref{lem:down-core}) & \lean{HPC.Fold.Z77.down_core}.\\
+Up states are not stuck (Lemma~\ref{lem:nofail-up}) & \lean{HPC.Fold.Z77.nofail_up}.\\
+Down states after an up phase are not stuck (Lemma~\ref{lem:nofail-down}) & \lean{HPC.Fold.Z77.nofail_down}.\\
+First direction (Lemma~\ref{lem:first-direction}) & \lean{HPC.Fold.Z77.first_direction}; the two conditions are \lean{HPC.Fold.Z77.OKBelow} and \lean{HPC.Fold.Z77.OKAbove}.\\
+Main induction (Proposition~\ref{prop:main-up}) & \lean{HPC.Fold.Z77.main_up}.\\
+Zigzag theorem (Theorem~\ref{thm:zigzag}) & \lean{HPC.Fold.Z77.greedy_fit_below}, \lean{HPC.Fold.Z77.greedy_fit_above}, and \lean{HPC.Fold.Z77.greedy_fit} (which uses Lemma~\ref{lem:first-direction} to choose $\epsilon$).\\
+Bing's Theorem~3, three-link form (Corollary~\ref{cor:theorem3}) & \lean{HPC.Fold.theorem3}, via \lean{HPC.Fold.Z77.s3_zig} and \lean{HPC.exists_blocks_of_walk}.\\
+Folds with a fake end link (Section~\ref{sec:fold-fake}) & \lean{HPC.Fold.B79.EvUp} and \lean{HPC.Fold.B79.EvDown}; reflecting $f$ exchanges them (\lean{HPC.Fold.B79.evUp_reflect}).\\
+Crooked extensions (Lemma~\ref{lem:crooked-ext}) & \lean{HPC.Fold.B79.crkOn_lowExt}, \lean{HPC.Fold.B79.crkOn_highExt} (on sequences re-indexed so that the base is at $0$).\\
+Fold with a fake low end (Lemma~\ref{lem:fake-low}) & \lean{HPC.Fold.B79.finfold_low}, from \lean{HPC.Fold.B79.fold_low_end_mode} (the version on $\Z$-indexed sequences; without the choice of $\epsilon$ it is \lean{HPC.Fold.B78.fold_low_end}). With $\epsilon$ chosen by Lemma~\ref{lem:first-direction} it is \lean{HPC.Fold.B79.finfold_low_any}.\\
+Fold with a fake high end (Lemma~\ref{lem:fake-high}) & \lean{HPC.Fold.B79.finfold_high}, from \lean{HPC.Fold.B79.fold_high_end_mode}.\\
+Lemma~\ref{lem:meet-low} & \lean{HPC.Fold.B79.meet_low_gen}, \lean{HPC.Fold.B79.maxIdx_near_zero}; the two sequences and their properties are collected in \lean{HPC.Fold.B79.seq_facts}.\\
+Exclusion (Lemma~\ref{lem:exclusion}) & \lean{HPC.Fold.B79.pair_exclusion}.\\
+Prefix fold (Proposition~\ref{prop:prefix-fold}) & \lean{HPC.Fold.B79.pair_prefix_fold}; the conclusion is \lean{HPC.Fold.B79.PrefixFold}.\\
+Suffix fold (Corollary~\ref{cor:suffix-fold}) & \lean{HPC.Fold.B79.pair_suffix_fold}.\\
+Splice (Proposition~\ref{prop:splice}) & \lean{HPC.Fold.B79.splice_schedule_pair} (the version with $\lambda=\mu=\lo$ and without (c), (d) is \lean{HPC.Fold.B78.splice_schedule}); the passage from levels to links is \lean{HPC.Fold.B78.link_sub_of_level}.\\
+From a schedule to the block map (Lemma~\ref{lem:assemble}) & \lean{HPC.Fold.B79.assemble_pair}.\\
+Two windows (Lemma~\ref{lem:windows}) & \lean{HPC.Fold.B79.pair_windows}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:descriptions}}}\\
+Bing 1951, Theorem~1, body of the proof (Theorem~\ref{thm:desc-exists}) & (a) is \lean{HPC.Plane.PA51.exists_description_sub}; (b) is \lean{HPC.Plane.exists_description_of_chainable_HI} (in \lean{HPC/Plane/PseudoArc51.lean}), via \lean{HPC.Plane.PA51.lift_description}.\\
+Bing 1951 (Theorem~\ref{thm:eventually-crooked}) & \lean{HPC.Plane.PA51.eventually_crookedIn} (in \lean{HPC/Plane/PA51Crook.lean}).\\
+Lemma~\ref{lem:fail-data} & \lean{HPC.Plane.PA51.FailData} (which records the property (d) through small sets, the links, none inside $C_{k-1}$, resp.\ $C_{h+1}$), \lean{HPC.Plane.PA51.failData_of_fail_lt} (the case $i<j$) and \lean{HPC.Plane.PA51.failData_of_not_crooked}.\\
+Lemma~\ref{lem:limit-tools} & \lean{HPC.Plane.PA51.chainedAt_union_singleton}, \lean{HPC.Plane.PA51.limSup_miss} (with \lean{HPC.Plane.PA51.approx_of_mem_limSup}), \lean{HPC.Plane.PA51.exists_limSup_near}.\\
+Lemma~\ref{lem:side} & \lean{HPC.Plane.PA51.subset_side_of_miss}, with \lean{HPC.Plane.PA51.lowU} and \lean{HPC.Plane.PA51.highU}.\\
+Proposition~\ref{prop:limit-false} & \lean{HPC.Plane.PA51.limit_false}.\\
+Definition~\ref{def:predesc} & \lean{HPC.Plane.PA51.PreDesc}.\\
+Lemma~\ref{lem:crooked-next} & \lean{HPC.Plane.PA51.exists_crooked_next}.\\
+Proposition~\ref{prop:predesc-exists} & \lean{HPC.Plane.PA51.exists_preDesc}.\\
+Lemma~\ref{lem:predesc-basic} & \lean{HPC.Plane.PA51.PreDesc.refines_of_le}, \lean{HPC.Plane.PA51.PreDesc.crooked_of_lt}, \lean{HPC.Plane.PA51.PreDesc.eventually_five_le}.\\
+Reaching both ends (Lemma~\ref{lem:meets-ends}) & \lean{HPC.Plane.PA51.PreDesc.exists_subchain_meets_ends}, with the limit step \lean{HPC.Plane.PA51.PreDesc.false_of_disjoint_limit}.\\
+One step (Lemma~\ref{lem:desc-step}) & \lean{HPC.Plane.PA51.PreDesc.exists_step}; the analogous step for descriptions is \lean{HPC.Description.exists_step} (in \lean{HPC/PseudoArc/T13Step.lean}).\\
+Theorem~\ref{thm:desc-univ} & \lean{HPC.Plane.PA51.PreDesc.exists_description}, and with Proposition~\ref{prop:predesc-exists}, \lean{HPC.Plane.PA51.exists_description_univ}.\\
+Lemma~\ref{lem:ext} & \lean{HPC.Plane.PA51.ext}, \lean{HPC.Plane.PA51.mem_ext_iff}, \lean{HPC.Plane.PA51.ext_disjoint}, \lean{HPC.Plane.PA51.ext_mono}, \lean{HPC.Plane.PA51.ext_subset_thickening}, \lean{HPC.Plane.PA51.diam_ext_le}, \lean{HPC.Plane.PA51.exists_closure_ext_subset}.\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:main}}}\\
+Pseudo-arc (\vone{Definition~2.14}) & \lean{HPC.Plane.IsPseudoArc}: the conjunction of \lean{HPC.Plane.IsSnakeLike} (which contains ``$M$ is a continuum''), \lean{HPC.Plane.IsHereditarilyIndecomposable} and \lean{Set.Nontrivial}.\\
+Bing 1951, Theorem~1, the ``in fact'' clause (Theorem~\ref{thm:unique-points}) & \lean{HPC.Plane.theorem1_HIC}. Formally the described sets are subsets $\Delta_1.M\subseteq M$ and $\Delta_2.M\subseteq M'$ of the spaces $M$, $M'$, equal to the whole spaces; the homeomorphism of \lean{HPC.theorem12} is composed with the identifications $M\cong\Delta_1.M$ and $\Delta_2.M\cong M'$.\\
+Uniqueness of the pseudo-arc (Theorem~\ref{thm:unique}) & \lean{HPC.Plane.theorem1_HIC'}; the same statement with the three defining properties written out is \lean{HPC.Plane.theorem1_snake} (Bing, \emph{Snake-like continua}, Theorem~1).\\
+Homogeneity of the pseudo-arc (Theorem~\ref{thm:homog}) & \lean{HPC.Plane.homogeneous_of_isPseudoArc}.\\
+Corollary~\ref{cor:plane-unique} & \lean{HPC.Plane.isPseudoArc_plane} and \lean{HPC.Plane.pseudoArc_unique}.\\
+Lemma~\ref{lem:sub-pseudoarc} & \lean{HPC.Plane.isPseudoArc_of_subcontinuum}.\\
+Corollary~\ref{cor:sub-homeo} & \lean{HPC.Plane.homeomorphic_subcontinuum}.\\
+Definition~\ref{def:endpoint} & \lean{HPC.Plane.IsEndPoint}, \lean{HPC.Plane.OppositeEndPoints} (in \lean{HPC/Plane/EndPoints51.lean}).\\
+Proposition~\ref{prop:opposite} & \lean{HPC.Plane.oppositeEndPoints_of_composants}.\\
+Lemma~\ref{lem:endpoint-nested} & \lean{HPC.Plane.condB_of_endPoint}.\\
+Lemma~\ref{lem:not-HI-not-end} & \lean{HPC.Plane.exists_not_endPoint_of_not_HI}.\\
+Bing 1951, \emph{Snake-like continua}, Theorem~16 (Theorem~\ref{thm:endpoints}) & \lean{HPC.Plane.isPseudoArc_iff_endPoints}.\\
+\end{longtable}

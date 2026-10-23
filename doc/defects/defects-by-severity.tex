@@ -1,0 +1,1625 @@
+% !TEX program = xelatex
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{Latin Modern Roman}[SmallCapsFont={Latin Modern Roman Caps}]
+\setmathfont{Latin Modern Math}
+\setmonofont{DejaVu Sans Mono}[Scale=0.82]
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+\DeclareUrlCommand\lean{\urlstyle{tt}}
+\makeatletter
+\g@addto@macro\UrlBreaks{\do\_\do\.}
+\makeatother
+
+\setlist{itemsep=2pt,topsep=3pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlength{\emergencystretch}{3em}
+\Urlmuskip=0mu plus 1mu
+
+% An item: #1 title, #2 status line, #3 counted false statements, #4 counted defective proofs.
+\newcounter{defect}
+\newenvironment{defect}[4]{%
+  \par\addvspace{10pt}\refstepcounter{defect}%
+  \noindent\textbf{Item \thedefect.\enspace #1}\par\nopagebreak
+  \noindent\textit{#2}\par\nopagebreak\smallskip}{\par\addvspace{6pt}}
+\newcommand{\fld}[1]{\par\noindent\textsc{#1.}\enspace}
+
+\title{Defects in the published proofs of the classification\\ of homogeneous plane continua,
+  ordered by severity}
+\author{Working document compiled from the defects ledger of the formalization}
+\date{22 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent The classification of homogeneous plane continua (Hoehn and Oversteegen, 2016) and the
+papers it rests on have been formalized in Lean~4 with Mathlib. Every statement of the
+classification, in its plane form and in the form with Bing and Jones's third class, is verified.
+This document lists what the formalization found wrong or missing in the published texts, most
+serious first. Two counts are kept: 23 printed statements are false, and 18 printed proofs fail at
+an identified step while the statement is true. The counts measure kind, not weight. Fifteen of
+the 23 false statements fail only at an empty set, a single point, an endpoint or a chain of at
+most three links; in ten of the 18 failed proofs the argument stands once one step is repaired or a
+small case is set aside. The defects that matter most are in neither count: the step from Jones's
+decomposition to the circle of pseudo-arcs, used without proof or citation in the classification
+paper, whose first proof found is in a 2022 preprint of Domokos and Prajs; and Bing and Jones's
+sketch of a plane circle of pseudo-arcs.
+\end{abstract}
+
+\tableofcontents
+
+%======================================================================
+\section{Reader's guide}\label{sec:guide}
+
+\textbf{What is listed.} Each item is a defect of a published text, found while formalizing it.
+Items are numbered consecutively through the document. Each item gives the source and page, the
+printed text where it matters, what fails, how the formalization settles it, and a status line
+in italics. The status line names the label from the list below and the section of the project's
+defects ledger (``Ledger A.23'') where the entry is recorded in full.
+
+\textbf{Labels.}
+\begin{description}[leftmargin=1.5em,style=nextline]
+\item[False as printed] The printed statement is refuted by a verified counterexample.
+\item[Proof defective; statement true] The printed proof fails at an identified step, and the
+  statement is proved by a repaired or different argument.
+\item[Not established] An assertion of a proof sketch that the formalization neither proves in the
+  generality stated nor refutes.
+\item[Unstated step] The proof uses a fact the paper neither states nor proves. The fact is true
+  and is proved in the formalization.
+\item[Unargued] A sentence of a proof is asserted without argument. It is supplied, or shown
+  unnecessary, in the formalization.
+\item[Stated without proof] No proof is printed.
+\item[Citation] A cited source does not contain, or does not prove, what it is cited for.
+\item[Harmless] Wording that disagrees with itself or with a cited source, without consequence.
+\end{description}
+Only the first two labels are counted. A defective proof is counted only when its statement is
+settled; Oversteegen--Tymchatyn's Theorem~3.2 (Item~\ref{it:ot32}) is therefore not counted. A
+refuted printed sentence is not counted when the same paper states it correctly elsewhere
+(Hoehn--Oversteegen's restatement of Theorem~1 on p.~211) or when it is a remark and not a
+numbered statement (their remarks of pp.~193--194); both are listed in \S\ref{sec:wording} and
+\S\ref{sec:degenerate}. A tacit hypothesis is counted only when a counterexample to the printed
+form is verified.
+
+\textbf{Verified.} A Lean theorem is \emph{verified} when it compiles and its axiom audit lists
+only \lean{propext}, \lean{Classical.choice} and \lean{Quot.sound}. Every Lean name in this
+document is listed in Appendix~\ref{app:lean} with its namespace and the axioms it depends on, as
+recorded in the repository's \lean{axioms.txt} (4030 lines). A \emph{hand argument} is an argument
+written out and read, but not formalized; it is marked as such wherever it occurs.
+
+\textbf{Quotations} are transcribed from page images rendered at 200 dots per inch or more
+(400 for subscripts, primes and bars), not from the text layer of the PDF files. Page numbers are
+journal pages. Printed notation is kept: in the older papers $A+B$ is the union and $A\cdot B$ the
+intersection.
+
+\textbf{Order.} The sections run from the most serious defects to the most trivial:
+\begin{center}
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Section & Kind & False & Proofs \\
+\midrule
+\ref{sec:path} & Gaps on the path of the classification & 0 & 5\\
+\ref{sec:intended} & Statements false in configurations their authors meant to cover & 3 & 1\\
+\ref{sec:other} & Other proofs that do not go through & 0 & 2\\
+\ref{sec:cite} & Citations that do not carry what they are cited for & 0 & 0\\
+\ref{sec:local} & Proof steps that fail locally & 0 & 10\\
+\ref{sec:wording} & Statements false because of their wording & 5 & 0\\
+\ref{sec:degenerate} & Statements false at degenerate cases & 15 & 0\\
+\ref{sec:unargued} & Unargued steps and statements without proof & 0 & 0\\
+\ref{sec:misprints} & Misprints and harmless mismatches & 0 & 0\\
+\midrule
+ & Total & 23 & 18\\
+\bottomrule
+\end{tabular}
+\end{center}
+Section~\ref{sec:path} concerns the published proofs of the results the classification is
+assembled from: Hoehn and Oversteegen's Theorems~A, B and C and their Theorem~2, the arc step that
+the proof of Theorem~B needs, the third class, and Bing's construction of the pseudo-arc.
+Section~\ref{sec:other} concerns supporting results of plane topology used inside those proofs.
+Moore 1919 Theorem~D is of the second kind; it is placed in \S\ref{sec:intended} beside Theorem~C,
+whose false case its proof uses. Within a section, items are ordered by their consequence for the
+classification. Appendix~\ref{app:readings} lists readings of printed statements that the
+formalization refuted and that are \emph{not} defects of the sources, among them Bing 1951
+Theorem~8 (Item~\ref{it:b51-8}).
+
+%======================================================================
+\section{The classification and what it rests on}\label{sec:classification}
+
+Hoehn and Oversteegen \cite[pp.~179--180]{HO16} assemble the classification from four results:
+\begin{quote}
+\textsc{Theorem A.} ([16]) \emph{If $M$ is a decomposable homogeneous continuum in the plane,
+then $M$ is a circle of mutually homeomorphic indecomposable homogeneous continua.}
+
+\textsc{Theorem B.} ([12]) \emph{Every indecomposable homogeneous plane continuum is hereditarily
+indecomposable.}
+
+\textsc{Theorem C.} ([45]) \emph{Every homogeneous indecomposable plane continuum has span zero.}
+
+\textsc{Theorem 1.} \emph{A non-degenerate continuum $X$ is homeomorphic to the pseudo-arc if and
+only if $X$ is hereditarily indecomposable and has span zero.}
+\end{quote}
+Here [16] is Jones 1955 \cite{J55}, [12] is Hagopian 1976 \cite{H76}, and [45] is Oversteegen and
+Tymchatyn 1982 \cite{OT82}. Theorem~1 is the paper's own. Then \cite[p.~180]{HO16}:
+\begin{quote}
+It follows immediately from Theorems B and C above and Theorem 1 that every indecomposable
+non-degenerate homogeneous plane continuum is a pseudo-arc. Combining this with Theorem A above,
+we obtain the following classification of homogeneous plane continua.
+
+\textsc{Theorem 2.} \emph{Up to homeomorphism, the only non-degenerate homogeneous continua in the
+plane are (1) the circle, (2) the pseudo-arc, and (3) the circle of pseudo-arcs.}
+\end{quote}
+
+\textbf{The formal statement.} \lean{ho16_classification_plane₄}: there are plane sets $C_1$,
+$C_2$, $C_3$, homeomorphic respectively to the circle, a pseudo-arc and a circle of pseudo-arcs in
+Bing and Jones's sense (a circle-like continuum with a continuous decomposition into pseudo-arcs
+whose decomposition space is a simple closed curve), each homogeneous, no two homeomorphic, such
+that a compact connected plane set with more than one point is homogeneous if and only if it is
+homeomorphic to one of them. \lean{ho16_classification₄} states the same for a continuum given as
+a subspace of the plane.
+
+\textbf{Where each source enters.} The formalization reads each cited result in its source and
+proves it, or proves what the classification needs from it.
+\begin{itemize}
+\item Theorem A: Jones 1955 Theorems~1 and 2 \cite{J55}, with Jones 1948, 1949, 1951
+  \cite{J48,J49,J51}, Whyburn 1939 \S14 and Whyburn's \emph{Analytic Topology} \cite{W39,W42},
+  Moore 1922 \cite{M22}, Moore 1925 \cite{M25} for the plane quotient, and the Effros theorem in
+  van Mill's form \cite{vM04}. Items~\ref{it:j55}, \ref{it:w39}, \S\ref{sec:local},
+  \S\ref{sec:degenerate}.
+\item Theorem B: Hagopian 1976 \cite{H76}, with Hagopian 1975 \cite{H75}. The formalization
+  proves it by Hagopian 1984 \cite{H84} and the arc step of Bing 1960 \cite{B60}, which it proves by
+  a different argument from Jones 1975's \cite{J75}. Items~\ref{it:h76}, \ref{it:j75}.
+\item Theorem C: Oversteegen and Tymchatyn 1982 Theorem~3.6, with Cook 1967 \cite{C67}.
+  Item~\ref{it:ot32}.
+\item Theorem 1: Hoehn and Oversteegen 2016 \cite{HO16}, with Bing's characterization of the
+  pseudo-arc \cite{B48,B51a,B51b} and its supports \cite{L61,F66,F69,I68}. Theorem~1 is formalized
+  in the direction and generality the classification uses: a hereditarily indecomposable plane
+  continuum of span zero is snake-like (\lean{ho16_theorem1_plane}, whose hypothesis is
+  Hoehn--Oversteegen's Theorem~20, verified as \lean{ho16_theorem20}); with Theorems~B and C, a
+  nondegenerate plane continuum is homogeneous and indecomposable if and only if it is a pseudo-arc
+  (\lean{ho16_indec_homogeneous_iff}). Items~\ref{it:b48-3}, \ref{it:b48-8}, and
+  Hoehn--Oversteegen's own entries in \S\S\ref{sec:cite}--\ref{sec:misprints}.
+\item The third class: Bing and Jones 1959 \cite{BJ59} and Domokos and Prajs 2022 \cite{DP22}.
+  Items~\ref{it:unique}, \ref{it:bj7}, \ref{it:bj5}.
+\item Plane topology used along the way: Moore 1916, 1919, 1920, 1925 \cite{M16,M19,M20,M25} and
+  Mullikin 1922 \cite{Mu22}. Items~\ref{it:m19}, \ref{it:m25-21}, \S\S\ref{sec:local}--\ref{sec:degenerate}.
+\end{itemize}
+\textbf{What the final proof uses.} The repository's dependency census lists, declaration by
+declaration, what the two final theorems use: 4689 of the library's 11697 declarations, in 446 of
+its 863 modules. Their closure, 12480 constants of the library, is accepted by the kernel when it
+is replayed into an environment built from Mathlib alone. Appendix~\ref{app:lean} marks each
+declaration cited here that the final theorems use. The formal route differs from the published
+one in places. It does not use Bing 1948 Theorems 3, 4, 5, 7, 8, 9 or 13--15, Bing 1951 (Duke) Theorems 8, 9,
+11 and 12, Moore 1922, Jones 1948 Theorems 6 and 10, or Hagopian 1976's own proof of Theorem~1,
+which it replaces by Hagopian 1984 (Items~\ref{it:h76}, \ref{it:b48-3}, \ref{it:b48-8},
+\ref{it:b48-4}). The items are ordered by their place in the published argument.
+
+%======================================================================
+\section{Gaps on the path of the classification}\label{sec:path}
+
+Each item in this section concerns the published proof of one of the results the classification
+is assembled from (\S\ref{sec:guide}). In each, the printed argument is missing or cannot be
+completed as written, and the result is proved from another source or by a new argument.
+
+%----------------------------------------------------------------------
+\begin{defect}{The step from Jones's decomposition to the circle of pseudo-arcs (Hoehn--Oversteegen
+2016, Theorem~2)}{Unstated step in the proof of a main theorem; no proof found before
+Domokos and Prajs's 2022 preprint. Not counted: no printed statement is false. Ledger A.25, A.26,
+A.27.}{0}{0}\label{it:unique}
+
+\fld{Printed} Theorem~2 is obtained by ``Combining this with Theorem A above'' (\S\ref{sec:classification}).
+The circle of pseudo-arcs is defined on pp.~182--183 as a continuum that ``is a circle-like
+continuum which admits an open map to the circle whose point preimages are pseudo-arcs'', and
+p.~183 adds: ``Bing and Jones proved that the circle of pseudo-arcs is homogeneous and that it is
+unique, in the sense that it is the only continuum (up to homeomorphism) with the above
+properties.''
+
+\fld{What is missing} For a decomposable homogeneous plane continuum $M$ that is not a simple
+closed curve, Theorem~A with Theorems~B, C and 1 gives an open map of $M$ onto the circle whose
+point preimages are pseudo-arcs
+(p.~179: ``The conclusion of this theorem implies that there is an indecomposable homogeneous
+continuum $X$ (possibly a single point) and an open map from $M$ to the circle all of whose point
+preimages are homeomorphic to $X$''). Bing and Jones's uniqueness applies to \emph{circle-like}
+continua: their definition (p.~173) reads ``It is a circle-like continuum $M$ such that there is a
+continuous decomposition of $M$ into pseudo-arcs such that the decomposition space is a simple
+closed curve.'' That $M$ is circle-like is used and is neither stated nor cited.
+
+\fld{Why it needs an argument} An open map onto the circle with pseudo-arc fibres does not give
+circle-likeness. The product of the pseudo-arc with the circle has such a map and is
+two-dimensional, so not circle-like; Hoehn and Oversteegen mention it (p.~183: ``homogeneous but
+not embeddable in the plane''). Planarity and dimension one do not suffice either. Prajs
+\cite[Theorem~8, p.~1753]{P00}: ``There exist a plane s-arc of pseudo-arcs and a plane s-circle
+of pseudo-arcs'', curves with continuous decompositions into pseudo-arcs over an arc and over a
+simple closed curve; on the same page: ``the examples constructed here are triodic, and thus
+topologically different. Evidently, their elements of the decompositions are not terminal.''
+Circle-like continua are atriodic, so Prajs's plane s-circle is not circle-like. A proof must
+therefore use homogeneity. What homogeneity supplies is that Jones's elements are terminal: Jones
+1955 Theorem~1(c), p.~736: ``if $g$ is an element of $G$ and $K$ is a subcontinuum of $M$ which
+contains both a point of $g$ and a point of $M-g$, then $g$ is a subset of $K$'' (verified,
+\lean{jones55_c}).
+
+\fld{The literature before 2022} Lewis \cite[p.~80]{Lw83} asks, as ``Question [28]'', whether two
+(homogeneous) one-dimensional continua with continuous decompositions into pseudo-arcs over
+homeomorphic quotients must be homeomorphic, and adds: ``This question has an affirmative answer if
+all of the decomposition elements in each of $G_1$ and $G_2$ are terminal continua.'' His [28] is
+the paper published as Lewis 1985, then submitted; p.~80 gives no proof.
+Lewis 1985 \cite[p.~93]{Lw85}, the paper that constructs such continua with terminal elements:
+``It will follow from our construction that all decomposition elements are terminal continua. We
+still do not know in general whether $\hat M$ is unique.'' Lewis 1996 \cite[p.~173]{Lw96} combines
+an observation of his own with Lewis 1985 (cited there as Theorem~2 [24], an existence and lifting
+theorem) and concludes: ``For each continuum in one class there is a unique corresponding continuum
+in the other class, obtained either by shrinking out maximal terminal pseudo-arcs or by enlarging
+each point to a terminal pseudo-arc.'' Uniqueness in the enlarging direction is the question Lewis
+1985 leaves open. It is not proved in any of the three papers.
+
+\fld{The first proof found} Domokos and Prajs \cite[Theorem~6.1]{DP22}: ``A continuum $X$ is a
+circle of pseudo-arcs if and only if $X$ admits an open atomic map $f\colon X\to S$ onto a simple
+closed curve $S$ such that all point-inverses, $f^{-1}(y)$, are pseudo-arcs.'' Atomic means that
+every point-inverse is terminal; ``circle of pseudo-arcs'' means homeomorphic to Bing and Jones's
+example. The authors: ``We include the proof because we did not find in the literature a proper
+reference to this theorem.'' The paper is an arXiv preprint; no journal version and no earlier
+proof were found in a search of the papers on homogeneous continua available to the project. Their
+proof shows that $X$ is atriodic (``one can easily show''; unargued, and not needed by the formal
+route below), that the preimages of the two halves of $S$ are atriodic folders of chainable
+continua, chainable by \cite[Proposition~6]{HMP20}, and glues them to Bing and Jones's example by
+Bing--Jones Theorem~10.
+
+\fld{Formalization} Verified, with no named hypothesis: Theorem~6.1 in both directions
+(\lean{dp22_theorem61'}, \lean{dp22_theorem61_iff'}), the circle-likeness step
+(\lean{hoCircleLike'}), and the classification (\lean{ho16_classification₄},
+\lean{ho16_classification_plane₄}). The formal route makes the halves chainable by Bing's argument
+for Theorem~11 of \cite{B51a} (\lean{isSnakeLike_of_atomic'}), which needs neither folders nor
+shape theory, and glues them by Bing--Jones Theorem~10 (\lean{bjThm10}). Jones's decomposition of
+$M$ supplies the atomic map through \lean{jones55_c}. In the formalization ``circle of
+pseudo-arcs'' has Bing and Jones's meaning (the definition \texttt{IsCircleOfPA}: circle-like,
+with an open map onto the circle whose fibres are pseudo-arcs). Domokos and Prajs's meaning,
+homeomorphic to Bing and Jones's example, is not formalized, since that example is not constructed;
+by the two theorems above, any two circles of pseudo-arcs in Bing and Jones's sense are
+homeomorphic.
+\end{defect}
+
+%----------------------------------------------------------------------
+\begin{defect}{A plane circle of pseudo-arcs (Bing--Jones 1959, \S7, pp.~189--191)}{Not
+established: a sketch whose key step is not argued. Not counted: no instance shows the step
+failing. The claim is verified by a different construction. Ledger A.25 (sixth reading).}{0}{0}\label{it:bj7}
+
+\fld{Printed} \S7 begins (p.~189): ``It follows from Theorem 10 that each circle of pseudo-arcs
+is homogeneous and that any two of them are homeomorphic. In this section we show that the plane
+contains a circle of pseudo-arcs.'' On p.~190: ``Now there exists a sequence $D_1, D_2, D_3,\cdots$ of circular chains
+of simple domains in the plane such that'' conditions (1)--(9) hold. On p.~191: ``With the
+addition of (9) one may see with the help of [3] that each element of $G$ is a pseudo-arc. It
+follows from Theorem 10 that $M$ is homogeneous.''
+
+\fld{What is missing}
+\begin{itemize}
+\item The chains $D_i$ are asserted to exist and are not constructed.
+\item That the elements of $G$ are disjoint, fill $M$, and form a continuous decomposition whose
+  quotient is a circle is not argued, with or without (9). Unargued also: ``Also, in this case $M$
+  would be a continuous circle-like circle of continua'' (p.~191, of the chains without (9)).
+\item Not established: that each element of $G$ is a pseudo-arc. Condition (9) makes each new
+  column $T_{ij}$ crooked in a pair $T_{hk}+T_{hl}$ of old columns. It does not control an
+  element of $G$ covered at some level by two adjacent columns, and two crooked chains joined end
+  to end are not crooked in general. No chains satisfying (1)--(9) with an element of $G$ that is
+  not a pseudo-arc are known, so the step is not shown to fail.
+\end{itemize}
+
+\fld{Consequence} The third class of the classification is a \emph{plane} continuum only through
+\S7. Hoehn and Oversteegen (p.~179): ``Bing and Jones [5] constructed in 1954 such a continuum in
+the plane for which $X$ is the pseudo-arc, and also proved that it is homogeneous.'' Lewis
+\cite[p.~91]{Lw85} also takes \S7 at face value. His own construction of a circle of pseudo-arcs
+\cite[p.~93]{Lw85} identifies ``the end pseudo-arcs of arcs of pseudo-arcs in the same manner that
+the endpoints of arcs are identified''; it takes the arc of pseudo-arcs from Bing and Jones and does
+not discuss planarity or circle-likeness.
+
+\fld{Formalization} Verified: \lean{bjPlaneExample}, through \lean{exists_circDescr_plane} and
+\lean{CircDescr.isCircleOfPA}. The construction is not Bing and Jones's. It uses nested circular
+chains of plane domains whose links are neighbourhoods of arcs of a base circle; the pattern of
+each chain in the previous one is the lift of a degree-one map built from \emph{sweeps}, along each
+of which the window of links changes at one end at a time (\lean{sweep_lemma},
+\lean{sweep_lemma3}); and a planar step (\lean{circ_step}) obtained by descending an equivariant
+shear of a strip through the exponential map. A recognition theorem shows that the intersection is
+a circle-like continuum with a continuous decomposition into pseudo-arcs over the circle
+(\lean{CircDescr.isCircleLike_M}). Nothing of \S7 is used except its claim.
+\end{defect}
+
+%----------------------------------------------------------------------
+\begin{defect}{Hagopian 1976, Theorem~1 (Theorem B), pp.~345--349}{Proof defective; statement true.
+Counted (one defective proof). The printed route is not completed; the theorem is verified by
+Hagopian's 1984 route. Ledger A.23, A.24.}{0}{1}\label{it:h76}
+
+\fld{Statement} Every indecomposable homogeneous plane continuum is hereditarily indecomposable.
+The proof argues by contradiction from a type~A$'$ subcontinuum $E$, through an induction over the
+blocks $x_1<x_2<\cdots<x_{2n}$ of a continuum $F$ in a strip $\pi^{-1}[D]$, ``Following Bing [2,
+p.~225]'' (p.~348), that is, Bing 1960 \cite[pp.~225--227]{B60}.
+
+\fld{The failing step} p.~348: ``The proof now breaks down into two cases''. The case split
+presupposes that $d^{-1}(x_{2i-1})$ and $d^{-1}(x_{2i-2})$ each meet a side segment
+$\pi^{-1}[\langle p_1,r\rangle]$ or $\pi^{-1}[\langle p_5,s\rangle]$. At the last step of the
+induction ($i=2$, $J=[x_1,x_2]=[0,e]$) this is false: $d^{-1}(x_2)=d^{-1}(e)=k^{-1}(1)$ lies over
+the far end of $\pi[E]$ and meets neither side segment. So neither printed case applies to the
+step that produces the final contradiction with ``$[x_1,x_2]$ does not have Property 4''.
+Certificate: \lean{blockLayersMeetSides_false}. In Bing's model \cite[p.~226]{B60} the
+corresponding points are end points of arcs irreducible between the two side lines, so they lie on
+the sides by construction; Hagopian's block ends are values of $d$, and nothing printed places their
+layers on the sides. For $i\ge3$ the presupposition is true (\lean{blockLayersMeetSides3}), and the
+last step can be read separately with the bottom edge in place of the strand
+(\lean{last_step_ending}).
+
+\fld{A lemma from the 1984 paper} ``Note that $x_1=0$, $x_2=e$, and $x_{2n}=1$''
+(pp.~347--348), in its last clause, and Property~4 for the top
+block need a saturation property the text does not state: every component of $F\cap\pi^{-1}[D]$
+through a point over the inner middle of $D$ crosses $D$. The formalization proves it
+(\lean{innerComponentsCross_hagopian}), and at the end layer $d^{-1}(1)$ of $F$ only with Hagopian
+1984 Lemma~7 (\lean{hagopian84_lemma7}): when two type $\lambda$ continua overlap without either
+containing the other, every layer of one that meets the other is a layer of the other. The 1976
+paper has nothing of this kind at end layers; its Lemma~3 covers interior layers.
+
+\fld{Printed sentences neither proved nor refuted} By a verified theorem
+(\lean{hagopian76_theorem1_of_cases4}) the 1976 route reduces to four named claims, which are
+open. They collect the following sentences of pp.~348--349.
+\begin{itemize}
+\item Case 1: ``By considering the position of $d^{-1}[[x_{2i-3},x_{2i}]]$, we see that $y_{i-1}$
+  is between $d^{-1}[I]$ and $d^{-1}[J]$''. The position argument needs the unicoherence of the
+  plane, which is neither stated nor cited; Hagopian's strands, components of
+  $F\cap\pi^{-1}[D]$, need not end on the side lines as Bing's arcs do, and $L$ may re-enter
+  $\pi^{-1}[D]$ on the far side of a strand.
+\item Case 1: the segment $Q$ of the vertical over $p_4$ closes the band between two blocks only if
+  the band crosses that vertical once.
+\item p.~348: ``the continuum $N$ does not come within $\varepsilon_2$ of $\pi^{-1}(p_4)$''. Points
+  of $N$ outside $\pi^{-1}[D]$ are not addressed. Bing's corresponding sentence \cite[p.~227]{B60}
+  is unargued as well.
+\item Case 2 (p.~349): ``If $y_{i-1}$ is above $d^{-1}[J]$, it is between $d^{-1}[I]$ and
+  $d^{-1}[J]$, and $f(y_{i-1})$ is above $d^{-1}[I]$'' and ``Hence $y_{i-1}$ is below $d^{-1}[J]$
+  and $f(y_{i-1})$ is above''. No reason is given. Bing's corresponding sentence follows from the
+  parity of crossings of a simple closed curve (a hand argument on polygons); for Hagopian's
+  continua there is no parity argument.
+\item p.~348: ``(Other cases are handled with similar arguments to that given in this case.)'' Of
+  the four orientations, two are treated by the formalization; in the other two the frame is not
+  symmetric (the bottom edge lies over $E$, the top over $I_2$).
+\item p.~348, E2.4: ``The point $y_{i-1}$ is below $C_i$ and $\rho(y_{i-1},d^{-1}[I])\ge
+  \varepsilon_3$; for otherwise, a subcontinuum of $L$ would violate Property 2'' is verified for
+  the strand next to $C_i$ only, conditionally on three sub-claims; the printed form, for all of
+  $d^{-1}[I]$, is not decided.
+\item p.~349, T17: ``Hence $f(y_{i-1})$ is either above $d^{-1}[I]$ or below $d^{-1}[J]$''
+  presupposes that every point off the crossing continuum is above or below it. Components of
+  $F\cap\pi^{-1}[D]$ that meet the frontier only in a side segment are not addressed.
+\end{itemize}
+
+\fld{Formalization} Verified: \lean{hagopian76_theorem1}, by Hagopian 1984 Corollary~3, which
+carries out F.~B.~Jones's plan: Hagopian 1984 Theorem~1 with $N=M$ (\lean{hagopian84_decomp})
+gives a monotone continuous decomposition with a homogeneous plane quotient containing an arc, and
+the arc step (Item~\ref{it:j75}) gives the contradiction. About twenty further unargued steps of
+pp.~340--349 are supplied (\S\ref{sec:unargued}).
+\end{defect}
+
+%----------------------------------------------------------------------
+\begin{defect}{The arc step: Jones 1975, property (f) and the Theorem, pp.~59--61}{Two proofs
+defective; statements true, that of (f) only vacuously in the plane. Counted (two defective
+proofs). Verified by a different argument.
+Ledger A.28.}{0}{2}\label{it:j75}
+
+\fld{Role} Bing 1960 \cite{B60} proves that a homogeneous bounded plane continuum containing an arc
+is a simple closed curve. Hagopian's 1984 route to Theorem~B needs it for indecomposable continua.
+Jones 1975 \cite{J75} gives a short proof: ``\textsc{Theorem}. \emph{If $M$ is a homogeneous plane
+continuum containing an arc, then $M$ is a simple closed curve.}'' (p.~59).
+
+\fld{Property (f), p.~59} ``If $p$ is a point of $M$ and $D$ is an open set in $E$ with
+$p\notin\bar D$, then there exists a positive number $\epsilon$ such that no arc $abc$ in $M$ has
+the property that both $a$ and $c$ belong to $D$ and the $\epsilon$-neighbourhood of the subarc
+$ab$ contains both $p$ and the subarc $bc$.'' The proof ends: ``Since $b'c'$ is in the
+$\epsilon$-neighbourhood of $a'b'$, the image of $b'c'$ must be in the $3\epsilon$-neighbourhood of
+the image of $a'b'$. This is impossible since the $3\epsilon$-neighbourhood of $q_1p_1$ contains no
+point of $p_2q_2$ (and conversely).'' This does not follow: the image of $a'b'$ may run along the
+arc $q_1pq_2$ past $q_1$ and come back near $p_2q_2$. The proof uses only the Effros theorem and
+property (c), hence only hypotheses that the dyadic solenoid satisfies (homogeneous,
+indecomposable, hereditarily unicoherent, atriodic, with (c)); in the solenoid (f) fails, since a
+long arc of a dense line is $\epsilon$-dense (a hand argument, not formalized). Two earlier steps
+are unargued as well: ``takes $b$ to $p$'' and ``$b'$ is close enough to $b$'' need $b$ near $p$,
+and ``leaves the images $q_1$ and $q_2$ of $a$ and $c$ respectively in $D$'' is unjustified for a
+homeomorphism that is not small. For plane continua (f) holds only vacuously, once the Theorem
+is known (no Lean declaration states (f)).
+
+\fld{The Theorem, pp.~59--61} The step ``This makes $h$ take $[t_0,t_d]$ onto (approximately)
+$[t_d,t_0]$. So there is a fixed point $t_f$'' is false for small $\epsilon$: a small
+homeomorphism preserves the orientation of the ray $T$ (\lean{JonesSetting.orientation}, verified).
+Under the hypotheses of the setting the step contradicts this orientation lemma, so any argument for
+it would itself finish the proof. The Theorem also uses (f) twice, and four further steps are
+unargued (\S\ref{sec:unargued}).
+
+\fld{Formalization} Verified: \lean{jones75_noArc} (no indecomposable homogeneous plane continuum
+contains an arc) and \lean{bing60_plane_uncond} (Jones's Theorem). The proof is a
+Poincaré--Bendixson argument in a collar box around an arc of a line, not Jones's: by Effros and
+the orientation lemma, points of the line near the base arc lie on left-to-right passes of the box;
+the region between the base pass and a later thin pass is bounded by a Jordan curve made of a
+vertical segment and an arc of the line; once the line leaves that region it never re-enters it
+(\lean{trap_jordan}), which contradicts recurrence (\lean{jones75_contra}). Jones's (d) is
+verified in both directions (\lean{JonesSetting.jones75_d}), and (c) through
+\lean{JonesSetting.union_arc} and \lean{JonesSetting.nested}.
+\end{defect}
+
+%----------------------------------------------------------------------
+\begin{defect}{Jones 1955, Theorem~1 (Theorem A), the case argument of pp.~737--738}{Proof
+defective; statement true. Counted (one defective proof). Ledger A.11.}{0}{1}\label{it:j55}
+
+\fld{Statement} p.~736: ``\textsc{Theorem 1.} \emph{Suppose that $M$ is a decomposable,
+homogeneous, compact, metric continuum. Then there exists a nondegenerate continuous collection
+$G$ of mutually exclusive continua filling up $M$ such that (a) with respect to its elements (as
+points) $G$ is a homogeneous, aposyndetic, compact, metric continuum, (b) if $x$ is a point of $M$,
+then $L_x$ is an element of $G$, and (c) if $g$ is an element of $G$ and $K$ is a subcontinuum of
+$M$ which contains both a point of $g$ and a point of $M-g$, then $g$ is a subset of $K$.}'' Here
+$L_x$ is $x$ together with the points $y$ at which $M$ is not aposyndetic with respect to $x$, and
+$U_x=M-L_x$.
+
+\fld{What fails} In Case~I, ``Since $M_0$ is a subset of $M_1$'' fails as written: when $o(q)\in
+V_2$, the irreducible continuum $K_o(q)$ can be $\{o\}$, which is not in $M_1$; the text does not
+keep $o(q)$ out of $V_2$. And ``Since $q$ does not cut $o$ from $U_q$'' draws on $q\notin N_o$,
+which is stated with $U_o$; it therefore needs $U_q=U_o$, which is (b), not yet available at that
+point. The argument serves $N_o=M-U_o$.
+
+\fld{Formalization} Verified: (a), (b), (c), upper semicontinuity, continuity, and that the
+elements are homogeneous and mutually homeomorphic (\lean{jones55_a}, \lean{jones55_b},
+\lean{jones55_c}, \lean{jones55_usc}, \lean{jones55_continuous}, \lean{jones55_elements}). Jones's
+claims (1)--(10) and his properties (a)--(f) of pp.~738--739 are kept. The case argument and the
+upper-semicontinuity argument are replaced by a spreading lemma from the Effros theorem: in a
+homogeneous compact metric space, a continuum with interior that contains $o$ and misses $x$ gives
+aposyndesis at $o$ with respect to $x$ (\lean{aposAt_of_isContinuum_interior}).
+\end{defect}
+
+%----------------------------------------------------------------------
+\begin{defect}{Bing 1948, Theorem~3, the special case, p.~732}{Proof defective; statement true.
+Counted (one defective proof). Ledger A.1.1.}{0}{1}\label{it:b48-3}
+
+\fld{Statement} ``\textsc{Theorem 3.} \emph{If the chain $D$ is crooked in the chain
+$E=[e_1,e_2,\cdots,e_m]$ and $d_i$ is a particular link of $D$, then there is a chain $F$ such
+that $F$ is a consolidation of $D$, $d_i$ is contained in only the first link of $F$, each link of
+$F$ is a subset of the sum of two adjacent links of $E$, and any link of $F$ containing an end link
+of $D$ which intersects $e_1$ or $e_m$ is a subset of $e_1+e_2$ or $e_{m-1}+e_m$.}''
+
+\fld{What fails} In the special case (no interior link of $D$ meets $e_1$ or $e_r$), with $d_i$ a
+link of $D(1,h)$, Bing takes $H$ from the induction hypothesis and sets $F$ to be $H(1,u-1)$,
+followed by the level groups of the remaining links $D'$, followed by $D(k+1,n)$. Certificate
+(\lean{Recon121.seam_every_H_fails}, with \lean{Recon121.seamD_special}): eleven links of a
+realized chain over five coarse links satisfy the special-case hypotheses, with $(h,k)=(4,6)$
+forced; a chain $H$ satisfying the induction hypothesis exists; yet for every $i\le h$ and every
+such $H$, the chain Bing writes down is not a chain with $d_i$ in its first link only.
+
+\fld{Formalization} Verified: the theorem as printed in every clause
+(\lean{theorem3_literal}, \lean{Recon121.theorem3LiteralOr_holds}, \lean{theorem3_bing}). The repair
+(\lean{Recon122.bing_main}) makes three changes, none in the text: the level groups are anchored
+at the bottom; an explicit grouping is made when there are five coarse links
+(\lean{Recon122.special_five}); and the branch $d_i\in D(h,k)$ is handled by the induction
+hypothesis applied to $D(h,k)$ inside $E(2,r-1)$.
+\end{defect}
+
+%----------------------------------------------------------------------
+\begin{defect}{Oversteegen--Tymchatyn 1982, Theorem~3.2, pp.~137--138, in the proof of Theorem~C}{Proof defective; statement
+not decided. Not counted. Ledger A.29.}{0}{0}\label{it:ot32}
+
+\fld{Printed} The proof begins: ``We may suppose that for each $\lambda\in\Lambda$
+$h_\lambda(Y)$ meets $\{0\}\times R$ in a single point and $h_\lambda(Y)$ intersects $\{1\}\times R$
+in at most one point. Hence, \ldots\ we may suppose that for each $\lambda\in\Lambda$ neither
+$h_\lambda(X)$ nor $h_\lambda(Y)$ separates the plane. Let $\delta\in\Lambda$. We may suppose that
+$\pi_1(h_\delta(y))>\pi_1(h_\delta(z))+1/2$ for each $z\in X$. We may also suppose that
+$d(h_\lambda(z),h_\gamma(z))<1/8$ for each $z\in Y$ and $\lambda,\gamma\in\Lambda$. The proof now
+proceeds as in Theorem 3.1''.
+
+\fld{What fails} The two suppositions about $\delta$ are not available together: the cluster of
+maps within $1/8$ need not contain $\delta$, and one rescaling does not fix the other gaps. The
+single-point supposition is unargued and can be avoided but not justified (disjoint crossing arcs
+can each meet a side in two points). The proof of Theorem~3.1 picks three images one of which
+separates the other two in the strip, which is unargued.
+
+\fld{Formalization} What Theorem~C needs is a strip form in which the images lie in disjoint
+continua crossing the strip, with their traces on the side ordered. That form is verified
+(\lean{ot82_theorem32}). From it, Corollary~3.5 and Theorem~3.6 in the indecomposable case follow
+(\lean{ot82_cor35_of_thm32}, \lean{ot82_theorem36_of_cor35}, two implications), and Theorem~C is
+verified with no hypothesis (\lean{theoremC}). Whether the printed Theorem~3.2 holds in general is
+not decided.
+\end{defect}
+
+%======================================================================
+\section{Statements false in configurations their authors meant to cover}\label{sec:intended}
+
+%----------------------------------------------------------------------
+\begin{defect}{Bing--Jones 1959, Theorem~5, pp.~175--176}{False as printed. Counted (one false
+statement). Its one use is existential and survives. Ledger A.25 (second reading).}{1}{0}\label{it:bj5}
+
+\fld{Printed} ``Then if $U$ is an open set such that $U\cdot G\neq0$, $U\cdot(g_0+g_1)=0$, and
+$\bar U$ lies in a link of $E$, then $G-U$ may be expressed as the sum of two mutually separated
+sets $A$, $B$ such that $g_0\subset A$, $g_1\subset B$, and for each $x$ ($0\le x\le1$), either
+$A\cdot g_x$ intersects each link of $E$ or $B\cdot g_x$ intersects each link of $E$.''
+
+\fld{What fails} In every instance with $n\ge3$ links. Merge the last two links (replace
+$e_{n-1}$ by $e_{n-1}\cup e_n$ and keep $e_n$), so that $\overline{e_n}\subseteq e_{n-1}$; the
+merged collection covers $G$, properly covers every fibre, and is a chain in Bing and Jones's sense,
+with nonadjacent links at positive distance (checked by hand; the certificate uses the library's
+notion of chain, in which nonadjacent links are disjoint).
+Take $U$ a small neighbourhood of $\overline{g_c\cap e_n}$ inside $e_{n-1}$. Then $g_c-U$ misses
+$e_n$, and the conclusion fails at $c$ for every separation, although no fibre lies in $U$.
+Certificates: \lean{bj_theorem5_printed_false_general} (from every instance with three or more
+links) and \lean{bj_theorem5_printed_false} (a fibre inside $U$). The printed proof passes from
+separations of $G-d_j$ to separations of $G-U$.
+
+\fld{Consequence} The theorem's one application (p.~185, in Step~2(c) of Theorem~10: ``By Theorem 5
+there is an open set $U_i$ \ldots'') is existential, and a small enough $U_i$ exists. Theorem~10 is
+unaffected. The repaired form asks that $f$ be open and that no fibre meet a link only inside
+$\bar U$; it is verified (\lean{bj_theorem5}, \lean{theorem5_repaired}).
+\end{defect}
+
+%----------------------------------------------------------------------
+\begin{defect}{Bing 1948, Theorem~8, p.~737}{False as printed. Counted (one false statement).
+Theorem~9's proof uses it. Ledger A.1.3.}{1}{0}\label{it:b48-8}
+
+\fld{Printed} ``\textsc{Theorem 8.} \emph{Suppose the chain $D_n$ ($n=1,2$) is crooked in the chain
+$E$, each end link of $E$ contains a link of $D_n$, and no proper consolidation of $D_n$ has these
+properties. Then $D_1$ follows a pattern in $E$ that $D_2$ follows in $E$, and the chain whose
+links are the sums of corresponding links of $D_1$ and $D_2$ is crooked in $E$.}'' The proof:
+``That the chain whose links are the sum of the corresponding links $D_1$ and $D_2$ is crooked in
+$E$ may be proved by induction on the number of links in $E$.''
+
+\fld{What fails} The unions of corresponding links need not form a chain. Certificate
+(\lean{not_theorem8_literal}): in a finite discrete subspace of $\mathbb N$, two chains of six links
+(the fewest possible, \lean{theorem7_minimal}) are crooked in a four-link chain $E$, have their
+first links in $e_1$ and last links in $e_4$, and follow Bing's pattern in $E$ in the same
+direction; the second and fourth unions meet (at the point $20$), so the unions form no chain, and
+pairing the links in opposite directions gives unions that do not refine $E$. Bing's chains have
+open links that need not be connected (p.~729: ``We have not supposed that the links of a chain
+are necessarily connected''), so the discrete example applies; minimality holds because a proper
+consolidation would have fewer links. The mechanism is that the pattern revisits levels, so links
+of $D_1$ and $D_2$ at non-adjacent positions can meet.
+
+\fld{Consequence} The proof of Theorem~9 (p.~737) begins ``By Theorems 7 and 8 there are chains
+$G_1$ and $G_2$ \ldots\ and the chain $H$ \ldots\ whose links are the sums of corresponding links
+of $G_1$ and $G_2$ is crooked in $E$.'' The corrected Theorem~8 (\lean{Fold.theorem8}, with the
+orientation made explicit and the chain property of the unions as a hypothesis) suffices.
+Theorem~9 is verified with its mesh clause weakened: each link of $F$ lies in the sum of three
+consecutive links of $E$, where Bing has ``the sum of two adjacent links of $E$''
+(\lean{Fold.theorem9}). The printed two-link form is not formalized.
+\end{defect}
+
+%----------------------------------------------------------------------
+\begin{defect}{Moore 1919, Theorems C and D}{Theorem C false as printed; the proof of Theorem D
+defective, statement true. Counted (one false statement, one defective proof). Ledger
+A.15.}{1}{1}\label{it:m19}
+
+\fld{Theorem C} It concerns rulings of a closed curve with respect to a quadrilateral $ABCDA$. A
+closed curve that touches a side from within meets $ABCDA$ in one point and admits no ruling of the
+required kind. Moore offers an ``Indication of proof \ldots\ given instead of a tedious formal proof
+covering all possible cases'', which misses this case. Certificate:
+\lean{not_m19_theoremC_printed}, in every model of Moore's Axioms~1--8. Three corrected forms are
+verified: absorbing finitely many disjoint cross-cuts (\lean{m19_theoremC_crosscuts}), a curve
+within $ABCDA$ (\lean{m19_theoremC_within}), and the printed statement with touching from within
+excluded (\lean{m19_theoremC_corrected}). Touching from without is harmless.
+
+\fld{Theorem D} Moore's proof applies Theorem~C to a curve $\bar J$ that $g_1$ may touch, so it
+rests on the false case of C; its induction over $g_2,\ldots$ needs D itself; and the construction
+of Fig.~2 is unargued (``It easily follows''). Verified (\lean{m19_theoremD}) by an induction over a
+finite subcover: at each step a curve is built about the uncovered part, crossing $ABCDA$ at every
+common point, and the corrected Theorem~C is applied. Whether Moore's $\bar J$ could be re-chosen
+so that it is crossed and not touched is not decided.
+
+\fld{Consequence} The paper's conclusion, that a space satisfying Moore's Axioms~1--8 is
+homeomorphic to the plane, is verified (\lean{m19_plane}), with Theorems E, G and the final
+paragraph reached by a route different from Moore's (\S\ref{sec:unargued}).
+\end{defect}
+
+%======================================================================
+\section{Other proofs that do not go through}\label{sec:other}
+
+The items of this section concern supporting results of plane topology used inside the proofs of
+\S\ref{sec:path}. In each, the printed argument fails in a case the statement covers, and the
+result is proved by a different argument.
+
+%----------------------------------------------------------------------
+\begin{defect}{Whyburn 1939, Theorem~14, p.~747}{Proof defective; statement true. Counted (one
+defective proof). Ledger A.21.}{0}{1}\label{it:w39}
+
+\fld{Printed} ``Clearly we may suppose $R$ bounded, since an inversion of the plane can be used to
+throw $R$ into a bounded region complementary to the image of $M$.''
+
+\fld{What fails} The centre of the inversion must lie in a complementary domain of $M$ other than
+$R$. When $M$ has no bounded complementary domain, for instance when $M$ is a closed disk or any
+continuum that does not separate the plane, there is none. This is a natural case of the theorem,
+not a degenerate one.
+
+\fld{Formalization} Verified for bounded and unbounded domains alike, without inversion
+(\lean{whyburn39_theorem14}). Moore's curve $C$ is replaced by a joining lemma from Janiszewski's
+theorem, and Whyburn's curve $K$ and limit continuum $H$ by two facts: a point where infinitely
+many disjoint connected sets accumulate has no finite order, and Whyburn's (3.2).
+\end{defect}
+
+%----------------------------------------------------------------------
+\begin{defect}{Moore 1925, Theorem~21: Axioms 6 and 7}{Proof defective; statement true. Counted (one
+defective proof). Ledger A.16.}{0}{1}\label{it:m25-21}
+
+\fld{Printed} ``With the aid of results established in my paper \emph{Concerning a set of
+postulates for plane analysis situs} \ldots\ it easily follows that Axiom 6 and 7 also hold true.''
+
+\fld{What fails} Moore 1919 proves nothing for the axiom system $\Sigma_2$ beyond the assertion of
+its introduction. The step therefore rests on the equivalence of $\Sigma_1$ and $\Sigma_2$ that
+Moore 1916 asserts on p.~163 without proof (``It is easy however to show that though $\Sigma_1$
+and $\Sigma_2$ are not absolutely equivalent, they are equivalent with respect to point and limit
+point''). The formalization neither proves nor needs that equivalence.
+
+\fld{Formalization} Verified (\lean{m25_theorem21}): Axioms 6 and 7 are proved directly, with
+cross-cuts and Moore 1925 Theorems 10, 12, 15, 18 and 19. The other three ``easily'' claims of the
+proof are confirmed. Moore 1925 Theorem~22, the plane quotient used for Theorem~A, is verified from
+Moore 1919 for $\Sigma_1$ only (\lean{m25_theorem22}).
+\end{defect}
+
+
+%======================================================================
+\section{Citations that do not carry what they are cited for}\label{sec:cite}
+
+None of these is counted. The first bears on the classification (Item~\ref{it:unique}); the others
+were avoided or repaired.
+
+%----------------------------------------------------------------------
+\begin{defect}{Lewis 1983 and 1996: uniqueness attributed to work that leaves it open}{Citation:
+the cited work leaves the claim open. Ledger A.27.}{0}{0}\label{it:lewis}
+Lewis \cite[p.~80]{Lw83} poses the uniqueness question as ``Question [28]'', where [28] is Lewis
+1985 (then submitted), and asserts without proof that it ``has an affirmative answer if all of the
+decomposition elements in each of $G_1$ and $G_2$ are terminal continua''. Lewis \cite[p.~173]{Lw96} asserts the uniqueness of the continuum ``obtained either by
+shrinking out maximal terminal pseudo-arcs or by enlarging each point to a terminal pseudo-arc'',
+on the strength of an observation of his own and of Lewis 1985, Theorem~2 [24], which gives
+existence and lifting only. Lewis 1985 \cite[p.~93]{Lw85}: ``We still do not know in general
+whether $\hat M$ is unique''; and \cite[p.~99, Question 2]{Lw85}: ``If $\hat M_1$ and $\hat M_2$
+are two continuous curves of pseudo-arcs with homeomorphic decomposition spaces, are $\hat M_1$
+and $\hat M_2$ homeomorphic?'' The case the classification needs is Domokos--Prajs Theorem~6.1
+(Item~\ref{it:unique}).
+\end{defect}
+
+%----------------------------------------------------------------------
+\begin{defect}{Domokos--Prajs 2022, Example 6.1: terminality of Bing and Jones's
+decomposition}{Citation: the cited work does not prove the claim; not used. Ledger A.27.}{0}{0}\label{it:dpex}
+p.~13: Bing and Jones ``constructed the \emph{circle of pseudo-arcs}, denoted here by $\Psi$, which
+is a homogenous, decomposable and nowhere locally-connected continuum in the plane admitting a
+continuous decomposition into terminal pseudo-arcs.'' Bing and Jones do not prove that the
+elements are terminal. This supports ``It is known'' in the proof of the ``only if'' direction of
+Theorem~6.1 (p.~14). The formalization proves that direction differently: a circle of pseudo-arcs
+is homogeneous (Bing--Jones Theorem~10), so Jones's decomposition gives an atomic map
+(\lean{jones55_c}), and the property passes to every homeomorphic space
+(\lean{dp22_theorem61_iff'}).
+\end{defect}
+
+%----------------------------------------------------------------------
+\begin{defect}{Hoehn--Oversteegen 2016, pp.~191 and 211: a research announcement cited for a
+proof}{Citation: an announcement without proofs; avoided. Ledger A.26.}{0}{0}\label{it:lelek}
+p.~191: ``Because $X$ has span zero, it is tree-like [31]''; p.~211: ``Since $X$ has span zero, by
+[31] we have that $X$ is tree-like.'' Here [31] is Lelek 1979 \cite{Le79}, a research announcement
+(p.~631: ``The purpose of the present paper is to announce some results \ldots\ A complete version
+will be published elsewhere''). Its Propositions~1--4 are called ``rather straightforward'' and
+are not proved; its Lemma~5 and Theorem~6 carry no proof; its Corollary~9 drops
+Theorem~6's hypothesis ``$\dim X\le1$''; its Corollary~10, that span zero implies tree-like, is
+obtained in one paragraph through three citations. On p.~212 Hoehn and Oversteegen cite a published
+proof of a stronger statement ([46], Oversteegen--Tymchatyn 1984). The formalization does not need
+tree-likeness: for plane continua a grid graph serves, since hereditary indecomposability gives
+empty interior and radial projection in the squares of a fine grid maps the continuum into the
+union of their edges.
+\end{defect}
+
+%----------------------------------------------------------------------
+\begin{defect}{Fugate 1966: Miller's and Sorgenfrey's theorems cited in over-general
+form}{Citation: over-general as cited; harmless in context. Ledger A.4.3, A.4.4.}{0}{0}\label{it:fugate-cite}
+As cited, Miller [6, Theorem~1.5, p.~180] says: if $A\cup B$ contains a non-unicoherent subcontinuum
+$D$, then $D\subseteq A$ or $D\subseteq B$. This is false: the closed disk is the union of two
+half-disks, and its boundary circle lies in neither (\lean{miller_1_5_false}). What Fugate needs is
+hereditary unicoherence of $A\cup B$ for chainable $A$, $B$ with connected intersection, proved
+directly (\lean{isHereditarilyUnicoherent_union}). Miller's own statement has not been checked
+against the citation. As cited, Sorgenfrey [8, p.~440] says that three intersecting continua, none
+contained in the union of the other two, have a union that is a triod; a circle is the union of
+three arcs. Inside a hereditarily unicoherent continuum, which is Fugate's situation, it holds.
+In Fugate's setting the continua are also a-triodic, and neither citation is needed in the
+generality printed.
+\end{defect}
+
+%----------------------------------------------------------------------
+\begin{defect}{Hagopian 1975, 1976 and 1984: citations that do not cover the step}{Citation:
+the cited result does not cover the step; each gap filled. Ledger A.22--A.24.}{0}{0}\label{it:hag-cite}
+\begin{itemize}
+\item Hagopian 1976, p.~344: ``Since $M$ is indecomposable and homogeneous, no proper subcontinuum
+  of $M$ separates $R^2$ [5, Lemma 1 (second paragraph of proof)]''. The cited argument carries a
+  \emph{non-unicoherent} continuum to every composant; for a separating one it needs Borsuk's
+  theorem that plane separation is a topological invariant, which neither paper states. Verified
+  without Borsuk (\lean{no_proper_subcontinuum_separates}, through
+  \lean{exists_separating_subcontinuum_of_homeomorph}).
+\item Hagopian 1984, p.~346: ``since the elements of $\mathfrak D$ are tree-like, if $M$ is planar,
+  then $M/\mathfrak D$ is planar [21]''. Moore 1925 needs elements that do not separate the plane;
+  that tree-like continua do not is not stated. Filled in the plane by the same theorem.
+\item Hagopian 1975, Lemma~2 (pp.~36--37): ``[10, Theorem 3, p.~216]'' states that Kuratowski's
+  family has the order type of the interval, not that the continuum is of type A$'$. Filled by a
+  countable dense subfamily, Cantor's theorem and the map $k(y)=\inf\{q:y\in D_q\}$. Hagopian 1984
+  p.~335 repeats the citation with the same gap. Both also cite Thomas 1966 (Theorem~10, p.~15),
+  which was not in hand and is not checked; the gap is recorded for the Kuratowski citation only.
+\item Hagopian 1975, paragraph 13: ``[9, Theorem 2]'': Jones 1955 Theorem~2 implies, but does not
+  state, that a unicoherent homogeneous plane continuum is indecomposable. Supplied.
+\item Hagopian 1984, Lemma~9: the citation (1975, paragraphs 5--12) treats interior layers; the
+  lemma claims every element, end sets included. True through an extension, not stated.
+\end{itemize}
+\end{defect}
+
+%----------------------------------------------------------------------
+\begin{defect}{Other citations}{Citation; harmless. Ledger A.11, A.18, A.21, A.24.}{0}{0}\label{it:cite-misc}
+\begin{itemize}
+\item Jones 1955, Theorem~2, last step: ``Hence by [5]'': the result used is [3] (Jones 1949), not
+  [5] (Jones 1951).
+\item Jones 1949, reference [8]: ``Theorem 9.1, p.~61'' is Whyburn's (9.2); (9.1) is the lemma
+  before it. Reference [4]: Menger's theorem characterizes the circle by \emph{all} points being
+  of order 2, and Jones applies it to \emph{a} point of order 2; homogeneity and the invariance of
+  order are tacit (supplied, \lean{jones49_order_two}).
+\item Whyburn 1939, p.~748, footnote 14: ``by a theorem of R. L. Moore'' gives no theorem number. In
+  substance it is Moore 1916 Theorem~43 in corrected form (Item~\ref{it:m16-degen}).
+\item Hagopian 1984, p.~346: ``In 1968 F. B. Jones [16]'', where the reference list gives 1969.
+\end{itemize}
+\end{defect}
+
+%======================================================================
+\section{Proof steps that fail locally}\label{sec:local}
+
+In each counted item of this section a step of the printed proof is false as written, but the
+argument stands for the main case: a short argument inside the same proof repairs the step, or
+(Item~\ref{it:bj7proof}) the failure is confined to chains of at most three links, which need
+another construction.
+
+%----------------------------------------------------------------------
+\begin{defect}{Bing--Jones 1959, Theorem~7, proof, p.~177}{Proof defective; statement true. Counted
+(one defective proof). Ledger A.25 (third reading).}{0}{1}\label{it:bj7proof}
+The reduction to the chain $D'=U_0,U_1,U_2,d_3,\cdots,d_{n-2},U_{n-1},U_n,U_{n+1}$ works for $n\ge4$.
+For $n=3$ its conditions cannot all hold: a link serving as both $U_2$ and $U_{n-1}$ contains
+$P\cdot d_2$ and meets $U_4$ (certificate \lean{bj_theorem7_proof_n3}). Chains of one or two links
+are not treated. Unargued as well: ``We suppose with no loss of generality that $r<s$''; the
+special case $A\subset e_1$; the existence of the crooked sequence $D_1=D,D_2,\cdots$; and the
+non-emptiness of $P\cdot(d_1-d_2)$. Verified by another construction, following the pattern along
+a walk and folding, with no special case (\lean{bj_theorem7}); the second sentence holds for
+$n\ge3$ with a collar chain of $n+4$ links in place of $D'$.
+\end{defect}
+
+\begin{defect}{Hoehn--Oversteegen 2016, Proposition~19, p.~208}{Proof defective; statement true.
+Counted (one defective proof). Ledger A.26 (fourth reading).}{0}{1}\label{it:ho19}
+``If $D\subset F_1\cup F_2$, then \ldots\ $\varphi(D)$ is contained in a component $\widetilde D$ of
+$G\setminus\pi(S_{i_0})$. Moreover, $\varphi(D)\subset\pi(P_1\cup P_2)$, so
+$\partial\widetilde D\cap\pi(\alpha_{i_0})=\emptyset$ by (S6$'$) for $S$. This means that either
+$\partial\widetilde D\subset\pi(\beta_{i_0})$ or $\partial\widetilde D\subset\pi(\gamma_{i_0})$.'' The
+middle sentence is false. Certificate \lean{ho16_p208_false}, verified on the graph $G$: a broken
+stairwell structure of height 3 with its pit at level 2 on $G=[0,10]$, every sheet at height
+$\tfrac12$, with $\pi(S_1)=[4,10]$, $\pi(S_2)=[4,6]$, $\pi(S_3)=G$, $\pi(\alpha_2)=\{4\}$,
+$\pi(\gamma_2)=\{6\}$, $\pi(P_1)=[1,2]\cup[\tfrac{11}2,10]$, $\pi(P_2)=[1,2]\cup[\tfrac{11}2,6]$;
+the point $x=\tfrac32\in\pi(P_2)\setminus\pi(S_2)$ lies in the component $[0,4)$ of
+$G\setminus\pi(S_2)$, whose frontier point $4$ is in $\pi(\alpha_2)$. That the copies of $[1,2]$ in
+$F_1$ and $F_2$ form a component $D\subseteq F_1\cup F_2$ of the fold with
+$\widetilde D=[0,4)$ is a hand argument; the fold is not constructed in the certificate. The
+conclusion of the step holds, and the sentence fails only for components that the restriction on
+p.~209 discards. Verified: \lean{ho16_prop19}, \lean{ho16_prop19_full}, with a case split.
+\end{defect}
+
+\begin{defect}{Moore 1916, Theorem~10}{Proof defective; statement true. Counted. Ledger
+A.12.}{0}{1}\label{it:m16-10}
+``$R_1R_2\cdots R_kR$ is a simple chain'' need not hold. Repaired by taking a shortest sub-chain
+(\lean{fa_theorem10}).
+\end{defect}
+
+\begin{defect}{Moore 1916, Theorem~15, part III}{Proof defective; statement true. Counted. Ledger
+A.12.}{0}{1}\label{it:m16-15}
+``since $y$ precedes every link of $C_n$ that contains $P$ it follows that $P_B$ precedes $P$''
+fails at stage $n$, because $P_B$ can lie in the next link, which may contain $P$. Repaired by
+choosing $n$ large; the two ``it is clear'' steps of part III are supplied
+(\lean{fa_theorem15}).
+\end{defect}
+
+\begin{defect}{Moore 1916, Theorem~28, last step}{Proof defective; statement true. Counted. Ledger
+A.13.}{0}{1}\label{it:m16-28}
+The last step: ``the point-set $A_2C+CP+PD+DB_2$ contains as a subset an arc $AXB$ satisfying
+conditions (1), (2), and (3)''. The arc $CA_2$ runs in $R_A$, which straddles $J$, so its part
+before $J$ need not lie in $M$. Repaired by taking $A$ as the first point of $CA_2$ outside $M$,
+which lies on $J$; the point $P$ is not needed (\lean{fa_theorem28}).
+\end{defect}
+
+\begin{defect}{Moore 1916, Theorems~33--34, Kline's proof, p.~150}{Proof defective; statements true.
+Counted once. Ledger A.13.}{0}{1}\label{it:m16-33}
+Two proofs are printed; Kline's general proof has a gap: the first point of $DC$ on $CAB$ may be
+$B$. Filled (\lean{fa_theorem33}, \lean{fa_theorem34}). Theorem~34 is verified for any region.
+\end{defect}
+
+\begin{defect}{Moore 1916, Theorem~36}{Proof defective; statement true. Counted. Ledger
+A.14.}{0}{1}\label{it:m16-36}
+The arc $BC$ can leave $R$; it is cut at its first point outside $R$ (\lean{fa_theorem36}). Moore
+1925 Theorem~19 needs, in addition, that the interior lies in $R$
+(\lean{fa_theorem36_interior_subset}).
+\end{defect}
+
+\begin{defect}{Moore 1925, Theorem~11, pp.~421--422}{Proof defective; statement true under the
+corrected definition (Item~\ref{it:m25-def}). Counted. Ledger A.16.}{0}{1}\label{it:m25-11}
+``If $B$ is not identical with $J$ then it is a proper subset of $J$. It easily follows, with the
+help of Theorems 10 and 6, that $B$ is a simple continuous arc''. Theorem~6 needs $B$ connected,
+which is not shown. Repair: $B$ lies in a sub-arc $A$ of $J$ missing an element of $J-B$, and $A$
+would separate $G$, against Theorem~9 (\lean{frontier_eq_of_scc}, \lean{m25_theorem11}).
+\end{defect}
+
+\begin{defect}{Moore 1922, Theorem~4, necessity, last step, p.~237}{Proof defective; statement
+true. Counted. Ledger A.20.}{0}{1}\label{it:m22}
+The points $Y_m$, $Y_n$ lie in $R$, not in $M$, so ``there exists no connected subset of $M$ of
+diameter less than $\varepsilon$ that contains both $Y_m$ and $Y_n$'' proves nothing. Repaired
+within the proof: take points of $\bar R_n$ on the middle square and use $\varepsilon/2$
+(\lean{moore22_theorem4}).
+\end{defect}
+
+\begin{defect}{Whyburn, \emph{Analytic Topology}, (9.1)}{Proof defective; statement true. Counted.
+Ledger A.19.}{0}{1}\label{it:w42}
+The proof applies [I, (10.2)], which requires $N\cdot G$ compact, to $U\cdot(Q\cdot R_a+p)$, which
+need not be compact. The case $N\cdot G=N$ is not treated, and ``$Q\cdot R_a+p$ is a generalized
+continuum'' is asserted. The repair runs boundary bumping in a compact neighbourhood; the openness
+of $R$ is not needed (\lean{whyburn_9_1}).
+\end{defect}
+
+\subsection*{Local defects not counted}
+These are defective constructions or reasons inside proofs whose step is nonetheless right, or is
+repaired in one line.
+\begin{itemize}
+\item Bing--Jones 1959, Theorem~3 (p.~175): even with $F(w,m)$ read for the printed $F(v,m)$, the
+  chain $D$ is not a chain as written: $A\cdot e_{j-1}$ can meet $f_{v+1}$ and $B\cdot e_{r+1}$ can
+  meet $f_{w-1}$, which are not adjacent in $D$. Repaired by merging (\lean{bj_theorem3}).
+\item Bing--Jones 1959, Theorem~8 (p.~178): the printed $e_k$ need not form a chain, since
+  $e(a_i)_k$ is controlled only over $I_{a_i}$ (argued, not certified). Repaired by restricting each
+  piece to the fibres over $I_{a_i}$ (\lean{bj_theorem8}).
+\item Bing--Jones 1959, Theorem~9 (pp.~179--180): the condition on $\varepsilon$ concerns subsets
+  of $Q$, while the links of $F$ are not subsets of $Q$; it secures neither the disjointness of
+  links in different middles nor that every link falls under a rule. Repaired with links whose
+  closures lie in links of $E$ and a smaller mesh (\lean{bj_theorem9}).
+\item Hoehn--Oversteegen 2016, Proposition~10, second part (p.~190): ``If $C'\neq C$, then there
+  must be a point $x\in\partial C'\cap C$. But since $A'$ has consistent complement relative to $B$,
+  we must have $x\in B$''. Consistency gives $\partial C'\subseteq B$ only if $\partial C'$ meets
+  $B$, which is not shown. Repaired by shrinking $V$; the formal proof avoids the step
+  (\lean{ho16_prop10}).
+\item Hoehn--Oversteegen 2016, Theorem~15, Claim~15.1, property (4) (p.~195): ``because $x$ is not an endpoint
+  of $G$ by (5), and $\pi(M'\cap V)$ is open for some neighborhood $V$ of $(x,y)$ by (3)''. Here
+  $(x,y)\in T$, and (3) speaks only of points of $M'\setminus T$; the openness comes from
+  irreducible separation. The step is true. Also p.~198, (S4): an incomplete case split (a
+  component around a cycle of $G$ is in neither case; the same chain argument covers it); and
+  p.~197: nothing excludes $b\in J_j$. The formal proof of Theorem~15 avoids all of pp.~194--198
+  (\lean{ho16_theorem15}).
+\item Hagopian 1976, Lemma~4, first paragraph (p.~341): ``Since the decompositions of $E$ and $F$
+  are minimal, each element of the decomposition of $E$ (except possibly $k^{-1}(1)$) is an element
+  of the decomposition of $F$.'' Minimality gives it only for layers in $d^{-1}(u)$ with $u<s$
+  (\lean{hagopian76_lemma4_layers'}); a plane model without homogeneity has a layer swallowed.
+  Verified in a strong form through Lemma~5 (\lean{hagopian76_far_layer}).
+\item Hagopian 1976, $\varepsilon_1$ (pp.~345--346): ``the chain formed by taking
+  $\varepsilon_1$-neighborhoods \ldots\ follows $h[E]$'' does not follow from the four printed
+  families; true after shrinking $\varepsilon_1$. Likewise property (D) of T9.
+\item Hagopian 1984, Lemma~15 (p.~341): ``By Lemma 3'' is insufficient as printed (the layer through
+  a point of $h[Z]$ need not lie in $\Delta(\mathcal P)$); verified with a smaller $\varepsilon$
+  (\lean{hagopian84_lemma15}). The cover (p.~343): ``it follows that $\bigcup\mathfrak B$ is a closed
+  open subset of $M$'' is not an argument over uncountably many $Z$; a finite subcover is proved
+  directly (\lean{hagopian84_cover}, \lean{sUnion_cover84_eq_univ}). Disjointness, first case:
+  ``by (2), (3), and Lemma 7, $A=B$'' leaves the case $S_A\subseteq Y$ open; supplied by a transfer
+  lemma.
+\item Oversteegen--Tymchatyn 1982, Corollary~3.5 (pp.~139--140): ``there is a continuum $B\subset
+  X$ such that $[0,5/8]\subset\pi_1(h_K(B))\subset[0,3/4)$'': the first inclusion is impossible as
+  printed, since $h_K(B)\subset K\subset[\varepsilon,3/4]\times R$. Of the two readings only
+  $[0,5/8]\subset\pi_1(B)$ gives what Theorem~3.2 needs; the existence of $B$ is unargued and is
+  supplied through hereditary indecomposability. ``Without loss of generality \ldots\
+  $\pi_1(A)=[0,1/2]$ and $\pi_1(X)=[0,1]$'' is not a rescaling; supplied by a shear and a
+  homeomorphism.
+\item Jones 1975, (d), second sentence (p.~58): ``$c'$ has the properties possessed by $c$'' holds
+  only if the Effros homeomorphism preserves the direction of $T$; adding $d(a,ce)$ to the minimum
+  repairs it. The triod paragraph does not yield the contradiction as printed.
+\item Fugate 1969, Lemma~3: Lemma~2 gives $K\cup R$ irreducible between some $q\in K$ and some $p$;
+  getting $p\in R\setminus K$ needs $R\not\subseteq K$, which is not argued. Supplied from
+  Sorgenfrey's theorem.
+\end{itemize}
+
+%======================================================================
+\section{Statements false because of their wording}\label{sec:wording}
+
+In each item a definition or hypothesis says less than the author meant, and a configuration the
+author plainly did not have in mind refutes the printed statement. The intended statement is
+verified in each case.
+
+\begin{defect}{Moore 1925, the definition of complementary domain (p.~417) and Theorem~2}{False as
+printed. Counted (one false statement). Ledger A.16.}{1}{0}\label{it:m25-2}
+``A domain of elements of $G$ is said to be a complementary domain of a closed set $H$ \ldots\
+provided the boundary of $D$ is a subset of $H$.'' Neither disjointness from $H$ nor maximality is
+required, so $G$ is a complementary domain of every closed set, and ``the unbounded complementary
+domain'' is not unique. Theorem~2 is false under this definition
+(\lean{not_m25_theorem2_printed}): take the decomposition into points, $M$ a closed disk, $D$ the
+open disk minus a radius, and $E$ the plane minus the radius; the outer boundary is the radius,
+which is cut by each of its interior points. Read as components of the complement, Theorem~2 holds
+(\lean{m25_theorem2}), and the unbounded one is unique (\lean{m25_unbounded_unique}).
+\end{defect}
+
+\begin{defect}{Moore 1925, the definition of simple closed curve (p.~417) and Theorems~10 and
+11}{False as printed. Counted (two false statements). Ledger A.16.}{2}{0}\label{it:m25-def}
+``A bounded subset $H$ of the set $G$ is said to be a simple closed curve \ldots\ provided it is
+disconnected by the omission of any two of its elements.'' Neither closedness nor connectedness is
+required, nor more than one element. Two disjoint segments (decomposition into points) qualify; for
+them Theorems~10 and 11 fail: they are not a union of two arcs, and their complement is connected
+(\lean{not_m25_theorem10_printed}, \lean{not_m25_theorem11_printed}). With ``closed, connected,
+nontrivial'' added, both are verified (\lean{m25_theorem10}, \lean{m25_theorem11}).
+\end{defect}
+
+\begin{defect}{Moore 1925, Theorem~7, p.~420}{False as printed, by a misprint. Counted (one false
+statement). Ledger A.16.}{1}{0}\label{it:m25-7}
+``then $p$ is a limit element of the set $H$'' should read $x$. The printed form is refuted
+(\lean{not_m25_theorem7_printed}); the corrected form is verified (\lean{m25_theorem7}).
+\end{defect}
+
+\begin{defect}{Mullikin 1922, Theorem~5, p.~160}{False as printed. Counted (one false statement).
+Ledger A.17.}{1}{0}\label{it:mu5}
+``\ldots\ such that $M_1$ and $M_2$ have in common only $K_1$ and $K_2$, where $K_1$ and $K_2$ are
+mutually exclusive connected sets, then $S-M_1-M_2$ is the sum of just two mutually exclusive,
+connected domains.'' Mutually exclusive connected sets need not be separated: take $M_1=M_2$ a
+segment, $K_1$ a half-open half and $K_2$ the closed other half; their union is connected, and the
+complement of the segment is connected (\lean{not_mullikin_theorem5_printed}). The intended
+hypothesis is that $K_1$, $K_2$ be closed; Moore's use ($K_1=\bar p$, $K_2=\bar q$) satisfies it.
+Verified in that form (\lean{mullikin_theorem5}), by logarithms and Borsuk's theorem instead of
+polygons.
+\end{defect}
+
+\subsection*{Omitted hypotheses and definitions, not counted}
+\begin{itemize}
+\item Hoehn--Oversteegen 2016, pp.~193--194: ``if $k$ is odd then $\pi(S)=G$'' and ``$\pi$ maps $S$
+  homeomorphically onto $G$'' omit ``$G$ connected''; with the paper's convention (``$G$ will
+  denote a (not necessarily connected) graph'', p.~184) both fail for $G=[0,1]\cup[2,3]$,
+  $S=[0,1]\times\{\tfrac12\}$ (\lean{ho16_p193_remark_false}).
+\item Hoehn--Oversteegen 2016, Proposition~17 (p.~200): the hypothesis $k\ge3$ is not printed (for
+  $k\le2$ the conclusion has height $\le0$); harmless, since Theorem~20 applies it to odd $k\ne1$.
+\item Moore 1916, Theorem~31: the order $C\,E\,B\,G\,D$ needs $B\ne C,D$. Theorem~32: nothing keeps
+  $C\in R$ off the arc $AB$; proved under $R\cap AB=\emptyset$. ``The interior of $J$'' is used from
+  Theorem~23 on and never defined; supplied as the region bounded by $J$.
+\item Moore 1919: the double-ruling definition (p.~172, footnote) requires equal numbers of arcs in
+  the two families, which Moore's own Fig.~1 (9 and 8) violates; padding shows the requirement costs
+  nothing. It omits the disjointness of the $Y$-arcs; the ``subdivisions'' are never defined.
+\item Moore 1925: the definition of boundary (p.~417) is empty in its second clause as printed;
+  read ``of $G$'', it is the frontier. Theorem~3's statement does not say that the region contains
+  $p$, which the proof gives and Theorem~4 needs.
+\item Moore 1920, Definition~4 (p.~342) admits a single point; see Item~\ref{it:m20}.
+\item Hagopian 1976, p.~340: the end-set property ``[14, Theorem 8, p.~14]'' is true for the
+  decomposition and false for an arbitrary admissible map.
+\item Mullikin 1922, Theorem~4 (p.~154): true for disjoint $M_1$, $M_2$ under her convention that the
+  empty set is connected (\lean{mullikin_theorem4_disjoint}), false under Mathlib's
+  (\lean{not_mullikin_theorem4_disjoint_mathlib}).
+\end{itemize}
+
+%======================================================================
+\section{Statements false at degenerate cases}\label{sec:degenerate}
+
+Each statement in this section fails only at an empty set, a single point, an endpoint, or a
+chain of at most three links, and holds once that case is excluded. In most of them the proof
+begins by choosing a point that the hypotheses do not supply. Bing 1948 Theorem~4 is different: its
+proof claims the small case as easy (Item~\ref{it:b48-4}). Moore 1916 Theorem~43 has no printed
+proof.
+
+\begin{defect}{Jones 1948, Theorems~6 and 10}{False as printed. Counted (two false statements).
+Ledger A.10.}{2}{0}\label{it:j48}
+Theorem~10 (p.~407): ``\emph{In order that a compact continuum $M$ be indecomposable it is
+necessary and sufficient that $M$ contain an open subset $D$ of $M$ such that if $x$ is a point of
+$D$ and $y$ is a point of $M-x$, then $M$ is not aposyndetic at $x$ with respect to $y$.}''
+$D=\emptyset$ satisfies the condition vacuously in every continuum, so the statement says every continuum is indecomposable; an arc refutes it
+(\lean{theorem10_printed_iff}, \lean{not_theorem10_printed_unitInterval}). Theorem~6 has the same
+defect: with $D=M_0=\emptyset$ the hypotheses hold vacuously and the conclusion asks for a point of
+$D$ (\lean{not_theorem6_printed}). Both are verified with $D$ nonempty. Theorems~11, 12, 13 and 19
+carry the same tacit hypothesis and are not listed as false, because the intended reading is plain.
+\end{defect}
+
+\begin{defect}{Moore 1916, Theorems~4, 14, 19, 23, 35 and 43, and the limit-point criterion of
+p.~139}{False as printed. Counted (seven false statements). Ledger A.12--A.14.}{7}{0}\label{it:m16-degen}
+\begin{itemize}
+\item Theorems~4, 19, 23 and 35: adjoining $\emptyset$ to the regions preserves Axioms~1--8 and
+  every derived notion, and each statement fails for the empty region. Moore's proofs begin by
+  choosing a point of $R$. Verified for $R$ nonempty (\lean{fa_theorem4}, \lean{fa_theorem19},
+  \lean{fa_theorem23}, \lean{fa_theorem35}).
+\item Theorem~14: the proof opens ``For each $n$, $M_n$ contains at least one point'', which is not
+  a hypothesis; $M_n=\emptyset$ refutes it (\lean{not_fa_theorem14_printed}); verified with $M_n$
+  nonempty (\lean{fa_theorem14}).
+\item Theorem~43: false for $G=\emptyset$ in every model (\lean{not_fa_theorem43_printed}). It has no
+  printed proof; the corrected form is verified through a dual of Theorem~41 for intersections of
+  interiors (\lean{fa_theorem43}).
+\item The limit-point criterion on an arc (p.~139, unnumbered) fails at an endpoint, where it holds
+  vacuously (\lean{not_fa_sec5_limitPt_printed}). Corrected and verified.
+\end{itemize}
+\end{defect}
+
+\begin{defect}{Moore 1920, Theorem~4}{False as printed. Counted (one false statement). Ledger
+A.16.}{1}{0}\label{it:m20}
+Definition~4 (p.~342) of a simple closed curve has ``closed, connected, and bounded'' but admits a
+single point, for which Theorem~4 is false (\lean{not_moore1920_theorem4_singleton}); so is Moore
+1925 Theorem~11 (\lean{not_m25_theorem11_singleton}).
+\end{defect}
+
+\begin{defect}{Jones 1949, Theorems~1 and 2}{False as printed. Counted (two false statements).
+Ledger A.18.}{2}{0}\label{it:j49}
+Theorem~1: ``If a compact, plane continuum $M$ is both homogeneous and aposyndetic, then $M$ is a
+simple closed curve'' fails for a one-point continuum (\lean{not_jones49_theorem1_point}). Jones's
+footnote 3 refers the reader for definitions to Moore's book or Whyburn's; Whyburn's convention
+(\emph{Analytic Topology}, p.~15: ``A compact connected set will be called a continuum'') admits
+one-point continua. Theorem~2 fails likewise: a point is
+homogeneous and has no weak cut point (\lean{not_jones49_theorem2_point}). Both are verified for
+nondegenerate continua (\lean{jones49_theorem1}, \lean{jones49_theorem2}).
+\end{defect}
+
+\begin{defect}{Hoehn--Oversteegen 2016, Theorem~1$'$, p.~212}{False as printed. Counted (one false
+statement). Ledger A.26.}{1}{0}\label{it:ho1p}
+Theorem~1$'$ (``surjective semispan zero'' in place of ``span zero'') omits ``non-degenerate'' and
+fails for a one-point continuum (\lean{ho16_theorem1prime_printed_false}). It is stated correctly
+nowhere, although p.~212 presents it as what ``our proof of Theorem 1 in fact establishes''.
+Theorem~1 as restated on p.~211 omits ``non-degenerate'' too
+(\lean{ho16_theorem1_printed_false}); it is recorded as a misprint, because p.~180 states it
+correctly.
+\end{defect}
+
+\begin{defect}{Bing 1948, Theorem~4, at $m=3$, p.~733}{False as printed for $m=3$; true for $m\ge4$.
+Counted (one false statement). Ledger A.1.2.}{1}{0}\label{it:b48-4}
+``\textsc{Theorem 4.} \emph{If $D=[d_1,d_2,\cdots,d_n]$ is a chain crooked in the chain
+$E=[e_1,e_2,\cdots,e_m]$ and $D(r,s)$ is a subchain of $D$ such that a link of $D(r,s)$ intersects
+$e_1$ and a link of $D(r,s)$ intersects $e_m$, then there is a chain $F$ such that $F$ is a
+consolidation of $D$, each element of $F$ is a subset of the sum of two adjacent links of $E$,
+$d_r$ is contained in only the first link of $F$, and $d_s$ is contained in only the last.}'' The
+proof: ``Since the case of our theorem where $m\le4$ is easily established''. Two failures at
+$m=3$. With $r=s$: three intervals in $\mathbb R$ crooked in three intervals, the middle fine link
+meeting the first and last coarse links; $d_r$ in both the first and the last link of $F$ forces
+$F$ to have one link, all of $D$, which lies in no two adjacent links of $E$
+(\lean{theorem4_two_degenerate_false}, \lean{not_theorem4Literal}). With $r<s$: in $\mathbb N$
+with the discrete topology, coarse links $\{0,1,5\}$, $\{1,2,4,5\}$, $\{2,3,4\}$, fine links
+$\{5\}$, $\{4,5\}$, $\{2,3,4\}$, $\{1,2\}$, $\{0,1\}$, $r=0$, $s=1$
+(\lean{not_theorem4LiteralND}). Verified for $m\ge4$ in every clause (\lean{theorem4_literal_ge4}).
+\end{defect}
+
+\begin{defect}{Bing--Jones 1959, Theorem~7, second sentence, p.~177}{False as printed for chains of
+one or two links. Counted (one false statement). Ledger A.25 (third reading).}{1}{0}\label{it:bj7b}
+``\emph{In fact, if $A$, $B$ are closed sets in $P\cdot d_1$, $P\cdot d_n$ respectively and
+$H(x_r)=d_1$, $H(x_s)=d_n$, the chain $E$ may be selected so that $A\subset e_r$, $B\subset
+e_s$.}'' With $n=1$, $m=3$, $H$ constant, $A=B=\{p\}$, $r=1$, $s=3$: $p\in e_1\cap e_3$, and $e_1$,
+$e_3$ are not adjacent (\lean{bj_theorem7_ends_printed_false}). With $n=2$ the same, with $p\in
+P\cdot d_1\cdot d_2$ and $H=(d_1,d_1,d_2)$ (a hand argument). For $n\ge3$ it holds when ``closed''
+means closed in the space, which is Bing and Jones's own use on p.~178 (\lean{bj_theorem7_ends}).
+Read as closed in the subspace $P\cdot d_1$, it fails for every $n$ (a hand argument:
+$H=(d_1,d_2,d_1,d_2,d_3)$, $r=1$, $A=P\cdot d_1$).
+\end{defect}
+
+\subsection*{Tacit nonemptiness, not counted}
+Jones 1948 Theorems~11--13 and 19 ($D$ or $U$ nonempty); van Mill 2004 Proposition~2.2 ($X\ne
+\emptyset$; in the empty space $\emptyset$ is analytic and fat); Moore 1916's definition of
+connected (the two parts must be nonempty); Moore 1925 Theorem~12 (a domain read as nonempty);
+Cook 1967 Theorem~4 (the sequence $C_n$ does not exist when $C=X$, a case that needs no argument);
+Whyburn (8.3) (``no convergent sequence of components'' must exclude the constant sequence).
+
+%======================================================================
+\section{Unargued steps and statements without proof}\label{sec:unargued}
+
+Every step listed here is true and is supplied, or shown unnecessary, in the formalization,
+except those marked ``not decided''. Sources are
+listed in the order of \S\ref{sec:classification}.
+
+\begin{defect}{Jones 1948, 1949, 1951 and 1955}{Unargued; stated without proof. Ledger A.10, A.11,
+A.18.}{0}{0}\label{it:un-jones}
+\begin{itemize}
+\item Jones 1955, Theorem~1: the continuity step (``Since $G$ must be continuous at some one of its
+  elements'': an upper semicontinuous decomposition of a compact metric space is continuous at a
+  residual set of elements); homogeneity and aposyndesis of the decomposition space in (a); ``$N_o$
+  is closed''. Not decided and moot: the attainment of the supremum $d(q)$ and ``$E_n$ is closed''.
+\item Jones 1955, Theorem~2: ``if one element of $G$ were to separate $S$, then each of them
+  would'' uses Borsuk's theorem; the ``uncountably many mutually exclusive domains'' (their choice
+  and disjointness); the upper semicontinuity of $G'$ and ``$G$ is a compact subcontinuum of $G'$'';
+  ``$M-g$ is connected''; the aposyndetic case ($L_x=\{x\}$) is not mentioned. Verified
+  (\lean{jones55_theorem2'}). The three unnumbered claims of the closing remarks are verified.
+\item Jones 1951, Theorem~1: ``$M'$ is homogeneous and aposyndetic'', ``$M'$ contains a
+  nonseparating point'' and ``$M'$ is hereditarily unicoherent'' are asserted; the formal proof
+  needs none of them.
+\item Jones 1949: Case~1 (that every point of $M$ belongs to the boundary of an element of $G$ needs
+  the Jordan curve theorem, \lean{jordan_curve_theorem}); four steps of Case~2, the last of which
+  (``$M-(A+B)$ is \emph{not} connected'') needs $\theta$-curves and Janiszewski's theorem; and
+  ``all except countably many \ldots\ must be of order 2'' needs $M$ uncountable.
+\item Jones 1948: Theorems~0, 2, 3 and 5 are stated without proof (all proved); Theorem~13's choice
+  of $V_2$ must satisfy $\overline{V_2}\subseteq W_1$.
+\end{itemize}
+\end{defect}
+
+\begin{defect}{Whyburn 1939 \S14, Whyburn 1942, Moore 1922, Menger 1932}{Unargued; stated without
+proof. Ledger A.19--A.21.}{0}{0}\label{it:un-why}
+\begin{itemize}
+\item Whyburn 1939, Theorem~14: ``$N$ can intersect only one of the arcs $xuy$, $xvy$''; ``the arc
+  $x_1xuyy_1$ of $J$ is contained in $C$''; the limit continuum $H$ lies in $M$ and is
+  nondegenerate; uniform continuity in the finite-cover step. Not decided, not needed: ``Hence
+  there exists a simple closed curve $K$ in $V_\varepsilon(p)$ such that $K\cdot M=c+d$''. Corollary~1
+  and (6.22) are stated without proof (supplied); footnote 16 (equivalence with Wilder's local
+  0-avoidability) is not decided and not used.
+\item Whyburn 1942: (8.4) ``there exist points $x$ and $y$ of $N$ \ldots\ such that
+  $\delta[Q_2(x)\cdot Q_1(y)]<\varepsilon/4$'' needs facts from inside the proof of (2.2), not from
+  the statement of (3.2); (8.41) uses the boundary bumping of (9.1); (9.2) ``and hence also of
+  order 2 in $L$''. (3.1) is stated without proof (not used).
+\item Moore 1922, Theorem~4: five steps of necessity and three of sufficiency, among them the sector
+  theorem for continua crossing an annulus (proved by lifting to a strip) and the cyclic order of
+  the continua $k_n$.
+\item Menger 1932, p.~266: three steps of the \emph{Kennzeichnung der gewöhnlichen Kurven}; not
+  used, since the formal proof follows Menger's second argument on p.~267.
+\end{itemize}
+\end{defect}
+
+\begin{defect}{Hagopian 1975, 1976 and 1984}{Unargued. Ledger A.22--A.24.}{0}{0}\label{it:un-hag}
+\begin{itemize}
+\item Hagopian 1975: Lemma~1, three steps (the triod must be proper; complementary domains missing
+  $M$ are pairwise disjoint; Baire and Moore~138); Theorem~1, paragraph 2 (``$F$, $f[F]$, and
+  $g[F]$ are mutually disjoint''; ``$B\cup F\cup f[F]\cup g[F]$ is a triod''); paragraph 9, the
+  second inclusion of ``$h_i[Y]\subset h_ik^{-1}[[r,t]]\subset E$''.
+\item Hagopian 1976: Lemma~4, the second step (about two hundred lines of the formal proof,
+  \lean{exists_proper_extension}); Lemmas~6, 7 and 9 (several sentences each); the plane
+  Schoenflies theorem in Lemma~9 (\lean{plane_schoenflies}); ``we can assume \ldots\ that
+  $k^{-1}[(0,1)]$ is accessible''; Properties 1 and 3; T7, T9, T11, T12, T13; ``It follows from
+  Property 3 that $I$ is finite''; ``Note that $x_1=0$, $x_2=e$, and $x_{2n}=1$''; Property 4 for
+  the top block; the order of the constants, which the text does not fix. Lemma~5's union of two
+  extensions is not decided and not used. Every one of these is supplied except those listed in
+  Item~\ref{it:h76}.
+\item Hagopian 1984: Lemma~7 (three atriodicity steps, avoided); Lemma~8 (an arc); Lemma~12; Lemma~13
+  (the hypotheses of Lemma~3, and an orientation argument for regularity); Lemmas~14--15
+  (positivity of $\varepsilon=\frac12\rho(\bigcup\Delta(\mathcal P),M\setminus\bigcup\mathcal P')$);
+  Lemma~16 (``Since $\mathcal P$ is free, there exist a 3-linked subchain \ldots'', replaced by a
+  different lemma; Lemma~16 without normality is not decided); in Theorem~1, $X(Z)$, $J(Z)$ (without
+  the printed positions of its end sets), claims (5)--(6), and ``$M/\mathfrak D$ \ldots\ contains an
+  arc''.
+\end{itemize}
+\end{defect}
+
+\begin{defect}{Jones 1975}{Unargued. Ledger A.28.}{0}{0}\label{it:un-j75}
+(c) (the argument from (a) and (b) is not given). In the Theorem: ``let us assume that $T$ is
+accessible from the complement of $M$''; ``There exists a positive integer $\eta$ \ldots\ This
+follows from property (f)''; ``Clearly $t_f$ cannot lie in $\bar D_1\cup\bar D_2\cup\bar D_3$
+without violating the selection of $\eta$''; ``it is easy to see that $p\notin\bar D_2$ and property
+(f) is violated''. None is used by the formal proof (Item~\ref{it:j75}).
+\end{defect}
+
+\begin{defect}{Oversteegen--Tymchatyn 1982 and Cook 1967}{Unargued. Ledger A.29.}{0}{0}\label{it:un-ot}
+\begin{itemize}
+\item Theorem~3.6: ``Since $X$ is atriodic tree-like'' (not needed in the indecomposable case, so
+  neither Rogers 1981 nor Jones 1969 is needed for Theorem~C); ``Hence there exists an index $i$
+  and points \ldots\ such that $d(x,y)<\delta$''; ``since $Z$ is a proper subcontinuum''.
+\item Corollary~3.5: ``For each $K\in\mathcal K$ we may suppose $K\cap\{\varepsilon\}\times
+  R=\{x_K\}$'' (minimality does not give it in general; not needed); the uncountable family
+  $\mathcal K$ of disjoint crossing continua.
+\item Theorem~2.7: ``there exists a continuum $H$ in $C$ such that $(0,p)\in H$ and $H$ meets both
+  $I\times\{0\}$ and $I\times\{1\}$'' and ``Clearly $K\cap H\ne\emptyset$''; the continuity of
+  $\varphi$ can fail where the path meets $B_1$ (harmless where it is used). Remark~2.5 and the
+  sketch of Lemma~2.1.
+\item Cook 1967, Theorem~4: the sequence $C_n$ is not constructed, and ``The common part of
+  $f(C_1)$, $f(C_2)$, \ldots\ is $f(C)$'' is unstated; the formal proof needs neither
+  (\lean{cook67_theorem4}).
+\end{itemize}
+\end{defect}
+
+\begin{defect}{Hoehn--Oversteegen 2016}{Unargued; stated without proof. Ledger A.26.}{0}{0}\label{it:un-ho}
+\begin{itemize}
+\item p.~211, proof of Theorem~1: ``It follows that $d_H(X,T)<\delta$''; from $d_{\sup}(f,
+  \mathrm{id}_X)<\delta$ only $X\subseteq T_\delta$ and $f(X)\subseteq X_\delta$ follow, while
+  Theorem~4 needs $T\subseteq X_\delta$ too. Repair: replace $T$ by $f(X)$.
+\item Theorem~8, (1)$\Rightarrow$(2): the fans must be pairwise disjoint, which is not said.
+\item Lemma~6 (p.~185): ``The proofs of these properties are left to the reader''; seven properties,
+  verified (\lean{ho16_lemma6}).
+\item pp.~186--187: the fold determined by $G_1$, $G_2$, $G_3$ (``It is straightforward to see'') and
+  Proposition~7 (three steps, supplied).
+\item pp.~189--191: the observations after Definition~9; Proposition~11 (three short steps).
+\item pp.~194--198, Theorem~15: Claim~15.1 (``We leave it to the reader''); the passage to an
+  irreducible subset; the branch-point surgery; ``clearly $S$ irreducibly separates''; ``(S3) and
+  (S5) are immediate''. The formal proof avoids all of them (\lean{ho16_theorem15}).
+\item Lemma~18 (that $\pi(S')$ has finitely many components); Proposition~17 (``It is now easy to
+  verify''); pp.~203--210 (the ``straightforward observations'', (S3) and (S5$'$) in
+  Proposition~19, the component $K$ of p.~209).
+\end{itemize}
+\end{defect}
+
+\begin{defect}{Bing--Jones 1959}{Unargued. Ledger A.25.}{0}{0}\label{it:un-bj}
+\begin{itemize}
+\item p.~173: ``It follows from Theorem 10 that any two circles of pseudo-arcs are topologically
+  equivalent and that each is homogeneous''; p.~189: ``It follows from Theorem 10 that each circle
+  of pseudo-arcs is homogeneous and that any two of them are homeomorphic.'' The passage from arcs
+  to circles is not written; it needs circle-likeness to make the two halves snake-like
+  (\lean{isSnakeLike_of_subset_circleLike}), and then Theorem~10 and a gluing.
+\item Theorem~2 ($G(b,c)$ meets $d_t$); Theorem~3 ($D$ an $\varepsilon$-chain); Theorem~7 (above);
+  Theorem~8 ($U_A$, $U_B$, asserted for an upper semicontinuous collection; the cover
+  $U_1,\ldots,U_t$, ``It follows from Theorem 4''; the general case, ``alter $Y$ as was done in the
+  proof of Theorem 7''); the corollary to Theorem~8 (three consecutive links); Theorem~9 (``That $h$
+  is a homeomorphism of $P$ onto $Q$ follows from an argument similar to'').
+\item Theorem~10: Step~1(b); Step~2(b), the chain map $R_{i/n}$; Step~2(c), Theorem~6 applied
+  without naming the chain in the role of $E$, the use of the false Theorem~5
+  (Item~\ref{it:bj5}), and the transition set the repaired Theorem~5 needs; ``Of course,
+  $d(p,i+1)\subset d(p,i)$'' (p.~188, from Condition B); Step~2(i), Theorem~9's hypothesis; Step~3 (closures of the $f_j$); ``Steps
+  4, 5, $\cdots$. These steps are essentially repetitions of Step 3.'' Verified
+  (\lean{bjThm10}, through \lean{bj_step}).
+\end{itemize}
+\end{defect}
+
+\begin{defect}{Bing 1948 and 1951; Fugate 1966 and 1969; Lehner 1961; van Mill 2004}{Unargued; stated
+without proof; not established for the generality stated. Ledger A.1--A.9.}{0}{0}\label{it:un-bing}
+\begin{itemize}
+\item Bing 1948, Theorem~14: ``That there exist such sequences follows as a consequence of Theorem
+  9'' is not a proof; the descriptions are supplied by Lehner's Lemma~3 for $n=2$
+  (\lean{lehner_lemma3_two}). Two assertions of the sketch are not established for an
+  \emph{arbitrary} covering description; both hold for the description Lehner's construction
+  produces. Nine further steps are supplied.
+\item Bing 1951 (Duke): Theorem~7 is stated for tree-like continua, but the proof of Theorem~6 that
+  it rests on assumes that no subcontinuum separates the plane; ``tree-like $\Rightarrow$ no
+  separating subcontinuum'' is not stated (verified, \lean{treeLike_nonseparating}). Theorem~8:
+  ``$K_2$ contains $K_4$ interiorly'' and the order of the two inclusions (\lean{theorem8_1951'}).
+  Theorem~11, sufficiency: three sentences, supplied from Fugate 1969 (\lean{theorem11_1951}).
+\item Fugate 1966, Corollary~1: stated without proof; the induction it suggests needs every partial
+  union to be unicoherent, which is what is missing; verified (\lean{fugate_cor1},
+  \lean{fugateU_holds}). No proof or discussion of the corollary for more than two pieces was found
+  in the reviews, in later work of Fugate, in Nadler 1992, Macías 2005, the Houston Problem Book,
+  or the citing papers searched.
+\item Fugate 1969: besides Lemma~3 (\S\ref{sec:local}), nine smaller steps (hereditary unicoherence
+  not stated; the displayed chain is only a weak chain).
+\item van Mill 2004, Proposition~3.5: Proposition~2.2 is applied ``in $E$'', which needs ``nowhere
+  meager in $X$'' to give ``nowhere meager in $E$''; avoided by a relative form of 2.2.
+\end{itemize}
+\end{defect}
+
+\begin{defect}{Moore 1916, 1919 and 1925}{Unargued; stated without proof. Ledger
+A.12--A.16.}{0}{0}\label{it:un-moore}
+\begin{itemize}
+\item Moore 1916: Theorems~1, 3, 7, 11, 13, 16--18, 20, 22, 30, 38, 40, 42 and 43 are stated without
+  proof (all proved; Theorem~1 needs no axiom); \S5 rests on Lennes 1911 and supplies no proofs;
+  Theorem~41's last step (``It may be proved that $J$ is a closed curve satisfying the
+  requirements'') hides a limit construction; Theorems~37 and 39 (about seven steps). The opening
+  of \S6 (``It is clear that Theorems 1--19 are consequences of Axioms 2--5 and Theorems 5 and 15'')
+  is partly borne out and not formalized.
+\item Moore 1919: Theorem~B (five steps called ``clear'' or ``easy''); Theorems~D and E (``This
+  process may be continued'', and the extension of rulings, never proved); Theorem~E's limit arcs;
+  the nine-cell ruling of Fig.~3 (not needed); Theorem~G (``It is clear that through every point
+  there is just one curve of the set $\alpha$ \ldots''); the final paragraph (``It is clear that the
+  correspondence thus established \ldots\ is continuous''). Verified by a route through a Schoenflies
+  theorem for Moore's space (\lean{m19_theoremG}, \lean{m19_plane}). The claim of the introduction
+  for $\Sigma_2$ rests on Moore 1916 p.~163 (Item~\ref{it:m25-21}).
+\item Moore 1925: Theorem~2 (Brouwer's theorem is needed twice, and three ``clearly'' steps);
+  Theorem~11 (``therefore neither $\bar a$ nor $\bar b$ separates $S$''; ``It is easy to see that
+  one of these domains \ldots\ is bounded''; ``Clearly $I$ and $E$ are domains \ldots\ and
+  $I+E=G-J$'');
+  Theorem~3 (four steps); Theorems~4, 5, 6, 9, 10 and 15--19 and the p.~420 claim, stated without
+  proof (supplied); Theorems~8, 13, 14 and 20 (two to three steps each).
+\end{itemize}
+\end{defect}
+
+%======================================================================
+\section{Misprints and harmless mismatches}\label{sec:misprints}
+
+Each is read as indicated; none affects a result. ``Printed $X$, read $Y$.''
+
+\begin{itemize}
+\item \textbf{Hoehn--Oversteegen 2016.} p.~211, Theorem~1 restated without ``non-degenerate''
+  (Item~\ref{it:ho1p}); p.~189, Theorem~8, (3)$\Rightarrow$(1): $U$ and $V$ interchanged in the first
+  sentence; p.~195: $x$ for $(x,y)$; p.~198: ``Since $a_i\in C$'' for $a_p$, and $\{z\}_*$ for the
+  star; p.~202: $\cap$ for $\cup$ in ``$\mathcal E(S'')\subset(F_1\cap F_2)_\star$'', and ``$S''$ is a
+  straight'' (a word missing); pp.~205--207: $\varphi^{-1}$ for $\varphi_\star^{-1}$, three times,
+  and on p.~205 ``$P'_1\cap(\partial F_3)_\star=\varphi_\star^{-1}(\gamma_{i_0})$'' for its
+  intersection with $(\partial F_3)_\star$; p.~209: the order of composition; p.~192:
+  ``comple ment''; p.~210 says more than p.~201; Theorem~20 (p.~210): an unneeded assumption on the
+  $\varepsilon_i$; pp.~202--203: two omitted citations of (S4$'$).
+\item \textbf{Bing--Jones 1959.} p.~172: \emph{of} for \emph{if}; p.~173: \emph{of} for
+  \emph{are}; Theorem~3: $F(v,m)$ for $F(w,m)$; Theorem~7: ``components'' for ``composants'';
+  Theorem~8: $d_2$ for $d_n$; Theorem~9: $G$ for $F$, and $e$ for $d$ on p.~180; p.~181: $E_i$ for
+  $E_1$, $H_2$ for $H_1$, $d^1_k$ for $e^1_k$; p.~182: $K_3$ for $K_2$; p.~185:
+  $R_{(2i+1)/n}$ for $R_{(2i+1)/2n}$ and $P(0,1/n-\varepsilon)$ for $P(0,i/n-\varepsilon)$; p.~186:
+  $E_k$ for $E_1$; p.~187: ``intesects'', $E_1$ for $D_1$, $f_{i+1}$ for $f_{t+1}$; p.~178, the
+  corollary: $4i+1,\ldots,4i+4$ for $4i-3,\ldots,4i$; p.~188: $H_i(d_k^{i+1})$; p.~189:
+  $\rho(p,q)<4/2^i$ where the meshes give $8/2^i$; p.~180: the last display of Theorem~9 ends
+  ``$\subset\bar e_i$'' where the claim is $h(P\cdot d_i)\subset e_i$; p.~187: condition (1) asks
+  for the whole link $f_j$ where the construction controls only $f_j\cdot Q(i/k,(i+1)/k)$; p.~191, the figure: the level written second,
+  and $a_1$, $c_1$ for $a_i$, $c_i$; pp.~190--191: the letter $G$ used twice.
+\item \textbf{Hagopian.} 1975: ``transfromation'' (p.~37); Lemma~3 printed for type A, citing a
+  source not in hand (only type A$'$ is used). 1976: none beyond the citations of
+  Item~\ref{it:hag-cite}. 1984: ``opens sets'' (p.~333), ``$\varepsilon$-circluar'' (p.~334),
+  ``$\varepsilon$-homomorphisms'' (p.~338), unbalanced brackets in Lemma~13(5), Lemma~13(5)
+  printed without $h$ (p.~340), $K(Z)$ ``the component of $\bigcup\mathcal P'$ that contains $Z$''
+  (read: whose closure has $Z$ as a layer); Lemma~2 (cited to Mackowiak--Tymchatyn 13.8) is
+  applied to unions $F\cup J$, $N\cup F$, which is harmless in the plane.
+\item \textbf{Oversteegen--Tymchatyn 1982.} ``$\sigma_0(x)$'' (p.~129); ``$f(X)\supset g(X)$'' for
+  $f(C)\supset g(C)$ and ``homomorphism'' (p.~140); ``[7]'' for Effros, which is [6]
+  (pp.~139--140); $R^2$ for $I^2$ (p.~136); ``$d(h_\lambda(Z),h_\gamma(z))<1/8$'' for
+  $h_\lambda(z)$ (p.~138); ``an indecomposable homogeneous plane'' (``continuum'' missing).
+\item \textbf{Jones.} 1948, Theorem~16: $P$ for the weak cut point $p$. 1951: ``hereditorily''
+  (p.~858). 1955, Theorem~2's proof: $g$ for $G$.
+\item \textbf{Moore.} 1916: p.~139, ``between $P_1$ and $B$'' must allow $B$; Theorem~33, an
+  unbalanced parenthesis; Theorem~34, ``Jordan \emph{arc}'' for ``closed curve''. 1919: footnote
+  $\dagger$ (p.~170), $A$ and $B$ for $X$ and $Y$. 1922: Theorem~1, $K^*$ for $\bar K$; Theorem~3,
+  ``diameter less than $\varepsilon$'' where only $\le2\varepsilon$ holds (harmless with
+  $\varepsilon/3$); Theorem~4, $t_m$ for $\bar t_m$, $1\le m\le n$ for $4^n$, and
+  $\varepsilon=(b-c)/4$ for $(c-b)/4$; ``fie'', ``curce'', ``a sumed''. 1925: Theorem~1 (two slips);
+  Theorem~14, $pxq$ with $x$ never introduced; Theorem~18, $x$ and $y$ not introduced.
+\item \textbf{Whyburn 1939.} ``$ou-o$'' for $ou-u$; ``$<3\varepsilon$'' after ``$<4\varepsilon$''
+  (the argument gives $2\varepsilon$); ``there exists points''.
+\item \textbf{Fugate 1966.} The introduction says ``a-triodic and hereditarily unicoherent'',
+  Theorem~1 ``a-triodic and unicoherent'' (equivalent for two pieces).
+\item \textbf{Domokos--Prajs 2022.} ``homogenous'' (p.~13).
+\end{itemize}
+
+%======================================================================
+\appendix
+\section{Readings refuted that are not defects of the sources}\label{app:readings}
+
+Each of the following is a reading of a printed statement that the formalization refuted, and that
+the source does not make. They are recorded so that the refutations are not mistaken for defects.
+
+\begin{defect}{Bing 1951 (Duke), Theorem~8, p.~658, with $g_p$ read with one layer}{A misreading,
+not a defect: Theorem~8 is true as printed. Not counted. Ledger A.2.1, B.1.}{0}{0}\label{it:b51-8}
+Bing defines (p.~658): ``For each point $p$ let $g_p$ denote the intersection of all continua
+which contain interiorly a continuum that contains $p$ interiorly.'' With the inner continuum
+dropped, $g_p$ is the intersection of the continua containing $p$ interiorly, and Theorem~8 fails:
+in the plane continuum $S_0$ made of two sine curves over a bar, $q\in g_p$ while $g_p\ne g_q$
+(\lean{Counter92.theorem8_1951_false}). With Bing's definition every clause is verified
+(\lean{theorem8_1951'}), clause (a), ``$G$ is an arc with respect to its elements'', in the form
+Bing's proof establishes: of any three elements, one separates the other two; on $S_0$ the elements are the bar and the points of the curves
+(\lean{Counter92.bingElt_bar}, \lean{Counter92.bingElt_curve}). The inner layer is what makes the
+elements saturate.
+\end{defect}
+
+\begin{defect}{Other refuted readings}{Not defects. Ledger B.1.}{0}{0}\label{it:readings}
+\begin{itemize}
+\item Bing 1948, Theorem~3, end clause read ``respectively'': false at $k=3$
+  (\lean{Recon121.not_theorem3Literal}); Bing's own ``or'' is proved.
+\item ``1951-crooked implies 1948-crooked'': the two papers' notions of crookedness differ
+  (\lean{isCrookedIn_ne_isCrookedIn'}; four strips and six rectangles).
+\item Bing 1951, Theorem~11, the separation read with $K'\supseteq K-g'-N$: refuted.
+\item Nadler, \emph{Continuum Theory}, 11.28 read without $U-H\ne\emptyset$: false for $H=\bar U$
+  (\lean{isConnected_diff_of_superset_false}); Nadler's proof assumes it.
+\item van Mill 2004, Lemma~3.4 and Proposition~3.5 read without their closure bars: the printed
+  statements, with the bars, are right.
+\end{itemize}
+\end{defect}
+
+\section{Lean names}\label{app:lean}
+Every name cited in the text, with its full name and the axioms its audit lists in
+\lean{axioms.txt}. ``Std'' is \lean{propext}, \lean{Classical.choice}, \lean{Quot.sound};
+a dash means no axioms. ``Used'' marks the declarations that the two final theorems use
+(the dependency census, \lean{doc/depcensus/used.txt}). The last column gives the items
+that cite the name.
+\begin{small}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.60\textwidth}>{\raggedright\arraybackslash}p{0.09\textwidth}>{\raggedright\arraybackslash}p{0.08\textwidth}>{\raggedright\arraybackslash}p{0.15\textwidth}@{}}
+\toprule Name & Axioms & Used & Items\\ \midrule \endhead
+\lean{HPC.BJ59.bj_step} & Std & yes & 46\\
+\lean{HPC.BJ59.bj_theorem3} & Std &  & \S7\\
+\lean{HPC.BJ59.bj_theorem5} & Std &  & 8\\
+\lean{HPC.BJ59.bj_theorem5_printed_false} & Std &  & 8\\
+\lean{HPC.BJ59.bj_theorem5_printed_false_general} & Std &  & 8\\
+\lean{HPC.BJ59.bj_theorem7} & Std &  & 19\\
+\lean{HPC.BJ59.bj_theorem7_ends} & Std &  & 39\\
+\lean{HPC.BJ59.bj_theorem7_ends_printed_false} & Std &  & 39\\
+\lean{HPC.BJ59.bj_theorem7_proof_n3} & Std &  & 19\\
+\lean{HPC.BJ59.bj_theorem8} & Std & yes & \S7\\
+\lean{HPC.BJ59.bj_theorem9} & Std &  & \S7\\
+\lean{HPC.BJ59.bjPlaneExample} & Std & yes & 2\\
+\lean{HPC.BJ59.bjThm10} & Std & yes & 1, 46\\
+\lean{HPC.BJ59.circ_step} & Std & yes & 2\\
+\lean{HPC.BJ59.CircDescr.isCircleLike_M} & Std & yes & 2\\
+\lean{HPC.BJ59.CircDescr.isCircleOfPA} & Std & yes & 2\\
+\lean{HPC.BJ59.dp22_theorem61'} & Std &  & 1\\
+\lean{HPC.BJ59.dp22_theorem61_iff'} & Std &  & 1, 14\\
+\lean{HPC.BJ59.exists_circDescr_plane} & Std & yes & 2\\
+\lean{HPC.BJ59.ho16_classification_plane₄} & Std & yes & \S2, 1\\
+\lean{HPC.BJ59.ho16_classification₄} & Std & yes & \S2, 1\\
+\lean{HPC.BJ59.hoCircleLike'} & Std &  & 1\\
+\lean{HPC.BJ59.isSnakeLike_of_atomic'} & Std & yes & 1\\
+\lean{HPC.BJ59.sweep_lemma} & Std & yes & 2\\
+\lean{HPC.BJ59.sweep_lemma3} & Std &  & 2\\
+\lean{HPC.BJ59.theorem5_repaired} & Std & yes & 8\\
+\lean{HPC.Fold.not_theorem4Literal} & Std &  & 38\\
+\lean{HPC.Fold.not_theorem4LiteralND} & Std &  & 38\\
+\lean{HPC.Fold.not_theorem8_literal} & Std &  & 9\\
+\lean{HPC.Fold.Recon121.not_theorem3Literal} & Std &  & 50\\
+\lean{HPC.Fold.Recon121.seam_every_H_fails} & Std &  & 6\\
+\lean{HPC.Fold.Recon121.seamD_special} & Std &  & 6\\
+\lean{HPC.Fold.Recon121.theorem3LiteralOr_holds} & Std &  & 6\\
+\lean{HPC.Fold.Recon122.bing_main} & Std &  & 6\\
+\lean{HPC.Fold.Recon122.special_five} & Std &  & 6\\
+\lean{HPC.Fold.theorem3_bing} & Std &  & 6\\
+\lean{HPC.Fold.theorem3_literal} & Std &  & 6\\
+\lean{HPC.Fold.theorem4_literal_ge4} & Std &  & 38\\
+\lean{HPC.Fold.theorem4_two_degenerate_false} & Std &  & 38\\
+\lean{HPC.Fold.theorem7_minimal} & Std &  & 9\\
+\lean{HPC.Fold.theorem8} & Std &  & 9\\
+\lean{HPC.Fold.theorem9} & Std &  & 9\\
+\lean{HPC.Hagopian.bing60_plane_uncond} & Std &  & 4\\
+\lean{HPC.Hagopian.blockLayersMeetSides3} & Std &  & 3\\
+\lean{HPC.Hagopian.blockLayersMeetSides_false} & Std &  & 3\\
+\lean{HPC.Hagopian.exists_proper_extension} & Std & yes & 42\\
+\lean{HPC.Hagopian.exists_separating_subcontinuum_of_homeomorph} & Std & yes & 17\\
+\lean{HPC.Hagopian.hagopian76_far_layer} & Std &  & \S7\\
+\lean{HPC.Hagopian.hagopian76_lemma4_layers'} & Std &  & \S7\\
+\lean{HPC.Hagopian.hagopian76_theorem1} & Std & yes & 3\\
+\lean{HPC.Hagopian.hagopian76_theorem1_of_cases4} & Std &  & 3\\
+\lean{HPC.Hagopian.hagopian84_cover} & Std & yes & \S7\\
+\lean{HPC.Hagopian.hagopian84_decomp} & Std & yes & 3\\
+\lean{HPC.Hagopian.hagopian84_lemma15} & Std & yes & \S7\\
+\lean{HPC.Hagopian.hagopian84_lemma7} & Std &  & 3\\
+\lean{HPC.Hagopian.innerComponentsCross_hagopian} & Std &  & 3\\
+\lean{HPC.Hagopian.jones75_contra} & Std & yes & 4\\
+\lean{HPC.Hagopian.jones75_noArc} & Std & yes & 4\\
+\lean{HPC.Hagopian.JonesSetting.jones75_d} & Std &  & 4\\
+\lean{HPC.Hagopian.JonesSetting.nested} & Std & yes & 4\\
+\lean{HPC.Hagopian.JonesSetting.orientation} & Std & yes & 4\\
+\lean{HPC.Hagopian.JonesSetting.union_arc} & Std & yes & 4\\
+\lean{HPC.Hagopian.last_step_ending} & Std &  & 3\\
+\lean{HPC.Hagopian.no_proper_subcontinuum_separates} & Std & yes & 17\\
+\lean{HPC.Hagopian.plane_schoenflies} & Std &  & 42\\
+\lean{HPC.Hagopian.sUnion_cover84_eq_univ} & Std &  & \S7\\
+\lean{HPC.Hagopian.trap_jordan} & Std & yes & 4\\
+\lean{HPC.HO16.ho16_indec_homogeneous_iff} & Std & yes & \S2\\
+\lean{HPC.HO16.ho16_lemma6} & Std & yes & 45\\
+\lean{HPC.HO16.ho16_p193_remark_false} & Std &  & \S8\\
+\lean{HPC.HO16.ho16_p208_false} & Std &  & 20\\
+\lean{HPC.HO16.ho16_prop10} & Std & yes & \S7\\
+\lean{HPC.HO16.ho16_prop19} & Std & yes & 20\\
+\lean{HPC.HO16.ho16_prop19_full} & Std & yes & 20\\
+\lean{HPC.HO16.ho16_theorem15} & Std & yes & \S7, 45\\
+\lean{HPC.HO16.ho16_theorem1_plane} & Std & yes & \S2\\
+\lean{HPC.HO16.ho16_theorem1_printed_false} & Std &  & 37\\
+\lean{HPC.HO16.ho16_theorem1prime_printed_false} & Std &  & 37\\
+\lean{HPC.HO16.ho16_theorem20} & Std & yes & \S2\\
+\lean{HPC.isCrookedIn_ne_isCrookedIn'} & Std &  & 50\\
+\lean{HPC.Jones.aposAt_of_isContinuum_interior} & Std & yes & 5\\
+\lean{HPC.Jones.jones49_order_two} & Std & yes & 18\\
+\lean{HPC.Jones.jones49_theorem1} & Std & yes & 36\\
+\lean{HPC.Jones.jones49_theorem2} & Std &  & 36\\
+\lean{HPC.Jones.jones55_a} & Std & yes & 5\\
+\lean{HPC.Jones.jones55_b} & Std & yes & 5\\
+\lean{HPC.Jones.jones55_c} & Std & yes & 1, 5, 14\\
+\lean{HPC.Jones.jones55_continuous} & Std & yes & 5\\
+\lean{HPC.Jones.jones55_elements} & Std & yes & 5\\
+\lean{HPC.Jones.jones55_theorem2'} & Std & yes & 40\\
+\lean{HPC.Jones.jones55_usc} & Std & yes & 5\\
+\lean{HPC.Jones.jordan_curve_theorem} & Std & yes & 40\\
+\lean{HPC.Jones.moore22_theorem4} & Std &  & 27\\
+\lean{HPC.Jones.not_jones49_theorem1_point} & Std &  & 36\\
+\lean{HPC.Jones.not_jones49_theorem2_point} & Std &  & 36\\
+\lean{HPC.Jones.not_theorem10_printed_unitInterval} & Std &  & 33\\
+\lean{HPC.Jones.not_theorem6_printed} & Std &  & 33\\
+\lean{HPC.Jones.theorem10_printed_iff} & Std &  & 33\\
+\lean{HPC.Jones.whyburn39_theorem14} & Std & yes & 11\\
+\lean{HPC.Jones.whyburn_9_1} & Std & yes & 28\\
+\lean{HPC.lehner_lemma3_two} & Std &  & 47\\
+\lean{HPC.Moore.fa_theorem10} & Std &  & 21\\
+\lean{HPC.Moore.fa_theorem14} & Std &  & 34\\
+\lean{HPC.Moore.fa_theorem15} & Std &  & 22\\
+\lean{HPC.Moore.fa_theorem19} & Std & yes & 34\\
+\lean{HPC.Moore.fa_theorem23} & Std &  & 34\\
+\lean{HPC.Moore.fa_theorem28} & Std & yes & 23\\
+\lean{HPC.Moore.fa_theorem33} & Std & yes & 24\\
+\lean{HPC.Moore.fa_theorem34} & Std &  & 24\\
+\lean{HPC.Moore.fa_theorem35} & Std & yes & 34\\
+\lean{HPC.Moore.fa_theorem36} & Std & yes & 25\\
+\lean{HPC.Moore.fa_theorem36_interior_subset} & Std & yes & 25\\
+\lean{HPC.Moore.fa_theorem4} & Std & yes & 34\\
+\lean{HPC.Moore.fa_theorem43} & Std &  & 34\\
+\lean{HPC.Moore.frontier_eq_of_scc} & Std & yes & 26\\
+\lean{HPC.Moore.m19_plane} & Std & yes & 10, 48\\
+\lean{HPC.Moore.m19_theoremC_corrected} & Std &  & 10\\
+\lean{HPC.Moore.m19_theoremC_crosscuts} & Std &  & 10\\
+\lean{HPC.Moore.m19_theoremC_within} & Std &  & 10\\
+\lean{HPC.Moore.m19_theoremD} & Std & yes & 10\\
+\lean{HPC.Moore.m19_theoremG} & Std &  & 48\\
+\lean{HPC.Moore.m25_theorem10} & Std & yes & 30\\
+\lean{HPC.Moore.m25_theorem11} & Std & yes & 26, 30\\
+\lean{HPC.Moore.m25_theorem2} & Std & yes & 29\\
+\lean{HPC.Moore.m25_theorem21} & Std & yes & 12\\
+\lean{HPC.Moore.m25_theorem22} & Std & yes & 12\\
+\lean{HPC.Moore.m25_theorem7} & Std &  & 31\\
+\lean{HPC.Moore.m25_unbounded_unique} & Std & yes & 29\\
+\lean{HPC.Moore.mullikin_theorem4_disjoint} & Std &  & \S8\\
+\lean{HPC.Moore.mullikin_theorem5} & Std & yes & 32\\
+\lean{HPC.Moore.not_fa_sec5_limitPt_printed} & Std &  & 34\\
+\lean{HPC.Moore.not_fa_theorem14_printed} & Std &  & 34\\
+\lean{HPC.Moore.not_fa_theorem43_printed} & Std &  & 34\\
+\lean{HPC.Moore.not_m19_theoremC_printed} & Std &  & 10\\
+\lean{HPC.Moore.not_m25_theorem10_printed} & Std &  & 30\\
+\lean{HPC.Moore.not_m25_theorem11_printed} & Std &  & 30\\
+\lean{HPC.Moore.not_m25_theorem11_singleton} & Std &  & 35\\
+\lean{HPC.Moore.not_m25_theorem2_printed} & Std &  & 29\\
+\lean{HPC.Moore.not_m25_theorem7_printed} & Std &  & 31\\
+\lean{HPC.Moore.not_moore1920_theorem4_singleton} & Std &  & 35\\
+\lean{HPC.Moore.not_mullikin_theorem4_disjoint_mathlib} & Std &  & \S8\\
+\lean{HPC.Moore.not_mullikin_theorem5_printed} & Std &  & 32\\
+\lean{HPC.Plane.Counter92.bingElt_bar} & Std &  & 49\\
+\lean{HPC.Plane.Counter92.bingElt_curve} & Std &  & 49\\
+\lean{HPC.Plane.Counter92.theorem8_1951_false} & Std &  & 49\\
+\lean{HPC.Plane.fugate_cor1} & Std &  & 47\\
+\lean{HPC.Plane.fugateU_holds} & Std &  & 47\\
+\lean{HPC.Plane.isConnected_diff_of_superset_false} & Std &  & 50\\
+\lean{HPC.Plane.isHereditarilyUnicoherent_union} & Std &  & 16\\
+\lean{HPC.Plane.isSnakeLike_of_subset_circleLike} & Std & yes & 46\\
+\lean{HPC.Plane.miller_1_5_false} & Std &  & 16\\
+\lean{HPC.Plane.theorem11_1951} & Std &  & 47\\
+\lean{HPC.Plane.theorem8_1951'} & Std &  & 47, 49\\
+\lean{HPC.Plane.treeLike_nonseparating} & Std &  & 47\\
+\lean{HPC.Span.cook67_theorem4} & Std & yes & 44\\
+\lean{HPC.Span.ot82_cor35_of_thm32} & Std & yes & 7\\
+\lean{HPC.Span.ot82_theorem32} & Std & yes & 7\\
+\lean{HPC.Span.ot82_theorem36_of_cor35} & Std & yes & 7\\
+\lean{HPC.Span.theoremC} & Std & yes & 7\\
+\bottomrule
+\end{longtable}
+\end{small}
+
+%======================================================================
+\begin{thebibliography}{HMP20}\small
+\bibitem[B48]{B48} R. H. Bing, A homogeneous indecomposable plane continuum, \emph{Duke Math. J.}
+  15 (1948), 729--742.
+\bibitem[B51a]{B51a} R. H. Bing, Snake-like continua, \emph{Duke Math. J.} 18 (1951), 653--663.
+\bibitem[B51b]{B51b} R. H. Bing, Concerning hereditarily indecomposable continua, \emph{Pacific J.
+  Math.} 1 (1951), 43--51.
+\bibitem[B60]{B60} R. H. Bing, A simple closed curve is the only homogeneous bounded plane continuum
+  that contains an arc, \emph{Canad. J. Math.} 12 (1960), 209--230.
+\bibitem[BJ59]{BJ59} R. H. Bing and F. B. Jones, Another homogeneous plane continuum, \emph{Trans.
+  Amer. Math. Soc.} 90 (1959), 171--192.
+\bibitem[C67]{C67} H. Cook, Continua which admit only the identity mapping onto non-degenerate
+  subcontinua, \emph{Fund. Math.} 60 (1967), 241--249.
+\bibitem[DP22]{DP22} A. Domokos and J. R. Prajs, The Planck boundary within the hyperspace of the
+  circle of pseudo-arcs, arXiv:2203.15906 (2022).
+\bibitem[F66]{F66} J. B. Fugate, Decomposable chainable continua, \emph{Trans. Amer. Math. Soc.}
+  123 (1966), 460--468.
+\bibitem[F69]{F69} J. B. Fugate, A characterization of chainable continua, \emph{Canad. J. Math.} 21
+  (1969), 383--393.
+\bibitem[H75]{H75} C. L. Hagopian, Homogeneous plane continua, \emph{Houston J. Math.} 1 (1975),
+  35--41.
+\bibitem[H76]{H76} C. L. Hagopian, Indecomposable homogeneous plane continua are hereditarily
+  indecomposable, \emph{Trans. Amer. Math. Soc.} 224 (1976), 339--350.
+\bibitem[H84]{H84} C. L. Hagopian, Atriodic homogeneous continua, \emph{Pacific J. Math.} 113
+  (1984), 333--347.
+\bibitem[HMP20]{HMP20} C. L. Hagopian, M. M. Marsh and J. R. Prajs, Folders of continua,
+  \emph{Topology Proc.} 55 (2020), 13--33.
+\bibitem[HO16]{HO16} L. C. Hoehn and L. G. Oversteegen, A complete classification of homogeneous
+  plane continua, \emph{Acta Math.} 216 (2016), 177--216.
+\bibitem[I68]{I68} W. T. Ingram, Decomposable circle-like continua, \emph{Fund. Math.} 63 (1968),
+  193--198.
+\bibitem[J48]{J48} F. B. Jones, Concerning non-aposyndetic continua, \emph{Amer. J. Math.} 70
+  (1948), 403--413.
+\bibitem[J49]{J49} F. B. Jones, Note on homogeneous plane continua, \emph{Bull. Amer. Math. Soc.} 55
+  (1949), 113--114.
+\bibitem[J51]{J51} F. B. Jones, Certain homogeneous unicoherent indecomposable continua,
+  \emph{Proc. Amer. Math. Soc.} 2 (1951), 855--859.
+\bibitem[J55]{J55} F. B. Jones, On a certain type of homogeneous plane continuum, \emph{Proc. Amer.
+  Math. Soc.} 6 (1955), 735--740.
+\bibitem[J75]{J75} F. B. Jones, Use of a new technique in homogeneous continua, \emph{Houston J.
+  Math.} 1 (1975), 57--61.
+\bibitem[L61]{L61} G. R. Lehner, Extending homeomorphisms on the pseudo-arc, \emph{Trans. Amer.
+  Math. Soc.} 98 (1961), 369--394.
+\bibitem[Le79]{Le79} A. Lelek, The span of mappings and spaces (research announcement),
+  \emph{Topology Proc.} 4 (1979), 631--633.
+\bibitem[Lw83]{Lw83} W. Lewis, Homogeneous continua and continuous decompositions, \emph{Topology
+  Proc.} 8 (1983), 71--84.
+\bibitem[Lw85]{Lw85} W. Lewis, Continuous curves of pseudo-arcs, \emph{Houston J. Math.} 11 (1985),
+  91--99.
+\bibitem[Lw96]{Lw96} W. Lewis, Continuous collections of hereditarily indecomposable continua,
+  \emph{Topology Appl.} 74 (1996), 169--176.
+\bibitem[M16]{M16} R. L. Moore, On the foundations of plane analysis situs, \emph{Trans. Amer. Math.
+  Soc.} 17 (1916), 131--164.
+\bibitem[M19]{M19} R. L. Moore, Concerning a set of postulates for plane analysis situs,
+  \emph{Trans. Amer. Math. Soc.} 20 (1919), 169--178.
+\bibitem[M20]{M20} R. L. Moore, Concerning simple continuous curves, \emph{Trans. Amer. Math. Soc.}
+  21 (1920), 333--347.
+\bibitem[M22]{M22} R. L. Moore, Concerning connectedness im kleinen and a related property,
+  \emph{Fund. Math.} 3 (1922), 232--237.
+\bibitem[M25]{M25} R. L. Moore, Concerning upper semi-continuous collections of continua,
+  \emph{Trans. Amer. Math. Soc.} 27 (1925), 416--428.
+\bibitem[Mu22]{Mu22} A. M. Mullikin, Certain theorems relating to plane connected point sets,
+  \emph{Trans. Amer. Math. Soc.} 24 (1922), 144--162.
+\bibitem[OT82]{OT82} L. G. Oversteegen and E. D. Tymchatyn, Plane strips and the span of continua
+  (I), \emph{Houston J. Math.} 8 (1982), 129--142.
+\bibitem[P00]{P00} J. R. Prajs, A continuous circle of pseudo-arcs filling up the annulus,
+  \emph{Trans. Amer. Math. Soc.} 352 (2000), 1743--1757.
+\bibitem[vM04]{vM04} J. van Mill, A note on the Effros theorem, \emph{Amer. Math. Monthly} 111
+  (2004), 801--806.
+\bibitem[W39]{W39} G. T. Whyburn, Semi-locally-connected sets, \emph{Amer. J. Math.} 61 (1939),
+  733--749.
+\bibitem[W42]{W42} G. T. Whyburn, \emph{Analytic Topology}, Amer. Math. Soc. Colloq. Publ. 28,
+  1942.
+\end{thebibliography}
+
+\section*{Acknowledgments}
+The formalization was carried out by the Aristotle system (Harmonic) in Lean~4 with Mathlib, from
+commissions written by Claude (Anthropic), who also compiled the defects ledger and this document
+from it.
+
+\end{document}

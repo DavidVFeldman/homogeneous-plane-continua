@@ -1,0 +1,633 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Env}{\operatorname{Env}}
+\newcommand{\arr}{\operatorname{arr}}
+\newcommand{\Fit}{\operatorname{Fit}}
+\newcommand{\lean}[1]{\texttt{#1}}
+
+\title{Bing's Theorem 3 (1948), as it was formalized:\\
+a human-readable account of the Lean proof}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note states, in ordinary mathematical language, the theorem that the Lean
+development in this repository proves under the name \lean{HPC.Fold.theorem3}
+(file \lean{Fold/Open.lean}), and gives the proof that the Lean code actually
+checks. The formal proof does not follow Bing's original argument. It first
+reduces the statement about chains to a statement about one integer sequence,
+the \emph{minimal-index sequence}. It then proves that statement with an
+explicit construction, a \emph{greedy jump zigzag}. Crookedness is used in
+exactly two small lemmas. Section~\ref{sec:table} matches each step to the Lean
+declaration that proves it.
+\end{abstract}
+
+\tableofcontents
+
+%======================================================================
+\section{The statement}
+%======================================================================
+
+Throughout, $X$ is a metric space. (Only its topology matters, and only in
+that links are open sets.) We write $[n]=\{0,1,\dots,n-1\}$.
+
+\begin{definition}[Chain]\label{def:chain}
+A \emph{chain of length $n$} in $X$ is a family $E=(E_0,\dots,E_{n-1})$ of open
+subsets of $X$, its \emph{links}, such that for all $i,j\in[n]$
+\[
+E_i\cap E_j\neq\emptyset \iff |i-j|\le 1 .
+\]
+(Taking $i=j$ shows that every link is nonempty. Links need not be connected.)
+\end{definition}
+
+\begin{definition}[Refinement, 1948 crookedness]\label{def:crooked}
+Let $E$ be a chain of length $n$ and $D$ a chain of length $k$.
+\begin{enumerate}[label=(\alph*)]
+\item $E$ \emph{refines} $D$ if every link of $E$ is contained in some link of $D$.
+\item $E$ is \emph{crooked in $D$} (in the 1948 sense) if $E$ refines $D$ and the
+following holds. Let $h,k'\in[k]$ with $k'>h+2$, and let $i,j\in[n]$ with
+$E_i\cap D_h\neq\emptyset$ and $E_j\cap D_{k'}\neq\emptyset$. Then there are
+indices $r,s$ strictly between $i$ and $j$, with $r$ nearer to $i$ (that is,
+$i<r<s<j$ or $i>r>s>j$), such that
+\[
+E_r\subseteq D_{k'-1}\qquad\text{and}\qquad E_s\subseteq D_{h+1}.
+\]
+\end{enumerate}
+The hypothesis asks that $E_i$ and $E_j$ \emph{meet} $D_h$ and $D_{k'}$. This is
+what distinguishes the 1948 definition from the 1951 one, where they must be
+\emph{contained in} $D_h$ and $D_{k'}$. The Lean name of this notion is
+\lean{Chain.IsCrookedIn'}.
+\end{definition}
+
+\begin{definition}[Block maps and block consolidations]\label{def:block}
+A \emph{block map} is a surjection $\beta:[n]\to[q]$ with
+$|\beta(t+1)-\beta(t)|\le1$ for all $t$. Its \emph{blocks} are the fibres
+$\beta^{-1}(u)$, $u\in[q]$. Given a chain $E$ of length $n$, the
+\emph{block consolidation} $E^\beta$ is the family
+\[
+E^\beta_u \;=\; \bigcup_{t:\ \beta(t)=u} E_t\qquad(u\in[q]).
+\]
+The Lean development proves that $E^\beta$ is again a chain
+(\lean{Chain.ofBlocks}, \lean{blockLink\_adjacent}). A block need not be a set
+of consecutive indices. For example, $\beta=(0,1,0)$ puts $E_0$ and $E_2$ into
+the same link. So $E^\beta$ is a consolidation of $E$ that may ``fold'' $E$.
+\end{definition}
+
+For a chain $D$ of length $k$ and $j\in\N$ we write
+$D_{[j,j+3)}=\bigcup\{D_{j'} : j\le j'<j+3,\ j'<k\}$ for the union of (at most)
+three consecutive links (Lean: \lean{D.unionRange j 3}).
+
+\begin{theorem}[Bing 1948, Theorem 3: block reading, three-link form;
+Lean: \lean{HPC.Fold.theorem3}]\label{thm:main}
+Let $E$ be a chain of length $n>0$ and $D$ a chain of length $k$ in a metric
+space $X$, and let $E$ be crooked in $D$ in the 1948 sense. Then for every
+$i\in[n]$ there is a block map $\beta:[n]\to[q]$ such that
+\begin{enumerate}[label=(\roman*)]
+\item $\beta(i)=0$, so the link $E_i$ lies in the first link of $E^\beta$;
+\item for every $u\in[q]$ there is $j\in\N$ with
+$E^\beta_u\subseteq D_{[j,j+3)}$. That is, every link of the consolidation lies
+in three consecutive links of $D$.
+\end{enumerate}
+\end{theorem}
+
+The Lean proof uses only the standard axioms (\lean{propext},
+\lean{Classical.choice}, \lean{Quot.sound}). The recorded output is in
+\lean{axioms-batch77.txt}.
+
+\paragraph{Plan of the proof.}
+\begin{enumerate}
+\item Section~\ref{sec:reduction} reduces the theorem to one integer sequence.
+Read $E$ through its minimal-index sequence
+$\rho(t)=\min\{j: E_t\subseteq D_j\}$. It then suffices that the two
+\emph{arms} of $\rho$ from $i$ (forwards and backwards) \emph{fold onto a common
+walk} (Definition~\ref{def:fold}). This is the statement called \lean{S3}.
+\item Section~\ref{sec:levels} extracts the only consequence of crookedness
+used later: a ``level crookedness'' property of $\rho$
+(Lemma~\ref{lem:crkon}).
+\item Sections~\ref{sec:jump}--\ref{sec:induction} prove \lean{S3}. The
+common walk is a \emph{jump zigzag}. Its legs skip the two levels next to each
+turning point, so folding onto it becomes a condition on the order of events
+with no timing constraint (Section~\ref{sec:jump}). The turning levels are
+chosen greedily (Section~\ref{sec:phase}). Two short crookedness lemmas show
+that the greedy choice never gets stuck (Section~\ref{sec:cores}). Each phase
+widens the zigzag and the sequence is bounded, so the construction terminates
+(Section~\ref{sec:induction}).
+\end{enumerate}
+
+%======================================================================
+\section{Reduction to an integer sequence}\label{sec:reduction}
+%======================================================================
+
+Fix $E$ crooked in $D$, so in particular $E$ refines $D$.
+
+\begin{definition}[Minimal and maximal index]
+For $t\in[n]$ let $\rho(t)$ be the least and $\sigma(t)$ the greatest index $j$
+with $E_t\subseteq D_j$ (Lean: \lean{Refines.minIdx}, \lean{Refines.maxIdx}).
+\end{definition}
+
+\begin{lemma}\label{lem:rho-basic}
+\begin{enumerate}[label=(\alph*)]
+\item If $E_t\subseteq D_j$ then $\rho(t)\le j\le\rho(t)+1$. In particular
+$\rho(t)\le\sigma(t)\le\rho(t)+1$.
+\item $\rho$ is $1$-Lipschitz: $|\rho(t+1)-\rho(t)|\le1$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) $E_t$ is nonempty and lies in both $D_{\rho(t)}$ and $D_j$. So these two
+links meet, and $|j-\rho(t)|\le1$. Minimality gives $\rho(t)\le j$.
+(b) $E_t\cap E_{t+1}\ne\emptyset$, so $D_{\rho(t)}\cap D_{\rho(t+1)}\ne\emptyset$.
+\end{proof}
+
+\begin{definition}[Arms and folds]\label{def:fold}
+Let $f:[m]\to\Z$, $\ell\in\N$ and $c:\N\to\Z$ be arbitrary. We say that $f$
+\emph{folds onto the walk $c$ of length $\ell$} if there is a
+\emph{time assignment} $\beta:[m]\to\N$ with
+\begin{enumerate}[label=(F\arabic*)]
+\item $\beta(j)<\ell$ for all $j$;
+\item $|\beta(j+1)-\beta(j)|\le 1$ for all $j$;
+\item $\beta(0)=0$;
+\item $|f(j)-c(\beta(j))|\le1$ for all $j$.
+\end{enumerate}
+No condition at all is imposed on $c$. In particular consecutive values of $c$
+may differ by more than one, and this freedom is essential below.
+(Lean: \lean{FoldsOnto}.) For $\rho:[n]\to\Z$ and $i\in[n]$, the
+\emph{forward arm} is $j\mapsto\rho(i+j)$ on $[n-i]$ and the
+\emph{backward arm} is $j\mapsto\rho(i-j)$ on $[i+1]$ (Lean: \lean{armG},
+\lean{armT}).
+\end{definition}
+
+\begin{proposition}[From a common fold to Theorem~\ref{thm:main};
+Lean: \lean{exists\_blocks\_first\_of\_folds}]\label{prop:assembly}
+Suppose both arms of $\rho$ from $i$ fold onto the same walk $c$ of length
+$\ell$. Then the conclusion of Theorem~\ref{thm:main} holds for $i$.
+\end{proposition}
+\begin{proof}
+Let $\beta_G,\beta_T$ be the two time assignments. Define $\beta:[n]\to\N$ by
+$\beta(t)=\beta_G(t-i)$ for $t\ge i$ and $\beta(t)=\beta_T(i-t)$ for $t\le i$.
+The two definitions agree at $t=i$, where both give $0$. Then $\beta$ is
+$1$-Lipschitz, $\beta(i)=0$, and $|\rho(t)-c(\beta(t))|\le1$ for all $t$. By
+the discrete intermediate value theorem, $\beta$ maps onto
+$\{0,\dots,\max\beta\}$, so it is a block map onto $[q]$ with
+$q=\max\beta+1$. If $\beta(t)=\beta(t')=u$, then $\rho(t)$ and $\rho(t')$ both
+lie in $\{c(u)-1,c(u),c(u)+1\}$. Let $j$ be the least value of $\rho$ on the
+block $\beta^{-1}(u)$. Every $t$ in the block has $\rho(t)\in\{j,j+1,j+2\}$ and
+$E_t\subseteq D_{\rho(t)}$. Hence $E^\beta_u\subseteq D_{[j,j+3)}$.
+\end{proof}
+
+Let $L=\min\rho$ and $H=\max\rho$.
+
+\begin{itemize}
+\item \emph{Degenerate case $H\le L+2$} (Lean:
+\lean{exists\_blocks\_first\_of\_range\_le\_two}). Take the one-block map
+$\beta\equiv0$. Every $E_t$ lies in $D_{\rho(t)}\subseteq D_{[L,L+3)}$.
+\item \emph{Main case $H\ge L+3$.} By Proposition~\ref{prop:assembly} it is
+enough to know that both arms fold onto a common walk. This is the statement
+\lean{S3} below, applied to $\rho$ and $\sigma$. The pair $(\rho,\sigma)$
+satisfies the hypotheses of \lean{S3} by Lemma~\ref{lem:rho-basic} and by the
+``faithful model'' lemma \lean{isCrookedIvF\_minIdx\_maxIdx}. The proof of
+\lean{S3} uses only Lemma~\ref{lem:crkon} below, which is derived from that
+lemma. This combination is the Lean theorem \lean{theorem3\_of\_S3}.
+\end{itemize}
+
+\begin{theorem}[\lean{S3}; proved as \lean{HPC.Fold.Z77.s3\_zig} and
+restated as \lean{HPC.Fold.s3\_general}]\label{thm:S3}
+Let $\rho,\sigma:[n]\to\Z$, $i\in[n]$ and $L,H\in\Z$. Suppose that $\rho$ is
+$1$-Lipschitz, that $(\rho,\sigma)$ lies in the faithful crooked model
+(\lean{IsCrookedIvF}, recalled in Section~\ref{sec:levels}), and that
+$L\le\rho\le H$. Then there are $\ell\in\N$ and $c:\N\to\Z$ such that both arms
+of $\rho$ from $i$ fold onto $c$ of length $\ell$.
+\end{theorem}
+
+\begin{remark}\label{rem:unused}
+As stated in Lean, \lean{S3} carries three more hypotheses: $L+3\le H$, and
+that $L$ and $H$ are attained by $\rho$. They are left over from earlier
+approaches, and the final proof does not use them. The bounds $L\le\rho\le H$
+are used only to make the construction terminate. The auxiliary sequence
+$\sigma$ enters only through Lemma~\ref{lem:crkon}.
+\end{remark}
+
+%======================================================================
+\section{The only consequence of crookedness that is used}\label{sec:levels}
+%======================================================================
+
+The faithful model \lean{IsCrookedIvF}$(\rho,\sigma)$ consists of four
+conditions: $\rho\le\sigma\le\rho+1$; an adjacency condition on neighbouring
+intervals; and a crookedness clause stated for the integer intervals
+$[\rho(t),\sigma(t)]$. The Lean lemma \lean{isCrookedIvF\_minIdx\_maxIdx} shows
+that the minimal and maximal index sequences of a 1948-crooked chain satisfy
+it. The proof of \lean{S3} uses only the following consequence. We state it
+directly for the chain.
+
+\begin{lemma}[Level crookedness; Lean: \lean{crkOn\_of\_isCrookedIvF},
+predicate \lean{CrkOn}]\label{lem:crkon}
+Let $s<t$ in $[n]$.
+\begin{enumerate}[label=(\alph*)]
+\item If $\rho(t)\ge\rho(s)+3$, there are $s<r<r'<t$ with
+$\rho(r)\in\{\rho(t)-2,\rho(t)-1\}$ and $\rho(r')\in\{\rho(s),\rho(s)+1\}$.
+\item If $\rho(s)\ge\rho(t)+3$, there are $s<r<r'<t$ with
+$\rho(r)\in\{\rho(t),\rho(t)+1\}$ and $\rho(r')\in\{\rho(s)-2,\rho(s)-1\}$.
+\end{enumerate}
+In words: between two times whose levels differ by at least three, the sequence
+first comes within one of the \emph{later} level, and after that within one of
+the \emph{earlier} level.
+\end{lemma}
+\begin{proof}
+(a) Put $h=\rho(s)$ and $k'=\rho(t)$, so $k'>h+2$. Since $E_s\subseteq D_h$ and
+$E_t\subseteq D_{k'}$, the link $E_s$ meets $D_h$ and $E_t$ meets $D_{k'}$.
+Crookedness with $i=s$, $j=t$ gives $s<r<r'<t$ (the order is forced by $s<t$)
+with $E_r\subseteq D_{k'-1}$ and $E_{r'}\subseteq D_{h+1}$. By
+Lemma~\ref{lem:rho-basic}(a), $\rho(r)\in\{k'-2,k'-1\}$ and
+$\rho(r')\in\{h,h+1\}$.
+
+(b) Apply crookedness with $h=\rho(t)$, $k'=\rho(s)$, $i=t$, $j=s$. This gives
+$t>r_1>r_2>s$ with $E_{r_1}\subseteq D_{\rho(s)-1}$ and
+$E_{r_2}\subseteq D_{\rho(t)+1}$. Take $r=r_2$ and $r'=r_1$ and use
+Lemma~\ref{lem:rho-basic}(a).
+\end{proof}
+
+The Lean proof goes through \lean{IsCrookedIvF} and specializes its
+crookedness clause to $h=\rho(s)$, $k=\rho(t)$, with the witnesses $u=s$ and
+$u=t$. The width condition $\sigma\le\rho+1$ then gives the same two-element
+ranges.
+
+\paragraph{Notation for the rest of the proof.}
+Fix $\rho$, $i$, $L\le\rho\le H$. Re-index at the base point: $S(x)=\rho(i+x)$.
+The two arms are $f_{\uparrow}(j)=S(j)$ for $j<m_\uparrow=n-i$ and
+$f_{\downarrow}(j)=S(-j)$ for $j<m_\downarrow=i+1$. Both are $1$-Lipschitz,
+take values in $[L,H]$, and start at $p=S(0)=\rho(i)$. Lemma~\ref{lem:crkon}
+holds for $S$ on its whole domain, and also for $x\mapsto S(-x)$, since reading
+the sequence backwards swaps the two clauses (\lean{CrkOn.reverse}). This means
+the two arms play symmetric roles. In the arguments below one arm is called
+the \emph{left} arm and the other the \emph{right} arm. A time $j$ on the left
+arm is the index $-j$ of $S$, and a time $j$ on the right arm is the index $+j$.
+So every left-arm time comes before every right-arm time in the order used by
+Lemma~\ref{lem:crkon}.
+
+%======================================================================
+\section{Jump zigzags and the fitting condition}\label{sec:jump}
+%======================================================================
+
+\begin{definition}[Jump walk; Lean: \lean{jwalk}, \lean{jlen}]
+Let $T_0\in\Z$ and a list of turning levels $T_1,\dots,T_K$ with
+$|T_{r}-T_{r-1}|\ge3$ be given. For a leg $a\to b$ put $\lambda=|b-a|-2\ge1$.
+The leg is traversed as
+\[
+a,\ a\pm3,\ a\pm4,\ \dots,\ b\mp1\qquad(\lambda\text{ values}),
+\]
+with $+$ if $a<b$ and $-$ if $a>b$. The next leg then starts at $b$. After the
+last leg the walk stays at $T_K$. Its length is $\sum\lambda+1$.
+The walk thus jumps from each turning level straight to three levels beyond
+it, skipping the two levels in between.
+\end{definition}
+
+\begin{definition}[Envelope, arrival level, fitting; Lean: \lean{Env},
+\lean{arr}, \lean{Fit}]
+For a leg $a\to b$:
+\begin{itemize}
+\item the \emph{envelope} is $\Env(a,b)=[\min(a,b)-1,\ \max(a,b)+1]$;
+\item the \emph{arrival level} is $\arr(a,b)=b-1$ if $a<b$ and $b+1$ if $a>b$.
+\end{itemize}
+Let $f$ be defined on $[m]$. The relation $\Fit(f,\tau,a,[T_1,\dots,T_K])$
+(``from time $\tau$, $f$ fits the legs $a\to T_1\to\dots\to T_K$'') is defined
+by recursion on the list:
+\begin{itemize}
+\item it is false for the empty list;
+\item for $[b,\text{rest}]$ it holds iff $|b-a|\ge3$ and one of the following:
+  \begin{enumerate}[label=(\roman*)]
+  \item $f(j)\in\Env(a,b)$ for all $j\in[\tau,m)$ (the arm stays on this leg
+  for good); or
+  \item there is $\tau'\in[\tau,m)$ with $f(\tau')=\arr(a,b)$,
+  $f(j)\in\Env(a,b)$ for all $j\in[\tau,\tau']$, and
+  $\Fit(f,\tau',b,\text{rest})$.
+  \end{enumerate}
+\end{itemize}
+\end{definition}
+
+\begin{lemma}[Fitting gives a fold; Lean: \lean{fold\_of\_fit}]\label{lem:fold-of-fit}
+Let $f$ be $1$-Lipschitz on $[m]$. Suppose $\Fit(f,\tau,a,ts)$ and
+$|f(\tau)-a|\le1$. Then there is a $1$-Lipschitz $\beta$ on $[\tau,m)$ with
+$\beta(\tau)=0$, values less than the length of the jump walk $c$ of $(a,ts)$,
+and $|f(j)-c(\beta(j))|\le1$ for all $j\in[\tau,m)$.
+\end{lemma}
+\begin{proof}
+Consider a leg $a\to b$ with $a<b$; the case $a>b$ is symmetric. For a level
+$x$ define the \emph{position}
+$\operatorname{pos}(x)=\min(\max(x-a-1,0),\lambda)$. Position $u<\lambda$ has
+walk value $a$ when $u=0$ and $a+2+u$ otherwise, and position $\lambda$ is the
+start $b$ of the next leg. One checks that for every
+$x\in\Env(a,b)=[a-1,b+1]$ the value at $\operatorname{pos}(x)$ is within one of
+$x$:
+\begin{itemize}
+\item if $x\le a+1$, the position is $0$ and the value is $a$;
+\item if $x=a+1+u$ with $1\le u<\lambda$, the value is $a+2+u=x+1$;
+\item if $x\ge b-1$, the position is $\lambda$ and the value is $b$.
+\end{itemize}
+While the arm is on the leg, set $\beta(j)=(\text{offset of the leg})+\operatorname{pos}(f(j))$.
+Since $\operatorname{pos}$ is $1$-Lipschitz and $f$ is $1$-Lipschitz, so is
+$\beta$. At the switching time $\tau'$ we have $f(\tau')=b-1$, so
+$\operatorname{pos}(f(\tau'))=\lambda$. This is position $0$ of the next leg,
+because $|f(\tau')-b|\le1$. So the time assignments of consecutive legs agree
+at $\tau'$. Induction on the list finishes the proof.
+\end{proof}
+
+\begin{remark}
+This is the point of the jumps. On each leg the time is a function of the
+current \emph{level} alone. If the walk moved one level per step, an arm would
+also have to meet timing constraints: it would have to wait at turning points
+for the walk. With the jumps, whether an arm folds depends only on the order in
+which it visits levels.
+\end{remark}
+
+%======================================================================
+\section{One greedy phase}\label{sec:phase}
+%======================================================================
+
+The construction alternates \emph{up phases} and \emph{down phases}. Each arm
+is either \emph{finished} or \emph{live}, and a live arm has a current
+\emph{start time}. We state the up phase. The down phase is the same statement
+for the negated arms, with levels reflected (Lean: \lean{down\_step} is
+derived from \lean{up\_step}).
+
+\begin{lemma}[One up phase; Lean: \lean{up\_step}]\label{lem:upstep}
+Let $b+2\le a$. For each arm $e\in\{\uparrow,\downarrow\}$ let $\tau_e$ be an
+optional start time with $|f_e(\tau_e)-b|\le1$. Assume the up phase is
+\emph{not stuck}:
+\begin{quote}
+$(\mathrm N_\uparrow)$ there is no live arm $e$ and time $d\ge\tau_e$ with
+$f_e(d)=b-2$ and $f_e(j)\le a-1$ for all $j\in[\tau_e,d)$.
+\end{quote}
+Then there are a level $t\ge a+1$ and optional new start times $\sigma_e$
+(defined only for arms that were live) with the following properties.
+\begin{enumerate}[label=(\arabic*)]
+\item If $e$ is live and $\sigma_e$ is undefined, then
+$b-1\le f_e(j)\le t-2$ for all $j\ge\tau_e$.
+\item If $\sigma_e$ is defined, then $\tau_e<\sigma_e$, $f_e(\sigma_e)=t-1$,
+and $b-1\le f_e(j)\le t-2$ for $j\in[\tau_e,\sigma_e)$.
+\item Either no $\sigma_e$ is defined, or $t\le H+1$ and some arm $e$ with
+$\sigma_e$ defined later drops: there is $d>\sigma_e$ with $f_e(d)=b-2$ and
+$b-1\le f_e(j)\le t-1$ for $j\in[\tau_e,d)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+For a live arm $e$, suppose it drops below $b-1$ after $\tau_e$. Its first such
+time $d_e$ has $f_e(d_e)=b-2$, by the Lipschitz condition. Let $M_e$ be the
+maximum of $f_e$ on $[\tau_e,d_e)$. By $(\mathrm N_\uparrow)$, $M_e\ge a$. Put
+$v_e=M_e+1$. Otherwise, or if $e$ is finished, put
+$v_e=\max(a+1,H+2)$. Let $t=\min_e v_e\ge a+1$. Every drop of a live arm below
+$b-1$ is preceded by a visit to level $\ge v_e-1\ge t-1$. So each live arm
+either stays in $[b-1,t-2]$ forever, or reaches $t-1$ at a first time
+$\sigma_e$ while staying in $[b-1,t-2]$ before it. This gives (1) and (2).
+
+For (3), first suppose $t=\max(a+1,H+2)$. Then $t-1\ge H+1>H$, so no arm reaches
+$t-1$, and no $\sigma_e$ is defined. Otherwise $t=v_e=M_e+1\le H+1$ for an arm
+$e$ that drops at $d_e$ after reaching $M_e=t-1$. That arm cannot be finished,
+by (1). So $\sigma_e<d_e$, and the bounds in (3) follow from the definition of
+$M_e$.
+\end{proof}
+
+A leg $b\to t$ is fitted by every live arm. By (1) a finished arm stays in
+$[b-1,t-2]\subseteq\Env(b,t)$. By (2) a switching arm stays in the envelope up
+to $\sigma_e$, where it is at $t-1=\arr(b,t)$. The leg has height $t-b\ge3$.
+Neither part uses crookedness.
+
+%======================================================================
+\section{Why the greedy choice never gets stuck: two crookedness lemmas}\label{sec:cores}
+%======================================================================
+
+The two lemmas below are all the crookedness the construction uses. In both,
+$b\le a$, and the left and right arms are as described at the end of
+Section~\ref{sec:levels}.
+
+\begin{lemma}[Up core; Lean: \lean{up\_core}]\label{lem:upcore}
+The following configuration is impossible:
+\begin{itemize}
+\item left arm: $\ge b$ before time $\tau$, $\le a-1$ on $[\tau,d_L)$, and
+$=b-2$ at $d_L$;
+\item right arm: $\ge b$ before time $d_R$, and $=a+2$ at $d_R$.
+\end{itemize}
+\end{lemma}
+\begin{proof}
+Apply Lemma~\ref{lem:crkon}(a) to the index $-d_L$ (level $b-2$) and the index
+$d_R$ (level $a+2$). The difference is $a-b+4\ge3$. We get indices
+$-d_L<r<r'<d_R$ with $S(r)\in\{a,a+1\}$ and $S(r')\in\{b-2,b-1\}$.
+\begin{itemize}
+\item If $r'\ge0$, then $r'$ is a right-arm time before $d_R$, so
+$S(r')\ge b$. Contradiction.
+\item If $r'<0$, then $-r'$ is a left-arm time with level $<b$, so
+$-r'\ge\tau$. Then $-r$ is a left-arm time with $\tau\le-r'<-r<d_L$, so
+$S(r)\le a-1$. Contradiction.\qedhere
+\end{itemize}
+\end{proof}
+
+\begin{lemma}[Down core; Lean: \lean{down\_core}]\label{lem:downcore}
+The following configuration is impossible:
+\begin{itemize}
+\item left arm: $\ge b$ before $\tau$, $\le a-2$ on $[\tau,\sigma)$, $\ge b+1$
+on $[\sigma,\mathit{rise})$, and $=a+2$ at $\mathit{rise}$;
+\item right arm: $\ge b$ before $\tau'$, $\le a-1$ on $[\tau',d)$, and $=b-2$
+at $d$.
+\end{itemize}
+\end{lemma}
+\begin{proof}
+Apply Lemma~\ref{lem:crkon}(b) to the index $-\mathit{rise}$ (level $a+2$) and
+the index $d$ (level $b-2$). We get $-\mathit{rise}<r<r'<d$ with
+$S(r)\in\{b-2,b-1\}$ and $S(r')\in\{a,a+1\}$.
+\begin{itemize}
+\item If $r\ge0$: when $r<\tau'$ the right arm has $S(r)\ge b$, a
+contradiction. When $r\ge\tau'$, the index $r'$ is a right-arm time in
+$[\tau',d)$ with $S(r')\ge a$, again a contradiction.
+\item If $r<0$: put $u=-r$, a left-arm time with level $\le b-1$. Then
+$\tau\le u<\sigma$. Now apply Lemma~\ref{lem:crkon}(b) a second time, to
+$-\mathit{rise}$ (level $a+2$) and $r$ (level $\le b-1$). We get
+$-\mathit{rise}<q<q'<r$ with $S(q)\le S(r)+1\le b$ and $S(q')\ge a$. The
+left-arm time $-q'$ lies in $(u,\mathit{rise})$ and has level $\ge a>a-2$, so
+$-q'\ge\sigma$. Then $-q\in(-q',\mathit{rise})\subseteq[\sigma,\mathit{rise})$,
+so $S(q)\ge b+1$. Contradiction.\qedhere
+\end{itemize}
+\end{proof}
+
+From these we get the three ``not stuck'' statements.
+
+\begin{lemma}[Lean: \lean{first\_direction}]\label{lem:first}
+With $p=S(0)$, at least one of the following holds:
+(A) no arm reaches $p-3$ while staying $\le p$ before; or
+(B) no arm reaches $p+3$ while staying $\ge p$ before.
+\end{lemma}
+\begin{proof}
+Suppose both fail, witnessed by arms $e_1$ (down to $p-3$ at $d_1$) and $e_2$
+(up to $p+3$ at $d_2$). If $e_1=e_2$, then whichever of $d_1,d_2$ comes first
+violates the bound in force before the other. Otherwise apply
+Lemma~\ref{lem:upcore} with left arm $e_1$, right arm $e_2$, $\tau=0$,
+$a=p+1$ and $b=p-1$.
+\end{proof}
+
+\begin{lemma}[An up phase is not stuck; Lean: \lean{nofail\_up}]\label{lem:nofailup}
+Assume $b\le a$ and:
+\begin{itemize}
+\item every live arm $e$ is $\ge b$ before its start time $\tau_e$;
+\item some arm $e_0$ has a time $d$ with $f_{e_0}(d)=a+2$, $f_{e_0}\ge b$
+before $d$, and $\tau_{e_0}\le d$ if $e_0$ is live.
+\end{itemize}
+Then $(\mathrm N_\uparrow)$ holds.
+\end{lemma}
+\begin{proof}
+Suppose a live arm $e$ drops to $b-2$ at $d'\ge\tau_e$ while staying $\le a-1$
+on $[\tau_e,d')$. If $e=e_0$: we cannot have $d'<d$ (level $b-2<b$) or
+$d'=d$. So $d<d'$ and $d\ge\tau_e$, which forces $f_e(d)\le a-1<a+2$. If
+$e\ne e_0$, the pair is the configuration of Lemma~\ref{lem:upcore}, with left
+arm $e$ and right arm $e_0$.
+\end{proof}
+
+\begin{lemma}[A down phase is not stuck; Lean: \lean{nofail\_down}]\label{lem:nofaildown}
+Consider a down phase from top $a$, following an up phase from bottom $b\le a$.
+Every arm that is live in the down phase, with start time $\sigma_e$, was live
+in the up phase with start $\tau_e\le\sigma_e$. It is $\ge b$ before $\tau_e$
+and $\le a-2$ on $[\tau_e,\sigma_e)$. Assume some arm $e_0$, live in both
+phases, drops at some $d>\sigma_{e_0}$ to $b-2$ while staying $\le a-1$ on
+$[\tau_{e_0},d)$. Then no arm $e$ live in the down phase rises to $a+2$ at a
+time $\mathit{rise}\ge\sigma_e$ while staying $\ge b+1$ on
+$[\sigma_e,\mathit{rise})$.
+\end{lemma}
+\begin{proof}
+If $e=e_0$, compare $\mathit{rise}$ with $d$ as in the previous proof. If
+$e\ne e_0$, the pair is the configuration of Lemma~\ref{lem:downcore}, with
+left arm $e$ and right arm $e_0$.
+\end{proof}
+
+%======================================================================
+\section{The main induction and the end of the proof}\label{sec:induction}
+%======================================================================
+
+\begin{proposition}[Lean: \lean{main\_up}]\label{prop:mainup}
+Let $b+2\le a\le H+1$ and $L-1\le b$. Suppose the live arms have start times
+$\tau_e$ with $|f_e(\tau_e)-b|\le1$, every live arm is $\ge b$ before
+$\tau_e$, and $(\mathrm N_\uparrow)$ holds. Then there is a list $ts$ such that
+$\Fit(f_e,\tau_e,b,ts)$ holds for every live arm $e$.
+\end{proposition}
+\begin{proof}
+Strong induction on $N=(H+1-a)+(b-L+1)\ge0$.
+
+\emph{Up phase.} Lemma~\ref{lem:upstep} gives $t\ge a+1$ and new starts
+$\sigma_e$. If no $\sigma_e$ is defined, then $ts=[t]$ works. Otherwise,
+Lemma~\ref{lem:upstep}(3) gives $t\le H+1$ and an arm $e_0$ that later drops to
+$b-2$ at $d>\sigma_{e_0}$ while staying in $[b-1,t-1]$. This is exactly the
+hypothesis of Lemma~\ref{lem:nofaildown} with top $t$. So the down phase from
+top $t$ is not stuck.
+
+\emph{Down phase.} The reflected form of Lemma~\ref{lem:upstep} gives
+$t_2\le b-1$ and new starts $\sigma'_e$. If none is defined, then
+$ts=[t,t_2]$ works. Otherwise $t_2\ge L-1$, and some arm $e_1$ reaches
+$t_2+1$ at $\sigma'_{e_1}$ and later rises to $t+2$ while staying in
+$[t_2+1,t+1]$.
+
+\emph{Recursion.} Take the new state: bottom $t_2$, previous top $t$, start
+times $\sigma'_e$. Its hypotheses hold:
+\begin{itemize}
+\item every live arm is $\ge t_2$ before its new start: before $\tau_e$ it is
+$\ge b>t_2$, on $[\tau_e,\sigma_e)$ it is $\ge b-1\ge t_2$, and on
+$[\sigma_e,\sigma'_e)$ it is $\ge t_2+2$;
+\item $(\mathrm N_\uparrow)$ holds by Lemma~\ref{lem:nofailup}, with
+determinant arm $e_1$;
+\item the measure drops: $(H+1-t)+(t_2-L+1)<N$, because $t>a$ and $t_2<b$.
+\end{itemize}
+The induction hypothesis gives $\mathit{rest}$, and $ts=[t,t_2,\mathit{rest}]$
+works. (Each leg is fitted as explained after Lemma~\ref{lem:upstep}.)
+\end{proof}
+
+\begin{proposition}[Lean: \lean{greedy\_fit}]\label{prop:greedy}
+There are $T_0$ with $|p-T_0|\le1$ and a list $ts$ such that both arms satisfy
+$\Fit(f_e,0,T_0,ts)$.
+\end{proposition}
+\begin{proof}
+Use Lemma~\ref{lem:first}. In case (A), start an up phase from the
+pseudo-state with bottom $b=p-1$, previous top $a=p+1$, and both arms live at
+time $0$. Its hypothesis $(\mathrm N_\uparrow)$ is exactly (A), and
+Proposition~\ref{prop:mainup} gives the list, with $T_0=p-1$. In case (B), run
+one down phase from top $p+1$ (previous bottom $p-1$). Its ``not stuck''
+hypothesis is exactly (B). Then continue with Proposition~\ref{prop:mainup} as
+in its recursion step, with $T_0=p+1$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:S3}]
+Proposition~\ref{prop:greedy} and Lemma~\ref{lem:fold-of-fit}, applied to each
+arm with $\tau=0$, give time assignments of both arms onto the \emph{same} jump
+walk $c$ of $(T_0,ts)$. These are exactly folds in the sense of
+Definition~\ref{def:fold}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+If $\max\rho\le\min\rho+2$, use the one-block consolidation. Otherwise
+Theorem~\ref{thm:S3} gives a common fold of the two arms of $\rho$ from $i$.
+Proposition~\ref{prop:assembly} turns it into the required block map.
+\end{proof}
+
+%======================================================================
+\section{Correspondence with the Lean files}\label{sec:table}
+%======================================================================
+
+All file names are relative to the directory \lean{HPC/}.
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}p{3.1cm}p{7.4cm}p{4.3cm}@{}}
+\toprule
+Here & Lean declaration & File\\
+\midrule
+Def.~\ref{def:chain}, \ref{def:crooked} & \lean{Chain}, \lean{Chain.IsCrookedIn'} & \lean{Chains/Basic.lean}\\
+Def.~\ref{def:block} & \lean{IsBlockMap}, \lean{Chain.ofBlocks} & \lean{Chains/Consolidation.lean}\\
+$\rho,\sigma$, Lemma~\ref{lem:rho-basic} & \lean{Refines.minIdx}, \lean{maxIdx}, \lean{minIdx\_lip} & \lean{Chains/Consolidation.lean}\\
+Theorem~\ref{thm:main} & \lean{HPC.Fold.theorem3} & \lean{Fold/Open.lean}\\
+Reduction & \lean{theorem3\_of\_S3} & \lean{Fold/Span.lean}\\
+Def.~\ref{def:fold} & \lean{FoldsOnto}, \lean{armG}, \lean{armT} & \lean{Fold/Itinerary.lean}\\
+Prop.~\ref{prop:assembly} & \lean{exists\_blocks\_first\_of\_folds} & \lean{Fold/Itinerary.lean}\\
+Degenerate case & \lean{exists\_blocks\_first\_of\_range\_le\_two} & \lean{Fold/Reduction.lean}\\
+Faithful model & \lean{IsCrookedIvF}, \lean{isCrookedIvF\_minIdx\_maxIdx} & \lean{Fold/Faithful.lean}\\
+Theorem~\ref{thm:S3} & \lean{S3}, \lean{Z77.s3\_zig}, \lean{s3\_general} & \lean{Fold/Span.lean}, \lean{Fold/Zig77Main.lean}, \lean{Fold/General.lean}\\
+Lemma~\ref{lem:crkon} & \lean{CrkOn}, \lean{crkOn\_of\_isCrookedIvF}, \lean{CrkOn.reverse} & \lean{Fold/Zig77Crook.lean}\\
+Section~\ref{sec:jump} & \lean{jwalk}, \lean{jlen}, \lean{Env}, \lean{arr}, \lean{Fit}, \lean{fold\_of\_fit} & \lean{Fold/Zig77Walk.lean}\\
+Lemma~\ref{lem:upstep} & \lean{up\_step}, \lean{down\_step} & \lean{Fold/Zig77Step.lean}\\
+Lemmas~\ref{lem:upcore}, \ref{lem:downcore} & \lean{up\_core}, \lean{down\_core} & \lean{Fold/Zig77Crook.lean}\\
+Lemmas~\ref{lem:first}--\ref{lem:nofaildown} & \lean{first\_direction}, \lean{nofail\_up}, \lean{nofail\_down} & \lean{Fold/Zig77Main.lean}\\
+Props.~\ref{prop:mainup}, \ref{prop:greedy} & \lean{main\_up}, \lean{greedy\_fit} & \lean{Fold/Zig77Main.lean}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Remarks on faithfulness.}
+\begin{sloppypar}
+\begin{itemize}
+\item The formal theorem is the ``block reading'' of Bing's Theorem 3. The
+consolidation is described by a block map (a Lipschitz surjection of indices),
+and ``lies in three consecutive links of $D$'' is the three-link window
+$D_{[j,j+3)}$.
+\item The hypothesis $n>0$ in the Lean statement is implied by the existence of
+$i\in[n]$.
+\item Most of the repository consists of earlier approaches to \lean{S3}: other
+families of walks, span-by-span case analyses, and counterexample audits. The
+proof described here does not use them. Besides the basic chain library, it
+uses only the reduction and assembly lemmas of Section~\ref{sec:reduction}, the
+lemma \lean{isCrookedIvF\_minIdx\_maxIdx}, and the four files
+\lean{Fold/Zig77*.lean}.
+\end{itemize}
+\end{sloppypar}
+
+\end{document}

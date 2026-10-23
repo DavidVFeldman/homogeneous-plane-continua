@@ -1,0 +1,17 @@
+# batch 188: files added (A), modified (M) or moved (R) in this run; from git diff --name-status 111cb19 HEAD (no uncommitted changes), plus the delivery files
+M	Axioms.lean
+M	HPC.lean
+M	HPC/Hagopian/Hagopian84A.lean
+M	HPC/Hagopian/Hagopian84C.lean
+A	HPC/Hagopian/Hagopian84D.lean
+M	LEDGER.md
+M	OPEN.md
+M	README.md
+M	axioms.txt
+R100	COMMISSION-batch188.md	doc/batches/COMMISSION-batch188.md
+A	doc/batches/REPORT-batch188.md
+A	doc/batches/audits/axioms-batch188.txt
+R100	Hagopian84D.lean	doc/batches/skeletons/Hagopian84D.lean
+M	doc/notes/hagopian84.md
+A	doc/batches/batch188-MANIFEST.txt
+A	doc/batches/batch188-files.tar.gz	(not inside itself)

@@ -1,0 +1,10 @@
+search-batch50: hill climbing for a counterexample to cross_valley_profile
+steps=3000 seed=77 restarts=6
+restart 0 (chain of 986 links): best objective 1, 115 accepted moves, 1 improvements
+restart 1 (chain of 986 links): best objective 1, 122 accepted moves, 1 improvements
+restart 2 (chain of 986 links): best objective 1, 117 accepted moves, 1 improvements
+restart 3 (chain of 986 links): best objective 1, 85 accepted moves, 1 improvements
+restart 4 (chain of 986 links): best objective 2, 95 accepted moves, 0 improvements
+restart 5 (chain of 986 links): best objective 1, 120 accepted moves, 1 improvements
+
+search-batch50: best objective over all restarts: 1 (0 would be a counterexample)

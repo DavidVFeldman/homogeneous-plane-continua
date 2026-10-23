@@ -1,0 +1,150 @@
+%======================================================================
+\chapter{Introduction}\label{ch:intro}
+%======================================================================
+
+\section{What this volume is about}
+
+Volumes~1 and~2 dealt with one object, the pseudo-arc. The rest of the classification of
+homogeneous plane continua needs a stock of general facts about continua, and this volume
+collects them. Most of them are classical and can be found, in some form, in textbooks on
+continuum theory; here they are proved in the form in which the formal proof uses them, and
+the proofs follow the formal ones.
+
+The volume has seven chapters, which can be read almost independently.
+
+\begin{itemize}
+\item \textbf{Chapter~\ref{ch:bumping}: Separated sets and boundary bumping.} Separated sets, the
+union of a continuum with one piece of a separation of its complement, nested intersections of
+continua, components as intersections of clopen sets, and the \emph{boundary bumping theorem}:
+in a continuum $M$, the component of a point $p$ in a proper closed subset $F$ reaches the
+boundary of $F$.
+\item \textbf{Chapter~\ref{ch:irreducible}: Irreducible continua.} A continuum containing two
+points (or meeting two compact sets) contains a subcontinuum that is minimal with this
+property; a nondegenerate indecomposable continuum is irreducible between two of its points.
+\item \textbf{Chapter~\ref{ch:noncut}: Non-cut points.} R.~L.~Moore's theorem: a nondegenerate
+compact connected $T_1$ space has at least two points whose removal leaves it connected, and no
+proper connected subset contains all such points.
+\item \textbf{Chapter~\ref{ch:triods}: Triods and Sorgenfrey's theorem.} Triods, weak triods and
+unicoherence; an indecomposable continuum is not a triod; and Sorgenfrey's theorem: a
+nondegenerate unicoherent continuum which is not a triod is irreducible between two of its
+points.
+\item \textbf{Chapter~\ref{ch:snake}: Snake-like and circle-like continua.} Subcontinua of
+snake-like continua are snake-like; snake-like continua are unicoherent and contain no triod;
+the $\varepsilon$-map characterization of snake-likeness and its consequence that snake-likeness
+is a topological property; circular chains, the circle, and proper subcontinua of circle-like
+continua.
+\item \textbf{Chapter~\ref{ch:decomp}: Upper semicontinuous decompositions.} Decompositions of a
+compact metric space into closed sets, the decomposition space and its metrizability, monotone
+decompositions, homeomorphisms permuting the elements, and the theorem of Kuratowski and Fort
+that an upper semicontinuous decomposition is continuous at the elements of a residual set.
+\item \textbf{Chapter~\ref{ch:effros}: The homeomorphism group and the Effros theorem.} The group
+of self-homeomorphisms of a compact metric space is a Polish group; a Polish group acting
+transitively on a Baire space acts micro-transitively (the open mapping principle, following
+J.~van Mill's elementary proof); and Ungar's corollary for homogeneous compact metric spaces:
+close points are moved one to the other by homeomorphisms close to the identity.
+\end{itemize}
+
+The main results, in the form used later, are:
+
+\begin{theorem}[Boundary bumping; Theorem~\ref{thm:bump-closed}]
+Let $M$ be a continuum, $F\subsetneq M$ a closed proper subset and $p\in F$. Some subcontinuum of
+$F$ containing $p$ meets $\cl{M\setminus F}$.
+\end{theorem}
+
+\begin{theorem}[Moore; Theorem~\ref{thm:two-noncut}]
+A compact connected $T_1$ space with at least two points has two distinct non-cut points.
+\end{theorem}
+
+\begin{theorem}[Sorgenfrey; Theorem~\ref{thm:sorgenfrey}]
+A nondegenerate unicoherent continuum that is not a triod is irreducible between two of its
+points.
+\end{theorem}
+
+\begin{theorem}[Theorems~\ref{thm:snake-unicoherent} and~\ref{thm:snake-atriodic}]
+A snake-like continuum is hereditarily unicoherent and atriodic.
+\end{theorem}
+
+\begin{theorem}[Theorems~\ref{thm:quotient-metrizable} and~\ref{thm:residual}]
+The decomposition space of an upper semicontinuous decomposition of a compact metric space into
+closed sets is a compact metrizable space, and the decomposition is continuous at the elements of
+a residual subset of it.
+\end{theorem}
+
+\begin{theorem}[Effros, Ungar; Theorem~\ref{thm:ungar}]
+Let $Y$ be a homogeneous compact metric space. For every $\varepsilon>0$ there is $\delta>0$ such
+that whenever $d(x,y)<\delta$ there is a homeomorphism $h\colon Y\to Y$ with $h(x)=y$ and
+$d(h(z),z)<\varepsilon$ for all $z\in Y$.
+\end{theorem}
+
+\section{Where these results are used}
+
+The results of this volume are used throughout Volumes~4--8. The most important uses are:
+boundary bumping, in almost every argument about plane continua; irreducibility and Sorgenfrey's
+theorem, in the study of snake-like and circle-like continua (Fugate's and Ingram's theorems);
+non-cut points, for the end elements of Bing's decomposition of an atriodic continuum; the
+fact that indecomposable continua are not triods, together with Moore's theorem on triods in the
+plane (a theorem of plane topology), in Hagopian's proof that a homogeneous indecomposable plane continuum is
+atriodic; snake-likeness and circle-likeness, in the indecomposable case and for circles of
+pseudo-arcs; upper semicontinuous decompositions, for Jones's aposyndetic decomposition of a
+decomposable homogeneous continuum (Volume~7); and the Effros theorem, wherever homogeneity is
+used quantitatively.
+
+\section{Where the formal proof differs from the literature}\label{sec:intro-diff}
+
+The notes follow the formal proof. It departs from the usual sources in the following places.
+
+\begin{enumerate}
+\item \textbf{Non-cut points without a metric.} Moore's theorem is proved, as in Nadler's
+\emph{Continuum Theory} (6.3--6.7), for compact connected $T_1$ spaces; the formal statements drop a
+hypothesis of nondegeneracy which is implied by the existence of a cut point
+(Chapter~\ref{ch:noncut}).
+\item \textbf{A false lemma in the proof of Sorgenfrey's theorem.} The lemma that removing a
+subcontinuum $H$ from the set $U=X\setminus Z$ of an essential sum leaves a connected set
+(Nadler~11.28) is false when $H$ contains $U$: the empty set is not connected. The proof assumes,
+without saying so, that $U\setminus H$ is nonempty, and the formal proof adds this hypothesis
+(Remark~\ref{rem:1128-false}).
+\item \textbf{Sorgenfrey's induction simplified.} In the main step of Sorgenfrey's theorem
+(Theorem~\ref{thm:irr-point}) the formal proof absorbs, at stage $n$, the $n$-th point of a dense
+sequence, instead of the first point not yet absorbed; only the properties listed in
+Lemma~\ref{lem:sorg-step} are used afterwards. Two hypotheses of Nadler's 11.31 and 11.32 are not
+needed and are dropped.
+\item \textbf{Triods from a core.} In place of Sorgenfrey's theorem that a weak triod contains a
+triod, which the formal proof does not use (and does not prove), the later volumes use a simple
+``core'' construction (Lemma~\ref{lem:core}).
+\item \textbf{Snake-likeness in a compact space.} Snake-likeness is defined with chains of open
+sets of the ambient space. Its invariance under homeomorphisms (Theorem~\ref{thm:snake-homeo}) is
+proved through $\varepsilon$-maps and the Tietze extension theorem, and needs the target space to
+be compact.
+\item \textbf{The Effros theorem.} Van Mill's Proposition~2.2 (two analytic fat sets meet) needs
+the space to be nonempty; the formal proof proves a relative form (Theorem~\ref{thm:prop22}),
+which is what Proposition~3.5 uses. Van Mill's Lemma~3.4 and Proposition~3.5 are proved as
+printed, with closures.
+\end{enumerate}
+
+\section{Prerequisites and conventions}
+
+The reader should know the basic metric topology of \vone{Chapter~1} (compactness,
+connectedness, continua, indecomposability) and, for Chapter~\ref{ch:snake}, the definition of a
+chain (\vone{Definition~2.1}). Chapter~\ref{ch:irreducible} uses one result of Volume~2: in an
+indecomposable continuum no composant is the whole continuum (\vtwo{Theorem~1.4}).
+
+\begin{itemize}
+\item $X$, $S$, $Y$ denote metric spaces unless stated otherwise, $d$ their metrics. $\cl A$ is the
+closure of $A$ and $\interior A$ its interior; $B(x,r)$ and $\bar B(x,r)$ are the open and closed
+balls.
+\item A \emph{continuum} is a nonempty compact connected set (\vone{Definition~1.2}). In the
+formal proof this is \lean{HPC.Fold.Q78.IsContinuum}. Most chapters work in a \emph{compact}
+metric space $S$; then a set is a continuum if and only if it is nonempty, closed and connected.
+\item \emph{Preconnected} means connected or empty, as in \vone{Section~1.3}; the criterion
+\vone{(K2)} for closed sets is used constantly: a closed set $C$ is preconnected if and only if
+it is not the union of two disjoint nonempty closed sets.
+\item A set is \emph{clopen} if it is both closed and open. A subset $W$ of a set $F$ is
+\emph{relatively clopen in $F$} if it is clopen in the subspace $F$.
+\item $\N=\set{0,1,2,\dots}$ and $[n]=\set{0,\dots,n-1}$.
+\end{itemize}
+
+\paragraph{Formal counterparts.} As in Volumes~1 and~2, many results are followed by a line
+``Formal counterpart:'' naming the corresponding declaration of the Lean development (all names
+begin with \lean{HPC.}). These lines may be skipped. Appendix~\ref{app:formal} collects them.
+
+\paragraph{Exercises.} Each chapter ends with exercises. None of them is used later.

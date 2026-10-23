@@ -1,0 +1,48 @@
+census-batch48: the GENERAL model, generators shaving and filling.
+
+==== base chain bing 0 9 (n = 986 links); verifies IsCrookedIvF: 1 ====
+
+==== base chain bing 9 0 (the chain run the other way) (n = 986 links); verifies IsCrookedIvF: 1 ====
+
+================ totals over both base chains ================
+
+-- the thin sequences themselves --
+faithful pairs: 2; non-thin links 0/1972 (0.00000)
+branch basepoints (rho i = L+4, both arms HighAt (L+1) (L+8)): 154; unserved: 44
+arms failing Leg3Valley: forward 26, backward 26; failing Leg3Ceil: forward 0, backward 0
+leg3Valley_or_vee confirmed 52 times (failures 0); leg3Ceil_or_lam confirmed 0 times (failures 0)
+cross_valley_profile: tested 46, failures 0;  cross_ceil_profile: tested 0, failures 0
+arms failing the sharpened clauses: Leg3ValleyMin 52, Leg3CeilMin 0
+unserved pairs meeting the sharpened clauses on both arms: 44 (failing 0)
+unserved_profile: holds 44, fails 0;  unserved_profile_one failures: 0
+
+-- single shavings (one peak lowered) --
+faithful pairs: 576; non-thin links 576/567936 (0.00101)
+branch basepoints (rho i = L+4, both arms HighAt (L+1) (L+8)): 44560; unserved: 12680
+arms failing Leg3Valley: forward 7508, backward 7508; failing Leg3Ceil: forward 0, backward 0
+leg3Valley_or_vee confirmed 15016 times (failures 0); leg3Ceil_or_lam confirmed 0 times (failures 0)
+cross_valley_profile: tested 13280, failures 0;  cross_ceil_profile: tested 0, failures 0
+arms failing the sharpened clauses: Leg3ValleyMin 15016, Leg3CeilMin 0
+unserved pairs meeting the sharpened clauses on both arms: 12680 (failing 0)
+unserved_profile: holds 12680, fails 0;  unserved_profile_one failures: 0
+
+-- single fills (one valley link widened upwards) --
+faithful pairs: 576; non-thin links 576/567936 (0.00101)
+branch basepoints (rho i = L+4, both arms HighAt (L+1) (L+8)): 44352; unserved: 12672
+arms failing Leg3Valley: forward 7488, backward 7488; failing Leg3Ceil: forward 0, backward 0
+leg3Valley_or_vee confirmed 14976 times (failures 0); leg3Ceil_or_lam confirmed 0 times (failures 0)
+cross_valley_profile: tested 13248, failures 0;  cross_ceil_profile: tested 0, failures 0
+arms failing the sharpened clauses: Leg3ValleyMin 14976, Leg3CeilMin 0
+unserved pairs meeting the sharpened clauses on both arms: 12672 (failing 0)
+unserved_profile: holds 12672, fails 0;  unserved_profile_one failures: 0
+   [random mixtures: 400 rounds per chain, seed 4848]
+
+-- random mixtures of shavings and fills --
+faithful pairs: 800; non-thin links 154087/788800 (0.19534)
+branch basepoints (rho i = L+4, both arms HighAt (L+1) (L+8)): 91543; unserved: 19054
+arms failing Leg3Valley: forward 13468, backward 13351; failing Leg3Ceil: forward 0, backward 0
+leg3Valley_or_vee confirmed 26819 times (failures 0); leg3Ceil_or_lam confirmed 0 times (failures 0)
+cross_valley_profile: tested 23722, failures 0;  cross_ceil_profile: tested 0, failures 0
+arms failing the sharpened clauses: Leg3ValleyMin 26819, Leg3CeilMin 0
+unserved pairs meeting the sharpened clauses on both arms: 19054 (failing 0)
+unserved_profile: holds 19054, fails 0;  unserved_profile_one failures: 0

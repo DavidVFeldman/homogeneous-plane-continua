@@ -1,0 +1,368 @@
+%======================================================================
+\chapter{Crooked patterns}\label{ch:patterns}
+%======================================================================
+
+To build a description we must produce, again and again, a chain crooked in a given one. The
+plan is to separate combinatorics from geometry. The combinatorics is an integer sequence
+$g$, a \emph{pattern}, telling the new chain which link of the old chain each of its links
+should lie in. If the pattern is crooked (in a sense defined below) and the new chain follows
+it ``tightly'', the new chain is crooked in the old one (Section~\ref{sec:tight}). The
+geometry, carried out in Chapter~\ref{ch:plane}, realizes a given pattern tightly in the plane.
+
+In this chapter we write down a crooked pattern explicitly. It is Bing's, from 1948, but the
+formal proof uses a closed recursive formula and a new proof of its crookedness.
+
+\section{Crooked integer sequences}
+
+\begin{definition}\label{def:pattern-crooked}
+Let $g\colon\N\to\Z$ and let $\ell\le h^{*}$ be natural numbers (a \emph{window}
+$[\ell,h^{*}]$). We say that $g$ is \emph{crooked on $[\ell,h^{*}]$} if the following holds:
+for all $i,j\in[\ell,h^{*}]$ and all integers $h,k$ with
+\[
+g(i)\le h,\qquad k\le g(j),\qquad h+3\le k,
+\]
+there are $r,s$ with $\mathrm{Btw}(i,r,s,j)$, $g(r)=k-1$ and $g(s)=h+1$.
+\end{definition}
+
+So, in the graph of $g$, between a time $i$ at height $\le h$ and a time $j$ at height $\ge k$
+there are a time $r$ at height $k-1$ and a later (counting from $i$) time $s$ at height $h+1$.
+Note that $r,s$ automatically lie in the window, strictly between $i$ and $j$. We say $g$ has
+\emph{unit steps} if $\abs{g(u+1)-g(u)}\le1$ for all $u$.
+
+\formal{\lean{HPC.Fold.PatCrookedOn}; the order relation is \lean{HPC.Fold.NBetween}
+(\lean{HPC/Fold/BingCrook.lean}).}
+
+\begin{lemma}[Operations on crooked sequences]\label{lem:pattern-ops}
+Let $g$ be crooked on $[\ell,h^*]$.
+\begin{enumerate}[label=(\alph*)]
+\item\label{po:congr} If $g'(u)=g(u)$ for all $u\in[\ell,h^*]$, then $g'$ is crooked on
+$[\ell,h^*]$.
+\item\label{po:shift} For $o\in\N$ and $c\in\Z$, the sequence $u\mapsto c+g(u-o)$ is crooked on
+$[\ell+o,h^*+o]$. (Here $u-o$ is only evaluated for $u\ge o$.)
+\item\label{po:neg} For $c\in\Z$, the sequence $u\mapsto c-g(u)$ is crooked on $[\ell,h^*]$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\ref{po:congr} The hypotheses and the conclusion only involve values at indices in the window.
+
+\ref{po:shift} Let $g'(u)=c+g(u-o)$, and let $i,j\in[\ell+o,h^*+o]$, $g'(i)\le h$, $k\le g'(j)$,
+$h+3\le k$. Then $g(i-o)\le h-c$, $k-c\le g(j-o)$ and $(h-c)+3\le k-c$. Crookedness of $g$ gives
+$r,s$ with $\mathrm{Btw}(i-o,r,s,j-o)$, $g(r)=k-c-1$, $g(s)=h-c+1$. Then $r+o$, $s+o$ work for
+$g'$.
+
+\ref{po:neg} Let $g'(u)=c-g(u)$, and let $g'(i)\le h$, $k\le g'(j)$, $h+3\le k$. Then $g(j)\le
+c-k$, $c-h\le g(i)$, and $(c-k)+3\le c-h$. Apply crookedness of $g$ to the pair $(j,i)$ (in this
+order) with the levels $c-k$ and $c-h$: there are $r',s'$ with $\mathrm{Btw}(j,r',s',i)$,
+$g(r')=c-h-1$, $g(s')=c-k+1$. Put $r=s'$, $s=r'$. Then $\mathrm{Btw}(i,r,s,j)$ (the reverse of
+$\mathrm{Btw}(j,r',s',i)$), $g'(r)=c-g(s')=k-1$ and $g'(s)=c-g(r')=h+1$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.PatCrookedOn.congr}, \lean{HPC.Fold.PatCrookedOn.shift},
+\lean{HPC.Fold.PatCrookedOn.neg}.}
+
+\section{Bing's pattern}
+
+\begin{definition}[Bing's numbers]\label{def:z}
+Define $z\colon\N\to\N$ by $z(0)=1$, $z(1)=2$, $z(2)=3$ and
+\[
+z(d+3)=2z(d+2)+z(d+1)-2\qquad(d\ge0).
+\]
+\end{definition}
+
+The first values are $1,2,3,6,13,30,71,170,\dots$. By induction $z$ is increasing, $z(d)\ge2$ for
+$d\ge1$ and $z(d)\ge3$ for $d\ge2$ (each step adds $z(d+2)+z(d+1)-2\ge z(d+1)\ge1$).
+
+\formal{\lean{HPC.Fold.z} (\lean{HPC/Fold/OffCenter.lean}).}
+
+\begin{definition}[Bing's pattern]\label{def:bingF}
+Define sequences $b_d\colon\N\to\Z$, $d\in\N$, by $b_0(u)=0$, $b_1(u)=\min(u,1)$,
+$b_2(u)=\min(u,2)$, and for $d\ge0$, writing $a=z(d+2)-1$ and $b=z(d+2)+z(d+1)-2$,
+\[
+b_{d+3}(u)=\begin{cases}
+b_{d+2}(u) & \text{if } u<z(d+2),\\[2pt]
+(d+2)-b_{d+1}(u-a) & \text{if } z(d+2)\le u\le b,\\[2pt]
+1+b_{d+2}(u-b) & \text{if } u>b.
+\end{cases}
+\]
+\end{definition}
+
+\formal{\lean{HPC.Fold.bingF} (\lean{HPC/Fold/BingF.lean}).}
+
+In words: $b_{d+3}$ runs through $b_{d+2}$ (climbing from $0$ to $d+2$), then through an
+upside-down copy of $b_{d+1}$ (descending from $d+2$ to $1$), then through a copy of $b_{d+2}$
+raised by one (climbing from $1$ to $d+3$), and then stays at $d+3$ for ever. Consecutive pieces
+share their junction values. For example
+\begin{align*}
+b_3&:\ 0,1,2,\ 1,\ 2,3,\ 3,3,\dots\\
+b_4&:\ 0,1,2,1,2,3,\ 2,1,\ 2,3,2,3,4,\ 4,4,\dots
+\end{align*}
+The useful part of $b_d$ is its first $z(d)$ terms; Figure~\ref{fig:b4} shows $b_4$.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=0.75cm,y=0.75cm]
+  \draw[->] (-0.3,0) -- (13,0) node[right] {$u$};
+  \draw[->] (0,-0.3) -- (0,4.7) node[above] {$b_4(u)$};
+  \foreach \y in {1,2,3,4} { \draw (-0.1,\y) -- (0.1,\y); \node[left] at (-0.1,\y) {\small $\y$}; }
+  \foreach \x in {0,4,8,12} { \draw (\x,-0.1) -- (\x,0.1); \node[below] at (\x,-0.1) {\small $\x$}; }
+  \draw[thick] (0,0) -- (1,1) -- (2,2) -- (3,1) -- (4,2) -- (5,3) -- (6,2) -- (7,1) -- (8,2)
+    -- (9,3) -- (10,2) -- (11,3) -- (12,4);
+  \foreach \x/\y in {0/0,1/1,2/2,3/1,4/2,5/3,6/2,7/1,8/2,9/3,10/2,11/3,12/4}
+    { \fill (\x,\y) circle (2pt); }
+  \draw[dashed] (5,0) -- (5,3);
+  \draw[dashed] (7,0) -- (7,1);
+\end{tikzpicture}
+\caption{The first $z(4)=13$ terms of $b_4$. The dashed lines mark the junctions $a=5$ and
+$b=7$ of the three pieces: $b_3$ on $[0,5]$, $3-b_2(\cdot-5)$ on $[5,7]$, $1+b_3(\cdot-7)$ on
+$[7,12]$.}
+\label{fig:b4}
+\end{figure}
+
+\begin{lemma}[The three pieces]\label{lem:three-pieces}
+Let $d\ge0$, $a=z(d+2)-1$, $b=z(d+2)+z(d+1)-2$ and $e=z(d+3)-1$. Then $1\le a<b<e$, $e=a+b$, and
+the following formulas hold, \emph{including at the junctions}:
+\begin{align*}
+b_{d+3}(u)&=b_{d+2}(u) && (0\le u\le a),\\
+b_{d+3}(u)&=(d+2)-b_{d+1}(u-a) && (a\le u\le b),\\
+b_{d+3}(u)&=1+b_{d+2}(u-b) && (u\ge b).
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+$a\ge2$ since $z(d+2)\ge3$; $b-a=z(d+1)-1\ge1$; $e=2z(d+2)+z(d+1)-3=a+b$ and $e-b=a\ge1$. The
+first formula is the definition for $u<z(d+2)$, i.e.\ $u\le a$. The second is the definition for
+$z(d+2)\le u\le b$; at $u=a$ it reads $(d+2)-b_{d+1}(0)=d+2$, and the first formula gives
+$b_{d+2}(a)=d+2$ by Lemma~\ref{lem:bingF-props}\ref{bp:top} below (applied to $d+2$, which is
+legitimate in an induction on $d$). The third is the definition for $u>b$; at $u=b$ the second
+formula gives $(d+2)-b_{d+1}(z(d+1)-1)=(d+2)-(d+1)=1$, again by
+Lemma~\ref{lem:bingF-props}\ref{bp:top}, and the third gives $1+b_{d+2}(0)=1$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.bingF_A}, \lean{HPC.Fold.bingF_B}, \lean{HPC.Fold.bingF_C}.}
+
+\begin{lemma}[Properties of Bing's pattern]\label{lem:bingF-props}
+For every $d\in\N$:
+\begin{enumerate}[label=(\alph*)]
+\item\label{bp:zero} $b_d(0)=0$;
+\item\label{bp:top} $b_d(u)=d$ for all $u\ge z(d)-1$;
+\item\label{bp:range} $0\le b_d(u)\le d$ for all $u$;
+\item\label{bp:lip} $\abs{b_d(u+1)-b_d(u)}\le1$ for all $u$;
+\item\label{bp:pos} if $d\ge1$ and $0<u<z(d)$, then $b_d(u)\ge1$;
+\item\label{bp:onlytop} if $b_d(u)=d$, then $u\ge z(d)-1$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+By strong induction on $d$. For $d=0,1,2$ we have $b_d(u)=\min(u,d)$ and $z(d)=d+1$, and all six
+statements are immediate. Let $d\ge0$ and assume the statements for $d+1$ and $d+2$; we prove
+them for $d+3$, using Lemma~\ref{lem:three-pieces} (whose proof used~\ref{bp:top} only for $d+1$
+and $d+2$). Let $a,b,e$ be as there.
+
+\ref{bp:zero} $b_{d+3}(0)=b_{d+2}(0)=0$.
+
+\ref{bp:top} If $u\ge e$, then $u\ge b$ and $u-b\ge e-b=a=z(d+2)-1$, so
+$b_{d+3}(u)=1+b_{d+2}(u-b)=1+(d+2)$.
+
+\ref{bp:range} On $[0,a]$ the values are those of $b_{d+2}$, in $[0,d+2]$; on $[a,b]$ they are
+$(d+2)$ minus values of $b_{d+1}$, so in $[1,d+2]$; for $u\ge b$ they are $1$ plus values of
+$b_{d+2}$, so in $[1,d+3]$.
+
+\ref{bp:lip} For each $u$, the two indices $u,u+1$ lie in one of the three ranges $[0,a]$,
+$[a,b]$, $[b,\infty)$ (since the ranges overlap at their end points). On each range $b_{d+3}$ is
+obtained from $b_{d+2}$ or $b_{d+1}$ by a shift of the index and $v\mapsto c\pm v$ on the values,
+which does not change the size of a step.
+
+\ref{bp:pos} Let $0<u<z(d+3)$. If $u\le a$, then $b_{d+3}(u)=b_{d+2}(u)\ge1$ by induction (note
+$u<z(d+2)$). If $u\ge a$, the value is $\ge1$ by the computation in~\ref{bp:range}.
+
+\ref{bp:onlytop} Suppose $b_{d+3}(u)=d+3$. By~\ref{bp:range}, the values on $[0,b]$ are $\le d+2$,
+so $u>b$ and $b_{d+2}(u-b)=d+2$. By induction $u-b\ge z(d+2)-1=a$, so $u\ge a+b=e$.
+\end{proof}
+
+\formal{\lean{HPC.Fold.bingF_zero}, \lean{HPC.Fold.bingF_top}, \lean{HPC.Fold.bingF_range},
+\lean{HPC.Fold.bingF_lip}, \lean{HPC.Fold.bingF_eq_zero}, \lean{HPC.Fold.bingF_eq_top}.}
+
+\section{Bing's pattern is crooked}
+
+\begin{theorem}\label{thm:bingF-crooked}
+For every $d$, the sequence $b_d$ is crooked on $[0,z(d)-1]$.
+\end{theorem}
+
+\begin{proof}
+By strong induction on $d$.
+
+\emph{Base cases $d\le2$.} Let $i,j$, $h,k$ be as in Definition~\ref{def:pattern-crooked}. Then
+$h\ge b_d(i)\ge0$ and $k\le b_d(j)\le d\le2$, so $h+3\le k$ is impossible. The condition holds
+vacuously.
+
+\emph{Inductive step.} Let $d\ge0$, assume the theorem for $d+1$ and $d+2$, and write
+$g=b_{d+3}$. Let $a,b,e$ be as in Lemma~\ref{lem:three-pieces}, so the window is $[0,e]$. We use
+the three sub-windows
+\[
+W_1=[0,a],\qquad W_2=[a,b],\qquad W_3=[b,e].
+\]
+
+\emph{Step 1: $g$ is crooked on each sub-window.} On $W_1$, $g=b_{d+2}$, which is crooked on
+$[0,z(d+2)-1]=W_1$ by induction; use Lemma~\ref{lem:pattern-ops}\ref{po:congr}. On $W_2$,
+$g(u)=(d+2)-b_{d+1}(u-a)$; the sequence $b_{d+1}$ is crooked on $[0,z(d+1)-1]$ by induction, so
+by Lemma~\ref{lem:pattern-ops}\ref{po:neg} and~\ref{po:shift} the sequence $u\mapsto
+(d+2)-b_{d+1}(u-a)$ is crooked on $[a,a+z(d+1)-1]=[a,b]$, and~\ref{po:congr} transfers this to
+$g$. On $W_3$, $g(u)=1+b_{d+2}(u-b)$, crooked on $[b,b+z(d+2)-1]=[b,e]$ in the same way.
+
+\emph{Step 2: facts about $g$.} By Lemmas~\ref{lem:three-pieces} and~\ref{lem:bingF-props}:
+\begin{enumerate}[label=(F\arabic*)]
+\item\label{F:a} $g(a)=d+2$ and $g(b)=1$;
+\item\label{F:le} $g(u)\le d+2$ for $u\le b$;
+\item\label{F:top} $g\le d+3$ everywhere, and for $u\le e$, $g(u)=d+3$ only if $u=e$;
+\item\label{F:pos} $g(u)\ge1$ for $0<u\le e$;
+\item\label{F:lip} $g$ has unit steps.
+\end{enumerate}
+
+\emph{Step 3: the general case.} Let $i,j\in[0,e]$ and $h,k$ with $g(i)\le h$, $k\le g(j)$,
+$h+3\le k$. If $i$ and $j$ lie in a common sub-window, Step~1 gives the required $r,s$. So
+assume they do not. Since $g(i)\le h<k\le g(j)$, we have $i\neq j$.
+
+\smallskip\noindent\emph{Case A: $i<j$.}
+
+\emph{A1: $i<a$.} Then $j>a$ (otherwise $i,j\in W_1$).
+\begin{itemize}
+\item If $k\le d+2$: apply crookedness on $W_1$ to the pair $(i,a)$; this is allowed because
+$g(a)=d+2\ge k$. We get $r,s$ with $i<r<s<a<j$, $g(r)=k-1$, $g(s)=h+1$.
+\item If $k\ge d+3$: then $g(j)\ge d+3$, so $j=e$ and $k=d+3$ by~\ref{F:top}, and $h\le k-3=d$.
+Put $r=a$; then $g(r)=d+2=k-1$ and $i<a<j$. On $[a,b]$, $g$ goes from $g(a)=d+2$ to $g(b)=1$ with
+unit steps, and $1\le h+1\le d+1$ (as $h\ge g(i)\ge0$). By Lemma~\ref{lem:discrete-ivt} there is
+$s\in[a,b]$ with $g(s)=h+1$; $s\ne a$ because $g(a)=d+2\ne h+1$; and $s\le b<e=j$. So
+$i<r<s<j$.
+\end{itemize}
+
+\emph{A2: $i\ge a$.} Then $i<b$ (otherwise $i,j\in W_3$) and $j>b$ (otherwise $i,j\in W_2$). Since
+$i>0$, $h\ge g(i)\ge1=g(b)$. Apply crookedness on $W_3$ to the pair $(b,j)$: we get $r,s$ with
+$b<r<s<j$, hence $i<r<s<j$, and $g(r)=k-1$, $g(s)=h+1$.
+
+\smallskip\noindent\emph{Case B: $j<i$.} Now $i>0$, so $h\ge g(i)\ge1=g(b)$ by~\ref{F:pos}.
+
+\emph{B1: $j<a$.} Then $i>a$ (otherwise $i,j\in W_1$), and $k\le g(j)\le d+2=g(a)$
+by~\ref{F:le}.
+\begin{itemize}
+\item If $i\le b$: then $i\in W_2$. Apply crookedness on $W_2$ to the pair $(i,a)$: we get
+$r,s$ with $i>r>s>a>j$, $g(r)=k-1$, $g(s)=h+1$.
+\item If $i>b$: apply crookedness on $W_2$ to the pair $(b,a)$ (allowed, as $g(b)=1\le h$ and
+$g(a)\ge k$): we get $b>r>s>a$, hence $i>r>s>j$.
+\end{itemize}
+
+\emph{B2: $j\ge a$.} Then $j<b$ (otherwise $i,j\in W_3$) and $i>b$ (otherwise $i,j\in W_2$).
+Apply crookedness on $W_2$ to the pair $(b,j)$: we get $b>r>s>j$, hence $i>r>s>j$.
+
+\smallskip
+In all cases the required $r,s$ exist.
+\end{proof}
+
+\formal{\lean{HPC.Fold.bingF_crooked}.}
+
+\section{Stuttering}
+
+The construction in the plane needs patterns that are not only crooked but also \emph{slow}:
+they must stay at each value for a long time. We obtain them by repeating each term of
+Bing's pattern $K$ times.
+
+\begin{definition}\label{def:stutter}
+For $d\in\N$ and $K\ge1$, the \emph{stuttered pattern} is $s_{d,K}(u)=b_d(\fl{u/K})$.
+\end{definition}
+
+\formal{\lean{HPC.Plane.stut} (\lean{HPC/Plane/Stutter.lean}).}
+
+\begin{lemma}\label{lem:stutter}
+Let $d\in\N$ and $K\ge1$, and let $s=s_{d,K}$.
+\begin{enumerate}[label=(\alph*)]
+\item\label{st:lip} $s$ has unit steps and $0\le s\le d$.
+\item\label{st:crooked} $s$ is crooked on $[0,Kz(d)-1]$.
+\item\label{st:slow} If $s(u)+2\le s(u')$, then $\abs{u-u'}\ge K$.
+\item\label{st:ends} If $K\ge2$, then $s(0)=s(1)=0$ and $s(Kz(d)-1)=s(Kz(d)-2)=d$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\ref{st:lip} $\fl{(u+1)/K}$ is either $\fl{u/K}$ or $\fl{u/K}+1$; use
+Lemma~\ref{lem:bingF-props}\ref{bp:lip} and~\ref{bp:range}.
+
+\ref{st:crooked} Let $i,j\le Kz(d)-1$, $s(i)\le h$, $k\le s(j)$, $h+3\le k$. Put $i_0=\fl{i/K}$ and
+$j_0=\fl{j/K}$; both are $\le z(d)-1$. Since $b_d(i_0)\le h$ and $k\le b_d(j_0)$,
+Theorem~\ref{thm:bingF-crooked} gives $r_0,s_0$ with $\mathrm{Btw}(i_0,r_0,s_0,j_0)$,
+$b_d(r_0)=k-1$, $b_d(s_0)=h+1$. Put $r=Kr_0$ and $s'=Ks_0$; then $s(r)=k-1$ and $s(s')=h+1$. If
+$i_0<r_0<s_0<j_0$, then
+\[
+i<K(i_0+1)\le Kr_0=r<Ks_0=s'\le K(j_0-1)<Kj_0\le j .
+\]
+If $i_0>r_0>s_0>j_0$, then $r=Kr_0\le K(i_0-1)<Ki_0\le i$, $s'<r$, and $j<K(j_0+1)\le Ks_0=s'$.
+Either way $\mathrm{Btw}(i,r,s',j)$.
+
+\ref{st:slow} If $b_d(\fl{u/K})+2\le b_d(\fl{u'/K})$, then, since $b_d$ has unit steps,
+$\abs{\fl{u/K}-\fl{u'/K}}\ge2$. If, say, $\fl{u'/K}\ge\fl{u/K}+2$, then $u'\ge K(\fl{u/K}+2)>u+K$.
+The other case is symmetric.
+
+\ref{st:ends} $\fl{0/K}=\fl{1/K}=0$ when $K\ge2$, and $b_d(0)=0$. Also
+$\fl{(Kz(d)-1)/K}=\fl{(Kz(d)-2)/K}=z(d)-1$ when $K\ge2$ (as $Kz(d)-K\le Kz(d)-2<Kz(d)$), and
+$b_d(z(d)-1)=d$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.stut_lip}, \lean{HPC.Plane.stut_crooked}, \lean{HPC.Plane.stut_range},
+\lean{HPC.Plane.stutPat_slow}, and the end-value computations in
+\lean{HPC.Plane.desc_step}.}
+
+\section{Tight realizations are crooked}\label{sec:tight}
+
+We now connect patterns with chains.
+
+\begin{proposition}[Tightness transfers crookedness]\label{prop:tight}
+Let $D$ be a chain of length $m$ and $F$ a chain of length $n$. Let $g\colon\N\to\Z$ have unit
+steps and be crooked on $[0,n-1]$. Suppose:
+\begin{enumerate}[label=(T\arabic*)]
+\item\label{T:follow} for every $u\in[n]$, $g(u)\in[m]$ and $F_u\subseteq D_{g(u)}$;
+\item\label{T:tight} whenever $F_u$ meets $D_l$, there is $u'\in[n]$ with $\abs{u'-u}\le1$ and
+$l=g(u')$.
+\end{enumerate}
+Then $F$ is crooked in $D$.
+\end{proposition}
+
+Condition~\ref{T:follow} says $F$ follows the pattern $g$ in $D$. Condition~\ref{T:tight}, which
+we call \emph{tightness}, says a link of $F$ meets only those links of $D$ that the pattern
+prescribes for it or for its two neighbours.
+
+\begin{proof}
+By~\ref{T:follow}, $F$ refines $D$. Let $k>h+2$, and let $F_i$ meet $D_h$ and $F_j$ meet $D_k$. By
+\ref{T:tight} there are $u',v'\in[n]$ with $\abs{u'-i}\le1$, $g(u')=h$, $\abs{v'-j}\le1$,
+$g(v')=k$. Since $g(u')=h$, $g(v')=k$ and $h+3\le k$, crookedness of $g$ on $[0,n-1]$ gives
+$r,s$ with $\mathrm{Btw}(u',r,s,v')$, $g(r)=k-1$, $g(s)=h+1$. We claim
+$\mathrm{Btw}(i,r,s,j)$.
+
+First, $r\neq i$: otherwise $\abs{g(i)-g(u')}=\abs{(k-1)-h}\ge2$, but $\abs{i-u'}\le1$ and $g$
+has unit steps, so $\abs{g(i)-g(u')}\le1$. Similarly $s\neq j$: otherwise
+$\abs{g(j)-g(v')}=\abs{(h+1)-k}\ge2$.
+
+If $u'<r<s<v'$: then $i\le u'+1\le r$ and $r\neq i$, so $i<r$; and $s<v'\le j+1$, so $s\le j$, and
+$s\ne j$, so $s<j$. Thus $i<r<s<j$. If $u'>r>s>v'$, the same argument with the inequalities
+reversed gives $i>r>s>j$.
+
+Finally $F_r\subseteq D_{g(r)}=D_{k-1}$ and $F_s\subseteq D_{g(s)}=D_{h+1}$ by~\ref{T:follow}.
+\end{proof}
+
+\formal{\lean{HPC.Plane.crooked_of_tight_pat}.}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Compute $b_5$ (its first $30$ terms) from Definition~\ref{def:bingF} and check by hand a few
+instances of Theorem~\ref{thm:bingF-crooked}.
+\end{exercise}
+
+\begin{exercise}
+Show that the sequence $u\mapsto\min(u,d)$ is not crooked on $[0,d]$ when $d\ge3$. Show that no
+sequence with unit steps that is crooked on $[0,N]$, starts at $0$ and ends at $d\ge3$ can be
+monotone.
+\end{exercise}
+
+\begin{exercise}
+Show that $z(d)$ grows exponentially: $z(d)\ge2^{d-1}$ for $d\ge1$.
+\end{exercise}

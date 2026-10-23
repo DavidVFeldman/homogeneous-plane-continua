@@ -1,0 +1,226 @@
+%======================================================================
+\chapter{Snake-likeness: the plan of Hoehn and Oversteegen}\label{ch:snake}
+%======================================================================
+
+The last step of the indecomposable case is a theorem of Hoehn and Oversteegen (2016, Theorem~1): a hereditarily indecomposable
+continuum of span zero is snake-like. Together with Theorems~\ref{thm:HI} and~\ref{thm:theoremC} it shows that a nondegenerate homogeneous
+indecomposable plane continuum is a pseudo-arc. This chapter states the theorem in the form proved here (for plane continua), reduces it to
+a lifting theorem (Hoehn--Oversteegen's Theorem~20), and carries out the reduction. Chapters~\ref{ch:folds}--\ref{ch:ladders} prove
+Theorem~20.
+
+The strategy is this. Snake-likeness asks for $\varepsilon$-maps onto $\I$ (\vthree{Theorem~5.10}). Span zero says, roughly, that two points
+of $X$ that start together cannot get far apart while one of them sweeps out all of $X$. Hoehn and Oversteegen turn this into a separation
+statement (Theorem~4): if a graph $G$ and a path $\gamma$ both approximate $X$, the set of pairs $(x,t)$ with $x$ close to $\gamma(t)$
+separates the bottom of $G\times\I$ from the top. Theorem~20 then says that a hereditarily indecomposable space mapped into $G$ can be lifted, up to
+a small error, into any neighbourhood of such a separator. The $t$-coordinate of the lift is the required $\varepsilon$-map.
+
+\section{Statements}
+
+\begin{definition}\label{def:plgraph}
+Let $E$ be a real normed space.
+\begin{enumerate}[label=(\alph*)]
+\item A \emph{PL graph} in $E$ is a finite union of nondegenerate segments, two different ones meeting at most in common end points.
+\item Let $Y$ be a topological space and $M,P,Q\subseteq Y$. \emph{$M$ separates $P$ from $Q$ in $Y$} if there are open sets $U_P\supseteq P$ and
+$U_Q\supseteq Q$ that cover $Y\setminus M$ and whose intersection misses $Y\setminus M$.
+\item A \emph{fan at $y$ in $A$ of diameter $<r$} is a union $\set y\cup\bigcup_k[y,z_k]$ of finitely many segments meeting pairwise only in $y$,
+contained in $A$, which is a neighbourhood of $y$ in $A$ and has diameter $<r$.
+\end{enumerate}
+\end{definition}
+
+\formal{\lean{HPC.HO16.IsPLGraph}, \lean{HPC.HO16.SeparatesIn}, \lean{HPC.HO16.IsFanAt}.}
+
+A PL graph is compact, and every point of a PL graph has fans of every diameter (cut the segments through $y$ short). If $R_0\supseteq P$ and $R_1\supseteq
+Q$ are disjoint closed sets covering $Y\setminus M$, then $M$ separates $P$ from $Q$ (take $U_P=Y\setminus R_1$, $U_Q=Y\setminus R_0$); this is how
+separation is always produced below.
+
+\formal{\lean{HPC.HO16.IsPLGraph.isCompact}, \lean{HPC.HO16.IsPLGraph.exists_fan}, \lean{HPC.HO16.separatesIn_of_closed}.}
+
+Throughout Chapters~\ref{ch:snake}--\ref{ch:ladders}, $G$ is a PL graph, $G^\star=G\times\I\subseteq E\times\R$, and $\pi\colon E\times\R\to E$ is the
+first projection.
+
+\begin{theorem}[Hoehn--Oversteegen, Theorem~20, forward direction]\label{thm:ho20}
+Let $X$ be a compact metric space that is hereditarily indecomposable, $G$ a PL graph in a normed space $E$, and $f\colon X\to G$ continuous.
+Let $M\subseteq G\times(0,1)$ separate $G\times\set0$ from $G\times\set1$ in $G^\star$, and let $U\supseteq M$ be open in $E\times\R$. Then for every $\varepsilon>0$
+there is a continuous $h\colon X\to U\cap G^\star$ with $\nrm{f(x)-\pi h(x)}<\varepsilon$ for all $x$.
+\end{theorem}
+
+\formal{The statement is the proposition \lean{HPC.HO16.HOThm20}; it is proved as \lean{HPC.HO16.ho16_theorem20} (Chapter~\ref{ch:ladders}).}
+
+Hoehn and Oversteegen prove an equivalence: Theorem~20 characterizes hereditary indecomposability. Only the direction stated is needed and
+proved. ``Hereditarily indecomposable'' for a compactum (not necessarily connected) means that every subcontinuum is indecomposable.
+
+\begin{theorem}[Hoehn--Oversteegen, Theorem~1, for plane continua]\label{thm:ho1}
+A hereditarily indecomposable plane continuum of span zero is snake-like.
+\end{theorem}
+
+\formal{\lean{HPC.HO16.ho16_theorem1_plane}, which takes Theorem~\ref{thm:ho20} as a hypothesis \lean{h20 : HOThm20}; span zero is
+\lean{HPC.Span.HOSpanZero} (Definition~\ref{def:span}).}
+
+\begin{theorem}\label{thm:indec-pseudoarc}
+A nondegenerate homogeneous indecomposable plane continuum $M$ is a pseudo-arc, hence homeomorphic to the plane pseudo-arc $M_0$. Conversely
+a pseudo-arc is homogeneous and indecomposable. So a nondegenerate plane continuum is homogeneous and indecomposable iff it is a pseudo-arc.
+\end{theorem}
+
+\begin{proof}
+$M$ is hereditarily indecomposable (Theorem~\ref{thm:HI}) and has span zero (Theorem~\ref{thm:theoremC}), so it is snake-like by
+Theorem~\ref{thm:ho1}; it is nondegenerate by hypothesis, so it is a pseudo-arc (\vone{Definition~2.14}). Uniqueness
+(\vtwo{Corollary~8.6}) gives the homeomorphism with $M_0$. Conversely, a pseudo-arc is homogeneous (\vtwo{Theorem~8.4}) and,
+being a hereditarily indecomposable continuum, indecomposable.
+\end{proof}
+
+\formal{\lean{HPC.HO16.isPseudoArc_of_indec_homogeneous} and \lean{HPC.HO16.homeomorph_pseudoArc_of_indec_homogeneous} (with
+\lean{h20} as hypothesis); unconditionally \lean{HPC.HO16.ho16_indec_homogeneous_pseudoArc}; the converse
+\lean{HPC.HO16.ho16_pseudoArc_indec_homogeneous}; both directions \lean{HPC.HO16.ho16_indec_homogeneous_iff}. Non-vacuity of the
+hypotheses: \lean{HPC.HO16.exists_indec_homogeneous_plane}.}
+
+\begin{remark}\label{rem:ho1-point}
+Hoehn and Oversteegen restate Theorem~1 on their p.~211 as: ``a continuum $X$ is homeomorphic to the pseudo-arc iff $X$ is hereditarily
+indecomposable and has span zero'', and Theorem~$1'$ on p.~212 with surjective semi-span in place of span. Read literally, both fail for a one-point
+continuum, which is hereditarily indecomposable with span zero but is not a pseudo-arc. The nondegeneracy hypothesis is needed.
+\end{remark}
+
+\formal{\lean{HPC.HO16.ho16_theorem1_printed_false}, \lean{HPC.HO16.ho16_theorem1prime_printed_false}.}
+
+\section{Theorem 4: span zero gives separation}
+
+\begin{theorem}[Hoehn--Oversteegen, Theorem~4, path form]\label{thm:ho4}
+Let $E$ be a proper metric space, $X\subseteq E$ compact of span zero (in the sense of Hoehn--Oversteegen), and $\varepsilon>0$. There is $\delta>0$
+such that: for every compact $G\subseteq B_\delta(X)$ and every path $\gamma\colon\I\to E$ with $\gamma\I\subseteq B_\delta(X)$ and $X\subseteq
+B_\delta(\gamma\I)$, the set
+\[
+M_\gamma=\set{(x,t)\in G\times(0,1) : d(x,\gamma(t))<\varepsilon}
+\]
+separates $G\times\set0$ from $G\times\set1$ in $G^\star$.
+\end{theorem}
+
+Here $B_\delta(A)$ is the open $\delta$-neighbourhood of $A$. Compared with Hoehn and Oversteegen: the arc $I$ with end points $p,q$ is replaced by a path
+on $\I$, and $I\setminus\set{p,q}$ by $(0,1)$; of $G$ only $G\subseteq B_\delta(X)$ is used; $X$ need not be connected; and $E$ is any proper metric
+space rather than the Hilbert cube.
+
+\begin{proof}
+Suppose the theorem fails for $\varepsilon$. Then for each $n$ there are $G_n$ and $\gamma_n$ as in the statement with $\delta=1/(n+1)$ such that $M_n=M_{\gamma_n}$
+does not separate.
+
+\emph{Step 1: a continuum far from the path.} Let $D_n=\set{(x,t)\in G_n\times\I : d(x,\gamma_n(t))\ge\varepsilon}$, a compact set. Some
+subcontinuum $Z_n\subseteq D_n$ meets both rows $t=0$ and $t=1$. Otherwise, by the cut-wire theorem (\vthree{Theorem~1.9}) applied in $D_n$, $D_n=D^0\cup
+D^1$ with $D^0,D^1$ disjoint and closed, the row-$0$ points of $D_n$ in $D^0$ and the row-$1$ points in $D^1$. Then $R_0=D^0\cup(G_n\times\set0)$ and
+$R_1=D^1\cup(G_n\times\set1)$ are disjoint closed sets covering $G_n^\star\setminus M_n$ (a point of $G_n\times(0,1)$ outside $M_n$ lies in $D_n$; a point
+of an end row lies in $R_0$ or $R_1$), so $M_n$ separates, a contradiction. Since $Z_n$ is connected and meets both rows, its second
+projection is $\I$.
+
+\emph{Step 2.} $W_n=\set{(x,\gamma_n(t)) : (x,t)\in Z_n}\subseteq E\times E$ is a continuum on which $d\ge\varepsilon$, with first coordinates in
+$B_{1/(n+1)}(X)$ and second coordinates exactly $\gamma_n\I$. Every point of $X$ is within $1/(n+1)$ of a second coordinate.
+
+\emph{Step 3: a limit.} All $W_n$ lie in $K\times K$, where $K=\cl{B_1(X)}$ is compact because $E$ is proper. Nonempty compact subsets of a compact
+metric space form a compact space in the Hausdorff metric, so a subsequence converges to a compactum $W$. $W$ is connected (a limit of continua),
+$d\ge\varepsilon$ on $W$, the first coordinates of $W$ lie in $X$, and the second coordinates form exactly $X$: they lie in $X$ since
+$\gamma_n\I\subseteq B_{1/(n+1)}(X)$, and every $x\in X$ is a limit of second coordinates of $W_n$.
+
+\emph{Step 4.} $W$ is a subcontinuum of $X\times X$ with $\pr1(W)\subseteq\pr2(W)=X$ that misses the diagonal. This contradicts span zero.
+\end{proof}
+
+\formal{\lean{HPC.HO16.ho16_theorem4}; Step~1 is \lean{HPC.HO16.thm4_continuum_of_not_separates}, Steps~2--4
+\lean{HPC.HO16.thm4_limit_contra}, using \lean{HPC.HO16.subset_of_tendsto_of_eventually} for limits of compacta.}
+
+\section{Plane approximations}
+
+\begin{lemma}\label{lem:hi-interior}
+A hereditarily indecomposable plane continuum $X$ has empty interior.
+\end{lemma}
+
+\begin{proof}
+If $X$ contains a closed square $Q$, then $Q$ is the union of its left and right closed halves, two proper subcontinua that meet; so $Q$ is a
+decomposable subcontinuum of $X$.
+\end{proof}
+
+\formal{\lean{HPC.HO16.interior_eq_empty_of_hi}.}
+
+\begin{lemma}[Grid graphs]\label{lem:grid}
+Let $X\subseteq\R^2$ be compact with empty interior and $\delta>0$. There are a PL graph $G\subseteq B_\delta(X)$ and a map $f\colon X\to G$, continuous,
+with $d(f(x),x)<\delta$ for all $x\in X$.
+\end{lemma}
+
+\begin{proof}
+Use the grid of mesh $\eta=\delta/2$: squares $Q_{ij}=[i\eta,(i+1)\eta]\times[j\eta,(j+1)\eta]$, $i,j\in\Z$. Let $\mathcal Q$ be the finite set of squares
+meeting $X$. For each square choose a point $c_Q$ in its interior but not in $X$ (possible since $X$ has empty interior; for squares missing $X$ any
+interior point will do).
+
+The radial projection $r_Q$ from $c_Q$ onto the frontier of $Q=[p_1,q_1]\times[p_2,q_2]$ is $r_Q(x)=c_Q+\mu(x-c_Q)^{-1}(x-c_Q)$, where
+\[
+\mu(v)=\max\Bigl(\frac{v_1}{q_1-c_1},\ \frac{-v_1}{c_1-p_1},\ \frac{v_2}{q_2-c_2},\ \frac{-v_2}{c_2-p_2}\Bigr)
+\]
+is the gauge of $Q$ centred at $c_Q$. The gauge is continuous, positively homogeneous, positive for $v\neq0$; $\mu(x-c_Q)\le1$ iff $x\in Q$, with
+equality iff $x$ lies on the frontier. So $r_Q$ is continuous off $c_Q$, maps into the frontier of $Q$, and is the identity on it.
+
+Put $f=r_Q$ on $X\cap Q$ for $Q\in\mathcal Q$. Two grid squares meet only in their frontiers, where both projections are the identity. As finitely many
+closed pieces cover $X$, $f$ is well defined and continuous. Let $G$ be the union of the edges of the squares of $\mathcal Q$; two distinct grid edges
+meet at most in a common end, so $G$ is a PL graph. Each square has diameter at most $\eta$ in the sup-norm and meets $X$, which gives $G\subseteq
+B_\delta(X)$ and $d(f(x),x)\le\eta<\delta$.
+\end{proof}
+
+\formal{\lean{HPC.HO16.exists_plGraph_approx}, with \lean{HPC.HO16.radProj}, \lean{HPC.HO16.rectGauge}, \lean{HPC.HO16.radProj_of_onBdry},
+\lean{HPC.HO16.radProj_mem}, \lean{HPC.HO16.gridEdge_inter_subset} (in \lean{HPC/HO16/Grid.lean}).}
+
+The plane has the sup-norm in the formalization; distances and diameters are with respect to it. Nothing in this chapter depends on the
+choice of norm.
+
+\begin{lemma}\label{lem:path-approx}
+Let $X$ be a compact connected metric subset of the plane and $\delta>0$. There is a path $\gamma\colon\I\to\R^2$ with $\gamma\I\subseteq B_\delta(X)$ and
+$X\subseteq B_\delta(\gamma\I)$.
+\end{lemma}
+
+\begin{proof}
+Take a finite $\delta/2$-net of $X$ and join its points in turn by $\delta/2$-chains in $X$ (possible since $X$ is connected). Let $\gamma$ be the
+polygonal path through the resulting list of points. Each of its segments has both ends in $X$ and length $<\delta/2$.
+\end{proof}
+
+\formal{\lean{HPC.HO16.exists_path_approx}, with \lean{HPC.HO16.exists_chain_through}.}
+
+\section{The proof of Theorem 1 from Theorem 20}
+
+\begin{proof}[Proof of Theorem~\ref{thm:ho1}]
+Let $X\subseteq\R^2$ be a hereditarily indecomposable continuum of span zero and $\varepsilon>0$. By \vthree{Theorem~5.10} it suffices to find a map
+$\psi\colon X\to\R$ such that $\psi(x)=\psi(x')$ implies $d(x,x')<\varepsilon$.
+\begin{enumerate}
+\item Theorem~\ref{thm:ho4} for $X$ and $\varepsilon/6$ gives $\delta_0$. Put $\delta=\min(\delta_0,\varepsilon/6)$.
+\item By Lemma~\ref{lem:hi-interior}, $X$ has empty interior. Lemma~\ref{lem:grid} gives a PL graph $G\subseteq B_\delta(X)$ and $f\colon X\to G$ with
+$d(f(x),x)<\delta$; Lemma~\ref{lem:path-approx} gives a path $\gamma$ with $\gamma\I\subseteq B_\delta(X)$ and $X\subseteq B_\delta(\gamma\I)$.
+\item By Theorem~\ref{thm:ho4}, $M'=\set{(y,t)\in G\times(0,1) : d(y,\gamma(t))<\varepsilon/6}$ separates $G\times\set0$ from $G\times\set1$ in $G^\star$.
+\item The set $U=\set{(y,t) : 0<t<1,\ d(y,\gamma(t))<\varepsilon/6}$ is open and contains $M'$.
+\item Theorem~\ref{thm:ho20}, for $X$, $f$, $M'$, $U$ and $\varepsilon/6$, gives a continuous $h\colon X\to U\cap G^\star$ with $d(f(x),\pi h(x))<\varepsilon/6$.
+\item Let $\psi(x)$ be the second coordinate of $h(x)$. If $\psi(x)=t$, then, as $h(x)\in U$,
+\[
+d(x,\gamma(t))\le d(x,f(x))+d(f(x),\pi h(x))+d(\pi h(x),\gamma(t))<\delta+\tfrac\varepsilon6+\tfrac\varepsilon6\le\tfrac\varepsilon2 .
+\]
+So $\psi(x)=\psi(x')=t$ gives $d(x,x')<\varepsilon$.\qedhere
+\end{enumerate}
+\end{proof}
+
+\formal{\lean{HPC.HO16.ho16_theorem1_plane}; the $\varepsilon$-map criterion is \lean{HPC.Plane.isSnakeLike_univ_of_epsMap}.}
+
+Only the plane is needed for the classification, and only there are the approximations of Lemmas~\ref{lem:grid} and~\ref{lem:path-approx} carried
+out. Theorem~\ref{thm:ho4} and Theorem~\ref{thm:ho20} are proved in general.
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that in Step~1 of the proof of Theorem~\ref{thm:ho4} the end rows themselves are never used: the cut-wire theorem is applied to $D_n$.
+Why is it nevertheless important that $M_\gamma$ is defined with $t\in(0,1)$ rather than $t\in\I$?
+\end{exercise}
+
+\begin{exercise}
+Show that an arc has span zero and that a circle does not. (For the circle, use a half turn.)
+\end{exercise}
+
+\begin{exercise}
+Let $X=[0,1]\subseteq\R$, $G=X$ and $\gamma(t)=t$. Describe $M_\gamma$ and check directly that it separates $G\times\set0$ from $G\times\set1$
+when $\varepsilon>0$.
+\end{exercise}
+
+\begin{exercise}
+In Lemma~\ref{lem:grid}, why can $f$ not be taken to be the nearest-point retraction onto the union of the grid edges?
+\end{exercise}
+
+\begin{exercise}
+Prove that the radial projection $r_Q$ is the identity on the frontier of $Q$ directly from the formula for $\mu$.
+\end{exercise}

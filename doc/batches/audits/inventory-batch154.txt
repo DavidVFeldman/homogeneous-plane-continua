@@ -1,0 +1,534 @@
+-- Batch 154: the main-list results (those audited in `Axioms.lean`) on which Jones 1955 Theorem 2
+-- and its closing remarks (`jones55_theorem2'`, `jones55_two_domains'`,
+-- `jones55_elements_indecomposable'`, `jones55_three_domains'`) and Jones 1949 Theorem 2
+-- (`jones49_theorem2`) depend, computed by traversing the constants of their proofs.
+-- Format: group of `Axioms.lean` | declaration | file. 461 declarations.
+-- Every one depends on axioms within [propext, Classical.choice, Quot.sound] (see `axioms.txt`).
+
+
+## Bing 1948, Amer. J. Math. (arcs paper; batch 108)
+HPC.Plane.arcs_theorem5_point | HPC/Plane/Arcs48.lean
+HPC.Plane.arcs_corollary2 | HPC/Plane/Arcs48.lean
+
+## Nadler
+HPC.Plane.exists_two_nonCutPoints | HPC/Plane/NonCut51Gen.lean
+
+## Bing 1951 (Duke) §3, Theorem 6 — relative forms (batch 118)
+HPC.Plane.exists_polyPath_of_isConnected | HPC/Plane/Tree6.lean
+HPC.Plane.exists_simplePolyArc_of_polyPath | HPC/Plane/Tree6.lean
+HPC.Plane.IsSimplePolyArc.isContinuum | ?
+HPC.Plane.IsSimplePolyArc.split | ?
+HPC.Plane.polyInterior_disjoint_of_unbounded | HPC/Plane/Tree6.lean
+
+## Bing 1951 (Duke) §3, Theorem 7 — relative forms (batch 119)
+HPC.Plane.isSimpleClosedPolygon_iff | HPC/Plane/Tree7.lean
+HPC.Plane.IsSimpleClosedPolygon.split_two | ?
+
+## Jordan curve theorem for polygons (batch 125)
+HPC.Plane.crossesEast_comm | HPC/Plane/Jct1.lean
+HPC.Plane.crossesEast_jump | HPC/Plane/Jct1.lean
+HPC.Plane.sum_vJump_telescope | HPC/Plane/Jct1.lean
+HPC.Plane.parity_eq_of_isPreconnected | HPC/Plane/Jct1.lean
+HPC.Plane.parity_far | HPC/Plane/Jct1.lean
+HPC.Plane.exists_parity_flip | HPC/Plane/Jct1.lean
+HPC.Plane.exists_nonhorizontal_edge | HPC/Plane/Jct1.lean
+HPC.Plane.polygon_separates | HPC/Plane/Jct1.lean
+
+## Jordan curve theorem for polygons (batch 126)
+HPC.Plane.halfDisk_convex | HPC/Plane/Jct2.lean
+HPC.Plane.halfDisk_nonempty | HPC/Plane/Jct2.lean
+HPC.Plane.parity_flip_at | HPC/Plane/Jct2.lean
+HPC.Plane.parity_flip_vertical | HPC/Plane/Jct2.lean
+HPC.Plane.mem_closure_parity_set | HPC/Plane/Jct2.lean
+HPC.Plane.exists_first_hit | HPC/Plane/Jct2.lean
+HPC.Plane.sideNbhd_subset | HPC/Plane/Jct2.lean
+HPC.Plane.sideNbhd_isConnected | HPC/Plane/Jct2.lean
+HPC.Plane.exists_segment_to_sideNbhd | HPC/Plane/Jct2.lean
+HPC.Plane.isConnected_parity_set | HPC/Plane/Jct2.lean
+HPC.Plane.frontier_parity_set | HPC/Plane/Jct2.lean
+HPC.Plane.jct_polygon | HPC/Plane/Jct2.lean
+
+## Polygonal Janiszewski (batch 127)
+HPC.Plane.exists_proper_subdivision | HPC/Plane/Cyc1.lean
+HPC.Plane.IsProper.subset | ?
+HPC.Plane.isClosed_graphSet | HPC/Plane/Cyc1.lean
+HPC.Plane.cycParity_symmDiff | HPC/Plane/Cyc1.lean
+HPC.Plane.sum_vJump_even | HPC/Plane/Cyc1.lean
+HPC.Plane.cycParity_eq_of_isPreconnected | HPC/Plane/Cyc1.lean
+HPC.Plane.cycParity_far | HPC/Plane/Cyc1.lean
+HPC.Plane.separatesPts_of_cycParity_ne | HPC/Plane/Cyc1.lean
+HPC.Plane.cycParity_flip | HPC/Plane/Cyc1.lean
+HPC.Plane.exists_cycle_decomposition | HPC/Plane/Cyc1.lean
+HPC.Plane.janiszewskiPoly_of_oddCycle | HPC/Plane/Cyc1.lean
+
+## Polygonal Janiszewski (batch 128)
+HPC.Plane.zmod2_jump_sum | HPC/Plane/Cyc2Circle.lean
+HPC.Plane.circPt_mem_segment_iff | HPC/Plane/Cyc2Circle.lean
+HPC.Plane.edge_local | HPC/Plane/Cyc2.lean
+HPC.Plane.sideStrip_subset_compl | HPC/Plane/Cyc2.lean
+HPC.Plane.sideStrip_isPreconnected | HPC/Plane/Cyc2.lean
+HPC.Plane.subset_or_disjoint_component | HPC/Plane/Cyc2.lean
+HPC.Plane.oddSet_subset | HPC/Plane/Cyc2.lean
+HPC.Plane.vertex_arcs | HPC/Plane/Cyc2.lean
+HPC.Plane.even_deg_oddSet | HPC/Plane/Cyc2.lean
+HPC.Plane.isCycle_oddSet | HPC/Plane/Cyc2.lean
+HPC.Plane.cycParity_sideStrip_ne_iff | HPC/Plane/Cyc2.lean
+HPC.Plane.gFun_eq_across_edge | HPC/Plane/Cyc2.lean
+HPC.Plane.gFun_locallyConstant | HPC/Plane/Cyc2.lean
+HPC.Plane.gFun_const | HPC/Plane/Cyc2.lean
+HPC.Plane.cycParity_oddSet_ne | HPC/Plane/Cyc2.lean
+HPC.Plane.separatingGraphHasOddCycle | HPC/Plane/Cyc2.lean
+HPC.Plane.janiszewskiPoly_holds | HPC/Plane/Cyc2.lean
+
+## Polygonal Janiszewski (batch 129)
+HPC.Plane.isPreconnected_ball_diff_singleton | HPC/Plane/JanPoly.lean
+HPC.Plane.isConnected_diff_singleton_of_isOpen | HPC/Plane/JanPoly.lean
+HPC.Plane.separatesPts_insert_iff | HPC/Plane/JanPoly.lean
+HPC.Plane.separatesPts_union_finite_iff | HPC/Plane/JanPoly.lean
+HPC.Plane.IsPolygonal.exists_split | ?
+HPC.Plane.inter_split_connected | HPC/Plane/JanPoly.lean
+HPC.Plane.janiszewski_polygonal | HPC/Plane/JanPoly.lean
+HPC.Plane.planeFacts_of_enclose | HPC/Plane/JanPoly.lean
+
+## Enclosing polygon (batch 130)
+HPC.Plane.polyInterior_eq_oddSet | HPC/Plane/Enc1Cyc.lean
+HPC.Plane.cycParity_polyEdges | HPC/Plane/Enc1Cyc.lean
+HPC.Plane.exists_cycle_vertices | HPC/Plane/Enc1Cyc.lean
+HPC.Plane.simpleCycle_of_vertices | HPC/Plane/Enc1Cyc.lean
+HPC.Plane.exists_simpleCycle_decomposition | HPC/Plane/Enc1Cyc.lean
+HPC.Plane.cycParity_foldr | HPC/Plane/Enc1Cyc.lean
+HPC.Plane.mem_frontier_sqUnion_iff | HPC/Plane/Enc1Grid.lean
+HPC.Plane.mem_graphSet_bdryOf_iff | HPC/Plane/Enc1Grid.lean
+HPC.Plane.isProper_bdryOf | HPC/Plane/Enc1Grid.lean
+HPC.Plane.frontier_sqUnion | HPC/Plane/Enc1Grid.lean
+HPC.Plane.mem_interior_sqUnion | HPC/Plane/Enc1Grid.lean
+HPC.Plane.mem_sqIdx_iff | HPC/Plane/Enc1.lean
+HPC.Plane.gridUnion_subset_cthickening | HPC/Plane/Enc1.lean
+HPC.Plane.isCompact_gridUnion | HPC/Plane/Enc1.lean
+HPC.Plane.disjoint_frontier_gridUnion | HPC/Plane/Enc1.lean
+HPC.Plane.subset_interior_gridUnion | HPC/Plane/Enc1.lean
+HPC.Plane.isProper_bdryGraph | HPC/Plane/Enc1.lean
+HPC.Plane.frontier_gridUnion | HPC/Plane/Enc1.lean
+HPC.Plane.graphSet_bdryGraph_subset | HPC/Plane/Enc1.lean
+HPC.Plane.farPt_not_mem | HPC/Plane/Enc1.lean
+HPC.Plane.not_isBounded_component | HPC/Plane/Enc1.lean
+HPC.Plane.interior_gridUnion_disjoint_component | HPC/Plane/Enc1.lean
+HPC.Plane.cycParity_oddSet_eq_one_on | HPC/Plane/Enc1.lean
+HPC.Plane.exists_enclosing_polygon | HPC/Plane/Enc1.lean
+
+## Enclosing polygon, part II; `PlaneFacts` discharged; Duke Theorems 6–7 unconditional (batch 131)
+HPC.Plane.not_mem_graphSet_bdryGraph_of_far | HPC/Plane/Enc2.lean
+HPC.Plane.subset_component_of_far | HPC/Plane/Enc2.lean
+HPC.Plane.isPreconnected_eastRay | HPC/Plane/Enc2.lean
+HPC.Plane.one_le_infDist_of_far_coord | HPC/Plane/Enc2.lean
+HPC.Plane.pos_of_subset_ball | HPC/Plane/Enc2.lean
+HPC.Plane.one_le_infDist_eastRay | HPC/Plane/Enc2.lean
+HPC.Plane.eastRay_subset_component | HPC/Plane/Enc2.lean
+HPC.Plane.compl_closedBall_subset_component | HPC/Plane/Enc2.lean
+HPC.Plane.joinedIn_compl_of_not_separates | HPC/Plane/Enc2.lean
+HPC.Plane.exists_pos_infDist_le_of_disjoint | HPC/Plane/Enc2.lean
+HPC.Plane.exists_far_piece | HPC/Plane/Enc2.lean
+HPC.Plane.exists_uniform_pieces | HPC/Plane/Enc2.lean
+HPC.Plane.exists_mesh_compl_subset | HPC/Plane/Enc2.lean
+HPC.Plane.enclose_holds | HPC/Plane/Enc2.lean
+HPC.Plane.planeFacts_holds | HPC/Plane/Enc2.lean
+
+## Tree-like continua do not separate; Duke Theorem 7 as printed; `IsTreeLike` repaired (batch 133)
+HPC.Plane.exists_bounded_component_of_separates | HPC/Plane/TreeLikeNS.lean
+
+## Effros theorem (batch 134)
+HPC.Effros.nonempty_interior_closure_of_not_meagre | HPC/Effros/Fat.lean
+HPC.Effros.inter_nonempty_of_nowhereMeagre | HPC/Effros/Fat.lean
+HPC.Effros.exists_vanMill_basis | HPC/Effros/OpenMapping.lean
+HPC.Effros.vanMill_3_1 | HPC/Effros/OpenMapping.lean
+HPC.Effros.vanMill_3_2 | HPC/Effros/OpenMapping.lean
+HPC.Effros.vanMill_3_3 | HPC/Effros/OpenMapping.lean
+HPC.Effros.vanMill_3_4 | HPC/Effros/OpenMapping.lean
+HPC.Effros.vanMill_3_5 | HPC/Effros/OpenMapping.lean
+HPC.Effros.effros_open_mapping | HPC/Effros/OpenMapping.lean
+HPC.Effros.homeo_isTopologicalGroup | ?
+HPC.Effros.homeo_polishSpace | ?
+HPC.Effros.homeo_continuousSMul | ?
+HPC.Effros.supMove_symm | HPC/Effros/HomeoGroup.lean
+HPC.Effros.hasBasis_supMove | HPC/Effros/HomeoGroup.lean
+HPC.Effros.supMove_ball_mem_nhds | HPC/Effros/HomeoGroup.lean
+HPC.Effros.effros_homogeneous | HPC/Effros/Effros.lean
+
+## Jones 1948, 1951 (batch 135)
+HPC.Jones.isDecomposableSpace_iff_not_isIndecomposable | HPC/Jones/Basic.lean
+HPC.Jones.theorem0 | HPC/Jones/Basic.lean
+HPC.Jones.theorem3 | HPC/Jones/Basic.lean
+HPC.Jones.theorem4 | HPC/Jones/Basic.lean
+HPC.Jones.theorem5 | HPC/Jones/Basic.lean
+HPC.Jones.theorem6 | HPC/Jones/Theorem6.lean
+HPC.Jones.theorem8 | HPC/Jones/Basic.lean
+HPC.Jones.theorem9 | HPC/Jones/Basic.lean
+HPC.Jones.theorem10 | HPC/Jones/Basic.lean
+HPC.Jones.theorem11 | HPC/Jones/CutPoints.lean
+HPC.Jones.theorem12 | HPC/Jones/CutPoints.lean
+HPC.Jones.theorem13 | HPC/Jones/Theorem13.lean
+HPC.Jones.theorem15 | HPC/Jones/CutPoints.lean
+HPC.Jones.theorem18 | HPC/Jones/CutPoints.lean
+HPC.Jones.isOpen_aposSet | HPC/Jones/Jones51.lean
+HPC.Jones.exists_lsc_strictMono_aposSet | HPC/Jones/Jones51.lean
+HPC.Jones.jones51_lemma | HPC/Jones/Jones51.lean
+
+## Jones 1955, decompositions (batch 136)
+HPC.Jones.isClosedMap_mk | HPC/Jones/Decomp.lean
+HPC.Jones.t2Space_quotient | HPC/Jones/Decomp.lean
+HPC.Jones.secondCountable_quotient | HPC/Jones/Decomp.lean
+HPC.Jones.metrizableSpace_quotient | HPC/Jones/Decomp.lean
+HPC.Jones.exists_homeomorph_quotient | HPC/Jones/Decomp.lean
+HPC.Jones.residual_lscAt | HPC/Jones/Decomp.lean
+HPC.Jones.exists_lscAt | HPC/Jones/Decomp.lean
+HPC.Jones.lscAt_homeomorph | HPC/Jones/Decomp.lean
+HPC.Jones.semiLocConn_of_isAposyndetic | HPC/Jones/Whyburn.lean
+HPC.Jones.isAposyndetic_of_semiLocConn | HPC/Jones/Whyburn.lean
+HPC.Jones.whyburn_6_2 | HPC/Jones/Whyburn.lean
+HPC.Jones.aposAt_of_isContinuum_interior | HPC/Jones/Jones55Core.lean
+HPC.Jones.isContinuum_Lset | HPC/Jones/Jones55Core.lean
+HPC.Jones.mem_Lset_iff_Lset_eq | HPC/Jones/Jones55Core.lean
+HPC.Jones.Lset_subset_of_meets | HPC/Jones/Jones55Core.lean
+HPC.Jones.jones55_prop_e | HPC/Jones/Jones55Core.lean
+HPC.Jones.jones55_b | HPC/Jones/Jones55.lean
+HPC.Jones.jones55_c | HPC/Jones/Jones55.lean
+HPC.Jones.jones55_usc | HPC/Jones/Jones55.lean
+HPC.Jones.jones55_continuous | HPC/Jones/Jones55.lean
+HPC.Jones.jones55_a | HPC/Jones/Jones55.lean
+HPC.Jones.jones55_elements | HPC/Jones/Jones55.lean
+
+## Moore F.A. §§2–5 (batch 137)
+HPC.Moore.fa_theorem2 | HPC/Moore/Basic.lean
+HPC.Moore.fa_theorem3 | HPC/Moore/Basic.lean
+HPC.Moore.fa_theorem4 | HPC/Moore/Basic.lean
+HPC.Moore.fa_theorem6 | HPC/Moore/Basic.lean
+HPC.Moore.exists_simpleChain_sublist | HPC/Moore/Chains.lean
+HPC.Moore.heineBorel_iff | HPC/Moore/Bridge.lean
+HPC.Moore.isTopologicalBasis_region | HPC/Moore/Bridge.lean
+HPC.Moore.isLimitPt_iff | HPC/Moore/Bridge.lean
+HPC.Moore.cl_eq_closure | HPC/Moore/Bridge.lean
+HPC.Moore.isClosedM_iff | HPC/Moore/Bridge.lean
+HPC.Moore.isConn_iff | HPC/Moore/Bridge.lean
+HPC.Moore.isDomain_iff | HPC/Moore/Bridge.lean
+HPC.Moore.t1Space | HPC/Moore/Bridge.lean
+HPC.Moore.regularSpace | HPC/Moore/Bridge.lean
+HPC.Moore.t2Space | HPC/Moore/Bridge.lean
+HPC.Moore.secondCountable | HPC/Moore/Bridge.lean
+HPC.Moore.metrizable | HPC/Moore/Bridge.lean
+HPC.Moore.isCompact_closure_region | HPC/Moore/Bridge.lean
+HPC.Moore.isCompact_closure_of_isBoundedM | HPC/Moore/Bridge.lean
+HPC.Moore.isBoundedM_of_isCompact | HPC/Moore/Bridge.lean
+HPC.Moore.axiom5₁_of_axiom5 | HPC/Moore/Sec4.lean
+HPC.Moore.fa_theorem12 | HPC/Moore/Sec4.lean
+HPC.Moore.fa_theorem13 | HPC/Moore/Sec4.lean
+HPC.Moore.fa_theorem17 | HPC/Moore/Sec4.lean
+HPC.Moore.fa_theorem19 | HPC/Moore/Sec4.lean
+HPC.Moore.exists_irreducible | HPC/Moore/Thm15.lean
+HPC.Moore.isArc_iff_topological | HPC/Moore/Thm15.lean
+HPC.Moore.fa_theorem16 | HPC/Moore/Thm15.lean
+HPC.Moore.ac_homeomorph | HPC/Moore/ArcChar.lean
+HPC.Moore.isIrreducibleConnected_iff_arc | HPC/Moore/ArcChar.lean
+HPC.Moore.isArc_iff | HPC/Moore/Arcs.lean
+HPC.Moore.Space.IsArc.union | HPC/Chains/Basic.lean
+HPC.Moore.fa_sec5_arc_split | HPC/Moore/Arcs.lean
+HPC.Moore.fa_scc_two_arcs | HPC/Moore/Arcs.lean
+
+## Moore F.A. §6 (batch 138)
+HPC.Moore.bdry_eq_frontier | HPC/Moore/Sec6A.lean
+HPC.Moore.ext_eq_compl_closure | HPC/Moore/Sec6A.lean
+HPC.Moore.locallyConnectedSpace | HPC/Moore/Sec6A.lean
+HPC.Moore.isArc_iff_tarc | HPC/Moore/Sec6A.lean
+HPC.Moore.isSCC_iff_tscc | HPC/Moore/Sec6A.lean
+HPC.Moore.isInteriorOf_iff | HPC/Moore/Sec6A.lean
+HPC.Moore.arcConn | HPC/Moore/Sec6A.lean
+HPC.Moore.fa_theorem20 | HPC/Moore/Sec6A.lean
+HPC.Moore.fa_theorem21 | HPC/Moore/Sec6A.lean
+HPC.Moore.existsUnique_interior | HPC/Moore/Sec6A.lean
+HPC.Moore.fa_theorem24 | HPC/Moore/Sec6B.lean
+HPC.Moore.fa_theorem25 | HPC/Moore/Sec6B.lean
+HPC.Moore.fa_theorem27 | HPC/Moore/Sec6B.lean
+HPC.Moore.Gen.th25 | HPC/Moore/Sec6Th25.lean
+HPC.Moore.Gen.th26 | HPC/Moore/Sec6Th26.lean
+HPC.Moore.Gen.th27 | HPC/Moore/Sec6Th27.lean
+HPC.Moore.fa_theorem28 | HPC/Moore/Sec6Th28.lean
+HPC.Moore.th31_pocket | HPC/Moore/Sec6Th31.lean
+HPC.Moore.Gen.tarc_of_seq | HPC/Moore/Sec6Lim.lean
+HPC.Moore.Gen.exists_tarc_of_seq | HPC/Moore/Sec6Lim.lean
+HPC.Moore.accessible | HPC/Moore/Sec6Th32.lean
+HPC.Moore.fa_theorem33 | HPC/Moore/Sec6Th33.lean
+HPC.Moore.fa_theorem34_region | HPC/Moore/Sec6Th33.lean
+
+## Moore F.A. §7 (batch 139)
+HPC.Moore.jordan | HPC/Moore/Sec7A.lean
+HPC.Moore.access | HPC/Moore/Sec7A.lean
+HPC.Moore.fa_theorem35 | HPC/Moore/Sec7A.lean
+HPC.Moore.fa_theorem36 | HPC/Moore/Sec7B.lean
+HPC.Moore.fa_theorem36_interior_subset | HPC/Moore/Sec7B.lean
+HPC.Moore.fa_theorem41_caseI_nested | HPC/Moore/Sec7Th41.lean
+HPC.Moore.fa_theorem41_caseI | HPC/Moore/Sec7Th41.lean
+HPC.Moore.fa_theorem41_of_subset | HPC/Moore/Sec7Th41.lean
+HPC.Moore.fa_theorem42_of_41 | HPC/Moore/Sec7Th42.lean
+
+## Moore F.A. 41–43, 1919 A–B (batch 140)
+HPC.Moore.Gen.crossing | HPC/Moore/M19A.lean
+HPC.Moore.m19_theoremA | HPC/Moore/M19A.lean
+HPC.Moore.Gen.finite_long_intervals | HPC/Moore/M41Replace.lean
+HPC.Moore.Gen.arc_replace | HPC/Moore/M41Replace.lean
+HPC.Moore.Gen.exists_unbounded_component | HPC/Moore/M41Geom.lean
+HPC.Moore.Gen.disjoint_of_unbounded | HPC/Moore/M41Geom.lean
+HPC.Moore.chords_null | HPC/Moore/M41Geom.lean
+HPC.Moore.chord_side | HPC/Moore/M41Side.lean
+HPC.Moore.pocket | HPC/Moore/M41Side.lean
+HPC.Moore.half_replace | HPC/Moore/M41Half.lean
+HPC.Moore.curve_of_frontier_subset | HPC/Moore/M41.lean
+HPC.Moore.fa_theorem41_caseII | HPC/Moore/M41.lean
+HPC.Moore.fa_theorem41 | HPC/Moore/M41.lean
+HPC.Moore.fa_theorem42 | HPC/Moore/M41.lean
+HPC.Moore.hair_isPreconnected | HPC/Moore/M19D.lean
+
+## Moore 1919 C–D (batch 141)
+HPC.Moore.Space.Tiling.add_arc | ?
+HPC.Moore.Space.DoubleRuling.tiling | HPC/Moore/M19CDCells.lean
+HPC.Moore.doubleRuling_cells_ncard | HPC/Moore/M19CDCells.lean
+HPC.Moore.Space.Quad.splitX | HPC/Moore/M19CDSplit.lean
+HPC.Moore.Space.Quad.exists_cut | HPC/Moore/M19CDRuling.lean
+HPC.Moore.Space.ArcRuling.restrict_half | ?
+HPC.Moore.Space.Quad.Cut.glue | HPC/Moore/M19CDGlue.lean
+HPC.Moore.Space.ArcRuling.extendY | ?
+HPC.Moore.Space.ArcRuling.extendY_finite | ?
+HPC.Moore.Space.ArcRuling.refine | ?
+HPC.Moore.Space.ArcRuling.sortX | ?
+HPC.Moore.Space.DoubleRuling.toArcRuling | ?
+HPC.Moore.Space.ArcRuling.toDoubleRuling | ?
+HPC.Moore.doubleRuling_refine | HPC/Moore/M19CDMain.lean
+HPC.Moore.m19_theoremD_regions_of_curves | HPC/Moore/M19CDRegion.lean
+
+## Moore 1919 C corrected, D (batch 142)
+HPC.Moore.chords_rulable | HPC/Moore/M19DChords.lean
+HPC.Moore.inside_rulable | HPC/Moore/M19DInside.lean
+HPC.Moore.extract_chords | HPC/Moore/M19DExtract.lean
+HPC.Moore.curve_rulable | HPC/Moore/M19DThm.lean
+HPC.Moore.lens_data | HPC/Moore/M19DLens.lean
+HPC.Moore.exists_nice_curve | HPC/Moore/M19DNice.lean
+HPC.Moore.rulable_of_cover | HPC/Moore/M19DThm.lean
+HPC.Moore.m19_theoremD | HPC/Moore/M19DThm.lean
+HPC.Moore.m19_theoremD_regions | HPC/Moore/M19CD2.lean
+
+## Moore 1919 E–F (batch 143)
+HPC.Moore.nested_rulings | HPC/Moore/M19ESeq.lean
+HPC.Sq.Grid.exists_square | ?
+HPC.Sq.PreGrid.box_sub_component | HPC/Moore/GridMesh.lean
+HPC.Moore.exists_lineRec | HPC/Moore/M19ELines.lean
+HPC.Moore.lfT_injective | HPC/Moore/M19EGrid.lean
+HPC.Moore.lfLine_cross | HPC/Moore/M19EGrid.lean
+HPC.Moore.preGrid_box_sub_cell | HPC/Moore/M19EMesh.lean
+HPC.Moore.m19_schoenflies_proof | HPC/Moore/M19ESchoenflies.lean
+HPC.Moore.exists_curve_about_compact | HPC/Moore/M19F.lean
+HPC.Moore.m19_theoremF_proof | HPC/Moore/M19F.lean
+
+## Moore 1919, the plane (batch 144)
+HPC.Sq.Grid.exists_square_param | ?
+HPC.Sq.exists_square_reparam | HPC/Moore/M19GSquare.lean
+HPC.Sq.exhaust_homeomorph | HPC/Moore/M19GPaste.lean
+HPC.Sq.radial_step | HPC/Moore/M19GPaste.lean
+HPC.Sq.plane_of_collars | HPC/Moore/M19GPaste.lean
+HPC.Moore.m19_schoenflies_param | HPC/Moore/M19GBoundary.lean
+HPC.Moore.m19_schoenflies_boundary_proof | HPC/Moore/M19GBoundary.lean
+HPC.Moore.interior_unique | HPC/Moore/M19GCuts.lean
+HPC.Moore.exists_square_of_interior | HPC/Moore/M19GCuts.lean
+HPC.Moore.exists_cuts | HPC/Moore/M19GCuts.lean
+HPC.Moore.annulus_decomp | HPC/Moore/M19GSplit.lean
+HPC.Moore.exists_collar | HPC/Moore/M19GCollar.lean
+HPC.Moore.m19_plane_proof | HPC/Moore/M19GPlane.lean
+HPC.Moore.m19_plane | HPC/Moore/M19G.lean
+
+## Moore 1925 §I, Theorems 1–4 (batch 145)
+HPC.Moore.plane_unicoherent | HPC/Moore/M25Plane.lean
+HPC.Moore.frontier_connectedComponentIn_subset | HPC/Jones/Jones49Menger.lean
+HPC.Moore.brouwer_boundary | HPC/Moore/M25Plane.lean
+HPC.Moore.no_log_of_bounded_component | HPC/Moore/M25Plane.lean
+HPC.Moore.janiszewski_compact | HPC/Moore/M25Plane.lean
+HPC.Moore.isClosedMap_mk_plane | HPC/Moore/M25Quot.lean
+HPC.Moore.usc_of_isClosedMap | HPC/Moore/M25Quot.lean
+HPC.Moore.quotient_metrizable_plane | HPC/Moore/M25Quot.lean
+HPC.Moore.isProperMap_mk | HPC/Moore/M25Quot.lean
+HPC.Moore.isLimitElt_iff | HPC/Moore/M25Quot.lean
+HPC.Moore.ptsOf_connectedComponentIn | HPC/Moore/M25Quot.lean
+HPC.Moore.locallyConnectedSpace_quot | HPC/Moore/M25Quot.lean
+HPC.Moore.quot_brouwer | HPC/Moore/M25Quot.lean
+HPC.Moore.exists_region_in_tube | HPC/Moore/M25Thm.lean
+HPC.Moore.isTopologicalBasis_mooreRegion | HPC/Moore/M25Thm.lean
+HPC.Moore.spaceOfElts_topology | HPC/Moore/M25Thm.lean
+HPC.Moore.m25_theorem4 | HPC/Moore/M25Thm.lean
+HPC.Moore.cl_eq_closure_quot | HPC/Moore/M25Thm.lean
+HPC.Moore.m25_unbounded_unique | HPC/Moore/M25Thm.lean
+HPC.Moore.m25_theorem2 | HPC/Moore/M25Thm2.lean
+HPC.Moore.m25_axiom1 | HPC/Moore/M25Ax.lean
+HPC.Moore.m25_axiom2 | HPC/Moore/M25Ax.lean
+HPC.Moore.m25_axiom4 | HPC/Moore/M25Ax.lean
+HPC.Moore.m25_axiom5 | HPC/Moore/M25Ax.lean
+HPC.Moore.m25_region_infinite | HPC/Moore/M25Ax.lean
+HPC.Moore.m25_fa_theorem15 | HPC/Moore/M25FA.lean
+
+## Moore 1925 §I, Theorems 5–12 (batch 146)
+HPC.Moore.IsCutArc.exists_embedding | ?
+HPC.Moore.isCutArc_image_Icc | HPC/Moore/CutArc.lean
+HPC.Moore.circle_char | HPC/Moore/CutArc.lean
+HPC.Moore.borsuk_exists_log | HPC/Moore/Borsuk.lean
+HPC.Moore.no_log_pow_of_bounded_component | HPC/Moore/Mullikin.lean
+HPC.Moore.not_isConnected_compl_union | HPC/Moore/Mullikin.lean
+HPC.Moore.compl_union_two_components | HPC/Moore/Mullikin.lean
+HPC.Moore.mullikin_theorem5 | HPC/Moore/Mullikin.lean
+HPC.Moore.not_separatesPlane_ptsOf | HPC/Moore/M25B5.lean
+HPC.Moore.m25_theorem6 | HPC/Moore/M25B5.lean
+HPC.Moore.m25_theorem9 | HPC/Moore/M25B9.lean
+HPC.Moore.m25_theorem10 | HPC/Moore/M25B9.lean
+HPC.Moore.m25_theorem12 | HPC/Moore/M25B9.lean
+HPC.Moore.frontier_eq_of_scc | HPC/Moore/M25B11.lean
+HPC.Moore.m25_theorem11 | HPC/Moore/M25B11.lean
+HPC.Moore.mooreDecomp_ptSetoid | HPC/Moore/M25BPts.lean
+
+## Moore 1925 §I, Theorems 13–22 (batch 147)
+HPC.Moore.Gen.tscc_cut | HPC/Moore/TSCCCut.lean
+HPC.Moore.sccInterior_spec | HPC/Moore/M25CInt.lean
+HPC.Moore.isSCCElt_union | HPC/Moore/M25CInt.lean
+HPC.Moore.isArcElt_iff_tarc | HPC/Moore/M25CInt.lean
+HPC.Moore.isSCCElt_iff_tscc | HPC/Moore/M25CInt.lean
+HPC.Moore.th21Prop_restricted | HPC/Moore/M25CInt.lean
+HPC.Moore.ax8Prop_restricted | HPC/Moore/M25CInt.lean
+HPC.Moore.exists_tscc_of_arcs | HPC/Moore/M25C13.lean
+HPC.Moore.quot_janiszewski | HPC/Moore/M25C13.lean
+HPC.Moore.m25_theorem13 | HPC/Moore/M25C13.lean
+HPC.Moore.m25_theorem14 | HPC/Moore/M25C13.lean
+HPC.Moore.m25_theorem15 | HPC/Moore/M25C15.lean
+HPC.Moore.m25_theorem18 | HPC/Moore/M25C15.lean
+HPC.Moore.m25_theorem19 | HPC/Moore/M25C19.lean
+HPC.Moore.m25_theorem20 | HPC/Moore/M25C20.lean
+HPC.Moore.spaceRestricted_topology | HPC/Moore/M25C20.lean
+HPC.Moore.m25r_axiom1 | HPC/Moore/M25C20.lean
+HPC.Moore.m25r_axiom2 | HPC/Moore/M25C20.lean
+HPC.Moore.m25r_axiom3 | HPC/Moore/M25C20.lean
+HPC.Moore.m25r_axiom4 | HPC/Moore/M25C20.lean
+HPC.Moore.m25r_axiom5 | HPC/Moore/M25C20.lean
+HPC.Moore.isSCC_restricted_iff | HPC/Moore/M25C20.lean
+HPC.Moore.m25r_axiom8 | HPC/Moore/M25C20.lean
+HPC.Moore.exists_crosscut | HPC/Moore/M25C6.lean
+HPC.Moore.m25r_axiom6 | HPC/Moore/M25C6.lean
+HPC.Moore.m25r_axiom7 | HPC/Moore/M25C6.lean
+HPC.Moore.m25_theorem21 | HPC/Moore/M25C.lean
+HPC.Moore.m25_theorem22 | HPC/Moore/M25C.lean
+
+## Jones 1955 Theorem 2 (batch 148)
+HPC.Jones.tscc_circle | HPC/Jones/Jones55T2A.lean
+HPC.Jones.jordan_curve_theorem | HPC/Jones/Jones55T2A.lean
+HPC.Jones.separatesPlane_of_homeomorph | HPC/Jones/Jones55T2A.lean
+HPC.Jones.countable_of_pairwiseDisjoint_open | HPC/Jones/Jones55T2A.lean
+HPC.Jones.uncountable_quotient | HPC/Jones/Jones55T2D.lean
+HPC.Jones.jones55_compl_connected | HPC/Jones/Jones55T2D.lean
+HPC.Jones.jones55_elt_not_separates | HPC/Jones/Jones55T2D.lean
+HPC.Jones.gPrimeRel_equivalence | HPC/Jones/Jones55T2D.lean
+HPC.Jones.isClosedMap_mk_gPrime | HPC/Jones/Jones55T2D.lean
+HPC.Jones.mooreDecomp_gPrime | HPC/Jones/Jones55T2D.lean
+HPC.Jones.jones55_plane | HPC/Jones/Jones55T2D.lean
+HPC.Jones.jones55_embedding_data | HPC/Jones/Jones55T2D.lean
+HPC.Jones.jones55_embedding | HPC/Jones/Jones55T2D.lean
+HPC.Jones.isAposyndetic_iff_T | HPC/Jones/Jones55T2D.lean
+HPC.Jones.isHomogeneous_Lset | HPC/Jones/Jones55T2.lean
+HPC.Jones.jones55_circle | HPC/Jones/Jones55T2.lean
+HPC.Jones.jones55_theorem2 | HPC/Jones/Jones55T2.lean
+HPC.Jones.jones55_two_domains | HPC/Jones/Jones55T2.lean
+HPC.Jones.jones55_elements_indecomposable | HPC/Jones/Jones55T2.lean
+HPC.Jones.jones55_three_domains | HPC/Jones/Jones55T2.lean
+
+## Jones 1949: order, Menger, Whyburn 9.2 (batch 149)
+HPC.Jones.hasOrder_homeomorph | HPC/Jones/Jones49Order.lean
+HPC.Jones.orderLE_subtype | HPC/Jones/Jones49Order.lean
+HPC.Jones.not_orderLE_two_of_triod | HPC/Jones/Jones49Order.lean
+HPC.Jones.locallyConnectedSpace_of_orderLE | HPC/Jones/Jones49Order.lean
+HPC.Jones.glue_circle | HPC/Jones/Jones49Circle.lean
+HPC.Jones.tscc_homeomorph_circle | HPC/Jones/Jones49Circle.lean
+HPC.Jones.exists_continuum_of_isOpen | HPC/Jones/Jones49Menger.lean
+HPC.Jones.exists_tarc_of_orderLE | HPC/Jones/Jones49Menger.lean
+HPC.Jones.arc_eq_of_legs | HPC/Jones/Jones49Menger.lean
+HPC.Jones.menger_order_two | HPC/Jones/Jones49Menger.lean
+HPC.Jones.jones49_order_two | HPC/Jones/Jones49Menger.lean
+HPC.Jones.exists_continuum_bump_compact | HPC/Jones/Jones49Why.lean
+HPC.Jones.whyburn_9_1 | HPC/Jones/Jones49Why.lean
+HPC.Jones.IsLocalSepPoint.homeomorph | ?
+HPC.Jones.jones49_some_order_two_of_whyburn_9_2 | HPC/Jones/Jones49A.lean
+
+## Whyburn Ch. III; Moore 1922 (batch 150)
+HPC.Jones.countable_not_mem_closure_of_lt | HPC/Jones/Jones49Chain.lean
+HPC.Jones.exists_clopen_of_connectedComponentIn_disjoint | HPC/Jones/Jones49Chain.lean
+HPC.Jones.SepChain.countable_not_good | HPC/Jones/Jones49Chain.lean
+HPC.Jones.SepChain.countable_res | HPC/Jones/Jones49Chain.lean
+HPC.Jones.SepChain.exists_small_interval | HPC/Jones/Jones49Chain.lean
+HPC.Jones.SepChain.exists_open_frontier_pair | HPC/Jones/Jones49Chain.lean
+HPC.Jones.SepChain.orderLE_two | HPC/Jones/Jones49Chain.lean
+HPC.Jones.SepChain.countable_of_not_orderLE_two | HPC/Jones/Jones49Chain.lean
+HPC.Jones.OrderLE.mono | HPC/Moore/M19CDExt.lean
+HPC.Jones.sepT_mem_component | HPC/Jones/Jones49Sep.lean
+HPC.Jones.countable_sepT | HPC/Jones/Jones49Sep.lean
+HPC.Jones.countable_sepPoint_not_orderLE_two | HPC/Jones/Jones49Sep.lean
+HPC.Jones.not_orderLE_one_of_isSepPointOf | HPC/Jones/Jones49Sep.lean
+HPC.Jones.hasOrder_two_of_isSepPointOf | HPC/Jones/Jones49Sep.lean
+HPC.Jones.countable_sepPoint_not_hasOrder_two | HPC/Jones/Jones49Sep.lean
+HPC.Jones.whyburn_3_2 | HPC/Jones/Jones49B.lean
+HPC.Jones.whyburn_9_2 | HPC/Jones/Jones49B.lean
+HPC.Jones.jones49_some_order_two | HPC/Jones/Jones49B.lean
+HPC.Jones.locallyConnectedSpace_of_cikAt | HPC/Jones/Moore22T4.lean
+
+## Crossing continua; Moore 1922 Theorem 4; complementary domains (batch 151)
+HPC.Jones.Sector.sector_cyclic | HPC/Jones/Jones49CAnn.lean
+HPC.Jones.Sector.lc_disjoint_rc | HPC/Jones/Jones49CStrip.lean
+HPC.Jones.Sector.exists_lift | HPC/Jones/Jones49CAnn.lean
+HPC.Jones.Sector.exists_crossing_continua_closed | HPC/Jones/Jones49CMoore.lean
+HPC.Jones.isConnected_frontier_complDomain | HPC/Jones/Jones49C.lean
+HPC.Jones.whyburn39_6_22_sec14 | HPC/Jones/Jones49C.lean
+
+## Whyburn 1939 Theorem 14 (batch 152)
+HPC.Jones.whyburn39_curve_from_order_two | HPC/Jones/Jones49D.lean
+HPC.Jones.whyburn39_local_noncut | HPC/Jones/Jones49D.lean
+HPC.Jones.whyburn39_theorem14 | HPC/Jones/Jones49D.lean
+HPC.Jones.Sec14.join_in_domain | HPC/Jones/Jones49DSep.lean
+HPC.Jones.Sec14.local_join_of_noncut | HPC/Jones/Jones49DSep.lean
+HPC.Jones.Sec14.not_orderLE_of_accumulating | HPC/Jones/Jones49DCross.lean
+HPC.Jones.Sec14.exists_bad_point_of_crossing | HPC/Jones/Jones49DCross.lean
+HPC.Jones.Sec14.IsPreconnected.inter_frontier_nonempty' | ?
+
+## Whyburn 1939 Corollary 1 (batch 153)
+HPC.Jones.frontier_cyclic | HPC/Jones/Jones49E.lean
+HPC.Jones.theta_of_cyclic_peano | HPC/Jones/Jones49E.lean
+HPC.Jones.whyburn39_corollary1 | HPC/Jones/Jones49E.lean
+HPC.Jones.exists_tarc_in_open | HPC/Jones/Jones49EArc.lean
+HPC.Jones.exists_tarc_of_isOpen_plane | HPC/Jones/Jones49EArc.lean
+HPC.Jones.tscc_split | HPC/Jones/Jones49ETheta.lean
+HPC.Jones.exists_scc_of_cyclic | HPC/Jones/Jones49ETheta.lean
+HPC.Jones.exists_theta_of_cyclic | HPC/Jones/Jones49ETheta.lean
+HPC.Jones.frontier_diff_nonempty | HPC/Jones/Jones49EPlane.lean
+HPC.Jones.theta_not_subset_closure | HPC/Jones/Jones49EPlane.lean
+
+## Jones 1949 Theorems 1–2; Jones 1955 Theorem 2 unconditional (batch 154)
+HPC.Jones.jones49_setting | HPC/Jones/Jones49F.lean
+HPC.Jones.jones49_case1 | HPC/Jones/Jones49F.lean
+HPC.Jones.jones49_case2 | HPC/Jones/Jones49F.lean
+HPC.Jones.jones49_theorem1 | HPC/Jones/Jones49F.lean
+HPC.Jones.jones49_theorem2 | HPC/Jones/Jones49F.lean
+HPC.Jones.jones55_theorem2' | HPC/Jones/Jones49F.lean
+HPC.Jones.jones55_two_domains' | HPC/Jones/Jones49F.lean
+HPC.Jones.jones55_elements_indecomposable' | HPC/Jones/Jones49F.lean
+HPC.Jones.jones55_three_domains' | HPC/Jones/Jones49F.lean
+HPC.Jones.mem_cc_of_not_mem_domain | HPC/Jones/Jones49FTheta.lean
+HPC.Jones.theta_no_common_side | HPC/Jones/Jones49FTheta.lean
+HPC.Jones.theta_separation_core | HPC/Jones/Jones49FTheta.lean
+HPC.Jones.theta_separation | HPC/Jones/Jones49FTheta.lean
+HPC.Jones.isLocalSepPoint_of_open_sub_tscc | HPC/Jones/Jones49FLocal.lean
+HPC.Jones.isLocalSepPoint_of_separation | HPC/Jones/Jones49FLocal.lean
+HPC.Jones.frontier_cc_of_jordan | HPC/Jones/Jones49FCase1.lean
+HPC.Jones.exists_frontier_through | HPC/Jones/Jones49FCase1.lean
+HPC.Jones.countable_complDomains | HPC/Jones/Jones49FCase1.lean
+HPC.Jones.jones49_case1_core | HPC/Jones/Jones49FCase1.lean
+HPC.Moore.Gen.TArc.first_point_split | ?
+HPC.Jones.exists_domain_meeting | HPC/Jones/Jones49FCase2.lean
+HPC.Jones.exists_theta_arcs | HPC/Jones/Jones49FCase2.lean
+HPC.Jones.jones49_case2_core | HPC/Jones/Jones49FCase2.lean

@@ -1,0 +1,6 @@
+only n = 5 K = 4 instances 29777 failures 0
+only n = 6 K = 4 instances 220468 failures 0
+only n = 7 K = 4 instances 1530295 failures 0
+only n = 6 K = 5 instances 330720 failures 0
+only n = 7 K = 5 instances 2319522 failures 0
+only n = 7 K = 6 instances 3108749 failures 0

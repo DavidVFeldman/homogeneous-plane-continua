@@ -1,0 +1,114 @@
+% Lecture notes on the classification of homogeneous plane continua,
+% following the formal (Lean 4) proof in this repository.
+% Volume 7: The decomposable case.
+%
+% Compile with:  pdflatex main && pdflatex main   (two runs for the contents and references)
+\documentclass[11pt,oneside]{book}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tikz}
+\usepackage[hidelinks]{hyperref}
+
+% ---------------------------------------------------------------- theorem styles
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ---------------------------------------------------------------- notation
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\interior}{\operatorname{int}}
+\newcommand{\cl}[1]{\overline{#1}}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\nrm}[1]{\lVert #1\rVert}
+\newcommand{\Log}{\operatorname{Log}}
+\renewcommand{\Im}{\operatorname{Im}}
+% the frontier of a set
+\newcommand{\fr}{\operatorname{fr}}
+% the element of a decomposition containing x (as in Volume 3)
+\newcommand{\elt}[1]{[#1]}
+% Jones's sets L_x and U_x
+\newcommand{\Ls}[1]{L_{#1}}
+\newcommand{\Us}[1]{U_{#1}}
+% the component of the complement of K containing x (as in Volume 4)
+\newcommand{\comp}[2]{\operatorname{C}_{#1}(#2)}
+% the square annulus and the strip
+\newcommand{\Ann}{\mathcal{A}}
+\newcommand{\Strip}{\mathcal{S}}
+% the right side, the left side and the not-right part of a crossing set of the strip
+\newcommand{\Rc}{\operatorname{Rt}}
+\newcommand{\Lc}{\operatorname{Lt}}
+\newcommand{\NR}{\operatorname{NR}}
+\newcommand{\Sec}{\operatorname{Sec}}
+% the open arc
+\newcommand{\oarc}[1]{\mathring{#1}}
+% the unit interval and the circle
+\newcommand{\I}{[0,1]}
+\newcommand{\Sph}{S^1}
+
+% Names of declarations in the Lean development (typewriter, underscores allowed).
+\newcommand{\lean}[1]{\texttt{\detokenize{#1}}}
+% A paragraph pointing to the formal counterpart of a result.
+\newcommand{\formal}[1]{\par\smallskip\noindent{\small\textit{Formal counterpart:} #1}\par\smallskip}
+% References to numbered results of the earlier volumes.
+\newcommand{\vone}[1]{Volume~1, #1}
+\newcommand{\vtwo}[1]{Volume~2, #1}
+\newcommand{\vthree}[1]{Volume~3, #1}
+\newcommand{\vfour}[1]{Volume~4, #1}
+\newcommand{\vfive}[1]{Volume~5, #1}
+\newcommand{\vsix}[1]{Volume~6, #1}
+
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{\textbf{Homogeneous Plane Continua}\\[6pt]
+\Large Lecture notes following the formal proof\\[18pt]
+\large Volume 7\\[4pt]
+\Large The decomposable case:\\ aposyndesis, Jones's decomposition\\ and simple closed curves}
+\author{}
+\date{}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+% The introduction is Chapter 0, as in Volumes 1--6.
+\setcounter{chapter}{-1}
+\input{ch0-intro}
+\input{ch1-aposyndesis}
+\input{ch2-spreading}
+\input{ch3-jones55}
+\input{ch4-order}
+\input{ch5-whyburn}
+\input{ch6-sectors}
+\input{ch7-boundaries}
+\input{ch8-jones49}
+\input{ch9-decomposable}
+
+\appendix
+\input{appA-formal}
+
+\end{document}

@@ -1,0 +1,295 @@
+%======================================================================
+\chapter{Simple folds}\label{ch:folds}
+%======================================================================
+
+A simple fold of a graph $G$ is a graph $F$ obtained by cutting $G$ open along two finite sets and gluing in an extra sheet, so that the projection
+$\varphi\colon F\to G$ runs forward over one part of $G$, back over a middle part, and forward again. Hoehn and Oversteegen's Theorem~8 says that a
+map of a hereditarily indecomposable compactum into $G$ lifts, up to $\varepsilon$, through every simple fold. This is the only place where hereditary
+indecomposability enters the proof of Theorem~\ref{thm:ho20}; it enters through a lemma of Krasinkiewicz and Minc.
+
+Hoehn and Oversteegen build a fold as a quotient space. Here a fold over a PL graph $G\subseteq E$ is a PL graph in $E\times\R$, made of three sheets that
+are graphs of height functions, and $\varphi=\pi$ is the first projection. Folds of folds then live in $(E\times\R)\times\R$, and so on; this is why
+everything is done in an arbitrary normed space $E$.
+
+\section{The lemma of Krasinkiewicz and Minc}
+
+\begin{lemma}[Krasinkiewicz--Minc 1977, Lemma~2, for compacta]\label{lem:km}
+Let $X$ be a hereditarily indecomposable compact metric space, $A,B\subseteq X$ disjoint closed sets, and $U\supseteq A$, $V\supseteq B$ open. Then there are closed
+sets $X_1,X_2,X_3$ with
+\[
+X=X_1\cup X_2\cup X_3,\quad A\subseteq X_1,\quad B\subseteq X_3,\quad X_1\cap X_3=\emptyset,\quad X_1\cap X_2\subseteq V,\quad X_2\cap X_3\subseteq U.
+\]
+\end{lemma}
+
+In Krasinkiewicz and Minc's words, $(X,A,B)$ is \emph{crooked} between $U$ and $V$. They state the lemma for continua; Hoehn and Oversteegen remark
+that the proof works for compacta. Their proof uses a further lemma (a decomposable continuum irreducible between $A$ and $B$); here the decomposable
+continuum $C_1\cup C_2$ of Step~3 is enough.
+
+\begin{proof}
+\emph{Step 1.} Take open $U'\supseteq A$, $V'\supseteq B$ with $\cl{U'}\subseteq U$, $\cl{V'}\subseteq V$ and $\cl{U'}\cap\cl{V'}=\emptyset$.
+
+\emph{Step 2.} Let $A^*$ be the union of the components of $X\setminus V'$ that meet $A$, and $B^*$ the union of the components of $X\setminus U'$ that meet $B$.
+Both are closed: in a compact space, the union of the components of a closed set $K$ that meet a closed $C\subseteq K$ is closed, since a component of $K$
+missing $C$ lies in a set clopen in $K$ that misses $C$ (\vthree{Theorem~1.9}).
+
+\emph{Step 3: $A^*\cap B^*=\emptyset$.} Let $p$ be in both, $C_1$ its component in $X\setminus V'$ and $C_2$ its component in $X\setminus U'$. $C_1$ meets $A$ and
+misses $B\subseteq V'$; $C_2$ meets $B$ and misses $A$. So $C_1\cup C_2$ is a continuum (both contain $p$), and $C_1$, $C_2$ are proper subcontinua whose union
+is all of it: $C_1\cup C_2$ is decomposable, which is impossible.
+
+\emph{Step 4.} A continuum in $X\setminus V'$ meeting $A^*$ lies in a component meeting $A$, so it misses $B^*$. By the cut-wire theorem
+(\vthree{Theorem~1.9}), $X\setminus V'=D_1\cup D_2$ with $D_1,D_2$ disjoint and closed, $A^*\subseteq D_1$ and $B^*\setminus V'\subseteq D_2$. Then $B^*\cap D_1=\emptyset$.
+
+\emph{Step 5.} In the same way $X\setminus U'=E_1\cup E_2$ with $E_1,E_2$ disjoint and closed, $B^*\subseteq E_1$ and $D_1\setminus U'\subseteq E_2$.
+
+\emph{Step 6.} Put
+\[
+X_1=D_1\cup(E_2\cap\cl{V'}),\quad X_2=(D_2\cap E_2)\cup(D_2\cap\cl{U'})\cup(E_2\cap\cl{V'}),\quad X_3=E_1\cup(D_2\cap\cl{U'}).
+\]
+They cover $X$: a point outside $U'\cup V'$ lies in some $D_i\cap E_j$, and $U'\subseteq D_1\cup(D_2\cap U')$, $V'\subseteq E_1\cup(E_2\cap V')$. The
+intersection $X_1\cap X_2$ lies in $\cl{V'}$ and $X_2\cap X_3$ in $\cl{U'}$, using $D_1\cap D_2=E_1\cap E_2=\cl{U'}\cap\cl{V'}=\emptyset$. Finally
+$X_1\cap X_3=D_1\cap E_1=(D_1\setminus U')\cap E_1\subseteq E_2\cap E_1=\emptyset$, the other three intersections being empty for the same reasons.
+\end{proof}
+
+\formal{\lean{HPC.HO16.km77_lemma2}, with \lean{HPC.HO16.isClosed_biUnion_connectedComponentIn} for Step~2.}
+
+\section{Theorem 8 before folds}
+
+Let $G_1,G_3\subseteq E$ be closed, $G=G_1\cup G_3$, $G_2=G_1\cap G_3$, and suppose
+\begin{equation}\label{eq:F3}
+\cl{G_1\setminus G_2}\cap\cl{G_3\setminus G_2}=\emptyset .
+\end{equation}
+Write $B_1=\cl{G_1\setminus G_2}\cap G_2$ and $B_3=\cl{G_3\setminus G_2}\cap G_2$: the points where the first, respectively the third, part is attached to the middle.
+
+\begin{theorem}[Hoehn--Oversteegen, Theorem~8, core]\label{thm:ho8-core}
+In this situation assume that $B_1$ and $B_3$ are finite and that every point of $B_1\cup B_3$ has fans in $G_2$ of every diameter. Let $X$ be a hereditarily
+indecomposable compact metric space, $f\colon X\to G$ continuous and $\varepsilon>0$. Then there are a continuous $h\colon X\to E$ and closed sets
+$X_1,X_2,X_3$ covering $X$ with $X_1\cap X_3=\emptyset$, $\nrm{f(x)-h(x)}<\varepsilon$,
+\[
+h(X_i)\subseteq G_i\ (i=1,2,3),\qquad h(X_1\cap X_2)\subseteq B_3,\qquad h(X_2\cap X_3)\subseteq B_1 .
+\]
+\end{theorem}
+
+\begin{proof}
+\emph{Fans.} $B_1\cap B_3=\emptyset$ by \eqref{eq:F3}. Choose $r\le\varepsilon$ smaller than half the distance between any two points of the finite set $B_1\cup
+B_3$, and for $y\in B_1\cup B_3$ a fan $Y_y$ at $y$ in $G_2$ of diameter $<r$. The fans are pairwise disjoint, closed, and star-shaped about their centres:
+$[y,p]\subseteq Y_y$ for $p\in Y_y$. Let $c(p)=y$ for $p\in Y_y$.
+
+\emph{Neighbourhoods of the two sides.} Put $C_1=\cl{G_1\setminus G_2}$, $C_3=\cl{G_3\setminus G_2}$, $K_1=f^{-1}(C_1)$, $K_3=f^{-1}(C_3)$, disjoint closed sets.
+There is an open $N_1\supseteq C_1$ with $G\cap N_1\subseteq C_1\cup\bigcup_{y\in B_1}Y_y$: a point of $C_1$ outside $G_2$ lies outside the closed set $G_3$, so
+near it $G$ is inside $G_1\setminus G_2$; a point $y\in B_1$ is not in $C_3$, and $Y_y$ is a neighbourhood of $y$ in $G_2$. Likewise $N_3$. Let $U_1\supseteq K_1$,
+$U_3\supseteq K_3$ be disjoint open sets inside $f^{-1}(N_1)$ and $f^{-1}(N_3)$.
+
+\emph{Krasinkiewicz--Minc.} Lemma~\ref{lem:km} with $A=K_1$, $B=K_3$, $U=U_1$, $V=U_3$ gives closed $X_1\supseteq K_1$, $X_2$, $X_3\supseteq K_3$ with $X_1\cap
+X_3=\emptyset$, $X_1\cap X_2\subseteq U_3$ and $X_2\cap X_3\subseteq U_1$.
+
+\emph{The correction.} Let $W_1=U_1\setminus X_1$ and $W_3=U_3\setminus X_3$, disjoint open sets. A point $x\in W_1$ is not in $K_1$, so $f(x)\in N_1\cap G$ but
+$f(x)\notin C_1$: hence $f(x)\in Y_y\setminus\set y$ for a unique $y\in B_1$. Since the fans are disjoint and closed, $x\mapsto c(f(x))$ is locally constant on $W_1$.
+Let $u_1\colon X\to\I$ be an Urysohn function with $u_1=0$ on $X_2\cap X_3$ and $u_1=1$ off $U_1$; similarly $u_3$, with $u_3=0$ on $X_1\cap X_2$ and $u_3=1$ off
+$U_3$. Define
+\[
+h(x)=\begin{cases} f(x)+(1-u_1(x))\bigl(c(f(x))-f(x)\bigr), & x\in W_1,\\ f(x)+(1-u_3(x))\bigl(c(f(x))-f(x)\bigr), & x\in W_3,\\ f(x) & \text{otherwise.}\end{cases}
+\]
+On $W_1$, $h(x)$ lies on the segment from $f(x)$ to its fan centre, so inside the fan, within $r\le\varepsilon$ of $f(x)$; it equals the centre where $u_1=0$.
+
+\emph{Continuity.} The correction term on $W_1$ is continuous there and bounded by $r$. At a point $x\notin W_1$ either $x\notin U_1$, where $u_1(x)=1$ and the
+term tends to $0$; or $x\in X_1\cap U_1$. In the latter case $x\notin X_2\cup X_3$ (as $X_1\cap X_2\subseteq U_3$ misses $U_1$, and $X_1\cap X_3=\emptyset$), so a
+neighbourhood of $x$ lies in $X_1$ and misses $W_1$. The same holds for $W_3$.
+
+\emph{Checks.} On $X_2\cap X_3\subseteq W_1$ we have $u_1=0$, so $h$ is a fan centre in $B_1$; likewise $h(X_1\cap X_2)\subseteq B_3$. If $x\in X_1$ and $h(x)\ne f(x)$,
+then $h(x)$ is in a fan, inside $G_2\subseteq G_1$; if $h(x)=f(x)$ and $x\notin U_3$, then $x\notin K_3$, so $f(x)\notin G_3\setminus G_2$ and $f(x)\in G_1$; and
+$X_1\cap U_3\subseteq W_3$ unless $x\in X_3$, which is impossible. The cases of $X_3$ and $X_2$ are similar (off $U_1\cup U_3$, $f(x)\notin C_1\cup C_3$, so $f(x)\in G_2$).
+\end{proof}
+
+\formal{\lean{HPC.HO16.ho16_theorem8_core}, with \lean{HPC.HO16.exists_center_fun}, \lean{HPC.HO16.continuousOn_center_comp},
+\lean{HPC.HO16.continuous_correction} and \lean{HPC.HO16.exists_open_nbhd_side}.}
+
+Hoehn and Oversteegen obtain the map near the attaching points from Tietze extensions on each clopen piece $f^{-1}((y,z])\cap W_1$; they do not say that
+the fans must be disjoint, which their construction needs. The linear push towards the fan centre used here avoids the pieces altogether.
+
+\section{PL graphs}
+
+The combinatorics of folds and stairwells rests on a library for PL graphs. A \emph{decomposition} of a PL graph $G$ is a finite set of segments as in
+Definition~\ref{def:plgraph}(a); its end points are the \emph{vertices}.
+
+\begin{proposition}\label{prop:pl-library}
+Let $G$ be a PL graph in $E$.
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(Unions.)} A finite union of segments is a PL graph. The union of two PL graphs is a PL graph.
+\item \emph{(Refinement.)} For PL graphs $A_1,\dots,A_k\subseteq G$ and a finite $P\subseteq G$ there is a decomposition of $G$ in which every $A_i$ is a union of
+edges, an edge not in $A_i$ meets $A_i$ only in vertices, and every point of $P$ is a vertex.
+\item \emph{(Frontiers.)} For a PL graph $A\subseteq G$, $\cl{G\setminus A}$ is a PL graph, and the relative frontier $\rfr A=A\cap\cl{G\setminus A}$ is finite.
+\item \emph{(Components.)} $G$ has finitely many components, each a PL graph and open in $G$.
+\item \emph{(Projections.)} If $F\subseteq E\times\R$ is a PL graph on which $\pi$ is injective, then $\pi(F)$ is a PL graph.
+\item \emph{(Common subdivisions.)} Any two decompositions of $G$ have a common subdivision.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+(a) The intersection of two segments is empty or a segment (possibly a point). Let $V$ be the finite set of all end points of the given segments and of
+their pairwise intersections; subdivide each segment at the points of $V$ on it and keep each piece once. Two pieces sharing a point that is not an end of
+both would lie in a common intersection $[p,q]$ with $p,q\in V$, and both are cut at $V\cap[p,q]$, so they coincide. (b)--(f) follow from (a) by taking the
+vertices of a suitable common subdivision: frontiers of subgraphs consist of vertices, and a component is the union of a class of edges under ``sharing a
+vertex''.
+\end{proof}
+
+\formal{\lean{HPC.HO16.isPLGraph_biUnion}, \lean{HPC.HO16.IsPLGraph.union}, \lean{HPC.HO16.IsPLGraph.exists_refinement},
+\lean{HPC.HO16.IsPLGraph.closure_diff}, \lean{HPC.HO16.IsPLGraph.relFrontier_finite}, \lean{HPC.HO16.IsPLGraph.connectedComponentIn},
+\lean{HPC.HO16.IsPLGraph.finite_components}, \lean{HPC.HO16.IsPLGraph.image_fst}, \lean{HPC.HO16.Subdiv.exists_common_subdivision}; the relative
+frontier is \lean{HPC.HO16.relFrontier}.}
+
+For $A\subseteq G$ the relative frontier in general is $\rfr A=\cl A\cap\cl{G\setminus A}$; for closed $A$ it is $A\cap\cl{G\setminus A}$.
+
+\section{Simple folds}
+
+\begin{definition}\label{def:fold}
+\begin{enumerate}[label=(\alph*)]
+\item A \emph{fold triple} on a PL graph $G$ is a triple $(G_1,G_2,G_3)$ of nonempty PL graphs with $G_1\cup G_3=G$, $G_2=G_1\cap G_3$ and
+$\cl{G_1\setminus G_2}\cap\cl{G_3\setminus G_2}=\emptyset$.
+\item A \emph{simple fold} on $G$ along a fold triple is a triple $(F_1,F_2,F_3)$ of PL graphs in $E\times\R$ such that $\pi$ is injective on each $F_i$ with
+$\pi(F_i)=G_i$, and
+\[
+\pi(F_1\cap F_2)=\rfr G_1,\qquad \pi(F_2\cap F_3)=\rfr G_3,\qquad F_1\cap F_3=\emptyset .
+\]
+The fold itself is $F=F_1\cup F_2\cup F_3$, with projection $\varphi=\pi|_F$.
+\end{enumerate}
+\end{definition}
+
+\formal{\lean{HPC.HO16.IsFoldTriple}, \lean{HPC.HO16.IsSimpleFoldOf}.}
+
+Hoehn and Oversteegen ask the $G_i$ to be \emph{regular}: closed, with finitely many components, all nondegenerate. For subsets of a PL graph this amounts
+to being a PL graph. Their conditions (F1)--(F3) are part (a); (F4) and (F5) are part (b).
+
+\begin{theorem}[Folds exist]\label{thm:fold-exists}
+Every fold triple has a simple fold.
+\end{theorem}
+
+\begin{proof}
+Put $B_3=\rfr G_1$ and $B_1=\rfr G_3$. Both are finite subsets of $G_2$ (Proposition~\ref{prop:pl-library}(c)), and they are disjoint, since
+$\rfr G_1\subseteq\cl{G_3\setminus G_2}$ and $\rfr G_3\subseteq\cl{G_1\setminus G_2}$.
+
+Take a decomposition of $G$ in which $G_1,G_2,G_3$ are unions of edges and all points of $B_1\cup B_3$ are vertices
+(Proposition~\ref{prop:pl-library}(b)), and subdivide every edge at its midpoint. Now no edge has both ends in $B_3$, nor both in $B_1$. Heights at vertices:
+$h_1(v)=1$ for $v\in B_3$ and $0$ otherwise; $h_3(v)=1$ for $v\in B_1$ and $2$ otherwise. Let $F_1$ be the union, over the edges $[a,b]\subseteq G_1$, of the
+segments $[(a,h_1(a)),(b,h_1(b))]$; $F_2$ the union over the edges of $G_2$ of $[(a,1),(b,1)]$; and $F_3$ the union over the edges of $G_3$ of
+$[(a,h_3(a)),(b,h_3(b))]$.
+
+Lifts of different edges meet only over common vertices, where the heights agree; so each $F_i$ is a PL graph on which $\pi$ is injective with image $G_i$.
+Over a point $x$ of an edge of $G_2$, the $F_1$-height is $\le1$, with equality only if $x$ is a vertex in $B_3$ (an interior point of an edge has height $<1$,
+as at most one end is in $B_3$); the $F_2$-height is $1$; and the $F_3$-height is $\ge1$, with equality only at vertices in $B_1$. Hence $\pi(F_1\cap F_2)=B_3$,
+$\pi(F_2\cap F_3)=B_1$ and $F_1\cap F_3=\emptyset$.
+\end{proof}
+
+\formal{\lean{HPC.HO16.exists_simpleFold}, with the lifted graphs \lean{HPC.HO16.liftG} and the midpoint subdivision
+\lean{HPC.HO16.exists_midpoint_subdivision}.}
+
+\begin{lemma}[Hoehn--Oversteegen, Lemma~6]\label{lem:ho6}
+Let $(F_1,F_2,F_3)$ be a simple fold on $G$ along $(G_1,G_2,G_3)$, and $F=F_1\cup F_2\cup F_3$. Relative frontiers of subsets of $G$ are taken in $G$, those of subsets
+of $F$ in $F$.
+\begin{enumerate}[label=(\arabic*)]
+\item $\rfr G_2=\rfr G_1\cup\rfr G_3$, and $\rfr G_1\cap\rfr G_3=\emptyset$.
+\item $\rfr(G_1\setminus G_2)=\rfr G_3$ and $\rfr(G_3\setminus G_2)=\rfr G_1$.
+\item[(4)] $F_1\cap F_2$ and $F_2\cap F_3$ are finite.
+\item[(5)] $\rfr F_1=F_1\cap F_2$, $\rfr F_3=F_2\cap F_3$, and $\rfr F_2=(F_1\cap F_2)\cup(F_2\cap F_3)$.
+\item[(6)] $F_1\cap F_2$ separates $F_1\setminus F_2$ from $(F_2\cup F_3)\setminus F_1$ in $F$, and $F_2\cap F_3$ separates $F_3\setminus F_2$ from $(F_1\cup F_2)\setminus F_3$.
+\item[(7)] At a point $p\in F_1\setminus F_2$, $\varphi$ maps neighbourhoods of $p$ in $F_1$ onto neighbourhoods of $\varphi(p)$ in $G$; likewise at $p\in F_2\setminus(F_1\cup F_3)$
+for $F_2$ and at $p\in F_3\setminus F_2$ for $F_3$.
+\end{enumerate}
+\end{lemma}
+
+(Item (3) of Hoehn and Oversteegen, that the $F_i$ are regular, is part of the definition.)
+
+\begin{proof}
+(1), (2): $G\setminus G_1=G_3\setminus G_2$ and $G\setminus G_3=G_1\setminus G_2$, and $\cl{G_i\setminus G_2}\subseteq G_i$. So $\rfr G_1=G_2\cap\cl{G_3\setminus G_2}$,
+$\rfr G_3=G_2\cap\cl{G_1\setminus G_2}$, which are disjoint by (F3), and $\rfr G_2$ is their union; and $\cl{G\setminus(G_1\setminus G_2)}=G_3$.
+(4): $\pi$ is injective on $F_1$ and maps $F_1\cap F_2$ into the finite set $\rfr G_1$.
+(5): $F_1\cap(F_2\cup F_3)=F_1\cap F_2$ is finite. A point of $F_1\setminus F_2$ has positive distance from the compact set $F_2\cup F_3$. A point of $F_1\cap F_2$ is a limit of
+points of $F_2\setminus F_1$, as a PL graph has no isolated points.
+(6): take the open sets $(F_2\cup F_3)^c$ and $F_1^c$.
+(7): for $p\in F_1\setminus F_2$, $\varphi(p)\notin\rfr G_1$ (the $F_1$-point over a point of $\rfr G_1$ is in $F_2$), so $\varphi(p)$ has a neighbourhood in $G$ inside $G_1$,
+and $\varphi|_{F_1}$ is a homeomorphism onto $G_1$.
+\end{proof}
+
+\formal{\lean{HPC.HO16.ho16_lemma6}; Hoehn and Oversteegen leave the proof to the reader.}
+
+\begin{theorem}[Hoehn--Oversteegen, Theorem~8, (1)$\Rightarrow$(2)]\label{thm:ho8}
+Let $X$ be a hereditarily indecomposable compact metric space, $(F_1,F_2,F_3)$ a simple fold on $G$, $f\colon X\to G$ continuous and $\varepsilon>0$. There is a
+continuous $g\colon X\to F$ with $\nrm{f(x)-\varphi(g(x))}<\varepsilon$ for all $x$.
+\end{theorem}
+
+\begin{proof}
+Theorem~\ref{thm:ho8-core} applies: $B_1=\cl{G_1\setminus G_2}\cap G_2=\rfr G_3$ and $B_3=\rfr G_1$ are finite by Lemma~\ref{lem:ho6}, and points of the PL graph $G_2$ have fans
+of every diameter. It gives $h$ and $X_1,X_2,X_3$. The inverse $\psi_i$ of $\varphi|_{F_i}$ is continuous (a continuous injection on a compactum). Put $g=\psi_i\circ h$ on
+$X_i$. On $X_1\cap X_2$, $h(x)\in\rfr G_1=\varphi(F_1\cap F_2)$, so the $F_1$-point and the $F_2$-point over $h(x)$ coincide; likewise on $X_2\cap X_3$; and $X_1\cap
+X_3=\emptyset$. So $g$ is well defined and continuous, and $\varphi\circ g=h$.
+\end{proof}
+
+\formal{\lean{HPC.HO16.ho16_theorem8}, with \lean{HPC.HO16.continuousOn_invFunOn_fst} for $\psi_i$.}
+
+\section{Proposition 7: a component that covers}
+
+\begin{proposition}[Hoehn--Oversteegen, Proposition~7]\label{prop:ho7}
+Let $(F_1,F_2,F_3)$ be a simple fold on a connected $G$, with $\rfr G_1\neq\emptyset\neq\rfr G_3$. Then some component $C$ of $F$ has $\varphi(C)$ meeting both $\rfr G_1$ and
+$\rfr G_3$. For every such component, $\varphi(C)=G$, and $(F_1\cap C,F_2\cap C,F_3\cap C)$ is a simple fold on $G$ along $(\varphi(F_1\cap C),\varphi(F_2\cap C),\varphi(F_3\cap C))$.
+\end{proposition}
+
+The new triple may be smaller than the old one: $\varphi(F_i\cap C)$ can be a proper subset of $G_i$.
+
+\begin{proof}
+For a component $K$ of $G_2$ write $K_i$ for its copy $\psi_i(K)$ in $F_i$; these are connected.
+
+\emph{Existence.} Some component $K$ of $G_2$ meets both $\cl{G_1\setminus G_2}$ and $\cl{G_3\setminus G_2}$: otherwise, grouping the finitely many components of $G_2$
+according to which closure they meet splits $G$ into two disjoint nonempty closed sets. Then $K$ meets $\rfr G_3$ and $\rfr G_1$ (Lemma~\ref{lem:ho6}(2)), and the
+component of $F$ containing $K_2$ will do.
+
+\emph{Lemma (L).} Let $C$ be a component of $F$ with $\varphi(C)$ meeting $\rfr G_1$ and $\rfr G_3$, and $K$ a component of $G_2$. (a) If $K\cap\rfr G_1=\emptyset$, then $K$ is a
+component of $G_3$, and $K_2\cup K_3$ is clopen in $F$ and disjoint from $C$; symmetrically if $K\cap\rfr G_3=\emptyset$. (b) Hence $K_2\subseteq C$ implies $K_1\cup K_3\subseteq C$:
+then $K$ meets both frontiers, $K_1$ meets $K_2$ over $\rfr G_1$ and $K_3$ meets $K_2$ over $\rfr G_3$. (c) $K$ cannot miss both frontiers, since then it would be clopen in
+$G$, so $K=G$ and $\rfr G_1=\emptyset$.
+
+\emph{$\varphi(C)$ is open in $G$, hence equal to $G$} ($\varphi(C)$ is closed and $G$ connected). At a point $p\in C$ outside $\rfr F_2$ use Lemma~\ref{lem:ho6}(7) and the
+openness of components of a PL graph. At $p\in F_1\cap F_2$, let $K$ be the component of $G_2$ containing $\varphi(p)$. If $K$ missed $\rfr G_3$, then $K$ would be a
+component of $G_1$, $K_1\cup K_2$ would be clopen in $F$ and contain $p$, so $C\subseteq K_1\cup K_2$ and $\varphi(C)\subseteq K$ would miss $\rfr G_3$. So by (L)(b) all three copies
+of $K$ lie in $C$. In particular the $F_3$-point $q$ over $\varphi(p)$ lies in $C$, and $q\in F_3\setminus F_2$ because $\varphi(p)\in\rfr G_1$ is not in $\rfr G_3$. As $C$ is
+open in $F$, Lemma~\ref{lem:ho6}(7) at $q$ shows that $\varphi(C)$ is a neighbourhood of $\varphi(p)$ in $G$. The case $p\in F_2\cap F_3$ is symmetric.
+
+\emph{The restricted fold.} Put $G_i'=\varphi(F_i\cap C)$. Then $G_1'\cup G_3'=G$; $G_2'=G_1'\cap G_3'$ by (L)(b),(c); $G_1'$ and $G_3'$ are nonempty; the PL clauses
+follow from Proposition~\ref{prop:pl-library}. For (F3) use that the component of $G_2$ through a point is locally constant near points of $G_2'$; and for (F5):
+a point of $G_3'\setminus G_2'$ lying in $G_2$ lies in a component $K$ which by (L)(a) is a component of $G_1$ disjoint from $G_1'$, so near $G_1'$ the set $G_3'\setminus G_2'$ lies in
+$G_3\setminus G_2$.
+\end{proof}
+
+\formal{\lean{HPC.HO16.ho16_prop7}, with \lean{HPC.HO16.exists_comp_meets_both}, \lean{HPC.HO16.image_comp_eq}, \lean{HPC.HO16.lift_subset_of_meets_both}.}
+
+Hoehn and Oversteegen prove openness of $\varphi(C)$ at a glue point by boundary bumping (``let $C'$ be the closure of the component of $C\setminus\varphi^{-1}(\rfr G_3)$
+containing $p$''), and they need, but do not argue, that $\varphi(C')\subseteq G_2$. The argument above avoids boundary bumping. Their sentence ``it is straightforward
+to check \dots\ that $F'$ is a simple fold'' rests on Lemma~(L), which they do not state.
+
+\begin{example}
+Two test cases on intervals. (i) $G=[0,4]$, $G_1=[0,3]$, $G_3=[\frac12,1]\cup[2,4]$, $G_2=[\frac12,1]\cup[2,3]$: the copies of $[\frac12,1]$ in $F_2$ and $F_3$ form a
+circle component of $F$; the other component restricts to the triple $([0,3],[2,3],[2,4])$. (ii) $G=[0,3]$, $G_1=[0,1]\cup[2,3]$, $G_3=[\frac12,3]$,
+$G_2=[\frac12,1]\cup[2,3]$: the glue point over $2\in\rfr G_1$ is not in the covering component $C$, and the restriction is $([0,1],[\frac12,1],[\frac12,3])$, with
+$\rfr G_1'=\set1$.
+\end{example}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that Lemma~\ref{lem:km} fails for $X=\I$, $A=\set0$, $B=\set1$, $U=[0,\frac13)$, $V=(\frac23,1]$.
+\end{exercise}
+
+\begin{exercise}
+Show that Lemma~\ref{lem:km} characterizes hereditary indecomposability among compacta: if every triple $(X,A,B)$ is crooked between every $U$ and $V$, then
+$X$ is hereditarily indecomposable. (Krasinkiewicz--Minc.)
+\end{exercise}
+
+\begin{exercise}
+Draw the simple fold of Theorem~\ref{thm:fold-exists} for $G=[0,3]$, $G_1=[0,2]$, $G_3=[1,3]$. Which component of $F$ maps onto $G$?
+\end{exercise}
+
+\begin{exercise}
+Why is the midpoint subdivision needed in the proof of Theorem~\ref{thm:fold-exists}? Give a decomposition without it for which $F_1\cap F_2$ is too large.
+\end{exercise}
+
+\begin{exercise}
+Show that the map $g$ of Theorem~\ref{thm:ho8} cannot in general be chosen with $\varphi\circ g=f$, even for $X=\I$ and $f$ the identity of $G=\I$.
+\end{exercise}

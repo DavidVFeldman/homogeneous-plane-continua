@@ -1,0 +1,61 @@
+census-batch48b: is the landmark sentence sufficient for FoldsOnto?
+walks tested: 54; exhaustive over 1-Lipschitz arms in [0,9] of length <= 13,
+then 50000 random arms of length <= 60 per walk (seed 48).
+
+walk  0: 3 4 5 6 5 4 3 2 1   (1 landmarks)  arms 1993727, folding 1063832; meeting the criterion 1063832, of which folding 1063832, FAILING 0; folding without the criterion 0
+walk  1: 3 4 5 6 5 4 3 2 1 2 3 4 5 6 7 8   (2 landmarks)  arms 1993727, folding 1064933; meeting the criterion 1064933, of which folding 1064933, FAILING 0; folding without the criterion 0
+           [this is the three-leg walk: arms based at L+4 meeting the general sentence but not (Leg3Valley and Leg3Ceil): 3596; meeting (Leg3Valley and Leg3Ceil) but not the general sentence: 0]
+walk  2: 3 2 1 2 3 4 5 6   (1 landmarks)  arms 1993727, folding 1069113; meeting the criterion 1069113, of which folding 1069113, FAILING 0; folding without the criterion 0
+walk  3: 3 2 1 2 3 4 5 6 5 4 3 2 1 0   (2 landmarks)  arms 1993727, folding 1069120; meeting the criterion 1069120, of which folding 1069120, FAILING 0; folding without the criterion 0
+walk  4: 3 2 1 0 1 2 3 4 5 6 5 4 3 2   (2 landmarks)  arms 1993727, folding 879608; meeting the criterion 879608, of which folding 879608, FAILING 0; folding without the criterion 0
+walk  5: 3 4 5 6 5 4 3 2 3 4 5 6 7 8 9   (2 landmarks)  arms 1993727, folding 1047057; meeting the criterion 1047057, of which folding 1047057, FAILING 0; folding without the criterion 0
+walk  6: 3 4 5 6 7 6 5 4 3 2 1   (1 landmarks)  arms 1993727, folding 1128696; meeting the criterion 1128696, of which folding 1128696, FAILING 0; folding without the criterion 0
+walk  7: 3 4 5 6 7 6 5 4 3 2 1 2 3 4 5 6 7 8   (2 landmarks)  arms 1993727, folding 1129269; meeting the criterion 1129269, of which folding 1129269, FAILING 0; folding without the criterion 0
+walk  8: 3 2 1 2 3 4 5 6 7   (1 landmarks)  arms 1993727, folding 1081567; meeting the criterion 1081567, of which folding 1081567, FAILING 0; folding without the criterion 0
+walk  9: 3 2 1 2 3 4 5 6 7 6 5 4 3 2 1 0   (2 landmarks)  arms 1993727, folding 1081561; meeting the criterion 1081561, of which folding 1081561, FAILING 0; folding without the criterion 0
+walk 10: 3 2 1 0 1 2 3 4 5 6 7 6 5 4 3 2   (2 landmarks)  arms 1993727, folding 881650; meeting the criterion 881650, of which folding 881650, FAILING 0; folding without the criterion 0
+walk 11: 3 4 5 6 7 6 5 4 3 2 3 4 5 6 7 8 9   (2 landmarks)  arms 1993727, folding 1125775; meeting the criterion 1125775, of which folding 1125775, FAILING 0; folding without the criterion 0
+walk 12: 3 4 5 6 7 8 7 6 5 4 3 2 1   (1 landmarks)  arms 1993727, folding 1184644; meeting the criterion 1184644, of which folding 1184644, FAILING 0; folding without the criterion 0
+walk 13: 3 4 5 6 7 8 7 6 5 4 3 2 1 2 3 4 5 6 7 8   (2 landmarks)  arms 1993727, folding 1184753; meeting the criterion 1184753, of which folding 1184753, FAILING 0; folding without the criterion 0
+walk 14: 3 2 1 2 3 4 5 6 7 8   (1 landmarks)  arms 1993727, folding 1088737; meeting the criterion 1088737, of which folding 1088737, FAILING 0; folding without the criterion 0
+walk 15: 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1 0   (2 landmarks)  arms 1993727, folding 1088720; meeting the criterion 1088720, of which folding 1088720, FAILING 0; folding without the criterion 0
+walk 16: 3 2 1 0 1 2 3 4 5 6 7 8 7 6 5 4 3 2   (2 landmarks)  arms 1993727, folding 884450; meeting the criterion 884450, of which folding 884450, FAILING 0; folding without the criterion 0
+walk 17: 3 4 5 6 7 8 7 6 5 4 3 2 3 4 5 6 7 8 9   (2 landmarks)  arms 1993727, folding 1182922; meeting the criterion 1182922, of which folding 1182922, FAILING 0; folding without the criterion 0
+walk 18: 4 5 6 5 4 3 2 1   (1 landmarks)  arms 2142566, folding 1059103; meeting the criterion 1059103, of which folding 1059103, FAILING 0; folding without the criterion 0
+walk 19: 4 5 6 5 4 3 2 1 2 3 4 5 6 7 8   (2 landmarks)  arms 2142566, folding 1060410; meeting the criterion 1060410, of which folding 1060410, FAILING 0; folding without the criterion 0
+walk 20: 4 3 2 1 2 3 4 5 6   (1 landmarks)  arms 2142566, folding 1071174; meeting the criterion 1071174, of which folding 1071174, FAILING 0; folding without the criterion 0
+walk 21: 4 3 2 1 2 3 4 5 6 5 4 3 2 1 0   (2 landmarks)  arms 2142566, folding 1071007; meeting the criterion 1071007, of which folding 1071007, FAILING 0; folding without the criterion 0
+walk 22: 4 3 2 1 0 1 2 3 4 5 6 5 4 3 2   (2 landmarks)  arms 2142566, folding 1022710; meeting the criterion 1022710, of which folding 1022710, FAILING 0; folding without the criterion 0
+walk 23: 4 5 6 5 4 3 2 3 4 5 6 7 8 9   (2 landmarks)  arms 2142566, folding 1026669; meeting the criterion 1026669, of which folding 1026669, FAILING 0; folding without the criterion 0
+walk 24: 4 5 6 7 6 5 4 3 2 1   (1 landmarks)  arms 2142566, folding 1068018; meeting the criterion 1068018, of which folding 1068018, FAILING 0; folding without the criterion 0
+walk 25: 4 5 6 7 6 5 4 3 2 1 2 3 4 5 6 7 8   (2 landmarks)  arms 2142566, folding 1068458; meeting the criterion 1068458, of which folding 1068458, FAILING 0; folding without the criterion 0
+walk 26: 4 3 2 1 2 3 4 5 6 7   (1 landmarks)  arms 2142566, folding 1076664; meeting the criterion 1076664, of which folding 1076664, FAILING 0; folding without the criterion 0
+walk 27: 4 3 2 1 2 3 4 5 6 7 6 5 4 3 2 1 0   (2 landmarks)  arms 2142566, folding 1076654; meeting the criterion 1076654, of which folding 1076654, FAILING 0; folding without the criterion 0
+walk 28: 4 3 2 1 0 1 2 3 4 5 6 7 6 5 4 3 2   (2 landmarks)  arms 2142566, folding 1023873; meeting the criterion 1023873, of which folding 1023873, FAILING 0; folding without the criterion 0
+walk 29: 4 5 6 7 6 5 4 3 2 3 4 5 6 7 8 9   (2 landmarks)  arms 2142566, folding 1061284; meeting the criterion 1061284, of which folding 1061284, FAILING 0; folding without the criterion 0
+walk 30: 4 5 6 7 8 7 6 5 4 3 2 1   (1 landmarks)  arms 2142566, folding 1137450; meeting the criterion 1137450, of which folding 1137450, FAILING 0; folding without the criterion 0
+walk 31: 4 5 6 7 8 7 6 5 4 3 2 1 2 3 4 5 6 7 8   (2 landmarks)  arms 2142566, folding 1137662; meeting the criterion 1137662, of which folding 1137662, FAILING 0; folding without the criterion 0
+walk 32: 4 3 2 1 2 3 4 5 6 7 8   (1 landmarks)  arms 2142566, folding 1080667; meeting the criterion 1080667, of which folding 1080667, FAILING 0; folding without the criterion 0
+walk 33: 4 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1 0   (2 landmarks)  arms 2142566, folding 1080672; meeting the criterion 1080672, of which folding 1080672, FAILING 0; folding without the criterion 0
+walk 34: 4 3 2 1 0 1 2 3 4 5 6 7 8 7 6 5 4 3 2   (2 landmarks)  arms 2142566, folding 1025674; meeting the criterion 1025674, of which folding 1025674, FAILING 0; folding without the criterion 0
+walk 35: 4 5 6 7 8 7 6 5 4 3 2 3 4 5 6 7 8 9   (2 landmarks)  arms 2142566, folding 1135139; meeting the criterion 1135139, of which folding 1135139, FAILING 0; folding without the criterion 0
+walk 36: 5 6 5 4 3 2 1   (1 landmarks)  arms 2142566, folding 1140310; meeting the criterion 1140310, of which folding 1140310, FAILING 0; folding without the criterion 0
+walk 37: 5 6 5 4 3 2 1 2 3 4 5 6 7 8   (2 landmarks)  arms 2142566, folding 1142579; meeting the criterion 1142579, of which folding 1142579, FAILING 0; folding without the criterion 0
+walk 38: 5 4 3 2 1 2 3 4 5 6   (1 landmarks)  arms 2142566, folding 1132876; meeting the criterion 1132876, of which folding 1132876, FAILING 0; folding without the criterion 0
+walk 39: 5 4 3 2 1 2 3 4 5 6 5 4 3 2 1 0   (2 landmarks)  arms 2142566, folding 1133139; meeting the criterion 1133139, of which folding 1133139, FAILING 0; folding without the criterion 0
+walk 40: 5 4 3 2 1 0 1 2 3 4 5 6 5 4 3 2   (2 landmarks)  arms 2142566, folding 1127190; meeting the criterion 1127190, of which folding 1127190, FAILING 0; folding without the criterion 0
+walk 41: 5 6 5 4 3 2 3 4 5 6 7 8 9   (2 landmarks)  arms 2142566, folding 1091954; meeting the criterion 1091954, of which folding 1091954, FAILING 0; folding without the criterion 0
+walk 42: 5 6 7 6 5 4 3 2 1   (1 landmarks)  arms 2142566, folding 1069311; meeting the criterion 1069311, of which folding 1069311, FAILING 0; folding without the criterion 0
+walk 43: 5 6 7 6 5 4 3 2 1 2 3 4 5 6 7 8   (2 landmarks)  arms 2142566, folding 1070006; meeting the criterion 1070006, of which folding 1070006, FAILING 0; folding without the criterion 0
+walk 44: 5 4 3 2 1 2 3 4 5 6 7   (1 landmarks)  arms 2142566, folding 1135374; meeting the criterion 1135374, of which folding 1135374, FAILING 0; folding without the criterion 0
+walk 45: 5 4 3 2 1 2 3 4 5 6 7 6 5 4 3 2 1 0   (2 landmarks)  arms 2142566, folding 1135260; meeting the criterion 1135260, of which folding 1135260, FAILING 0; folding without the criterion 0
+walk 46: 5 4 3 2 1 0 1 2 3 4 5 6 7 6 5 4 3 2   (2 landmarks)  arms 2142566, folding 1127874; meeting the criterion 1127874, of which folding 1127874, FAILING 0; folding without the criterion 0
+walk 47: 5 6 7 6 5 4 3 2 3 4 5 6 7 8 9   (2 landmarks)  arms 2142566, folding 1055816; meeting the criterion 1055816, of which folding 1055816, FAILING 0; folding without the criterion 0
+walk 48: 5 6 7 8 7 6 5 4 3 2 1   (1 landmarks)  arms 2142566, folding 1080699; meeting the criterion 1080699, of which folding 1080699, FAILING 0; folding without the criterion 0
+walk 49: 5 6 7 8 7 6 5 4 3 2 1 2 3 4 5 6 7 8   (2 landmarks)  arms 2142566, folding 1080676; meeting the criterion 1080676, of which folding 1080676, FAILING 0; folding without the criterion 0
+walk 50: 5 4 3 2 1 2 3 4 5 6 7 8   (1 landmarks)  arms 2142566, folding 1137680; meeting the criterion 1137680, of which folding 1137680, FAILING 0; folding without the criterion 0
+walk 51: 5 4 3 2 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1 0   (2 landmarks)  arms 2142566, folding 1137767; meeting the criterion 1137767, of which folding 1137767, FAILING 0; folding without the criterion 0
+walk 52: 5 4 3 2 1 0 1 2 3 4 5 6 7 8 7 6 5 4 3 2   (2 landmarks)  arms 2142566, folding 1129204; meeting the criterion 1129204, of which folding 1129204, FAILING 0; folding without the criterion 0
+walk 53: 5 6 7 8 7 6 5 4 3 2 3 4 5 6 7 8 9   (2 landmarks)  arms 2142566, folding 1076547; meeting the criterion 1076547, of which folding 1076547, FAILING 0; folding without the criterion 0
+
+total: arms 113019462, meeting the criterion 58523957, counterexamples 0 (walks with a counterexample: 0 of 54)

@@ -1,0 +1,59 @@
+=== the extreme break, whole (witness-batch71.txt) ===
+the witness: 1106 links, basepoint 104, the w8 side is the backward arm
+  levels run from 0 to 9
+  IsCrookedIvF: True (faithful)
+  rho i = 5; the band is [0, 9]
+  arm lengths: forward 1002, backward 105
+  LowAt on the forward arm: True; on the backward arm: True
+  w8: forward False, backward True
+  wb: forward True, backward False
+  w3: forward True, backward False
+  a crossing of the trichotomy (no one of the three serves both arms): True
+  the w8 side is the backward arm; it is deep first at 2: False (so it runs high: True)
+  its first ascent to 9 is at arm index 104, and it has nothing at 2 or below before it: True
+  THE DISTANCE, on the partner's side of the basepoint:
+    nearest time at 2 or below: 185 steps (NearLowT asks for 67)  -> FAILS
+    nearest time at 1 or below: 424 steps (the second reading asks for 166) -> FAILS
+    nearest time at the floor:  1001 steps (the third reading asks for 405) -> FAILS
+    NearLowBandT (the disjunction of the three readings): False
+  the conclusion the reading was for: Ceil72 on the running arm: True; on the partner: True
+  Deep72 on the running arm: True; on the partner: True
+  w72 = (7,2,5) on the forward arm: True; on the backward arm: True
+  the Ceil72 landmarks on the running arm: peak at arm index 29 (level 6), valley at 34 (level 3), ascent at 104
+    the valley is the valley of the reading from level 5 at -36 to level 2 at +185 (span 221)
+    the peak is the peak of the reading from level 4 at -31 to level 7 at -22 (span 9)
+  walks of the four-leg family serving both arms: 4
+    direct P=5 K=7 M=2 : (4, 7, 2, 8, 1)
+    direct P=5 K=7 M=3 : (4, 7, 3, 8, 1)
+    direct P=6 K=7 M=2 : (5, 7, 2, 8, 1)
+    direct P=6 K=7 M=3 : (5, 7, 3, 8, 1)
+
+=== its smallest breaking window (witness-batch71-min.txt), the pair of HPC/Fold/Audit71.lean ===
+the witness: 290 links, basepoint 104, the w8 side is the backward arm
+  levels run from 2 to 9
+  IsCrookedIvF: True (faithful)
+  rho i = 5; the band is [2, 9]
+  arm lengths: forward 186, backward 105
+  LowAt on the forward arm: True; on the backward arm: True
+  w8: forward False, backward True
+  wb: forward True, backward False
+  w3: forward True, backward False
+  a crossing of the trichotomy (no one of the three serves both arms): True
+  the w8 side is the backward arm; it is deep first at 2: False (so it runs high: True)
+  its first ascent to 9 is at arm index 104, and it has nothing at 2 or below before it: True
+  THE DISTANCE, on the partner's side of the basepoint:
+    nearest time at 2 or below: 185 steps (NearLowT asks for 67)  -> FAILS
+    nearest time at 1 or below: None steps (the second reading asks for 166) -> FAILS
+    nearest time at the floor:  None steps (the third reading asks for 405) -> FAILS
+    NearLowBandT (the disjunction of the three readings): False
+  the conclusion the reading was for: Ceil72 on the running arm: True; on the partner: True
+  Deep72 on the running arm: True; on the partner: True
+  w72 = (7,2,5) on the forward arm: True; on the backward arm: True
+  the Ceil72 landmarks on the running arm: peak at arm index 29 (level 6), valley at 34 (level 3), ascent at 104
+    the valley is the valley of the reading from level 5 at -36 to level 2 at +185 (span 221)
+    the peak is the peak of the reading from level 4 at -31 to level 7 at -22 (span 9)
+  walks of the four-leg family serving both arms: 4
+    direct P=5 K=7 M=2 : (4, 7, 2, 8, 1)
+    direct P=5 K=7 M=3 : (4, 7, 3, 8, 1)
+    direct P=6 K=7 M=2 : (5, 7, 2, 8, 1)
+    direct P=6 K=7 M=3 : (5, 7, 3, 8, 1)

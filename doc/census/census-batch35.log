@@ -1,0 +1,119 @@
+census for batch 35 -- the cut route; spans 6 .. 12
+
+===== 1. the commissioned CutData is empty =====
+  Every contiguous subchain [lo,hi] of bing 0 n of span >= 3 is taken as an
+  ambient, with L,H its own band; a runs over its bottom indices and b over
+  the later top indices; r over (a,b) with rho r >= H-1 (atR) and r' over
+  (r,b) with rho r' <= L+1 (atR').  Counted: those quadruples, and how many
+  of them satisfy bandA (rho <= H-2 on [a,r]) and bandB (rho >= L+2 on
+  [r,r']).
+  span  6 (71 links): 2046 ambients, 66258 crossing quadruples; with bandA 0; with bandB 0; CutData 0
+  span  7 (170 links): 13283 ambients, 654535 crossing quadruples; with bandA 0; with bandB 0; CutData 0
+  span  8 (409 links): 80801 ambients, 5705345 crossing quadruples; with bandA 0; with bandB 0; CutData 0
+  (the clash is local: at r, atR asks for >= H-1 and bandA for <= H-2;
+   at r', atR' asks for <= L+1 and bandB for >= L+2.  Hence `not_cutData`.)
+
+===== 2. the corrected cut CutData' =====
+  Every contiguous subchain [lo,hi] of span >= 3 is an ambient with its own
+  band [L,H]; a is a bottom index of it and b a later top index; r is the
+  first index after a at level >= H-2 and r' the first after r at level
+  <= L+1.  Measured: whether the level at r is exactly H-2 (the corrected
+  atR) and at r' at most L+1, whether the order a < r < r' < b holds, and
+  whether the two stretches are strictly inside [L,H] at both ends.
+  span  6 (71 links): 1782 cuts; rho r = H-2 in 1782, >= H-1 in 0; rho r' <= L+1 in 1782; order wrong in 0
+            [a,r]  above L: 0   below H: 1782   both: 0   (a,r] above L: 1737
+            [r,r'] above L: 1735   below H: 1782   both: 1735   (r,r') below H: 1782
+  span  7 (170 links): 11366 cuts; rho r = H-2 in 11366, >= H-1 in 0; rho r' <= L+1 in 11366; order wrong in 0
+            [a,r]  above L: 0   below H: 11366   both: 0   (a,r] above L: 10947
+            [r,r'] above L: 11261   below H: 11366   both: 11261   (r,r') below H: 11366
+  span  8 (409 links): 68593 cuts; rho r = H-2 in 68593, >= H-1 in 0; rho r' <= L+1 in 68593; order wrong in 0
+            [a,r]  above L: 0   below H: 68593   both: 0   (a,r] above L: 65837
+            [r,r'] above L: 68360   below H: 68593   both: 68360   (r,r') below H: 68593
+  span  9 (986 links): 405411 cuts; rho r = H-2 in 405411, >= H-1 in 0; rho r' <= L+1 in 405411; order wrong in 0
+            [a,r]  above L: 0   below H: 405411   both: 0   (a,r] above L: 388626
+            [r,r'] above L: 404881   below H: 405411   both: 404881   (r,r') below H: 405411
+  span 10 (2379 links): 2376400 cuts; rho r = H-2 in 2376400, >= H-1 in 0; rho r' <= L+1 in 2376400; order wrong in 0
+            [a,r]  above L: 0   below H: 2376400   both: 0   (a,r] above L: 2276991
+            [r,r'] above L: 2375165   below H: 2376400   both: 2375165   (r,r') below H: 2376400
+  [a,r] contains a, whose level is L exactly, so its band is never strictly
+  inside [L,H]; the append lemma does not apply to it
+  (`cut_stretchA_no_extension`).
+
+===== 3. the gate: a walk built from the cut, at every interior basepoint =====
+  a = last bottom index at or before i, b = first top index at or after i;
+  r, r' the first crossings; S the stretch of the cut containing i; C the
+  core of S (maximal subinterval containing i avoiding the levels L and H).
+  existence: some member of C's free family folds both C-arms at i.
+  SOME / EVERY: some / every such member's extension by the two outer legs
+  folds both whole arms at i (EVERY also demands the oriented extension be
+  a member of the free family of [L,H]).
+
+  span  6: 71 links, 25 interior basepoints, 3 distinct cores
+    the basepoint lies in stretch [a,r] 3 times, [r,r'] 2, [r',b] 20; no usable cut 0; core too narrow 0
+    mean core span 3.80
+    existence (some member folds both core arms): 25 served, 0 unserved
+    SOME  (a serving member extends to fold both whole arms): 24/25
+    EVERY (all serving members extend, oriented, in the family): 13/25
+    serving members whose oriented extension is NOT in the family of [L,H]: 0
+    first SOME failure at basepoint 65 (level 3), core [17,69] band [1,5]: no member of the core's family extends to fold both whole arms
+    first EVERY failure at basepoint 5 (level 3), core [1,12] band [1,4]: [2, 3, 2]
+
+  span  7: 170 links, 104 interior basepoints, 3 distinct cores
+    the basepoint lies in stretch [a,r] 14 times, [r,r'] 8, [r',b] 82; no usable cut 0; core too narrow 0
+    mean core span 4.79
+    existence (some member folds both core arms): 104 served, 0 unserved
+    SOME  (a serving member extends to fold both whole arms): 98/104
+    EVERY (all serving members extend, oriented, in the family): 64/104
+    serving members whose oriented extension is NOT in the family of [L,H]: 0
+    first SOME failure at basepoint 5 (level 3), core [1,29] band [1,5]: no member of the core's family extends to fold both whole arms
+    first EVERY failure at basepoint 5 (level 3), core [1,29] band [1,5]: [2, 4, 2]
+
+  span  8: 409 links, 319 interior basepoints, 3 distinct cores
+    the basepoint lies in stretch [a,r] 47 times, [r,r'] 24, [r',b] 248; no usable cut 0; core too narrow 0
+    mean core span 5.78
+    existence (some member folds both core arms): 319 served, 0 unserved
+    SOME  (a serving member extends to fold both whole arms): 296/319
+    EVERY (all serving members extend, oriented, in the family): 204/319
+    serving members whose oriented extension is NOT in the family of [L,H]: 0
+    first SOME failure at basepoint 5 (level 3), core [1,70] band [1,6]: no member of the core's family extends to fold both whole arms
+    first EVERY failure at basepoint 5 (level 3), core [1,70] band [1,6]: [2, 5, 2]
+
+  span  9: 986 links, 868 interior basepoints, 3 distinct cores
+    the basepoint lies in stretch [a,r] 136 times, [r,r'] 64, [r',b] 668; no usable cut 0; core too narrow 0
+    mean core span 6.77
+    existence (some member folds both core arms): 868 served, 0 unserved
+    SOME  (a serving member extends to fold both whole arms): 797/868
+    EVERY (all serving members extend, oriented, in the family): 584/868
+    serving members whose oriented extension is NOT in the family of [L,H]: 0
+    first SOME failure at basepoint 5 (level 3), core [1,169] band [1,7]: no member of the core's family extends to fold both whole arms
+    first EVERY failure at basepoint 5 (level 3), core [1,169] band [1,7]: [2, 6, 2]
+
+  span 10: 2379 links, 2229 interior basepoints, 3 distinct cores
+    the basepoint lies in stretch [a,r] 363 times, [r,r'] 162, [r',b] 1704; no usable cut 0; core too narrow 0
+    mean core span 7.76
+    existence (some member folds both core arms): 2229 served, 0 unserved
+    SOME  (a serving member extends to fold both whole arms): 2026/2229
+    EVERY (all serving members extend, oriented, in the family): 1523/2229
+    serving members whose oriented extension is NOT in the family of [L,H]: 0
+    first SOME failure at basepoint 5 (level 3), core [1,408] band [1,8]: no member of the core's family extends to fold both whole arms
+    first EVERY failure at basepoint 5 (level 3), core [1,408] band [1,8]: [2, 7, 2]
+
+  span 11: 5742 links, 5556 interior basepoints, 3 distinct cores
+    the basepoint lies in stretch [a,r] 926 times, [r,r'] 400, [r',b] 4230; no usable cut 0; core too narrow 0
+    mean core span 8.76
+    existence (some member folds both core arms): 5556 served, 0 unserved
+    SOME  (a serving member extends to fold both whole arms): 5011/5556
+    EVERY (all serving members extend, oriented, in the family): 3887/5556
+    serving members whose oriented extension is NOT in the family of [L,H]: 0
+    first SOME failure at basepoint 5 (level 3), core [1,985] band [1,9]: no member of the core's family extends to fold both whole arms
+    first EVERY failure at basepoint 5 (level 3), core [1,985] band [1,9]: [2, 8, 2]
+
+  span 12: 13861 links, 13635 interior basepoints, 3 distinct cores
+    the basepoint lies in stretch [a,r] 2303 times, [r,r'] 976, [r',b] 10356; no usable cut 0; core too narrow 0
+    mean core span 9.76
+    existence (some member folds both core arms): 13635 served, 0 unserved
+    SOME  (a serving member extends to fold both whole arms): 12239/13635
+    EVERY (all serving members extend, oriented, in the family): 9657/13635
+    serving members whose oriented extension is NOT in the family of [L,H]: 0
+    first SOME failure at basepoint 5 (level 3), core [1,2378] band [1,10]: no member of the core's family extends to fold both whole arms
+    first EVERY failure at basepoint 5 (level 3), core [1,2378] band [1,10]: [2, 9, 2]

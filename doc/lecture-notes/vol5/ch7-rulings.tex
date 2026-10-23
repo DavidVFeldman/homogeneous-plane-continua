@@ -1,0 +1,300 @@
+%======================================================================
+\chapter{Double rulings and Moore's Theorem D}\label{ch:rulings}
+%======================================================================
+
+Moore's 1919 paper \emph{Concerning a set of postulates for plane analysis situs} proves that a space
+satisfying Axioms~1--8 is a plane. Its device is the \emph{double ruling}: a grid of arcs across a
+``quadrilateral'' (a closed curve with four marked points), dividing its interior into cells. Theorem~D says
+that the interior of a quadrilateral can be ruled so finely that every cell lies inside some member of a given
+cover. This chapter proves Theorem~D; Chapter~\ref{ch:plane} uses it to build coordinates.
+
+The formal proof of Theorem~D takes a route different from Moore's: his Theorem~C, on which his proof rests, is
+false as printed, and the formal proof goes through a corrected Theorem~C for curves that cross the quadrilateral
+transversally.
+
+Throughout, $S$ satisfies Axioms~1--8, and we use the results of Chapter~\ref{ch:curves} freely.
+
+\section{Quadrilaterals and double rulings}
+
+\begin{definition}\label{def:quad}
+A \emph{quadrilateral} $ABCDA$ is a closed curve $J$ with interior $I$ and four points $A,B,C,D$ on it,
+dividing $J$ into four arcs, the \emph{sides} $AB$, $BC$, $CD$, $DA$; consecutive sides meet only in their
+common vertex, and opposite sides are disjoint.
+\end{definition}
+
+\formal{\lean{HPC.Moore.Space.Quad}.}
+
+\begin{definition}\label{def:double-ruling}
+A \emph{double ruling} of the quadrilateral $ABCDA$ with $n$ and $m$ arcs consists of
+\begin{itemize}
+\item points $X_1,\dots,X_n$ on $AB$ and $X_1',\dots,X_n'$ on $DC$, in the orders $A,X_1,\dots,X_n,B$ and
+$D,X_1',\dots,X_n',C$, and pairwise disjoint arcs $X_iX_i'$ with open parts in $I$;
+\item points $Y_1,\dots,Y_m$ on $BC$ and $Y_1',\dots,Y_m'$ on $AD$, in the orders $B,Y_1,\dots,Y_m,C$ and
+$A,Y_1',\dots,Y_m',D$, and pairwise disjoint arcs $Y_jY_j'$ with open parts in $I$;
+\item each $X_iX_i'$ meets each $Y_jY_j'$ in exactly one point.
+\end{itemize}
+Its \emph{subdivisions} (cells) are the components of $I$ minus the union of the arcs.
+\end{definition}
+
+\formal{\lean{HPC.Moore.Space.DoubleRuling}, \lean{HPC.Moore.Space.DoubleRuling.carrier},
+\lean{HPC.Moore.Space.DoubleRuling.cells}.}
+
+Moore's definition (footnote of p.~172) uses the same number $n$ of arcs in both directions and does not
+require the $Y$-arcs to be disjoint. Allowing $n\ne m$ is a convenience only (a ruling can be padded to
+$\max(n,m)$ arcs in each direction, \lean{HPC.Moore.doubleRuling_pad}); disjointness of the $Y$-arcs is needed.
+
+It is often more convenient to forget the indexing: an \emph{arc ruling} is a pair $(\mathcal X,\mathcal Y)$ of finite
+sets of arcs, the arcs of $\mathcal X$ pairwise disjoint from $AB$ to $CD$, those of $\mathcal Y$ pairwise disjoint from $BC$
+to $DA$, all with open parts in $I$ and ends on the open sides, each arc of $\mathcal X$ meeting each arc of $\mathcal Y$ in
+exactly one point. Indexing the arcs of $\mathcal X$ by the order of their ends on $AB$, their ends on $DC$ come in the same
+order (an arc starting after $x$ on $AB$ lies in the half cut off by $x$ that contains $B$, so it ends after $x$ on $DC$);
+so arc rulings are double rulings up to indexing.
+
+\formal{\lean{HPC.Moore.Space.ArcRuling}, \lean{HPC.Moore.Space.ArcRuling.toDoubleRuling},
+\lean{HPC.Moore.Space.DoubleRuling.toArcRuling}, \lean{HPC.Moore.Space.ArcRuling.param_mono}.}
+
+\section{Counting the cells}
+
+\begin{definition}\label{def:tiling}
+Let $U$ be open and $F$ closed. A \emph{tiling} of $U$ relative to $F$ is a finite family of pairwise disjoint
+interiors of closed curves lying on $F$ whose union is $U\setminus F$.
+\end{definition}
+
+\begin{lemma}\label{lem:tiling}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item If $\mathcal T$ is a tiling of $U$ relative to $F$, and $\alpha$ is an arc whose ends lie on $F$ and whose open
+part lies in $U\setminus F$, then splitting the tile containing $\oarc\alpha$ (Corollary~\ref{cor:split-interior}) gives a tiling
+relative to $F\cup\alpha$ with one more tile.
+\item More generally, if $\alpha$ meets $F$ in exactly $k$ points, its ends among them, and the rest of $\alpha$ lies in
+$U$, adding $\alpha$ adds $k-1$ tiles.
+\item The tiles of a tiling are exactly the components of $U\setminus F$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) The tile $T=I(K)$ containing the connected set $\oarc\alpha$ has $\alpha$ as a cross-cut (its ends are on $F$, and lie on
+$K=\fr T$ since $\oarc\alpha\subseteq T$ and the ends are not in any tile); Corollary~\ref{cor:split-interior} splits $T\setminus\alpha$
+into two interiors of closed curves on $K\cup\alpha$. (b) Cut $\alpha$ at its $k$ points on $F$ into $k-1$ sub-arcs and apply (a)
+to each in turn. (c) Each tile is connected and open, and the tiles are disjoint with union $U\setminus F$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.Space.Tiling}, \lean{HPC.Moore.Space.Tiling.add_arc}, \lean{HPC.Moore.Space.Tiling.add_arc_finite}, \lean{HPC.Moore.Space.Tiling.components}.}
+
+\begin{proposition}[Subdivision lemma]\label{prop:cells-count}
+A double ruling with $n$ and $m$ arcs has exactly $(n+1)(m+1)$ subdivisions, each the interior of a closed curve lying on
+$J$ and the arcs.
+\end{proposition}
+
+\begin{proof}
+Start from the tiling $\set I$ of $I$ relative to $J$. Each arc $X_iX_i'$ meets $J$ and the previous $X$-arcs only in its two
+ends, so it adds one tile; after the $X$-arcs there are $n+1$ tiles. Each arc $Y_jY_j'$ meets $J$, the $X$-arcs and the previous
+$Y$-arcs in exactly $n+2$ points (its ends and its crossings with the $n$ arcs $X_i$), so it adds $n+1$ tiles. The total is
+$1+n+m(n+1)=(n+1)(m+1)$, and by Lemma~\ref{lem:tiling}(c) the tiles are the subdivisions.
+\end{proof}
+
+\formal{\lean{HPC.Moore.Space.DoubleRuling.tiling}, \lean{HPC.Moore.doubleRuling_cells_ncard}.}
+
+\section{Cutting, gluing, extending and refining}
+
+An arc $x=XX'$ from a point $X$ of the open side $AB$ to a point $X'$ of the open side $CD$, with open part in $I$, cuts $ABCDA$
+into the two quadrilaterals $AXX'DA$ and $XBCX'X$: by Corollary~\ref{cor:split-interior}, $I\setminus x$ is the disjoint union of
+their interiors. Rotating the labels ($ABCDA\mapsto BCDAB$) gives the same for arcs from $BC$ to $DA$.
+
+\formal{\lean{HPC.Moore.Space.Quad.splitX}, \lean{HPC.Moore.Space.Quad.rot}, \lean{HPC.Moore.Space.Quad.Cut}.}
+
+\begin{lemma}[Cut and glue]\label{lem:cut-glue}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item A ruling containing the arc $x$ restricts to rulings of the two halves (the $Y$-arcs are cut at their crossing with $x$), and
+off $x$ its arcs are those of the restricted rulings.
+\item Conversely, if each half carries a ruling and the $Y$-arcs of the two halves end on $x$ at the same points, the $X$-arcs of both
+halves together with $x$, and the unions of the $Y$-arcs meeting on $x$, form a ruling of $ABCDA$.
+\item \emph{(Extension.)} Through every point $P$ of the open side $BC$ not on a $Y$-arc of a ruling $(\mathcal X,\mathcal Y)$ there is an arc
+$y$ from $BC$ to $DA$ such that $(\mathcal X,\mathcal Y\cup\set y)$ is a ruling. Hence any finite set of points of the open side $BC$ can be
+made ends of $Y$-arcs.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) and (b) are bookkeeping with Corollary~\ref{cor:split-interior}. (c) Induction on the number of arcs. With no arcs,
+Theorem~\ref{thm:fa39-40}(b) (in the form: a point of $J$ is joined to a point of the opposite side by an arc with open part in $I$) gives
+$y$. Otherwise cut along an arc $x\in\mathcal X$ (or, if $\mathcal X=\emptyset$, along an arc of $\mathcal Y$, after rotating), extend in the half
+containing $P$, then in the other half from the point where the new arc reached $x$, and glue by (b).
+\end{proof}
+
+\formal{\lean{HPC.Moore.Space.Quad.Cut.restrictA}, \lean{HPC.Moore.Space.Quad.Cut.restrictB},
+\lean{HPC.Moore.Space.Quad.Cut.glue}, \lean{HPC.Moore.Space.ArcRuling.extendY},
+\lean{HPC.Moore.Space.ArcRuling.extendY_finite}.}
+
+\begin{definition}
+Let $\mathrm{Good}$ be a property of subsets of $S$ inherited by subsets. A quadrilateral is \emph{rulable for Good} if it has a
+double ruling all of whose subdivisions have property Good.
+\end{definition}
+
+\formal{\lean{HPC.Moore.Space.Rulable}, \lean{HPC.Moore.Space.DoubleRulable}.}
+
+\begin{proposition}[Refinement]\label{prop:refine}
+Let $(\mathcal X,\mathcal Y)$ be a ruling of $ABCDA$ such that every subdivision, made into a quadrilateral in any way, is rulable for
+Good. Then $ABCDA$ has a ruling $(\mathcal X',\mathcal Y')$ with $\mathcal X\subseteq\mathcal X'$, $\mathcal Y\subseteq\mathcal Y'$, all of whose
+subdivisions have property Good and lie in subdivisions of $(\mathcal X,\mathcal Y)$. In particular, if both halves of a cut are rulable for
+Good, so is $ABCDA$.
+\end{proposition}
+
+\begin{proof}
+Induction on the number of arcs. With no arcs the only subdivision is $I$ itself, rulable by hypothesis. Otherwise cut along an arc
+$x\in\mathcal X$ (or of $\mathcal Y$, after rotating), refine the two halves by induction, use the extension lemma
+(Lemma~\ref{lem:cut-glue}(c)) in each half to make the $Y$-arcs of the two halves end on $x$ at the same points (adding arcs keeps the
+subdivisions Good, since Good is inherited by subsets), and glue (Lemma~\ref{lem:cut-glue}(b)).
+\end{proof}
+
+\formal{\lean{HPC.Moore.Space.ArcRuling.refine}, \lean{HPC.Moore.doubleRuling_refine},
+\lean{HPC.Moore.Space.Quad.Cut.rulable}.}
+
+Moore uses this refinement twice without proof (``the arcs of these rulings may be extended in such a way that there will result a new
+double ruling $\tau_2$ of $ABCDA$ such that each arc of $\tau_1$ is also an arc of $\tau_2$'', pp.~175--176).
+
+\section{Theorem C}
+
+\begin{definition}\label{def:chord-quad}
+A \emph{chord} of $ABCDA$ is an arc with its ends on $J$, different from $A,B,C,D$, and its open part in $I$. A closed curve $h$
+\emph{touches $ABCDA$ from within} at a common point $P$ if $P$ is a common end of two arcs of $h$ meeting only in $P$ whose other
+points lie in $I$. It \emph{crosses} $ABCDA$ at $P$ if near $P$ it consists of an arc with one half in $I$ and the other in $E(J)$.
+\end{definition}
+
+\formal{\lean{HPC.Moore.Space.IsChord}, \lean{HPC.Moore.Space.Crosses}, \lean{HPC.Moore.Space.IsCrossCut}.}
+
+Moore's Theorem~C says: if $g$ is a closed curve meeting $ABCDA$ in finitely many points, none of them $A,B,C,D$, there is a double
+ruling of $ABCDA$ each of whose subdivisions lies within or without $g$. \emph{As printed it is false}: let $g$ be a closed curve lying,
+except for one point $P$ of the open side $AB$, within $ABCDA$ (in the plane: a circle inside a square, tangent to a side). Every point
+of $g$ within $ABCDA$ must lie on an arc of the ruling (a subdivision containing it would meet $\fr I(g)=g$); near $P$ the only arc of
+the ruling is the $X$-arc starting at $P$, if any; but $g$ leaves $P$ along two arcs within $ABCDA$ meeting only at $P$, which would both
+have to start along this single arc. The configuration exists in every space satisfying Axioms~1--8.
+
+\formal{\lean{HPC.Moore.no_ruling_of_two_branches}, \lean{HPC.Moore.tangent_configuration},
+\lean{HPC.Moore.not_m19_theoremC_printed}.}
+
+\begin{theorem}[Theorem~C, corrected]\label{thm:theoremC}
+Let $h$ be a closed curve meeting $J$ in finitely many points, none of them $A,B,C,D$, and touching $ABCDA$ from within at none of
+them. Then $ABCDA$ has a double ruling none of whose subdivisions meets $h$; so each subdivision lies within or without $h$.
+\end{theorem}
+
+The proof rests on two propositions.
+
+\begin{proposition}[Chords]\label{prop:chords-rulable}
+For every finite set $T$ of pairwise disjoint chords of $ABCDA$ there is a double ruling none of whose subdivisions meets a chord of $T$.
+\end{proposition}
+
+\begin{proof}[Proof (outline)]
+A chord $t$ with ends $a,b$ divides $I$ into the interiors of $t\cup C$ and $t\cup C'$, where $C,C'$ are the two arcs of $J$ from $a$ to
+$b$ (Corollary~\ref{cor:split-interior}); call the one whose arc of $J$ contains at most one vertex the \emph{pocket} of $t$ (for a chord
+not joining opposite sides there is one) and that arc its \emph{base}. Give a chord weight $1$ if it joins opposite sides, $3$ if both
+ends are on one side, and $2$ otherwise, and induct on the total weight. A chord joining opposite sides is itself an arc of a cut, and
+the chords of the two halves have smaller total weight. Otherwise take a chord $t$ with maximal pocket, with an end $a$ on $AB$ (after
+rotating); the bases of the maximal pockets are disjoint, so some point $d$ of the open side $CD$ lies on none of them; draw an arc $u$
+from a point $c$ of $t$ to $d$ through the region outside all pockets (which is the interior of a closed curve, by removing the pockets
+one at a time with Corollary~\ref{cor:split-interior}). Cut along $x=ac\cup u$: the remaining piece $cb$ of $t$ is a chord of one half of
+smaller weight, and the other chords are chords of the halves with the same weights. Rulings of the halves avoiding their chords glue
+(Proposition~\ref{prop:refine}) to a ruling of $ABCDA$ avoiding all chords.
+\end{proof}
+
+\formal{\lean{HPC.Moore.Space.Pocket}, \lean{HPC.Moore.chordWeight}, \lean{HPC.Moore.outer_tile},
+\lean{HPC.Moore.exists_gap}, \lean{HPC.Moore.chords_rulable}.}
+
+\begin{proposition}[A curve within]\label{prop:inside-rulable}
+If the closed curve $h$ lies in $I$, there is a double ruling none of whose subdivisions meets $h$.
+\end{proposition}
+
+\begin{proof}
+Build an arc $x$ from a point $P$ of the open side $AB$ to a point $H$ of the open side $CD$ out of an arc $Pa$ meeting $h$ only in $a$
+(Theorem~\ref{thm:fa39-40}), an arc $ab$ of $h$, and an arc $bH$ meeting $h$ only in $b$ and missing $Pa$ (drawn in $I\setminus Pa$,
+which is connected by Theorem~\ref{thm:fa33-34}). The other arc of $h$ from $a$ to $b$ is a chord of one half of the cut along $x$, and
+the other half meets $h$ nowhere. Apply Proposition~\ref{prop:chords-rulable} to the first half and glue.
+\end{proof}
+
+\formal{\lean{HPC.Moore.inside_rulable}.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:theoremC}]
+If $h$ meets $J$, the part of $h$ within $ABCDA$ lies on finitely many pairwise disjoint chords: write $h$ as the union of two arcs
+between two of the common points, cut them at the (finitely many) common points, and keep the pieces within $ABCDA$; two such pieces
+have no common point, since a common point would be an end of both and $h$ would touch $ABCDA$ from within there. By
+Proposition~\ref{prop:chords-rulable} some ruling has no subdivision meeting these chords, hence none meeting $h$ (subdivisions lie in
+$I$). If $h$ misses $J$, then $h\subseteq I$ (Proposition~\ref{prop:inside-rulable}) or $h\subseteq E(J)$ (the empty ruling: its only
+subdivision $I$ misses $h$).
+\end{proof}
+
+\formal{\lean{HPC.Moore.extract_chords}, \lean{HPC.Moore.curve_rulable}, \lean{HPC.Moore.m19_theoremC_corrected},
+\lean{HPC.Moore.m19_theoremC_crosscuts}, \lean{HPC.Moore.m19_theoremC_within}.}
+
+\section{Theorem D}
+
+\begin{proposition}[A nice curve about a compact set]\label{prop:nice-curve}
+Let $F$ be a compact subset of the interior $V$ of a closed curve. There is a closed curve $h$ with interior $W\supseteq F$, $h\cup
+W\subseteq V$, meeting $J$ in finitely many points, none of them $A,B,C,D$, and crossing $J$ at each of them.
+\end{proposition}
+
+\begin{proof}[Proof (outline)]
+Enlarge $F$ to a compact connected set $K\subseteq V$ (by arcs, Theorem~\ref{thm:fa15}). About each point $O$ of $K\cap J$ draw a
+\emph{lens}: a closed curve made of an arc within $J$ and an arc without $J$ with the same two ends $u,v$ on $J$, lying in $V$, whose
+interior contains an open arc of $J$ about $O$ (the inner and outer arcs by Theorem~\ref{thm:fa28}, the interior computed by
+Theorem~\ref{thm:fa27}); such a lens crosses $J$ at $u$ and $v$. Cover $K\cap J$ by finitely many lenses with all ends distinct, and the
+rest of $K$ by finitely many closed curves missing $J$ with interiors in $V$ (Theorem~\ref{thm:fa35-36}). The union of the interiors is
+connected (each meets the connected set $K$, which they cover), so Theorem~\ref{thm:fa42} merges these curves into one curve $h$ lying on
+their union, whose interior contains all of them. Near each of its points on $J$, $h$ lies on a single lens, so it crosses $J$ there.
+\end{proof}
+
+\formal{\lean{HPC.Moore.lens_data}, \lean{HPC.Moore.lens_family}, \lean{HPC.Moore.exists_nice_curve}.}
+
+A curve that crosses $J$ at a point does not touch it from within there (an arc ending at $P$ contains no two arcs from $P$ meeting only
+in $P$), so Theorem~\ref{thm:theoremC} applies to the curve of Proposition~\ref{prop:nice-curve}.
+
+\begin{theorem}[Moore 1919, Theorem~D]\label{thm:theoremD}
+If every point on or within the quadrilateral $ABCDA$ is within some curve of a set $\mathcal G$ of closed curves, then $ABCDA$ has a double
+ruling each of whose subdivisions lies within some curve of $\mathcal G$.
+\end{theorem}
+
+\begin{proof}
+By compactness of $J\cup I$, finitely many curves $g_1,\dots,g_k$ of $\mathcal G$ suffice; we induct on $k$, for all quadrilaterals at once,
+with Good the property ``lies within some curve of $\mathcal G$''. If $k=0$ then $J\cup I=\emptyset$, which is impossible; if $k\ge1$, let
+$F$ be the set of points of $J\cup I$ not within $g_2,\dots,g_k$. It is compact and lies within $g_1$. Let $h$, with interior $W$, be a
+nice curve about $F$ inside $I(g_1)$ (Proposition~\ref{prop:nice-curve}), and take, by Theorem~\ref{thm:theoremC}, a ruling none of whose
+subdivisions meets $h$. Each subdivision $U$ is then within $W\subseteq I(g_1)$, and so Good; or $U$ misses the open set $W$, and then $\cl U\subseteq(J\cup I)\setminus W$ misses $F$, so every point on or within the
+quadrilateral $U$ is within one of $g_2,\dots,g_k$, and by induction $U$ (made into a quadrilateral in any way) is rulable for Good. By the refinement proposition
+(Proposition~\ref{prop:refine}), $ABCDA$ is rulable for Good.
+\end{proof}
+
+\formal{\lean{HPC.Moore.rulable_of_cover}, \lean{HPC.Moore.m19_theoremD}.}
+
+\begin{corollary}[Theorem~D for regions]\label{cor:theoremD-regions}
+If every point on or within $ABCDA$ lies in some region of a set $\mathcal G$ of regions, then $ABCDA$ has a double ruling each of whose
+subdivisions lies in some region of $\mathcal G$.
+\end{corollary}
+
+\begin{proof}
+Each point of a region lies within a closed curve whose interior lies in the region (Theorem~\ref{thm:fa35-36}(b)); apply
+Theorem~\ref{thm:theoremD} to these curves.
+\end{proof}
+
+\formal{\lean{HPC.Moore.m19_theoremD_regions_of_curves}, \lean{HPC.Moore.m19_theoremD_regions}.}
+
+\begin{remark}
+Moore's Theorem~B (an arc from $A$ to $B$ within $J$ meeting a second closed curve $L$ in finitely many points) is proved in the formal
+development with Moore's argument (\lean{HPC.Moore.m19_theoremB}); the corrected route to Theorem~D above does not need it.
+\end{remark}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Draw a double ruling of the unit square with $2$ and $3$ arcs that is not made of straight segments, and check
+Proposition~\ref{prop:cells-count}.
+\end{exercise}
+
+\begin{exercise}
+Find the double ruling required by Theorem~\ref{thm:theoremC} for $ABCDA$ the unit square and $h$ a circle crossing the side $AB$ twice.
+\end{exercise}
+
+\begin{exercise}
+Show that the weights in the proof of Proposition~\ref{prop:chords-rulable} decrease: the piece $cb$ of $t$ has smaller weight in its half
+than $t$ has in $ABCDA$.
+\end{exercise}

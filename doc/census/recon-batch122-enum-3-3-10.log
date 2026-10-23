@@ -1,0 +1,9 @@
+K=3 n=3: sequences=8 instances(table, basepoint)=24 failures=0
+K=3 n=4: sequences=56 instances(table, basepoint)=288 failures=0
+K=3 n=5: sequences=288 instances(table, basepoint)=2200 failures=0
+K=3 n=6: sequences=1296 instances(table, basepoint)=13104 failures=0
+K=3 n=7: sequences=5432 instances(table, basepoint)=68040 failures=0
+K=3 n=8: sequences=21800 instances(table, basepoint)=324160 failures=0
+K=3 n=9: sequences=85008 instances(table, basepoint)=1458936 failures=0
+K=3 n=10: sequences=324864 instances(table, basepoint)=6307920 failures=0
+# branch statistics: {'base': 8174672}

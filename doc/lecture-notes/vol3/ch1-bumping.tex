@@ -1,0 +1,260 @@
+%======================================================================
+\chapter{Separated sets and boundary bumping}\label{ch:bumping}
+%======================================================================
+
+This chapter collects the elementary tools used in all later chapters: separated sets, unions
+of continua, nested intersections of continua, components, and the boundary bumping theorem.
+Throughout, $X$ is a metric space.
+
+\section{Separated sets}
+
+\begin{definition}\label{def:separated}
+Two sets $A,B\subseteq X$ are \emph{separated} if $\cl A\cap B=\emptyset$ and $A\cap\cl
+B=\emptyset$.
+\end{definition}
+
+Separated sets are disjoint. Two disjoint closed sets are separated, and so are two disjoint open
+sets ($\cl A\cap B=\emptyset$ because $X\setminus B$ is a closed set containing $A$).
+
+\begin{lemma}\label{lem:sep-of-not-conn}
+If $C\subseteq X$ is not preconnected, then $C=A\cup B$ with $A,B$ nonempty and separated.
+\end{lemma}
+
+\begin{proof}
+There are open sets $U,V$ with $C\subseteq U\cup V$, $C\cap U\ne\emptyset$, $C\cap V\neq\emptyset$ and
+$C\cap U\cap V=\emptyset$. Put $A=C\cap U$ and $B=C\cap V$; they are nonempty and $C=A\cup B$. If
+$x\in\cl A\cap B$, then $x\in V$, and the open neighbourhood $V$ of $x\in\cl A$ contains a point $y$
+of $A$; then $y\in C\cap U\cap V$, which is impossible. Symmetrically $A\cap\cl B=\emptyset$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_separated_of_not_isPreconnected}.}
+
+\begin{lemma}\label{lem:side}
+Let $A,B$ be separated and let $T\subseteq A\cup B$ be preconnected. Then $T\subseteq A$ or
+$T\subseteq B$.
+\end{lemma}
+
+\begin{proof}
+The open sets $U=X\setminus\cl B$ and $V=X\setminus\cl A$ cover $T$: a point of $T$ in $A$ is not in
+$\cl B$, and a point of $T$ in $B$ is not in $\cl A$. A point of $T\cap U\cap V$ would lie in $A$ or
+in $B$, hence in $\cl A$ or $\cl B$, which is impossible. Since $T$ is preconnected, $T\cap U$ or
+$T\cap V$ is empty. If $T\cap V=\emptyset$, every point of $T$ lies in $\cl A$, hence not in $B$
+(as $\cl A\cap B=\emptyset$), hence in $A$. The other case is symmetric.
+\end{proof}
+
+\formal{\lean{HPC.Plane.subset_side_of_isPreconnected}.}
+
+\begin{lemma}\label{lem:union-continua}
+If $A$ and $B$ are continua with $A\cap B\ne\emptyset$, then $A\cup B$ is a continuum.
+\end{lemma}
+
+\begin{proof}
+$A\cup B$ is compact and nonempty. If $A\cup B$ lies in the union of two disjoint open sets
+$U,V$ each meeting $A\cup B$, then $A$ lies in one of them and $B$ in one of them (each is
+preconnected); they cannot be the same one, since both meet $A\cup B$; but a point of $A\cap B$
+lies in both, which is impossible as $U\cap V\cap(A\cup B)=\emptyset$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isContinuum_union}.}
+
+The next lemma is the basic tool for producing new subcontinua.
+
+\begin{lemma}[A continuum plus one piece]\label{lem:piece}
+Let $S$ be a compact metric space, $N\subseteq M$ continua in $S$, and suppose
+$M\setminus N=A\cup R$ with $A,R$ separated and $A\neq\emptyset$. Then $N\cup A$ is a continuum.
+\end{lemma}
+
+\begin{proof}
+\emph{$N\cup A$ is closed.} We have $\cl A\subseteq M$ since $M$ is closed. A point $x\in\cl A$ not in
+$N$ lies in $M\setminus N=A\cup R$, and not in $R$ because $\cl A\cap R=\emptyset$; so $x\in A$. Thus
+$\cl{N\cup A}=N\cup\cl A\subseteq N\cup A$.
+
+\emph{$N\cup A$ is preconnected.} We use the criterion \vone{(K2)}. Let $N\cup A=F\cup G$ with $F,G$
+closed and disjoint. Since $N$ is preconnected, it lies in one of them, say $N\subseteq F$ (the other
+case is symmetric). Put $A_G=A\cap G$ and $E=N\cup(A\cap F)\cup R$, so that $M=A_G\cup E$. These two
+sets are separated:
+\begin{itemize}
+\item $\cl{A_G}\subseteq G\cap\cl A$; this misses $R$ (as $\cl A\cap R=\emptyset$) and misses
+$N\cup(A\cap F)\subseteq F$ (as $F\cap G=\emptyset$).
+\item $\cl E\subseteq F\cup\cl R$, since $N\cup(A\cap F)\subseteq F$ and $F$ is closed; $F$ misses
+$A_G\subseteq G$, and $\cl R$ misses $A_G\subseteq A$.
+\end{itemize}
+$E$ is nonempty (it contains $N$) and $M$ is connected, so $A_G=\emptyset$ by Lemma~\ref{lem:side}
+(applied to $T=M$). Hence $A\subseteq F$ and $N\cup A\subseteq F$.
+
+So $N\cup A$ is a nonempty closed preconnected subset of the compact space $S$, that is, a
+continuum.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isContinuum_union_piece} (Nadler, \emph{Continuum Theory}, 6.3). A
+version for an arbitrary connected topological space is Theorem~\ref{thm:nadler63}.}
+
+\section{Nested intersections}
+
+A family $\mathcal C$ of sets is a \emph{chain} (for inclusion) if any two of its members are
+comparable: $A\subseteq B$ or $B\subseteq A$.
+
+\begin{lemma}\label{lem:nested}
+Let $S$ be a compact metric space and $\mathcal C$ a nonempty chain of continua in $S$. Then
+$\bigcap\mathcal C$ is a continuum.
+\end{lemma}
+
+\begin{proof}
+Put $I=\bigcap\mathcal C$; it is closed. It is nonempty: the members of $\mathcal C$ are compact and
+any finitely many of them have a nonempty intersection (the smallest of them), so by compactness
+the whole family has a nonempty intersection.
+
+Suppose $I=F\cup G$ with $F,G$ closed, disjoint and nonempty. They are compact, hence at a positive
+distance $3\delta$ (\vone{Lemma~1.1}). Let $U$ and $V$ be the open $\delta$-neighbourhoods of $F$
+and $G$; they are disjoint. For $C\in\mathcal C$ let $C'=C\setminus(U\cup V)$, a compact set. The
+sets $C'$ form a chain, and $\bigcap_{C}C'=I\setminus(U\cup V)=\emptyset$. By compactness some finitely
+many of them have empty intersection; the smallest of these, $C_0'$, is then empty. So
+$C_0\subseteq U\cup V$. But $C_0\supseteq I$ meets both $U\supseteq F$ and $V\supseteq G$, contradicting
+the connectedness of $C_0$.
+\end{proof}
+
+\formal{\lean{HPC.T14.isPreconnected_sInter_chain}.}
+
+\section{Components and clopen sets}
+
+Recall (\vtwo{Section~1.4}) that the \emph{component} of a point $p$ in a set $F$ is the largest
+preconnected subset of $F$ containing $p$; it is closed when $F$ is.
+
+\begin{lemma}\label{lem:quasi}
+Let $K$ be a compact metric space and $p\in K$. The component of $p$ in $K$ is the intersection
+$Q$ of all clopen subsets of $K$ containing $p$.
+\end{lemma}
+
+\begin{proof}
+The component $C$ of $p$ lies in every clopen set $W\ni p$: otherwise $C\cap W$ and $C\setminus W$
+would split $C$ into two disjoint nonempty relatively open sets. So $C\subseteq Q$.
+
+For the converse it suffices to show that $Q$ is preconnected (it contains $p$, so it is then
+contained in $C$). Let $Q=A\cup B$ with $A,B$ closed and disjoint, $p\in A$; we show $B=\emptyset$.
+Choose disjoint open sets $U\supseteq A$, $V\supseteq B$ (for instance the sets of points nearer to
+$A$ than to $B$, and conversely). The closed sets $W\setminus(U\cup V)$, $W$ clopen with $p\in W$, have
+empty intersection; by compactness finitely many of them do, so $W_0=W_1\cap\dots\cap W_k$
+satisfies $W_0\subseteq U\cup V$. The set $W_0\cap U$ is open, and it is closed because it equals
+$W_0\setminus V$. It contains $p$, so it is one of the clopen sets defining $Q$, and $Q\subseteq U$.
+Then $B\subseteq Q\cap V\subseteq U\cap V=\emptyset$.
+\end{proof}
+
+\formal{Mathlib's \lean{connectedComponent_eq_iInter_isClopen}, used inside the proofs below.}
+
+\begin{lemma}\label{lem:clopen-split}
+Let $K\subseteq X$ be compact, $p\in K$ and $O$ open, and suppose that every preconnected subset of
+$K$ containing $p$ lies in $O$. Then $K=H\cup L$ with $H,L$ compact and disjoint, $p\in H$ and
+$H\subseteq O$.
+\end{lemma}
+
+\begin{proof}
+The component $C$ of $p$ in $K$ lies in $O$. By Lemma~\ref{lem:quasi}, applied in the compact space
+$K$, the closed sets $W\setminus O$, $W$ clopen in $K$ with $p\in W$, have empty intersection; by
+compactness some finite intersection $H$ of such sets $W$ satisfies $H\subseteq O$. Then $H$ is
+clopen in $K$, and $H$ and $L=K\setminus H$ are compact.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_clopen_split}.}
+
+\begin{theorem}[Separating two closed sets in a compact set]\label{thm:closed-split}
+Let $K\subseteq X$ be compact and $P,Q\subseteq K$ closed, and suppose that no preconnected subset of
+$K$ meets both $P$ and $Q$. Then $K=H\cup L$ with $H,L$ closed and disjoint, $P\subseteq H$ and
+$Q\subseteq L$.
+\end{theorem}
+
+\begin{proof}
+For each $p\in P$, Lemma~\ref{lem:clopen-split} with $O=X\setminus Q$ gives a splitting
+$K=H_p\cup L_p$ into disjoint compact sets with $p\in H_p$ and $H_p\cap Q=\emptyset$. The open sets
+$X\setminus L_p$ cover the compact set $P$ (since $p\notin L_p$); choose $p_1,\dots,p_k$ with
+$P\subseteq\bigcup_i(X\setminus L_{p_i})$. Put $H=H_{p_1}\cup\dots\cup H_{p_k}$ and $L=K\cap
+L_{p_1}\cap\dots\cap L_{p_k}$. Both are closed, and $H\cup L=K$: a point of $K$ in no $H_{p_i}$ lies
+in every $L_{p_i}$. They are disjoint because $H_{p_i}\cap L_{p_i}=\emptyset$. A point of $P$ lies
+outside some $L_{p_i}$, hence in $H_{p_i}\subseteq H$. Finally $Q\cap H=\emptyset$, so $Q\subseteq L$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_closed_split_of_no_connected} (Moore's Theorem~44 in
+\emph{Foundations of Point Set Theory}). A variant with a continuum in place of the preconnected
+set, in a compact space, is \lean{HPC.Plane.closed_dichotomy}.}
+
+\section{Boundary bumping}
+
+We use the clopen form of boundary bumping proved in Volume~2:
+
+\begin{quote}
+\vtwo{Lemma~1.5}. \emph{Let $M$ be preconnected, $L\subseteq M$ with $L\ne M$, and let $W\subseteq L$ be
+nonempty, closed, and relatively open in $L$. Then $W$ meets $\cl{M\setminus L}$.}
+\end{quote}
+
+\begin{theorem}[Boundary bumping]\label{thm:bump-closed}
+Let $M\subseteq X$ be preconnected, $F\subseteq M$ compact with $F\ne M$, and $p\in F$. Then there is a
+continuum $K$ with $p\in K\subseteq F$ and $K\cap\cl{M\setminus F}\ne\emptyset$. One can take for
+$K$ the component of $p$ in $F$.
+\end{theorem}
+
+\begin{proof}
+Let $K$ be the component of $p$ in $F$; it is closed in the compact set $F$, so it is a continuum.
+Suppose $K\cap\cl{M\setminus F}=\emptyset$. The set $H=F\cap\cl{M\setminus F}$ is compact and misses
+$K$. By Lemma~\ref{lem:quasi} (in the compact space $F$), the closed sets $H\cap W$, $W$ clopen in $F$
+with $p\in W$, have empty intersection; by compactness there is a finite intersection $W$ of such
+sets with $H\cap W=\emptyset$. This $W$ is clopen in $F$: it is closed in $X$ (closed in the compact
+$F$), and $W=F\cap O$ for some open $O\subseteq X$. It is nonempty ($p\in W$). By \vtwo{Lemma~1.5}
+(with $L=F$) $W$ meets $\cl{M\setminus F}$; since $W\subseteq F$, it meets $H$, a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Jones.exists_continuum_bump_compact}; for $M$ a continuum in a compact space and
+$F$ closed, \lean{HPC.Plane.exists_continuum_bump_closed} (Nadler 5.4).}
+
+\begin{corollary}[Boundary bumping, open form]\label{cor:bump-open}
+Let $S$ be a compact metric space, $L$ a continuum, $O$ an open set, $p\in L\cap O$ and
+$L\not\subseteq O$. Then some subcontinuum $K$ of $L$ with $p\in K\subseteq\cl{L\cap O}$ meets
+$L\setminus O$.
+\end{corollary}
+
+\begin{proof}
+Put $F=\cl{L\cap O}\subseteq L$. If $F=L$, take $K=L$. Otherwise Theorem~\ref{thm:bump-closed} gives a
+continuum $K\ni p$ inside $F$ meeting $\cl{L\setminus F}$. Now $L\setminus F\subseteq L\setminus O$
+(a point of $L\cap O$ lies in $F$), and $L\setminus O$ is closed, so $\cl{L\setminus F}\subseteq
+L\setminus O$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_continuum_bump_open} (Nadler 5.7).}
+
+\begin{corollary}[Boundary bumping, metric form]\label{cor:bump-ball}
+Let $M$ be a continuum, $p,x\in M$, $s>0$ and $d(p,x)\ge s$. Some subcontinuum $K$ of
+$M\setminus B(x,s)$ contains $p$ and meets $\bar B(x,s)$.
+\end{corollary}
+
+\begin{proof}
+Apply Theorem~\ref{thm:bump-closed} to $F=M\setminus B(x,s)$, which is compact, contains $p$, and
+misses $x\in M$. The closure of $M\setminus F=M\cap B(x,s)$ lies in $\bar B(x,s)$.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_subcontinuum_meeting_closedBall}.}
+
+\begin{example}
+Let $M=[0,1]$, $F=[0,\tfrac12]\cup\set1$ and $p=0$. The component of $0$ in $F$ is $[0,\frac12]$, which
+meets $\cl{M\setminus F}=[\frac12,1]$ at $\frac12$. The component of $1$ in $F$ is $\set1$, which
+also meets $[\frac12,1]$: boundary bumping holds for every point of $F$.
+\end{example}
+
+\section*{Exercises}
+
+\begin{exercise}
+Show that Lemma~\ref{lem:nested} fails without compactness: find a decreasing sequence of closed
+connected subsets of $\R^2$ whose intersection is not connected.
+\end{exercise}
+
+\begin{exercise}
+Let $M$ be a continuum and $U\subseteq M$ a nonempty open subset of $M$ with $U\neq M$. Show that every
+component of $\cl U$ meets the boundary of $U$ in $M$.
+\end{exercise}
+
+\begin{exercise}
+Deduce from Theorem~\ref{thm:bump-closed} that a nondegenerate continuum contains no isolated
+points, and in fact that each point of it lies in arbitrarily small nondegenerate subcontinua.
+\end{exercise}
+
+\begin{exercise}
+Show that Lemma~\ref{lem:quasi} fails for the non-compact space $\set{(0,0),(0,1)}\cup\bigcup_n
+\set{1/n}\times[0,1]\subseteq\R^2$ with $p=(0,0)$.
+\end{exercise}

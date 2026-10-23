@@ -1,0 +1,8 @@
+'HPC.composant_ne_of_indecomposable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Description.exists_subchain_meets_ends' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Description.exists_description_from' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Description.theorem13' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Description.isConnected_M' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.T13.isPreconnected_limSup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.T13.false_of_interior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Description.exists_step' depends on axioms: [propext, Classical.choice, Quot.sound]

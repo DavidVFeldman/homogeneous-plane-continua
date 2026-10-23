@@ -1,0 +1,295 @@
+%======================================================================
+\chapter{The main theorems}\label{ch:main}
+%======================================================================
+
+This chapter assembles Parts~I--III and proves the theorems announced in the introduction:
+Theorems~\ref{thm:intro-unique} and~\ref{thm:intro-homog} and Corollary~\ref{cor:intro}. All the
+work has been done; what remains is to put the pieces together, and to be careful about the
+ambient spaces. Throughout, $X$ and $X'$ are metric spaces.
+
+Recall (\vone{Definition~2.14}) that a \emph{pseudo-arc} is a nondegenerate, snake-like,
+hereditarily indecomposable continuum $M\subseteq X$.
+
+\formal{\lean{HPC.Plane.IsPseudoArc}: the conjunction of \lean{HPC.Plane.IsSnakeLike} (which
+contains ``$M$ is a continuum''), \lean{HPC.Plane.IsHereditarilyIndecomposable} and
+\lean{Set.Nontrivial}.}
+
+\section{Uniqueness}\label{sec:main-unique}
+
+\begin{theorem}[Bing 1951, Theorem~1, the ``in fact'' clause]\label{thm:unique-points}
+Let $M\subseteq X$ and $M'\subseteq X'$ be pseudo-arcs. Let $p,q\in M$ with $q\notin\cmp Mp$, and
+let $p',q'\in M'$ with $q'\notin\cmp{M'}{p'}$. Then there is a homeomorphism $h\colon M\to M'$
+with $h(p)=p'$ and $h(q)=q'$.
+\end{theorem}
+
+\begin{proof}
+Regard $M$ and $M'$ as compact metric spaces (with the metrics of $X$ and $X'$).
+
+\emph{Step 1: descriptions.} By Theorem~\ref{thm:desc-exists}(a) there is a description
+$C^{(0)},C^{(1)},\dots$ from $p$ to $q$ \emph{in the space $M$} whose described set is the whole
+space $M$, and likewise a description from $p'$ to $q'$ in the space $M'$ whose described set is
+all of $M'$.
+
+\emph{Step 2: the end points are distinct.} A pseudo-arc has at least two points, so $p\ne q$
+and $p'\ne q'$ by Lemma~\ref{lem:ne-of-composant}.
+
+\emph{Step 3: two descriptions.} The spaces $M$ and $M'$ are compact, and the two descriptions go
+between distinct points. By Theorem~\ref{thm:two-desc} there is a homeomorphism $T$ from the
+described set of the first description onto the described set of the second, with $T(p)=p'$ and
+$T(q)=q'$. These described sets are $M$ and $M'$, so $h=T$ is the required homeomorphism.
+\end{proof}
+
+\formal{\lean{HPC.Plane.theorem1_HIC}. Formally the described sets are subsets
+$\Delta_1.M\subseteq M$ and $\Delta_2.M\subseteq M'$ of the spaces $M$, $M'$, equal to the whole
+spaces; the homeomorphism of \lean{HPC.theorem12} is composed with the identifications
+$M\cong\Delta_1.M$ and $\Delta_2.M\cong M'$.}
+
+\begin{remark}
+Note how little of Theorem~\ref{thm:desc-exists} is used: only part~(a), the description
+inside $M$ itself. Working inside $M$ has the advantage that the ambient space is compact, which
+is exactly what Theorem~\ref{thm:two-desc} asks for. Part~(b) would give descriptions in $X$ and
+$X'$; to use those one would need their links to lie in compact sets
+(Corollary~\ref{cor:two-desc-K}), which is true for the lifted descriptions of
+Section~\ref{sec:lift} only when $X$ is, for example, a proper space.
+\end{remark}
+
+\begin{theorem}[Uniqueness of the pseudo-arc]\label{thm:unique}
+Any two pseudo-arcs $M\subseteq X$ and $M'\subseteq X'$ are homeomorphic.
+\end{theorem}
+
+\begin{proof}
+$M$ is nondegenerate, so it has a point $p$; by Corollary~\ref{cor:other-composant} there is
+$q\in M$ with $q\notin\cmp Mp$. Likewise choose $p'\in M'$ and $q'\in M'$ with
+$q'\notin\cmp{M'}{p'}$. Apply Theorem~\ref{thm:unique-points}.
+\end{proof}
+
+\formal{\lean{HPC.Plane.theorem1_HIC'}; the same statement with the three defining properties
+written out is \lean{HPC.Plane.theorem1_snake} (Bing, \emph{Snake-like continua}, Theorem~1).}
+
+Theorem~\ref{thm:intro-unique} of the introduction is Theorems~\ref{thm:unique-points}
+and~\ref{thm:unique} together.
+
+\section{Homogeneity}\label{sec:main-homog}
+
+\begin{theorem}[Homogeneity of the pseudo-arc]\label{thm:homog}
+Let $M\subseteq X$ be a pseudo-arc and $p,q\in M$. There is a homeomorphism $h\colon M\to M$ with
+$h(p)=q$.
+\end{theorem}
+
+\begin{proof}
+By Corollary~\ref{cor:other-composant} choose $r\in M$ with $r\notin\cmp Mp$ and $s\in M$ with
+$s\notin\cmp Mq$. Apply Theorem~\ref{thm:unique-points} with $M'=M$, to the pairs $(p,r)$ and
+$(q,s)$: there is a homeomorphism $h\colon M\to M$ with $h(p)=q$ (and $h(r)=s$).
+\end{proof}
+
+\formal{\lean{HPC.Plane.homogeneous_of_isPseudoArc}.}
+
+This is Theorem~\ref{thm:intro-homog}. The proof shows more: for any two pairs $(p,r)$ and
+$(q,s)$ of points in different composants, some homeomorphism of $M$ onto itself takes $p$ to $q$
+and $r$ to $s$ at the same time.
+
+\begin{remark}
+It is instructive to see why the argument does not prove that the arc $[0,1]$ is homogeneous,
+which is false. The arc is snake-like but decomposable, so Chapter~\ref{ch:descriptions} does not
+apply: fine chains covering $[0,1]$ need not be crooked in coarse ones
+(Theorem~\ref{thm:eventually-crooked} fails). And even the input of Chapter~\ref{ch:composants}
+fails: for $0<p<1$ the composant of $p$ is all of $[0,1]$, so there is no partner point $r$.
+\end{remark}
+
+\section{Consequences}\label{sec:main-cons}
+
+\begin{corollary}\label{cor:plane-unique}
+\begin{enumerate}[label=(\alph*)]
+\item There is a pseudo-arc $M_0$ in the plane $\R^2$.
+\item Every pseudo-arc, in any metric space, is homeomorphic to $M_0$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) is \vone{Theorem~5.18}: the plane description of \vone{Theorem~5.17} goes between two distinct
+points and all its links lie in a compact rectangle, so its described set is a pseudo-arc by
+\vone{Theorem~3.8}. (b) follows from Theorem~\ref{thm:unique}.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isPseudoArc_plane} and \lean{HPC.Plane.pseudoArc_unique}.}
+
+So ``the pseudo-arc'' is well defined up to homeomorphism, and it can be drawn in the plane. This
+is Corollary~\ref{cor:intro}(a).
+
+\begin{lemma}\label{lem:sub-pseudoarc}
+Every nondegenerate subcontinuum $K$ of a pseudo-arc $M$ is a pseudo-arc.
+\end{lemma}
+
+\begin{proof}
+$K$ is a nondegenerate continuum by assumption. Every subcontinuum of $K$ is a subcontinuum of
+$M$, hence indecomposable; so $K$ is hereditarily indecomposable. Given $\varepsilon>0$, an
+$\varepsilon$-chain covering $M$ also covers $K$; so $K$ is snake-like.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isPseudoArc_of_subcontinuum}.}
+
+\begin{corollary}\label{cor:sub-homeo}
+Every nondegenerate subcontinuum of a pseudo-arc $M$ is homeomorphic to $M$.
+\end{corollary}
+
+\begin{proof}
+Lemma~\ref{lem:sub-pseudoarc} and Theorem~\ref{thm:unique}.
+\end{proof}
+
+\formal{\lean{HPC.Plane.homeomorphic_subcontinuum}.}
+
+This is Corollary~\ref{cor:intro}(b). Together with Corollary~\ref{cor:plane-unique} it shows
+that the pseudo-arc is homeomorphic to each of its nondegenerate subcontinua, although it
+contains no arc (an arc is decomposable).
+
+\section{End points}\label{sec:main-endpoints}
+
+Bing's paper \emph{Snake-like continua} characterizes the pseudo-arc among snake-like continua by
+a property of its points. We prove this characterization, since it follows quickly from what we
+have.
+
+\begin{definition}\label{def:endpoint}
+Let $M\subseteq X$ be a continuum and $p\in M$.
+\begin{enumerate}[label=(\alph*)]
+\item $p$ is an \emph{end point} of $M$ if for every $\varepsilon>0$ there is an $\varepsilon$-chain $E$ of
+length $n\ge1$ covering $M$ such that $p$ lies in the first link $E_0$ and in no other link.
+\item Points $p,q\in M$ are \emph{opposite end points} of $M$ if for every $\varepsilon>0$ there is an
+$\varepsilon$-chain covering $M$ which goes from $p$ to $q$.
+\end{enumerate}
+\end{definition}
+
+\formal{\lean{HPC.Plane.IsEndPoint}, \lean{HPC.Plane.OppositeEndPoints} (in
+\lean{HPC/Plane/EndPoints51.lean}).}
+
+\begin{example}
+The points $0$ and $1$ are opposite end points of the arc $[0,1]$: cover it by the chain of
+intervals $(-\delta,2\delta),(\delta,3\delta),\dots$ of length $3\delta$ and step $\delta$, where $\delta=1/m$
+is small, cut down to the links meeting $[0,1]$. A point $p$ with $0<p<1$ is not an end point of
+$[0,1]$; this follows from Lemma~\ref{lem:endpoint-nested} below, since $[0,p]$ and $[p,1]$ are
+subcontinua containing $p$, neither of which contains the other.
+\end{example}
+
+\begin{proposition}\label{prop:opposite}
+Let $M$ be a pseudo-arc and $p,q\in M$ with $q\notin\cmp Mp$. Then $p$ and $q$ are opposite end
+points of $M$. In particular every point of a pseudo-arc is an end point of it.
+\end{proposition}
+
+\begin{proof}
+By Theorem~\ref{thm:desc-exists}(b) there is a description $D^{(0)},D^{(1)},\dots$ in $X$ from $p$
+to $q$ with described set $M$. Given $\varepsilon>0$, choose $i$ with $\varepsilon_i<\varepsilon$. The
+chain $D^{(i)}$ is an $\varepsilon$-chain by~\vone{(D4)}, it covers $M$ because $M$ is the described
+set, and it goes from $p$ to $q$ by~\vone{(D1)}.
+
+For the second statement let $p\in M$; by Corollary~\ref{cor:other-composant} there is $q\in M$
+with $q\notin\cmp Mp$, and the chains just found have $p$ in the first link only.
+\end{proof}
+
+\formal{\lean{HPC.Plane.oppositeEndPoints_of_composants}.}
+
+Here part~(b) of Theorem~\ref{thm:desc-exists} is really used: the chains must be chains of $X$.
+
+\begin{lemma}\label{lem:endpoint-nested}
+Let $p$ be an end point of a continuum $M$, and let $A,B\subseteq M$ be continua containing $p$.
+Then $A\subseteq B$ or $B\subseteq A$.
+\end{lemma}
+
+\begin{proof}
+Suppose not: there are $a\in A\setminus B$ and $b\in B\setminus A$. Since $A$ and $B$ are compact,
+$\delta=\min(\dist(a,B),\dist(b,A))>0$. Let $E$ be a $\delta$-chain of length $n$ covering $M$ with
+$p$ in $E_0$ only.
+
+The links of $E$ that meet $A$ form an interval of indices $[0,i_A]$: it is an interval by
+Lemma~\ref{lem:cover-meeting}(a) (applied to the connected set $A$, which is covered by $E$), and
+it contains $0$ because $p\in A\cap E_0$. Likewise the links meeting $B$ form an interval
+$[0,i_B]$. Suppose $i_A\le i_B$ (the other case is symmetric, exchanging the roles of $a$ and $b$).
+The point $a$ lies in some link $E_j$; this link meets $A$, so $j\le i_A\le i_B$, and therefore $E_j$
+also meets $B$, say at $z$. Then $\dist(a,B)\le d(a,z)\le\diam E_j<\delta$, a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Plane.condB_of_endPoint}.}
+
+\begin{lemma}\label{lem:not-HI-not-end}
+If a continuum $M$ is not hereditarily indecomposable, then some point of $M$ is not an end point
+of $M$.
+\end{lemma}
+
+\begin{proof}
+Let $K\subseteq M$ be a decomposable subcontinuum, $K=A\cup B$ with $A,B$ subcontinua of $K$
+different from $K$. Since $K$ is connected and $A,B$ are nonempty closed sets covering it, they
+meet; let $p\in A\cap B$. If $p$ were an end point of $M$, Lemma~\ref{lem:endpoint-nested} would
+give, say, $A\subseteq B$, and then $K=A\cup B=B$, a contradiction.
+\end{proof}
+
+\formal{\lean{HPC.Plane.exists_not_endPoint_of_not_HI}.}
+
+\begin{theorem}[Bing 1951, \emph{Snake-like continua}, Theorem~16]\label{thm:endpoints}
+A nondegenerate snake-like continuum $M$ is a pseudo-arc if and only if every point of $M$ is an
+end point of $M$.
+\end{theorem}
+
+\begin{proof}
+If $M$ is a pseudo-arc, every point is an end point by Proposition~\ref{prop:opposite}.
+Conversely, if every point is an end point, $M$ is hereditarily indecomposable by
+Lemma~\ref{lem:not-HI-not-end}, and hence a pseudo-arc.
+\end{proof}
+
+\formal{\lean{HPC.Plane.isPseudoArc_iff_endPoints}.}
+
+\section{What the classification uses}\label{sec:main-uses}
+
+The later volumes use the results of this volume in the following forms.
+\begin{itemize}
+\item \emph{Uniqueness} (Theorem~\ref{thm:unique}, Corollary~\ref{cor:plane-unique}): to recognize
+a continuum as ``the'' pseudo-arc it suffices to check the three defining properties. This is how
+continua arising later (for instance the indecomposable homogeneous plane continua) are
+identified with the pseudo-arc: one proves that they are snake-like and hereditarily
+indecomposable.
+\item \emph{Homogeneity} (Theorem~\ref{thm:homog}): the pseudo-arc appears in the list of
+homogeneous plane continua, so it must be shown to be homogeneous.
+\item \emph{Subcontinua} (Lemma~\ref{lem:sub-pseudoarc}, Corollary~\ref{cor:sub-homeo}).
+\end{itemize}
+
+\begin{remark}[On the hypotheses]
+Two statements in the literature need an extra hypothesis, which the formal proof adds.
+\begin{enumerate}[label=(\alph*)]
+\item Bing's Theorem~12 for descriptions whose described sets are merely compact is false
+(Remark after Corollary~\ref{cor:two-desc-K}); one needs the links to lie in a compact set.
+\item In the same way, ``the described set of a description from $P$ to $Q\ne P$ is a pseudo-arc''
+needs the links to lie in a compact set (\vone{Theorem~3.8} and \vone{Remark~3.5}); the formal
+record of the counterexample is \lean{HPC.Plane.isPseudoArc_of_description_false}.
+\end{enumerate}
+Neither affects the theorems of this chapter, whose hypotheses only involve pseudo-arcs, which
+are compact by definition.
+\end{remark}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}\label{ex:arc-endpoints}
+Show directly from Definition~\ref{def:endpoint} that the end points of $[0,1]$ are exactly $0$
+and $1$. (Hint: use Lemma~\ref{lem:endpoint-nested} with $A=[0,p]$ and $B=[p,1]$.)
+\end{exercise}
+
+\begin{exercise}
+Let $p$ be an end point of a continuum $M$ and let $K\subseteq M$ be a continuum containing $p$. Show
+that $p$ is an end point of $K$. (Hint: Lemma~\ref{lem:cover-meeting}(a).) Deduce again that every
+point of a pseudo-arc is an end point of each subcontinuum containing it.
+\end{exercise}
+
+\begin{exercise}
+Let $M$ be a pseudo-arc and $p\in M$. Show that the homeomorphisms $h\colon M\to M$ with $h(p)=p$
+act transitively on $M\setminus\cmp Mp$. (Hint: Theorem~\ref{thm:unique-points} with
+$p'=p$.)
+\end{exercise}
+
+\begin{exercise}
+Show that a pseudo-arc has uncountably many composants. (Hint: each composant is a countable
+union of proper subcontinua, each of which is nowhere dense by Theorem~\ref{thm:thin}; use the
+Baire category theorem, Lemma~\ref{lem:baire}.)
+\end{exercise}
+
+\begin{exercise}
+Using Corollary~\ref{cor:sub-homeo}, show that a pseudo-arc $M$ contains a strictly decreasing
+sequence $M=K_0\supsetneq K_1\supsetneq K_2\supsetneq\cdots$ of subcontinua, each homeomorphic to
+$M$, whose intersection is a single point.
+\end{exercise}

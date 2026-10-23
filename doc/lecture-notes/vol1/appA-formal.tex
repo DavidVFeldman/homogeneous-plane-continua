@@ -1,0 +1,94 @@
+%======================================================================
+\chapter{Correspondence with the formal proof}\label{app:formal}
+%======================================================================
+
+The table lists the main definitions and results of this volume and the corresponding
+declarations of the Lean development. All declaration names start with \lean{HPC.}, which is
+omitted. The formal statements are sometimes slightly more general, or are split differently
+into lemmas; the table points to the place where the content of each result is proved.
+
+\begin{longtable}{@{}p{0.43\textwidth}p{0.53\textwidth}@{}}
+\toprule
+In these notes & In the Lean development\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:prelim}}}\\
+$\varepsilon$-chained set (Def.~\ref{def:chained}) & \lean{T13.ChainedAt}\\
+Upper limit (Def.~\ref{def:limsup}) & \lean{T13.limSup}\\
+Limits of chained sets (Lemma~\ref{lem:limsup}) & \lean{T13.isPreconnected_limSup},
+\lean{Plane.isPreconnected_limSup_of_compact}\\
+Hereditarily indecomposable (Def.~\ref{def:indecomposable}) &
+\lean{Plane.IsHereditarilyIndecomposable}\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:chains}}}\\
+Chain (Def.~\ref{def:chain}) & \lean{Chain}\\
+$\varepsilon$-chain, goes from $P$ to $Q$, refines, follows a pattern & \lean{Plane.IsEpsChain},
+\lean{Chain.IsFrom}, \lean{Chain.Refines}, \lean{Chain.FollowsPattern}\\
+Lemma~\ref{lem:refinement-lipschitz} & \lean{Chain.pattern_lipschitz}\\
+Discrete intermediate value theorem (Lemma~\ref{lem:discrete-ivt}) & \lean{Fold.exists_eq_of_lip}\\
+Values in order (Lemma~\ref{lem:values-between}) & \lean{Chain.exists_between_of_pattern}\\
+Separation by a link (Lemma~\ref{lem:between-link}) & \lean{Chain.inter_link_nonempty_between}\\
+Distance along a chain (Lemma~\ref{lem:dist-along}) & \lean{Chain.dist_le_of_mem_link}\\
+Union of a chain is chained (Lemma~\ref{lem:union-chained}) & \lean{Chain.chainedAt_span}\\
+Crookedness (Def.~\ref{def:crooked}) & \lean{Chain.IsCrookedIn'}\\
+Refinements of crooked chains (Lemma~\ref{lem:crooked-refine}) &
+\lean{Chain.isCrookedIn'_of_refines}\\
+Snake-like, pseudo-arc (Defs.~\ref{def:snakelike}, \ref{def:pseudoarc}) &
+\lean{Plane.IsSnakeLike}, \lean{Plane.IsPseudoArc}\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:descriptions}}}\\
+Description, described set (Def.~\ref{def:description}) & \lean{Description},
+\lean{Description.M}\\
+First properties (Lemma~\ref{lem:desc-basic}) & \lean{Description.refines_of_le},
+\lean{Description.closure_union_subset}, \lean{Description.isClosed_M},
+\lean{Description.crooked_of_lt}\\
+$M$ is a continuum (Theorem~\ref{thm:desc-continuum}) & \lean{Description.isConnected_M},
+\lean{Description.isContinuum_M_of}\\
+Compactness is needed (Remark~\ref{rem:compact-needed}) &
+\lean{Plane.isPseudoArc_of_description_false}\\
+Core of Bing's argument (Lemma~\ref{lem:core}) & \lean{Description.theorem10_core}\\
+$M$ is hereditarily indecomposable (Theorem~\ref{thm:HI}) & \lean{Description.theorem10}\\
+$M$ is a pseudo-arc (Theorem~\ref{thm:desc-pseudoarc}) & \lean{Plane.isPseudoArc_of_description}\\
+Every link meets $M$ (Proposition~\ref{prop:link-meets}) &
+\lean{Description.link_inter_M_nonempty}\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:patterns}}}\\
+Crooked sequence (Def.~\ref{def:pattern-crooked}) & \lean{Fold.PatCrookedOn}\\
+Operations (Lemma~\ref{lem:pattern-ops}) & \lean{Fold.PatCrookedOn.congr},
+\lean{Fold.PatCrookedOn.shift}, \lean{Fold.PatCrookedOn.neg}\\
+Bing's numbers and pattern (Defs.~\ref{def:z}, \ref{def:bingF}) & \lean{Fold.z},
+\lean{Fold.bingF}\\
+Three pieces, properties (Lemmas~\ref{lem:three-pieces}, \ref{lem:bingF-props}) &
+\lean{Fold.bingF_A}, \lean{Fold.bingF_B}, \lean{Fold.bingF_C}, \lean{Fold.bingF_zero},
+\lean{Fold.bingF_top}, \lean{Fold.bingF_range}, \lean{Fold.bingF_lip},
+\lean{Fold.bingF_eq_zero}, \lean{Fold.bingF_eq_top}\\
+Bing's pattern is crooked (Theorem~\ref{thm:bingF-crooked}) & \lean{Fold.bingF_crooked}\\
+Stuttering (Def.~\ref{def:stutter}, Lemma~\ref{lem:stutter}) & \lean{Plane.stut},
+\lean{Plane.stut_lip}, \lean{Plane.stut_crooked}, \lean{Plane.stutPat_slow}\\
+Tightness transfers crookedness (Proposition~\ref{prop:tight}) &
+\lean{Plane.crooked_of_tight_pat}\\[4pt]
+\multicolumn{2}{@{}l}{\emph{Chapter~\ref{ch:plane}}}\\
+Standard links, zones, boxes, region (Def.~\ref{def:std-sets}) & \lean{Plane.stdRect},
+\lean{Plane.zone}, \lean{Plane.boxA}, \lean{Plane.boxB}, \lean{Plane.region}\\
+Tame chains (Def.~\ref{def:tame}) & \lean{Plane.tameChain}\\
+Unit steps, slowness & \lean{Plane.Joints.UnitSteps}, \lean{Plane.Joints.Slow}\\
+Joint positions (Def.~\ref{def:joint-positions}, Lemmas~\ref{lem:dv-sum},
+\ref{lem:joint-props}) & \lean{Plane.Joints.P}, \lean{Plane.Joints.fpos},
+\lean{Plane.Joints.dv_sum_ge}, \lean{Plane.Joints.P_stay_bounds},
+\lean{Plane.Joints.P_stay_near_up}, \lean{Plane.Joints.P_stay_step},
+\lean{Plane.Joints.P_range}, \lean{Plane.Joints.P_first}, \lean{Plane.Joints.P_last}\\
+The link lemma (Lemma~\ref{lem:link}) & \lean{Plane.Joints.link_cases},
+\lean{Plane.Joints.link_facts}\\
+Folding homeomorphism (Def.~\ref{def:fold}, Lemmas~\ref{lem:psi-homeo}--\ref{lem:images}) &
+namespace \lean{Plane.Shear}: \lean{Shear.hfun_eq}, \lean{Shear.link_image},
+\lean{Shear.zone_image}; \lean{Plane.StdStep.heights}\\
+Standard step (Proposition~\ref{prop:std-step}) & \lean{Plane.std_step}\\
+The step (Proposition~\ref{prop:real-step}) & \lean{Plane.real_step}\\
+The stages and their properties & \lean{Plane.desc_step}, \lean{Plane.dstage},
+\lean{Plane.dstage_spec}\\
+Mesh (Lemma~\ref{lem:mesh}) & \lean{Plane.dzone_diam}, \lean{Plane.dlink_diam}\\
+End points (Lemma~\ref{lem:ends}) & \lean{Plane.exists_P}, \lean{Plane.exists_Q},
+\lean{Plane.isFrom_of}\\
+The description (Theorem~\ref{thm:plane-description}) & \lean{Plane.planeDescription},
+\lean{Plane.exists_description_plane}\\
+Existence of the pseudo-arc (Theorem~\ref{thm:pseudoarc-exists}) & \lean{Plane.isPseudoArc_plane}\\
+\end{longtable}

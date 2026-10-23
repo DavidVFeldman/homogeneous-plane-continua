@@ -1,0 +1,70 @@
+arm thin gen=0 basepoint=145 forward len=64 (of 841)
+  levels: 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4
+  nat16: 0x4543454343234345434545654543454565456567656545654543454565454345
+  lowAt=1 Ceil4R=1 Floor3R=1 MidW4R=0 FloorW4R=1 TopW4R=1 Ceil5R=1 BottomW5R=1
+  foldsVeeL6=1 foldsLamL4=1 foldsW3R=1 foldsW4R=0 foldsW5R=1
+arm thin gen=0 basepoint=145 backward len=64 (of 146)
+  levels: 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4 3 4 5 4 3 4 3 2
+  nat16: 0x2343454343234323212323432343454343234345434545654543454343234345
+  lowAt=1 Ceil4R=1 Floor3R=0 MidW4R=0 FloorW4R=1 TopW4R=1 Ceil5R=1 BottomW5R=1
+  foldsVeeL6=1 foldsLamL4=0 foldsW3R=0 foldsW4R=0 foldsW5R=1
+arm thin gen=0 basepoint=151 forward len=64 (of 835)
+  levels: 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4
+  nat16: 0x4545654543454343234345434545654543454565456567656545654543454565
+  lowAt=1 Ceil4R=1 Floor3R=1 MidW4R=1 FloorW4R=1 TopW4R=1 Ceil5R=1 BottomW5R=1
+  foldsVeeL6=1 foldsLamL4=1 foldsW3R=1 foldsW4R=1 foldsW5R=1
+arm shave gen=2 basepoint=153 backward len=64 (of 154)
+  levels: 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2 1 2 3 2 3 4 3 2 3 4
+  nat16: 0x4323432321232343234345434323434543454565454345434323434543454565
+  lowAt=1 Ceil4R=1 Floor3R=0 MidW4R=1 FloorW4R=1 TopW4R=1 Ceil5R=1 BottomW5R=1
+  foldsVeeL6=1 foldsLamL4=0 foldsW3R=0 foldsW4R=1 foldsW5R=1
+arm shave gen=2 basepoint=163 backward len=64 (of 164)
+  levels: 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2 3 2
+  nat16: 0x2323432343454343234345434545654543454343234345434545654543454565
+  lowAt=1 Ceil4R=1 Floor3R=1 MidW4R=1 FloorW4R=1 TopW4R=1 Ceil5R=1 BottomW5R=1
+  foldsVeeL6=1 foldsLamL4=0 foldsW3R=1 foldsW4R=1 foldsW5R=1
+arm shave gen=2 basepoint=165 backward len=64 (of 166)
+  levels: 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 5 4 5 6 5 4 5 4 3 4 5 4 3 4 3 2 3 4 3 4 5 4 3 4 3 2 3 4 3 2
+  nat16: 0x2343234345434323434543454565454345434323434543454565454345456545
+  lowAt=1 Ceil4R=1 Floor3R=1 MidW4R=0 FloorW4R=1 TopW4R=1 Ceil5R=1 BottomW5R=1
+  foldsVeeL6=1 foldsLamL4=0 foldsW3R=1 foldsW4R=0 foldsW5R=1
+arm fill gen=3 basepoint=347 forward len=64 (of 639)
+  levels: 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6
+  nat16: 0x6787676567656545656765654565454345456545656765654565454345456545
+  lowAt=1 Ceil4R=1 Floor3R=1 MidW4R=0 FloorW4R=1 TopW4R=1 Ceil5R=1 BottomW5R=1
+  foldsVeeL6=0 foldsLamL4=1 foldsW3R=1 foldsW4R=0 foldsW5R=1
+arm fill gen=3 basepoint=349 forward len=64 (of 637)
+  levels: 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6
+  nat16: 0x6767876765676565456567656545654543454565456567656545654543454565
+  lowAt=1 Ceil4R=1 Floor3R=1 MidW4R=1 FloorW4R=1 TopW4R=1 Ceil5R=1 BottomW5R=1
+  foldsVeeL6=0 foldsLamL4=1 foldsW3R=1 foldsW4R=1 foldsW5R=1
+arm fill gen=3 basepoint=377 forward len=64 (of 609)
+  levels: 5 4 3 4 5 4 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 6 5 6 7 6 5 6 5 4 5 6 5 4 5 4 3 4 5 4
+  nat16: 0x4543454565456567656545656765676787676567656545656765654565454345
+  lowAt=1 Ceil4R=1 Floor3R=1 MidW4R=0 FloorW4R=1 TopW4R=1 Ceil5R=0 BottomW5R=1
+  foldsVeeL6=0 foldsLamL4=1 foldsW3R=1 foldsW4R=0 foldsW5R=0
+arm mix gen=0 basepoint=387 forward len=64 (of 599)
+  levels: 5 6 5 6 7 6 5 5 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 5 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 6 5 6 7 6
+  nat16: 0x6765654565444345456545556765554565676567678767656765654555676565
+  lowAt=1 Ceil4R=1 Floor3R=1 MidW4R=1 FloorW4R=1 TopW4R=1 Ceil5R=0 BottomW5R=1
+  foldsVeeL6=0 foldsLamL4=1 foldsW3R=1 foldsW4R=1 foldsW5R=0
+arm mix gen=0 basepoint=394 forward len=64 (of 592)
+  levels: 5 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 5 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 6 5 6 7 6 5 5 5 4 5 6 5
+  nat16: 0x5654555676565456544434545654555676555456567656767876765676565455
+  lowAt=1 Ceil4R=0 Floor3R=1 MidW4R=0 FloorW4R=1 TopW4R=1 Ceil5R=0 BottomW5R=1
+  foldsVeeL6=0 foldsLamL4=1 foldsW3R=0 foldsW4R=0 foldsW5R=0
+arm mix gen=0 basepoint=397 forward len=64 (of 589)
+  levels: 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 5 6 5 4 5 5 5 6 7 6 5 5 5 4 5 6 5 4 5 4 3 4 4 4 5 6 5 4 5 6 5 6 7 6 5 5 5 4 5 6 5 4 4 4
+  nat16: 0x4445654555676565456544434545654555676555456567656767876765676565
+  lowAt=1 Ceil4R=0 Floor3R=1 MidW4R=1 FloorW4R=1 TopW4R=1 Ceil5R=0 BottomW5R=1
+  foldsVeeL6=0 foldsLamL4=1 foldsW3R=0 foldsW4R=1 foldsW5R=0
+arm heavy gen=0 basepoint=923 forward len=63 (of 63)
+  levels: 5 5 5 6 7 6 5 6 5 4 5 6 5 6 6 6 5 6 7 6 7 7 7 6 6 6 5 6 6 6 5 5 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 7 8 7 6 7 7 7 8 9
+  nat16: 0x987776787676567678767656765654555666566677767656665654565676555
+  lowAt=1 Ceil4R=1 Floor3R=1 MidW4R=1 FloorW4R=1 TopW4R=0 Ceil5R=0 BottomW5R=1
+  foldsVeeL6=0 foldsLamL4=1 foldsW3R=1 foldsW4R=0 foldsW5R=0
+arm heavy gen=0 basepoint=931 forward len=55 (of 55)
+  levels: 5 4 5 6 5 6 6 6 5 6 7 6 7 7 7 6 6 6 5 6 6 6 5 5 5 4 5 6 5 6 7 6 5 6 7 6 7 8 7 6 7 6 5 6 7 6 7 8 7 6 7 7 7 8 9
+  nat16: 0x9877767876765676787676567656545556665666777676566656545
+  lowAt=1 Ceil4R=1 Floor3R=1 MidW4R=0 FloorW4R=1 TopW4R=0 Ceil5R=0 BottomW5R=1
+  foldsVeeL6=0 foldsLamL4=1 foldsW3R=1 foldsW4R=0 foldsW5R=0

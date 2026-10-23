@@ -1,0 +1,286 @@
+%======================================================================
+\chapter{Grids, the Schoenflies theorem and Moore's characterization of the plane}\label{ch:plane}
+%======================================================================
+
+We now finish the proof that a space satisfying Moore's Axioms~1--8 is homeomorphic to $\R^2$. The route is
+the one recommended by Moore's own construction, organized around the Schoenflies theorem:
+\begin{enumerate}
+\item a compact set carrying two families of ``grid lines'' of vanishing mesh is a closed square
+(Section~\ref{sec:grid}; pure topology);
+\item nested double rulings (Theorem~D) give such grid lines in the closure of the interior of any quadrilateral, so
+this closure is a square with the sides of the quadrilateral going to the sides of the square (the
+\emph{Schoenflies theorem} in Moore's space, Section~\ref{sec:schoenflies});
+\item the closed region between two nested closed curves is a collar (the \emph{annulus lemma},
+Section~\ref{sec:annulus});
+\item the space is exhausted by nested closed curves (Moore's Theorem~F), and the square of the first curve and the
+collars between consecutive ones are pasted onto the squares $[-(n+1),n+1]^2$ (Section~\ref{sec:paste}).
+\end{enumerate}
+Moore's 1919 paper reaches the plane through his Theorems~E, F and~G (a ``net'' of two families of open curves);
+here Theorems~E and~G are obtained as corollaries of the main theorem.
+
+\section{A compact set with a grid is a square}\label{sec:grid}
+
+Let $K$ be a compact subset of a metric space.
+
+\begin{definition}\label{def:family-lines}
+A \emph{family of lines} in $K$ consists of indices $i$ with positions $t_i\in[0,1]$, including an index $i_0$ with
+$t_{i_0}=0$ and an index $i_1$ with $t_{i_1}=1$, and for each $i$ two closed sets $L_i$, $R_i$ (the two closed
+``sides'' of the line) such that:
+\begin{enumerate}[label=(\arabic*)]
+\item $L_i\cup R_i=K$; $L_i=K$ if $t_i=1$ and $R_i=K$ if $t_i=0$;
+\item if $t_i<t_j$ then $L_i\subseteq L_j$, $R_j\subseteq R_i$ and $L_i\cap R_j=\emptyset$;
+\item the \emph{line} $\ell_i=L_i\cap R_i$ is connected, and lies in $\cl{K\setminus L_i}$ if $t_i<1$ and in $\cl{K\setminus R_i}$ if
+$t_i>0$.
+\end{enumerate}
+A \emph{pre-grid} is a pair of families of lines $(\mathcal F_X,\mathcal F_Y)$ in $K$ such that each line of $\mathcal F_X$ meets
+each line of $\mathcal F_Y$ in exactly one point. Given finitely many lines of each family, including the extreme ones, the
+\emph{box} between consecutive lines $j,j'$ of $\mathcal F_X$ and $m,m'$ of $\mathcal F_Y$ is $K\setminus(L_j\cup R_{j'}\cup
+L_m\cup R_{m'})$. A \emph{grid} is a pre-grid such that
+\begin{enumerate}[label=(\arabic*),resume]
+\item \emph{(mesh)} for every $\varepsilon>0$ and any lines $i\in\mathcal F_X$, $k\in\mathcal F_Y$ there are finite subfamilies
+containing $i$, $k$ and the extreme lines all of whose boxes have closures of diameter $\le\varepsilon$;
+\item \emph{(parametrized lines)} some line $k_\varphi$ of $\mathcal F_Y$ carries an injective map $\varphi\colon[0,1]\to\ell_{k_\varphi}$ with
+$\varphi(s)\in L_i\iff s\le t_i$ and $\varphi(s)\in R_i\iff t_i\le s$ for all lines $i$ of $\mathcal F_X$; likewise some line of $\mathcal F_X$
+carries $\psi$ compatible with the positions of $\mathcal F_Y$.
+\end{enumerate}
+\end{definition}
+
+\formal{\lean{HPC.Sq.Family}, \lean{HPC.Sq.PreGrid}, \lean{HPC.Sq.box}, \lean{HPC.Sq.Grid}.}
+
+The model: $K=[0,1]^2$, the lines of $\mathcal F_X$ the horizontal segments $y=t$ with $L=\set{y\le t}$, $R=\set{y\ge t}$, and
+those of $\mathcal F_Y$ the vertical ones.
+
+\begin{theorem}[A compact grid is a square]\label{thm:grid-square}
+If the compact set $K$ carries a grid, there is a homeomorphism $f$ of $[0,1]^2$ onto $K$ sending the sides $x=0$, $x=1$,
+$y=0$, $y=1$ onto the first and last lines of $\mathcal F_Y$ and of $\mathcal F_X$. Moreover $f$ can be chosen to restrict to
+the parametrizations $\varphi$, $\psi$ on the corresponding lines.
+\end{theorem}
+
+\begin{proof}
+For $z\in K$ define its \emph{position} in $\mathcal F_X$, $\mathrm{pos}_X(z)=\inf\set{t_i:z\in L_i}$, and similarly $\mathrm{pos}_Y$.
+Then $t_i\le\mathrm{pos}_X(z)\le t_j$ whenever $z\in R_i\cap L_j$, and $\mathrm{pos}_X=t_i$ on the line $\ell_i$.
+
+\emph{Positions of lines are dense in $[0,1]$.} The parametrized line gives $\mathrm{pos}_X(\varphi(s))=s$. If no line had its
+position in an interval $(a,b)\subseteq[0,1]$, the points $\varphi(a)\ne\varphi(b)$ would lie, for every finite subfamily, in the
+closure of one box (between the consecutive lines around $(a,b)$), against the mesh condition with $\varepsilon<d(\varphi(a),
+\varphi(b))$.
+
+\emph{Limit lemma.} If $\mathrm{pos}_X(z)=t_i$ then $z\in\ell_i$: by density there are lines at positions approaching $t_i$ from
+both sides, and $z$ lies on their $R$-sides from below and $L$-sides from above; by (2), (3) and closedness, $z\in L_i\cap R_i$.
+
+\emph{Continuity.} $\set{z:\mathrm{pos}_X(z)<c}=\bigcup_{t_i<c}(K\setminus R_i)$ and $\set{z:\mathrm{pos}_X(z)>c}=\bigcup_{t_i>c}
+(K\setminus L_i)$, by density and the limit lemma; both are open in $K$.
+
+\emph{Injectivity of $\Phi=(\mathrm{pos}_Y,\mathrm{pos}_X)$.} If $z,w$ have the same positions, then for every finite subfamily they lie in
+the closure of the same box (or on its boundary lines), so $d(z,w)\le\varepsilon$ for every $\varepsilon$ by the mesh condition.
+
+\emph{Surjectivity.} The crossing point of the lines $i\in\mathcal F_X$, $k\in\mathcal F_Y$ has image $(t_k,t_i)$. These points are dense in
+$[0,1]^2$ and $\Phi(K)$ is compact, so $\Phi(K)=[0,1]^2$.
+
+So $\Phi\colon K\to[0,1]^2$ is a continuous bijection from a compact space onto a Hausdorff space, a homeomorphism; let $f=\Phi^{-1}$. The
+sides go where stated since $\mathrm{pos}_X(z)=0$ iff $z\in L_{i_0}$, and so on. On the parametrized line $\ell_{k_\varphi}$ we have
+$\Phi(\varphi(s))=(t_{k_\varphi},s)$, which gives the last claim.
+\end{proof}
+
+\formal{\lean{HPC.Sq.Family.pos}, \lean{HPC.Sq.Grid.dense_t}, \lean{HPC.Sq.Grid.mem_L_of_pos_eq},
+\lean{HPC.Sq.Grid.continuousOn_pos}, \lean{HPC.Sq.Grid.eq_of_pos_eq}, \lean{HPC.Sq.Grid.image_pos},
+\lean{HPC.Sq.Grid.exists_square}, \lean{HPC.Sq.Grid.exists_square_param}.}
+
+\begin{lemma}[Boxes are components]\label{lem:boxes}
+Given finitely many lines of each family of a pre-grid (including the extreme ones), the open boxes cut out by consecutive lines
+are pairwise disjoint, nonempty, and cover $K$ minus the lines. If $U\subseteq K$ is a set such that $U$ minus the lines has
+exactly as many components as there are boxes, every box lies in a single component.
+\end{lemma}
+
+\begin{proof}
+Disjointness and covering follow from (1)--(2); nonemptiness from the crossing of lines and (3). Each component of $U$ minus the
+lines is a union of (connected pieces of) boxes; each box meets some component, and a counting argument shows that if some box met
+two components there would be more components than boxes.
+\end{proof}
+
+\formal{\lean{HPC.Sq.PreGrid.box_nonempty}, \lean{HPC.Sq.PreGrid.box_sub_component}.}
+
+\section{The Schoenflies theorem in Moore's space}\label{sec:schoenflies}
+
+We return to a space $S$ satisfying Axioms~1--8, with a fixed metric (Proposition~\ref{prop:bridge}).
+
+\begin{lemma}[Nested rulings]\label{lem:nested-rulings}
+For any sequence $\mathcal G_1,\mathcal G_2,\dots$ of covers of $S$ by regions there are double rulings $\beta_1,\beta_2,\dots$ of a
+quadrilateral $ABCDA$ such that every subdivision of $\beta_k$ lies in a region of $\mathcal G_k$, every arc of $\beta_k$ is an arc of
+$\beta_{k+1}$, and every subdivision of $\beta_{k+1}$ lies in a subdivision of $\beta_k$.
+\end{lemma}
+
+\begin{proof}
+$\beta_1$ is given by Theorem~D for regions (Corollary~\ref{cor:theoremD-regions}). Given $\beta_k$, every subdivision of $\beta_k$,
+made into a quadrilateral in any way, is rulable with subdivisions in regions of $\mathcal G_{k+1}$ (Corollary~\ref{cor:theoremD-regions}
+again); the refinement proposition (Proposition~\ref{prop:refine}) gives $\beta_{k+1}$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.nested_rulings}, \lean{HPC.Moore.nested_rulings_fund}.}
+
+\begin{theorem}[Schoenflies; Moore 1919, Theorem~E]\label{thm:schoenflies}
+For every quadrilateral $ABCDA$ there is a homeomorphism $f$ of $[0,1]^2$ onto $J\cup I$ with $f(0,0)=A$, $f(0,1)=B$, $f(1,1)=C$,
+$f(1,0)=D$, sending the sides $x=0$, $y=1$, $x=1$, $y=0$ of the square onto $AB$, $BC$, $CD$, $DA$. The homeomorphism can be chosen
+to agree with any given parametrizations of the four sides.
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal G_k$ be the cover by regions of diameter $<1/k$, and $\beta_k$ the nested rulings of Lemma~\ref{lem:nested-rulings}. Let
+$\mathcal A_X$ be the set of all arcs from $AB$ to $CD$ of all the $\beta_k$, and $\mathcal A_Y$ the set of all arcs from $BC$ to $DA$. Arcs of
+$\mathcal A_X$ are pairwise disjoint and each meets each arc of $\mathcal A_Y$ in exactly one point (two arcs occur together in some $\beta_k$,
+since the rulings are nested).
+
+\emph{Lines.} Fix a parametrization $f_{AB}$ of $AB$ from $A$ to $B$. Record an arc $x\in\mathcal A_X$ from $X\in AB$ to $X'\in CD$ by its
+\emph{line record}: the parameter $t$ of $X$, and the closures $L,R$ of the two halves $AXX'DA$ and $XBCX'X$ of the cut along $x$. Record
+the side $DA$ as $(0,DA,J\cup I)$ and $BC$ as $(1,J\cup I,BC)$. These form a family of lines in $J\cup I$ (Definition~\ref{def:family-lines}):
+the two sides of a cut are closed, cover $J\cup I$ and meet in the arc, which lies in the closure of each complement; along $AB$ the point
+$f_{AB}(s)$ is on the $L$-side iff $s\le t$; and two disjoint arcs are nested in the order of their ends on $AB$. Together with the family
+built from $\mathcal A_Y$ and $f_{BC}$ (with $AB$, $CD$ as extreme lines) this is a pre-grid, and the sides $AB$, $BC$ with $f_{AB},f_{BC}$
+are parametrized lines.
+
+\emph{Mesh.} Given a finite set of lines, all of them belong to some $\beta_k$ (together with the sides). The $(n+1)(m+1)$ boxes cut out by
+the arcs of a ruling are nonempty and disjoint (Lemma~\ref{lem:boxes}) and there are exactly $(n+1)(m+1)$ subdivisions
+(Proposition~\ref{prop:cells-count}); so each box lies in one subdivision, hence in a region of diameter $<1/k$. Adding lines only refines
+boxes, so the mesh condition holds.
+
+By Theorem~\ref{thm:grid-square} the compact set $J\cup I$ is a square with the stated sides. For prescribed parametrizations of all four
+sides, compose with a homeomorphism of the square that fixes two adjacent sides pointwise and reparametrizes the other two
+(\lean{HPC.Sq.exists_square_reparam}).
+\end{proof}
+
+\formal{\lean{HPC.Moore.lineFam}, \lean{HPC.Moore.lr_mono}, \lean{HPC.Moore.preGrid},
+\lean{HPC.Moore.preGrid_box_sub_cell}, \lean{HPC.Moore.m19_schoenflies_proof}, \lean{HPC.Moore.m19_schoenflies_param},
+\lean{HPC.Moore.m19_schoenflies_boundary_proof}, \lean{HPC.Moore.m19_schoenflies_boundary}.}
+
+Theorem~E as Moore states it (two sets of arcs across $ABCDA$, one through each interior point in each direction, each arc of one set
+meeting each arc of the other once) follows by taking the images of the horizontal and vertical segments under $f$
+(\lean{HPC.Moore.m19_theoremE}).
+
+\begin{corollary}\label{cor:schoenflies-curve}
+For every closed curve $J$ there is a homeomorphism of $[0,1]^2$ onto $J\cup I(J)$ sending the boundary of the square onto $J$.
+\end{corollary}
+
+\begin{proof}
+Choose four points on $J$ to make it a quadrilateral.
+\end{proof}
+
+\formal{\lean{HPC.Moore.exists_quad}, \lean{HPC.Moore.exists_square_of_interior}.}
+
+\section{The annulus lemma}\label{sec:annulus}
+
+\begin{theorem}[Annulus lemma]\label{thm:annulus}
+Let $J,J'$ be closed curves with $J\cup I(J)\subseteq I(J')$. There is a homeomorphism $H$ of $J\times[0,1]$ onto the closed annulus
+$(J'\cup I(J'))\setminus I(J)$ with $H(z,0)=z$ for $z\in J$ and $H(J\times\set1)=J'$.
+\end{theorem}
+
+\begin{proof}
+\emph{Two cuts.} By the Schoenflies theorem for $J'$ (Corollary~\ref{cor:schoenflies-curve}) there are coordinates on $J'\cup I(J')$ in
+which it is a square. On a horizontal line meeting the compact set $J\cup I(J)$, take its extreme points $P,Q$ on $J\cup I(J)$ and the
+horizontal segments from them to the boundary: they give disjoint arcs $c_1=PP'$, $c_2=QQ'$ from $J$ to $J'$, each meeting $J\cup I(J)$
+only in its first end and $J'$ only in its last end.
+
+\emph{Two quadrilaterals.} Let $e$ be an arc from $P$ to $Q$ with open part in $I(J)$ (Theorem~\ref{thm:fa39-40}). Then $c_1\cup e\cup c_2$
+is a cross-cut of $I(J')$, splitting it into the interiors $R_1,R_2$ of $c_1\cup e\cup c_2\cup b_i$, where $b_1,b_2$ are the arcs of $J'$
+from $P'$ to $Q'$ (Corollary~\ref{cor:split-interior}). One arc $a_1$ of $J$ from $P$ to $Q$ lies in $\cl{R_1}$ and the other, $a_2$, in
+$\cl{R_2}$; cutting $R_i$ along $a_i$ leaves the interior $A_i$ of the closed curve $K_i=c_1\cup b_i\cup c_2\cup a_i$. The two closed sets
+$K_i\cup A_i$ fill the closed annulus and meet only along $c_1$ and $c_2$.
+
+\emph{Gluing.} Each $K_i\cup A_i$ is a quadrilateral with sides $a_i$, $c_2$, $b_i$, $c_1$. Choose parametrizations of $c_1$, $c_2$ and of
+the arcs $a_i$ (compatible at $P,Q$), and apply the Schoenflies theorem with prescribed sides (Theorem~\ref{thm:schoenflies}) to both
+quadrilaterals so that the two maps agree on $c_1$ and $c_2$. Define $H(z,s)$, for $z\in a_i$, as the value at height $s$ above the
+parameter of $z$ in the square of $K_i\cup A_i$. The two halves agree on $c_1,c_2$, so $H$ is a continuous bijection from the compact
+$J\times[0,1]$ onto the annulus, hence a homeomorphism.
+\end{proof}
+
+\formal{\lean{HPC.Moore.exists_cuts}, \lean{HPC.Moore.annulus_decomp}, \lean{HPC.Moore.exists_collar},
+\lean{HPC.Moore.m19_annulus}, \lean{HPC.Moore.m19_annulus_square}.}
+
+Moore asserts that the annulus can be divided by a double ruling into nine cells, the central one bounded by the inner curve; this is not
+needed (two quadrilaterals suffice) and is not proved in the formal development.
+
+\section{Exhaustion and pasting}\label{sec:paste}
+
+\begin{lemma}\label{lem:curve-about-compact}
+$S$ is connected, and every compact set $M\subseteq S$ lies within some closed curve.
+\end{lemma}
+
+\begin{proof}
+Connectedness is Theorem~\ref{thm:fa-elementary}(22). Cover $M$ by finitely many interiors of closed curves (Theorem~\ref{thm:fa35-36}(b))
+and join each of them by an arc to a base point (Theorem~\ref{thm:fa15}); the union $M_1$ of these arcs and the closures of the interiors
+is compact and connected. Cover $M_1$ by finitely many interiors of closed curves, each meeting $M_1$; their union is connected (each meets
+the connected $M_1$, which they cover). By Theorem~\ref{thm:fa42} some closed curve has an interior containing all of them, hence $M$.
+\end{proof}
+
+\formal{\lean{HPC.Moore.preconnectedSpace}, \lean{HPC.Moore.exists_curve_about_compact}.}
+
+\begin{theorem}[Moore 1919, Theorem~F]\label{thm:theoremF}
+There are closed curves $J_0,J_1,\dots$ with $J_n\cup I(J_n)\subseteq I(J_{n+1})$ and $\bigcup_nI(J_n)=S$.
+\end{theorem}
+
+\begin{proof}
+Let $K_1,K_2,\dots$ be the fundamental regions of Axiom~1 (every point lies in some $K_n$). Take $J_0$ about $\cl{K_0}$, and $J_{n+1}$ a
+closed curve within which lies the compact set $J_n\cup I(J_n)\cup\cl{K_{n+1}}$ (Lemma~\ref{lem:curve-about-compact}).
+\end{proof}
+
+\formal{\lean{HPC.Moore.m19_theoremF_proof}, \lean{HPC.Moore.m19_theoremF}.}
+
+\begin{proposition}[Pasting]\label{prop:paste}
+Let $X$ be a Hausdorff space and $J_n,I_n\subseteq X$ ($n\ge0$) with $I_n$ open, $J_n\cap I_n=\emptyset$, $J_n\cup I_n\subseteq I_{n+1}$ and
+$\bigcup I_n=X$. Suppose $J_0\cup I_0$ is the image of a homeomorphism of the square $[-1,1]^2$ sending its boundary onto $J_0$, and each
+$J_n$ has a collar in $J_{n+1}\cup I_{n+1}$ ending on $J_{n+1}$ (as in Theorem~\ref{thm:annulus}). Then $X$ is homeomorphic to $\R^2$.
+\end{proposition}
+
+\begin{proof}
+Inductively extend the embedding $\Psi_n$ of $[-(n+1),n+1]^2$ onto $D_n=J_n\cup I_n$ to $\Psi_{n+1}$ on $[-(n+2),n+2]^2$, mapping the square
+annulus $n+1\le\nrm p\le n+2$ onto the collar by $\Psi_{n+1}(p)=H\big(\Psi_n((n+1)p/\nrm p),\,\nrm p-(n+1)\big)$ (radial extension). Then
+$D_n\subseteq\interior D_{n+1}$, and the $\Psi_n$ agree where both are defined, so they define a bijection $\Psi\colon\R^2\to X$. It is
+continuous (each point of $\R^2$ has a neighbourhood in some $[-(n+1),n+1]^2$) and open (each point of $X$ lies in the interior of some
+$D_n$, on which $\Psi^{-1}=\Psi_{n+1}^{-1}$ is continuous).
+\end{proof}
+
+\formal{\lean{HPC.Sq.exhaust_homeomorph}, \lean{HPC.Sq.plane_of_collars}.}
+
+\begin{theorem}[Moore's characterization of the plane]\label{thm:moore-plane}
+A space satisfying Axioms~1--8 is homeomorphic to $\R^2$ (with the topology generated by its regions).
+\end{theorem}
+
+\begin{proof}
+Take the curves of Theorem~\ref{thm:theoremF}. $J_0\cup I(J_0)$ is a square with boundary $J_0$ (Corollary~\ref{cor:schoenflies-curve},
+rescaled to $[-1,1]^2$), and each annulus is a collar (Theorem~\ref{thm:annulus}). Proposition~\ref{prop:paste} applies, since $S$ is
+Hausdorff.
+\end{proof}
+
+\formal{\lean{HPC.Moore.m19_plane_proof}, \lean{HPC.Moore.m19_plane}.}
+
+\begin{corollary}[Moore 1919, Theorem~G and the final paragraph]\label{cor:theoremG}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item There are two sets $\mathcal G_1,\mathcal G_2$ of open curves (images of closed embeddings of $\R$) such that through each point there is
+exactly one curve of each set, and each curve of $\mathcal G_1$ meets each curve of $\mathcal G_2$ in exactly one point.
+\item There is a bijection $P\mapsto(x_P,y_P)$ of $S$ onto $\R^2$ such that $P$ is the sequential limit of $P_1,P_2,\dots$ (in Moore's sense)
+if and only if $x_{P_n}\to x_P$ and $y_{P_n}\to y_P$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Transport the horizontal and vertical lines, and convergence, by the homeomorphism of Theorem~\ref{thm:moore-plane}; Moore's sequential limits are
+the limits of the region topology (Proposition~\ref{prop:bridge}).
+\end{proof}
+
+\formal{\lean{HPC.Moore.m19_theoremG}, \lean{HPC.Moore.m19_openCurve}, \lean{HPC.Moore.m19_final}.}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Show that the mesh condition in Definition~\ref{def:family-lines} cannot be dropped: give a compact set with two families of ``lines'' satisfying
+(1)--(3) and (5) that is not a square.
+\end{exercise}
+
+\begin{exercise}
+In the plane, carry out the proof of Theorem~\ref{thm:annulus} for two concentric circles, with $c_1,c_2$ horizontal segments.
+\end{exercise}
+
+\begin{exercise}
+Show that Proposition~\ref{prop:paste} fails without the hypothesis $D_n\subseteq\interior D_{n+1}$.
+\end{exercise}

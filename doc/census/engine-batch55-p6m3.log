@@ -1,0 +1,24 @@
+engine-batch55: thresholds floor 3, deep 2, ceiling 9
+engine-batch55: the four-leg engine at L=0, H=9, K=7, M=3, P=6 (the walk 5 -> 7 -> 3 -> 8 -> 1, 19 times)
+  walk: 5 6 7 6 5 4 3 4 5 6 7 8 7 6 5 4 3 2 1
+
+==== base chain bing 0 9 (n = 986 links) ====
+  random perturbation walk: 6 accepted of 20 tried
+
+==== base chain bing 9 0 (n = 986 links) ====
+  random perturbation walk: 3 accepted of 20 tried
+
+==== base chain bing 0 9 + bing 9 0 (n = 1971 links) ====
+  random perturbation walk: 2 accepted of 20 tried
+
+==== base chain vpath 0 9 (1,2) (n = 174 links) ====
+  random perturbation walk: 0 accepted of 20 tried
+
+================ totals ================
+arms scanned 6881932; based within two of P 4956914; with all three announcements 1120068
+of those: the greedy leaves Val4 at 0, the arm does not fold at 0, the arm folds at 1120068
+  arms based at 4: with the announcements 219071, the greedy leaves Val4 at 0, the arm does not fold at 0, it folds at 219071
+  arms based at 5: with the announcements 455796, the greedy leaves Val4 at 0, the arm does not fold at 0, it folds at 455796
+  arms based at 6: with the announcements 445201, the greedy leaves Val4 at 0, the arm does not fold at 0, it folds at 445201
+the invariant test: arms 6881932, eligible (the three implications hold) 1120068, Val4 fails at 0, a progress bound fails at 0
+NO counterexample: the relaxed engine (P = L+6, M = P-3) holds over this corpus

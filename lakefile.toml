@@ -1,0 +1,32 @@
+name = "hpc"
+defaultTargets = ["HPC"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.28.0"
+
+# The classification of homogeneous plane continua: the import closure of `HPC.BJ59.BJ59E`
+# (`HPC.lean`). The default target: `lake build` or `lake build HPC`.
+[[lean_lib]]
+name = "HPC"
+roots = ["HPC"]
+
+# Modules outside the classification's import closure (and outside `HPC/Archive` and
+# `HPC/Census`), listed in `HPCExtra.lean` by `scripts/split.py`. Not imported by `HPC.lean`:
+# build with `lake build HPCExtra`.
+[[lean_lib]]
+name = "HPCExtra"
+roots = ["HPCExtra"]
+
+# The `native_decide` census theorems (`HPC/Census`). Not imported by `HPC.lean`:
+# build with `lake build HPCCensus`.
+[[lean_lib]]
+name = "HPCCensus"
+roots = ["HPCCensus"]
+
+# Exploratory files no main-line theorem depends on (`HPC/Archive`). Not imported by `HPC.lean`:
+# build with `lake build HPCArchive`.
+[[lean_lib]]
+name = "HPCArchive"
+roots = ["HPCArchive"]
