@@ -4028,3 +4028,8 @@
 'HPC.BJ59.Cert4.cert4_events' depends on axioms: [propext, Classical.choice, Quot.sound]
 'HPC.BJ59.Cert4.cert4_not_crooked' depends on axioms: [propext, Classical.choice, Quot.sound]
 'HPC.BJ59.nonvac_sweep_four_events' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.janiszewski_polygonal_of_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.exists_theta_point_open' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.compFamily_no_circular_open' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.treeChain_of_cover_open' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPC.Plane.theorem6_direct' depends on axioms: [propext, Classical.choice, Quot.sound]
